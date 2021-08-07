@@ -1,0 +1,5 @@
+.doit*
+.python-version
+__pycache__
+cache
+output
