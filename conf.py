@@ -16,7 +16,7 @@ import time
 
 
 # Data about this site
-BLOG_AUTHOR = "Lean prover community"  # (translatable)
+BLOG_AUTHOR = "The Lean prover community"  # (translatable)
 BLOG_TITLE = "Lean news"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
@@ -140,10 +140,10 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
+        (r"https://leanprover-community.github.io/", "Main site"),
         ("/archive.html", "Archive"),
         ("/categories/", "Tags"),
         ("/rss.xml", "RSS feed"),
-        (r"https://leanprover-community.github.io/", "Main site"),
     ),
 }
 
