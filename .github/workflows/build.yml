@@ -1,0 +1,32 @@
+name: deploy site
+
+on:
+  push:
+    branches-ignore:
+      - 'deploy'
+  # schedule:
+  #   - cron: '0 4 * * *'
+
+jobs:
+  build:
+    name: Build HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: install Python dependencies
+        run: python -m pip install Nikola Jinja2 pyphen typogrify aiohttp watchdog ruamel.yaml html5lib
+
+      - name: build site
+        run: ./deploy.sh 
+        env:
+          git_hash: ${{ github.sha }}
+          DEPLOY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # DEPLOY_GITHUB_USER: leanprover-community-bot
+          github_repo: ${{ github.repository }}
+          github_ref: ${{ github.ref  }}
