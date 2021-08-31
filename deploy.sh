@@ -5,8 +5,8 @@ set -x
 git clone --branch deploy "https://$DEPLOY_GITHUB_TOKEN@github.com/leanprover-community/blog.git" ./build
 
 nikola build
-rm -rf ../build/docs
-mv output ../build/docs
+rm -rf build/docs
+mv output build/docs
 
 if [ "$github_repo" = "leanprover-community/blog" -a "$github_ref" = "refs/heads/master" ]; then
   cd build/
