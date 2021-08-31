@@ -2,7 +2,7 @@ set -e
 set -x
 
 # is $DEPLOY_GITHUB_USER: needed?
-git clone --branch deploy "https://$DEPLOY_GITHUB_TOKEN@github.com/leanprover-community/blog.git" ./build
+git clone --branch deploy "https://pat:$DEPLOY_GITHUB_TOKEN@github.com/leanprover-community/blog.git" ./build
 
 nikola build
 rm -rf build/docs
