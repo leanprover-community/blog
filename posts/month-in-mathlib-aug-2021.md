@@ -46,7 +46,7 @@ type: text
   but it was finally put together in mathlib.
   It shows the existence and uniqueness of finite fields.
 
-* Among several PRs from the Dedekind project, the two most noteworthy are
+* Among several PRs from the [Dedekind project](https://github.com/lean-forward/class-number), the two most noteworthy are
   - [PR #8530](https://github.com/leanprover-community/mathlib/pull/8530) :: feat(ring_theory): ideals in a Dedekind domain have unique factorization
   - [PR #8626](https://github.com/leanprover-community/mathlib/pull/8626) :: feat(ring_theory): define the ideal class group
 
