@@ -64,6 +64,8 @@ The following PRs are ordered by the date that they were merged into mathlib.
 * [PR #8560](https://github.com/leanprover-community/mathlib/pull/8560) :: feat(matrix/kronecker): Add the Kronecker product
 * [PR #8388](https://github.com/leanprover-community/mathlib/pull/8388) :: feat(measure_theory/decomposition/signed_hahn): signed version of the Hahn decomposition theorem
 * [PR #8588](https://github.com/leanprover-community/mathlib/pull/8588) :: feat(linear_algebra): Smith normal form for submodules over a PID
+
+  This PR is a step towards the classification of finite type modules over a PID.
 * [PR #8266](https://github.com/leanprover-community/mathlib/pull/8266) :: feat(measure_theory/stieltjes_measure): Stieltjes measures associated to monotone functions
 * [PR #8598](https://github.com/leanprover-community/mathlib/pull/8598) :: feat(topology/algebra/weak_dual_topology + analysis/normed_space/weak_dual_of_normed_space): add definition and first lemmas about weak-star topology
 * [PR #8639](https://github.com/leanprover-community/mathlib/pull/8639) :: feat(measure): prove Haar measure = Lebesgue measure on R
