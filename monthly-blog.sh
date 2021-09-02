@@ -10,7 +10,10 @@ echo "Do not write 08 to denote August. Write 8 instead."
 echo ""
 echo "Important: make sure that the mathlib clone is clean,"
 echo "and points to an up-to-date copy of master."
+exit 1
 }
+
+[ $# -ne 3 ] && { usage; }
 
 year=$1
 month=$2
@@ -23,7 +26,9 @@ monthnames_lc=("NaM" "jan" "feb" "mar" "apr" "may" "jun" "jul" "aug" "sep" "oct"
 echo "---"
 echo "author: 'Mathlib community'"
 echo "category: 'month-in-mathlib'"
-echo "date: $(date --rfc-3339=sec)"
+# sadly, the MacOS date command doesn't support the --rfc-3339 option
+# echo "date: $(date --rfc-3339=sec)"
+echo "date: $(date -u +'%Y-%m-%d %H:%M:%S+00:00')"
 echo "description: ''"
 echo "has_math: true"
 echo "link: ''"
