@@ -11,7 +11,7 @@ title: This month in mathlib (Aug 2021)
 type: text
 ---
 
-# This month in mathlib (Aug 2021)
+This post summarizes some of the activity that happened in mathlib in August.
 
 ## Highlighted PRs
 
