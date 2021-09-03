@@ -37,8 +37,8 @@ This post summarizes some of the activity that happened in mathlib in August.
 
 * [PR #7978](https://github.com/leanprover-community/mathlib/pull/7978) :: feat(measure_theory/interval_integral): strong version of FTC-2
 
-  This PR signals the start of a serious attack on Stokes' theorem,
-  which will unlock a general approach to complex analysis.
+  This weakens considerably the assumptions of FTC-2,
+  replacing continuity of the derivative by the much more natural assumption of integrability.
 
 * [PR #8692](https://github.com/leanprover-community/mathlib/pull/8692) :: feat(field_theory): finite fields exist
 
