@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts about month-in-mathlib)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/categories/cat_month-in-mathlib.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sun, 05 Sep 2021 18:43:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Aug 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in August.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts about month-in-mathlib)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/categories/cat_month-in-mathlib.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sun, 19 Sep 2021 16:34:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Aug 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in August.&lt;/p&gt;
 &lt;h3&gt;Highlighted PRs&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8652"&gt;PR #8652&lt;/a&gt; :: chore(*): update lean to 3.32.1&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The community fork of Lean made two new
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8652"&gt;PR #8652&lt;/a&gt;: chore(*): update lean to 3.32.1&lt;br&gt;
+  The community fork of Lean made two new
   &lt;a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3321c-12-august-2021"&gt;releases&lt;/a&gt;
   &lt;code&gt;3.32.0&lt;/code&gt; and &lt;code&gt;3.32.1&lt;/code&gt;.
   This is part of the preparations for porting mathlib to Lean 4.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8281"&gt;PR #8281&lt;/a&gt; :: feat(topology,geometry/manifold): continuous and smooth partition of unity&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;See the &lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/continuous-partitions-of-unity/"&gt;companion blogpost&lt;/a&gt; for details.&lt;/p&gt;
-&lt;ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8281"&gt;PR #8281&lt;/a&gt;:  continuous and smooth partition of unity&lt;br&gt;
+  See the &lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/continuous-partitions-of-unity/"&gt;companion blogpost&lt;/a&gt; for details.&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Radon-Nikodym and Lebesgue decomposition. The four PRs
   &lt;a href="https://github.com/leanprover-community/mathlib/pull/8645"&gt;PR #8645&lt;/a&gt;
@@ -24,44 +24,50 @@
   and the Radon-Nikodym theorem.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/7978"&gt;PR #7978&lt;/a&gt; :: feat(measure_theory/interval_integral): strong version of FTC-2&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/7978"&gt;PR #7978&lt;/a&gt;: strong version of FTC-2&lt;br&gt;
+  This weakens considerably the assumptions of part of the fundamental theorem of calclus: 
+  $\int _{a}^{b}f'(x)\,dx=f(b)-f(a)$,
+  replacing continuity of $f'$ by the much more natural assumption of integrability.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This weakens considerably the assumptions of FTC-2,
-  replacing continuity of the derivative by the much more natural assumption of integrability.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8692"&gt;PR #8692&lt;/a&gt; :: feat(field_theory): finite fields exist&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Most of this PR had been lying around for ages,
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/4885"&gt;PR #4885&lt;/a&gt;:  general adjoint functor theorem:
+  If $G : D ⇒ C$ preserves limits and $D$ has limits, and satisfies the solution set condition,
+  then it has a left adjoint.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8692"&gt;PR #8692&lt;/a&gt;:  finite fields exist&lt;br&gt;
+  Most of this PR had been lying around for ages,
   but it was finally put together in mathlib.
-  It shows the existence and uniqueness of finite fields.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Among several PRs from the &lt;a href="https://github.com/lean-forward/class-number"&gt;Dedekind project&lt;/a&gt;, the two most noteworthy are&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8530"&gt;PR #8530&lt;/a&gt; :: feat(ring_theory): ideals in a Dedekind domain have unique factorization&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8626"&gt;PR #8626&lt;/a&gt; :: feat(ring_theory): define the ideal class group&lt;/p&gt;
+  It shows the existence and uniqueness up to isomorphism of a finite field with cardinal $p^n$
+  for any prime number $p$ and positive integer $n$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8377"&gt;PR #8377&lt;/a&gt; :: feat(analysis/complex/upper_half_plane): new file&lt;/p&gt;
+&lt;p&gt;Among several PRs from the &lt;a href="https://github.com/lean-forward/class-number"&gt;Dedekind project&lt;/a&gt;, the two most noteworthy are&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8530"&gt;PR #8530&lt;/a&gt;:  ideals in a Dedekind domain have unique factorization&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8626"&gt;PR #8626&lt;/a&gt;:  define the ideal class group  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8377"&gt;PR #8377&lt;/a&gt;:  new file&lt;br&gt;
+  This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.&lt;br&gt;
+  Upcoming PRs will characterize the fundamental domain of the $\mathrm{SL}_2(\mathbb{Z})$-action.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.
-  Upcoming PRs will characterize the fundamental domain of the $\mathrm{SL}_2(\mathbb{Z})$-action.&lt;/p&gt;
 &lt;h3&gt;Other mathematical contributions&lt;/h3&gt;
 &lt;p&gt;The following PRs are ordered by the date that they were merged into mathlib.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8424"&gt;PR #8424&lt;/a&gt; :: feat(analysis/complex): prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/4885"&gt;PR #4885&lt;/a&gt; :: feat(category_theory/adjunction): general adjoint functor theorem&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8560"&gt;PR #8560&lt;/a&gt; :: feat(matrix/kronecker): Add the Kronecker product&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8388"&gt;PR #8388&lt;/a&gt; :: feat(measure_theory/decomposition/signed_hahn): signed version of the Hahn decomposition theorem&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8588"&gt;PR #8588&lt;/a&gt; :: feat(linear_algebra): Smith normal form for submodules over a PID
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8424"&gt;PR #8424&lt;/a&gt;:  prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8560"&gt;PR #8560&lt;/a&gt;:  Add the Kronecker product&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8388"&gt;PR #8388&lt;/a&gt;:  signed version of the Hahn decomposition theorem&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8588"&gt;PR #8588&lt;/a&gt;:  Smith normal form for submodules over a PID
   This PR is a step towards the classification of finite type modules over a PID.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8266"&gt;PR #8266&lt;/a&gt; :: feat(measure_theory/stieltjes_measure): Stieltjes measures associated to monotone functions&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8598"&gt;PR #8598&lt;/a&gt; :: feat(topology/algebra/weak_dual_topology + analysis/normed_space/weak_dual_of_normed_space): add definition and first lemmas about weak-star topology&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8639"&gt;PR #8639&lt;/a&gt; :: feat(measure): prove Haar measure = Lebesgue measure on R&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8558"&gt;PR #8558&lt;/a&gt; :: feat(algebraic_geometry/EllipticCurve): add working definition of elliptic curve&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8538"&gt;PR #8538&lt;/a&gt; :: feat(group_theory/nilpotent): add nilpotent groups&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8343"&gt;PR #8343&lt;/a&gt; :: feat(linear_algebra/dimension): generalize inequalities and invariance of dimension to arbitrary rings&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8791"&gt;PR #8791&lt;/a&gt; :: feat(measure_theory): volume of a (closed) L∞-ball&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8576"&gt;PR #8576&lt;/a&gt; :: feat(analysis/normed_space/exponential): define exponential in a Banach algebra and prove basic results&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8266"&gt;PR #8266&lt;/a&gt;:  Stieltjes measures associated to monotone functions&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8598"&gt;PR #8598&lt;/a&gt;:  add definition and first lemmas about weak-star topology&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8639"&gt;PR #8639&lt;/a&gt;:  prove Haar measure = Lebesgue measure on $ℝ$&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8558"&gt;PR #8558&lt;/a&gt;:  add working definition of elliptic curve&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8538"&gt;PR #8538&lt;/a&gt;:  add nilpotent groups&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8343"&gt;PR #8343&lt;/a&gt;:  generalize inequalities and invariance of dimension to arbitrary rings&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8791"&gt;PR #8791&lt;/a&gt;:  volume of a (closed) $L^∞$-ball&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8576"&gt;PR #8576&lt;/a&gt;:  define exponential in a Banach algebra and prove basic results&lt;/li&gt;
 &lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/</guid><pubDate>Tue, 31 Aug 2021 06:56:51 GMT</pubDate></item></channel></rss>

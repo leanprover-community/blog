@@ -27,9 +27,9 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <meta property="og:description" content="This post summarizes some of the activity that happened in mathlib in August.
 Highlighted PRs
 
-PR #8652 :: chore(*): update lean to 3.32.1
 
-The community fork of Lean made two new
+PR #8652: chore(*): update lean to 3.32.1
+  The community fork of Lean made two new
   releases
   3.32.0 ">
 <meta property="og:type" content="article">
@@ -68,7 +68,7 @@ The community fork of Lean made two new
 </header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
             <ul class="navbar-nav nav-fill d-flex w-100">
 <li class="nav-item">
-<a href="https://leanprover-community.github.io/" class="nav-link">Main&nbsp;site</a>
+<a href="https://leanprover-community.github.io/" class="nav-link">Main site</a>
                 </li>
 <li class="nav-item">
 <a href="../../archive.html" class="nav-link">Archive</a>
@@ -80,7 +80,7 @@ The community fork of Lean made two new
 <a href="../../about/" class="nav-link">About</a>
                 </li>
 <li class="nav-item">
-<a href="../../rss.xml" class="nav-link"><span class="caps">RSS</span>&nbsp;feed</a>
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
 
                 
             </li>
@@ -94,11 +94,11 @@ The community fork of Lean made two new
     <div class="body-content">
         <!--Body content-->
         
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">This month in mathlib (Aug&nbsp;2021)</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">This month in mathlib (Aug 2021)</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
-                    <a class="u-url" href="../../authors/mathlib-community/">Mathlib&nbsp;community</a>
+                    <a class="u-url" href="../../authors/mathlib-community/">Mathlib community</a>
             </span></p>
             <p class="dateline">
             <a href="." rel="bookmark">
@@ -110,94 +110,97 @@ The community fork of Lean made two new
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
-<p>This post summarizes some of the activity that happened in mathlib in&nbsp;August.</p>
-<h3>Highlighted&nbsp;PRs</h3>
+<p>This post summarizes some of the activity that happened in mathlib in August.</p>
+<h3>Highlighted PRs</h3>
 <ul>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8652"><span class="caps">PR</span> #8652</a> :: chore(*): update lean to&nbsp;3.32.1</li>
-</ul>
-<p>The community fork of Lean made two new
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8652">PR #8652</a>: chore(*): update lean to 3.32.1<br>
+  The community fork of Lean made two new
   <a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3321c-12-august-2021">releases</a>
   <code>3.32.0</code> and <code>3.32.1</code>.
-  This is part of the preparations for porting mathlib to Lean&nbsp;4.</p>
-<ul>
+  This is part of the preparations for porting mathlib to Lean 4.</p>
+</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8281"><span class="caps">PR</span> #8281</a> :: feat(topology,geometry/manifold): continuous and smooth partition of&nbsp;unity</li>
-</ul>
-<p>See the <a href="continuous-partitions-of-unity/">companion blogpost</a> for&nbsp;details.</p>
-<ul>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>:  continuous and smooth partition of unity<br>
+  See the <a href="continuous-partitions-of-unity/">companion blogpost</a> for details.</p>
+</li>
 <li>
 <p>Radon-Nikodym and Lebesgue decomposition. The four PRs
-  <a href="https://github.com/leanprover-community/mathlib/pull/8645"><span class="caps">PR</span> #8645</a>
-  <a href="https://github.com/leanprover-community/mathlib/pull/8687"><span class="caps">PR</span> #8687</a>
-  <a href="https://github.com/leanprover-community/mathlib/pull/8763"><span class="caps">PR</span> #8763</a>
-  <a href="https://github.com/leanprover-community/mathlib/pull/8875"><span class="caps">PR</span> #8875</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8645">PR #8645</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8687">PR #8687</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8763">PR #8763</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8875">PR #8875</a>
   together contribute
   the Lebesgue decomposition for sigma-finite measures
-  and the Radon-Nikodym&nbsp;theorem.</p>
+  and the Radon-Nikodym theorem.</p>
 </li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/7978"><span class="caps">PR</span> #7978</a> :: feat(measure_theory/interval_integral): strong version of&nbsp;<span class="caps">FTC</span>-2</p>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/7978">PR #7978</a>: strong version of FTC-2<br>
+  This weakens considerably the assumptions of part of the fundamental theorem of calclus: 
+  $\int _{a}^{b}f'(x)\,dx=f(b)-f(a)$,
+  replacing continuity of $f'$ by the much more natural assumption of integrability.</p>
 </li>
-</ul>
-<p>This weakens considerably the assumptions of <span class="caps">FTC</span>-2,
-  replacing continuity of the derivative by the much more natural assumption of&nbsp;integrability.</p>
-<ul>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8692"><span class="caps">PR</span> #8692</a> :: feat(field_theory): finite fields&nbsp;exist</li>
-</ul>
-<p>Most of this <span class="caps">PR</span> had been lying around for ages,
+<p><a href="https://github.com/leanprover-community/mathlib/pull/4885">PR #4885</a>:  general adjoint functor theorem:
+  If $G : D ⇒ C$ preserves limits and $D$ has limits, and satisfies the solution set condition,
+  then it has a left adjoint.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8692">PR #8692</a>:  finite fields exist<br>
+  Most of this PR had been lying around for ages,
   but it was finally put together in mathlib.
-  It shows the existence and uniqueness of finite&nbsp;fields.</p>
-<ul>
-<li>Among several PRs from the <a href="https://github.com/lean-forward/class-number">Dedekind project</a>, the two most noteworthy&nbsp;are</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8530"><span class="caps">PR</span> #8530</a> :: feat(ring_theory): ideals in a Dedekind domain have unique&nbsp;factorization</li>
-<li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/8626"><span class="caps">PR</span> #8626</a> :: feat(ring_theory): define the ideal class&nbsp;group</p>
+  It shows the existence and uniqueness up to isomorphism of a finite field with cardinal $p^n$
+  for any prime number $p$ and positive integer $n$.</p>
 </li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/8377"><span class="caps">PR</span> #8377</a> :: feat(analysis/complex/upper_half_plane): new&nbsp;file</p>
+<p>Among several PRs from the <a href="https://github.com/lean-forward/class-number">Dedekind project</a>, the two most noteworthy are</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8530">PR #8530</a>:  ideals in a Dedekind domain have unique factorization</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8626">PR #8626</a>:  define the ideal class group  </li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8377">PR #8377</a>:  new file<br>
+  This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.<br>
+  Upcoming PRs will characterize the fundamental domain of the $\mathrm{SL}_2(\mathbb{Z})$-action.</p>
 </li>
 </ul>
-<p>This <span class="caps">PR</span> defines the complex upper half plane, together with the $\mathrm{<span class="caps">SL</span>}_2$-action.
-  Upcoming PRs will characterize the fundamental domain of the&nbsp;$\mathrm{<span class="caps">SL</span>}_2(\mathbb{Z})$-action.</p>
-<h3>Other mathematical&nbsp;contributions</h3>
-<p>The following PRs are ordered by the date that they were merged into&nbsp;mathlib.</p>
+<h3>Other mathematical contributions</h3>
+<p>The following PRs are ordered by the date that they were merged into mathlib.</p>
 <ul>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8424"><span class="caps">PR</span> #8424</a> :: feat(analysis/complex): prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing&nbsp;differential</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8424">PR #8424</a>:  prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/4885"><span class="caps">PR</span> #4885</a> :: feat(category_theory/adjunction): general adjoint functor&nbsp;theorem</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8560">PR #8560</a>:  Add the Kronecker product</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8560"><span class="caps">PR</span> #8560</a> :: feat(matrix/kronecker): Add the Kronecker&nbsp;product</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8388">PR #8388</a>:  signed version of the Hahn decomposition theorem</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8388"><span class="caps">PR</span> #8388</a> :: feat(measure_theory/decomposition/signed_hahn): signed version of the Hahn decomposition&nbsp;theorem</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8588">PR #8588</a>:  Smith normal form for submodules over a PID
+  This PR is a step towards the classification of finite type modules over a PID.</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8588"><span class="caps">PR</span> #8588</a> :: feat(linear_algebra): Smith normal form for submodules over a <span class="caps">PID</span>
-  This <span class="caps">PR</span> is a step towards the classification of finite type modules over a&nbsp;<span class="caps">PID</span>.</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8266">PR #8266</a>:  Stieltjes measures associated to monotone functions</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8266"><span class="caps">PR</span> #8266</a> :: feat(measure_theory/stieltjes_measure): Stieltjes measures associated to monotone&nbsp;functions</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8598">PR #8598</a>:  add definition and first lemmas about weak-star topology</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8598"><span class="caps">PR</span> #8598</a> :: feat(topology/algebra/weak_dual_topology + analysis/normed_space/weak_dual_of_normed_space): add definition and first lemmas about weak-star&nbsp;topology</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8639">PR #8639</a>:  prove Haar measure = Lebesgue measure on $ℝ$</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8639"><span class="caps">PR</span> #8639</a> :: feat(measure): prove Haar measure = Lebesgue measure on&nbsp;R</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8558">PR #8558</a>:  add working definition of elliptic curve</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8558"><span class="caps">PR</span> #8558</a> :: feat(algebraic_geometry/EllipticCurve): add working definition of elliptic&nbsp;curve</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8538">PR #8538</a>:  add nilpotent groups</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8538"><span class="caps">PR</span> #8538</a> :: feat(group_theory/nilpotent): add nilpotent&nbsp;groups</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8343">PR #8343</a>:  generalize inequalities and invariance of dimension to arbitrary rings</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8343"><span class="caps">PR</span> #8343</a> :: feat(linear_algebra/dimension): generalize inequalities and invariance of dimension to arbitrary&nbsp;rings</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8791">PR #8791</a>:  volume of a (closed) $L^∞$-ball</li>
 <li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8791"><span class="caps">PR</span> #8791</a> :: feat(measure_theory): volume of a (closed)&nbsp;L∞-ball</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8576"><span class="caps">PR</span> #8576</a> :: feat(analysis/normed_space/exponential): define exponential in a Banach algebra and prove basic&nbsp;results</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8576">PR #8576</a>:  define exponential in a Banach algebra and prove basic results</li>
 </ul>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
-                <a href="../continuous-partitions-of-unity/" rel="prev" title="Continuous partitions of unity">Previous&nbsp;post</a>
+                <a href="../continuous-partitions-of-unity/" rel="prev" title="Continuous partitions of unity">Previous post</a>
             </li>
         </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({

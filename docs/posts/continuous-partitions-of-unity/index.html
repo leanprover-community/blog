@@ -65,7 +65,7 @@ $f_i : ">
 </header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
             <ul class="navbar-nav nav-fill d-flex w-100">
 <li class="nav-item">
-<a href="https://leanprover-community.github.io/" class="nav-link">Main&nbsp;site</a>
+<a href="https://leanprover-community.github.io/" class="nav-link">Main site</a>
                 </li>
 <li class="nav-item">
 <a href="../../archive.html" class="nav-link">Archive</a>
@@ -77,7 +77,7 @@ $f_i : ">
 <a href="../../about/" class="nav-link">About</a>
                 </li>
 <li class="nav-item">
-<a href="../../rss.xml" class="nav-link"><span class="caps">RSS</span>&nbsp;feed</a>
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
 
                 
             </li>
@@ -91,11 +91,11 @@ $f_i : ">
     <div class="body-content">
         <!--Body content-->
         
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Continuous partitions of&nbsp;unity</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Continuous partitions of unity</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
-                    <a class="u-url" href="../../authors/patrick-massot/">Patrick&nbsp;Massot</a>
+                    <a class="u-url" href="../../authors/patrick-massot/">Patrick Massot</a>
             </span></p>
             <p class="dateline">
             <a href="." rel="bookmark">
@@ -107,20 +107,20 @@ $f_i : ">
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
-<p>In <a href="https://github.com/leanprover-community/mathlib/pull/8281"><span class="caps">PR</span> #8281</a>, Yury
-Kudryashov completed his work on continuous and smooth partitions of&nbsp;unity.</p>
+<p>In <a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>, Yury
+Kudryashov completed his work on continuous and smooth partitions of unity.</p>
 <p>A continuous partition of unity on a topological space $X$ is a collection of continuous functions
-$f_i : X → ℝ$ such&nbsp;that:</p>
+$f_i : X → ℝ$ such that:</p>
 <ul>
 <li>the supports of $f_i$ form a locally finite family of sets, i.e., for every point $x$ in $X$, there
-  exists a neighborhood $U$ of $x$ such that all but finitely many functions $f_i$ are zero on&nbsp;$U$;</li>
-<li>the functions $f_i$ are&nbsp;nonnegative;</li>
-<li>the sum $\sum_i f_i(x)$ is equal to one for all&nbsp;$x$.</li>
+  exists a neighborhood $U$ of $x$ such that all but finitely many functions $f_i$ are zero on $U$;</li>
+<li>the functions $f_i$ are nonnegative;</li>
+<li>the sum $\sum_i f_i(x)$ is equal to one for all $x$.</li>
 </ul>
 <p>While the above definition is completely standard, it is often useful to have a collection of
 functions that act as a paritition of unity only on some part $s$ of $X$. In that more general case,
 we keep the above two conditions everywhere but ask that the sum in the last item equals one on $s$
-and is less than or equal to one everywhere. This is encoded in the following Lean structure,&nbsp;from
+and is less than or equal to one everywhere. This is encoded in the following Lean structure, from
 <code>topology.partition_of_unity</code>.</p>
 <pre class="code literal-block"><span class="kd">structure</span> <span class="n">partition_of_unity</span> <span class="o">(</span><span class="n">ι</span> <span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">topological_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">set</span> <span class="n">X</span> <span class="o">:=</span> <span class="n">univ</span><span class="o">)</span> <span class="o">:=</span>
 <span class="o">(</span><span class="n">to_fun</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span> <span class="n">ℝ</span><span class="o">))</span>
@@ -129,7 +129,7 @@ and is less than or equal to one everywhere. This is encoded in the following Le
 <span class="o">(</span><span class="n">sum_eq_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span> <span class="bp">∈</span> <span class="n">s</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">1</span><span class="o">)</span>
 <span class="o">(</span><span class="n">sum_le_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)</span>
 </pre>
-<p>The main result from that file is then the following existence&nbsp;theorem.</p>
+<p>The main result from that file is then the following existence theorem.</p>
 <pre class="code literal-block"><span class="sd">/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set</span>
 <span class="sd">`s`, then there exists a `partition_of_unity ι X s` that is subordinate to `U`. -/</span>
 <span class="kd">lemma</span> <span class="n">exists_is_subordinate</span> <span class="o">[</span><span class="n">normal_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">[</span><span class="n">paracompact_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">hs</span> <span class="o">:</span> <span class="n">is_closed</span> <span class="n">s</span><span class="o">)</span>
@@ -140,10 +140,10 @@ and is less than or equal to one everywhere. This is encoded in the following Le
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
-                <a href="../eric-wiesers-scalar-action-paper/" rel="prev" title="Eric Wieser's scalar action paper">Previous&nbsp;post</a>
+                <a href="../eric-wiesers-scalar-action-paper/" rel="prev" title="Eric Wieser's scalar action paper">Previous post</a>
             </li>
             <li class="next">
-                <a href="../month-in-mathlib-aug-2021/" rel="next" title="This month in mathlib (Aug 2021)">Next&nbsp;post</a>
+                <a href="../month-in-mathlib-aug-2021/" rel="next" title="This month in mathlib (Aug 2021)">Next post</a>
             </li>
         </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
