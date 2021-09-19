@@ -20,7 +20,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://leanprover-community.github.io/blog/">
 <link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/month-in-mathlib-aug-2021/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/yury-kudryashovs-rotation-number-paper/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -78,7 +78,77 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
         
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-aug-2021/" class="u-url">This month in mathlib (Aug 2021)</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/yury-kudryashovs-rotation-number-paper/" class="u-url">Yury Kudryashov’s rotation number paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/yury-kudryashovs-rotation-number-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-19T18:46:20+02:00" itemprop="datePublished" title="2021-09-19 18:46">2021-09-19 18:46</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Yury Kudryashov wrote a 
+<a href="https://easychair.org/publications/preprint/38w1">paper about the rotation number</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>Rotation number is the key numerical invariant of an orientation
+preserving circle homeomorphism.  Circle self-maps $f : S^1 → S^1$, 
+$S^1 = ℝ/ℤ$, constitute an important class of dynamical systems. They
+appear in applications, e.g., as Poincaré maps of continuous flows on
+the $2$-torus.  The simplest circle self-maps are pure rotations 
+$x ↦ x + a$. It turns out that any circle homeomorphism f is semiconjugate 
+to a pure rotation $x ↦ x + τ(f)$. The number $τ(f)$ is called the
+rotation number of $f$.</p>
+<p>This paper describes the current state of an ongoing project with aim to
+formalize various facts about circle dynamics in Lean. Currently, the
+formalized material includes the definition and basic properties of the
+translation number of a lift of a circle homeomorphism to the real line.
+Yury Kudryashov also formalized a theorem by Étienne Ghys that gives a
+necessary and sufficient condition for two actions of a group on the
+circle by homeomorphism to be semiconjugate to each other.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sebastien-gouezels-gromov-hausdorff-space-paper/" class="u-url">Sébastien Gouëzel’s Gromov-Hausdorff Space paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/sebastien-gouezels-gromov-hausdorff-space-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-19T18:34:11+02:00" itemprop="datePublished" title="2021-09-19 18:34">2021-09-19 18:34</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Sébastien Gouëzel wrote a <a href="https://easychair.org/publications/preprint/sD76">paper about the Gromov-Hausdorff space</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>The Gromov-Hausdorff space is the space of all nonempty compact metric
+spaces up to isometry. It has been introduced by Gromov, and plays now
+an important role in branches of geometry and probability theory. Its
+intricate nature of a space of equivalence classes of spaces gives rise
+to interesting formalization questions, both from the point of view of
+the interface with the rest of the library and on design choices for
+definitions and proofs.</p>
+<p>Section 1 gives a purely mathematical description of the
+Gromov-Hausdorff space and its salient features.  Section 2 gives an
+overview of the formalization. The last three sections are devoted to
+specific interesting points that were raised during this formalization.
+More specifically, Section 3 discusses the possible choices of
+definition for the Gromov-Hausdorff space. Section 4 explains how
+preexisting gaps in the mathlib library had to be filled to show that
+the Gromov-Hausdorff distance is realized.  Section 5 focuses on a
+particularly subtle inductive construction involved in the proof of the
+completeness of the Gromov-Hausdorff space, and the shortcomings of Lean
+3 that had to be circumvented to formalize it</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-aug-2021/" class="u-url">This month in mathlib (Aug 2021)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/mathlib-community/">Mathlib community</a>
