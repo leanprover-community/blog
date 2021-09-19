@@ -20,7 +20,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://leanprover-community.github.io/blog/">
 <link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/yury-kudryashovs-rotation-number-paper/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/alex-bests-type-class-generalization-paper/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -78,7 +78,51 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
         
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/yury-kudryashovs-rotation-number-paper/" class="u-url">Yury Kudryashov’s rotation number paper</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alex-bests-type-class-generalization-paper/" class="u-url">Alex Best’s type class generalization paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/alex-bests-type-class-generalization-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-19T21:04:01+02:00" itemprop="datePublished" title="2021-09-19 21:04">2021-09-19 21:04</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Alex J. Best wrote a 
+<a href="https://easychair.org/publications/preprint/KLfT">paper type class generalization</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>When producing large formally verified mathematical developments that
+make use of typeclasses as in mathlib, it is easy to introduce overly strong
+assumptions for theorems and definitions. This paper considers the problem of
+recognizing from the elaborated proof terms when typeclass assumptions
+are stronger than necessary. It uses a Lean metaprogram that finds and
+informs the user about possible generalizations.</p>
+<p>A nice example from the paper deals with the following theorem stating that
+given a ring homomorphism between two fields and a natural number $p$, one of the
+fields has characteristic p if and only if the other has characteristic $p$
+(including $p = 0$):</p>
+<pre class="code literal-block"><span class="kd">lemma</span> <span class="n">ring_hom.char_p_iff_char_p</span> <span class="o">{</span><span class="n">K</span> <span class="n">L</span> <span class="o">:</span> <span class="kt">Type</span> <span class="bp">∗</span> <span class="o">}</span> <span class="o">[</span><span class="n">field</span> <span class="n">K</span><span class="o">]</span> <span class="o">[</span><span class="n">field</span> <span class="n">L</span><span class="o">]</span>
+<span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">K</span> <span class="bp">→+</span> <span class="bp">∗</span> <span class="n">L</span><span class="o">)</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">N</span><span class="o">)</span> <span class="o">:</span> <span class="n">char_p</span> <span class="n">K</span> <span class="n">p</span> <span class="bp">↔</span> <span class="n">char_p</span> <span class="n">L</span> <span class="n">p</span> <span class="o">:=</span>
+<span class="kd">begin</span>
+  <span class="n">split</span><span class="bp">;</span>
+  <span class="o">{</span> <span class="n">introI</span> <span class="n">_c</span><span class="o">,</span> <span class="n">constructor</span><span class="o">,</span> <span class="n">intro</span> <span class="n">n</span><span class="o">,</span>
+    <span class="n">rw</span> <span class="o">[</span><span class="bp">←</span> <span class="bp">@</span><span class="n">char_p.cast_eq_zero_iff</span> <span class="n">_</span> <span class="n">_</span> <span class="n">p</span> <span class="n">_c</span> <span class="n">n</span><span class="o">,</span> <span class="bp">←</span> <span class="n">f.injective.eq_iff</span><span class="o">,</span> <span class="n">f.map_nat_cast</span><span class="o">,</span>
+    <span class="n">f.map_zero</span><span class="o">]</span> <span class="o">}</span>
+<span class="kd">end</span>
+</pre>
+<p>We see that the proof script splits the iff statement into each direction, but
+both directions are proved by the same tactic block. It is non-trivial to
+determine just by reading the proof given what the weakest assumptions possible
+are, and it is not immediately clear from the statement either.
+The meta-program determined these are that $K$ should be a division ring, and $L$
+should be a nontrivial semiring.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/yury-kudryashovs-rotation-number-paper/" class="u-url">Yury Kudryashov’s rotation number paper</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/patrick-massot/">Patrick Massot</a>
