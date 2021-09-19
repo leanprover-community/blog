@@ -15,15 +15,14 @@ This post summarizes some of the activity that happened in mathlib in August.
 
 ## Highlighted PRs
 
-* [PR #8652](https://github.com/leanprover-community/mathlib/pull/8652) :: chore(*): update lean to 3.32.1
-
+* [PR #8652](https://github.com/leanprover-community/mathlib/pull/8652): chore(*): update lean to 3.32.1  
   The community fork of Lean made two new
   [releases](https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3321c-12-august-2021)
   `3.32.0` and `3.32.1`.
   This is part of the preparations for porting mathlib to Lean 4.
 
-* [PR #8281](https://github.com/leanprover-community/mathlib/pull/8281) :: feat(topology,geometry/manifold): continuous and smooth partition of unity
 
+* [PR #8281](https://github.com/leanprover-community/mathlib/pull/8281):  continuous and smooth partition of unity  
   See the [companion blogpost](continuous-partitions-of-unity/) for details.
 
 * Radon-Nikodym and Lebesgue decomposition. The four PRs
@@ -35,41 +34,46 @@ This post summarizes some of the activity that happened in mathlib in August.
   the Lebesgue decomposition for sigma-finite measures
   and the Radon-Nikodym theorem.
 
-* [PR #7978](https://github.com/leanprover-community/mathlib/pull/7978) :: feat(measure_theory/interval_integral): strong version of FTC-2
+* [PR #7978](https://github.com/leanprover-community/mathlib/pull/7978): strong version of FTC-2  
+  This weakens considerably the assumptions of part of the fundamental theorem of calclus: 
+  $\int _{a}^{b}f'(x)\,dx=f(b)-f(a)$,
+  replacing continuity of $f'$ by the much more natural assumption of integrability.
 
-  This weakens considerably the assumptions of FTC-2,
-  replacing continuity of the derivative by the much more natural assumption of integrability.
+* [PR #4885](https://github.com/leanprover-community/mathlib/pull/4885):  general adjoint functor theorem:
+  If $G : D ⇒ C$ preserves limits and $D$ has limits, and satisfies the solution set condition,
+  then it has a left adjoint.
 
-* [PR #8692](https://github.com/leanprover-community/mathlib/pull/8692) :: feat(field_theory): finite fields exist
-
+* [PR #8692](https://github.com/leanprover-community/mathlib/pull/8692):  finite fields exist  
   Most of this PR had been lying around for ages,
   but it was finally put together in mathlib.
-  It shows the existence and uniqueness of finite fields.
+  It shows the existence and uniqueness up to isomorphism of a finite field with cardinal $p^n$
+  for any prime number $p$ and positive integer $n$.
 
 * Among several PRs from the [Dedekind project](https://github.com/lean-forward/class-number), the two most noteworthy are
-  - [PR #8530](https://github.com/leanprover-community/mathlib/pull/8530) :: feat(ring_theory): ideals in a Dedekind domain have unique factorization
-  - [PR #8626](https://github.com/leanprover-community/mathlib/pull/8626) :: feat(ring_theory): define the ideal class group
+    * [PR #8530](https://github.com/leanprover-community/mathlib/pull/8530):  ideals in a Dedekind domain have unique factorization
+    * [PR #8626](https://github.com/leanprover-community/mathlib/pull/8626):  define the ideal class group  
 
-* [PR #8377](https://github.com/leanprover-community/mathlib/pull/8377) :: feat(analysis/complex/upper_half_plane): new file
 
-  This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.
+* [PR #8377](https://github.com/leanprover-community/mathlib/pull/8377):  new file  
+  This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.  
   Upcoming PRs will characterize the fundamental domain of the $\mathrm{SL}_2(\mathbb{Z})$-action.
+  
+
 
 ## Other mathematical contributions
 
 The following PRs are ordered by the date that they were merged into mathlib.
 
-* [PR #8424](https://github.com/leanprover-community/mathlib/pull/8424) :: feat(analysis/complex): prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential
-* [PR #4885](https://github.com/leanprover-community/mathlib/pull/4885) :: feat(category_theory/adjunction): general adjoint functor theorem
-* [PR #8560](https://github.com/leanprover-community/mathlib/pull/8560) :: feat(matrix/kronecker): Add the Kronecker product
-* [PR #8388](https://github.com/leanprover-community/mathlib/pull/8388) :: feat(measure_theory/decomposition/signed_hahn): signed version of the Hahn decomposition theorem
-* [PR #8588](https://github.com/leanprover-community/mathlib/pull/8588) :: feat(linear_algebra): Smith normal form for submodules over a PID
+* [PR #8424](https://github.com/leanprover-community/mathlib/pull/8424):  prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential
+* [PR #8560](https://github.com/leanprover-community/mathlib/pull/8560):  Add the Kronecker product
+* [PR #8388](https://github.com/leanprover-community/mathlib/pull/8388):  signed version of the Hahn decomposition theorem
+* [PR #8588](https://github.com/leanprover-community/mathlib/pull/8588):  Smith normal form for submodules over a PID
   This PR is a step towards the classification of finite type modules over a PID.
-* [PR #8266](https://github.com/leanprover-community/mathlib/pull/8266) :: feat(measure_theory/stieltjes_measure): Stieltjes measures associated to monotone functions
-* [PR #8598](https://github.com/leanprover-community/mathlib/pull/8598) :: feat(topology/algebra/weak_dual_topology + analysis/normed_space/weak_dual_of_normed_space): add definition and first lemmas about weak-star topology
-* [PR #8639](https://github.com/leanprover-community/mathlib/pull/8639) :: feat(measure): prove Haar measure = Lebesgue measure on R
-* [PR #8558](https://github.com/leanprover-community/mathlib/pull/8558) :: feat(algebraic_geometry/EllipticCurve): add working definition of elliptic curve
-* [PR #8538](https://github.com/leanprover-community/mathlib/pull/8538) :: feat(group_theory/nilpotent): add nilpotent groups
-* [PR #8343](https://github.com/leanprover-community/mathlib/pull/8343) :: feat(linear_algebra/dimension): generalize inequalities and invariance of dimension to arbitrary rings
-* [PR #8791](https://github.com/leanprover-community/mathlib/pull/8791) :: feat(measure_theory): volume of a (closed) L∞-ball
-* [PR #8576](https://github.com/leanprover-community/mathlib/pull/8576) :: feat(analysis/normed_space/exponential): define exponential in a Banach algebra and prove basic results
+* [PR #8266](https://github.com/leanprover-community/mathlib/pull/8266):  Stieltjes measures associated to monotone functions
+* [PR #8598](https://github.com/leanprover-community/mathlib/pull/8598):  add definition and first lemmas about weak-star topology
+* [PR #8639](https://github.com/leanprover-community/mathlib/pull/8639):  prove Haar measure = Lebesgue measure on $ℝ$
+* [PR #8558](https://github.com/leanprover-community/mathlib/pull/8558):  add working definition of elliptic curve
+* [PR #8538](https://github.com/leanprover-community/mathlib/pull/8538):  add nilpotent groups
+* [PR #8343](https://github.com/leanprover-community/mathlib/pull/8343):  generalize inequalities and invariance of dimension to arbitrary rings
+* [PR #8791](https://github.com/leanprover-community/mathlib/pull/8791):  volume of a (closed) $L^∞$-ball
+* [PR #8576](https://github.com/leanprover-community/mathlib/pull/8576):  define exponential in a Banach algebra and prove basic results
