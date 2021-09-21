@@ -11,7 +11,7 @@ title: Alex Best’s type class generalization paper
 type: text
 ---
 Alex J. Best wrote a 
-[paper type class generalization](https://easychair.org/publications/preprint/KLfT) for the 
+[paper about type class generalization](https://easychair.org/publications/preprint/KLfT) for the 
 [CICM 2021](https://cicm-conference.org/2021/) conference on intelligent computer
 mathematics. 
 
