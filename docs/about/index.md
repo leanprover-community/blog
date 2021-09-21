@@ -13,7 +13,7 @@ type: text
 
 This is the Lean prover community blog.
 There is no predefined list of authors. Everybody can submit a pull-request
-with a post in [this folder](https://github.com/leanprover-community/leanprover-community.github.io/tree/newsite/blog/posts). 
+with a post in [this folder](https://github.com/leanprover-community/blog/tree/master/posts). 
 If you are unsure whether your post will be welcome then don't
 hesitate to first discuss the topic of your post on 
 [Zulip](https://leanprover.zulipchat.com/) before investing too

@@ -28,7 +28,7 @@ fields has characteristic p if and only if the other has characteristic $p$
 (including $p = 0$):
 ```lean
 lemma ring_hom.char_p_iff_char_p {K L : Type∗} [field K] [field L]
-  (f : K →+∗ L) (p : N) : char_p K p ↔ char_p L p :=
+  (f : K →+∗ L) (p : ℕ) : char_p K p ↔ char_p L p :=
 begin
   split;
   { introI _c, constructor, intro n,
