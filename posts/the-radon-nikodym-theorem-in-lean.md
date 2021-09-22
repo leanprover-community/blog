@@ -1,6 +1,6 @@
 ---
 author: 'Kexing Ying'
-category: ''
+category: 'New in mathlib'
 date: 2021-09-22 12:51:14 UTC+02:00
 description: ''
 has_math: true
@@ -17,8 +17,8 @@ merged into mathlib, this journey seems to have finally come to an end.
 
 The Radon-Nikodym theorem provides a necessary and sufficient condition for 
 comparing two measures, and allows us (under certain conditions) to express 
-one measure in term of another.
-The Radon-Nikodym theorem is an important theorem in measure theory and has a
+one measure in terms of another.
+The Radon-Nikodym theorem is an important result in measure theory and has a
 wide range of applications in different fields of mathematics. Most notably, 
 it can be applied in probability theory in the definition 
 of the conditional expectation and in mathematical finance through the Girsanov 
@@ -76,7 +76,7 @@ As with the Jordan decomposition theorem, it was not clear how to represent this
 statement. In particular, it is important for us to be able to extract the aforementioned 
 $f$ from the decomposition as this is the Radon-Nikodym derivative. After different
 experimentations, the statement was in the end decided to be represented as 
-a class instance. 
+a class. 
 ```lean
 class have_lebesgue_decomposition (μ ν : measure α) : Prop :=
 (lebesgue_decomposition :
