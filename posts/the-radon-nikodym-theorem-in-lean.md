@@ -44,7 +44,7 @@ in `measure_theory/decomposition`, of which
 `absolutely_continuous_iff_with_densityᵥ_radon_nikodym_deriv_eq` are the 
 Radon-Nikodym theorem for positive measures and signed measures respectively.
 While the Radon-Nikodym theorem is the main motivation, the proof of the theorem 
-itself is rather simple one we have the prerequisites that are the 
+itself is rather simple once we have the prerequisites that are the 
 Jordan decomposition theorem and the Lebesgue decomposition theorem.
 
 The Jordan decomposition theorem uniquely classifies signed measures and allows 
