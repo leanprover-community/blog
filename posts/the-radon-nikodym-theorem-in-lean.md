@@ -101,7 +101,7 @@ Radon-Nikodym theorem to signed measures follows also, simply by utilising
 the Jordan decomposition and realising the Radon-Nikodym derivative of 
 the signed measure is the difference of the Radon-Nikodym derivative of 
 the parts of the Jordan decomposition. However, using this definition of the 
-Radon-Nikodym derivative for the signed measures possess a problem, in which 
+Radon-Nikodym derivative for the signed measures poses a problem, in which 
 proving any properties about them requires an absolutely continuous condition.
 Thus, it was decided to generalise the Lebesgue decomposition theorem for 
 signed measures from which we obtain the general Radon-Nikodym theorem.
