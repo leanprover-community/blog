@@ -22,7 +22,9 @@ The Radon-Nikodym theorem is an important result in measure theory and has a
 wide range of applications in different fields of mathematics. Most notably, 
 it can be applied in probability theory in the definition 
 of the conditional expectation and in mathematical finance through the Girsanov 
-theorem[¹](https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem#Applications). 
+theorem[^1].
+
+[^1]: [wikipedia.org/wiki/Radon-Nikodym_theorem#Applications](https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem#Applications)
 
 Given two measures $\mu$ and $\nu$ on $\alpha$, we say that $\mu$ is 
 *absolutely continuous* with respect to $\nu$ (and write $\mu \ll \nu$) if for all 
@@ -38,7 +40,9 @@ easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear
 whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
 implication for certain measures. In particular, the classical Radon-Nikodym 
 theorem states that, two $\sigma$-finite measures $\mu, \nu$ satisfies $\mu \ll \nu$ 
-if and only if there exists a measurable function $f$ such that $\mu = f\nu$.
+if and only if there exists a *essentially unique* measurable function $f$ 
+such that $\mu = f\nu$. This function is known as the Radon-Nikodym derivative 
+and is denoted by $\frac{\text{d}\mu}{\text{d}\nu}$.
 
 In Lean, this is shown by 
 ```lean
@@ -68,10 +72,14 @@ structure jordan_decomposition (α : Type*) [measurable_space α] :=
 ```
 This was important, as later on, it was discovered that we were able to 
 relax some conditions on the uniqueness property of the Lebesgue decomposition 
-by introducing scalar multiplication on Jordan decompositions. Furthermore, 
+by introducing scalar multiplication on Jordan decompositions[^2]. Furthermore, 
 as we would often like to transport between signed measures and Jordan 
 decompositions, it is easier to work with types rather than propositions since 
 this required a construction of an equivalence between the two types. 
+
+[^2]: Given a signed measure `s`, a measure `μ` and a real number `r`, one may show 
+`(r • s).singular_part μ = r • s.singular_part μ` by proving that scalar product 
+and the map to Jordan decompositions commute. 
 
 A similar situation was reached with the Lebesgue decomposition. The Lebesgue 
 decomposition states that given two $\sigma$-finite measures $\mu$ and $\nu$, 
@@ -142,8 +150,9 @@ def signed_measure.radon_nikodym_deriv (s : signed_measure α) (μ : measure α)
 Using these definitions, the Lebesgue decomposition theorem was proved easily 
 and thus, also the Radon-Nikodym theorem for signed measures. Most importantly, 
 however, as these definition do not require an absolutely continuous condition, 
-it was possible to prove uniqueness properties about the Radon-Nikodym derivative 
-with minimal constraints.  
+it was possible to prove that the Radon-Nikodym derivative 
+$\frac{\text{d}\mu}{\text{d}\nu}$ is essentially unique without requiring 
+$\mu \ll \nu$.  
 
 As the Radon-Nikodym theorem is central to many concepts in probability theory, 
 a brand new territory in mathlib is now available for us to explore,  
