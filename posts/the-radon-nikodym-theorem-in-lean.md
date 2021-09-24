@@ -44,13 +44,8 @@ if and only if there exists a *essentially unique* measurable function $f$
 such that $\mu = f\nu$. This function is known as the Radon-Nikodym derivative 
 and is denoted by $\frac{\text{d}\mu}{\text{d}\nu}$.
 
-In Lean, this is shown by 
-```lean
-theorem absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq
-  {μ ν : measure α} [have_lebesgue_decomposition μ ν] :
-  μ ≪ ν ↔ ν.with_density (radon_nikodym_deriv μ ν) = μ
-```
-which can be found in `measure_theory/decomposition/radon_nikodym`.
+In Lean, this is shown by `absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq`
+and can be found in `measure_theory/decomposition/radon_nikodym`.
 While Radon-Nikodym is the main motivation, the proof of the theorem 
 itself is rather simple once we have the prerequisites, and thus, the project 
 spanned over multiple files, most of which can be found in `measure_theory/decomposition`.
@@ -112,7 +107,14 @@ def measure.radon_nikodym_deriv (μ ν : measure α) : α → ℝ≥0∞ :=
 if h : have_lebesgue_decomposition μ ν then (classical.some h.lebesgue_decomposition).2 else 0
 ```
 With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
-Radon-Nikodym theorem follows easily. Furthermore, the generalisation of the 
+Radon-Nikodym theorem follows easily by condiering that the singular part of the 
+Lebesgue decomposition is zero in the case that $\mu \ll \nu$.
+```lean
+theorem absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq
+  {μ ν : measure α} [have_lebesgue_decomposition μ ν] :
+  μ ≪ ν ↔ ν.with_density (radon_nikodym_deriv μ ν) = μ
+```
+Furthermore, the generalisation of the 
 Radon-Nikodym theorem to signed measures follows also, simply by utilising 
 the Jordan decomposition and realising the Radon-Nikodym derivative of 
 the signed measure is the difference of the Radon-Nikodym derivative of 
