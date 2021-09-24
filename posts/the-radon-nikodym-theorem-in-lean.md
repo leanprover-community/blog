@@ -78,8 +78,9 @@ decompositions, it is easier to work with types rather than propositions since
 this required a construction of an equivalence between the two types. 
 
 [^2]: Given a signed measure `s`, a measure `μ` and a real number `r`, one may show 
-`(r • s).singular_part μ = r • s.singular_part μ` by proving that scalar product 
-and the map to Jordan decompositions commute. 
+`(r • s).singular_part μ = r • s.singular_part μ` by proving that the scalar product 
+with a real number and the equivalence between signed measures and Jordan 
+decompositions commute. 
 
 A similar situation was reached with the Lebesgue decomposition. The Lebesgue 
 decomposition states that given two $\sigma$-finite measures $\mu$ and $\nu$, 
