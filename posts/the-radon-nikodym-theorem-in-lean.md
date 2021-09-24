@@ -78,7 +78,7 @@ $f$ from the decomposition as this is the Radon-Nikodym derivative. After diffe
 experimentations, the statement was in the end decided to be represented as 
 a class. 
 ```lean
-class have_lebesgue_decomposition (μ ν : measure α) : Prop :=
+class measure.have_lebesgue_decomposition (μ ν : measure α) : Prop :=
 (lebesgue_decomposition :
   ∃ (p : measure α × (α → ℝ≥0∞)), measurable p.2 ∧ p.1 ⊥ₘ ν ∧ μ = p.1 + ν.with_density p.2)
 ```
@@ -89,10 +89,10 @@ as we would like to extract the measure and measurable function from the decompo
 we may define functions that chooses the decomposition if it exists, and 
 zero otherwise.
 ```lean
-def singular_part (μ ν : measure α) : measure α :=
+def measure.singular_part (μ ν : measure α) : measure α :=
 if h : have_lebesgue_decomposition μ ν then (classical.some h.lebesgue_decomposition).1 else 0
 
-def radon_nikodym_deriv (μ ν : measure α) : α → ℝ≥0∞ :=
+def measure.radon_nikodym_deriv (μ ν : measure α) : α → ℝ≥0∞ :=
 if h : have_lebesgue_decomposition μ ν then (classical.some h.lebesgue_decomposition).2 else 0
 ```
 With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
@@ -117,18 +117,19 @@ statement. Namely, a signed measure $s$ has Lebesgue decomposition with respect 
 a measure $\mu$ if both parts of the Jordan decomposition of $s$ have Lebesgue 
 decomposition to $\mu$.
 ```lean
-class have_lebesgue_decomposition (s : signed_measure α) (μ : measure α) : Prop :=
+class signed_measure.have_lebesgue_decomposition 
+  (s : signed_measure α) (μ : measure α) : Prop :=
 (pos_part : s.to_jordan_decomposition.pos_part.have_lebesgue_decomposition μ)
 (neg_part : s.to_jordan_decomposition.neg_part.have_lebesgue_decomposition μ)
 ```
 By the same rationale, the singular part and the Radon-Nikodym derivative of the 
 decomposition are defined similarly.
 ```lean
-def singular_part (s : signed_measure α) (μ : measure α) : signed_measure α :=
+def signed_measure.singular_part (s : signed_measure α) (μ : measure α) : signed_measure α :=
 (s.to_jordan_decomposition.pos_part.singular_part μ).to_signed_measure -
 (s.to_jordan_decomposition.neg_part.singular_part μ).to_signed_measure
 
-def radon_nikodym_deriv (s : signed_measure α) (μ : measure α) : α → ℝ := λ x,
+def signed_measure.radon_nikodym_deriv (s : signed_measure α) (μ : measure α) : α → ℝ := λ x,
 (s.to_jordan_decomposition.pos_part.radon_nikodym_deriv μ x).to_real -
 (s.to_jordan_decomposition.neg_part.radon_nikodym_deriv μ x).to_real
 ```
