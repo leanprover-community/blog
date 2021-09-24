@@ -36,17 +36,23 @@ $$S \mapsto \int_S f \text{ d} \mu$$
 is also a measure on $\alpha$ and we denote this measure by $f\mu$. It is 
 easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear 
 whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
-implication for certain measures.
+implication for certain measures. In particular, the classical Radon-Nikodym 
+theorem states that, two $\sigma$-finite measures $\mu, \nu$ satisfies $\mu \ll \nu$ 
+if and only if there exists a measurable function $f$ such that $\mu = f\nu$.
 
-In Lean, this project spanned over six files most of which can be found 
-in `measure_theory/decomposition`, of which 
-`absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq` and 
-`absolutely_continuous_iff_with_densityᵥ_radon_nikodym_deriv_eq` are the 
-Radon-Nikodym theorem for positive measures and signed measures respectively.
-While the Radon-Nikodym theorem is the main motivation, the proof of the theorem 
-itself is rather simple once we have the prerequisites that are the 
+In Lean, this is shown by 
+```lean
+theorem absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq
+  {μ ν : measure α} [have_lebesgue_decomposition μ ν] :
+  μ ≪ ν ↔ ν.with_density (radon_nikodym_deriv μ ν) = μ
+```
+which can be found in `measure_theory/decomposition/radon_nikodym`.
+While Radon-Nikodym is the main motivation, the proof of the theorem 
+itself is rather simple once we have the prerequisites, and thus, the project 
+spanned over multiple files, most of which can be found in `measure_theory/decomposition`.
+
+Of all the prerequisites, the most important are are the 
 Jordan decomposition theorem and the Lebesgue decomposition theorem.
-
 The Jordan decomposition theorem uniquely classifies signed measures and allows 
 us to express every signed measure as a difference between two (mutually singular) 
 positive measures. While the theorem itself follows from the signed Hahn decomposition, 
