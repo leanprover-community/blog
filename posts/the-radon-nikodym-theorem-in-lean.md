@@ -28,7 +28,7 @@ theorem[^1].
 
 Given two measures $\mu$ and $\nu$ on $\alpha$, we say that $\mu$ is 
 *absolutely continuous* with respect to $\nu$ (and write $\mu \ll \nu$) if for all 
-$S \subseteq \alpha$, $\nu(S) = 0$ implies $\mu(S) = 0$. Absolutely continuity 
+subsets $S$ of $\alpha$, $\nu(S) = 0$ implies $\mu(S) = 0$. Absolute continuity 
 is an important notion for measures and we would like to establish a condition 
 for when it is true. 
 
