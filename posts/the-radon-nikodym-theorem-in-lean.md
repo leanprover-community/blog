@@ -115,7 +115,7 @@ theorem absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq
   μ ≪ ν ↔ ν.with_density (radon_nikodym_deriv μ ν) = μ
 ```
 Furthermore, the generalisation of the 
-Radon-Nikodym theorem to signed measures follows also, simply by utilising 
+Radon-Nikodym theorem to signed measures follows, simply by utilising 
 the Jordan decomposition and realising the Radon-Nikodym derivative of 
 the signed measure is the difference of the Radon-Nikodym derivative of 
 the parts of the Jordan decomposition. However, using this definition of the 
