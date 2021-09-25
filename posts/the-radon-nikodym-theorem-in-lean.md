@@ -51,7 +51,7 @@ While Radon-Nikodym is the main motivation, the proof of the theorem
 itself is rather simple once we have the prerequisites, and thus, the project 
 spanned over multiple files, most of which can be found in `measure_theory/decomposition`.
 
-Of all the prerequisites, the most important are are the 
+Of all the prerequisites, the most important are the 
 Jordan decomposition theorem and the Lebesgue decomposition theorem.
 The Jordan decomposition theorem uniquely classifies signed measures and allows 
 us to express every signed measure as a difference between two (mutually singular) 
