@@ -98,7 +98,7 @@ Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures,
 we will first need to show it for finite measures, this definition allows us 
 to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
 as we would like to extract the measure and measurable function from the decomposition, 
-we may define a functions that choose the decomposition if it exists, and are
+we may define functions that choose the decomposition if it exists, and are
 zero otherwise.
 ```lean
 def measure.singular_part (μ ν : measure α) : measure α :=
