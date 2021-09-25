@@ -86,9 +86,8 @@ and a unique finite measure $\xi$ such that $\xi$ is mutually singular with resp
 to $\nu$ (denoted $\xi \perp \nu$) and $\mu = \xi + f\nu$.
 As with the Jordan decomposition theorem, it was not clear how to represent this 
 statement. In particular, it is important for us to be able to extract the aforementioned 
-$f$ from the decomposition as this is the Radon-Nikodym derivative. After different
-experimentations, the statement was in the end decided to be represented as 
-a class. 
+$f$ from the decomposition as this is the Radon-Nikodym derivative. After some
+experiments, I decided to represent this condition using a class.
 ```lean
 class measure.have_lebesgue_decomposition (μ ν : measure α) : Prop :=
 (lebesgue_decomposition :
