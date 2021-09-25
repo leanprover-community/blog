@@ -128,8 +128,8 @@ signed measures from which we obtain the general Radon-Nikodym theorem.
 Similar to the Lebesgue decomposition for the positive measures, the Lebesgue 
 decomposition between a signed measure and a positive measure states that, 
 given a signed measure $s$ and a $\sigma$-finite measure $\mu$, there exists 
-a measurable function $f : \alpha \to \mathbb{R}$ and a signed measure $t$, such 
-that $t \perp \mu$ and $s = t + f\mu$.
+an essentially unique measurable function $f : \alpha \to \mathbb{R}$ and a 
+unique signed measure $t$, such that $t \perp \mu$ and $s = t + f\mu$.
 While this version of the Lebesgue decomposition was also represented as a class, 
 the statement itself was modified to be an equivalent, yet easier to work with 
 statement. Namely, a signed measure $s$ has Lebesgue decomposition with respect to 
