@@ -39,7 +39,7 @@ is also a measure on $\alpha$ and we denote this measure by $f\mu$. It is
 easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear 
 whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
 implication for certain measures. In particular, the classical Radon-Nikodym 
-theorem states that, two $\sigma$-finite measures $\mu, \nu$ satisfies $\mu \ll \nu$ 
+theorem states that two $\sigma$-finite measures $\mu, \nu$ satisfy $\mu \ll \nu$ 
 if and only if there exists a *essentially unique* measurable function $f$ 
 such that $\mu = f\nu$. This function is known as the Radon-Nikodym derivative 
 and is denoted by $\frac{\text{d}\mu}{\text{d}\nu}$.
@@ -97,7 +97,7 @@ Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures,
 we will first need to show it for finite measures, this definition allows us 
 to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
 as we would like to extract the measure and measurable function from the decomposition, 
-we may define functions that chooses the decomposition if it exists, and 
+we may define a functions that choose the decomposition if it exists, and are
 zero otherwise.
 ```lean
 def measure.singular_part (μ ν : measure α) : measure α :=
@@ -107,7 +107,7 @@ def measure.radon_nikodym_deriv (μ ν : measure α) : α → ℝ≥0∞ :=
 if h : have_lebesgue_decomposition μ ν then (classical.some h.lebesgue_decomposition).2 else 0
 ```
 With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
-Radon-Nikodym theorem follows easily by condiering that the singular part of the 
+Radon-Nikodym theorem follows easily by considering that the singular part of the 
 Lebesgue decomposition is zero in the case that $\mu \ll \nu$.
 ```lean
 theorem absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq
@@ -117,7 +117,7 @@ theorem absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq
 Furthermore, the generalisation of the 
 Radon-Nikodym theorem to signed measures follows, simply by utilising 
 the Jordan decomposition and realising the Radon-Nikodym derivative of 
-the signed measure is the difference of the Radon-Nikodym derivative of 
+the signed measure is the difference of the Radon-Nikodym derivatives of 
 the parts of the Jordan decomposition. However, using this definition of the 
 Radon-Nikodym derivative for the signed measures poses a problem, in which 
 proving any properties about them requires an absolutely continuous condition.
