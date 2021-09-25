@@ -42,7 +42,7 @@ implication for certain measures. In particular, the classical Radon-Nikodym
 theorem states that two $\sigma$-finite measures $\mu, \nu$ satisfy $\mu \ll \nu$ 
 if and only if there exists a measurable function $f$ such that $\mu = f\nu$. 
 This function is known as the Radon-Nikodym derivative 
-(denoted by $\frac{\text{d}\mu}{\text{d}\nu}$) and is *essentially unique* whenever 
+(denoted by $\frac{\text{d}\mu}{\text{d}\nu}$) and is essentially unique whenever 
 it exists.
 
 In Lean, this is shown by `absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq`
@@ -81,8 +81,8 @@ decompositions commute.
 
 A similar situation was reached with the Lebesgue decomposition. The Lebesgue 
 decomposition states that given two $\sigma$-finite measures $\mu$ and $\nu$, 
-there exists a measurable function $f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$ 
-and a finite measure $\xi$ such that $\xi$ is mutually singular with respect 
+there exists an essentially unique measurable function $f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$ 
+and a unique finite measure $\xi$ such that $\xi$ is mutually singular with respect 
 to $\nu$ (denoted $\xi \perp \nu$) and $\mu = \xi + f\nu$.
 As with the Jordan decomposition theorem, it was not clear how to represent this 
 statement. In particular, it is important for us to be able to extract the aforementioned 
