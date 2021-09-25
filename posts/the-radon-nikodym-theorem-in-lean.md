@@ -40,9 +40,10 @@ easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear
 whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
 implication for certain measures. In particular, the classical Radon-Nikodym 
 theorem states that two $\sigma$-finite measures $\mu, \nu$ satisfy $\mu \ll \nu$ 
-if and only if there exists a *essentially unique* measurable function $f$ 
-such that $\mu = f\nu$. This function is known as the Radon-Nikodym derivative 
-and is denoted by $\frac{\text{d}\mu}{\text{d}\nu}$.
+if and only if there exists a measurable function $f$ such that $\mu = f\nu$. 
+This function is known as the Radon-Nikodym derivative 
+(denoted by $\frac{\text{d}\mu}{\text{d}\nu}$) and is *essentially unique** whenever 
+it exists.
 
 In Lean, this is shown by `absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq`
 and can be found in `measure_theory/decomposition/radon_nikodym`.
