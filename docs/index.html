@@ -20,7 +20,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://leanprover-community.github.io/blog/">
 <link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/alex-bests-type-class-generalization-paper/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/the-radon-nikodym-theorem-in-lean/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -78,7 +78,166 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
         
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alex-bests-type-class-generalization-paper/" class="u-url">Alex Best’s type class generalization paper</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-radon-nikodym-theorem-in-lean/" class="u-url">The Radon-Nikodym theorem in Lean</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/kexing-ying/">Kexing Ying</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/the-radon-nikodym-theorem-in-lean/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-22T12:51:14+02:00" itemprop="datePublished" title="2021-09-22 12:51">2021-09-22 12:51</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>I have for the past two months been working on formalising the Radon-Nikodym theorem 
+in Lean, and with <a href="https://github.com/leanprover-community/mathlib/pull/9065">PR #9065</a> 
+merged into mathlib, this journey seems to have finally come to an end. </p>
+<p>The Radon-Nikodym theorem provides a necessary and sufficient condition for 
+comparing two measures, and allows us (under certain conditions) to express 
+one measure in terms of another.
+The Radon-Nikodym theorem is an important result in measure theory and has a
+wide range of applications in different fields of mathematics. Most notably, 
+it can be applied in probability theory in the definition 
+of the conditional expectation and in mathematical finance through the Girsanov 
+theorem<sup id="fnref:1"><a class="footnote-ref" href="posts/the-radon-nikodym-theorem-in-lean/#fn:1">1</a></sup>.</p>
+<p>Given two measures $\mu$ and $\nu$ on $\alpha$, we say that $\mu$ is 
+<em>absolutely continuous</em> with respect to $\nu$ (and write $\mu \ll \nu$) if for all 
+subsets $S$ of $\alpha$, $\nu(S) = 0$ implies $\mu(S) = 0$. Absolute continuity 
+is an important notion for measures and we would like to establish a condition 
+for when it is true. </p>
+<p>Given a measure $\mu$ on $\alpha$ and a measurable function 
+$f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$, the set function 
+$$S \mapsto \int_S f \text{ d} \mu$$
+is also a measure on $\alpha$ and we denote this measure by $f\mu$. It is 
+easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear 
+whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
+implication for certain measures. In particular, the classical Radon-Nikodym 
+theorem states that two $\sigma$-finite measures $\mu, \nu$ satisfy $\mu \ll \nu$ 
+if and only if there exists a measurable function $f$ such that $\mu = f\nu$. 
+This function is known as the Radon-Nikodym derivative 
+(denoted by $\frac{\text{d}\mu}{\text{d}\nu}$) and is essentially unique whenever 
+it exists.</p>
+<p>In Lean, this is shown by <code>absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq</code>
+and can be found in <code>measure_theory/decomposition/radon_nikodym</code>.
+While Radon-Nikodym is the main motivation, the proof of the theorem 
+itself is rather simple once we have the prerequisites, and thus, the project 
+spanned over multiple files, most of which can be found in <code>measure_theory/decomposition</code>.</p>
+<p>Of all the prerequisites, the most important are the 
+Jordan decomposition theorem and the Lebesgue decomposition theorem.
+The Jordan decomposition theorem uniquely classifies signed measures and allows 
+us to express every signed measure as a difference between two (mutually singular) 
+positive measures. While the theorem itself follows from the signed Hahn decomposition, 
+defining the structure of Jordan decompositions in Lean was tricky. While 
+initially, the decomposition was defined as a proposition, thanks to the suggestions 
+from the maintainers, it was decided to define the decomposition as a structure. </p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">jordan_decomposition</span> <span class="o">(</span><span class="n">α</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">measurable_space</span> <span class="n">α</span><span class="o">]</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">pos_part</span> <span class="n">neg_part</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span>
+<span class="o">[</span><span class="n">pos_part_finite</span> <span class="o">:</span> <span class="n">is_finite_measure</span> <span class="n">pos_part</span><span class="o">]</span>
+<span class="o">[</span><span class="n">neg_part_finite</span> <span class="o">:</span> <span class="n">is_finite_measure</span> <span class="n">neg_part</span><span class="o">]</span>
+<span class="o">(</span><span class="n">mutually_singular</span> <span class="o">:</span> <span class="n">pos_part</span> <span class="bp">⊥ₘ</span> <span class="n">neg_part</span><span class="o">)</span>
+</pre>
+<p>This was important, as later on, it was discovered that we were able to 
+relax some conditions on the uniqueness property of the Lebesgue decomposition 
+by introducing scalar multiplication on Jordan decompositions<sup id="fnref:2"><a class="footnote-ref" href="posts/the-radon-nikodym-theorem-in-lean/#fn:2">2</a></sup>. Furthermore, 
+as we would often like to transport between signed measures and Jordan 
+decompositions, it is easier to work with types rather than propositions since 
+this required a construction of an equivalence between the two types. </p>
+<p>A similar situation was reached with the Lebesgue decomposition. The Lebesgue 
+decomposition states that given two $\sigma$-finite measures $\mu$ and $\nu$, 
+there exists an essentially unique measurable function $f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$ 
+and a unique finite measure $\xi$ such that $\xi$ is mutually singular with respect 
+to $\nu$ (denoted $\xi \perp \nu$) and $\mu = \xi + f\nu$.
+As with the Jordan decomposition theorem, it was not clear how to represent this 
+statement. In particular, it is important for us to be able to extract the aforementioned 
+$f$ from the decomposition as this is the Radon-Nikodym derivative. After some
+experiments, I decided to represent this condition using a class.</p>
+<pre class="code literal-block"><span class="kd">class</span> <span class="n">measure.have_lebesgue_decomposition</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">lebesgue_decomposition</span> <span class="o">:</span>
+  <span class="bp">∃</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span> <span class="bp">×</span> <span class="o">(</span><span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span><span class="o">)),</span> <span class="n">measurable</span> <span class="n">p.2</span> <span class="bp">∧</span> <span class="n">p.1</span> <span class="bp">⊥ₘ</span> <span class="n">ν</span> <span class="bp">∧</span> <span class="n">μ</span> <span class="bp">=</span> <span class="n">p.1</span> <span class="bp">+</span> <span class="n">ν.with_density</span> <span class="n">p.2</span><span class="o">)</span>
+</pre>
+<p>Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures, 
+we will first need to show it for finite measures, this definition allows us 
+to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
+as we would like to extract the measure and measurable function from the decomposition, 
+we may define functions that choose the decomposition if it exists, and are
+zero otherwise.</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">measure.singular_part</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span> <span class="o">:=</span>
+<span class="k">if</span> <span class="n">h</span> <span class="o">:</span> <span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span> <span class="k">then</span> <span class="o">(</span><span class="n">classical.some</span> <span class="n">h.lebesgue_decomposition</span><span class="o">)</span><span class="bp">.</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+
+<span class="kd">def</span> <span class="n">measure.radon_nikodym_deriv</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span> <span class="o">:=</span>
+<span class="k">if</span> <span class="n">h</span> <span class="o">:</span> <span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span> <span class="k">then</span> <span class="o">(</span><span class="n">classical.some</span> <span class="n">h.lebesgue_decomposition</span><span class="o">)</span><span class="bp">.</span><span class="mi">2</span> <span class="k">else</span> <span class="mi">0</span>
+</pre>
+<p>With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
+Radon-Nikodym theorem follows easily by considering that the singular part of the 
+Lebesgue decomposition is zero in the case that $\mu \ll \nu$.</p>
+<pre class="code literal-block"><span class="kd">theorem</span> <span class="n">absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq</span>
+  <span class="o">{</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">}</span> <span class="o">[</span><span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span><span class="o">]</span> <span class="o">:</span>
+  <span class="n">μ</span> <span class="bp">≪</span> <span class="n">ν</span> <span class="bp">↔</span> <span class="n">ν.with_density</span> <span class="o">(</span><span class="n">radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">ν</span><span class="o">)</span> <span class="bp">=</span> <span class="n">μ</span>
+</pre>
+<p>Furthermore, the generalisation of the 
+Radon-Nikodym theorem to signed measures follows, simply by utilising 
+the Jordan decomposition and realising the Radon-Nikodym derivative of 
+the signed measure is the difference of the Radon-Nikodym derivatives of 
+the parts of the Jordan decomposition. However, using this definition of the 
+Radon-Nikodym derivative for the signed measures poses a problem, in which 
+proving any properties about them requires an absolutely continuous condition.
+Thus, it was decided to generalise the Lebesgue decomposition theorem for 
+signed measures from which we obtain the general Radon-Nikodym theorem.</p>
+<p>Similar to the Lebesgue decomposition for the positive measures, the Lebesgue 
+decomposition between a signed measure and a positive measure states that, 
+given a signed measure $s$ and a $\sigma$-finite measure $\mu$, there exists 
+an essentially unique measurable function $f : \alpha \to \mathbb{R}$ and a 
+unique signed measure $t$, such that $t \perp \mu$ and $s = t + f\mu$.
+While this version of the Lebesgue decomposition was also represented as a class, 
+the statement itself was modified to be an equivalent, yet easier to work with 
+statement. Namely, a signed measure $s$ has Lebesgue decomposition with respect to 
+a measure $\mu$ if both parts of the Jordan decomposition of $s$ have Lebesgue 
+decomposition to $\mu$.</p>
+<pre class="code literal-block"><span class="kd">class</span> <span class="n">signed_measure.have_lebesgue_decomposition</span> 
+  <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">pos_part</span> <span class="o">:</span> <span class="n">s.to_jordan_decomposition.pos_part.have_lebesgue_decomposition</span> <span class="n">μ</span><span class="o">)</span>
+<span class="o">(</span><span class="n">neg_part</span> <span class="o">:</span> <span class="n">s.to_jordan_decomposition.neg_part.have_lebesgue_decomposition</span> <span class="n">μ</span><span class="o">)</span>
+</pre>
+<p>By the same rationale, the singular part and the Radon-Nikodym derivative of the 
+decomposition are defined similarly.</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">signed_measure.singular_part</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.pos_part.singular_part</span> <span class="n">μ</span><span class="o">)</span><span class="bp">.</span><span class="n">to_signed_measure</span> <span class="bp">-</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.neg_part.singular_part</span> <span class="n">μ</span><span class="o">)</span><span class="bp">.</span><span class="n">to_signed_measure</span>
+
+<span class="kd">def</span> <span class="n">signed_measure.radon_nikodym_deriv</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">x</span><span class="o">,</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.pos_part.radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">x</span><span class="o">)</span><span class="bp">.</span><span class="n">to_real</span> <span class="bp">-</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.neg_part.radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">x</span><span class="o">)</span><span class="bp">.</span><span class="n">to_real</span>
+</pre>
+<p>Using these definitions, the Lebesgue decomposition theorem was proved easily 
+and thus, also the Radon-Nikodym theorem for signed measures. Most importantly, 
+however, as these definition do not require an absolutely continuous condition, 
+it was possible to prove that the Radon-Nikodym derivative 
+$\frac{\text{d}\mu}{\text{d}\nu}$ is essentially unique without requiring 
+$\mu \ll \nu$.  </p>
+<p>As the Radon-Nikodym theorem is central to many concepts in probability theory, 
+a brand new territory in mathlib is now available for us to explore,<br>
+and with <a href="https://github.com/leanprover-community/mathlib/pull/9065">PR #9065</a> 
+merged into mathlib, a new journey seems about to begin. </p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem#Applications">wikipedia.org/wiki/Radon-Nikodym_theorem#Applications</a> <a class="footnote-backref" href="posts/the-radon-nikodym-theorem-in-lean/#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Given a signed measure <code>s</code>, a measure <code>μ</code> and a real number <code>r</code>, one may show 
+<code>(r • s).singular_part μ = r • s.singular_part μ</code> without 
+requiring <code>have_lebesgue_decomposition s μ</code> by proving that the scalar product 
+with a real number and the equivalence between signed measures and Jordan 
+decompositions commute. <a class="footnote-backref" href="posts/the-radon-nikodym-theorem-in-lean/#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alex-bests-type-class-generalization-paper/" class="u-url">Alex Best’s type class generalization paper</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/patrick-massot/">Patrick Massot</a>
