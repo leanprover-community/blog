@@ -43,6 +43,9 @@ This post summarizes some of the activity that happened in mathlib in September.
   [PR #9231](https://github.com/leanprover-community/mathlib/pull/9231), and
   [PR #9376](https://github.com/leanprover-community/mathlib/pull/9376).
   I am not aware of any other commits that had to wait so long before being merged into mathlib.
+* Radon-Nikodym.
+  [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) adds Radon-Nikodym and Lebesgue decomposition for signed measures.
+  See [this blogpost](../the-radon-nikodym-theorem-in-lean/) for more details.
 * Semilinear maps.
   Several people undertook a massive refactor to generalize linear maps to semilinear maps.
   This opens the door for the use of semilinear maps in functional analysis,
@@ -68,5 +71,4 @@ The following PRs are ordered by the date that they were merged into mathlib.
 * [PR #8579](https://github.com/leanprover-community/mathlib/pull/8579): one-point compactification of a topological space (the Stone-Cech compactification had been around for ages, and now its little brother joined the gang)
 * [PR #9147](https://github.com/leanprover-community/mathlib/pull/9147): Riesz theorem on compact unit ball and finite dimension
 * [PR #9165](https://github.com/leanprover-community/mathlib/pull/9165): upgrade to Lean 3.33.0c
-* [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065): Radon-Nikodym and Lebesgue decomposition for signed measures
 * [PR #9288](https://github.com/leanprover-community/mathlib/pull/9288): Sylow's theorems for infinite groups
