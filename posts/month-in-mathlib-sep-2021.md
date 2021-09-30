@@ -15,30 +15,58 @@ This post summarizes some of the activity that happened in mathlib in September.
 
 ## Highlighted PRs
 
+* Number fields.
+  The [Dedekind saga](https://github.com/lean-forward/class-number) continues with
+  [PR #8847](https://github.com/leanprover-community/mathlib/pull/8847),
+  [PR #8701](https://github.com/leanprover-community/mathlib/pull/8701) (define number fields, rings of integers),
+  [PR #8949](https://github.com/leanprover-community/mathlib/pull/8949),
+  [PR #8964](https://github.com/leanprover-community/mathlib/pull/8964), and
+  [PR #9063](https://github.com/leanprover-community/mathlib/pull/9063),
+  culminating in
+  [PR #9059](https://github.com/leanprover-community/mathlib/pull/9059)
+  which shows that the class group of an integral closure is finite.
+* Probability theory.
+  Foundations of probability theory are (finally!) coming to mathlib.
+  With
+  [PR #8939](https://github.com/leanprover-community/mathlib/pull/8939) and
+  [PR #8920](https://github.com/leanprover-community/mathlib/pull/8920) (conditional expectation of an indicator)
+  the way was open for
+  [PR #9114](https://github.com/leanprover-community/mathlib/pull/9114)
+  which defines the conditional expectation of a function.
+* Algebraic closures.
+  Over two years ago,
+  [PR #1297](https://github.com/leanprover-community/mathlib/pull/1297)
+  was opened, showing that algebraic closures are unique (up to non-unique isomorphism).
+  Due to various issues, the material was not yet in shape for inclusion in mathlib.
+  Over summer, the material got a facelift, leading to
+  [PR #9110](https://github.com/leanprover-community/mathlib/pull/9110),
+  [PR #9231](https://github.com/leanprover-community/mathlib/pull/9231), and
+  [PR #9376](https://github.com/leanprover-community/mathlib/pull/9376).
+  I am not aware of any other commits that had to wait so long before being merged into mathlib.
+* Semilinear maps.
+  Several people undertook a massive refactor to generalize linear maps to semilinear maps.
+  This opens the door for the use of semilinear maps in functional analysis,
+  but also Frobenius semilinear maps in characteristic $p > 0$.
+  [PR #8857](https://github.com/leanprover-community/mathlib/pull/8857) introduces notation for `linear_map.comp` and `linear_equiv.trans`
+  which makes it easy to work with identity-semilinear maps (aka, linear maps) without getting distracted by the redundant semilinearity conditions.
+  With this notation in place,
+  [PR #9272](https://github.com/leanprover-community/mathlib/pull/9272) performs the actual redefinition of `linear_map` and `linear_equiv` to be semilinear.
+* Convexity refactor.
+  Another ongoing refactor aims to massively generalize and restructure material on convex sets/functions.
+  One of the gems in a long stream of PRs shows that it is now trivial to deduce concave results from their convex counterparts:
+  [PR #9356](https://github.com/leanprover-community/mathlib/pull/9356) generalizes lemmas about convexity/concavity of functions, and proves concave Jensen.
+
 ## Other mathematical contributions
 
 The following PRs are ordered by the date that they were merged into mathlib.
 
-* [PR #8894](https://github.com/leanprover-community/mathlib/pull/8894) :: feat(topology/algebra/localization): add topological localization
-* [PR #8847](https://github.com/leanprover-community/mathlib/pull/8847) :: feat(ring_theory/dedekind_domain): the integral closure of a DD is a DD
-* [PR #8962](https://github.com/leanprover-community/mathlib/pull/8962) :: feat(category_theory/limits/kan_extension): Prove (co)reflectivity for Kan extensions
-* [PR #8701](https://github.com/leanprover-community/mathlib/pull/8701) :: feat(number_theory): define number fields, function fields and their rings of integers
-* [PR #8801](https://github.com/leanprover-community/mathlib/pull/8801) :: feat(group_theory/group_action/basic): class formula, Burnside's lemma
-* [PR #8949](https://github.com/leanprover-community/mathlib/pull/8949) :: feat(algebra): define "Euclidean" absolute values
-* [PR #8857](https://github.com/leanprover-community/mathlib/pull/8857) :: feat(linear_algebra): introduce notation for `linear_map.comp` and `linear_equiv.trans`
-* [PR #8964](https://github.com/leanprover-community/mathlib/pull/8964) :: feat(number_theory): define "admissible" absolute values
-* [PR #9063](https://github.com/leanprover-community/mathlib/pull/9063) :: feat(ring_theory): PIDs are Dedekind domains
-* [PR #8947](https://github.com/leanprover-community/mathlib/pull/8947) :: feat(topology/homotopy): Define homotopy between functions
-* [PR #8920](https://github.com/leanprover-community/mathlib/pull/8920) :: feat(measure_theory/function/conditional_expectation): conditional expectation of an indicator
-* [PR #8946](https://github.com/leanprover-community/mathlib/pull/8946) :: feat(category_theory/monoidal): rigid (autonomous) monoidal categories
-* [PR #8579](https://github.com/leanprover-community/mathlib/pull/8579) :: feat(topology): one-point compactification of a topological space
-* [PR #9147](https://github.com/leanprover-community/mathlib/pull/9147) :: feat(analysis/normed_space/finite_dimension): Riesz theorem on compact unit ball and finite dimension
-* [PR #9165](https://github.com/leanprover-community/mathlib/pull/9165) :: chore(*): upgrade to Lean 3.33.0c
-* [PR #9110](https://github.com/leanprover-community/mathlib/pull/9110) :: feat(field_theory/algebraic_closure): map from algebraic extensions into the algebraic closure
-* [PR #9231](https://github.com/leanprover-community/mathlib/pull/9231) :: feat(field_theory/algebraic_closure): any two algebraic closures are isomorphic
-* [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) :: feat(measure_theory/decomposition/radon_nikodym): Radon-Nikodym and Lebesgue decomposition for signed measures
-* [PR #9059](https://github.com/leanprover-community/mathlib/pull/9059) :: feat(number_theory): the class group of an integral closure is finite
-* [PR #9114](https://github.com/leanprover-community/mathlib/pull/9114) :: feat(measure_theory/function/conditional_expectation): define the conditional expectation of a function, prove the equality of integrals
-* [PR #9376](https://github.com/leanprover-community/mathlib/pull/9376) :: feat(field_theory/is_alg_closed): more isomorphisms of algebraic closures
-* [PR #9356](https://github.com/leanprover-community/mathlib/pull/9356) :: refactor(analysis/convex/function): generalize lemmas about convexity/concavity of functions, prove concave Jensen
-* [PR #9288](https://github.com/leanprover-community/mathlib/pull/9288) :: feat(group_theory/sylow): Sylow's theorems for infinite groups
+* [PR #8894](https://github.com/leanprover-community/mathlib/pull/8894): add topological localization
+* [PR #8962](https://github.com/leanprover-community/mathlib/pull/8962): Prove (co)reflectivity for Kan extensions
+* [PR #8801](https://github.com/leanprover-community/mathlib/pull/8801): class formula, Burnside's lemma
+* [PR #8947](https://github.com/leanprover-community/mathlib/pull/8947): Define homotopy between functions
+* [PR #8946](https://github.com/leanprover-community/mathlib/pull/8946): rigid (autonomous) monoidal categories
+* [PR #8579](https://github.com/leanprover-community/mathlib/pull/8579): one-point compactification of a topological space (the Stone-Cech compactification had been around for ages, and now its little brother joined the gang)
+* [PR #9147](https://github.com/leanprover-community/mathlib/pull/9147): Riesz theorem on compact unit ball and finite dimension
+* [PR #9165](https://github.com/leanprover-community/mathlib/pull/9165): upgrade to Lean 3.33.0c
+* [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065): Radon-Nikodym and Lebesgue decomposition for signed measures
+* [PR #9288](https://github.com/leanprover-community/mathlib/pull/9288): Sylow's theorems for infinite groups
