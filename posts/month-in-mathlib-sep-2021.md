@@ -43,6 +43,14 @@ This post summarizes some of the activity that happened in mathlib in September.
   [PR #9231](https://github.com/leanprover-community/mathlib/pull/9231), and
   [PR #9376](https://github.com/leanprover-community/mathlib/pull/9376).
   There probably are no other commits that had to wait so long before being merged into mathlib.
+* Riesz theorem on compact unit ball and finite dimension.
+  Mathlib now knows the main difference between the topology of real normed
+  spaces in finite and infinite dimensions: the closed unit ball in such a
+  space is compact if and only if the space is finite dimensional. The
+  implication from finite dimension to compactness was proved in
+  [PR #1687](https://github.com/leanprover-community/mathlib/pull/1687)
+  and [PR #9147](https://github.com/leanprover-community/mathlib/pull/9147)
+  proves the converse.
 * Radon-Nikodym.
   [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) adds Radon-Nikodym and Lebesgue decomposition for signed measures.
   See [this blogpost](../the-radon-nikodym-theorem-in-lean/) for more details.
@@ -69,6 +77,5 @@ The following PRs are ordered by the date that they were merged into mathlib.
 * [PR #8947](https://github.com/leanprover-community/mathlib/pull/8947): Define homotopy between functions
 * [PR #8946](https://github.com/leanprover-community/mathlib/pull/8946): rigid (autonomous) monoidal categories
 * [PR #8579](https://github.com/leanprover-community/mathlib/pull/8579): one-point compactification of a topological space (the Stone-Cech compactification had been around for ages, and now its little brother joined the gang)
-* [PR #9147](https://github.com/leanprover-community/mathlib/pull/9147): Riesz theorem on compact unit ball and finite dimension
 * [PR #9165](https://github.com/leanprover-community/mathlib/pull/9165): upgrade to Lean 3.33.0c
 * [PR #9288](https://github.com/leanprover-community/mathlib/pull/9288): Sylow's theorems for infinite groups
