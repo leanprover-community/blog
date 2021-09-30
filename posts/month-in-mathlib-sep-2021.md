@@ -51,9 +51,12 @@ This post summarizes some of the activity that happened in mathlib in September.
   [PR #1687](https://github.com/leanprover-community/mathlib/pull/1687)
   and [PR #9147](https://github.com/leanprover-community/mathlib/pull/9147)
   proves the converse.
-* Radon-Nikodym.
-  [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) adds Radon-Nikodym and Lebesgue decomposition for signed measures.
-  See [this blogpost](../the-radon-nikodym-theorem-in-lean/) for more details.
+* Measure theory.
+  [PR #9325](https://github.com/leanprover-community/mathlib/pull/9325)
+  shows that any additive Haar measure on a finite-dimensional real vector space is rescaled by a linear map through its determinant,
+  and computes the measure of balls and spheres.
+  [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) adds Radon-Nikodym and Lebesgue decomposition for signed measures,
+  see [this blogpost](../the-radon-nikodym-theorem-in-lean/) for more details.
 * Semilinear maps.
   Several people undertook a massive refactor to generalize linear maps to semilinear maps.
   This opens the door for the use of semilinear maps in functional analysis,
