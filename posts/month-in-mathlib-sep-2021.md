@@ -42,7 +42,7 @@ This post summarizes some of the activity that happened in mathlib in September.
   [PR #9110](https://github.com/leanprover-community/mathlib/pull/9110),
   [PR #9231](https://github.com/leanprover-community/mathlib/pull/9231), and
   [PR #9376](https://github.com/leanprover-community/mathlib/pull/9376).
-  I am not aware of any other commits that had to wait so long before being merged into mathlib.
+  There probably are no other commits that had to wait so long before being merged into mathlib.
 * Radon-Nikodym.
   [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) adds Radon-Nikodym and Lebesgue decomposition for signed measures.
   See [this blogpost](../the-radon-nikodym-theorem-in-lean/) for more details.
