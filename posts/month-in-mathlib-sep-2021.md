@@ -57,6 +57,14 @@ This post summarizes some of the activity that happened in mathlib in September.
   and computes the measure of balls and spheres.
   [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) adds Radon-Nikodym and Lebesgue decomposition for signed measures,
   see [this blogpost](../the-radon-nikodym-theorem-in-lean/) for more details.
+* Henselian local rings. 
+  [PR #8986](https://github.com/leanprover-community/mathlib/pull/8986) 
+  sets up the theory of Henselian rings. A ring $R$ is *Henselian* at an ideal 
+  $I$ if the following conditions hold:  
+    * $I$ is contained in the Jacobson radical of $R$
+    * for every polynomial $f$ over $R$, with a *simple* root $a₀$ over the
+      quotient ring $R/I$, there exists a lift $a ∈ R$ of $a₀$ that is a root 
+      of $f$.
 * Semilinear maps.
   Several people undertook a massive refactor to generalize linear maps to semilinear maps.
   This opens the door for the use of semilinear maps in functional analysis,
