@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="This is the blog of the Lean prover community.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean community blog</title>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="assets/css/bootblog.css" rel="stylesheet" type="text/css">
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/month-in-mathlib-sep-2021/" type="text/html">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href=".">
+
+            <span id="blog-title">Lean community blog</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav"></ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="https://leanprover-community.github.io/" class="nav-link">Main site</a>
+                </li>
+<li class="nav-item">
+<a href="archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="about/" class="nav-link">About</a>
+                </li>
+<li class="nav-item">
+<a href="rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+    <div class="postindex">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-sep-2021/" class="u-url">This month in mathlib (Sep 2021)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/month-in-mathlib-sep-2021/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-10-01T09:00:05+02:00" itemprop="datePublished" title="2021-10-01 09:00">2021-10-01 09:00</time></a>
+            </p>
+		    <p><span class="text-dark">month-in-mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>This post summarizes some of the activity that happened in mathlib in September.</p>
+<h3>Highlighted PRs</h3>
+<ul>
+<li>Number fields.
+  The <a href="https://github.com/lean-forward/class-number">Dedekind saga</a> continues with
+  <a href="https://github.com/leanprover-community/mathlib/pull/8847">PR #8847</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/8701">PR #8701</a> (define number fields, rings of integers),
+  <a href="https://github.com/leanprover-community/mathlib/pull/8949">PR #8949</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/8964">PR #8964</a>, and
+  <a href="https://github.com/leanprover-community/mathlib/pull/9063">PR #9063</a>,
+  culminating in
+  <a href="https://github.com/leanprover-community/mathlib/pull/9059">PR #9059</a>
+  which shows that the class group of an integral closure is finite.</li>
+<li>Probability theory.
+  Foundations of probability theory are (finally!) coming to mathlib.
+  With
+  <a href="https://github.com/leanprover-community/mathlib/pull/8939">PR #8939</a> and
+  <a href="https://github.com/leanprover-community/mathlib/pull/8920">PR #8920</a> (conditional expectation of an indicator)
+  the way was open for
+  <a href="https://github.com/leanprover-community/mathlib/pull/9114">PR #9114</a>
+  which defines the conditional expectation of a function.</li>
+<li>Algebraic closures.
+  Over two years ago,
+  <a href="https://github.com/leanprover-community/mathlib/pull/1297">PR #1297</a>
+  was opened, showing that algebraic closures are unique (up to non-unique isomorphism).
+  Due to various issues, the material was not yet in shape for inclusion in mathlib.
+  Over summer, the material got a facelift, leading to
+  <a href="https://github.com/leanprover-community/mathlib/pull/9110">PR #9110</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/9231">PR #9231</a>, and
+  <a href="https://github.com/leanprover-community/mathlib/pull/9376">PR #9376</a>.
+  There probably are no other commits that had to wait so long before being merged into mathlib.</li>
+<li>Riesz theorem on compact unit ball and finite dimension.
+  Mathlib now knows the main difference between the topology of real normed
+  spaces in finite and infinite dimensions: the closed unit ball in such a
+  space is compact if and only if the space is finite dimensional. The
+  implication from finite dimension to compactness was proved in
+  <a href="https://github.com/leanprover-community/mathlib/pull/1687">PR #1687</a>
+  and <a href="https://github.com/leanprover-community/mathlib/pull/9147">PR #9147</a>
+  proves the converse.</li>
+<li>Measure theory.
+  <a href="https://github.com/leanprover-community/mathlib/pull/9325">PR #9325</a>
+  shows that any additive Haar measure on a finite-dimensional real vector space is rescaled by a linear map through its determinant,
+  and computes the measure of balls and spheres.
+  <a href="https://github.com/leanprover-community/mathlib/pull/9065">PR #9065</a> adds Radon-Nikodym and Lebesgue decomposition for signed measures,
+  see <a href="posts/the-radon-nikodym-theorem-in-lean/">this blogpost</a> for more details.</li>
+<li>Henselian local rings. 
+  <a href="https://github.com/leanprover-community/mathlib/pull/8986">PR #8986</a> 
+  sets up the theory of Henselian rings. A ring $R$ is <em>Henselian</em> at an ideal 
+  $I$ if the following conditions hold:  <ul>
+<li>$I$ is contained in the Jacobson radical of $R$</li>
+<li>for every polynomial $f$ over $R$, with a <em>simple</em> root $a₀$ over the
+  quotient ring $R/I$, there exists a lift $a ∈ R$ of $a₀$ that is a root 
+  of $f$.</li>
+</ul>
+</li>
+<li>Semilinear maps.
+  Several people undertook a massive refactor to generalize linear maps to semilinear maps.
+  This opens the door for the use of semilinear maps in functional analysis,
+  but also Frobenius semilinear maps in characteristic $p &gt; 0$.
+  <a href="https://github.com/leanprover-community/mathlib/pull/8857">PR #8857</a> introduces notation for <code>linear_map.comp</code> and <code>linear_equiv.trans</code>
+  which makes it easy to work with identity-semilinear maps (aka, linear maps) without getting distracted by the redundant semilinearity conditions.
+  With this notation in place,
+  <a href="https://github.com/leanprover-community/mathlib/pull/9272">PR #9272</a> performs the actual redefinition of <code>linear_map</code> and <code>linear_equiv</code> to be semilinear.</li>
+<li>Convexity refactor.
+  Another ongoing refactor aims to massively generalize and restructure material on convex sets/functions.
+  One of the gems in a long stream of PRs shows that it is now trivial to deduce concave results from their convex counterparts:
+  <a href="https://github.com/leanprover-community/mathlib/pull/9356">PR #9356</a> generalizes lemmas about convexity/concavity of functions, and proves concave Jensen.</li>
+</ul>
+<h3>Other mathematical contributions</h3>
+<p>The following PRs are ordered by the date that they were merged into mathlib.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8894">PR #8894</a>: add topological localization</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8962">PR #8962</a>: Prove (co)reflectivity for Kan extensions</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8801">PR #8801</a>: class formula, Burnside's lemma</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8947">PR #8947</a>: Define homotopy between functions</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8946">PR #8946</a>: rigid (autonomous) monoidal categories</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8579">PR #8579</a>: one-point compactification of a topological space (the Stone-Cech compactification had been around for ages, and now its little brother joined the gang)</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9165">PR #9165</a>: upgrade to Lean 3.33.0c</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9288">PR #9288</a>: Sylow's theorems for infinite groups</li>
+</ul>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-radon-nikodym-theorem-in-lean/" class="u-url">The Radon-Nikodym theorem in Lean</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/kexing-ying/">Kexing Ying</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/the-radon-nikodym-theorem-in-lean/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-22T12:51:14+02:00" itemprop="datePublished" title="2021-09-22 12:51">2021-09-22 12:51</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>I have for the past two months been working on formalising the Radon-Nikodym theorem 
+in Lean, and with <a href="https://github.com/leanprover-community/mathlib/pull/9065">PR #9065</a> 
+merged into mathlib, this journey seems to have finally come to an end. </p>
+<p>The Radon-Nikodym theorem provides a necessary and sufficient condition for 
+comparing two measures, and allows us (under certain conditions) to express 
+one measure in terms of another.
+The Radon-Nikodym theorem is an important result in measure theory and has a
+wide range of applications in different fields of mathematics. Most notably, 
+it can be applied in probability theory in the definition 
+of the conditional expectation and in mathematical finance through the Girsanov 
+theorem<sup id="fnref:1"><a class="footnote-ref" href="posts/the-radon-nikodym-theorem-in-lean/#fn:1">1</a></sup>.</p>
+<p>Given two measures $\mu$ and $\nu$ on $\alpha$, we say that $\mu$ is 
+<em>absolutely continuous</em> with respect to $\nu$ (and write $\mu \ll \nu$) if for all 
+subsets $S$ of $\alpha$, $\nu(S) = 0$ implies $\mu(S) = 0$. Absolute continuity 
+is an important notion for measures and we would like to establish a condition 
+for when it is true. </p>
+<p>Given a measure $\mu$ on $\alpha$ and a measurable function 
+$f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$, the set function 
+$$S \mapsto \int_S f \text{ d} \mu$$
+is also a measure on $\alpha$ and we denote this measure by $f\mu$. It is 
+easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear 
+whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
+implication for certain measures. In particular, the classical Radon-Nikodym 
+theorem states that two $\sigma$-finite measures $\mu, \nu$ satisfy $\mu \ll \nu$ 
+if and only if there exists a measurable function $f$ such that $\mu = f\nu$. 
+This function is known as the Radon-Nikodym derivative 
+(denoted by $\frac{\text{d}\mu}{\text{d}\nu}$) and is essentially unique whenever 
+it exists.</p>
+<p>In Lean, this is shown by <code>absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq</code>
+and can be found in <code>measure_theory/decomposition/radon_nikodym</code>.
+While Radon-Nikodym is the main motivation, the proof of the theorem 
+itself is rather simple once we have the prerequisites, and thus, the project 
+spanned over multiple files, most of which can be found in <code>measure_theory/decomposition</code>.</p>
+<p>Of all the prerequisites, the most important are the 
+Jordan decomposition theorem and the Lebesgue decomposition theorem.
+The Jordan decomposition theorem uniquely classifies signed measures and allows 
+us to express every signed measure as a difference between two (mutually singular) 
+positive measures. While the theorem itself follows from the signed Hahn decomposition, 
+defining the structure of Jordan decompositions in Lean was tricky. While 
+initially, the decomposition was defined as a proposition, thanks to the suggestions 
+from the maintainers, it was decided to define the decomposition as a structure. </p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">jordan_decomposition</span> <span class="o">(</span><span class="n">α</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">measurable_space</span> <span class="n">α</span><span class="o">]</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">pos_part</span> <span class="n">neg_part</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span>
+<span class="o">[</span><span class="n">pos_part_finite</span> <span class="o">:</span> <span class="n">is_finite_measure</span> <span class="n">pos_part</span><span class="o">]</span>
+<span class="o">[</span><span class="n">neg_part_finite</span> <span class="o">:</span> <span class="n">is_finite_measure</span> <span class="n">neg_part</span><span class="o">]</span>
+<span class="o">(</span><span class="n">mutually_singular</span> <span class="o">:</span> <span class="n">pos_part</span> <span class="bp">⊥ₘ</span> <span class="n">neg_part</span><span class="o">)</span>
+</pre>
+
+<p>This was important, as later on, it was discovered that we were able to 
+relax some conditions on the uniqueness property of the Lebesgue decomposition 
+by introducing scalar multiplication on Jordan decompositions<sup id="fnref:2"><a class="footnote-ref" href="posts/the-radon-nikodym-theorem-in-lean/#fn:2">2</a></sup>. Furthermore, 
+as we would often like to transport between signed measures and Jordan 
+decompositions, it is easier to work with types rather than propositions since 
+this required a construction of an equivalence between the two types. </p>
+<p>A similar situation was reached with the Lebesgue decomposition. The Lebesgue 
+decomposition states that given two $\sigma$-finite measures $\mu$ and $\nu$, 
+there exists an essentially unique measurable function $f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$ 
+and a unique finite measure $\xi$ such that $\xi$ is mutually singular with respect 
+to $\nu$ (denoted $\xi \perp \nu$) and $\mu = \xi + f\nu$.
+As with the Jordan decomposition theorem, it was not clear how to represent this 
+statement. In particular, it is important for us to be able to extract the aforementioned 
+$f$ from the decomposition as this is the Radon-Nikodym derivative. After some
+experiments, I decided to represent this condition using a class.</p>
+<pre class="code literal-block"><span class="kd">class</span> <span class="n">measure.have_lebesgue_decomposition</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">lebesgue_decomposition</span> <span class="o">:</span>
+  <span class="bp">∃</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span> <span class="bp">×</span> <span class="o">(</span><span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span><span class="o">)),</span> <span class="n">measurable</span> <span class="n">p.2</span> <span class="bp">∧</span> <span class="n">p.1</span> <span class="bp">⊥ₘ</span> <span class="n">ν</span> <span class="bp">∧</span> <span class="n">μ</span> <span class="bp">=</span> <span class="n">p.1</span> <span class="bp">+</span> <span class="n">ν.with_density</span> <span class="n">p.2</span><span class="o">)</span>
+</pre>
+
+<p>Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures, 
+we will first need to show it for finite measures, this definition allows us 
+to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
+as we would like to extract the measure and measurable function from the decomposition, 
+we may define functions that choose the decomposition if it exists, and are
+zero otherwise.</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">measure.singular_part</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span> <span class="o">:=</span>
+<span class="k">if</span> <span class="n">h</span> <span class="o">:</span> <span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span> <span class="k">then</span> <span class="o">(</span><span class="n">classical.some</span> <span class="n">h.lebesgue_decomposition</span><span class="o">)</span><span class="bp">.</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+
+<span class="kd">def</span> <span class="n">measure.radon_nikodym_deriv</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span> <span class="o">:=</span>
+<span class="k">if</span> <span class="n">h</span> <span class="o">:</span> <span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span> <span class="k">then</span> <span class="o">(</span><span class="n">classical.some</span> <span class="n">h.lebesgue_decomposition</span><span class="o">)</span><span class="bp">.</span><span class="mi">2</span> <span class="k">else</span> <span class="mi">0</span>
+</pre>
+
+<p>With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
+Radon-Nikodym theorem follows easily by considering that the singular part of the 
+Lebesgue decomposition is zero in the case that $\mu \ll \nu$.</p>
+<pre class="code literal-block"><span class="kd">theorem</span> <span class="n">absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq</span>
+  <span class="o">{</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">}</span> <span class="o">[</span><span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span><span class="o">]</span> <span class="o">:</span>
+  <span class="n">μ</span> <span class="bp">≪</span> <span class="n">ν</span> <span class="bp">↔</span> <span class="n">ν.with_density</span> <span class="o">(</span><span class="n">radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">ν</span><span class="o">)</span> <span class="bp">=</span> <span class="n">μ</span>
+</pre>
+
+<p>Furthermore, the generalisation of the 
+Radon-Nikodym theorem to signed measures follows, simply by utilising 
+the Jordan decomposition and realising the Radon-Nikodym derivative of 
+the signed measure is the difference of the Radon-Nikodym derivatives of 
+the parts of the Jordan decomposition. However, using this definition of the 
+Radon-Nikodym derivative for the signed measures poses a problem, in which 
+proving any properties about them requires an absolutely continuous condition.
+Thus, it was decided to generalise the Lebesgue decomposition theorem for 
+signed measures from which we obtain the general Radon-Nikodym theorem.</p>
+<p>Similar to the Lebesgue decomposition for the positive measures, the Lebesgue 
+decomposition between a signed measure and a positive measure states that, 
+given a signed measure $s$ and a $\sigma$-finite measure $\mu$, there exists 
+an essentially unique measurable function $f : \alpha \to \mathbb{R}$ and a 
+unique signed measure $t$, such that $t \perp \mu$ and $s = t + f\mu$.
+While this version of the Lebesgue decomposition was also represented as a class, 
+the statement itself was modified to be an equivalent, yet easier to work with 
+statement. Namely, a signed measure $s$ has Lebesgue decomposition with respect to 
+a measure $\mu$ if both parts of the Jordan decomposition of $s$ have Lebesgue 
+decomposition to $\mu$.</p>
+<pre class="code literal-block"><span class="kd">class</span> <span class="n">signed_measure.have_lebesgue_decomposition</span> 
+  <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">pos_part</span> <span class="o">:</span> <span class="n">s.to_jordan_decomposition.pos_part.have_lebesgue_decomposition</span> <span class="n">μ</span><span class="o">)</span>
+<span class="o">(</span><span class="n">neg_part</span> <span class="o">:</span> <span class="n">s.to_jordan_decomposition.neg_part.have_lebesgue_decomposition</span> <span class="n">μ</span><span class="o">)</span>
+</pre>
+
+<p>By the same rationale, the singular part and the Radon-Nikodym derivative of the 
+decomposition are defined similarly.</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">signed_measure.singular_part</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.pos_part.singular_part</span> <span class="n">μ</span><span class="o">)</span><span class="bp">.</span><span class="n">to_signed_measure</span> <span class="bp">-</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.neg_part.singular_part</span> <span class="n">μ</span><span class="o">)</span><span class="bp">.</span><span class="n">to_signed_measure</span>
+
+<span class="kd">def</span> <span class="n">signed_measure.radon_nikodym_deriv</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">x</span><span class="o">,</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.pos_part.radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">x</span><span class="o">)</span><span class="bp">.</span><span class="n">to_real</span> <span class="bp">-</span>
+<span class="o">(</span><span class="n">s.to_jordan_decomposition.neg_part.radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">x</span><span class="o">)</span><span class="bp">.</span><span class="n">to_real</span>
+</pre>
+
+<p>Using these definitions, the Lebesgue decomposition theorem was proved easily 
+and thus, also the Radon-Nikodym theorem for signed measures. Most importantly, 
+however, as these definition do not require an absolutely continuous condition, 
+it was possible to prove that the Radon-Nikodym derivative 
+$\frac{\text{d}\mu}{\text{d}\nu}$ is essentially unique without requiring 
+$\mu \ll \nu$.  </p>
+<p>As the Radon-Nikodym theorem is central to many concepts in probability theory, 
+a brand new territory in mathlib is now available for us to explore,<br>
+and with <a href="https://github.com/leanprover-community/mathlib/pull/9065">PR #9065</a> 
+merged into mathlib, a new journey seems about to begin. </p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem#Applications">wikipedia.org/wiki/Radon-Nikodym_theorem#Applications</a> <a class="footnote-backref" href="posts/the-radon-nikodym-theorem-in-lean/#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Given a signed measure <code>s</code>, a measure <code>μ</code> and a real number <code>r</code>, one may show 
+<code>(r • s).singular_part μ = r • s.singular_part μ</code> without 
+requiring <code>have_lebesgue_decomposition s μ</code> by proving that the scalar product 
+with a real number and the equivalence between signed measures and Jordan 
+decompositions commute. <a class="footnote-backref" href="posts/the-radon-nikodym-theorem-in-lean/#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alex-bests-type-class-generalization-paper/" class="u-url">Alex Best’s type class generalization paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/alex-bests-type-class-generalization-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-19T21:04:01+02:00" itemprop="datePublished" title="2021-09-19 21:04">2021-09-19 21:04</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Alex J. Best wrote a 
+<a href="https://easychair.org/publications/preprint/KLfT">paper about type class generalization</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>When producing large formally verified mathematical developments that
+make use of typeclasses as in mathlib, it is easy to introduce overly strong
+assumptions for theorems and definitions. This paper considers the problem of
+recognizing from the elaborated proof terms when typeclass assumptions
+are stronger than necessary. It uses a Lean metaprogram that finds and
+informs the user about possible generalizations.</p>
+<p>A nice example from the paper deals with the following theorem stating that
+given a ring homomorphism between two fields and a natural number $p$, one of the
+fields has characteristic p if and only if the other has characteristic $p$
+(including $p = 0$):</p>
+<pre class="code literal-block"><span class="kd">lemma</span> <span class="n">ring_hom.char_p_iff_char_p</span> <span class="o">{</span><span class="n">K</span> <span class="n">L</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">∗</span><span class="o">}</span> <span class="o">[</span><span class="n">field</span> <span class="n">K</span><span class="o">]</span> <span class="o">[</span><span class="n">field</span> <span class="n">L</span><span class="o">]</span>
+  <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">K</span> <span class="bp">→+∗</span> <span class="n">L</span><span class="o">)</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">:</span> <span class="n">char_p</span> <span class="n">K</span> <span class="n">p</span> <span class="bp">↔</span> <span class="n">char_p</span> <span class="n">L</span> <span class="n">p</span> <span class="o">:=</span>
+<span class="kd">begin</span>
+  <span class="n">split</span><span class="bp">;</span>
+  <span class="o">{</span> <span class="n">introI</span> <span class="n">_c</span><span class="o">,</span> <span class="n">constructor</span><span class="o">,</span> <span class="n">intro</span> <span class="n">n</span><span class="o">,</span>
+    <span class="n">rw</span> <span class="o">[</span><span class="bp">←</span> <span class="bp">@</span><span class="n">char_p.cast_eq_zero_iff</span> <span class="n">_</span> <span class="n">_</span> <span class="n">p</span> <span class="n">_c</span> <span class="n">n</span><span class="o">,</span> <span class="bp">←</span> <span class="n">f.injective.eq_iff</span><span class="o">,</span> <span class="n">f.map_nat_cast</span><span class="o">,</span>
+    <span class="n">f.map_zero</span><span class="o">]</span> <span class="o">}</span>
+<span class="kd">end</span>
+</pre>
+
+<p>We see that the proof script splits the iff statement into each direction, but
+both directions are proved by the same tactic block. It is non-trivial to
+determine just by reading the proof given what the weakest assumptions possible
+are, and it is not immediately clear from the statement either.
+The meta-program determined these are that $K$ should be a division ring, and $L$
+should be a nontrivial semiring.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/yury-kudryashovs-rotation-number-paper/" class="u-url">Yury Kudryashov’s rotation number paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/yury-kudryashovs-rotation-number-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-19T18:46:20+02:00" itemprop="datePublished" title="2021-09-19 18:46">2021-09-19 18:46</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Yury Kudryashov wrote a 
+<a href="https://easychair.org/publications/preprint/38w1">paper about the rotation number</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>Rotation number is the key numerical invariant of an orientation
+preserving circle homeomorphism.  Circle self-maps $f : S^1 → S^1$, 
+$S^1 = ℝ/ℤ$, constitute an important class of dynamical systems. They
+appear in applications, e.g., as Poincaré maps of continuous flows on
+the $2$-torus.  The simplest circle self-maps are pure rotations 
+$x ↦ x + a$. It turns out that any circle homeomorphism f is semiconjugate 
+to a pure rotation $x ↦ x + τ(f)$. The number $τ(f)$ is called the
+rotation number of $f$.</p>
+<p>This paper describes the current state of an ongoing project with aim to
+formalize various facts about circle dynamics in Lean. Currently, the
+formalized material includes the definition and basic properties of the
+translation number of a lift of a circle homeomorphism to the real line.
+Yury Kudryashov also formalized a theorem by Étienne Ghys that gives a
+necessary and sufficient condition for two actions of a group on the
+circle by homeomorphism to be semiconjugate to each other.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/sebastien-gouezels-gromov-hausdorff-space-paper/" class="u-url">Sébastien Gouëzel’s Gromov-Hausdorff Space paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/sebastien-gouezels-gromov-hausdorff-space-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-09-19T18:34:11+02:00" itemprop="datePublished" title="2021-09-19 18:34">2021-09-19 18:34</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Sébastien Gouëzel wrote a <a href="https://easychair.org/publications/preprint/sD76">paper about the Gromov-Hausdorff space</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>The Gromov-Hausdorff space is the space of all nonempty compact metric
+spaces up to isometry. It has been introduced by Gromov, and plays now
+an important role in branches of geometry and probability theory. Its
+intricate nature of a space of equivalence classes of spaces gives rise
+to interesting formalization questions, both from the point of view of
+the interface with the rest of the library and on design choices for
+definitions and proofs.</p>
+<p>Section 1 gives a purely mathematical description of the
+Gromov-Hausdorff space and its salient features.  Section 2 gives an
+overview of the formalization. The last three sections are devoted to
+specific interesting points that were raised during this formalization.
+More specifically, Section 3 discusses the possible choices of
+definition for the Gromov-Hausdorff space. Section 4 explains how
+preexisting gaps in the mathlib library had to be filled to show that
+the Gromov-Hausdorff distance is realized.  Section 5 focuses on a
+particularly subtle inductive construction involved in the proof of the
+completeness of the Gromov-Hausdorff space, and the shortcomings of Lean
+3 that had to be circumvented to formalize it</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-aug-2021/" class="u-url">This month in mathlib (Aug 2021)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/month-in-mathlib-aug-2021/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-31T08:56:51+02:00" itemprop="datePublished" title="2021-08-31 08:56">2021-08-31 08:56</time></a>
+            </p>
+		    <p><span class="text-dark">month-in-mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>This post summarizes some of the activity that happened in mathlib in August.</p>
+<h3>Highlighted PRs</h3>
+<ul>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8652">PR #8652</a>: chore(*): update lean to 3.32.1<br>
+  The community fork of Lean made two new
+  <a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3321c-12-august-2021">releases</a>
+  <code>3.32.0</code> and <code>3.32.1</code>.
+  This is part of the preparations for porting mathlib to Lean 4.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>:  continuous and smooth partition of unity<br>
+  See the <a href="posts/month-in-mathlib-aug-2021/continuous-partitions-of-unity/">companion blogpost</a> for details.</p>
+</li>
+<li>
+<p>Radon-Nikodym and Lebesgue decomposition. The four PRs
+  <a href="https://github.com/leanprover-community/mathlib/pull/8645">PR #8645</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8687">PR #8687</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8763">PR #8763</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8875">PR #8875</a>
+  together contribute
+  the Lebesgue decomposition for sigma-finite measures
+  and the Radon-Nikodym theorem.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/7978">PR #7978</a>: strong version of FTC-2<br>
+  This weakens considerably the assumptions of part of the fundamental theorem of calclus: 
+  $\int _{a}^{b}f'(x)\,dx=f(b)-f(a)$,
+  replacing continuity of $f'$ by the much more natural assumption of integrability.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/4885">PR #4885</a>:  general adjoint functor theorem:
+  If $G : D ⇒ C$ preserves limits and $D$ has limits, and satisfies the solution set condition,
+  then it has a left adjoint.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8692">PR #8692</a>:  finite fields exist<br>
+  Most of this PR had been lying around for ages,
+  but it was finally put together in mathlib.
+  It shows the existence and uniqueness up to isomorphism of a finite field with cardinal $p^n$
+  for any prime number $p$ and positive integer $n$.</p>
+</li>
+<li>
+<p>Among several PRs from the <a href="https://github.com/lean-forward/class-number">Dedekind project</a>, the two most noteworthy are</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8530">PR #8530</a>:  ideals in a Dedekind domain have unique factorization</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8626">PR #8626</a>:  define the ideal class group  </li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8377">PR #8377</a>:  new file<br>
+  This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.<br>
+  Upcoming PRs will characterize the fundamental domain of the $\mathrm{SL}_2(\mathbb{Z})$-action.</p>
+</li>
+</ul>
+<h3>Other mathematical contributions</h3>
+<p>The following PRs are ordered by the date that they were merged into mathlib.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8424">PR #8424</a>:  prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8560">PR #8560</a>:  Add the Kronecker product</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8388">PR #8388</a>:  signed version of the Hahn decomposition theorem</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8588">PR #8588</a>:  Smith normal form for submodules over a PID
+  This PR is a step towards the classification of finite type modules over a PID.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8266">PR #8266</a>:  Stieltjes measures associated to monotone functions</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8598">PR #8598</a>:  add definition and first lemmas about weak-star topology</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8639">PR #8639</a>:  prove Haar measure = Lebesgue measure on $ℝ$</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8558">PR #8558</a>:  add working definition of elliptic curve</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8538">PR #8538</a>:  add nilpotent groups</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8343">PR #8343</a>:  generalize inequalities and invariance of dimension to arbitrary rings</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8791">PR #8791</a>:  volume of a (closed) $L^∞$-ball</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8576">PR #8576</a>:  define exponential in a Banach algebra and prove basic results</li>
+</ul>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/continuous-partitions-of-unity/" class="u-url">Continuous partitions of unity</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/continuous-partitions-of-unity/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-07T21:49:56+02:00" itemprop="datePublished" title="2021-08-07 21:49">2021-08-07 21:49</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>In <a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>, Yury
+Kudryashov completed his work on continuous and smooth partitions of unity.</p>
+<p>A continuous partition of unity on a topological space $X$ is a collection of continuous functions
+$f_i : X → ℝ$ such that:</p>
+<ul>
+<li>the supports of $f_i$ form a locally finite family of sets, i.e., for every point $x$ in $X$, there
+  exists a neighborhood $U$ of $x$ such that all but finitely many functions $f_i$ are zero on $U$;</li>
+<li>the functions $f_i$ are nonnegative;</li>
+<li>the sum $\sum_i f_i(x)$ is equal to one for all $x$.</li>
+</ul>
+<p>While the above definition is completely standard, it is often useful to have a collection of
+functions that act as a paritition of unity only on some part $s$ of $X$. In that more general case,
+we keep the above two conditions everywhere but ask that the sum in the last item equals one on $s$
+and is less than or equal to one everywhere. This is encoded in the following Lean structure, from
+<code>topology.partition_of_unity</code>.</p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">partition_of_unity</span> <span class="o">(</span><span class="n">ι</span> <span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">topological_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">set</span> <span class="n">X</span> <span class="o">:=</span> <span class="n">univ</span><span class="o">)</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">to_fun</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span> <span class="n">ℝ</span><span class="o">))</span>
+<span class="o">(</span><span class="n">locally_finite'</span> <span class="o">:</span> <span class="n">locally_finite</span> <span class="o">(</span><span class="bp">λ</span> <span class="n">i</span><span class="o">,</span> <span class="n">support</span> <span class="o">(</span><span class="n">to_fun</span> <span class="n">i</span><span class="o">)))</span>
+<span class="o">(</span><span class="n">nonneg'</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">≤</span> <span class="n">to_fun</span><span class="o">)</span>
+<span class="o">(</span><span class="n">sum_eq_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span> <span class="bp">∈</span> <span class="n">s</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">1</span><span class="o">)</span>
+<span class="o">(</span><span class="n">sum_le_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)</span>
+</pre>
+
+<p>The main result from that file is then the following existence theorem.</p>
+<pre class="code literal-block"><span class="sd">/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set</span>
+<span class="sd">`s`, then there exists a `partition_of_unity ι X s` that is subordinate to `U`. -/</span>
+<span class="kd">lemma</span> <span class="n">exists_is_subordinate</span> <span class="o">[</span><span class="n">normal_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">[</span><span class="n">paracompact_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">hs</span> <span class="o">:</span> <span class="n">is_closed</span> <span class="n">s</span><span class="o">)</span>
+  <span class="o">(</span><span class="n">U</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">set</span> <span class="n">X</span><span class="o">)</span> <span class="o">(</span><span class="n">ho</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span> <span class="n">is_open</span> <span class="o">(</span><span class="n">U</span> <span class="n">i</span><span class="o">))</span> <span class="o">(</span><span class="n">hU</span> <span class="o">:</span> <span class="n">s</span> <span class="bp">⊆</span> <span class="bp">⋃</span> <span class="n">i</span><span class="o">,</span> <span class="n">U</span> <span class="n">i</span><span class="o">)</span> <span class="o">:</span>
+  <span class="bp">∃</span> <span class="n">f</span> <span class="o">:</span> <span class="n">partition_of_unity</span> <span class="n">ι</span> <span class="n">X</span> <span class="n">s</span><span class="o">,</span> <span class="n">f.is_subordinate</span> <span class="n">U</span>
+</pre>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/eric-wiesers-scalar-action-paper/" class="u-url">Eric Wieser's scalar action paper</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/patrick-massot/">Patrick Massot</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/eric-wiesers-scalar-action-paper/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-07T21:42:32+02:00" itemprop="datePublished" title="2021-08-07 21:42">2021-08-07 21:42</time></a>
+            </p>
+		    <p><span class="text-dark">Papers</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Eric Wieser wrote a <a href="https://easychair.org/publications/preprint/mC9X">paper about scalar actions in mathlib</a> for the 
+<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
+mathematics. </p>
+<p>Scalar actions are everywhere in mathematics. There are so many of
+them that a given type can easily get several ones from different origins. For instance
+$ℤ$ acts on itself by left multiplication but it also has the $ℤ$ scalar action
+that every additive group has, by repeated addition or subtraction.
+In general those multiple actions can be proven to be equal, but type class
+inference needs definitional equality. So a great deal of care has been taken,
+by Eric and others, when setting up the algebraic hierarchy in mathlib. </p>
+<p>The paper tells this fascinating story and is recommended for anyone interested
+in multiple inheritance handling in Lean 3 type class system.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/welcome-to-the-lean-community-blog/" class="u-url">Welcome to the Lean community blog!</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/the-lean-prover-community/">The Lean prover community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/welcome-to-the-lean-community-blog/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-07T21:36:54+02:00" itemprop="datePublished" title="2021-08-07 21:36">2021-08-07 21:36</time></a>
+            </p>
+		    <p><span class="text-dark">Announcements</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>This is our brand new blog where you'll be able to find news about what is
+happening in the Lean prover community. It will feature:</p>
+<ul>
+<li>posts highlighting some new contributions to mathlib</li>
+<li>news about ongoing projects such as the Liquid tensor experiment or the sphere eversion project</li>
+<li>news about exciting developments in other proofs assistants</li>
+<li>announcements of conferences and talks </li>
+<li>some explanations of specific topics in a less formal context than the documentations</li>
+<li>speculations about future developments or somewhat philosophical discussions</li>
+</ul>
+<p>There is no predefined list of authors. Everybody can submit a pull-request
+with a post. If you are unsure whether your post will be welcome then don't
+hesitate to first discuss the topic of your post on Zulip before investing too
+much time writing it.</p>
+</div>
+                </div>
+            </article>
+</div>
+    
+    
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--End of body content--><footer id="footer">
+            Contents © 2021         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="assets/js/jquery.min.js"></script><script src="assets/js/popper.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts about Papers)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/categories/cat_papers.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 23 Sep 2021 18:08:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Alex Best’s type class generalization paper</title><link>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Alex J. Best wrote a 
+&lt;a href="https://easychair.org/publications/preprint/KLfT"&gt;paper about type class generalization&lt;/a&gt; for the 
+&lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
+mathematics. &lt;/p&gt;
+&lt;p&gt;When producing large formally verified mathematical developments that
+make use of typeclasses as in mathlib, it is easy to introduce overly strong
+assumptions for theorems and definitions. This paper considers the problem of
+recognizing from the elaborated proof terms when typeclass assumptions
+are stronger than necessary. It uses a Lean metaprogram that finds and
+informs the user about possible generalizations.&lt;/p&gt;
+&lt;p&gt;A nice example from the paper deals with the following theorem stating that
+given a ring homomorphism between two fields and a natural number $p$, one of the
+fields has characteristic p if and only if the other has characteristic $p$
+(including $p = 0$):&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;lemma&lt;/span&gt; &lt;span class="n"&gt;ring_hom.char_p_iff_char_p&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Type&lt;/span&gt;&lt;span class="bp"&gt;∗&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+  &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="bp"&gt;→+∗&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℕ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;char_p&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="bp"&gt;↔&lt;/span&gt; &lt;span class="n"&gt;char_p&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
+&lt;span class="kd"&gt;begin&lt;/span&gt;
+  &lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="bp"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="n"&gt;introI&lt;/span&gt; &lt;span class="n"&gt;_c&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;constructor&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;intro&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;rw&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;←&lt;/span&gt; &lt;span class="bp"&gt;@&lt;/span&gt;&lt;span class="n"&gt;char_p.cast_eq_zero_iff&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;_c&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;←&lt;/span&gt; &lt;span class="n"&gt;f.injective.eq_iff&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f.map_nat_cast&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;f.map_zero&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="kd"&gt;end&lt;/span&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;We see that the proof script splits the iff statement into each direction, but
+both directions are proved by the same tactic block. It is non-trivial to
+determine just by reading the proof given what the weakest assumptions possible
+are, and it is not immediately clear from the statement either.
+The meta-program determined these are that $K$ should be a division ring, and $L$
+should be a nontrivial semiring.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</guid><pubDate>Sun, 19 Sep 2021 19:04:01 GMT</pubDate></item><item><title>Yury Kudryashov’s rotation number paper</title><link>https://leanprover-community.github.io/blog/posts/yury-kudryashovs-rotation-number-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Yury Kudryashov wrote a 
+&lt;a href="https://easychair.org/publications/preprint/38w1"&gt;paper about the rotation number&lt;/a&gt; for the 
+&lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
+mathematics. &lt;/p&gt;
+&lt;p&gt;Rotation number is the key numerical invariant of an orientation
+preserving circle homeomorphism.  Circle self-maps $f : S^1 → S^1$, 
+$S^1 = ℝ/ℤ$, constitute an important class of dynamical systems. They
+appear in applications, e.g., as Poincaré maps of continuous flows on
+the $2$-torus.  The simplest circle self-maps are pure rotations 
+$x ↦ x + a$. It turns out that any circle homeomorphism f is semiconjugate 
+to a pure rotation $x ↦ x + τ(f)$. The number $τ(f)$ is called the
+rotation number of $f$.&lt;/p&gt;
+&lt;p&gt;This paper describes the current state of an ongoing project with aim to
+formalize various facts about circle dynamics in Lean. Currently, the
+formalized material includes the definition and basic properties of the
+translation number of a lift of a circle homeomorphism to the real line.
+Yury Kudryashov also formalized a theorem by Étienne Ghys that gives a
+necessary and sufficient condition for two actions of a group on the
+circle by homeomorphism to be semiconjugate to each other.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/yury-kudryashovs-rotation-number-paper/</guid><pubDate>Sun, 19 Sep 2021 16:46:20 GMT</pubDate></item><item><title>Sébastien Gouëzel’s Gromov-Hausdorff Space paper</title><link>https://leanprover-community.github.io/blog/posts/sebastien-gouezels-gromov-hausdorff-space-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Sébastien Gouëzel wrote a &lt;a href="https://easychair.org/publications/preprint/sD76"&gt;paper about the Gromov-Hausdorff space&lt;/a&gt; for the 
+&lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
+mathematics. &lt;/p&gt;
+&lt;p&gt;The Gromov-Hausdorff space is the space of all nonempty compact metric
+spaces up to isometry. It has been introduced by Gromov, and plays now
+an important role in branches of geometry and probability theory. Its
+intricate nature of a space of equivalence classes of spaces gives rise
+to interesting formalization questions, both from the point of view of
+the interface with the rest of the library and on design choices for
+definitions and proofs.&lt;/p&gt;
+&lt;p&gt;Section 1 gives a purely mathematical description of the
+Gromov-Hausdorff space and its salient features.  Section 2 gives an
+overview of the formalization. The last three sections are devoted to
+specific interesting points that were raised during this formalization.
+More specifically, Section 3 discusses the possible choices of
+definition for the Gromov-Hausdorff space. Section 4 explains how
+preexisting gaps in the mathlib library had to be filled to show that
+the Gromov-Hausdorff distance is realized.  Section 5 focuses on a
+particularly subtle inductive construction involved in the proof of the
+completeness of the Gromov-Hausdorff space, and the shortcomings of Lean
+3 that had to be circumvented to formalize it&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/sebastien-gouezels-gromov-hausdorff-space-paper/</guid><pubDate>Sun, 19 Sep 2021 16:34:11 GMT</pubDate></item><item><title>Eric Wieser's scalar action paper</title><link>https://leanprover-community.github.io/blog/posts/eric-wiesers-scalar-action-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Eric Wieser wrote a &lt;a href="https://easychair.org/publications/preprint/mC9X"&gt;paper about scalar actions in mathlib&lt;/a&gt; for the 
+&lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
+mathematics. &lt;/p&gt;
+&lt;p&gt;Scalar actions are everywhere in mathematics. There are so many of
+them that a given type can easily get several ones from different origins. For instance
+$ℤ$ acts on itself by left multiplication but it also has the $ℤ$ scalar action
+that every additive group has, by repeated addition or subtraction.
+In general those multiple actions can be proven to be equal, but type class
+inference needs definitional equality. So a great deal of care has been taken,
+by Eric and others, when setting up the algebraic hierarchy in mathlib. &lt;/p&gt;
+&lt;p&gt;The paper tells this fascinating story and is recommended for anyone interested
+in multiple inheritance handling in Lean 3 type class system.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/eric-wiesers-scalar-action-paper/</guid><pubDate>Sat, 07 Aug 2021 19:42:32 GMT</pubDate></item></channel></rss>

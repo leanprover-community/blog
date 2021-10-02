@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This month in mathlib (Aug 2021) | Lean community blog</title>
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bootblog.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Mathlib community">
+<link rel="prev" href="../continuous-partitions-of-unity/" title="Continuous partitions of unity" type="text/html">
+<link rel="next" href="../sebastien-gouezels-gromov-hausdorff-space-paper/" title="Sébastien Gouëzel's Gromov-Hausdorff Space paper" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="This month in mathlib (Aug 2021)">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/">
+<meta property="og:description" content="This post summarizes some of the activity that happened in mathlib in August.
+Highlighted PRs
+
+
+PR #8652: chore(*): update lean to 3.32.1
+  The community fork of Lean made two new
+  releases
+  3.32.0 ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-08-31T08:56:51+02:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../">
+
+            <span id="blog-title">Lean community blog</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.md" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="https://leanprover-community.github.io/" class="nav-link">Main site</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../about/" class="nav-link">About</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">This month in mathlib (Aug 2021)</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../authors/mathlib-community/">Mathlib community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-31T08:56:51+02:00" itemprop="datePublished" title="2021-08-31 08:56">2021-08-31 08:56</time></a>
+            </p>
+                    <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>This post summarizes some of the activity that happened in mathlib in August.</p>
+<h3>Highlighted PRs</h3>
+<ul>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8652">PR #8652</a>: chore(*): update lean to 3.32.1<br>
+  The community fork of Lean made two new
+  <a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3321c-12-august-2021">releases</a>
+  <code>3.32.0</code> and <code>3.32.1</code>.
+  This is part of the preparations for porting mathlib to Lean 4.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>:  continuous and smooth partition of unity<br>
+  See the <a href="continuous-partitions-of-unity/">companion blogpost</a> for details.</p>
+</li>
+<li>
+<p>Radon-Nikodym and Lebesgue decomposition. The four PRs
+  <a href="https://github.com/leanprover-community/mathlib/pull/8645">PR #8645</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8687">PR #8687</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8763">PR #8763</a>
+  <a href="https://github.com/leanprover-community/mathlib/pull/8875">PR #8875</a>
+  together contribute
+  the Lebesgue decomposition for sigma-finite measures
+  and the Radon-Nikodym theorem.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/7978">PR #7978</a>: strong version of FTC-2<br>
+  This weakens considerably the assumptions of part of the fundamental theorem of calclus: 
+  $\int _{a}^{b}f'(x)\,dx=f(b)-f(a)$,
+  replacing continuity of $f'$ by the much more natural assumption of integrability.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/4885">PR #4885</a>:  general adjoint functor theorem:
+  If $G : D ⇒ C$ preserves limits and $D$ has limits, and satisfies the solution set condition,
+  then it has a left adjoint.</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8692">PR #8692</a>:  finite fields exist<br>
+  Most of this PR had been lying around for ages,
+  but it was finally put together in mathlib.
+  It shows the existence and uniqueness up to isomorphism of a finite field with cardinal $p^n$
+  for any prime number $p$ and positive integer $n$.</p>
+</li>
+<li>
+<p>Among several PRs from the <a href="https://github.com/lean-forward/class-number">Dedekind project</a>, the two most noteworthy are</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8530">PR #8530</a>:  ideals in a Dedekind domain have unique factorization</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8626">PR #8626</a>:  define the ideal class group  </li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8377">PR #8377</a>:  new file<br>
+  This PR defines the complex upper half plane, together with the $\mathrm{SL}_2$-action.<br>
+  Upcoming PRs will characterize the fundamental domain of the $\mathrm{SL}_2(\mathbb{Z})$-action.</p>
+</li>
+</ul>
+<h3>Other mathematical contributions</h3>
+<p>The following PRs are ordered by the date that they were merged into mathlib.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8424">PR #8424</a>:  prove that complex functions are conformal if and only if the functions are holomorphic/antiholomorphic with nonvanishing differential</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8560">PR #8560</a>:  Add the Kronecker product</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8388">PR #8388</a>:  signed version of the Hahn decomposition theorem</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8588">PR #8588</a>:  Smith normal form for submodules over a PID
+  This PR is a step towards the classification of finite type modules over a PID.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8266">PR #8266</a>:  Stieltjes measures associated to monotone functions</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8598">PR #8598</a>:  add definition and first lemmas about weak-star topology</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8639">PR #8639</a>:  prove Haar measure = Lebesgue measure on $ℝ$</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8558">PR #8558</a>:  add working definition of elliptic curve</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8538">PR #8538</a>:  add nilpotent groups</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8343">PR #8343</a>:  generalize inequalities and invariance of dimension to arbitrary rings</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8791">PR #8791</a>:  volume of a (closed) $L^∞$-ball</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8576">PR #8576</a>:  define exponential in a Banach algebra and prove basic results</li>
+</ul>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../continuous-partitions-of-unity/" rel="prev" title="Continuous partitions of unity">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../sebastien-gouezels-gromov-hausdorff-space-paper/" rel="next" title="Sébastien Gouëzel's Gromov-Hausdorff Space paper">Next post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><!--End of body content--><footer id="footer">
+            Contents © 2021         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/popper.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
