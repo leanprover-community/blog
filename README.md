@@ -3,7 +3,7 @@
 ## Setup
 
 ```bash
-pip install Nikola Jinja2 pyphen typogrify aiohttp watchdog ruamel.yaml html5lib
+pip install -r requirements.txt
 ```
 
 If you want shell completion for `nikola` commands, see [these instructions](https://getnikola.com/handbook.html#shell-tab-completion).

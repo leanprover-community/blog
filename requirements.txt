@@ -1,0 +1,8 @@
+Nikola
+Jinja2
+pyphen
+typogrify
+aiohttp
+watchdog
+ruamel.yaml
+html5lib
