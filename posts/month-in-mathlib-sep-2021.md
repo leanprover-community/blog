@@ -24,7 +24,7 @@ This post summarizes some of the activity that happened in mathlib in September.
   [PR #9063](https://github.com/leanprover-community/mathlib/pull/9063),
   culminating in
   [PR #9059](https://github.com/leanprover-community/mathlib/pull/9059)
-  which shows that the class group of an integral closure is finite.
+  which shows that, in the presence of an admissible absolute value, the class group of an integral closure is finite.
 * Probability theory.
   Foundations of probability theory are (finally!) coming to mathlib.
   With
