@@ -37,6 +37,7 @@ article header .metadata {
 }
 
 code, kbd, pre, samp {
+  word-wrap: break-word;
   font-size: unset;
   font-family: 'Source Code Pro', monospace;
 }
