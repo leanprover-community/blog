@@ -103,7 +103,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
   <a href="https://github.com/leanprover-community/mathlib/pull/9063">PR #9063</a>,
   culminating in
   <a href="https://github.com/leanprover-community/mathlib/pull/9059">PR #9059</a>
-  which shows that the class group of an integral closure is finite.</li>
+  which shows that, in the presence of an admissible absolute value, the class group of an integral closure is finite.</li>
 <li>Probability theory.
   Foundations of probability theory are (finally!) coming to mathlib.
   With
@@ -241,7 +241,6 @@ from the maintainers, it was decided to define the decomposition as a structure.
 <span class="o">[</span><span class="n">neg_part_finite</span> <span class="o">:</span> <span class="n">is_finite_measure</span> <span class="n">neg_part</span><span class="o">]</span>
 <span class="o">(</span><span class="n">mutually_singular</span> <span class="o">:</span> <span class="n">pos_part</span> <span class="bp">⊥ₘ</span> <span class="n">neg_part</span><span class="o">)</span>
 </pre>
-
 <p>This was important, as later on, it was discovered that we were able to 
 relax some conditions on the uniqueness property of the Lebesgue decomposition 
 by introducing scalar multiplication on Jordan decompositions<sup id="fnref:2"><a class="footnote-ref" href="posts/the-radon-nikodym-theorem-in-lean/#fn:2">2</a></sup>. Furthermore, 
@@ -261,7 +260,6 @@ experiments, I decided to represent this condition using a class.</p>
 <span class="o">(</span><span class="n">lebesgue_decomposition</span> <span class="o">:</span>
   <span class="bp">∃</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span> <span class="bp">×</span> <span class="o">(</span><span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span><span class="o">)),</span> <span class="n">measurable</span> <span class="n">p.2</span> <span class="bp">∧</span> <span class="n">p.1</span> <span class="bp">⊥ₘ</span> <span class="n">ν</span> <span class="bp">∧</span> <span class="n">μ</span> <span class="bp">=</span> <span class="n">p.1</span> <span class="bp">+</span> <span class="n">ν.with_density</span> <span class="n">p.2</span><span class="o">)</span>
 </pre>
-
 <p>Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures, 
 we will first need to show it for finite measures, this definition allows us 
 to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
@@ -274,7 +272,6 @@ zero otherwise.</p>
 <span class="kd">def</span> <span class="n">measure.radon_nikodym_deriv</span> <span class="o">(</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">α</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span> <span class="o">:=</span>
 <span class="k">if</span> <span class="n">h</span> <span class="o">:</span> <span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span> <span class="k">then</span> <span class="o">(</span><span class="n">classical.some</span> <span class="n">h.lebesgue_decomposition</span><span class="o">)</span><span class="bp">.</span><span class="mi">2</span> <span class="k">else</span> <span class="mi">0</span>
 </pre>
-
 <p>With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
 Radon-Nikodym theorem follows easily by considering that the singular part of the 
 Lebesgue decomposition is zero in the case that $\mu \ll \nu$.</p>
@@ -282,7 +279,6 @@ Lebesgue decomposition is zero in the case that $\mu \ll \nu$.</p>
   <span class="o">{</span><span class="n">μ</span> <span class="n">ν</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">}</span> <span class="o">[</span><span class="n">have_lebesgue_decomposition</span> <span class="n">μ</span> <span class="n">ν</span><span class="o">]</span> <span class="o">:</span>
   <span class="n">μ</span> <span class="bp">≪</span> <span class="n">ν</span> <span class="bp">↔</span> <span class="n">ν.with_density</span> <span class="o">(</span><span class="n">radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">ν</span><span class="o">)</span> <span class="bp">=</span> <span class="n">μ</span>
 </pre>
-
 <p>Furthermore, the generalisation of the 
 Radon-Nikodym theorem to signed measures follows, simply by utilising 
 the Jordan decomposition and realising the Radon-Nikodym derivative of 
@@ -307,7 +303,6 @@ decomposition to $\mu$.</p>
 <span class="o">(</span><span class="n">pos_part</span> <span class="o">:</span> <span class="n">s.to_jordan_decomposition.pos_part.have_lebesgue_decomposition</span> <span class="n">μ</span><span class="o">)</span>
 <span class="o">(</span><span class="n">neg_part</span> <span class="o">:</span> <span class="n">s.to_jordan_decomposition.neg_part.have_lebesgue_decomposition</span> <span class="n">μ</span><span class="o">)</span>
 </pre>
-
 <p>By the same rationale, the singular part and the Radon-Nikodym derivative of the 
 decomposition are defined similarly.</p>
 <pre class="code literal-block"><span class="kd">def</span> <span class="n">signed_measure.singular_part</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">measure</span> <span class="n">α</span><span class="o">)</span> <span class="o">:</span> <span class="n">signed_measure</span> <span class="n">α</span> <span class="o">:=</span>
@@ -318,7 +313,6 @@ decomposition are defined similarly.</p>
 <span class="o">(</span><span class="n">s.to_jordan_decomposition.pos_part.radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">x</span><span class="o">)</span><span class="bp">.</span><span class="n">to_real</span> <span class="bp">-</span>
 <span class="o">(</span><span class="n">s.to_jordan_decomposition.neg_part.radon_nikodym_deriv</span> <span class="n">μ</span> <span class="n">x</span><span class="o">)</span><span class="bp">.</span><span class="n">to_real</span>
 </pre>
-
 <p>Using these definitions, the Lebesgue decomposition theorem was proved easily 
 and thus, also the Radon-Nikodym theorem for signed measures. Most importantly, 
 however, as these definition do not require an absolutely continuous condition, 
@@ -382,7 +376,6 @@ fields has characteristic p if and only if the other has characteristic $p$
     <span class="n">f.map_zero</span><span class="o">]</span> <span class="o">}</span>
 <span class="kd">end</span>
 </pre>
-
 <p>We see that the proof script splits the iff statement into each direction, but
 both directions are proved by the same tactic block. It is non-trivial to
 determine just by reading the proof given what the weakest assumptions possible
@@ -597,7 +590,6 @@ and is less than or equal to one everywhere. This is encoded in the following Le
 <span class="o">(</span><span class="n">sum_eq_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span> <span class="bp">∈</span> <span class="n">s</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">1</span><span class="o">)</span>
 <span class="o">(</span><span class="n">sum_le_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)</span>
 </pre>
-
 <p>The main result from that file is then the following existence theorem.</p>
 <pre class="code literal-block"><span class="sd">/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set</span>
 <span class="sd">`s`, then there exists a `partition_of_unity ι X s` that is subordinate to `U`. -/</span>

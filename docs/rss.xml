@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 02 Oct 2021 07:35:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Sep 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in September.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 02 Oct 2021 08:54:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Sep 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in September.&lt;/p&gt;
 &lt;h3&gt;Highlighted PRs&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Number fields.
@@ -11,7 +11,7 @@
   &lt;a href="https://github.com/leanprover-community/mathlib/pull/9063"&gt;PR #9063&lt;/a&gt;,
   culminating in
   &lt;a href="https://github.com/leanprover-community/mathlib/pull/9059"&gt;PR #9059&lt;/a&gt;
-  which shows that the class group of an integral closure is finite.&lt;/li&gt;
+  which shows that, in the presence of an admissible absolute value, the class group of an integral closure is finite.&lt;/li&gt;
 &lt;li&gt;Probability theory.
   Foundations of probability theory are (finally!) coming to mathlib.
   With
@@ -125,7 +125,6 @@ from the maintainers, it was decided to define the decomposition as a structure.
 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;neg_part_finite&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;is_finite_measure&lt;/span&gt; &lt;span class="n"&gt;neg_part&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mutually_singular&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pos_part&lt;/span&gt; &lt;span class="bp"&gt;⊥ₘ&lt;/span&gt; &lt;span class="n"&gt;neg_part&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;This was important, as later on, it was discovered that we were able to 
 relax some conditions on the uniqueness property of the Lebesgue decomposition 
 by introducing scalar multiplication on Jordan decompositions&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Furthermore, 
@@ -145,7 +144,6 @@ experiments, I decided to represent this condition using a class.&lt;/p&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lebesgue_decomposition&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="bp"&gt;∃&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;×&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;→&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="bp"&gt;∞&lt;/span&gt;&lt;span class="o"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;measurable&lt;/span&gt; &lt;span class="n"&gt;p.2&lt;/span&gt; &lt;span class="bp"&gt;∧&lt;/span&gt; &lt;span class="n"&gt;p.1&lt;/span&gt; &lt;span class="bp"&gt;⊥ₘ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="bp"&gt;∧&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p.1&lt;/span&gt; &lt;span class="bp"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ν.with_density&lt;/span&gt; &lt;span class="n"&gt;p.2&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures, 
 we will first need to show it for finite measures, this definition allows us 
 to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
@@ -158,7 +156,6 @@ zero otherwise.&lt;/p&gt;
 &lt;span class="kd"&gt;def&lt;/span&gt; &lt;span class="n"&gt;measure.radon_nikodym_deriv&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;→&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="bp"&gt;∞&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;classical.some&lt;/span&gt; &lt;span class="n"&gt;h.lebesgue_decomposition&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
 Radon-Nikodym theorem follows easily by considering that the singular part of the 
 Lebesgue decomposition is zero in the case that $\mu \ll \nu$.&lt;/p&gt;
@@ -166,7 +163,6 @@ Lebesgue decomposition is zero in the case that $\mu \ll \nu$.&lt;/p&gt;
   &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="bp"&gt;≪&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="bp"&gt;↔&lt;/span&gt; &lt;span class="n"&gt;ν.with_density&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;radon_nikodym_deriv&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;Furthermore, the generalisation of the 
 Radon-Nikodym theorem to signed measures follows, simply by utilising 
 the Jordan decomposition and realising the Radon-Nikodym derivative of 
@@ -191,7 +187,6 @@ decomposition to $\mu$.&lt;/p&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos_part&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;s.to_jordan_decomposition.pos_part.have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;neg_part&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;s.to_jordan_decomposition.neg_part.have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;By the same rationale, the singular part and the Radon-Nikodym derivative of the 
 decomposition are defined similarly.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;def&lt;/span&gt; &lt;span class="n"&gt;signed_measure.singular_part&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;signed_measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;signed_measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
@@ -202,7 +197,6 @@ decomposition are defined similarly.&lt;/p&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s.to_jordan_decomposition.pos_part.radon_nikodym_deriv&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_real&lt;/span&gt; &lt;span class="bp"&gt;-&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s.to_jordan_decomposition.neg_part.radon_nikodym_deriv&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_real&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;Using these definitions, the Lebesgue decomposition theorem was proved easily 
 and thus, also the Radon-Nikodym theorem for signed measures. Most importantly, 
 however, as these definition do not require an absolutely continuous condition, 
@@ -250,7 +244,6 @@ fields has characteristic p if and only if the other has characteristic $p$
     &lt;span class="n"&gt;f.map_zero&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="kd"&gt;end&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;We see that the proof script splits the iff statement into each direction, but
 both directions are proved by the same tactic block. It is non-trivial to
 determine just by reading the proof given what the weakest assumptions possible
@@ -387,7 +380,6 @@ and is less than or equal to one everywhere. This is encoded in the following Le
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum_eq_one'&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="bp"&gt;∈&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;∑ᶠ&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to_fun&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum_le_one'&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;∑ᶠ&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to_fun&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;The main result from that file is then the following existence theorem.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="sd"&gt;/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set&lt;/span&gt;
 &lt;span class="sd"&gt;`s`, then there exists a `partition_of_unity ι X s` that is subordinate to `U`. -/&lt;/span&gt;

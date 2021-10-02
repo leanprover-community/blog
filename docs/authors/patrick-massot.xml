@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Patrick Massot)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/patrick-massot.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 23 Sep 2021 18:08:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Alex Best’s type class generalization paper</title><link>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Alex J. Best wrote a 
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Patrick Massot)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/patrick-massot.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 02 Oct 2021 08:54:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Alex Best’s type class generalization paper</title><link>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Alex J. Best wrote a 
 &lt;a href="https://easychair.org/publications/preprint/KLfT"&gt;paper about type class generalization&lt;/a&gt; for the 
 &lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
 mathematics. &lt;/p&gt;
@@ -22,7 +22,6 @@ fields has characteristic p if and only if the other has characteristic $p$
     &lt;span class="n"&gt;f.map_zero&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="kd"&gt;end&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;We see that the proof script splits the iff statement into each direction, but
 both directions are proved by the same tactic block. It is non-trivial to
 determine just by reading the proof given what the weakest assumptions possible
@@ -88,7 +87,6 @@ and is less than or equal to one everywhere. This is encoded in the following Le
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum_eq_one'&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="bp"&gt;∈&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;∑ᶠ&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to_fun&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum_le_one'&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;∑ᶠ&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to_fun&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;The main result from that file is then the following existence theorem.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="sd"&gt;/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set&lt;/span&gt;
 &lt;span class="sd"&gt;`s`, then there exists a `partition_of_unity ι X s` that is subordinate to `U`. -/&lt;/span&gt;
