@@ -21,7 +21,7 @@ watch Hoskinson's [YouTube announcement](https://www.youtube.com/watch?v=3snIzhj
 inauguration ceremony that was held at Carnegie Mellon the day before.
 The slides I used for the presentation are [here](https://www.andrew.cmu.edu/user/avigad/Talks/hoskinson_inaugural.pdf).
 
-The center mission is to support the work being done by the Lean community,
+The center's mission is to support the work being done by the Lean community,
 to promote the use of Lean and its libraries,
 and to seek out ways of using the technology to make mathematics accessible and enjoyable to
 as wide an audience as possible.
