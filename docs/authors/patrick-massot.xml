@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Patrick Massot)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/patrick-massot.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 05 Oct 2021 15:43:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Alex Best’s type class generalization paper</title><link>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Alex J. Best wrote a 
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Patrick Massot)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/patrick-massot.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 05 Oct 2021 17:06:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Alex Best’s type class generalization paper</title><link>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Alex J. Best wrote a 
 &lt;a href="https://easychair.org/publications/preprint/KLfT"&gt;paper about type class generalization&lt;/a&gt; for the 
 &lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
 mathematics. &lt;/p&gt;
@@ -76,7 +76,7 @@ $f_i : X → ℝ$ such that:&lt;/p&gt;
 &lt;li&gt;the sum $\sum_i f_i(x)$ is equal to one for all $x$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;While the above definition is completely standard, it is often useful to have a collection of
-functions that act as a paritition of unity only on some part $s$ of $X$. In that more general case,
+functions that act as a partition of unity only on some part $s$ of $X$. In that more general case,
 we keep the above two conditions everywhere but ask that the sum in the last item equals one on $s$
 and is less than or equal to one everywhere. This is encoded in the following Lean structure, from
 &lt;code&gt;topology.partition_of_unity&lt;/code&gt;.&lt;/p&gt;
