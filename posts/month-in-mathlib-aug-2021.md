@@ -35,7 +35,7 @@ This post summarizes some of the activity that happened in mathlib in August.
   and the Radon-Nikodym theorem.
 
 * [PR #7978](https://github.com/leanprover-community/mathlib/pull/7978): strong version of FTC-2  
-  This weakens considerably the assumptions of part of the fundamental theorem of calclus: 
+  This weakens considerably the assumptions of part of the fundamental theorem of calculus: 
   $\int _{a}^{b}f'(x)\,dx=f(b)-f(a)$,
   replacing continuity of $f'$ by the much more natural assumption of integrability.
 

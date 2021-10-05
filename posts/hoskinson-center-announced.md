@@ -12,7 +12,7 @@ type: text
 ---
 
 On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
-from blockhain entrepreneur Charles C. Hoskinson will be used to establish the Hoskinson
+from blockchain entrepreneur Charles C. Hoskinson will be used to establish the Hoskinson
 Center for Formal Mathematics, housed in the Department of Philosophy.
 You can read the [university press release](https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html) and
 watch Hoskinson's [YouTube announcement](https://www.youtube.com/watch?v=3snIzhjqsk0&ab_channel=CharlesHoskinson). You can also watch
