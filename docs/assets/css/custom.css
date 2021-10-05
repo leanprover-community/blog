@@ -1,24 +1,54 @@
 h1, h2, h3, h4, h5, h6,
 .blog-header-logo {
+  font-weight: 500;
   font-family: "Merriweather", Georgia, "Times New Roman", serif;
 }
 
 #blog-title {
+  color: #444;
   font-weight: 900;
   font-size: 2.8rem;
 }
 
+#header > nav li:not(:hover) {
+  opacity: 80%;
+  filter: grayscale(1);
+}
+
+#header, .postindex article {
+  border-bottom: none;
+  padding-bottom: 1em;
+}
+
+h1.entry-title {
+  font-size: 2.1em;
+  margin-bottom: 0.25rem;
+}
+
 html > body {
   font-family: 'Open Sans', sans-serif;
+  padding-top: 0;
+  color: #111;
+}
+
+article header .metadata {
+  font-size: 90%;
+  opacity: 80%;
 }
 
 code, kbd, pre, samp {
+  word-wrap: break-word;
   font-size: unset;
   font-family: 'Source Code Pro', monospace;
 }
 
-a {
+:link, :visited {
   color: hsl(210, 100%, 30%);
+}
+
+:link:hover, :visited:hover {
+  color: hsl(210, 100%, 40%);
+  text-decoration: underline;
 }
 
 code {
@@ -33,4 +63,19 @@ pre {
 code, pre {
   background: #f8f8f8;
   border-radius: 5px;
+}
+
+.footnote {
+  font-size: 90%;
+  border-top: 1px solid #ccc;
+}
+.footnote hr {
+  display: none;
+}
+
+#footer {
+  margin-top: 4em;
+  border-top: none;
+  color: #999;
+  font-size: 70%;
 }
