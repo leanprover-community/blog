@@ -10,7 +10,7 @@ tags: ''
 title: Dedekind domains and class number in Lean
 type: text
 ---
-Pull request [#9701](https://github.com/leanprover-community/mathlib/pull/9071) marks the completion of a string of additions to mathlib centered around formalizing Dedekind domains and the class number of a global field.
+Pull request [#9701](https://github.com/leanprover-community/mathlib/pull/9071) marks the completion of a string of additions to mathlib centered around formalizing Dedekind domains and class groups of global fields. Previous PRs had shown that nonzero ideals of a Dedekind domain factor uniquely into prime ideals, and had defined class groups in some generality. The main result in this PR is the finiteness of the class group of a global field (and in particular of the ring of integers of a number field).
 Formalizing these subjects has been one of my long-term goals for mathlib,
 and as far as we are aware, Lean is the first system in which this level of algebraic number theory is available.
 These formalizations have been joint work:
