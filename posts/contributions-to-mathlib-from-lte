@@ -21,7 +21,7 @@ Besides several small missing lemmas, we added the following notions.
 * `normed_group_hom`: we already had the operator norm, but no bundled hom between normed
   groups. We introduced `normed_group_hom G H`, that it is itself a normed group. We also
   introduced kernels and images of a normed groups hom.
-* `semi_normed_group`: a seminorm generlizes a norm by allowing nonzero vectors of zero
+* `semi_normed_group`: a seminorm generalizes a norm by allowing nonzero vectors of zero
   (semi)norm. This notion is needed in [LTE](https://github.com/leanprover-community/lean-liquid/),
   and we introduced it in mathlib (providing a reasonable API). Since `normed_group` depends on
   `metric_space` that in turn depends on `emetric_space`, we had first of all to introduce
