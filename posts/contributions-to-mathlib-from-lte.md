@@ -24,7 +24,7 @@ Besides several small missing lemmas, we added the following notions.
 * `semi_normed_group`: a seminorm generalizes a norm by allowing nonzero vectors of zero
   (semi)norm. This notion is needed in [LTE](https://github.com/leanprover-community/lean-liquid/),
   and we introduced it in mathlib (providing a reasonable API). Since `normed_group` depends on
-  `metric_space` that in turn depends on `emetric_space`, we had first of all to introduce
+  `metric_space` that in turn depends on `emetric_space`, we had first of all introduced
   (extended) pseudo metric spaces. We also introduced `semi_normed_space` and similar related notions.
 * `normed_group_quotient`: the theory of quotients of (semi) normed groups was completely
   missing. We now have a good API for it.
