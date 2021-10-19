@@ -34,4 +34,17 @@ Besides several small missing lemmas, we added the following notions.
   reals. We introduced the class `has_nnnorm`, with the obvious instances, and wrote an API for it.
 * `SemiNormedGroup`: we introduced `SemiNormedGroup`, the category of semi normed groups,
   as a preadditive category with kernels and cokernels. We promoted `normed_group_hom.completion`
-  to a functor, showing its universal property.
+  to a functor, showing its universal property. Working with cokernels, an interesting problem
+  arose: if `f : X → Y` is a normed groups hom, one usually consider *the* cokernel
+  `coker(f) = Y/Im(f)`, with the quotient norm and it is obvious that the projection
+  `π : Y → coker(f)` satisfies `∥π∥ ≤ 1`. This is often needed in computations, but
+  the category theory API doesn't promise any particular model of the cokernel,
+  so one can for example scale the quotient norm by any positive factor, ending up with another
+  cokernel, whose natural projection has norm bigger than `1`. If `f` itself has norm less or
+  equal than `1`, one can work with `SemiNormedGroup₁`, the category of seminormed groups and
+  norm nonincreasing morphisms (that we proved has cokernels), but in general we ended up
+  providing `explicit_cokernel f`, an explicit choice of cokernel, which has good properties with
+  respect to the norm. This was enough for [LTE](https://github.com/leanprover-community/lean-liquid/),
+  but still not completely satisfying, since one cannot directly use the category theory API for
+  `explicit_cokernel`.
+  
