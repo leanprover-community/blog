@@ -15,7 +15,10 @@ in December 2020, mathlib already
 [had](https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space)
 a decent theory of normed spaces. With this post I want to show how mathlib can benefit
 from projects like [LTE](https://github.com/leanprover-community/lean-liquid/), showing what we added
-to the theory of normed spaces in almost one year of work.
+to the theory of normed spaces in almost one year of work (this is only a small part of what has
+been added to mathlib from [LTE](https://github.com/leanprover-community/lean-liquid/), for a more
+complete list, see the history of [for_mathlib](https://github.com/leanprover-community/lean-liquid/commits/master/src/for_mathlib)
+folder).
 
 Besides several small missing lemmas, we added the following notions.
 * `normed_group_hom`: we already had the operator norm, but no bundled hom between normed
