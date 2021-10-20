@@ -5,9 +5,9 @@ date: 2021-10-19 11:04:21 UTC+02:00
 description: ''
 has_math: true
 link: ''
-slug: contributions-to-mathlib-from-lte
+slug: contributions-to-mathlib-from-lte-about-normed-groups
 tags: ''
-title: Contributions to mathlib from LTE
+title: Contributions to mathlib from LTE about normed groups
 type: text
 ---
 When the [Liquid Tensor Experiment](https://github.com/leanprover-community/lean-liquid/) started,
@@ -28,8 +28,9 @@ Besides several small missing lemmas, we added the following notions.
   (extended) pseudo metric spaces. We also introduced `semi_normed_space` and similar related notions.
 * `normed_group_quotient`: the theory of quotients of (semi) normed groups was completely
   missing. We now have a good API for it.
-* `normed_group_hom.completion`: similarly to `normed_group_quotient`, we add to develop
-  the theory of completion of normed groups and normed groups homs from scratch.
+* `normed_group_hom.completion`: similarly to `normed_group_quotient`, mathlib did not know
+  completions of normed groups. Using the already existing theory for topological groups,
+  we added an API for completions of normed groups. 
 * `nnnorm`: sometimes it is useful to consider the norm as taking values in the nonnegative
   reals. We introduced the class `has_nnnorm`, with the obvious instances, and wrote an API for it.
 * `SemiNormedGroup`: we introduced `SemiNormedGroup`, the category of semi normed groups,
