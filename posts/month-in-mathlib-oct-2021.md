@@ -15,11 +15,13 @@ This post summarizes some of the activity that happened in mathlib in October.
 
 ## Highlighted PRs
 
-
-* [PR #9358](https://github.com/leanprover-community/mathlib/pull/9358) :: feat(algebraic_geometry/ringed_space): Define basic opens for ringed spaces.
-* [PR #9416](https://github.com/leanprover-community/mathlib/pull/9416) :: feat(algebraic_geometry): Proved Spec ⋙ Γ ≅ 𝟭
-* [PR #9647](https://github.com/leanprover-community/mathlib/pull/9647) :: feat(category_theory/sites/sieves): Added functor pushforward
-* [PR #9861](https://github.com/leanprover-community/mathlib/pull/9861) :: feat(algebraic_geometry/prime_spectrum): Closed points in prime spectrum
+* Recently, there has been a surge in activity in the algebro-geometric part of the library.
+  After the definition of schemes entered mathlib, the development stalled for a while,
+  because the Liquid Tensor Experiment took up a lot of energy and attention.
+  But new contributors showed up, and are pushing the library forward.
+  Two highlights this month include:
+  - [PR #9416](https://github.com/leanprover-community/mathlib/pull/9416) Global sections of the spectrum of a ring are isomorphic to that ring.
+  - [PR #9861](https://github.com/leanprover-community/mathlib/pull/9861) Closed points in the prime spectrum correspond to maximal ideals.
 
 * [PR #9323](https://github.com/leanprover-community/mathlib/pull/9323) :: feat(probability_theory/density): define probability density functions
 * [PR #9378](https://github.com/leanprover-community/mathlib/pull/9378) :: feat(measure_theory/function/conditional_expectation): conditional expectation on real functions equal Radon-Nikodym derivative
@@ -39,8 +41,9 @@ This post summarizes some of the activity that happened in mathlib in October.
 * [PR #9252](https://github.com/leanprover-community/mathlib/pull/9252) :: feat(topology/homotopy): add `homotopy_with`
 * [PR #9141](https://github.com/leanprover-community/mathlib/pull/9141) :: feat(topology/homotopy/path): Add homotopy between paths
 
-* [PR #9521](https://github.com/leanprover-community/mathlib/pull/9521) :: feat(topology/algebra): adic topology
-* [PR #9589](https://github.com/leanprover-community/mathlib/pull/9589) :: feat(topology/algebra): valued fields
+* After a long time of inactivity, some foundational parts of the perfectoid project were moved to mathlib.
+  - [PR #9521](https://github.com/leanprover-community/mathlib/pull/9521) adic topology
+  - [PR #9589](https://github.com/leanprover-community/mathlib/pull/9589) valued fields
 
 * [PR #9646](https://github.com/leanprover-community/mathlib/pull/9646) :: feat(number_theory/liouville): Liouville numbers form a dense Gδ set
 * [PR #9702](https://github.com/leanprover-community/mathlib/pull/9702) :: feat(number_theory/liouville): the set of Liouville numbers has measure zero
@@ -48,14 +51,15 @@ This post summarizes some of the activity that happened in mathlib in October.
 * [PR #9496](https://github.com/leanprover-community/mathlib/pull/9496) :: feat(analysis/box_integral): Divergence thm for a Henstock-style integral
 * [PR #9811](https://github.com/leanprover-community/mathlib/pull/9811) :: feat(measure_theory/integral): Divergence theorem for Bochner integral
 
-* [PR #9817](https://github.com/leanprover-community/mathlib/pull/9817) :: feat(field_theory/finite/galois_field): uniqueness of finite fields
-* [PR #9834](https://github.com/leanprover-community/mathlib/pull/9834) :: feat(field_theory/finite/galois_field): finite fields with the same cardinality are isomorphic
+* [PR #9817](https://github.com/leanprover-community/mathlib/pull/9817) and [PR #9834](https://github.com/leanprover-community/mathlib/pull/9834)
+  filled a glaring hole in the field theory library: finite fields of the same cardinality are isomorphic.
 
 * [PR #9540](https://github.com/leanprover-community/mathlib/pull/9540) :: feat(analysis/normed_space/banach): open mapping theorem for maps between affine spaces
 * [PR #9440](https://github.com/leanprover-community/mathlib/pull/9440) :: feat(analysis/asymptotics): Define superpolynomial decay of a function
 * [PR #9662](https://github.com/leanprover-community/mathlib/pull/9662) :: feat(group_theory/sylow): Frattini's Argument
 * [PR #7825](https://github.com/leanprover-community/mathlib/pull/7825) :: feat(combinatorics/hall): generalized Hall's Marriage Theorem
 * [PR #9924](https://github.com/leanprover-community/mathlib/pull/9924) :: feat(analysis/inner_product_space/dual): complex Riesz representation theorem
+
 
 * [PR #9824](https://github.com/leanprover-community/mathlib/pull/9824) :: chore(*): update to Lean-3.34.0
 * [PR #9988](https://github.com/leanprover-community/mathlib/pull/9988) :: chore(*): update to Lean-3.35.0c
