@@ -68,7 +68,7 @@ This post summarizes some of the activity that happened in mathlib in October.
      - [PR #9496](https://github.com/leanprover-community/mathlib/pull/9496) and [PR #9811](https://github.com/leanprover-community/mathlib/pull/9811) prove the divergence theorem on a box, for a Henstock-style integral and the Bochner integral respectively. This is a foundational result that will be used in complex analysis and differential topology.
      - [PR #9440](https://github.com/leanprover-community/mathlib/pull/9440) defines superpolynomial decay of a function
 * In functional analysis:
-     - [PR #9540](https://github.com/leanprover-community/mathlib/pull/9540) roves the open mapping theorem for maps between affine spaces
+     - [PR #9540](https://github.com/leanprover-community/mathlib/pull/9540) proves the open mapping theorem for maps between affine spaces
      - [PR #9924](https://github.com/leanprover-community/mathlib/pull/9924)
        states the Riesz representation theorem uniformly over $ℝ$ and $ℂ$. In
        2020, Frédéric Dupuis proved this theorem over both $ℝ$ and $ℂ$ (see [PR
