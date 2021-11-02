@@ -57,12 +57,28 @@ This post summarizes some of the activity that happened in mathlib in October.
 * [PR #9540](https://github.com/leanprover-community/mathlib/pull/9540) :: feat(analysis/normed_space/banach): open mapping theorem for maps between affine spaces
 * [PR #9440](https://github.com/leanprover-community/mathlib/pull/9440) :: feat(analysis/asymptotics): Define superpolynomial decay of a function
 * [PR #9662](https://github.com/leanprover-community/mathlib/pull/9662) :: feat(group_theory/sylow): Frattini's Argument
-* [PR #7825](https://github.com/leanprover-community/mathlib/pull/7825) :: feat(combinatorics/hall): generalized Hall's Marriage Theorem
-* [PR #9924](https://github.com/leanprover-community/mathlib/pull/9924) :: feat(analysis/inner_product_space/dual): complex Riesz representation theorem
+* [PR #7825](https://github.com/leanprover-community/mathlib/pull/7825)
+  Sometimes results about finite types can be lifted to ones about infinite types by a compactness argument
+  (like via the compactness theorem in model theory),
+  and Hall's marriage theorem is one such result.
+  Using the language of category theory,
+  there is an inverse system of solutions to the marriage problem when restricted to finite subsets of the domain,
+  and [the limit of this kind of inverse system is nonempty](https://leanprover-community.github.io/mathlib_docs/topology/category/Top/limits.html#nonempty_sections_of_fintype_inverse_system).
+
+* [PR #9924](https://github.com/leanprover-community/mathlib/pull/9924)
+  In 2020, Frédéric Dupuis proved the Riesz representation theorem in Lean over both $ℝ$ and $ℂ$
+  (see [PR #4378](https://github.com/leanprover-community/mathlib/pull/4378)),
+  but, since mathlib lacked conjugate-linear maps at that time,
+  the $ℂ$-version was stated in a rather awkward way.
+  Conjugate-linear maps were added to mathlib [last month](../month-in-mathlib-sep-2021/)
+  and now the $ℝ$ and $ℂ$ versions of the theorem can be stated uniformly.
 
 
-* [PR #9824](https://github.com/leanprover-community/mathlib/pull/9824) :: chore(*): update to Lean-3.34.0
-* [PR #9988](https://github.com/leanprover-community/mathlib/pull/9988) :: chore(*): update to Lean-3.35.0c
+* The core version of Lean was bumped twice in the past month.
+  Most of the [changes](https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3350c-28-october-2021)
+  are in preparation for porting mathlib to Lean 4.
+  - [PR #9824](https://github.com/leanprover-community/mathlib/pull/9824) update to Lean-3.34.0
+  - [PR #9988](https://github.com/leanprover-community/mathlib/pull/9988) update to Lean-3.35.0c
 
 
 
