@@ -53,7 +53,7 @@ This post summarizes some of the activity that happened in mathlib in October.
   These theorems ensure that, from a covering of a (not necessarily measurable)
   set $s$ by nice enough sets (e.g. balls), one can extract a disjoint subfamily
   covering almost all $s$. They are instrumental in forthcoming results on
-  differentation of measures.
+  differentiation of measures.
 * In probability:
      - [PR #9323](https://github.com/leanprover-community/mathlib/pull/9323) defines probability density functions, 
      - [PR #9378](https://github.com/leanprover-community/mathlib/pull/9378) proves that conditional expectation on real functions equal Radon-Nikodym derivative
