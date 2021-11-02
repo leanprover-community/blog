@@ -17,7 +17,8 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://leanprover-community.github.io/blog/">
 <link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/hoskinson-center-announced/" type="text/html">
+<link rel="next" href="index-1.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/contributions-to-mathlib-from-lte-about-normed-groups/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -39,7 +40,62 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/hoskinson-center-announced/" class="u-url">Hoskinson Center announced</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/contributions-to-mathlib-from-lte-about-normed-groups/" class="u-url">Contributions to mathlib from LTE about normed groups</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/riccardo-brasca/">Riccardo Brasca</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/contributions-to-mathlib-from-lte-about-normed-groups/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-11-02T11:04:21+02:00" itemprop="datePublished" title="2021-11-02 11:04">2021-11-02 11:04</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>When the <a href="https://github.com/leanprover-community/lean-liquid/">Liquid Tensor Experiment</a> started,
+in December 2020, mathlib already
+<a href="https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space">had</a>
+a decent theory of normed spaces. With this post I want to show how mathlib can benefit
+from projects like <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>, showing what we added
+to the theory of normed spaces in almost one year of work (this is only a small part of what has
+been added to mathlib from <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>, for a more
+complete list, see the history of <a href="https://github.com/leanprover-community/lean-liquid/commits/master/src/for_mathlib">for_mathlib</a>
+folder).</p>
+<p>Besides several small missing lemmas, we added the following notions.
+* <code>normed_group_hom</code>: we already had the operator norm, but no bundled hom between normed
+  groups. We introduced <code>normed_group_hom G H</code>, that it is itself a normed group. We also
+  introduced kernels and images of a normed groups hom.
+* <code>semi_normed_group</code>: a seminorm generalizes a norm by allowing nonzero vectors of zero
+  (semi)norm. This notion is needed in <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>,
+  and we introduced it in mathlib (providing a reasonable API). Since <code>normed_group</code> depends on
+  <code>metric_space</code> that in turn depends on <code>emetric_space</code>, we had first of all introduced
+  (extended) pseudo metric spaces. We also introduced <code>semi_normed_space</code> and similar related notions.
+* <code>normed_group_quotient</code>: the theory of quotients of (semi) normed groups was completely
+  missing. We now have a good API for it.
+* <code>normed_group_hom.completion</code>: similarly to <code>normed_group_quotient</code>, mathlib did not know
+  completions of normed groups. Using the already existing theory for topological groups,
+  we added an API for completions of normed groups. 
+* <code>nnnorm</code>: sometimes it is useful to consider the norm as taking values in the nonnegative
+  reals. We introduced the class <code>has_nnnorm</code>, with the obvious instances, and wrote an API for it.
+* <code>SemiNormedGroup</code>: we introduced <code>SemiNormedGroup</code>, the category of semi normed groups,
+  as a preadditive category with kernels and cokernels. We promoted <code>normed_group_hom.completion</code>
+  to a functor, showing its universal property. Working with cokernels, an interesting problem
+  arose: if <code>f : X → Y</code> is a normed groups hom, one usually consider <em>the</em> cokernel
+  <code>coker(f) = Y/Im(f)</code>, with the quotient norm and it is obvious that the projection
+  <code>π : Y → coker(f)</code> satisfies <code>∥π∥ ≤ 1</code>. This is often needed in computations, but
+  the category theory API doesn't promise any particular model of the cokernel,
+  so one can for example scale the quotient norm by any positive factor, ending up with another
+  cokernel, whose natural projection has norm bigger than <code>1</code>. If <code>f</code> itself has norm less or
+  equal than <code>1</code>, one can work with <code>SemiNormedGroup₁</code>, the category of seminormed groups and
+  norm nonincreasing morphisms (that we proved has cokernels), but in general we ended up
+  providing <code>explicit_cokernel f</code>, an explicit choice of cokernel, which has good properties with
+  respect to the norm. This was enough for <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>,
+  but still not completely satisfying, since one cannot directly use the category theory API for
+  <code>explicit_cokernel</code>.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/hoskinson-center-announced/" class="u-url">Hoskinson Center announced</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/jeremy-avigad/">Jeremy Avigad</a>
@@ -620,40 +676,13 @@ by Eric and others, when setting up the algebraic hierarchy in mathlib. </p>
 in multiple inheritance handling in Lean 3 type class system.</p>
 </div>
                 </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/welcome-to-the-lean-community-blog/" class="u-url">Welcome to the Lean community blog!</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/the-lean-prover-community/">The Lean prover community</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/welcome-to-the-lean-community-blog/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-08-07T21:36:54+02:00" itemprop="datePublished" title="2021-08-07 21:36">2021-08-07 21:36</time></a>
-            </p>
-		    <p><span class="text-dark">Announcements</span></p>
-                </div>
-            </header><div class="e-content entry-content">
-                    <div>
-<p>This is our brand new blog where you'll be able to find news about what is
-happening in the Lean prover community. It will feature:</p>
-<ul>
-<li>posts highlighting some new contributions to mathlib</li>
-<li>news about ongoing projects such as the Liquid tensor experiment or the sphere eversion project</li>
-<li>news about exciting developments in other proofs assistants</li>
-<li>announcements of conferences and talks </li>
-<li>some explanations of specific topics in a less formal context than the documentations</li>
-<li>speculations about future developments or somewhat philosophical discussions</li>
-</ul>
-<p>There is no predefined list of authors. Everybody can submit a pull-request
-with a post. If you are unsure whether your post will be welcome then don't
-hesitate to first discuss the topic of your post on Zulip before investing too
-much time writing it.</p>
-</div>
-                </div>
             </article>
 </div>
-    
-    
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+            <nav class="postindexpager"><ul class="pager">
+<li class="next">
+                <a href="index-1.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
