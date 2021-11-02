@@ -21,6 +21,7 @@ complete list, see the history of [for_mathlib](https://github.com/leanprover-co
 folder).
 
 Besides several small missing lemmas, we added the following notions.
+
 * `normed_group_hom`: we already had the operator norm, but no bundled hom between normed
   groups. We introduced `normed_group_hom G H`, that it is itself a normed group. We also
   introduced kernels and images of a normed groups hom.
