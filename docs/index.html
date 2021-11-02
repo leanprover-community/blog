@@ -62,23 +62,30 @@ to the theory of normed spaces in almost one year of work (this is only a small 
 been added to mathlib from <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>, for a more
 complete list, see the history of <a href="https://github.com/leanprover-community/lean-liquid/commits/master/src/for_mathlib">for_mathlib</a>
 folder).</p>
-<p>Besides several small missing lemmas, we added the following notions.
-* <code>normed_group_hom</code>: we already had the operator norm, but no bundled hom between normed
+<p>Besides several small missing lemmas, we added the following notions.</p>
+<ul>
+<li>
+<code>normed_group_hom</code>: we already had the operator norm, but no bundled hom between normed
   groups. We introduced <code>normed_group_hom G H</code>, that it is itself a normed group. We also
-  introduced kernels and images of a normed groups hom.
-* <code>semi_normed_group</code>: a seminorm generalizes a norm by allowing nonzero vectors of zero
+  introduced kernels and images of a normed groups hom.</li>
+<li>
+<code>semi_normed_group</code>: a seminorm generalizes a norm by allowing nonzero vectors of zero
   (semi)norm. This notion is needed in <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>,
   and we introduced it in mathlib (providing a reasonable API). Since <code>normed_group</code> depends on
   <code>metric_space</code> that in turn depends on <code>emetric_space</code>, we had first of all introduced
-  (extended) pseudo metric spaces. We also introduced <code>semi_normed_space</code> and similar related notions.
-* <code>normed_group_quotient</code>: the theory of quotients of (semi) normed groups was completely
-  missing. We now have a good API for it.
-* <code>normed_group_hom.completion</code>: similarly to <code>normed_group_quotient</code>, mathlib did not know
+  (extended) pseudo metric spaces. We also introduced <code>semi_normed_space</code> and similar related notions.</li>
+<li>
+<code>normed_group_quotient</code>: the theory of quotients of (semi) normed groups was completely
+  missing. We now have a good API for it.</li>
+<li>
+<code>normed_group_hom.completion</code>: similarly to <code>normed_group_quotient</code>, mathlib did not know
   completions of normed groups. Using the already existing theory for topological groups,
-  we added an API for completions of normed groups. 
-* <code>nnnorm</code>: sometimes it is useful to consider the norm as taking values in the nonnegative
-  reals. We introduced the class <code>has_nnnorm</code>, with the obvious instances, and wrote an API for it.
-* <code>SemiNormedGroup</code>: we introduced <code>SemiNormedGroup</code>, the category of semi normed groups,
+  we added an API for completions of normed groups. </li>
+<li>
+<code>nnnorm</code>: sometimes it is useful to consider the norm as taking values in the nonnegative
+  reals. We introduced the class <code>has_nnnorm</code>, with the obvious instances, and wrote an API for it.</li>
+<li>
+<code>SemiNormedGroup</code>: we introduced <code>SemiNormedGroup</code>, the category of semi normed groups,
   as a preadditive category with kernels and cokernels. We promoted <code>normed_group_hom.completion</code>
   to a functor, showing its universal property. Working with cokernels, an interesting problem
   arose: if <code>f : X → Y</code> is a normed groups hom, one usually consider <em>the</em> cokernel
@@ -92,7 +99,8 @@ folder).</p>
   providing <code>explicit_cokernel f</code>, an explicit choice of cokernel, which has good properties with
   respect to the norm. This was enough for <a href="https://github.com/leanprover-community/lean-liquid/">LTE</a>,
   but still not completely satisfying, since one cannot directly use the category theory API for
-  <code>explicit_cokernel</code>.</p>
+  <code>explicit_cokernel</code>.</li>
+</ul>
 </div>
                 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/hoskinson-center-announced/" class="u-url">Hoskinson Center announced</a></h1>
