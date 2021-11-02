@@ -72,7 +72,7 @@ This post summarizes some of the activity that happened in mathlib in October.
      - [PR #9924](https://github.com/leanprover-community/mathlib/pull/9924)
        states the Riesz representation theorem uniformly over $ℝ$ and $ℂ$. In
        2020, Frédéric Dupuis proved this theorem over both $ℝ$ and $ℂ$ (see [PR
-       #4378](https://github.com/leanprover-community/mathlib/pull/4378)),
+       #4379](https://github.com/leanprover-community/mathlib/pull/4379)),
        but, since mathlib lacked conjugate-linear maps at that time,
        the $ℂ$-version was stated in a rather awkward way.
        Conjugate-linear maps were added to mathlib [last month](../month-in-mathlib-sep-2021/) and now the $ℝ$ and $ℂ$ versions of the theorem can be stated uniformly.
