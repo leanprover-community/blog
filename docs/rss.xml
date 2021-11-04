@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 02 Nov 2021 15:06:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 04 Nov 2021 08:47:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
 in December 2020, mathlib already
 &lt;a href="https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space"&gt;had&lt;/a&gt;
 a decent theory of normed spaces. With this post I want to show how mathlib can benefit
@@ -40,7 +40,102 @@ folder).&lt;/p&gt;
   respect to the norm. This was enough for &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;LTE&lt;/a&gt;,
   but still not completely satisfying, since one cannot directly use the category theory API for
   &lt;code&gt;explicit_cokernel&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</guid><pubDate>Tue, 02 Nov 2021 09:04:21 GMT</pubDate></item><item><title>Hoskinson Center announced</title><link>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</link><dc:creator>Jeremy Avigad</dc:creator><description>&lt;div&gt;&lt;p&gt;On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
+&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</guid><pubDate>Tue, 02 Nov 2021 09:04:21 GMT</pubDate></item><item><title>This month in mathlib (Oct 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in October.&lt;/p&gt;
+&lt;h3&gt;Highlighted PRs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;In algebraic geometry, there has been a surge in activity.
+  After the definition of schemes entered mathlib, the development stalled for a while,
+  because the Liquid Tensor Experiment took up a lot of energy and attention.
+  But new contributors showed up, and are pushing the library forward.
+  Two highlights this month include:&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9416"&gt;PR #9416&lt;/a&gt; Global sections of the spectrum of a ring are isomorphic to that ring.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9861"&gt;PR #9861&lt;/a&gt; Closed points in the prime spectrum correspond to maximal ideals.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In commutative algebra:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;algebraic indepence and transcendence are introduced in 
+&lt;a href="https://github.com/leanprover-community/mathlib/pull/9229"&gt;PR #9229&lt;/a&gt; and 
+&lt;a href="https://github.com/leanprover-community/mathlib/pull/9377"&gt;PR #9377&lt;/a&gt; proved
+the existence of transcendence bases. 
+See the &lt;a href="https://stacks.math.columbia.edu/tag/030D"&gt;stacks project&lt;/a&gt; for an informal account.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9817"&gt;PR #9817&lt;/a&gt; and &lt;a href="https://github.com/leanprover-community/mathlib/pull/9834"&gt;PR #9834&lt;/a&gt;
+fills a glaring hole in the field theory library: finite fields of the same cardinality are isomorphic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In group theory:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8976"&gt;PR #8976&lt;/a&gt; proves the Jordan Hölder theorem. It also proves a version for submodules.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9662"&gt;PR #9662&lt;/a&gt;
+proves Frattini's Argument: If &lt;code&gt;N&lt;/code&gt; is a normal subgroup of &lt;code&gt;G&lt;/code&gt;, and &lt;code&gt;P&lt;/code&gt; is
+a Sylow &lt;code&gt;p&lt;/code&gt;-subgroup of &lt;code&gt;N&lt;/code&gt;, then &lt;code&gt;PN=G&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In number theory, &lt;a href="https://github.com/leanprover-community/mathlib/pull/9646"&gt;PR #9646&lt;/a&gt; and 
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/9702"&gt;PR #9702&lt;/a&gt; prove that Liouville numbers form a dense $G_δ$ set which has measure zero.&lt;/li&gt;
+&lt;li&gt;In combinatorics, &lt;a href="https://github.com/leanprover-community/mathlib/pull/7825"&gt;PR #7825&lt;/a&gt; proves a
+  generalized version of Hall's marriage theorem using a compactness argument.
+  Using the language of category theory, there is an inverse system of solutions to the marriage problem when restricted to finite subsets of the domain,
+  and &lt;a href="https://leanprover-community.github.io/mathlib_docs/topology/category/Top/limits.html#nonempty_sections_of_fintype_inverse_system"&gt;the limit of this kind of inverse system is nonempty&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;In measure theory, the series of PRs &lt;a href="https://github.com/leanprover-community/mathlib/pull/9462"&gt;PR #9462&lt;/a&gt;,
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/9461"&gt;PR #9461&lt;/a&gt;,
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/9576"&gt;PR #9576&lt;/a&gt;,
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/9679"&gt;PR #9679&lt;/a&gt; and
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/9680"&gt;PR #9680&lt;/a&gt;
+  prove the Vitali and Besicovitch covering theorems (with
+  the optimal constant for the Besicovitch covering theorem, following 
+  &lt;a href="https://www.jstor.org/stable/2161215"&gt;Füredi and Loeb, On the best constant for the Besicovitch covering theorem&lt;/a&gt;).
+  These theorems ensure that, from a covering of a (not necessarily measurable)
+  set $s$ by nice enough sets (e.g. balls), one can extract a disjoint subfamily
+  covering almost all $s$. They are instrumental in forthcoming results on
+  differentiation of measures.&lt;/li&gt;
+&lt;li&gt;In probability:&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9323"&gt;PR #9323&lt;/a&gt; defines probability density functions, &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9378"&gt;PR #9378&lt;/a&gt; proves that conditional expectation on real functions equal Radon-Nikodym derivative&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9469"&gt;PR #9469&lt;/a&gt; brought us notations that really demonstrate we're now doing probability in mathlib!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In algebraic topology, &lt;a href="https://github.com/leanprover-community/mathlib/pull/9252"&gt;PR #9252&lt;/a&gt; and
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/9141"&gt;PR #9141&lt;/a&gt; set up some basic homotopy theory.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In topological algebra, some foundational parts of the perfectoid project were moved to mathlib after a long time of inactivity:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9521"&gt;PR #9521&lt;/a&gt; defines the adic topology associated to an ideal&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9589"&gt;PR #9589&lt;/a&gt; defines the topology associated to a valuation on a ring and proves its fundamental properties. In particular a valuation on a field &lt;code&gt;𝕂&lt;/code&gt; is extended to the completion of &lt;code&gt;𝕂&lt;/code&gt; with respect to the valuation topology.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In differential calculus, &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9496"&gt;PR #9496&lt;/a&gt; and &lt;a href="https://github.com/leanprover-community/mathlib/pull/9811"&gt;PR #9811&lt;/a&gt; prove the divergence theorem on a box, for a Henstock-style integral and the Bochner integral respectively. This is a foundational result that will be used in complex analysis and differential topology.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9440"&gt;PR #9440&lt;/a&gt; defines superpolynomial decay of a function&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In functional analysis:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9540"&gt;PR #9540&lt;/a&gt; proves the open mapping theorem for maps between affine spaces&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9924"&gt;PR #9924&lt;/a&gt;
+   states the Riesz representation theorem uniformly over $ℝ$ and $ℂ$. In
+   2020, Frédéric Dupuis proved this theorem over both $ℝ$ and $ℂ$ (see &lt;a href="https://github.com/leanprover-community/mathlib/pull/4379"&gt;PR
+   #4379&lt;/a&gt;),
+   but, since mathlib lacked conjugate-linear maps at that time,
+   the $ℂ$-version was stated in a rather awkward way.
+   Conjugate-linear maps were added to mathlib &lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/"&gt;last month&lt;/a&gt; and now the $ℝ$ and $ℂ$ versions of the theorem can be stated uniformly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The core version of Lean was bumped twice in the past month.
+  Most of the &lt;a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3350c-28-october-2021"&gt;changes&lt;/a&gt;
+  are in preparation for porting mathlib to Lean 4.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9824"&gt;PR #9824&lt;/a&gt; update to Lean-3.34.0&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9988"&gt;PR #9988&lt;/a&gt; update to Lean-3.35.0c&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</guid><pubDate>Mon, 01 Nov 2021 05:38:50 GMT</pubDate></item><item><title>Hoskinson Center announced</title><link>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</link><dc:creator>Jeremy Avigad</dc:creator><description>&lt;div&gt;&lt;p&gt;On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
 from blockchain entrepreneur Charles C. Hoskinson will be used to establish the Hoskinson
 Center for Formal Mathematics, housed in the Department of Philosophy.
 You can read the &lt;a href="https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html"&gt;university press release&lt;/a&gt; and
@@ -444,15 +539,4 @@ and is less than or equal to one everywhere. This is encoded in the following Le
 &lt;span class="kd"&gt;lemma&lt;/span&gt; &lt;span class="n"&gt;exists_is_subordinate&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;normal_space&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;paracompact_space&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hs&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;is_closed&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
   &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ι&lt;/span&gt; &lt;span class="bp"&gt;→&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ho&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_open&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hU&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="bp"&gt;⊆&lt;/span&gt; &lt;span class="bp"&gt;⋃&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;U&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="bp"&gt;∃&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;partition_of_unity&lt;/span&gt; &lt;span class="n"&gt;ι&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f.is_subordinate&lt;/span&gt; &lt;span class="n"&gt;U&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/continuous-partitions-of-unity/</guid><pubDate>Sat, 07 Aug 2021 19:49:56 GMT</pubDate></item><item><title>Eric Wieser's scalar action paper</title><link>https://leanprover-community.github.io/blog/posts/eric-wiesers-scalar-action-paper/</link><dc:creator>Patrick Massot</dc:creator><description>&lt;div&gt;&lt;p&gt;Eric Wieser wrote a &lt;a href="https://easychair.org/publications/preprint/mC9X"&gt;paper about scalar actions in mathlib&lt;/a&gt; for the 
-&lt;a href="https://cicm-conference.org/2021/"&gt;CICM 2021&lt;/a&gt; conference on intelligent computer
-mathematics. &lt;/p&gt;
-&lt;p&gt;Scalar actions are everywhere in mathematics. There are so many of
-them that a given type can easily get several ones from different origins. For instance
-$ℤ$ acts on itself by left multiplication but it also has the $ℤ$ scalar action
-that every additive group has, by repeated addition or subtraction.
-In general those multiple actions can be proven to be equal, but type class
-inference needs definitional equality. So a great deal of care has been taken,
-by Eric and others, when setting up the algebraic hierarchy in mathlib. &lt;/p&gt;
-&lt;p&gt;The paper tells this fascinating story and is recommended for anyone interested
-in multiple inheritance handling in Lean 3 type class system.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/eric-wiesers-scalar-action-paper/</guid><pubDate>Sat, 07 Aug 2021 19:42:32 GMT</pubDate></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/continuous-partitions-of-unity/</guid><pubDate>Sat, 07 Aug 2021 19:49:56 GMT</pubDate></item></channel></rss>
