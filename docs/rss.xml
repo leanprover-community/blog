@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 04 Nov 2021 08:47:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 04 Nov 2021 21:12:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
 in December 2020, mathlib already
 &lt;a href="https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space"&gt;had&lt;/a&gt;
 a decent theory of normed spaces. With this post I want to show how mathlib can benefit
@@ -69,8 +69,8 @@ fills a glaring hole in the field theory library: finite fields of the same card
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8976"&gt;PR #8976&lt;/a&gt; proves the Jordan Hölder theorem. It also proves a version for submodules.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9662"&gt;PR #9662&lt;/a&gt;
-proves Frattini's Argument: If &lt;code&gt;N&lt;/code&gt; is a normal subgroup of &lt;code&gt;G&lt;/code&gt;, and &lt;code&gt;P&lt;/code&gt; is
-a Sylow &lt;code&gt;p&lt;/code&gt;-subgroup of &lt;code&gt;N&lt;/code&gt;, then &lt;code&gt;PN=G&lt;/code&gt;.&lt;/li&gt;
+proves Frattini's Argument: If $N$ is a normal subgroup of $G$, and $P$ is
+a Sylow $p$-subgroup of $N$, then $\text{N}_G(P)*N=G$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;In number theory, &lt;a href="https://github.com/leanprover-community/mathlib/pull/9646"&gt;PR #9646&lt;/a&gt; and 

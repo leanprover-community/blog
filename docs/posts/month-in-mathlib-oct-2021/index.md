@@ -34,8 +34,8 @@ This post summarizes some of the activity that happened in mathlib in October.
 * In group theory:
      - [PR #8976](https://github.com/leanprover-community/mathlib/pull/8976) proves the Jordan Hölder theorem. It also proves a version for submodules.
      - [PR #9662](https://github.com/leanprover-community/mathlib/pull/9662)
-    proves Frattini's Argument: If `N` is a normal subgroup of `G`, and `P` is
-    a Sylow `p`-subgroup of `N`, then `PN=G`.
+    proves Frattini's Argument: If $N$ is a normal subgroup of $G$, and $P$ is
+    a Sylow $p$-subgroup of $N$, then $\text{N}_G(P)*N=G$.
 * In number theory, [PR #9646](https://github.com/leanprover-community/mathlib/pull/9646) and 
   [PR #9702](https://github.com/leanprover-community/mathlib/pull/9702) prove that Liouville numbers form a dense $G_δ$ set which has measure zero.
 * In combinatorics, [PR #7825](https://github.com/leanprover-community/mathlib/pull/7825) proves a
