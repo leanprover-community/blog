@@ -18,7 +18,7 @@ most notable contributors on the Lean side were Ashvni Narayanan, Filippo Nuccio
 with Sander Dahmen developing a new finiteness proof of the class group specially for this project.
 Of course, we could not have done this without the assistance of the entire mathlib community.
 Sander, Ashvni, Filippo and I wrote [a paper](https://github.com/lean-forward/class-number) on the formalization project for the [ITP 2021](http://easyconferences.eu/itp2021/) conference;
-this blog post goes through the highlights of the paper. 
+this blog post goes through the highlights of the paper.
 
 Algebraic number theory is an associative term:
 parsing it as (algebraic (number theory)) we get a subarea of number theory, the study of the integer numbers, that uses algebraic techniques to solve equations such as $x^2 + 2 = y^3$.
@@ -67,6 +67,19 @@ and differs significantly between the number field and function field case.
 Sander designed a new finiteness proof that works uniformly for all global fields, as long as there exists something we call an [*admissible absolute value*](https://leanprover-community.github.io/mathlib_docs/number_theory/class_number/admissible_absolute_value.html#absolute_value.is_admissible).
 Very specifically, we formalized that [the class group of $S$ is finite if it is the integral closure of a Dedekind domain with Euclidean algorithm $R$ in a finite separable extension $L$ of the fraction field $K$ of $R$, if $R$ has an admissible absolute value](https://leanprover-community.github.io/mathlib_docs/number_theory/class_number/finite.html#class_group.fintype_of_admissible_of_finite);
 and the final PR [#9701](https://github.com/leanprover-community/mathlib/pull/9071) shows this is indeed the case whenever $S$ is the ring of integers of a global field.
+
+Before that final pull request could be merged, we ran into an unexpected issue that delayed it by about a month:
+the definition of a function field relies on a field of rational functions $\mathbb{F}_q(t)$,
+which we denoted in Lean as `fraction_ring (polynomial Fq)`.
+Both `fraction_ring` and `polynomial`, and more importantly their field resp. ring structure, are quite complicated definitions.
+This is no problem when working with them normally, however when there are missing typeclass instances Lean can end up desparately unfolding all of these definitions into their basic axioms,
+causing timeouts during error reporting.
+We want errors to be reported quickly and indeed Mathlib has a linter that ensures missing instances fail in the expected way,
+so we needed to fix this timeout issue before the PR could get merged.
+In the end, [I contributed](https://github.com/leanprover-community/mathlib/pull/9563) a new definition of rational functions [`ratfunc`](https://leanprover-community.github.io/mathlib_docs/field_theory/ratfunc.html#ratfunc).
+Since `ratfunc` is a `structure` type, it means `ratfunc Fq` will not be unfolded so drastically and the timeout is resolved.
+This is an example of timeout issues I'm running into frequently, suggesting that mathlib is running into the limitations of Lean 3's simple instance search mechanism.
+Hopefully Lean 4's improved algorithm solves these issues without workarounds like having to introduce new `structure` types.
 
 Having formalized the class number opens up a number of areas of future research.
 My next goal is to formally compute the class group of some simple rings of integers like $\mathbb{Z}[\sqrt{-5}]$ "by hand".
