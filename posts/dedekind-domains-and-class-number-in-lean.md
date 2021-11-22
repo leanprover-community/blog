@@ -37,7 +37,7 @@ In this case the integers are defined as those $x \in F$ that are the solution t
 Throughout our formalization process, we made sure to treat all global fields as uniformly as possible.
 
 We spent a lot of effort on creating a useful interface to deal with field extensions such as $\mathbb{Q} \subseteq K$ and subrings such as $O_K \subseteq K$,
-without having to transport everything to a subtype of a "largest relevant field" such as $\C$.
+without having to transport everything to a subtype of a "largest relevant field" such as $\mathbb{C}$.
 The [`algebra`](https://leanprover-community.github.io/mathlib_docs/algebra/algebra/basic.html#algebra) and [`is_scalar_tower`](https://leanprover-community.github.io/mathlib_docs/group_theory/group_action/defs.html#is_scalar_tower) typeclasses were invaluable
 in automating away all kinds of messy detail checking.
 In this context I would like to name Eric Wieser as someone whose skill in (ab)using typeclasses prevented many headaches.
