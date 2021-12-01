@@ -26,7 +26,7 @@ This post summarizes some of the activity that happened in mathlib in November.
   - [PR #10070](https://github.com/leanprover-community/mathlib/pull/10070) More on Radon-Nikodym derivatives
   - [PR #10072](https://github.com/leanprover-community/mathlib/pull/10072) An ae measurability criterion for ennreal-valued functions
   - [PR #10057](https://github.com/leanprover-community/mathlib/pull/10057) Define Vitali families
-- [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) Differentiation of measures
+  - [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) Differentiation of measures
 
 * Analysis.
   - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
