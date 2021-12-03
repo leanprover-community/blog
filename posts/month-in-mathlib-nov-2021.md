@@ -33,6 +33,7 @@ This post summarizes some of the activity that happened in mathlib in November.
   - [PR #10072](https://github.com/leanprover-community/mathlib/pull/10072) An ae measurability criterion for ennreal-valued functions
   - [PR #10057](https://github.com/leanprover-community/mathlib/pull/10057) Define Vitali families
   - [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) Differentiation of measures
+This sequence of PRs shows the main theorem on differentiation of measures: given two measures `ρ` and `μ` on a finite-dimensional real vector space, the ratio `ρ (ball x r) / μ (ball x r)` converges `μ`-almost everywhere to the Radon-Nikodym derivative of `ρ` with respect to `μ` when `r` tends to `0`. The theorem is in fact proved in greater generality (Vitali families, as in Federer's famous book on geometric measure theory).
 
 * Analysis.
   - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
@@ -57,6 +58,7 @@ This post summarizes some of the activity that happened in mathlib in November.
 
 * Number theory.
   - [PR #9071](https://github.com/leanprover-community/mathlib/pull/9071) Define the class number of number fields and function fields
+  This finishes the finiteness proof of the class group of a number field and function field, described in [a previous blog post](https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/).
   - [PR #8820](https://github.com/leanprover-community/mathlib/pull/8820) Add theorem for Lucas primality test
 
 * Group theory.
