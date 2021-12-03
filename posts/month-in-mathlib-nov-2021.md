@@ -20,7 +20,12 @@ This post summarizes some of the activity that happened in mathlib in November.
 
 * Combinatorics.
   - [PR #10029](https://github.com/leanprover-community/mathlib/pull/10029) Hindman's theorem on finite sums
-  - Set families are making their way to mathlib with [PR #9926](https://github.com/leanprover-community/mathlib/pull/9926), [PR #10223](https://github.com/leanprover-community/mathlib/pull/10223), [PR #10238](https://github.com/leanprover-community/mathlib/pull/10238) respectively defining antichains, shadow of a set family, UV compression. Those are ingredients for the LYM inequality, Sperner's theorem and the Kruskal-Katona theorem.
+  - Set families are making their way to mathlib with
+  [PR #9926](https://github.com/leanprover-community/mathlib/pull/9926),
+  [PR #10223](https://github.com/leanprover-community/mathlib/pull/10223),
+  [PR #10238](https://github.com/leanprover-community/mathlib/pull/10238)
+  respectively defining antichains, shadow of a set family, UV compression.
+  Those are ingredients for the LYM inequality, Sperner's theorem and the Kruskal-Katona theorem.
 
 * Measure theory.
   - [PR #9920](https://github.com/leanprover-community/mathlib/pull/9920) Define uniform pmf on an inhabited fintype
@@ -57,12 +62,16 @@ This post summarizes some of the activity that happened in mathlib in November.
   - [PR #10249](https://github.com/leanprover-community/mathlib/pull/10249) Define the exponent of a group
 
 * Sheafification.
+  An important building block in setting up for algebraic geometry,
+  as well as a requirement for the Liquid Tensor Experiment.
   - [PR #10284](https://github.com/leanprover-community/mathlib/pull/10284) `P⁺` for a presheaf `P`.
   - [PR #10297](https://github.com/leanprover-community/mathlib/pull/10297) If `P` is a sheaf, then the map from `P` to `P⁺` is an isomorphism.
   - [PR #10303](https://github.com/leanprover-community/mathlib/pull/10303) The sheafification of a presheaf.
   - [PR #10328](https://github.com/leanprover-community/mathlib/pull/10328) `Sheaf_to_presheaf` creates limits
   - [PR #10334](https://github.com/leanprover-community/mathlib/pull/10334) `Sheaf J D` has colimits.
   - [PR #10401](https://github.com/leanprover-community/mathlib/pull/10401) `SheafedSpace` has colimits
+  A side product is the important corollary that the category of sheaves
+  with values in a suitable concrete abelian category is itself an abelian category.
 
 * Other.
   - [PR #10188](https://github.com/leanprover-community/mathlib/pull/10188) Add definition and lemmas about open thickenings of subsets
