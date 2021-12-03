@@ -67,7 +67,8 @@ This sequence of PRs shows the main theorem on differentiation of measures: give
   - [PR #10249](https://github.com/leanprover-community/mathlib/pull/10249) Define the exponent of a group
 
 * Sheafification.
-  An important building block in setting up for algebraic geometry,
+  This series of PRs constructs the sheafification of presheaves with respect to a Grothendieck topology on a category.
+  It is an important building block in setting up algebraic geometry,
   as well as a requirement for the Liquid Tensor Experiment (LTE).
   - [PR #10284](https://github.com/leanprover-community/mathlib/pull/10284) `P⁺` for a presheaf `P`.
   - [PR #10297](https://github.com/leanprover-community/mathlib/pull/10297) If `P` is a sheaf, then the map from `P` to `P⁺` is an isomorphism.
@@ -75,7 +76,7 @@ This sequence of PRs shows the main theorem on differentiation of measures: give
   - [PR #10328](https://github.com/leanprover-community/mathlib/pull/10328) `Sheaf_to_presheaf` creates limits
   - [PR #10334](https://github.com/leanprover-community/mathlib/pull/10334) `Sheaf J D` has colimits.
   - [PR #10401](https://github.com/leanprover-community/mathlib/pull/10401) `SheafedSpace` has colimits
-  An important corollary is that the category of sheaves
+  A corollary is that the category of sheaves
   with values in a suitable concrete abelian category is itself an abelian category.
   This has been formalised for LTE, and should appear in mathlib in the near future.
 
