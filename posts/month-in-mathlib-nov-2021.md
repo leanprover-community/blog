@@ -68,15 +68,16 @@ This sequence of PRs shows the main theorem on differentiation of measures: give
 
 * Sheafification.
   An important building block in setting up for algebraic geometry,
-  as well as a requirement for the Liquid Tensor Experiment.
+  as well as a requirement for the Liquid Tensor Experiment (LTE).
   - [PR #10284](https://github.com/leanprover-community/mathlib/pull/10284) `P⁺` for a presheaf `P`.
   - [PR #10297](https://github.com/leanprover-community/mathlib/pull/10297) If `P` is a sheaf, then the map from `P` to `P⁺` is an isomorphism.
   - [PR #10303](https://github.com/leanprover-community/mathlib/pull/10303) The sheafification of a presheaf.
   - [PR #10328](https://github.com/leanprover-community/mathlib/pull/10328) `Sheaf_to_presheaf` creates limits
   - [PR #10334](https://github.com/leanprover-community/mathlib/pull/10334) `Sheaf J D` has colimits.
   - [PR #10401](https://github.com/leanprover-community/mathlib/pull/10401) `SheafedSpace` has colimits
-  A side product is the important corollary that the category of sheaves
+  An important corollary is that the category of sheaves
   with values in a suitable concrete abelian category is itself an abelian category.
+  This has been formalised for LTE, and should appear in mathlib in the near future.
 
 * Other.
   - [PR #10188](https://github.com/leanprover-community/mathlib/pull/10188) Add definition and lemmas about open thickenings of subsets
