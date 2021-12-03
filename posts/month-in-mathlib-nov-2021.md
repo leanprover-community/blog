@@ -37,7 +37,10 @@ This post summarizes some of the activity that happened in mathlib in November.
 * Analysis.
   - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
   - [PR #10390](https://github.com/leanprover-community/mathlib/pull/10390) Define spectrum and prove basic prope...
+  - [PR #10530](https://github.com/leanprover-community/mathlib/pull/10530) Prove properties of spectrum in a Banach algebra
   - [PR #9840](https://github.com/leanprover-community/mathlib/pull/9840) Rayleigh quotient produces eigenvectors
+  - [PR #9995](https://github.com/leanprover-community/mathlib/pull/9995) diagonalization of self-adjoint endomorphisms (finite dimension)
+  - [PR #10317](https://github.com/leanprover-community/mathlib/pull/10317) more concrete diagonalization theorem
   - [PR #10335](https://github.com/leanprover-community/mathlib/pull/10335) Continuous affine maps are smooth
 
 * Convergence.
