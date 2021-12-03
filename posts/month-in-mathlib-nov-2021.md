@@ -20,6 +20,7 @@ This post summarizes some of the activity that happened in mathlib in November.
 
 * Combinatorics.
   - [PR #10029](https://github.com/leanprover-community/mathlib/pull/10029) Hindman's theorem on finite sums
+  - Set families are making their way to mathlib with [PR #9926](https://github.com/leanprover-community/mathlib/pull/9926), [PR #10223](https://github.com/leanprover-community/mathlib/pull/10223), [PR #10238](https://github.com/leanprover-community/mathlib/pull/10238) respectively defining antichains, shadow of a set family, UV compression. Those are ingredients for the LYM inequality, Sperner's theorem and the Kruskal-Katona theorem.
 
 * Measure theory.
   - [PR #9920](https://github.com/leanprover-community/mathlib/pull/9920) Define uniform pmf on an inhabited fintype
