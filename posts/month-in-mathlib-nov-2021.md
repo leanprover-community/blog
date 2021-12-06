@@ -36,10 +36,11 @@ This post summarizes some of the activity that happened in mathlib in November.
 This sequence of PRs shows the main theorem on differentiation of measures: given two measures `ρ` and `μ` on a finite-dimensional real vector space, the ratio `ρ (ball x r) / μ (ball x r)` converges `μ`-almost everywhere to the Radon-Nikodym derivative of `ρ` with respect to `μ` when `r` tends to `0`. The theorem is in fact proved in greater generality (Vitali families, as in Federer's famous book on geometric measure theory).
 
 * Hilbert spaces
-  - [PR #9840](https://github.com/leanprover-community/mathlib/pull/9840) Rayleigh quotient
-  - [PR #9995](https://github.com/leanprover-community/mathlib/pull/9995) diagonalization theorem
-  - [PR #10317](https://github.com/leanprover-community/mathlib/pull/10317) more concrete diagonalization theorem
-This sequence of PRs establishes the connection between eigenvalues and the Rayleigh quotient, and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.
+  - The sequence of PRs 
+[PR #9840](https://github.com/leanprover-community/mathlib/pull/9840),
+[PR #9995](https://github.com/leanprover-community/mathlib/pull/9995),
+[PR #10317](https://github.com/leanprover-community/mathlib/pull/10317)
+establishes the connection between eigenvalues and the Rayleigh quotient, and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.
 
 * Functional analysis
   - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
