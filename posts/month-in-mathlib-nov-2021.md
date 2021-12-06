@@ -35,14 +35,16 @@ This post summarizes some of the activity that happened in mathlib in November.
   - [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) Differentiation of measures
 This sequence of PRs shows the main theorem on differentiation of measures: given two measures `ρ` and `μ` on a finite-dimensional real vector space, the ratio `ρ (ball x r) / μ (ball x r)` converges `μ`-almost everywhere to the Radon-Nikodym derivative of `ρ` with respect to `μ` when `r` tends to `0`. The theorem is in fact proved in greater generality (Vitali families, as in Federer's famous book on geometric measure theory).
 
-* Analysis.
-  - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
-  - [PR #10390](https://github.com/leanprover-community/mathlib/pull/10390) Define spectrum and prove basic prope...
-  - [PR #10530](https://github.com/leanprover-community/mathlib/pull/10530) Prove properties of spectrum in a Banach algebra
-  - [PR #9840](https://github.com/leanprover-community/mathlib/pull/9840) Rayleigh quotient produces eigenvectors
-  - [PR #9995](https://github.com/leanprover-community/mathlib/pull/9995) diagonalization of self-adjoint endomorphisms (finite dimension)
+* Hilbert spaces
+  - [PR #9840](https://github.com/leanprover-community/mathlib/pull/9840) Rayleigh quotient
+  - [PR #9995](https://github.com/leanprover-community/mathlib/pull/9995) diagonalization theorem
   - [PR #10317](https://github.com/leanprover-community/mathlib/pull/10317) more concrete diagonalization theorem
-  - [PR #10335](https://github.com/leanprover-community/mathlib/pull/10335) Continuous affine maps are smooth
+This sequence of PRs establishes the connection between eigenvalues and the Rayleigh quotient, and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.
+
+* Functional analysis
+  - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
+  - [PR #10530](https://github.com/leanprover-community/mathlib/pull/10530) Prove properties of spectrum in a 
+  Banach algebra
 
 * Convergence.
   - [PR #10073](https://github.com/leanprover-community/mathlib/pull/10073) Convergence of a sequence which does not oscillate infinitely
