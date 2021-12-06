@@ -1,7 +1,7 @@
 ---
 author: 'Mathlib community'
 category: 'month-in-mathlib'
-date: 2021-12-01 06:58:04+00:00
+date: 2021-12-06 06:58:04+00:00
 description: ''
 has_math: true
 link: ''
