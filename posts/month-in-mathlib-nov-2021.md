@@ -56,7 +56,6 @@ establishes the connection between eigenvalues and the Rayleigh quotient, and pr
   - [PR #10203](https://github.com/leanprover-community/mathlib/pull/10203) A seminorm is convex
 
 * Homotopy theory.
-  - [PR #9865](https://github.com/leanprover-community/mathlib/pull/9865) Add `homotopic` for `continuous_map`s.
   - [PR #10195](https://github.com/leanprover-community/mathlib/pull/10195) The fundamental groupoid, as functor from `Top` to `Groupoid`
 
 * Number theory.
