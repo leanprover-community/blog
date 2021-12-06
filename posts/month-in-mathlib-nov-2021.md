@@ -33,14 +33,19 @@ This post summarizes some of the activity that happened in mathlib in November.
 * Measure theory.
   - [PR #10057](https://github.com/leanprover-community/mathlib/pull/10057) Define Vitali families
   - [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) Differentiation of measures
-This sequence of PRs shows the main theorem on differentiation of measures: given two measures `ρ` and `μ` on a finite-dimensional real vector space, the ratio `ρ (ball x r) / μ (ball x r)` converges `μ`-almost everywhere to the Radon-Nikodym derivative of `ρ` with respect to `μ` when `r` tends to `0`. The theorem is in fact proved in greater generality (Vitali families, as in Federer's famous book on geometric measure theory).
+  This sequence of PRs shows the main theorem on differentiation of measures:
+  given two measures `ρ` and `μ` on a finite-dimensional real vector space,
+  the ratio `ρ (ball x r) / μ (ball x r)` converges `μ`-almost everywhere
+  to the Radon-Nikodym derivative of `ρ` with respect to `μ` when `r` tends to `0`.
+  The theorem is in fact proved in greater generality (Vitali families, as in Federer's famous book on geometric measure theory).
 
 * Hilbert spaces
   - The sequence of PRs 
 [PR #9840](https://github.com/leanprover-community/mathlib/pull/9840),
 [PR #9995](https://github.com/leanprover-community/mathlib/pull/9995),
 [PR #10317](https://github.com/leanprover-community/mathlib/pull/10317)
-establishes the connection between eigenvalues and the Rayleigh quotient, and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.
+establishes the connection between eigenvalues and the Rayleigh quotient,
+and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.
 
 * Functional analysis
   - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) Introduce `C*`-algebras
@@ -60,7 +65,8 @@ establishes the connection between eigenvalues and the Rayleigh quotient, and pr
 
 * Number theory.
   - [PR #9071](https://github.com/leanprover-community/mathlib/pull/9071) Define the class number of number fields and function fields
-  This finishes the finiteness proof of the class group of a number field and function field, described in [a previous blog post](https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/).
+  This finishes the finiteness proof of the class group of a number field and function field,
+  described in [a previous blog post](https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/).
   - [PR #8820](https://github.com/leanprover-community/mathlib/pull/8820) Add theorem for Lucas primality test
 
 * Group theory.
