@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This month in mathlib (Nov 2021) | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Mathlib community">
+<link rel="prev" href="../dedekind-domains-and-class-number-in-lean/" title="Dedekind domains and class number in Lean" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="This month in mathlib (Nov 2021)">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/">
+<meta property="og:description" content="This post summarizes some of the activity that happened in mathlib in November.
+
+
+Geometry and algebraic topology.
+
+The series 
+  PR #10284,
+  PR #10297,
+  PR #10303,
+  PR #10328,
+  PR #10334,
+  and P">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-12-06T06:58:04+01:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">This month in mathlib (Nov 2021)</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../authors/mathlib-community/">Mathlib community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-06T06:58:04+01:00" itemprop="datePublished" title="2021-12-06 06:58">2021-12-06 06:58</time></a>
+            </p>
+                    <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>This post summarizes some of the activity that happened in mathlib in November.</p>
+<ul>
+<li>
+<p>Geometry and algebraic topology.</p>
+<ul>
+<li>The series 
+  <a href="https://github.com/leanprover-community/mathlib/pull/10284">PR #10284</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10297">PR #10297</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10303">PR #10303</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10328">PR #10328</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10334">PR #10334</a>,
+  and <a href="https://github.com/leanprover-community/mathlib/pull/10401">PR #10401</a>
+  constructs the sheafification of presheaves with respect to
+  a Grothendieck topology on a category, culminating with a construction
+  of colimits in the category <code>SheafedSpace</code>. It is an important building block in
+  setting up algebraic geometry, as well as a requirement for the
+  <a href="https://github.com/leanprover-community/lean-liquid">Liquid Tensor Experiment</a> 
+  (LTE). A corollary is that the category of
+  sheaves with values in a suitable concrete abelian category is itself
+  an abelian category. This has been formalised for LTE, and should
+  appear in mathlib in the near future.</li>
+<li>Barycentric coordinates have been further studied in a series of PRs including for instance
+  <a href="https://github.com/leanprover-community/mathlib/pull/10320">PR #10320</a> relating them to determinants.      </li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10381">PR #10381</a>
+  proves the orthogonal group is generated by reflections.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10195">PR #10195</a>
+  defines the fundamental groupoid, as functor from <code>Top</code> to
+  <code>Groupoid</code>.</li>
+</ul>
+</li>
+<li>
+<p>Number theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9071">PR #9071</a> defines the class number of number fields and function fields.
+  This finishes the finiteness proof of the class group of a number field and function field,
+  described in <a href="https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/">a previous blog post</a>.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8820">PR #8820</a> adds  Lucas primality test.</li>
+</ul>
+</li>
+<li>
+<p>Group theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10059">PR #10059</a> proves that (infinite) Sylow subgroups are isomorphic.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10283">PR #10283</a> proves the full Schur-Zassenhaus theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10249">PR #10249</a> defines the exponent of a group.</li>
+</ul>
+</li>
+<li>
+<p>Combinatorics.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10029">PR #10029</a> proves
+ Hindman's theorem on finite sums.</li>
+<li>Set families are making their way to mathlib with
+  <a href="https://github.com/leanprover-community/mathlib/pull/9926">PR #9926</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10223">PR #10223</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10238">PR #10238</a>
+  respectively defining antichains, shadow of a set family, UV compression.
+  Those are ingredients for
+  the <a href="https://en.wikipedia.org/wiki/Lubell%E2%80%93Yamamoto%E2%80%93Meshalkin_inequality">LYM inequality</a>,
+  <a href="https://en.wikipedia.org/wiki/Sperner%27s_theorem">Sperner's theorem</a>
+  and the <a href="https://en.wikipedia.org/wiki/Sperner%27s_theorem">Kruskal-Katona theorem</a>.</li>
+</ul>
+</li>
+<li>
+<p>Linear algebra and functional analysis</p>
+<ul>
+<li>The sequence of PRs 
+  <a href="https://github.com/leanprover-community/mathlib/pull/9840">PR #9840</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/9995">PR #9995</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/10317">PR #10317</a>
+  establishes the connection between eigenvalues and the Rayleigh quotient,
+  and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10145">PR #10145</a> introduces $C^*$-algebras.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10530">PR #10530</a> proves properties of spectrum in a Banach algebra.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9097">PR #9097</a> defines the Minkowski gauge functional.</li>
+</ul>
+</li>
+<li>
+<p>Analysis</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9791">PR #9791</a>
+  proves the Picard-Lindelöf/Cauchy-Lipschitz theorem about ordinary differential equations.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10057">PR #10057</a> defines Vitali families
+  and <a href="https://github.com/leanprover-community/mathlib/pull/10101">PR #10101</a> 
+  shows the main theorem on differentiation of measures:
+  given two measures <code>ρ</code> and <code>μ</code> on a finite-dimensional real vector space,
+  the ratio <code>ρ (ball x r) / μ (ball x r)</code> converges <code>μ</code>-almost everywhere
+  to the Radon-Nikodym derivative of <code>ρ</code> with respect to <code>μ</code> when <code>r</code> tends to <code>0</code>.
+  The theorem is in fact proved in the more general context of Vitali families, as in Federer's famous book on geometric measure theory.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10073">PR #10073</a> proves convergence of a sequence which does not oscillate infinitely.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10258">PR #10258</a> proves that, if $u_n$ is subadditive, then $u_n / n$ converges.</li>
+</ul>
+</li>
+</ul>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../dedekind-domains-and-class-number-in-lean/" rel="prev" title="Dedekind domains and class number in Lean">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article></main><footer id="footer"><p>Contents © 2021         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
