@@ -86,7 +86,3 @@ This post summarizes some of the activity that happened in mathlib in November.
     - [PR #10073](https://github.com/leanprover-community/mathlib/pull/10073) proves convergence of a sequence which does not oscillate infinitely.
     - [PR #10258](https://github.com/leanprover-community/mathlib/pull/10258) proves that, if $u_n$ is subadditive, then $u_n / n$ converges.
 
-
-
-
-
