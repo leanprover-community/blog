@@ -31,8 +31,6 @@ This post summarizes some of the activity that happened in mathlib in November.
   and the [Kruskal-Katona theorem](https://en.wikipedia.org/wiki/Sperner%27s_theorem).
 
 * Measure theory.
-  - [PR #10070](https://github.com/leanprover-community/mathlib/pull/10070) More on Radon-Nikodym derivatives
-  - [PR #10072](https://github.com/leanprover-community/mathlib/pull/10072) An ae measurability criterion for ennreal-valued functions
   - [PR #10057](https://github.com/leanprover-community/mathlib/pull/10057) Define Vitali families
   - [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) Differentiation of measures
 This sequence of PRs shows the main theorem on differentiation of measures: given two measures `ρ` and `μ` on a finite-dimensional real vector space, the ratio `ρ (ball x r) / μ (ball x r)` converges `μ`-almost everywhere to the Radon-Nikodym derivative of `ρ` with respect to `μ` when `r` tends to `0`. The theorem is in fact proved in greater generality (Vitali families, as in Federer's famous book on geometric measure theory).
