@@ -71,11 +71,11 @@ This post summarizes some of the activity that happened in mathlib in November.
       and proves the diagonalization theorem for self-adjoint endomorphisms on finite-dimensional inner product spaces.
     - [PR #10145](https://github.com/leanprover-community/mathlib/pull/10145) introduces $C^*$-algebras.
     - [PR #10530](https://github.com/leanprover-community/mathlib/pull/10530) proves properties of spectrum in a Banach algebra.
-    - [PR #9097](https://github.com/leanprover-community/mathlib/pull/9097) define the Minkowski gauge functional.
+    - [PR #9097](https://github.com/leanprover-community/mathlib/pull/9097) defines the Minkowski gauge functional.
 
 * Analysis
     - [PR #9791](https://github.com/leanprover-community/mathlib/pull/9791)
-      proves Picard-Lindelöf/Cauchy-Lipschitz theorem about ordinary differential equations.
+      proves the Picard-Lindelöf/Cauchy-Lipschitz theorem about ordinary differential equations.
     - [PR #10057](https://github.com/leanprover-community/mathlib/pull/10057) defines Vitali families
       and [PR #10101](https://github.com/leanprover-community/mathlib/pull/10101) 
       shows the main theorem on differentiation of measures:
