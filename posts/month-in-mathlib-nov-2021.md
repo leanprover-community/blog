@@ -49,7 +49,7 @@ establishes the connection between eigenvalues and the Rayleigh quotient, and pr
 
 * Convergence.
   - [PR #10073](https://github.com/leanprover-community/mathlib/pull/10073) Convergence of a sequence which does not oscillate infinitely
-  - [PR #10258](https://github.com/leanprover-community/mathlib/pull/10258) Prove that, if u_n is subadditive, then u_n / n converges.
+  - [PR #10258](https://github.com/leanprover-community/mathlib/pull/10258) Prove that, if $u_n$ is subadditive, then $u_n / n$ converges.
 
 * Seminorms
   - [PR #9097](https://github.com/leanprover-community/mathlib/pull/9097) Define the Minkowski functional
