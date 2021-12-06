@@ -60,7 +60,7 @@ establishes the connection between eigenvalues and the Rayleigh quotient, and pr
 
 * Homotopy theory.
   - [PR #9865](https://github.com/leanprover-community/mathlib/pull/9865) Add `homotopic` for `continuous_map`s.
-  - [PR #10195](https://github.com/leanprover-community/mathlib/pull/10195) The functor from `Top` to `Groupoid`
+  - [PR #10195](https://github.com/leanprover-community/mathlib/pull/10195) The fundamental groupoid, as functor from `Top` to `Groupoid`
 
 * Number theory.
   - [PR #9071](https://github.com/leanprover-community/mathlib/pull/9071) Define the class number of number fields and function fields
