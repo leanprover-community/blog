@@ -55,6 +55,14 @@ lang="{{ lang }}">
 
     <!--[if lt IE 9]><script src="{{ url_replacer(permalink, '/assets/js/html5.js', lang, url_type) }}"></script><![endif]-->
 
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="{{ blog_url }}meta-twitter.png">
+    {% if title == blog_title %}
+        <meta name="twitter:title" content="{{ blog_title|e }}">
+    {% else %}
+        <meta name="twitter:title" content="{{ title|e }} | {{ blog_title|e }}">
+    {% endif %}
+
     {{ extra_head_data }}
 {% endmacro %}
 
