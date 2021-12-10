@@ -10,6 +10,15 @@ tags: 'backstage'
 title: Backstage with Yaël Dillies
 type: text
 ---
+
+{{% thumbnail "/images/yael_dillies.jpg" align="right" %}}{{% /thumbnail %}}
+
+We're introducing a new category of blog post:
+backstage interviews with mathlib's active contributors!
+
+Today, Johan Commelin interviews Yaël Dillies.
+
+
 **JMC: Please tell us a bit about yourself, about your background.**
 
 YD: Hi! I am Yaël Dillies.
