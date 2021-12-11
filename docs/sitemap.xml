@@ -7,130 +7,138 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://leanprover-community.github.io/blog/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/2021/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/about/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/archive.html</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/anne-baanen/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://leanprover-community.github.io/blog/authors/frederic-dupuis/</loc>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/jeremy-avigad/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/kexing-ying/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/mathlib-community/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/patrick-massot/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/riccardo-brasca/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/authors/the-lean-prover-community/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/categories/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/categories/cat_announcements/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/categories/cat_month-in-mathlib/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/categories/cat_new-in-mathlib/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/categories/cat_papers/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/index-1.html</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/alex-bests-type-class-generalization-paper/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/continuous-partitions-of-unity/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/eric-wiesers-scalar-action-paper/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/sebastien-gouezels-gromov-hausdorff-space-paper/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://leanprover-community.github.io/blog/posts/semilinear-maps/</loc>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/welcome-to-the-lean-community-blog/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://leanprover-community.github.io/blog/posts/yury-kudryashovs-rotation-number-paper/</loc>
-  <lastmod>2021-12-08T23:23:00Z</lastmod>
+  <lastmod>2021-12-11T12:00:00Z</lastmod>
  </url>
 </urlset>
