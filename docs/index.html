@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/month-in-mathlib-nov-2021/" type="text/html">
+<link rel="prefetch" href="posts/semilinear-maps/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,39 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-nov-2021/" class="u-url">This month in mathlib (Nov 2021)</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/semilinear-maps/" class="u-url">Semilinear maps</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/frederic-dupuis/">Frédéric Dupuis</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/semilinear-maps/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-11T12:00:00+01:00" itemprop="datePublished" title="2021-12-11 12:00">2021-12-11 12:00</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p>Since linear maps appear everywhere in mathematics, it comes as no surprise that they have been part of mathlib for quite some time. However, as we were working on adding the basics of functional analysis to mathlib, a drawback quickly became apparent: conjugate-linear maps could not directly be expressed as linear maps. This meant that some constructions could not be formulated in their most natural way: for example, the map that takes an operator to its adjoint on a complex Hilbert space is a conjugate linear map, and so is the Riesz representation that maps a vector to its dual. This was also preventing us from developing the orthogonal group, the unitary group, etc, properly.</p>
+<p>A few options were considered to introduce conjugate-linear maps. One possible way was to define the <a href="https://en.wikipedia.org/wiki/Complex_conjugate_vector_space">conjugate space</a> of <code>E</code> as a type copy where scalar multiplication is conjugated. Then, a conjugate-linear maps is a standard linear map to the conjugate space. This would have enabled us to reuse the API of linear maps without having too much to refactor, but an early attempt to do this was abandoned when converting between the conjugate space and the original space proved to be unwieldy. A further disadvantage is that the type copy would have also appeared in the real case for constructions involving <code>is_R_or_C</code>. Another potential solution to the problem was to define conjugate-linear maps separately from linear maps. The big drawback here is that the API for linear maps would effectively have to be duplicated for those new maps.</p>
+<p>This left the more arduous option, namely to redefine <code>linear_map</code> to also include semilinear maps. A semilinear map <code>f</code> is a map from an <code>R</code>-module to an <code>S</code>-module with a ring homomorphism <code>σ</code> between <code>R</code> and <code>S</code>, such that <code>f (c • x) = (σ c) • (f x)</code>. If we plug in the identity into <code>σ</code>, we get regular linear maps, and if we plug in the complex conjugate, we get conjugate linear maps. There are also other examples (e.g. Frobenius-linear maps) where this is useful which are covered by this general formulation. This implied a major refactor: we had to replace the basic definition of <code>R</code>-linear maps <code>E →ₗ[R] F</code> by <code>σ</code>-semilinear maps <code>E →ₛₗ[σ] F</code> while keeping the original notation for plain linear maps, and deal with the various problems that this inevitably created further down the import tree. The same also had to be done for linear equivalences, continuous linear maps/equivalences, and linear isometries. This idea had first been proposed by Yury Kudryashov <a href="https://leanprover.zulipchat.com/#narrow/stream/144837-PR-reviews/topic/4770.20smul_comm_class/near/214442983">about a year ago</a>, but it then took several months to build up the motivation to embark on this project. Last July, Heather Macbeth, Rob Lewis and I finally managed to start working on it, and the result was <a href="https://github.com/leanprover-community/mathlib/pull/9272">merged</a> into mathlib in late September.</p>
+<p>The main issue that we had to overcome involved composition of semilinear maps, and <code>symm</code> for linear equivalences. Suppose we have <code>f : E₁ →ₛₗ[σ₁₂] E₂</code> and <code>g : E₂ →ₛₗ[σ₂₃] E₃</code>, we would naturally end up with <code>g.comp f : E₁ →ₛₗ[σ₂₃.comp σ₁₂] E₃</code>. However, in most cases of interest, this is very awkward: suppose, for example, that we have defined the adjoint as a conjugate-linear map: <code>adjoint : (E →ₗ[ℂ] F) →ₛₗ[conj] (F →ₗ[ℂ] E)</code>, and want to express the fact that the adjoint of the adjoint is the identity; in other words, we want a lemma like<sup id="fnref:1"><a class="footnote-ref" href="posts/semilinear-maps/#fn:1">1</a></sup>:</p>
+<pre class="code literal-block">lemma adjoint_adjoint : adjoint.comp adjoint = (id : E →ₗ[ℂ] F)
+</pre>
+<p>However, the general composition lemma for semilinear maps wouldn't give us this: the <code>id</code> on the right-hand side would actually be of type <code>E →ₛₗ[conj.comp conj] F</code>! A similar problem arises for <code>symm</code> for a semilinear equivalence. Suppose we have a semilinear equivalence <code>e : E ≃ₛₗ[σ] F</code>, then <code>e.symm</code> will naturally be of type <code>F ≃ₛₗ[σ.symm] E</code>. Again this is undesirable in interesting cases: suppose we have defined the Riesz representation of a vector (i.e. the map that takes a vector <code>v : E</code> to its dual <code>λ x, ⟪v, x⟫</code> in a Hilbert space) as a conjugate-linear equivalence <code>to_dual : E ≃ₛₗ[conj] (dual E)</code>. Then, of course we want <code>to_dual.symm</code> to be of type <code>(dual E) ≃ₛₗ[conj] E</code>, but the general lemma regarding <code>symm</code> will yield a map of type <code>(dual E) ≃ₛₗ[conj.symm] E</code>.</p>
+<p>To solve these two issues, we created two typeclasses to make Lean infer the right ring homomorphism. The first one is <code>[ring_hom_comp_triple σ₁₂ σ₂₃ σ₁₃]</code> which expresses the fact that <code>σ₂₃.comp σ₁₂ = σ₁₃</code>, and the second one is <code>[ring_hom_inv_pair σ₁₂ σ₂₁]</code> which states that <code>σ₁₂</code> and <code>σ₂₁</code> are inverses of each other. The ring homomorphism <code>σ₁₃</code> (resp. <code>σ₂₁</code>) is inferred silently by the typeclass system using <code>out_param</code>. Then, to make our two examples go through properly, we just need to add instances for <code>ring_hom_comp_triple conj conj id</code> and <code>ring_hom_inv_pair conj conj</code>. There is also a third typeclass <code>[ring_hom_surjective σ]</code>, which is a necessary assumption to generalize some basic lemmas.</p>
+<p>This refactor is now mostly complete ("mostly" because there are still lots of lemmas left to generalize!), and we have also <a href="https://github.com/leanprover-community/mathlib/pull/9875">added notation</a> specifically for conjugate-linear maps: <code>E →ₗ⋆[ℂ] F</code> denotes conjugate-linear maps from <code>E</code> to <code>F</code>. Such maps are now slowly starting to appear, with the Riesz representation in <a href="https://github.com/leanprover-community/mathlib/pull/9924">PR #9924</a>, and the adjoint coming soon!</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The examples given here have been simplified to get to the core of the issue; in reality, these maps would involve <em>continuous</em> linear maps, we would most likely have to specify the type of <code>adjoint</code> for Lean to infer the correct types, etc. <a class="footnote-backref" href="posts/semilinear-maps/#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-nov-2021/" class="u-url">This month in mathlib (Nov 2021)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/mathlib-community/">Mathlib community</a>
@@ -250,38 +282,6 @@ in the end creating a tactic that takes a number field and returns its class num
 (perhaps interfacing with computer algebra systems to do the hard computations, and certifying the results within Lean).
 The end goal for this kind of automation is a system where you can enter an equation like $x^2 + 2 = y^3$ for $x, y \in \mathbb{Z}$,
 and Lean would output a formally verified set of solutions.</p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/semilinear-maps/" class="u-url">Semilinear maps</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/frederic-dupuis/">Frédéric Dupuis</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/semilinear-maps/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-11-13T16:23:15+01:00" itemprop="datePublished" title="2021-11-13 16:23">2021-11-13 16:23</time></a>
-            </p>
-		    <p><span class="text-dark">New in mathlib</span></p>
-                </div>
-            </header><div class="e-content entry-content">
-                    <div>
-<p>Since linear maps appear everywhere in mathematics, it comes as no surprise that they have been part of mathlib for quite some time. However, as we were working on adding the basics of functional analysis to mathlib, a drawback quickly became apparent: conjugate-linear maps could not directly be expressed as linear maps. This meant that some constructions could not be formulated in their most natural way: for example, the map that takes an operator to its adjoint on a complex Hilbert space is a conjugate linear map, and so is the Riesz representation that maps a vector to its dual. This was also preventing us from developing the orthogonal group, the unitary group, etc, properly.</p>
-<p>A few options were considered to introduce conjugate-linear maps. One possible way was to define the <a href="https://en.wikipedia.org/wiki/Complex_conjugate_vector_space">conjugate space</a> of <code>E</code> as a type copy where scalar multiplication is conjugated. Then, a conjugate-linear maps is a standard linear map to the conjugate space. This would have enabled us to reuse the API of linear maps without having too much to refactor, but an early attempt to do this was abandoned when converting between the conjugate space and the original space proved to be unwieldy. A further disadvantage is that the type copy would have also appeared in the real case for constructions involving <code>is_R_or_C</code>. Another potential solution to the problem was to define conjugate-linear maps separately from linear maps. The big drawback here is that the API for linear maps would effectively have to be duplicated for those new maps.</p>
-<p>This left the more arduous option, namely to redefine <code>linear_map</code> to also include semilinear maps. A semilinear map <code>f</code> is a map from an <code>R</code>-module to an <code>S</code>-module with a ring homomorphism <code>σ</code> between <code>R</code> and <code>S</code>, such that <code>f (c • x) = (σ c) • (f x)</code>. If we plug in the identity into <code>σ</code>, we get regular linear maps, and if we plug in the complex conjugate, we get conjugate linear maps. There are also other examples (e.g. Frobenius-linear maps) where this is useful which are covered by this general formulation. This implied a major refactor: we had to replace the basic definition of <code>R</code>-linear maps <code>E →ₗ[R] F</code> by <code>σ</code>-semilinear maps <code>E →ₛₗ[σ] F</code> while keeping the original notation for plain linear maps, and deal with the various problems that this inevitably created further down the import tree. The same also had to be done for linear equivalences, continuous linear maps/equivalences, and linear isometries. This idea had first been proposed by Yury Kudryashov <a href="https://leanprover.zulipchat.com/#narrow/stream/144837-PR-reviews/topic/4770.20smul_comm_class/near/214442983">about a year ago</a>, but it then took several months to build up the motivation to embark on this project. Last August, Heather Macbeth, Rob Lewis and I finally managed to start working on it, and the result was <a href="https://github.com/leanprover-community/mathlib/pull/9272">merged</a> into mathlib in late September.</p>
-<p>The main issue that we had to overcome involved composition of semilinear maps, and <code>symm</code> for linear equivalences. Suppose we have <code>f : E₁ →ₛₗ[σ₁₂] E₂</code> and <code>g : E₂ →ₛₗ[σ₂₃] E₃</code>, we would naturally end up with <code>g.comp f : E₁ →ₛₗ[σ₂₃.comp σ₁₂] E₃</code>. However, in most cases of interest, this is very awkward: suppose, for example, that we have defined the adjoint as a conjugate-linear map: <code>adjoint : (E →ₗ[ℂ] F) →ₛₗ[conj] (F →ₗ[ℂ] E)</code>, and want to express the fact that the adjoint of the adjoint is the identity; in other words, we want a lemma like<sup id="fnref:1"><a class="footnote-ref" href="posts/semilinear-maps/#fn:1">1</a></sup>:</p>
-<pre class="code literal-block">lemma adjoint_adjoint : adjoint.comp adjoint = (id : E →ₗ[ℂ] F)
-</pre>
-<p>However, the general composition lemma for semilinear maps wouldn't give us this: the <code>id</code> on the right-hand side would actually be of type <code>E →ₛₗ[conj.comp conj] F</code>! A similar problem arises for <code>symm</code> for a semilinear equivalence. Suppose we have a semilinear equivalence <code>e : E ≃ₛₗ[σ] F</code>, then <code>e.symm</code> will naturally be of type <code>F ≃ₛₗ[σ.symm] E</code>. Again this is undesirable in interesting cases: suppose we have defined the Riesz representation of a vector (i.e. the map that takes a vector <code>v : E</code> to its dual <code>λ x, ⟪v, x⟫</code> in a Hilbert space) as a conjugate-linear equivalence <code>to_dual : E ≃ₛₗ[conj] (dual E)</code>. Then, of course we want <code>to_dual.symm</code> to be of type <code>(dual E) ≃ₛₗ[conj] E</code>, but the general lemma regarding <code>symm</code> will yield a map of type <code>(dual E) ≃ₛₗ[conj.symm] E</code>.</p>
-<p>To solve these two issues, we created two typeclasses to make Lean infer the right ring homomorphism. The first one is <code>[ring_hom_comp_triple σ₁₂ σ₂₃ σ₁₃]</code> which expresses the fact that <code>σ₂₃.comp σ₁₂ = σ₁₃</code>, and the second one is <code>[ring_hom_inv_pair σ₁₂ σ₂₁]</code> which states that <code>σ₁₂</code> and <code>σ₂₁</code> are inverses of each other. The ring homomorphism <code>σ₁₃</code> (resp. <code>σ₂₁</code>) is inferred silently by the typeclass system using <code>out_param</code>. Then, to make our two examples go through properly, we just need to add instances for <code>ring_hom_comp_triple conj conj id</code> and <code>ring_hom_inv_pair conj conj</code>. There is also a third typeclass <code>[ring_hom_surjective σ]</code>, which is a necessary assumption to generalize some basic lemmas.</p>
-<p>This refactor is now mostly complete ("mostly" because there are still lots of lemmas left to generalize!), and we have also <a href="https://github.com/leanprover-community/mathlib/pull/9875">added notation</a> specifically for conjugate-linear maps: <code>E →ₗ⋆[ℂ] F</code> denotes conjugate-linear maps from <code>E</code> to <code>F</code>. Such maps are now slowly starting to appear, with the Riesz representation in <a href="https://github.com/leanprover-community/mathlib/pull/9924">PR #9924</a>, and the adjoint coming soon!</p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>The examples given here have been simplified to get to the core of the issue; in reality, these maps would involve <em>continuous</em> linear maps, we would most likely have to specify the type of <code>adjoint</code> for Lean to infer the correct types, etc. <a class="footnote-backref" href="posts/semilinear-maps/#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
-</li>
-</ol>
-</div>
 </div>
                 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/contributions-to-mathlib-from-lte-about-normed-groups/" class="u-url">Contributions to mathlib from LTE about normed groups</a></h1>
