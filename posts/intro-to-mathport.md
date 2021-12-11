@@ -14,17 +14,20 @@ type: text
 # An update on mathport
 
 `mathport` is the tool we're planning on using to help us port mathlib to Lean 4.
-It as mostly been written by Mario Carneiro and Daniel Selsam,
+It has mostly been written by Mario Carneiro and Daniel Selsam,
 and Gabriel Ebner and I have been making some fixes.
 
 After some work on continuous integration, we now have a somewhat-easy-to-use setup for playing with the output of mathport.
 I'll describe that below, but first explain what sort of efforts are probably most useful right now to help the mathlib port.
 
 They are approximately in priority order, in terms of my guess about what will hold up the port the most.
-Items at the top of the list either require Lean 4 metaprogramming experience,
-or interest in hacking on mathport itself.
 
-* Porting missing tactics from mathlib3 to mathlib4. This is a big one, and we'll write more about this later.
+* Porting missing tactics from mathlib3 to mathlib4.
+  This is still a huge task, and will not be automated in any way.
+  If you've contributed tactics to mathlib3, please consider trying to port them to Lean 4.
+  If you're interested in learning some Lean 4 metaprogramming, what better way to do that than porting tactics?
+  We'll write more about this later, with some pointers about places to get started,
+  and how to hook up new tactic implementations to the existing tactic parsers that Mario has already ported to mathlib4.
 * Resolve outstanding [issues](https://github.com/leanprover-community/mathport/issues) in mathport.
   (On some issues there's already an indicated fix but it needs implementing/testing.
   Other issues still need diagnosis.)
