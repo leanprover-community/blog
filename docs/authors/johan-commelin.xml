@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts about Announcements)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/categories/cat_announcements.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Fri, 17 Dec 2021 08:49:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Backstage with Yaël Dillies</title><link>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/images/yael_dillies.jpg" class="image-reference"&gt;&lt;img src="https://leanprover-community.github.io/blog/images/yael_dillies.thumbnail.jpg" class=" align-right"&gt;&lt;/a&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Johan Commelin)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/johan-commelin.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Fri, 17 Dec 2021 08:49:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Backstage with Yaël Dillies</title><link>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/images/yael_dillies.jpg" class="image-reference"&gt;&lt;img src="https://leanprover-community.github.io/blog/images/yael_dillies.thumbnail.jpg" class=" align-right"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;We're introducing a new category of blog post:
 backstage interviews with mathlib's active contributors!&lt;/p&gt;
 &lt;p&gt;Today, Johan Commelin interviews Yaël Dillies.&lt;/p&gt;
@@ -351,34 +351,4 @@ My question is:
 In which ways did you find the community helped you?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;JMC: And do you have any parting words or proverbial wisdom that you want to share with us?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;YD: Localize your changes, split a PR.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;JMC: A great suggestion. Thanks a lot for your time!&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;</description><category>backstage</category><guid>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</guid><pubDate>Fri, 17 Dec 2021 07:35:23 GMT</pubDate></item><item><title>Hoskinson Center announced</title><link>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</link><dc:creator>Jeremy Avigad</dc:creator><description>&lt;div&gt;&lt;p&gt;On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
-from blockchain entrepreneur Charles C. Hoskinson will be used to establish the Hoskinson
-Center for Formal Mathematics, housed in the Department of Philosophy.
-You can read the &lt;a href="https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html"&gt;university press release&lt;/a&gt; and
-watch Hoskinson's &lt;a href="https://www.youtube.com/watch?v=3snIzhjqsk0&amp;amp;ab_channel=CharlesHoskinson"&gt;YouTube announcement&lt;/a&gt;. You can also watch
-&lt;a href="https://www.youtube.com/watch?v=gCLJOrJFLZQ&amp;amp;ab_channel=IOHK"&gt;Hoskinson's presentation&lt;/a&gt; and
-&lt;a href="https://www.youtube.com/watch?v=tbz6cdnFyPc&amp;amp;ab_channel=IOHK"&gt;my presentation&lt;/a&gt; at an
-inauguration ceremony that was held at Carnegie Mellon the day before.
-The slides I used for the presentation are &lt;a href="https://www.andrew.cmu.edu/user/avigad/Talks/hoskinson_inaugural.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The center's mission is to support the work being done by the Lean community,
-to promote the use of Lean and its libraries,
-and to seek out ways of using the technology to make mathematics accessible and enjoyable to
-as wide an audience as possible.&lt;/p&gt;
-&lt;p&gt;The initial endowment will be used to support postdoctoral researchers and graduate students,
-as well as occasional meetings and visitors.
-In the near future, the center will focus on supporting the port of mathlib to Lean 4,
-developing automation and the user interface, and, perhaps most importantly,
-preparing textbooks and educational materials based on Lean.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</guid><pubDate>Sat, 02 Oct 2021 21:39:15 GMT</pubDate></item><item><title>Welcome to the Lean community blog!</title><link>https://leanprover-community.github.io/blog/posts/welcome-to-the-lean-community-blog/</link><dc:creator>The Lean prover community</dc:creator><description>&lt;div&gt;&lt;p&gt;This is our brand new blog where you'll be able to find news about what is
-happening in the Lean prover community. It will feature:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;posts highlighting some new contributions to mathlib&lt;/li&gt;
-&lt;li&gt;news about ongoing projects such as the Liquid tensor experiment or the sphere eversion project&lt;/li&gt;
-&lt;li&gt;news about exciting developments in other proofs assistants&lt;/li&gt;
-&lt;li&gt;announcements of conferences and talks &lt;/li&gt;
-&lt;li&gt;some explanations of specific topics in a less formal context than the documentations&lt;/li&gt;
-&lt;li&gt;speculations about future developments or somewhat philosophical discussions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There is no predefined list of authors. Everybody can submit a pull-request
-with a post. If you are unsure whether your post will be welcome then don't
-hesitate to first discuss the topic of your post on Zulip before investing too
-much time writing it.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/welcome-to-the-lean-community-blog/</guid><pubDate>Sat, 07 Aug 2021 19:36:54 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;strong&gt;JMC: A great suggestion. Thanks a lot for your time!&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;</description><category>backstage</category><guid>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</guid><pubDate>Fri, 17 Dec 2021 07:35:23 GMT</pubDate></item></channel></rss>
