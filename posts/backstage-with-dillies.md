@@ -70,7 +70,7 @@ JMC: How did you meet him?
 
 Just around that time, there were summer internships in Cambridge advertised on some webpage.
 I applied for an internship on a Isabelle project,
-and at the same time I rushed through [Kevin's workshop](https://github.com/ImperialCollegeLondon/M40001_lean).
+and at the same time I rushed through [Kevin's workshop](https://github.com/ImperialCollegeLondon/formalising-mathematics).
 In the end, I didn't get that internship, but I continued doing the tutorials.
 After that, I hung around on the Xena Discord server,
 where I asked a tonne of questions.
