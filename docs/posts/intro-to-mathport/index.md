@@ -226,7 +226,7 @@ after which you can skip the `make predata` and/or `make port` steps
 (you will still need to run `make build` and `make source`).
 
 If you've already got a local copy of the output of `make port` (either by running it yourself, or using `./download-release.sh`)
-you can also use the `make TARGET=Data.Nat.Bitwise port-mathbin-single` target
+you can also use the `make TARGET=data.nat.bitwise port-mathbin-single` target
 (similarly for `port-lean-single`) to run `mathport` on a single file.
 This is useful if you are testing a change to `mathport`.
 
