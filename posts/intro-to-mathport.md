@@ -25,6 +25,7 @@ building a mathematics library in Lean 4.
 While the type theory and kernel in Lean 4 are quite similar from a user point of view to Lean 3,
 it is certainly not the case that we can run Lean 3 code in Lean 4.
 Our aspiration is to achieve a "semi-automated" port.
+
 The `mathport` tool first of all provides a complete binary level port of `mathlib`
 (i.e. generating a Lean 4 `.olean` file for every `.olean` file in `mathlib`).
 This means that you will be able to `import` all files from `mathlib`,
@@ -45,19 +46,19 @@ to finish the migration in an incremental fashion.
 Notably, because of the size of `mathlib`, and its growth rate,
 we have decided it is not desirable to "freeze" `mathlib3`
 until very late in the process.
-(Throughout this document, `mathlib3` refers to the current mathlib repository,
+(Throughout this document, `mathlib` refers to the current mathlib repository,
 but I'll try to consistently include the `3` to disambiguate!)
 Thus we will be regularly running `mathport` on a continuously evolving `mathlib3` repository,
 and for an initial period not depositing the output in the `mathlib4` repository.
 Nevertheless, `mathport` takes as input both `mathlib3` and `mathlib4`,
-and attempts to automatically make use of the parts of the library which have alreadty been ported,
+and attempts to automatically make use of the parts of the library which have already been ported,
 by "aligning" definitions.
 Thus once the output quality of `mathport` is sufficiently good,
 we expect to be able to move files across to the `mathlib4` repository
 (starting from the bottom of the import hierarchy),
 while continuing to re-run `mathport` on the still evolving `mathlib` repository!
 Eventually, however, we will declare "flag day",
-at which point the `mathlib` repository will stop accepting PRs for new material,
+at which point the `mathlib3` repository will stop accepting PRs for new material,
 and we have a (hopefully brief!) intensive period of completing the migration.
 
 Notably, `mathport` makes no attempt to automatically translate the tactics that have been written in `mathlib3`.
@@ -73,7 +74,7 @@ The occasion for this blog post is that we now have continuous integration set u
 and a reasonably easy to use setup that lets you work with the output of `mathport`
 without having to run it yourself.
 
-I'll described that setup up below, but first explain what sort of efforts are probably most useful right now to help the `mathlib` port.
+I'll describe that setup up below, but first explain what sort of efforts are probably most useful right now to help the `mathlib` port.
 
 They are approximately in priority order, in terms of my guess about what will hold up the port the most.
 
@@ -88,15 +89,15 @@ They are approximately in priority order, in terms of my guess about what will h
   Other issues still need diagnosis.)
 * Open the `mathlib3port` repository (instructions below), look at files (probably starting with "low-level" files),
   and identify things that `mathport` should be doing better. Check there isn't already an open issue, then open an issue.
-  * Note: at this stage I think it would be a bad idea to actually take a file from `mathlib3port`, clean it up, and PR it to `mathlib4`.
-    That will hopefully come later, but we need to fix many `mathport` issues first.
-  * Instead, it is fine to make changes *that you think `mathport` should be doing already* and committing these on a branch,
-    so that you can link to diffs when opening `mathport` issues.
-  * For now, don't worry too much about the state of proofs.
-    We'd like to get to a state where the vast majority of *statements* are correctly translated as soon as possible.
-  * There are still many alignment problems between Lean 3 / `mathlib3` declarations, and Lean 4 / `mathlib4` declarations.
-    Sometimes these can be fixed by adding `#align` commands in `mathlib4`. Sometimes they may turn out to be `mathport` bugs.
-    Sometimes they will reflect deeper design problems we're going to need to talk about!
+    * Note: at this stage I think it would be a bad idea to actually take a file from `mathlib3port`, clean it up, and PR it to `mathlib4`.
+      That will hopefully come later, but we need to fix many `mathport` issues first.
+    * Instead, it is fine to make changes *that you think `mathport` should be doing already* and committing these on a branch,
+      so that you can link to diffs when opening `mathport` issues.
+    * For now, don't worry too much about the state of proofs.
+      We'd like to get to a state where the vast majority of *statements* are correctly translated as soon as possible.
+    * There are still many alignment problems between Lean 3 / `mathlib3` declarations, and Lean 4 / `mathlib4` declarations.
+      Sometimes these can be fixed by adding `#align` commands in `mathlib4`. Sometimes they may turn out to be `mathport` bugs.
+      Sometimes they will reflect deeper design problems we're going to need to talk about!
 
 
 # Background: what is `mathport`?
@@ -106,12 +107,12 @@ They are approximately in priority order, in terms of my guess about what will h
 * `binport` constructs Lean 4 `.olean` files, from Lean 3 `.olean` files.
   It largely works, and means that you can import `mathlib3` content into Lean 4 (as long as you don't expect to have source files!)
   This is what lets us do things like:
-```
-import Mathbin
-
-#lookup3 algebraic_geometry.Scheme
-#check AlgebraicGeometry.Scheme
-```
+  ```
+  import Mathbin
+  
+  #lookup3 algebraic_geometry.Scheme
+  #check AlgebraicGeometry.Scheme
+  ```
   Yay, Lean 4 has schemes! :-)
   To see this file in action, you should check out a copy of the `mathlib3port` repository described below,
   and make a new file there.
@@ -139,7 +140,7 @@ A detailed account of how binport and synport are working is beyond the scope of
 Hopefully we'll have one eventually,
 but in the meantime [Mario's talk](https://www.youtube.com/watch?v=fOO2fByx8tw) is very helpful.
 
-# What should I look at?
+## What should I look at?
 
 Please note that `mathport` takes considerable resources to run on `mathlib3`: approximately 3.5 hours, and 32gb of RAM.
 So you'll probably want to look at artifacts generated by CI rather than running it yourself.
@@ -149,9 +150,9 @@ So you'll probably want to look at artifacts generated by CI rather than running
   You should just be able to check out a copy of this repository, and open the folder in VS Code,
   to see the current state of `mathport` output.
   You can also try out the above example with `#check AlgebraicGeometry.Scheme` in a fresh file here.
-  * Remember it's expected to be horribly broken; most tactics aren't implemented,
-    and there are bugs around parenthesization of arguments, and name resolution!
-  * Good luck finding even a single file that compiles cleanly right now.
+    * Remember it's expected to be horribly broken; most tactics aren't implemented,
+      and there are bugs around parenthesization of arguments, and name resolution!
+    * Good luck finding even a single file that compiles cleanly right now.
 * https://github.com/leanprover-community/lean3port is the corresponding repository
   containing a copy of a recent run of `mathport` on the Lean 3 core library.
   It's less interesting perhaps, but also smaller and easier to inspect.
@@ -164,37 +165,37 @@ So you'll probably want to look at artifacts generated by CI rather than running
   Later, when `mathport` begins to stabilize,
   we will begin moving files from the output of `mathport` into this repository, but not yet.
   For now, this repository serves several purposes:
-  * Primarily, it is the home for ports of tactics implemented in `mathlib3` to Lean 4.
-  * In order to build these tactics, a certain minimal library is necessary
-    (e.g. for the `ring` tactic, we need the notion of a `ring`!)
-    and we are constructing this by hand.
-  * There is scope for experimental developments,
-    but please don't just port parts of `mathlib3` to Lean 4
-    for the sake of doing so.
-    If you're investigating how some new Lean 4 feature might be used in the eventual port of `mathlib`,
-    it's okay to do so in this repository.
+    * Primarily, it is the home for ports of tactics implemented in `mathlib3` to Lean 4.
+    * In order to build these tactics, a certain minimal library is necessary
+      (e.g. for the `ring` tactic, we need the notion of a `ring`!)
+      and we are constructing this by hand.
+    * There is scope for experimental developments,
+      but please don't just port parts of `mathlib3` to Lean 4
+      for the sake of doing so.
+      If you're investigating how some new Lean 4 feature might be used in the eventual port of `mathlib`,
+      it's okay to do so in this repository.
   For now, the `mathlib4` repository has fairly low standards:
   we don't expect the full review process used in `mathlib3`.
   Notable parts of the `mathlib4` repository relevant for `mathport` are:
-  * `Mathlib/Mathport/SpecialNames.lean` contains a sequence of `#align` statements,
-    for cases where a definition in Lean 4 core has a different name
-    from the name that would be produced automatically by changing case conventions from Lean 4 or `mathlib3`.
-  * `Mathlib/Mathport/Syntax.lean` contains definitions of all the syntaxes of tactics currently implemented in `mathlib3`.
-    These have been written by hand by Mario, and we should take care to keep these up to date.
-    Please be careful editing this file,
-    and we also need to remember to update it if any further changes to tactics land in `mathlib3`.
-    Because in this file we only have the syntax statements,
-    if you try to use the tactics here you will get `Tactic not implemented yet` errors.
-    If you would like to work on porting tactics, essentially this file is the TODO list!
-    You should take the relevant syntax definitions,
-    move them to their own file in the `Mathlib/Tactic/` directory,
-    and provide an implementation.
-    Conversely, please do not start porting a `mathlib3` tactic without faithfully reproducing the syntax,
-    as this will then cause problems for `mathport`.
-    It's completely fine to provide an interim port, that throws errors when encountering
-    some of the bells and whistles specified by a syntax declaration.
+    * `Mathlib/Mathport/SpecialNames.lean` contains a sequence of `#align` statements,
+      for cases where a definition in Lean 4 core has a different name
+      from the name that would be produced automatically by changing case conventions from Lean 4 or `mathlib3`.
+    * `Mathlib/Mathport/Syntax.lean` contains definitions of all the syntaxes of tactics currently implemented in `mathlib3`.
+      These have been written by hand by Mario, and we should take care to keep these up to date.
+      Please be careful editing this file,
+      and we also need to remember to update it if any further changes to tactics land in `mathlib3`.
+      Because in this file we only have the syntax statements,
+      if you try to use the tactics here you will get `Tactic not implemented yet` errors.
+      If you would like to work on porting tactics, essentially this file is the TODO list!
+      You should take the relevant syntax definitions,
+      move them to their own file in the `Mathlib/Tactic/` directory,
+      and provide an implementation.
+      Conversely, please do not start porting a `mathlib3` tactic without faithfully reproducing the syntax,
+      as this will then cause problems for `mathport`.
+      It's completely fine to provide an interim port, that throws errors when encountering
+      some of the bells and whistles specified by a syntax declaration.
 
-# How do I run `mathport`?
+## How do I run `mathport`?
 
 The `Makefile` in https://github.com/leanprover-community/mathport is currently the best available documentation for running `mathport`.
 You will need to install make sure you have `curl`, `git`, `cmake`, and `elan` installed on your system.
