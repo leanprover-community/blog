@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/backstage-with-dillies/" type="text/html">
+<link rel="prefetch" href="posts/intro-to-mathport/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,241 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/backstage-with-dillies/" class="u-url">Backstage with Yaël Dillies</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/intro-to-mathport/" class="u-url">Update on mathport (Dec 2021)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/scott-morrison/">Scott Morrison</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/intro-to-mathport/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-12-22T12:41:00+01:00" itemprop="datePublished" title="2021-12-22 12:41">2021-12-22 12:41</time></a>
+            </p>
+		    <p><span class="text-dark">mathport</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <div>
+<p><code>mathport</code> is the tool we're planning on using to help us port <code>mathlib</code> to Lean 4.
+It has mostly been written by Mario Carneiro and Daniel Selsam,
+and Gabriel Ebner and I have been making some fixes.</p>
+<p>To provide some context, <a href="https://github.com/leanprover-community/mathlib">mathlib</a>
+is the primary library for mathematics in Lean 3,
+containing over 700k lines of code and growing fast!
+Lean 4 now has a preliminary release, and we would really like to transition to
+building a mathematics library in Lean 4.
+While the type theory and kernel in Lean 4 are quite similar from a user point of view to Lean 3,
+it is certainly not the case that we can run Lean 3 code in Lean 4.
+Our aspiration is to achieve a "semi-automated" port.</p>
+<p>The <code>mathport</code> tool first of all provides a complete binary level port of <code>mathlib</code>
+(i.e. generating a Lean 4 <code>.olean</code> file for every <code>.olean</code> file in <code>mathlib</code>).
+This means that you will be able to <code>import</code> all files from <code>mathlib</code>,
+as long as you don't expect to be able to look at the actual sources!
+We have largely rejected the idea of a dual-compilation setup,
+in which existing code stays in Lean 3, while new code is written in Lean 4.
+The binary port could make this viable, but it seems complicated and fragile,
+and the community is excited to take full advantage of Lean 4.
+(A dual-compilation setup would not allow Lean 3 files to import from Lean 4 files,
+so the version transition would have to be a cut across the import graph.)
+Thus <code>mathport</code> further attempts a "best-effort" port of the source files,
+translating Lean 3 syntax to Lean 4 syntax.
+Right now, that "best effort" is not quite good enough!</p>
+<p>Our goal is that this will steadily improve,
+until we reach a point at which it become viable for humans
+to finish the migration in an incremental fashion.
+Notably, because of the size of <code>mathlib</code>, and its growth rate,
+we have decided it is not desirable to "freeze" <code>mathlib3</code>
+until very late in the process.
+(Throughout this document, <code>mathlib</code> refers to the current mathlib repository,
+but I'll try to consistently include the <code>3</code> to disambiguate!)
+Thus we will be regularly running <code>mathport</code> on a continuously evolving <code>mathlib3</code> repository,
+and for an initial period not depositing the output in the <code>mathlib4</code> repository.
+Nevertheless, <code>mathport</code> takes as input both <code>mathlib3</code> and <code>mathlib4</code>,
+and attempts to automatically make use of the parts of the library which have already been ported,
+by "aligning" definitions.
+Thus once the output quality of <code>mathport</code> is sufficiently good,
+we expect to be able to move files across to the <code>mathlib4</code> repository
+(starting from the bottom of the import hierarchy),
+while continuing to re-run <code>mathport</code> on the still evolving <code>mathlib</code> repository!
+Eventually, however, we will declare "flag day",
+at which point the <code>mathlib3</code> repository will stop accepting PRs for new material,
+and we have a (hopefully brief!) intensive period of completing the migration.</p>
+<p>Notably, <code>mathport</code> makes no attempt to automatically translate the tactics that have been written in <code>mathlib3</code>.
+Metaprogramming is sufficiently different in Lean 4 that this would be impossible,
+and moreover there are significant stylistic differences when writing tactics in Lean 4,
+so a literal translation would not be desirable.
+This means that we have a huge amount of work remaining to re-implement all the <code>mathlib3</code> tactics in Lean 4.
+We've already done a few important ones (notably <code>simp</code> is implemented in Lean 4, and we have <code>ring</code> in <code>mathlib4</code>).
+We would really like to preserve feature parity as we make the transition,
+and so are hoping to re-implement tactics, rather than "dumb-down proofs" wherever possible.</p>
+<p>The occasion for this blog post is that we now have continuous integration set up for <code>mathport</code>,
+and a reasonably easy to use setup that lets you work with the output of <code>mathport</code>
+without having to run it yourself.</p>
+<p>I'll describe that setup up below, but first explain what sort of efforts are probably most useful right now to help the <code>mathlib</code> port.</p>
+<p>They are approximately in priority order, in terms of my guess about what will hold up the port the most.</p>
+<ul>
+<li>Porting missing tactics from <code>mathlib3</code> to <code>mathlib4</code>.
+  This is still a huge task, and will not be automated in any way.
+  If you've contributed tactics to <code>mathlib3</code>, please consider trying to port them to Lean 4.
+  If you're interested in learning some Lean 4 metaprogramming, what better way to do that than porting tactics?
+  We'll write more about this in a future post, with some pointers about places to get started,
+  and how to hook up new tactic implementations to the existing tactic parsers that Mario has already ported to <code>mathlib4</code>.</li>
+<li>Resolve outstanding <a href="https://github.com/leanprover-community/mathport/issues">issues</a> in <code>mathport</code>.
+  (On some issues there's already an indicated fix but it needs implementing/testing.
+  Other issues still need diagnosis.)</li>
+<li>Open the <code>mathlib3port</code> repository (instructions below), look at files (probably starting with "low-level" files),
+  and identify things that <code>mathport</code> should be doing better. Check there isn't already an open issue, then open an issue.<ul>
+<li>Note: at this stage I think it would be a bad idea to actually take a file from <code>mathlib3port</code>, clean it up, and PR it to <code>mathlib4</code>.
+  That will hopefully come later, but we need to fix many <code>mathport</code> issues first.</li>
+<li>Instead, it is fine to make changes <em>that you think <code>mathport</code> should be doing already</em> and committing these on a branch,
+  so that you can link to diffs when opening <code>mathport</code> issues.</li>
+<li>For now, don't worry too much about the state of proofs.
+  We'd like to get to a state where the vast majority of <em>statements</em> are correctly translated as soon as possible.</li>
+<li>There are still many alignment problems between Lean 3 / <code>mathlib3</code> declarations, and Lean 4 / <code>mathlib4</code> declarations.
+  Sometimes these can be fixed by adding <code>#align</code> commands in <code>mathlib4</code>. Sometimes they may turn out to be <code>mathport</code> bugs.
+  Sometimes they will reflect deeper design problems we're going to need to talk about!</li>
+</ul>
+</li>
+</ul>
+<h2>Background: what is <code>mathport</code>?</h2>
+<p><code>mathport</code> consists of two loosely coupled components: <code>binport</code> (largely Daniel's work), and <code>synport</code> (largely Mario's work).</p>
+<ul>
+<li>
+<p><code>binport</code> constructs Lean 4 <code>.olean</code> files, from Lean 3 <code>.olean</code> files.
+    It largely works, and means that you can import <code>mathlib3</code> content into Lean
+    4 (as long as you don't expect to have source files!)
+    This is what lets us do things like: </p>
+<pre class="code literal-block"><span class="kn">import</span> <span class="nn">Mathbin</span>
+
+<span class="c1">#lookup3 algebraic_geometry.Scheme</span>
+<span class="c1">#check AlgebraicGeometry.Scheme</span>
+</pre>
+<p>Yay, Lean 4 has schemes! :-)
+To see this file in action, you should check out a copy of the <code>mathlib3port</code> repository described below,
+and make a new file there.</p>
+</li>
+<li>
+<p><code>synport</code> constructs Lean 4 <code>.lean</code> files, on a "best effort" basis.
+  (It uses both the output from binport, and Lean 3's <code>--ast</code> output to guide it.)
+  We should not expect that this will ever converge to a perfect translator.
+  Instead the hope is that it gives us something that humans can plausibly improve to a complete translation of <code>mathlib3</code>.</p>
+</li>
+</ul>
+<p>To understand how <code>mathport</code> (mostly talking about the synport part from here on) works,
+it's important to understand that it is translating <code>mathlib3</code> to Lean 4 source code, "modulo" the current content of <code>mathlib4</code>.
+That is, the premise is that as we progressively construct <code>mathlib4</code>
+(whether by translating by hand, moving content from <code>mathport</code>'s output to <code>mathlib4</code>, or adding <code>#align</code> statements)
+the output from running <code>mathport</code> on <code>mathlib3</code> will change.
+In particular, as <code>mathport</code> is translating each declaration,
+it checks to see if a corresponding declaration in <code>mathlib4</code> already exists, and is defeq.
+If so, <code>mathport</code> will instead just use that declaration.
+If not, <code>mathport</code> will make a copy, appending a <code>×</code> to the name.
+Sometimes these misalignments are due to an unintentional non-defeq, that can be fixed in <code>mathlib4</code>.
+Other times, we genuinely want to change something in <code>mathlib4</code>
+(e.g. to use Lean 4's multiple parent structures, which are better than <code>old_structure_cmd</code>).
+As a result, we expect that some misalignments will persist throughout the <code>mathport</code>-assisted stage of the port,
+and only afterwards will we polish these away.</p>
+<p>A detailed account of how binport and synport are working is beyond the scope of this blog post.
+Hopefully we'll have one eventually,
+but in the meantime <a href="https://www.youtube.com/watch?v=fOO2fByx8tw">Mario's talk</a> is very helpful.</p>
+<h3>What should I look at?</h3>
+<p>Please note that <code>mathport</code> takes considerable resources to run on <code>mathlib3</code>: approximately 3.5 hours, and 32gb of RAM.
+So you'll probably want to look at artifacts generated by CI rather than running it yourself. There are four GitHub repositories you can look at:</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib3port">mathlib3port</a>
+  should be most people's first stop. This contains a copy of the <code>.lean</code>
+  files produced by a recent run of <code>synport</code>, in the <code>Mathbin</code> directory.
+  You should just be able to check out a copy of this repository, and open
+  the folder in VS Code, to see the current state of <code>mathport</code> output.
+  You can also try out the above example with <code>#check
+  AlgebraicGeometry.Scheme</code> in a fresh file here.<ul>
+<li>Remember the synported files are expected to be horribly broken;
+  most tactics aren't implemented, and there are bugs around
+  parenthesization of arguments, and name resolution!</li>
+<li>Good luck finding even a single file that compiles cleanly right now.</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/lean3port">lean3port</a> is the corresponding repository
+  containing a copy of a recent run of <code>mathport</code> on the Lean 3 core library.
+  It's less interesting perhaps, but also smaller and easier to inspect.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathport">mathport</a> contains the code for <code>mathport</code> itself,
+  as well as the continuous integration set up that runs <code>mathport</code> on Lean 3 core and <code>mathlib3</code>
+  every time there is either a PR to <code>mathport</code>, or a commit to master.
+  The artifacts produced by CI appear at https://github.com/leanprover-community/mathport/releases,
+  and the two repositories listed above have a <code>lakefile.lean</code> that will download and unpack these artifacts.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib4">mathlib4</a> is the current preliminary port of <code>mathlib</code> to Lean 4.
+  Later, when <code>mathport</code> begins to stabilize,
+  we will begin moving files from the output of <code>mathport</code> into this repository, but not yet.
+  For now, this repository serves several purposes:</p>
+<ul>
+<li>Primarily, it is the home for ports of tactics implemented in <code>mathlib3</code> to Lean 4.</li>
+<li>In order to build these tactics, a certain minimal library is necessary
+  (e.g. for the <code>ring</code> tactic, we need the notion of a <code>ring</code>!)
+  and we are constructing this by hand.</li>
+<li>There is scope for experimental developments,
+  but please don't just port parts of <code>mathlib3</code> to Lean 4
+  for the sake of doing so.
+  If you're investigating how some new Lean 4 feature might be used in the eventual port of <code>mathlib</code>,
+  it's okay to do so in this repository.</li>
+</ul>
+<p>For now, the <code>mathlib4</code> repository has fairly low standards:
+we don't expect the full review process used in <code>mathlib3</code>.
+Notable parts of the <code>mathlib4</code> repository relevant for <code>mathport</code> are:</p>
+<ul>
+<li>
+<code>Mathlib/Mathport/SpecialNames.lean</code> contains a sequence of <code>#align</code> statements,
+  for cases where a definition in Lean 4 core has a different name
+  from the name that would be produced automatically by changing case conventions from Lean 4 or <code>mathlib3</code>.</li>
+<li>
+<code>Mathlib/Mathport/Syntax.lean</code> contains definitions of all the syntaxes of tactics currently implemented in <code>mathlib3</code>.
+  These have been written by hand by Mario, and we should take care to keep these up to date.
+  Please be careful editing this file,
+  and we also need to remember to update it if any further changes to tactics land in <code>mathlib3</code>.
+  Because in this file we only have the syntax statements,
+  if you try to use the tactics here you will get <code>Tactic not implemented yet</code> errors.
+  If you would like to work on porting tactics, essentially this file is the TODO list!
+  You should take the relevant syntax definitions,
+  move them to their own file in the <code>Mathlib/Tactic/</code> directory,
+  and provide an implementation.
+  Conversely, please do not start porting a <code>mathlib3</code> tactic without faithfully reproducing the syntax,
+  as this will then cause problems for <code>mathport</code>.
+  It's completely fine to provide an interim port, that throws errors when encountering
+  some of the bells and whistles specified by a syntax declaration.</li>
+</ul>
+</li>
+</ul>
+<h3>How do I run <code>mathport</code>?</h3>
+<p>The <code>Makefile</code> in https://github.com/leanprover-community/mathport is currently the best available documentation for running <code>mathport</code>.
+You will need to make sure you have <code>curl</code>, <code>git</code>, <code>cmake</code>, and <code>elan</code> installed on your system.
+Basic usage is <code>make build source predata port</code>.</p>
+<p>These stages are:</p>
+<ul>
+<li>
+<code>build</code>: compile <code>mathport</code> (which is written in Lean 4) itself</li>
+<li>
+<code>source</code>: pull the relevant commits of Lean 3 and <code>mathlib3</code>, and do a little preparatory work in those directories</li>
+<li>
+<code>predata</code>: recompile the Lean 3 library and <code>mathlib3</code>, with <code>lean --ast --tlean</code>, to generate the auxiliary files <code>mathport</code> needs.</li>
+<li>
+<code>port</code>: run <code>mathport</code> on Lean 3 and <code>mathlib3</code>.</li>
+</ul>
+<p>Running all of them in sequence is necessary if you're starting from scratch, but is painfully slow.</p>
+<p>You don't really want to run <code>make predata</code> yourself.
+Typically you don't want to run <code>make port</code> on the entire library either: you'd prefer to download an artifact containing the results,
+but then re-run <code>mathport</code> on a single file, in order to try out a bugfix to <code>mathport</code>.</p>
+<p>We provide artifacts for various stages of the build on the releases page of the <code>mathport</code> repository.
+The script <code>./download-release.sh nightly-YYYY-MM-DD</code> downloads one of these,
+after which you can skip the <code>make predata</code> and/or <code>make port</code> steps
+(you will still need to run <code>make build</code> and <code>make source</code>).</p>
+<p>If you've already got a local copy of the output of <code>make port</code> (either by running it yourself, or using <code>./download-release.sh</code>)
+you can also use the <code>make TARGET=Data.Nat.Bitwise port-mathbin-single</code> target
+(similarly for <code>port-lean-single</code>) to run <code>mathport</code> on a single file.
+This is useful if you are testing a change to <code>mathport</code>.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/backstage-with-dillies/" class="u-url">Backstage with Yaël Dillies</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/johan-commelin/">Johan Commelin</a>
@@ -1135,50 +1369,6 @@ decompositions commute. <a class="footnote-backref" href="posts/the-radon-nikod
 </li>
 </ol>
 </div>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/alex-bests-type-class-generalization-paper/" class="u-url">Alex Best’s type class generalization paper</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/patrick-massot/">Patrick Massot</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/alex-bests-type-class-generalization-paper/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-09-19T21:04:01+02:00" itemprop="datePublished" title="2021-09-19 21:04">2021-09-19 21:04</time></a>
-            </p>
-		    <p><span class="text-dark">Papers</span></p>
-                </div>
-            </header><div class="e-content entry-content">
-                    <div>
-<p>Alex J. Best wrote a 
-<a href="https://easychair.org/publications/preprint/KLfT">paper about type class generalization</a> for the 
-<a href="https://cicm-conference.org/2021/">CICM 2021</a> conference on intelligent computer
-mathematics. </p>
-<p>When producing large formally verified mathematical developments that
-make use of typeclasses as in mathlib, it is easy to introduce overly strong
-assumptions for theorems and definitions. This paper considers the problem of
-recognizing from the elaborated proof terms when typeclass assumptions
-are stronger than necessary. It uses a Lean metaprogram that finds and
-informs the user about possible generalizations.</p>
-<p>A nice example from the paper deals with the following theorem stating that
-given a ring homomorphism between two fields and a natural number $p$, one of the
-fields has characteristic p if and only if the other has characteristic $p$
-(including $p = 0$):</p>
-<pre class="code literal-block"><span class="kd">lemma</span> <span class="n">ring_hom.char_p_iff_char_p</span> <span class="o">{</span><span class="n">K</span> <span class="n">L</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">∗</span><span class="o">}</span> <span class="o">[</span><span class="n">field</span> <span class="n">K</span><span class="o">]</span> <span class="o">[</span><span class="n">field</span> <span class="n">L</span><span class="o">]</span>
-  <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">K</span> <span class="bp">→+∗</span> <span class="n">L</span><span class="o">)</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">:</span> <span class="n">char_p</span> <span class="n">K</span> <span class="n">p</span> <span class="bp">↔</span> <span class="n">char_p</span> <span class="n">L</span> <span class="n">p</span> <span class="o">:=</span>
-<span class="kd">begin</span>
-  <span class="n">split</span><span class="bp">;</span>
-  <span class="o">{</span> <span class="n">introI</span> <span class="n">_c</span><span class="o">,</span> <span class="n">constructor</span><span class="o">,</span> <span class="n">intro</span> <span class="n">n</span><span class="o">,</span>
-    <span class="n">rw</span> <span class="o">[</span><span class="bp">←</span> <span class="bp">@</span><span class="n">char_p.cast_eq_zero_iff</span> <span class="n">_</span> <span class="n">_</span> <span class="n">p</span> <span class="n">_c</span> <span class="n">n</span><span class="o">,</span> <span class="bp">←</span> <span class="n">f.injective.eq_iff</span><span class="o">,</span> <span class="n">f.map_nat_cast</span><span class="o">,</span>
-    <span class="n">f.map_zero</span><span class="o">]</span> <span class="o">}</span>
-<span class="kd">end</span>
-</pre>
-<p>We see that the proof script splits the iff statement into each direction, but
-both directions are proved by the same tactic block. It is non-trivial to
-determine just by reading the proof given what the weakest assumptions possible
-are, and it is not immediately clear from the statement either.
-The meta-program determined these are that $K$ should be a division ring, and $L$
-should be a nontrivial semiring.</p>
 </div>
                 </div>
             </article>
