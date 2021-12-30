@@ -13,6 +13,18 @@ type: text
 
 ## Statistics
 
+Number of files: from ~1500 to ~2325
+
+Number of lines: from ~455K to ~742K
+
+Number of commits: from 3354 in 2020 to 51?? in 2021
+
+Total contributors: 209
+
+Most commits per month: 558 in October
+
+For more information, see the page on [mathlib statistics](https://leanprover-community.github.io/mathlib_stats.html).
+
 ### Records
 
 ## New contributors to mathlib
