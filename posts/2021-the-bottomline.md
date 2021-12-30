@@ -29,6 +29,8 @@ For more information, see the page on [mathlib statistics](https://leanprover-co
 
 ## New contributors to mathlib
 
+## Hoskinson Centre for Formal Mathematics
+
 ## Big projects
 
 ### Liquid Tensor Experiment
