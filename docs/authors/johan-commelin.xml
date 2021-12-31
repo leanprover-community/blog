@@ -1,5 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Johan Commelin)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/johan-commelin.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Wed, 22 Dec 2021 22:02:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Backstage with Yaël Dillies</title><link>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/images/yael_dillies.jpg" class="image-reference"&gt;&lt;img src="https://leanprover-community.github.io/blog/images/yael_dillies.thumbnail.jpg" class=" align-right"&gt;&lt;/a&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Johan Commelin)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/johan-commelin.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Fri, 31 Dec 2021 21:14:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Liquid Tensor Experiment: an update</title><link>https://leanprover-community.github.io/blog/posts/lte-update/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;p&gt;In July 2021, we &lt;a href="https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/"&gt;celebrated&lt;/a&gt;
+the first milestone of the Liquid Tensor Experiment.
+The achievement was covered in
+&lt;a href="https://www.nature.com/articles/d41586-021-01627-2"&gt;Nature&lt;/a&gt;
+and
+&lt;a href="https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/"&gt;Quanta&lt;/a&gt;.
+Since then, we haven't been sitting still, and it's high time for a status update.&lt;/p&gt;
+&lt;p&gt;The first milestone was a proof of the following
+&lt;a href="https://github.com/leanprover-community/lean-liquid/blob/b94b4bf4c9a60aa72bc226d0ee4218f8ef9e6049/src/liquid.lean#L37"&gt;statement&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="sd"&gt;/-- A mix of Theorems 9.4 and 9.5 in [Analytic] -/&lt;/span&gt;
+&lt;span class="kd"&gt;theorem&lt;/span&gt; &lt;span class="n"&gt;first_target&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℕ&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;∃&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hk&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c₀&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;),&lt;/span&gt;
+  &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fintype&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SemiNormedGroup.&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;normed_with_aut&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="o"&gt;],&lt;/span&gt;
+    &lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="n"&gt;BD.data.system&lt;/span&gt; &lt;span class="n"&gt;κ&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="n"&gt;r'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="bp"&gt;$&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;r'&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Mbar&lt;/span&gt; &lt;span class="n"&gt;r'&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;)))&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_weak_bounded_exact&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;c₀&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;This says that a certain system of complexes &lt;code&gt;(BD.data.system κ r V r').obj (op $ of r' (Mbar r' S))&lt;/code&gt;
+satisfies the technical condition of weak bounded exactness with respect to certain parameters.
+This system of complexes fundamentally depends on a semi-normed group &lt;code&gt;V&lt;/code&gt;
+and a certain space &lt;code&gt;Mbar r' S&lt;/code&gt;.
+We will say a bit more about this mysterious object &lt;code&gt;Mbar r' S&lt;/code&gt; later.&lt;/p&gt;
+&lt;p&gt;To complete the final challenge,
+we need to remove the &lt;code&gt;sorry&lt;/code&gt; from the following
+&lt;a href="https://github.com/leanprover-community/lean-liquid/blob/b94b4bf4c9a60aa72bc226d0ee4218f8ef9e6049/src/challenge.lean#L27"&gt;statement&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;variables&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p'&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt;
+
+&lt;span class="kd"&gt;theorem&lt;/span&gt; &lt;span class="n"&gt;liquid_tensor_experiment&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Profinite.&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pBanach.&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℕ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;Ext&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ℳ_&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="bp"&gt;≅&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
+&lt;span class="gr"&gt;sorry&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;In this statement, &lt;code&gt;ℳ_{p'} S&lt;/code&gt; is morally a space of real-valued measures depending on the real parameter &lt;code&gt;p'&lt;/code&gt;
+and the &lt;code&gt;p&lt;/code&gt;-Banach space &lt;code&gt;V&lt;/code&gt; is an example of the semi-normed groups showing up in &lt;code&gt;first_target&lt;/code&gt; above.
+But the &lt;code&gt;Ext&lt;/code&gt; in this statement is really about the Ext-groups of condensed abelian groups,
+so both &lt;code&gt;ℳ_{p'} S&lt;/code&gt; and &lt;code&gt;V&lt;/code&gt; are viewed as condensed abelian groups in this theorem.&lt;/p&gt;
+&lt;h3&gt;Homological algebra&lt;/h3&gt;
+&lt;p&gt;To be able to state this theorem (e.g., to make sense of &lt;code&gt;Ext&lt;/code&gt;)
+we need to develop the theory of derived functors
+for arbitrary abelian categories with enough injectives/projectives.
+This was done by Scott Morrison, who contributed definitions of &lt;code&gt;Ext&lt;/code&gt; and &lt;code&gt;Tor&lt;/code&gt; to mathlib about half a year ago.
+We also need to show that the category of condensed abelian groups satisfies these conditions.
+Recently, Adam Topaz finished a formalization of the fact that on an arbitrary site (= category + Grothendieck topology)
+the category of sheaves with values in a suitable abelian category is itself an abelian category.
+In particular the category of abelian sheaves, and hence condensed abelian groups, forms an abelian category.
+The fact that condensed abelian groups have enough projectives is almost done,
+so that finally the &lt;code&gt;Ext&lt;/code&gt; in the statement above does no longer depend on unformalized assumptions.&lt;/p&gt;
+&lt;p&gt;To be able to compute the &lt;code&gt;Ext&lt;/code&gt;-groups,
+we need a library of results about homological complexes, long exact sequences, and such.
+A fundamental input is of course the snake lemma,
+and this was formalized by Riccardo Brasca and Adam Topaz in the fall.
+Andrew Yang is currently working towards a formal proof
+that the homotopy category of complexes is a pretriangulated category.
+This will give us important tools to manipulate the &lt;code&gt;Ext&lt;/code&gt;-groups
+into a shape that reduces to &lt;code&gt;first_target&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Spaces of measures&lt;/h3&gt;
+&lt;p&gt;As mentioned above, the space &lt;code&gt;ℳ_{p'} S&lt;/code&gt; is a real condensed vector space
+that is morally a space of measures.
+One of the crucial insights in the proof is that it is a quotient of an arithmetic analogue
+that we've been calling the space of &lt;em&gt;Laurent measures&lt;/em&gt;: &lt;code&gt;ℳ(S, ℤ((T))_{r'})&lt;/code&gt;,
+with &lt;code&gt;(1/2)^{p'} = r'&lt;/code&gt;.
+This quotient map turns out to be the cokernel of an injective endomorphism of the space of Laurent measures.
+Together, these two maps form a short exact sequence,
+which leads to a long exact sequence of &lt;code&gt;Ext&lt;/code&gt;-groups.
+This quotient map sits in a short exact sequence, together with its kernel.
+Hence the vanishing of the &lt;code&gt;Ext&lt;/code&gt;-groups above can be reduced to a question about similar &lt;code&gt;Ext&lt;/code&gt;-groups
+but this time involving these spaces of Laurent measures.&lt;/p&gt;
+&lt;p&gt;In turn, these spaces of Laurent measures naturally admit a free module as submodule,
+and the quotient is the mysterious space &lt;code&gt;Mbar r' S&lt;/code&gt; that appears in &lt;code&gt;first_target&lt;/code&gt;.
+Together, these two short exact sequences are crucial inputs
+that will be combined with the homological tools mentioned above
+to reduce the main theorem to &lt;code&gt;first_target&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Filippo A.E. Nuccio has been working arduously on the formalization of these results,
+which amounts to Theorem 6.9 of &lt;a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf"&gt;Analytic.pdf&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Breen-Deligne resolutions and MacLane's Q'-construction&lt;/h3&gt;
+&lt;p&gt;Finally, to compute the &lt;code&gt;Ext&lt;/code&gt;-groups, at some point projective resolutions must enter the picture.
+The proof in &lt;a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf"&gt;Analytic.pdf&lt;/a&gt;
+relies on so-called Breen-Deligne resolutions, which have the following two crucial properties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is a functorial construction &lt;code&gt;A ↦ C(A)&lt;/code&gt; that sends an abelian group (or sheaf) to a complex of abelian groups (or sheaves).&lt;/li&gt;
+&lt;li&gt;When viewed as a functor to the homotopy category of complexes, it is additive.
+  In other words, &lt;code&gt;C(A ⊕ A)&lt;/code&gt; is naturally homotopic to &lt;code&gt;C(A) ⊕ C(A)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In addition to these properties,
+Breen-Deligne resolutions have the favourable property that the construction yields a projective resolution &lt;code&gt;C(A)&lt;/code&gt; for every &lt;code&gt;A&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For our formalization project, they also come with the significant downside that the proof of the existence of Breen-Deligne resolutions
+relies on technical results from homotopy theory,
+which haven't been formalized yet.&lt;/p&gt;
+&lt;p&gt;But to our delight, it turns out that there are related constructions that satisfy (1) and (2) above which are good enough for our purposes and which can be formalized directly.
+Indeed, the functorial complex known as "MacLane's &lt;code&gt;Q'&lt;/code&gt; construction", is one such example,
+which also satisfies the following result.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lemma.&lt;/strong&gt; Let $A$ and $B$ be two abelian groups (or sheaves).
+If $\text{Ext}^i(Q'(A), B) = 0$ for all $i \ge 0$,
+then $\text{Ext}^i(A, B) = 0$ for all $i \ge 0$.&lt;/p&gt;
+&lt;p&gt;This lemma is not yet formalized,
+and to our knowledge does not appear in the literature.
+We hope to fix both of these issues in the near future.&lt;/p&gt;
+&lt;p&gt;So far, we have formalized the claim that the &lt;code&gt;Q'&lt;/code&gt;-construction satisfies properties (1) and (2).
+The proof of the lemma uses the tensor-hom adjunction and the fact that the homotopy category of complexes is pretriangulated.
+The formalisation of these two prerequisites is active work in progress.&lt;/p&gt;
+&lt;p&gt;You can follow our progress on all the remaining tasks at the following
+&lt;a href="https://github.com/leanprover-community/lean-liquid/projects/2"&gt;Github project&lt;/a&gt;.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/lte-update/</guid><pubDate>Fri, 31 Dec 2021 19:04:21 GMT</pubDate></item><item><title>Backstage with Yaël Dillies</title><link>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/images/yael_dillies.jpg" class="image-reference"&gt;&lt;img src="https://leanprover-community.github.io/blog/images/yael_dillies.thumbnail.jpg" class=" align-right"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;We're introducing a new category of blog post:
 backstage interviews with mathlib's active contributors!&lt;/p&gt;
 &lt;p&gt;Today, Johan Commelin interviews Yaël Dillies.&lt;/p&gt;
@@ -351,4 +449,4 @@ My question is:
 In which ways did you find the community helped you?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;JMC: And do you have any parting words or proverbial wisdom that you want to share with us?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;YD: Localize your changes, split a PR.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;JMC: A great suggestion. Thanks a lot for your time!&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;</description><category>backstage</category><guid>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</guid><pubDate>Fri, 17 Dec 2021 07:35:23 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;strong&gt;JMC: A great suggestion. Thanks a lot for your time!&lt;/strong&gt;&lt;/p&gt;</description><category>backstage</category><guid>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</guid><pubDate>Fri, 17 Dec 2021 07:35:23 GMT</pubDate></item></channel></rss>

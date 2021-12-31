@@ -1,5 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Wed, 22 Dec 2021 22:02:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Update on mathport (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/intro-to-mathport/</link><dc:creator>Scott Morrison</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;code&gt;mathport&lt;/code&gt; is the tool we're planning on using to help us port &lt;code&gt;mathlib&lt;/code&gt; to Lean 4.
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Fri, 31 Dec 2021 21:14:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Liquid Tensor Experiment: an update</title><link>https://leanprover-community.github.io/blog/posts/lte-update/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;p&gt;In July 2021, we &lt;a href="https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/"&gt;celebrated&lt;/a&gt;
+the first milestone of the Liquid Tensor Experiment.
+The achievement was covered in
+&lt;a href="https://www.nature.com/articles/d41586-021-01627-2"&gt;Nature&lt;/a&gt;
+and
+&lt;a href="https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/"&gt;Quanta&lt;/a&gt;.
+Since then, we haven't been sitting still, and it's high time for a status update.&lt;/p&gt;
+&lt;p&gt;The first milestone was a proof of the following
+&lt;a href="https://github.com/leanprover-community/lean-liquid/blob/b94b4bf4c9a60aa72bc226d0ee4218f8ef9e6049/src/liquid.lean#L37"&gt;statement&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="sd"&gt;/-- A mix of Theorems 9.4 and 9.5 in [Analytic] -/&lt;/span&gt;
+&lt;span class="kd"&gt;theorem&lt;/span&gt; &lt;span class="n"&gt;first_target&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℕ&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;∃&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hk&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c₀&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;),&lt;/span&gt;
+  &lt;span class="bp"&gt;∀&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fintype&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SemiNormedGroup.&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;normed_with_aut&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="o"&gt;],&lt;/span&gt;
+    &lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="n"&gt;BD.data.system&lt;/span&gt; &lt;span class="n"&gt;κ&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="n"&gt;r'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;op&lt;/span&gt; &lt;span class="bp"&gt;$&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;r'&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Mbar&lt;/span&gt; &lt;span class="n"&gt;r'&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;)))&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_weak_bounded_exact&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;c₀&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;This says that a certain system of complexes &lt;code&gt;(BD.data.system κ r V r').obj (op $ of r' (Mbar r' S))&lt;/code&gt;
+satisfies the technical condition of weak bounded exactness with respect to certain parameters.
+This system of complexes fundamentally depends on a semi-normed group &lt;code&gt;V&lt;/code&gt;
+and a certain space &lt;code&gt;Mbar r' S&lt;/code&gt;.
+We will say a bit more about this mysterious object &lt;code&gt;Mbar r' S&lt;/code&gt; later.&lt;/p&gt;
+&lt;p&gt;To complete the final challenge,
+we need to remove the &lt;code&gt;sorry&lt;/code&gt; from the following
+&lt;a href="https://github.com/leanprover-community/lean-liquid/blob/b94b4bf4c9a60aa72bc226d0ee4218f8ef9e6049/src/challenge.lean#L27"&gt;statement&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;variables&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p'&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="bp"&gt;≤&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)]&lt;/span&gt;
+
+&lt;span class="kd"&gt;theorem&lt;/span&gt; &lt;span class="n"&gt;liquid_tensor_experiment&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Profinite.&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pBanach.&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ℕ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;Ext&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ℳ_&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;p'&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="bp"&gt;≅&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
+&lt;span class="gr"&gt;sorry&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;In this statement, &lt;code&gt;ℳ_{p'} S&lt;/code&gt; is morally a space of real-valued measures depending on the real parameter &lt;code&gt;p'&lt;/code&gt;
+and the &lt;code&gt;p&lt;/code&gt;-Banach space &lt;code&gt;V&lt;/code&gt; is an example of the semi-normed groups showing up in &lt;code&gt;first_target&lt;/code&gt; above.
+But the &lt;code&gt;Ext&lt;/code&gt; in this statement is really about the Ext-groups of condensed abelian groups,
+so both &lt;code&gt;ℳ_{p'} S&lt;/code&gt; and &lt;code&gt;V&lt;/code&gt; are viewed as condensed abelian groups in this theorem.&lt;/p&gt;
+&lt;h3&gt;Homological algebra&lt;/h3&gt;
+&lt;p&gt;To be able to state this theorem (e.g., to make sense of &lt;code&gt;Ext&lt;/code&gt;)
+we need to develop the theory of derived functors
+for arbitrary abelian categories with enough injectives/projectives.
+This was done by Scott Morrison, who contributed definitions of &lt;code&gt;Ext&lt;/code&gt; and &lt;code&gt;Tor&lt;/code&gt; to mathlib about half a year ago.
+We also need to show that the category of condensed abelian groups satisfies these conditions.
+Recently, Adam Topaz finished a formalization of the fact that on an arbitrary site (= category + Grothendieck topology)
+the category of sheaves with values in a suitable abelian category is itself an abelian category.
+In particular the category of abelian sheaves, and hence condensed abelian groups, forms an abelian category.
+The fact that condensed abelian groups have enough projectives is almost done,
+so that finally the &lt;code&gt;Ext&lt;/code&gt; in the statement above does no longer depend on unformalized assumptions.&lt;/p&gt;
+&lt;p&gt;To be able to compute the &lt;code&gt;Ext&lt;/code&gt;-groups,
+we need a library of results about homological complexes, long exact sequences, and such.
+A fundamental input is of course the snake lemma,
+and this was formalized by Riccardo Brasca and Adam Topaz in the fall.
+Andrew Yang is currently working towards a formal proof
+that the homotopy category of complexes is a pretriangulated category.
+This will give us important tools to manipulate the &lt;code&gt;Ext&lt;/code&gt;-groups
+into a shape that reduces to &lt;code&gt;first_target&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Spaces of measures&lt;/h3&gt;
+&lt;p&gt;As mentioned above, the space &lt;code&gt;ℳ_{p'} S&lt;/code&gt; is a real condensed vector space
+that is morally a space of measures.
+One of the crucial insights in the proof is that it is a quotient of an arithmetic analogue
+that we've been calling the space of &lt;em&gt;Laurent measures&lt;/em&gt;: &lt;code&gt;ℳ(S, ℤ((T))_{r'})&lt;/code&gt;,
+with &lt;code&gt;(1/2)^{p'} = r'&lt;/code&gt;.
+This quotient map turns out to be the cokernel of an injective endomorphism of the space of Laurent measures.
+Together, these two maps form a short exact sequence,
+which leads to a long exact sequence of &lt;code&gt;Ext&lt;/code&gt;-groups.
+This quotient map sits in a short exact sequence, together with its kernel.
+Hence the vanishing of the &lt;code&gt;Ext&lt;/code&gt;-groups above can be reduced to a question about similar &lt;code&gt;Ext&lt;/code&gt;-groups
+but this time involving these spaces of Laurent measures.&lt;/p&gt;
+&lt;p&gt;In turn, these spaces of Laurent measures naturally admit a free module as submodule,
+and the quotient is the mysterious space &lt;code&gt;Mbar r' S&lt;/code&gt; that appears in &lt;code&gt;first_target&lt;/code&gt;.
+Together, these two short exact sequences are crucial inputs
+that will be combined with the homological tools mentioned above
+to reduce the main theorem to &lt;code&gt;first_target&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Filippo A.E. Nuccio has been working arduously on the formalization of these results,
+which amounts to Theorem 6.9 of &lt;a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf"&gt;Analytic.pdf&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Breen-Deligne resolutions and MacLane's Q'-construction&lt;/h3&gt;
+&lt;p&gt;Finally, to compute the &lt;code&gt;Ext&lt;/code&gt;-groups, at some point projective resolutions must enter the picture.
+The proof in &lt;a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf"&gt;Analytic.pdf&lt;/a&gt;
+relies on so-called Breen-Deligne resolutions, which have the following two crucial properties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is a functorial construction &lt;code&gt;A ↦ C(A)&lt;/code&gt; that sends an abelian group (or sheaf) to a complex of abelian groups (or sheaves).&lt;/li&gt;
+&lt;li&gt;When viewed as a functor to the homotopy category of complexes, it is additive.
+  In other words, &lt;code&gt;C(A ⊕ A)&lt;/code&gt; is naturally homotopic to &lt;code&gt;C(A) ⊕ C(A)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In addition to these properties,
+Breen-Deligne resolutions have the favourable property that the construction yields a projective resolution &lt;code&gt;C(A)&lt;/code&gt; for every &lt;code&gt;A&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For our formalization project, they also come with the significant downside that the proof of the existence of Breen-Deligne resolutions
+relies on technical results from homotopy theory,
+which haven't been formalized yet.&lt;/p&gt;
+&lt;p&gt;But to our delight, it turns out that there are related constructions that satisfy (1) and (2) above which are good enough for our purposes and which can be formalized directly.
+Indeed, the functorial complex known as "MacLane's &lt;code&gt;Q'&lt;/code&gt; construction", is one such example,
+which also satisfies the following result.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lemma.&lt;/strong&gt; Let $A$ and $B$ be two abelian groups (or sheaves).
+If $\text{Ext}^i(Q'(A), B) = 0$ for all $i \ge 0$,
+then $\text{Ext}^i(A, B) = 0$ for all $i \ge 0$.&lt;/p&gt;
+&lt;p&gt;This lemma is not yet formalized,
+and to our knowledge does not appear in the literature.
+We hope to fix both of these issues in the near future.&lt;/p&gt;
+&lt;p&gt;So far, we have formalized the claim that the &lt;code&gt;Q'&lt;/code&gt;-construction satisfies properties (1) and (2).
+The proof of the lemma uses the tensor-hom adjunction and the fact that the homotopy category of complexes is pretriangulated.
+The formalisation of these two prerequisites is active work in progress.&lt;/p&gt;
+&lt;p&gt;You can follow our progress on all the remaining tasks at the following
+&lt;a href="https://github.com/leanprover-community/lean-liquid/projects/2"&gt;Github project&lt;/a&gt;.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/lte-update/</guid><pubDate>Fri, 31 Dec 2021 19:04:21 GMT</pubDate></item><item><title>Update on mathport (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/intro-to-mathport/</link><dc:creator>Scott Morrison</dc:creator><description>&lt;p&gt;&lt;code&gt;mathport&lt;/code&gt; is the tool we're planning on using to help us port &lt;code&gt;mathlib&lt;/code&gt; to Lean 4.
 It has mostly been written by Mario Carneiro and Daniel Selsam,
 and Gabriel Ebner and I have been making some fixes.&lt;/p&gt;
 &lt;p&gt;To provide some context, &lt;a href="https://github.com/leanprover-community/mathlib"&gt;mathlib&lt;/a&gt;
@@ -208,7 +306,7 @@ after which you can skip the &lt;code&gt;make predata&lt;/code&gt; and/or &lt;co
 &lt;p&gt;If you've already got a local copy of the output of &lt;code&gt;make port&lt;/code&gt; (either by running it yourself, or using &lt;code&gt;./download-release.sh&lt;/code&gt;)
 you can also use the &lt;code&gt;make TARGET=data.nat.bitwise port-mathbin-single&lt;/code&gt; target
 (similarly for &lt;code&gt;port-lean-single&lt;/code&gt;) to run &lt;code&gt;mathport&lt;/code&gt; on a single file.
-This is useful if you are testing a change to &lt;code&gt;mathport&lt;/code&gt;.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/intro-to-mathport/</guid><pubDate>Wed, 22 Dec 2021 11:41:00 GMT</pubDate></item><item><title>Backstage with Yaël Dillies</title><link>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/images/yael_dillies.jpg" class="image-reference"&gt;&lt;img src="https://leanprover-community.github.io/blog/images/yael_dillies.thumbnail.jpg" class=" align-right"&gt;&lt;/a&gt;&lt;/p&gt;
+This is useful if you are testing a change to &lt;code&gt;mathport&lt;/code&gt;.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/intro-to-mathport/</guid><pubDate>Wed, 22 Dec 2021 11:41:00 GMT</pubDate></item><item><title>Backstage with Yaël Dillies</title><link>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</link><dc:creator>Johan Commelin</dc:creator><description>&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/images/yael_dillies.jpg" class="image-reference"&gt;&lt;img src="https://leanprover-community.github.io/blog/images/yael_dillies.thumbnail.jpg" class=" align-right"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;We're introducing a new category of blog post:
 backstage interviews with mathlib's active contributors!&lt;/p&gt;
 &lt;p&gt;Today, Johan Commelin interviews Yaël Dillies.&lt;/p&gt;
@@ -560,7 +658,7 @@ My question is:
 In which ways did you find the community helped you?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;JMC: And do you have any parting words or proverbial wisdom that you want to share with us?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;YD: Localize your changes, split a PR.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;JMC: A great suggestion. Thanks a lot for your time!&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;</description><category>backstage</category><guid>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</guid><pubDate>Fri, 17 Dec 2021 07:35:23 GMT</pubDate></item><item><title>Semilinear maps</title><link>https://leanprover-community.github.io/blog/posts/semilinear-maps/</link><dc:creator>Frédéric Dupuis</dc:creator><description>&lt;div&gt;&lt;p&gt;Since linear maps appear everywhere in mathematics, it comes as no surprise that they have been part of mathlib for quite some time. However, as we were working on adding the basics of functional analysis to mathlib, a drawback quickly became apparent: conjugate-linear maps could not directly be expressed as linear maps. This meant that some constructions could not be formulated in their most natural way: for example, the map that takes an operator to its adjoint on a complex Hilbert space is a conjugate linear map, and so is the Riesz representation that maps a vector to its dual. This was also preventing us from developing the orthogonal group, the unitary group, etc, properly.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;JMC: A great suggestion. Thanks a lot for your time!&lt;/strong&gt;&lt;/p&gt;</description><category>backstage</category><guid>https://leanprover-community.github.io/blog/posts/backstage-with-dillies/</guid><pubDate>Fri, 17 Dec 2021 07:35:23 GMT</pubDate></item><item><title>Semilinear maps</title><link>https://leanprover-community.github.io/blog/posts/semilinear-maps/</link><dc:creator>Frédéric Dupuis</dc:creator><description>&lt;p&gt;Since linear maps appear everywhere in mathematics, it comes as no surprise that they have been part of mathlib for quite some time. However, as we were working on adding the basics of functional analysis to mathlib, a drawback quickly became apparent: conjugate-linear maps could not directly be expressed as linear maps. This meant that some constructions could not be formulated in their most natural way: for example, the map that takes an operator to its adjoint on a complex Hilbert space is a conjugate linear map, and so is the Riesz representation that maps a vector to its dual. This was also preventing us from developing the orthogonal group, the unitary group, etc, properly.&lt;/p&gt;
 &lt;p&gt;A few options were considered to introduce conjugate-linear maps. One possible way was to define the &lt;a href="https://en.wikipedia.org/wiki/Complex_conjugate_vector_space"&gt;conjugate space&lt;/a&gt; of &lt;code&gt;E&lt;/code&gt; as a type copy where scalar multiplication is conjugated. Then, a conjugate-linear maps is a standard linear map to the conjugate space. This would have enabled us to reuse the API of linear maps without having too much to refactor, but an early attempt to do this was abandoned when converting between the conjugate space and the original space proved to be unwieldy. A further disadvantage is that the type copy would have also appeared in the real case for constructions involving &lt;code&gt;is_R_or_C&lt;/code&gt;. Another potential solution to the problem was to define conjugate-linear maps separately from linear maps. The big drawback here is that the API for linear maps would effectively have to be duplicated for those new maps.&lt;/p&gt;
 &lt;p&gt;This left the more arduous option, namely to redefine &lt;code&gt;linear_map&lt;/code&gt; to also include semilinear maps. A semilinear map &lt;code&gt;f&lt;/code&gt; is a map from an &lt;code&gt;R&lt;/code&gt;-module to an &lt;code&gt;S&lt;/code&gt;-module with a ring homomorphism &lt;code&gt;σ&lt;/code&gt; between &lt;code&gt;R&lt;/code&gt; and &lt;code&gt;S&lt;/code&gt;, such that &lt;code&gt;f (c • x) = (σ c) • (f x)&lt;/code&gt;. If we plug in the identity into &lt;code&gt;σ&lt;/code&gt;, we get regular linear maps, and if we plug in the complex conjugate, we get conjugate linear maps. There are also other examples (e.g. Frobenius-linear maps) where this is useful which are covered by this general formulation. This implied a major refactor: we had to replace the basic definition of &lt;code&gt;R&lt;/code&gt;-linear maps &lt;code&gt;E →ₗ[R] F&lt;/code&gt; by &lt;code&gt;σ&lt;/code&gt;-semilinear maps &lt;code&gt;E →ₛₗ[σ] F&lt;/code&gt; while keeping the original notation for plain linear maps, and deal with the various problems that this inevitably created further down the import tree. The same also had to be done for linear equivalences, continuous linear maps/equivalences, and linear isometries. This idea had first been proposed by Yury Kudryashov &lt;a href="https://leanprover.zulipchat.com/#narrow/stream/144837-PR-reviews/topic/4770.20smul_comm_class/near/214442983"&gt;about a year ago&lt;/a&gt;, but it then took several months to build up the motivation to embark on this project. Last July, Heather Macbeth, Rob Lewis and I finally managed to start working on it, and the result was &lt;a href="https://github.com/leanprover-community/mathlib/pull/9272"&gt;merged&lt;/a&gt; into mathlib in late September.&lt;/p&gt;
 &lt;p&gt;The main issue that we had to overcome involved composition of semilinear maps, and &lt;code&gt;symm&lt;/code&gt; for linear equivalences. Suppose we have &lt;code&gt;f : E₁ →ₛₗ[σ₁₂] E₂&lt;/code&gt; and &lt;code&gt;g : E₂ →ₛₗ[σ₂₃] E₃&lt;/code&gt;, we would naturally end up with &lt;code&gt;g.comp f : E₁ →ₛₗ[σ₂₃.comp σ₁₂] E₃&lt;/code&gt;. However, in most cases of interest, this is very awkward: suppose, for example, that we have defined the adjoint as a conjugate-linear map: &lt;code&gt;adjoint : (E →ₗ[ℂ] F) →ₛₗ[conj] (F →ₗ[ℂ] E)&lt;/code&gt;, and want to express the fact that the adjoint of the adjoint is the identity; in other words, we want a lemma like&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://leanprover-community.github.io/blog/posts/semilinear-maps/#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
@@ -576,7 +674,7 @@ In which ways did you find the community helped you?&lt;/p&gt;
 &lt;p&gt;The examples given here have been simplified to get to the core of the issue; in reality, these maps would involve &lt;em&gt;continuous&lt;/em&gt; linear maps, we would most likely have to specify the type of &lt;code&gt;adjoint&lt;/code&gt; for Lean to infer the correct types, etc. &lt;a class="footnote-backref" href="https://leanprover-community.github.io/blog/posts/semilinear-maps/#fnref:1" title="Jump back to footnote 1 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/semilinear-maps/</guid><pubDate>Sat, 11 Dec 2021 11:00:00 GMT</pubDate></item><item><title>This month in mathlib (Nov 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in November.&lt;/p&gt;
+&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/semilinear-maps/</guid><pubDate>Sat, 11 Dec 2021 11:00:00 GMT</pubDate></item><item><title>This month in mathlib (Nov 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;This post summarizes some of the activity that happened in mathlib in November.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Geometry and algebraic topology.&lt;/p&gt;
@@ -669,7 +767,7 @@ In which ways did you find the community helped you?&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10258"&gt;PR #10258&lt;/a&gt; proves that, if $u_n$ is subadditive, then $u_n / n$ converges.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</guid><pubDate>Mon, 06 Dec 2021 05:58:04 GMT</pubDate></item><item><title>Dedekind domains and class number in Lean</title><link>https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/</link><dc:creator>Anne Baanen</dc:creator><description>&lt;div&gt;&lt;p&gt;Pull request &lt;a href="https://github.com/leanprover-community/mathlib/pull/9071"&gt;#9701&lt;/a&gt; marks the completion of a string of additions to mathlib centered around formalizing Dedekind domains and class groups of global fields (those words will be explained below). Previous PRs had shown that nonzero ideals of a Dedekind domain factor uniquely into prime ideals, and had defined class groups in some generality. The main result in this PR is the finiteness of the class group of a global field (and in particular of the ring of integers of a number field).
+&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</guid><pubDate>Mon, 06 Dec 2021 05:58:04 GMT</pubDate></item><item><title>Dedekind domains and class number in Lean</title><link>https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/</link><dc:creator>Anne Baanen</dc:creator><description>&lt;p&gt;Pull request &lt;a href="https://github.com/leanprover-community/mathlib/pull/9071"&gt;#9701&lt;/a&gt; marks the completion of a string of additions to mathlib centered around formalizing Dedekind domains and class groups of global fields (those words will be explained below). Previous PRs had shown that nonzero ideals of a Dedekind domain factor uniquely into prime ideals, and had defined class groups in some generality. The main result in this PR is the finiteness of the class group of a global field (and in particular of the ring of integers of a number field).
 Formalizing these subjects has been one of my long-term goals for mathlib,
 and as far as we are aware, Lean is the first system in which this level of algebraic number theory is available.
 These formalizations have been joint work:
@@ -738,7 +836,7 @@ Once we have a good understanding of how to do so manually, I hope to automate t
 in the end creating a tactic that takes a number field and returns its class number
 (perhaps interfacing with computer algebra systems to do the hard computations, and certifying the results within Lean).
 The end goal for this kind of automation is a system where you can enter an equation like $x^2 + 2 = y^3$ for $x, y \in \mathbb{Z}$,
-and Lean would output a formally verified set of solutions.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/</guid><pubDate>Mon, 22 Nov 2021 07:00:00 GMT</pubDate></item><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
+and Lean would output a formally verified set of solutions.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/</guid><pubDate>Mon, 22 Nov 2021 07:00:00 GMT</pubDate></item><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
 in December 2020, mathlib already
 &lt;a href="https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space"&gt;had&lt;/a&gt;
 a decent theory of normed spaces. With this post I want to show how mathlib can benefit
@@ -779,7 +877,7 @@ folder).&lt;/p&gt;
   respect to the norm. This was enough for &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;LTE&lt;/a&gt;,
   but still not completely satisfying, since one cannot directly use the category theory API for
   &lt;code&gt;explicit_cokernel&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</guid><pubDate>Tue, 02 Nov 2021 09:04:21 GMT</pubDate></item><item><title>This month in mathlib (Oct 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in October.&lt;/p&gt;
+&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</guid><pubDate>Tue, 02 Nov 2021 09:04:21 GMT</pubDate></item><item><title>This month in mathlib (Oct 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;This post summarizes some of the activity that happened in mathlib in October.&lt;/p&gt;
 &lt;h3&gt;Highlighted PRs&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;In algebraic geometry, there has been a surge in activity.
@@ -874,7 +972,7 @@ a Sylow $p$-subgroup of $N$, then $\text{N}_G(P)*N=G$.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9988"&gt;PR #9988&lt;/a&gt; update to Lean-3.35.0c&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</guid><pubDate>Mon, 01 Nov 2021 05:38:50 GMT</pubDate></item><item><title>Hoskinson Center announced</title><link>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</link><dc:creator>Jeremy Avigad</dc:creator><description>&lt;div&gt;&lt;p&gt;On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
+&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</guid><pubDate>Mon, 01 Nov 2021 05:38:50 GMT</pubDate></item><item><title>Hoskinson Center announced</title><link>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</link><dc:creator>Jeremy Avigad</dc:creator><description>&lt;p&gt;On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
 from blockchain entrepreneur Charles C. Hoskinson will be used to establish the Hoskinson
 Center for Formal Mathematics, housed in the Department of Philosophy.
 You can read the &lt;a href="https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html"&gt;university press release&lt;/a&gt; and
@@ -891,7 +989,7 @@ as wide an audience as possible.&lt;/p&gt;
 as well as occasional meetings and visitors.
 In the near future, the center will focus on supporting the port of mathlib to Lean 4,
 developing automation and the user interface, and, perhaps most importantly,
-preparing textbooks and educational materials based on Lean.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</guid><pubDate>Sat, 02 Oct 2021 21:39:15 GMT</pubDate></item><item><title>This month in mathlib (Sep 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;This post summarizes some of the activity that happened in mathlib in September.&lt;/p&gt;
+preparing textbooks and educational materials based on Lean.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</guid><pubDate>Sat, 02 Oct 2021 21:39:15 GMT</pubDate></item><item><title>This month in mathlib (Sep 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;This post summarizes some of the activity that happened in mathlib in September.&lt;/p&gt;
 &lt;h3&gt;Highlighted PRs&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Number fields.
@@ -970,147 +1068,4 @@ preparing textbooks and educational materials based on Lean.&lt;/p&gt;&lt;/div&g
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8579"&gt;PR #8579&lt;/a&gt;: one-point compactification of a topological space (the Stone-Cech compactification had been around for ages, and now its little brother joined the gang)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9165"&gt;PR #9165&lt;/a&gt;: upgrade to Lean 3.33.0c&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9288"&gt;PR #9288&lt;/a&gt;: Sylow's theorems for infinite groups&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</guid><pubDate>Fri, 01 Oct 2021 07:00:05 GMT</pubDate></item><item><title>The Radon-Nikodym theorem in Lean</title><link>https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/</link><dc:creator>Kexing Ying</dc:creator><description>&lt;div&gt;&lt;p&gt;I have for the past two months been working on formalising the Radon-Nikodym theorem 
-in Lean, and with &lt;a href="https://github.com/leanprover-community/mathlib/pull/9065"&gt;PR #9065&lt;/a&gt; 
-merged into mathlib, this journey seems to have finally come to an end. &lt;/p&gt;
-&lt;p&gt;The Radon-Nikodym theorem provides a necessary and sufficient condition for 
-comparing two measures, and allows us (under certain conditions) to express 
-one measure in terms of another.
-The Radon-Nikodym theorem is an important result in measure theory and has a
-wide range of applications in different fields of mathematics. Most notably, 
-it can be applied in probability theory in the definition 
-of the conditional expectation and in mathematical finance through the Girsanov 
-theorem&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;Given two measures $\mu$ and $\nu$ on $\alpha$, we say that $\mu$ is 
-&lt;em&gt;absolutely continuous&lt;/em&gt; with respect to $\nu$ (and write $\mu \ll \nu$) if for all 
-subsets $S$ of $\alpha$, $\nu(S) = 0$ implies $\mu(S) = 0$. Absolute continuity 
-is an important notion for measures and we would like to establish a condition 
-for when it is true. &lt;/p&gt;
-&lt;p&gt;Given a measure $\mu$ on $\alpha$ and a measurable function 
-$f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$, the set function 
-$$S \mapsto \int_S f \text{ d} \mu$$
-is also a measure on $\alpha$ and we denote this measure by $f\mu$. It is 
-easy, and intuitive to see that $f\mu \ll \mu$, however, it is not clear 
-whether the reverse is true. The Radon-Nikodym theorem proves the reverse 
-implication for certain measures. In particular, the classical Radon-Nikodym 
-theorem states that two $\sigma$-finite measures $\mu, \nu$ satisfy $\mu \ll \nu$ 
-if and only if there exists a measurable function $f$ such that $\mu = f\nu$. 
-This function is known as the Radon-Nikodym derivative 
-(denoted by $\frac{\text{d}\mu}{\text{d}\nu}$) and is essentially unique whenever 
-it exists.&lt;/p&gt;
-&lt;p&gt;In Lean, this is shown by &lt;code&gt;absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq&lt;/code&gt;
-and can be found in &lt;code&gt;measure_theory/decomposition/radon_nikodym&lt;/code&gt;.
-While Radon-Nikodym is the main motivation, the proof of the theorem 
-itself is rather simple once we have the prerequisites, and thus, the project 
-spanned over multiple files, most of which can be found in &lt;code&gt;measure_theory/decomposition&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Of all the prerequisites, the most important are the 
-Jordan decomposition theorem and the Lebesgue decomposition theorem.
-The Jordan decomposition theorem uniquely classifies signed measures and allows 
-us to express every signed measure as a difference between two (mutually singular) 
-positive measures. While the theorem itself follows from the signed Hahn decomposition, 
-defining the structure of Jordan decompositions in Lean was tricky. While 
-initially, the decomposition was defined as a proposition, thanks to the suggestions 
-from the maintainers, it was decided to define the decomposition as a structure. &lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;structure&lt;/span&gt; &lt;span class="n"&gt;jordan_decomposition&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Type&lt;/span&gt;&lt;span class="bp"&gt;*&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;measurable_space&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos_part&lt;/span&gt; &lt;span class="n"&gt;neg_part&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;pos_part_finite&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;is_finite_measure&lt;/span&gt; &lt;span class="n"&gt;pos_part&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;neg_part_finite&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;is_finite_measure&lt;/span&gt; &lt;span class="n"&gt;neg_part&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mutually_singular&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pos_part&lt;/span&gt; &lt;span class="bp"&gt;⊥ₘ&lt;/span&gt; &lt;span class="n"&gt;neg_part&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;This was important, as later on, it was discovered that we were able to 
-relax some conditions on the uniqueness property of the Lebesgue decomposition 
-by introducing scalar multiplication on Jordan decompositions&lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt;. Furthermore, 
-as we would often like to transport between signed measures and Jordan 
-decompositions, it is easier to work with types rather than propositions since 
-this required a construction of an equivalence between the two types. &lt;/p&gt;
-&lt;p&gt;A similar situation was reached with the Lebesgue decomposition. The Lebesgue 
-decomposition states that given two $\sigma$-finite measures $\mu$ and $\nu$, 
-there exists an essentially unique measurable function $f : \alpha \to \overline{\mathbb{R}}_{\ge 0}$ 
-and a unique finite measure $\xi$ such that $\xi$ is mutually singular with respect 
-to $\nu$ (denoted $\xi \perp \nu$) and $\mu = \xi + f\nu$.
-As with the Jordan decomposition theorem, it was not clear how to represent this 
-statement. In particular, it is important for us to be able to extract the aforementioned 
-$f$ from the decomposition as this is the Radon-Nikodym derivative. After some
-experiments, I decided to represent this condition using a class.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="n"&gt;measure.have_lebesgue_decomposition&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Prop&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lebesgue_decomposition&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
-  &lt;span class="bp"&gt;∃&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;×&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;→&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="bp"&gt;∞&lt;/span&gt;&lt;span class="o"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;measurable&lt;/span&gt; &lt;span class="n"&gt;p.2&lt;/span&gt; &lt;span class="bp"&gt;∧&lt;/span&gt; &lt;span class="n"&gt;p.1&lt;/span&gt; &lt;span class="bp"&gt;⊥ₘ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="bp"&gt;∧&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p.1&lt;/span&gt; &lt;span class="bp"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ν.with_density&lt;/span&gt; &lt;span class="n"&gt;p.2&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Since in order to prove the Lebesgue decomposition for $\sigma$-finite measures, 
-we will first need to show it for finite measures, this definition allows us 
-to reuse the same statement for both cases, avoiding duplicate code. Furthermore, 
-as we would like to extract the measure and measurable function from the decomposition, 
-we may define functions that choose the decomposition if it exists, and are
-zero otherwise.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;def&lt;/span&gt; &lt;span class="n"&gt;measure.singular_part&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;classical.some&lt;/span&gt; &lt;span class="n"&gt;h.lebesgue_decomposition&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-
-&lt;span class="kd"&gt;def&lt;/span&gt; &lt;span class="n"&gt;measure.radon_nikodym_deriv&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;→&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt;&lt;span class="bp"&gt;≥&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="bp"&gt;∞&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;classical.some&lt;/span&gt; &lt;span class="n"&gt;h.lebesgue_decomposition&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;With the Lebesgue decomposition for $\sigma$-finite measures formalized, the 
-Radon-Nikodym theorem follows easily by considering that the singular part of the 
-Lebesgue decomposition is zero in the case that $\mu \ll \nu$.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;theorem&lt;/span&gt; &lt;span class="n"&gt;absolutely_continuous_iff_with_density_radon_nikodym_deriv_eq&lt;/span&gt;
-  &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="bp"&gt;≪&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt; &lt;span class="bp"&gt;↔&lt;/span&gt; &lt;span class="n"&gt;ν.with_density&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;radon_nikodym_deriv&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;ν&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Furthermore, the generalisation of the 
-Radon-Nikodym theorem to signed measures follows, simply by utilising 
-the Jordan decomposition and realising the Radon-Nikodym derivative of 
-the signed measure is the difference of the Radon-Nikodym derivatives of 
-the parts of the Jordan decomposition. However, using this definition of the 
-Radon-Nikodym derivative for the signed measures poses a problem, in which 
-proving any properties about them requires an absolutely continuous condition.
-Thus, it was decided to generalise the Lebesgue decomposition theorem for 
-signed measures from which we obtain the general Radon-Nikodym theorem.&lt;/p&gt;
-&lt;p&gt;Similar to the Lebesgue decomposition for the positive measures, the Lebesgue 
-decomposition between a signed measure and a positive measure states that, 
-given a signed measure $s$ and a $\sigma$-finite measure $\mu$, there exists 
-an essentially unique measurable function $f : \alpha \to \mathbb{R}$ and a 
-unique signed measure $t$, such that $t \perp \mu$ and $s = t + f\mu$.
-While this version of the Lebesgue decomposition was also represented as a class, 
-the statement itself was modified to be an equivalent, yet easier to work with 
-statement. Namely, a signed measure $s$ has Lebesgue decomposition with respect to 
-a measure $\mu$ if both parts of the Jordan decomposition of $s$ have Lebesgue 
-decomposition to $\mu$.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="n"&gt;signed_measure.have_lebesgue_decomposition&lt;/span&gt; 
-  &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;signed_measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Prop&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos_part&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;s.to_jordan_decomposition.pos_part.have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;neg_part&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;s.to_jordan_decomposition.neg_part.have_lebesgue_decomposition&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;By the same rationale, the singular part and the Radon-Nikodym derivative of the 
-decomposition are defined similarly.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="kd"&gt;def&lt;/span&gt; &lt;span class="n"&gt;signed_measure.singular_part&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;signed_measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;signed_measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s.to_jordan_decomposition.pos_part.singular_part&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_signed_measure&lt;/span&gt; &lt;span class="bp"&gt;-&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s.to_jordan_decomposition.neg_part.singular_part&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_signed_measure&lt;/span&gt;
-
-&lt;span class="kd"&gt;def&lt;/span&gt; &lt;span class="n"&gt;signed_measure.radon_nikodym_deriv&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;signed_measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;measure&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;α&lt;/span&gt; &lt;span class="bp"&gt;→&lt;/span&gt; &lt;span class="n"&gt;ℝ&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="bp"&gt;λ&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s.to_jordan_decomposition.pos_part.radon_nikodym_deriv&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_real&lt;/span&gt; &lt;span class="bp"&gt;-&lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s.to_jordan_decomposition.neg_part.radon_nikodym_deriv&lt;/span&gt; &lt;span class="n"&gt;μ&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_real&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Using these definitions, the Lebesgue decomposition theorem was proved easily 
-and thus, also the Radon-Nikodym theorem for signed measures. Most importantly, 
-however, as these definition do not require an absolutely continuous condition, 
-it was possible to prove that the Radon-Nikodym derivative 
-$\frac{\text{d}\mu}{\text{d}\nu}$ is essentially unique without requiring 
-$\mu \ll \nu$.  &lt;/p&gt;
-&lt;p&gt;As the Radon-Nikodym theorem is central to many concepts in probability theory, 
-a brand new territory in mathlib is now available for us to explore,&lt;br&gt;
-and with &lt;a href="https://github.com/leanprover-community/mathlib/pull/9065"&gt;PR #9065&lt;/a&gt; 
-merged into mathlib, a new journey seems about to begin. &lt;/p&gt;
-&lt;div class="footnote"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem#Applications"&gt;wikipedia.org/wiki/Radon-Nikodym_theorem#Applications&lt;/a&gt; &lt;a class="footnote-backref" href="https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/#fnref:1" title="Jump back to footnote 1 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:2"&gt;
-&lt;p&gt;Given a signed measure &lt;code&gt;s&lt;/code&gt;, a measure &lt;code&gt;μ&lt;/code&gt; and a real number &lt;code&gt;r&lt;/code&gt;, one may show 
-&lt;code&gt;(r • s).singular_part μ = r • s.singular_part μ&lt;/code&gt; without 
-requiring &lt;code&gt;have_lebesgue_decomposition s μ&lt;/code&gt; by proving that the scalar product 
-with a real number and the equivalence between signed measures and Jordan 
-decompositions commute. &lt;a class="footnote-backref" href="https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/#fnref:2" title="Jump back to footnote 2 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/the-radon-nikodym-theorem-in-lean/</guid><pubDate>Wed, 22 Sep 2021 10:51:14 GMT</pubDate></item></channel></rss>
+&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/</guid><pubDate>Fri, 01 Oct 2021 07:00:05 GMT</pubDate></item></channel></rss>
