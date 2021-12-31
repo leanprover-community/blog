@@ -7,7 +7,7 @@ has_math: true
 link: ''
 slug: lte-update
 tags: ''
-title: Liquid Tensor Experiment: an update
+title: 'Liquid Tensor Experiment: an update'
 type: text
 ---
 In July 2021, we [celebrated](https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/)
@@ -88,7 +88,7 @@ In turn, these spaces of Laurent measures naturally admit a free module as submo
 and the quotient is the mysterious space `Mbar r' S` that appears in `first_target`.
 Together, these two short exact sequences are crucial inputs
 that will be combined with the homological tools mentioned above
-to reduce the main theorem to `first_target.
+to reduce the main theorem to `first_target`.
 
 Filippo A.E. Nuccio has been working arduously on the formalization of these results,
 which amounts to Theorem 6.9 of [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf).
