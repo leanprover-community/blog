@@ -82,7 +82,7 @@ Together, these two maps form a short exact sequence,
 which leads to a long exact sequence of `Ext`-groups.
 This quotient map sits in a short exact sequence, together with its kernel.
 Hence the vanishing of the `Ext`-groups above can be reduced to a question about similar `Ext`-groups
-but this involving these spaces of Laurent measures.
+but this time involving these spaces of Laurent measures.
 
 In turn, these spaces of Laurent measures naturally admit a free module as submodule,
 and the quotient is the mysterious space `Mbar r' S` that appears in `first_target`.
