@@ -7,7 +7,7 @@ has_math: true
 link: ''
 slug: 2021-the-bottomline
 tags: ''
-title: 2021 -- The Bottomline
+title: 2021 -- The Bottom Line
 type: text
 ---
 
