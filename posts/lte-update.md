@@ -95,7 +95,7 @@ which amounts to Theorem 6.9 of [Analytic.pdf](https://www.math.uni-bonn.de/peop
 
 ## Breen-Deligne resolutions and MacLane's Q'-construction
 
-Finally, to compute the `Ext`-groups, at some point projective or injective resolutions must enter the picture.
+Finally, to compute the `Ext`-groups, at some point projective resolutions must enter the picture.
 The proof in [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf)
 relies on so-called Breen-Deligne resolutions, which have the following two crucial properties:
 
@@ -110,10 +110,9 @@ For our formalization project, they also come with the significant downside that
 relies on technical results from homotopy theory,
 which haven't been formalized yet.
 
-But to our delight, it turns out that there are constructions that satisfy (1) and (2) above,
-and that are good enough for our purposes.
-Indeed, there is a functorial complex known as MacLane's `Q'` construction,
-which satisfies the following result.
+But to our delight, it turns out that there are related constructions that satisfy (1) and (2) above which are good enough for our purposes and which can be formalized directly.
+Indeed, the functorial complex known as "MacLane's `Q'` construction", is one such example,
+which also satisfies the following result.
 
 **Lemma.** Let $A$ and $B$ be two abelian groups (or sheaves).
 If $\text{Ext}^i(Q'(A), B) = 0$ for all $i \ge 0$,
