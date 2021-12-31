@@ -45,82 +45,84 @@ For more information, see the page on [mathlib statistics](https://leanprover-co
 ## New contributors to mathlib
 
 * Mohamed Al-Fahim
-* David Ang
-* Noam Atar
-* Mantas Baksys
-* Itai Bar-Natan
-* Chris Birkbeck
-* Manuel Candales
-* Carlos Caralps
-* Robin Carlier
-* Antoine Chambert-Loir
-* Tian Chen
-* Joanna Choules
-* Iván Sadofschi Costa
-* Yaël Dillies
-* Ender Doe
-* Jon Eugster
-* Moritz Firsching
-* María Inés de Frutos-Fernández
-* Mark Gerads
-* Vladimir Goryachev
-* Mathieu Guay-Paquet
-* Violeta Hernández
-* Christopher Hoskin
-* Joseph Hua
-* Ashwin Iyengar
-* Matt Kempster
-* Luke Kershaw
-* Huỳnh Trần Khanh
-* Praneeth Kolichala
-* Alex Kontorovich
-* Kalle Kytölä
-* Julian Külshammer
-* Antoine Labelle
-* Ryan Lahfa
-* Paul Lezeau
-* Jireh Loreaux
-* Bernd Losert
-* Giacomo Maletto
-* Marc Masdeu
-* Chase Meadors
-* Yuma Mizuno
-* Sebastian Monnet
-* Hunter Monroe
-*  Moritz
-* Apurva Nakade
-* Anupam Nayak
-* Peter Nelson
-* Luke Nelson
-* Arthur Paulino
-* Sorawee Porncharoenwase
-* Stuart Presnell
-* Greg Price
-* Ethan Pronovost
-* Jakob von Raumer
-* David Renshaw
-* Joël Riou
-* Eric Rodriguez
-* Shadman Sakib
-* Jakob Scholbach
-* Andrew Souther
-* Justus Springer
-* François Sunatori
-* Henry Swanson
-* Ben Toner
-* Alain Verberkmoes
-* Way Yan Win
-*  Winston
-* Ines Wright
-* Andrew Yang
-* Yourong Zang
-* Hanting Zhang
-* Alex Zhao
-*  gabrielmoise
-*  hallow-world
-*  l534zhan
-*  saradiazr11
-*  thejohncrafter
+* David Ang ([Multramate](https://github.com/Multramate))
+* Noam Atar ([atarnoam](https://github.com/atarnoam))
+* Mantas Baksys ([MantasBaksys](https://github.com/MantasBaksys))
+* Itai Bar-Natan ([itaibn](https://github.com/itaibn))
+* Chris Birkbeck ([CBirkbeck](https://github.com/CBirkbeck))
+* Manuel Candales ([manuelcandales](https://github.com/manuelcandales))
+* Carlos Caralps ([carloscaralps](https://github.com/carloscaralps))
+* Robin Carlier ([robin-carlier](https://github.com/robincarlier))
+* Antoine Chambert-Loir ([AntoineChambert-Loir](https://github.com/AntoineChambert-Loir))
+* Tian Chen ([peakpoint](https://github.com/peakpoint))
+* Joanna Choules ([jchoules](https://github.com/jchoules))
+* Iván Sadofschi Costa ([isadofschi](https://github.com/isadofschi))
+* Yaël Dillies ([YaelDillies](https://github.com/YaelDillies))
+* Ender Doe ([FrickHazard](https://github.com/FrickHazard))
+* Jon Eugster ([joneugster](https://github.com/joneugster))
+* Moritz Firsching ([mo271](https://github.com/mo271))
+* María Inés de Frutos-Fernández ([mariainesdff](https://github.com/mariainesdff))
+* Mark Gerads ([Nazgand](https://github.com/Nazgand))
+* Vladimir Goryachev ([SymmetryUnbroken](https://github.com/SymmetryUnbroken))
+* Mathieu Guay-Paquet ([mguaypaq](https://github.com/mguaypaq))
+* Violeta Hernández ([vihdzp](https://github.com/vihdzp))
+* Christopher Hoskin ([mans0954](https://github.com/mans0954))
+* Joseph Hua ([Jlh18](https://github.com/Jlh18))
+* Ashwin Iyengar ([ashwiniyengar](https://github.com/ashwiniyengar))
+* Matt Kempster ([matt-kempster](https://github.com/matt-kempster))
+* Luke Kershaw ([l-kershaw](https://github.com/l-kershaw))
+* Huỳnh Trần Khanh ([huynhtrankhanh](https://github.com/huynhtrankhanh))
+* Praneeth Kolichala ([prakol16](https://github.com/prakol16))
+* Alex Kontorovich ([AlexKontorovich](https://github.com/AlexKontorovich))
+* Kalle Kytölä ([kkytola](https://github.com/kkytola))
+* Julian Külshammer ([Julian-Kuelshammer](https://github.com/Julian-Kuelshammer))
+* Antoine Labelle ([antoinelab01](https://github.com/antoinelab01))
+* Ryan Lahfa ([RaitoBezarius](https://github.com/RaitoBezarius))
+* Paul Lezeau ([Paul-Lez](https://github.com/Paul-Lez))
+* Jireh Loreaux ([j-loreaux](https://github.com/j-loreaux))
+* Bernd Losert ([berndlosert](https://github.com/berndlosert))
+* Giacomo Maletto ([GiacomoMaletto](https://github.com/GiacomoMaletto))
+* Marc Masdeu ([mmasdeu](https://github.com/mmasdeu))
+* Chase Meadors ([cemulate](https://github.com/cemulate))
+* Yuma Mizuno ([yuma-mizuno](https://github.com/yuma-mizuno))
+* Gabriel Moise ([gabrielmoise](https://github.com/gabrielmoise))
+* Sebastian Monnet ([Sebastian-Monnet](https://github.com/Sebastian-Monnet))
+* Hunter Monroe ([hmonroe](https://github.com/hmonroe))
+*  Moritz ([mcdoll](https://github.com/mcdoll))
+* Apurva Nakade ([apurvnakade](https://github.com/apurvnakade))
+* Anupam Nayak ([AaronGreen001](https://github.com/AaronGreen001))
+* Peter Nelson ([apnelson1](https://github.com/apnelson1))
+* Luke Nelson ([lukenels](https://github.com/lukenels))
+* Arthur Paulino ([arthurpaulino](https://github.com/arthurpaulino))
+* Sorawee Porncharoenwase ([sorawee](https://github.com/sorawee))
+* Stuart Presnell ([stuart-presnell](https://github.com/stuart-presnell))
+* Greg Price ([gnprice](https://github.com/gnprice))
+* Ethan Pronovost ([EPronovost](https://github.com/EPronovost))
+* Jakob von Raumer ([javra](https://github.com/javra))
+* Sara Díaz Real ([saradiazr11](https://github.com/saradiazr11))
+* David Renshaw ([dwrensha](https://github.com/dwrensha))
+* Joël Riou ([joelriou](https://github.com/joelriou))
+* Eric Rodriguez ([ericrbg](https://github.com/ericrbg))
+* Shadman Sakib ([shadasali](https://github.com/shadasali))
+* Jakob Scholbach ([JakobScholbach](https://github.com/JakobScholbach))
+* Andrew Souther ([asouther4](https://github.com/asouther4))
+* Justus Springer ([justus-springer](https://github.com/justus-springer))
+* François Sunatori ([frankymacster](https://github.com/frankymacster))
+* Henry Swanson ([HenrySwanson](https://github.com/HenrySwanson))
+* Ben Toner ([bentoner](https://github.com/bentoner))
+* Alain Verberkmoes ([verberkm](https://github.com/verberkm))
+* Way Yan Win ([greysome](https://github.com/greysome))
+*  Winston ([winestone](https://github.com/winestone))
+* Ines Wright ([ineswright](https://github.com/ineswright))
+* Andrew Yang ([erdOne](https://github.com/erdOne))
+* Yourong Zang ([justadzr](https://github.com/justadzr))
+* Hanting Zhang ([acxxa](https://github.com/acxxa))
+* Alex Zhao ([cocohearts](https://github.com/cocohearts))
+*  hallow-world ([hallow-world](https://github.com/hallow-world))
+*  l534zhan ([l534zhan](https://github.com/l534zhan))
+*  thejohncrafter ([thejohncrafter](https://github.com/thejohncrafter))
+
+
 
 
 ## Hoskinson Centre for Formal Mathematics
