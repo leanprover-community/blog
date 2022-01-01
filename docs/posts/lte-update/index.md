@@ -10,7 +10,7 @@ tags: ''
 title: 'Liquid Tensor Experiment: an update'
 type: text
 ---
-In July 2021, we [celebrated](https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/)
+In June 2021, we [celebrated](https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/)
 the first milestone of the Liquid Tensor Experiment.
 The achievement was covered in
 [Nature](https://www.nature.com/articles/d41586-021-01627-2)
