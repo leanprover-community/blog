@@ -7,7 +7,7 @@ has_math: true
 link: ''
 slug: 2021-the-bottomline
 tags: ''
-title: 2021 -- The Bottom Line
+title: 2021 - The Bottom Line
 type: text
 ---
 
@@ -17,34 +17,41 @@ As an end-of-year retrospective, let's see how the library developed in 2021.
 
 ## Statistics
 
-| | Dec 31, 2020 | Dec 31, 2021 |
-| | -------------- | ------------ |
-| Number of files | 1498 | ? | 
-| Lines of code in repository | 455152 | ? | 
-| SLOC in `/src` | 284441 | ? | 
-| Lines of comments | 65219 | ? | 
-| Total commits | 3354 | ? | 
-| Definitions | 15437 | ? |
-| Theorems | 44038 | ? |
+Since early 2019, mathlib has followed a "squash and merge" strategy for pull requests.
+One commit to the main branch corresponds to one merged pull request.
 
+| | Dec 31, 2020 | Dec 31, 2021 | Increase |
+| | -------------- | ------------ | |
+| Number of files | 1498 | 2329 | 831 |
+| Lines of code in repository | 455152 | 745259 | 290107 |
+| SLOC in `/src` [^1] | 284441 | 473644 | 189203 |
+| Lines of comments | 65219 | 108658 | 43439 |
+| Total commits | 5751 | 10960 | 5209 |
+| Definitions | 15437 | 24861 | 9424 |
+| Theorems | 44038 | 72847 | 28809 | 
+| Contributors | 132 | 209 | 77 |
 
-Number of files: from ~1500 to ~2325
-
-Number of lines: from ~455K to ~742K
-
-Number of commits: from 3354 in 2020 to 51?? in 2021
-
-Total contributors: 209
-
-Most commits per month: 558 in October
+[^1]: We count source lines of code using `cloc`. This count includes only non-comment, non-whitespace lines of Lean code in the `/src` directory of mathlib.
 
 For more information, see the page on [mathlib statistics](https://leanprover-community.github.io/mathlib_stats.html).
 
 ### Records
 
+
+December 2021 set a record as the month with the highest number of commits, at 565. 
+Four of the five most active months happened in 2021;
+December, October, and September were mathlib's first, second, and third most active months, respectively.
+
+Yury Kurdryashov was the year's most prolific contributor, with 662 commits, surpassing his previous year's record of 624.
+Yaël Dillies deserves a special shoutout: 
+in his first year of contributing, he became the year's fourth most prolific contributor, with 301 commits.
+
 ## New contributors to mathlib
 
-* Mohamed Al-Fahim
+77 people contributed to mathlib for the first time in 2021.
+In total, 864 commits were from new contributors.
+
+* Mohamed Al-Fahim <!-- Github account has been deleted  -->
 * David Ang ([Multramate](https://github.com/Multramate))
 * Noam Atar ([atarnoam](https://github.com/atarnoam))
 * Mantas Baksys ([MantasBaksys](https://github.com/MantasBaksys))
