@@ -5,7 +5,7 @@ date: 2021-12-30 23:59:59+00:00
 description: ''
 has_math: true
 link: ''
-slug: 2021-the-bottomline
+slug: 2021-the-bottom-line
 tags: ''
 title: 2021 - The Bottom Line
 type: text
