@@ -13,7 +13,7 @@ type: text
 
 Since the mathlib repository was created in summer 2017,
 each year has been bigger than the last. 
-As an end-of-year retrospective, let's see how the library developed in 2021.
+As an end-of-year retrospective, we look at how the mathlib library and community have developed in 2021.
 
 ## Statistics
 
@@ -131,8 +131,13 @@ In total, 864 commits were from new contributors.
 
 
 
-
 ## Hoskinson Centre for Formal Mathematics
+
+In [September](https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/),
+Carnegie Mellon University [announced](https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html) that 
+a $20 million gift from blockchain entrepreneur Charles C. Hoskinson 
+will be used to establish the Hoskinson Center for Formal Mathematics, 
+housed in the Department of Philosophy. 
 
 ## Big projects
 
@@ -141,4 +146,13 @@ In total, 864 commits were from new contributors.
 ### Sphere eversion
 
 ### Fermat's Last Theorem for regular primes
+
+## Monthly recaps
+
+Since the creation of this blog in summer 2021 we have recapped the project activity each month.
+
+* [August](https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/)
+* [September](https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/)
+* [Octover](https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/)
+* [November](https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/)
 
