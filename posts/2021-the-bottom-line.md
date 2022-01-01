@@ -23,7 +23,7 @@ One commit to the main branch corresponds to one merged pull request.
 | | Dec 31, 2020 | Dec 31, 2021 | Increase |
 | | -------------- | ------------ | |
 | Number of files | 1498 | 2329 | 831 |
-| Lines of code in repository | 455152 | 745259 | 290107 |
+| Lines of code in repository [^1] | 455152 | 745259 | 290107 |
 | SLOC in `/src` [^1] | 284441 | 473644 | 189203 |
 | Lines of comments | 65219 | 108658 | 43439 |
 | Total commits | 5751 | 10960 | 5209 |
@@ -31,7 +31,7 @@ One commit to the main branch corresponds to one merged pull request.
 | Theorems | 44038 | 72847 | 28809 | 
 | Contributors | 132 | 209 | 77 |
 
-[^1]: We count source lines of code using `cloc`. This count includes only non-comment, non-whitespace lines of Lean code in the `/src` directory of mathlib.
+[^1]: We count source lines of code using [`cloc`](http://cloc.sourceforge.net/). This count includes only non-comment, non-whitespace lines of Lean code in the `/src` directory of mathlib. The "lines of code in repository" count includes blank and comment lines in all file types in all directories of the mathlib repository.
 
 For more information, see the page on [mathlib statistics](https://leanprover-community.github.io/mathlib_stats.html).
 
