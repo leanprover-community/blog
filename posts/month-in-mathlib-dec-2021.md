@@ -17,7 +17,7 @@ In this post we highlight some of these contributions.
 * Combinatorics.
     - [PR #10287](https://github.com/leanprover-community/mathlib/pull/10287) defines graph colorings and partitions.
     - [PR #10981](https://github.com/leanprover-community/mathlib/pull/10981) defines the concepts of walks, paths, cycles in graph theory.
-    - [PR #5698](https://github.com/leanprover-community/mathlib/pull/5698) introduces strong regularity conditions for graphs.
+    - [PR #5698](https://github.com/leanprover-community/mathlib/pull/5698) introduces strong regularity conditions for graphs and shows that complete graphs and complements of strongly regular graphs are strongly regular.
     - [PR #10509](https://github.com/leanprover-community/mathlib/pull/10509) defines [Salem-Spencer sets](https://en.wikipedia.org/wiki/Salem%E2%80%93Spencer_set) and Roth numbers
 * Commutative algebra.
     - There is now a systematic way to talk about local properties of rings and
