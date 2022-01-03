@@ -1,5 +1,5 @@
 ---
-author: 'Scott Morrison'
+author: 'Mathlib community'
 category: 'overview'
 date: 2021-12-30 23:59:59+00:00
 description: ''
