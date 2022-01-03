@@ -25,6 +25,9 @@ In this post we highlight some of these contributions.
   - [PR #10989](https://github.com/leanprover-community/mathlib/pull/10989) and
     [PR #11040](https://github.com/leanprover-community/mathlib/pull/11040)
     show that schemes are sober.
+  - [PR #10967](https://github.com/leanprover-community/mathlib/pull/10967)
+    defines uniform convergence on compact subsets and shows that it is equivalent
+    to convergence in the compact-open topology.
 
 * Algebraic geometry
   - [PR #10733](https://github.com/leanprover-community/mathlib/pull/10733)
