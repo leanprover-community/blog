@@ -167,6 +167,19 @@ See one of our recent blogposts for a
 
 ### Fermat's Last Theorem for regular primes
 
+The aim of the [flt-regular project](https://github.com/leanprover-community/flt-regular)
+is to prove Fermat's Last Theorem for
+[regular primes](https://en.wikipedia.org/wiki/Regular_prime),
+an important result proved in 1850.
+This project continue the development of
+[algebraic number theory](https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/) in mathlib.
+You can have a look at the [blueprint](https://leanprover-community.github.io/flt-regular/) to check the mathematical details.
+After having developed the basic properties of cyclotomic extensions and of the discriminant,
+we are now computing the ring of integers of a cyclotomic extension.
+We can then work in $\mathbb{Z}[\zeta_p]$:
+doing arithmetic in $\mathbb{Z}[\zeta_p]$ is more complicated than in $\mathbb{Z}$,
+but the regularity assumption allows to prove the results we need.
+
 ## Monthly recaps
 
 Since the creation of this blog in summer 2021 we have recapped the project activity each month.
