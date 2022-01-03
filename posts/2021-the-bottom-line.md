@@ -143,6 +143,26 @@ housed in the Department of Philosophy.
 
 ### Liquid Tensor Experiment
 
+One of the spectacular highlights in 2021 was the formalization of Theorem 9.4
+of [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf).
+This is the main technical ingredient in the proof of the main theorem of liquid vector spaces,
+a recent result of Clausen and Scholze.
+We embarked on this project after Scholze posted a
+[challenge](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/)
+to the formalization communities.
+
+We reached the milestone within half a year, faster than anyone had expected,
+surprising ourselves and others.
+The accomplishment was covered by
+[Nature](https://www.nature.com/articles/d41586-021-01627-2)
+and
+[Quanta](https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/).
+
+The full challenge is not yet completed,
+and is actively worked on right now.
+See one of our recent blogposts for a
+[progress report](https://leanprover-community.github.io/blog/posts/lte-update/).
+
 ### Sphere eversion
 
 ### Fermat's Last Theorem for regular primes
