@@ -40,7 +40,7 @@ In this post we highlight some of these contributions.
       shows that an integral scheme is reduced and irreducible.
       That a scheme is reduced iff its stalks are reduced is shown in
       [PR #10879](https://github.com/leanprover-community/mathlib/pull/10879).
-    - [PR #8611](https://github.com/leanprover-community/mathlib/pull/8611) defines the action of `SL(2, ℤ)` on the upper half plane and partly classifies its orbits.
+    - [PR #8611](https://github.com/leanprover-community/mathlib/pull/8611) defines the action of `SL(2, ℤ)` on the upper half plane and partially classifies its orbits.
     - [PR #10306](https://github.com/leanprover-community/mathlib/pull/10306) defines
       orientations of modules and rays in modules. This will be useful in particular in order to define oriented angles in Euclidean plane geometry.
 * General topology 
