@@ -57,7 +57,7 @@ This was done by Scott Morrison, who contributed definitions of `Ext` and `Tor` 
 We also need to show that the category of condensed abelian groups satisfies these conditions.
 Recently, Adam Topaz finished a formalization of the fact that on an arbitrary site (= category + Grothendieck topology)
 the category of sheaves with values in a suitable abelian category is itself an abelian category.
-In particular the category of abelian sheaves, and hence condensed abelian groups, forms an abelian category.
+In particular the category of abelian sheaves, and hence the category of condensed abelian groups, is an abelian category.
 The fact that condensed abelian groups have enough projectives is almost done,
 so that finally the `Ext` in the statement above does no longer depend on unformalized assumptions.
 
@@ -80,7 +80,6 @@ with `(1/2)^{p'} = r'`.
 This quotient map turns out to be the cokernel of an injective endomorphism of the space of Laurent measures.
 Together, these two maps form a short exact sequence,
 which leads to a long exact sequence of `Ext`-groups.
-This quotient map sits in a short exact sequence, together with its kernel.
 Hence the vanishing of the `Ext`-groups above can be reduced to a question about similar `Ext`-groups
 but this time involving these spaces of Laurent measures.
 
@@ -91,35 +90,35 @@ that will be combined with the homological tools mentioned above
 to reduce the main theorem to `first_target`.
 
 Filippo A.E. Nuccio has been working arduously on the formalization of these results,
-which amounts to Theorem 6.9 of [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf).
+which amount to Theorem 6.9 of [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf).
 
-## Breen-Deligne resolutions and MacLane's Q'-construction
+## Breen–Deligne resolutions and MacLane's Q'-construction
 
 Finally, to compute the `Ext`-groups, at some point projective resolutions must enter the picture.
 The proof in [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf)
-relies on so-called Breen-Deligne resolutions, which have the following two crucial properties:
+relies on so-called Breen–Deligne resolutions, which have the following two crucial properties:
 
 1. It is a functorial construction `A ↦ C(A)` that sends an abelian group (or sheaf) to a complex of abelian groups (or sheaves).
 2. When viewed as a functor to the homotopy category of complexes, it is additive.
   In other words, `C(A ⊕ A)` is naturally homotopic to `C(A) ⊕ C(A)`.
 
 In addition to these properties,
-Breen-Deligne resolutions have the favourable property that the construction yields a projective resolution `C(A)` for every `A`.
+Breen–Deligne resolutions have the favourable property that the construction yields a projective resolution `C(A)` for every `A`.
 
-For our formalization project, they also come with the significant downside that the proof of the existence of Breen-Deligne resolutions
+For our formalization project, they also come with the significant downside that the proof of the existence of Breen–Deligne resolutions
 relies on technical results from homotopy theory,
 which haven't been formalized yet.
 
 But to our delight, it turns out that there are related constructions that satisfy (1) and (2) above which are good enough for our purposes and which can be formalized directly.
-Indeed, the functorial complex known as "MacLane's `Q'` construction", is one such example,
-which also satisfies the following result.
+Indeed, the functorial complex known as "MacLane's `Q'` construction", is one such example.
+On top of that, the following result holds.
 
 **Lemma.** Let $A$ and $B$ be two abelian groups (or sheaves).
 If $\text{Ext}^i(Q'(A), B) = 0$ for all $i \ge 0$,
 then $\text{Ext}^i(A, B) = 0$ for all $i \ge 0$.
 
 This lemma is not yet formalized,
-and to our knowledge does not appear in the literature.
+and to our knowledge it does not appear in the literature.
 We hope to fix both of these issues in the near future.
 
 So far, we have formalized the claim that the `Q'`-construction satisfies properties (1) and (2).
