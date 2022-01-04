@@ -130,7 +130,7 @@ covering lemmas. The calculus backbone has been worked out by Patrick who
 proved many results about continuity and differentiability of integrals
 depending on parameters (still to be fully brought to mathlib) with help
 from Floris. Using this, the fundamental corrugation estimates have been
-proved. The project is now ready to merge those three aspect (affine
+proved. The project is now ready to merge those three aspects (affine
 geometry, topology and calculus) to prove all local results. Then the
 final part will be to handle the global theory using the differentiable
 manifolds theory in mathlib.
