@@ -115,7 +115,7 @@ See one of our recent blogposts for a
 The 
 [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/) 
 aims to formalize flexibility results in differential topology, including
-the celebrated existence of sphere eversions in $ℝ^3$. The project really
+the celebrated existence of sphere eversions in $ℝ^3$. Development really
 took off in September 2021 with Floris van Doorn and Oliver Nash joining
 Patrick Massot in the project, with some extra help from Anatone Dedecker.
 
