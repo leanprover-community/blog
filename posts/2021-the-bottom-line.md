@@ -151,6 +151,16 @@ will be used to establish the Hoskinson Center for Formal Mathematics,
 housed in the Department of Philosophy. 
 This center is expected to support the development of mathlib and applications of proof assistants to mathematics in general.
 
+## Lean Together 2021
+
+Way back in January, we hosted [Lean Together 2021](https://leanprover-community.github.io/lt2021/), 
+an online meeting for Lean users and people from other formalization communities. 
+The meeting included a number of talks, 
+all [recorded and posted on YouTube](https://www.youtube.com/playlist?list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt),
+as well as informal discussions and social time. 
+Some highlights: Leonardo de Moura and Sebastian Ullrich [officially introduced Lean 4](https://www.youtube.com/watch?v=UeGvhfW1v9M&list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt&index=5&ab_channel=leanprovercommunity),
+and a number of panelists discussed [using proof assistants in the classroom](https://www.youtube.com/watch?v=mTLuON5eRZI&list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt&index=23&t=6s&ab_channel=leanprovercommunity). 
+
 ## Big projects
 
 ### Liquid Tensor Experiment
