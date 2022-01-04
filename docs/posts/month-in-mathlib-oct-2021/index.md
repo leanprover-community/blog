@@ -13,7 +13,7 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in October.
 
-## Highlighted PRs
+# Highlighted PRs
 
 * In algebraic geometry, there has been a surge in activity.
   After the definition of schemes entered mathlib, the development stalled for a while,

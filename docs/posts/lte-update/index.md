@@ -48,7 +48,7 @@ and the `p`-Banach space `V` is an example of the semi-normed groups showing up 
 But the `Ext` in this statement is really about the Ext-groups of condensed abelian groups,
 so both `ℳ_{p'} S` and `V` are viewed as condensed abelian groups in this theorem.
 
-## Homological algebra
+# Homological algebra
 
 To be able to state this theorem (e.g., to make sense of `Ext`)
 we need to develop the theory of derived functors
@@ -70,7 +70,7 @@ that the homotopy category of complexes is a pretriangulated category.
 This will give us important tools to manipulate the `Ext`-groups
 into a shape that reduces to `first_target`.
 
-## Spaces of measures
+# Spaces of measures
 
 As mentioned above, the space `ℳ_{p'} S` is a real condensed vector space
 that is morally a space of measures.
@@ -92,7 +92,7 @@ to reduce the main theorem to `first_target`.
 Filippo A.E. Nuccio has been working arduously on the formalization of these results,
 which amount to Theorem 6.9 of [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf).
 
-## Breen–Deligne resolutions and MacLane's Q'-construction
+# Breen–Deligne resolutions and MacLane's Q'-construction
 
 Finally, to compute the `Ext`-groups, at some point projective resolutions must enter the picture.
 The proof in [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf)

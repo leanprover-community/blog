@@ -13,7 +13,7 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in August.
 
-## Highlighted PRs
+# Highlighted PRs
 
 * [PR #8652](https://github.com/leanprover-community/mathlib/pull/8652): chore(*): update lean to 3.32.1  
   The community fork of Lean made two new
@@ -60,7 +60,7 @@ This post summarizes some of the activity that happened in mathlib in August.
   
 
 
-## Other mathematical contributions
+# Other mathematical contributions
 
 The following PRs are ordered by the date that they were merged into mathlib.
 
