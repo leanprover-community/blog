@@ -80,11 +80,15 @@ code, pre {
   font-size: 70%;
 }
 
-table, th, td {
-  border: 2px solid black;
+td, th {
+  border: 1pt solid #aaa;
+  padding: 4pt;
 }
 
 table {
   width: 90%;
   border-collapse: collapse;
+  border-style: hidden;
+  margin-left: auto;
+  margin-right: auto;
 }
