@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/lte-update/" type="text/html">
+<link rel="prefetch" href="posts/month-in-mathlib-dec-2021/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,112 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-update/" class="u-url">Liquid Tensor Experiment: an update</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-dec-2021/" class="u-url">This month in mathlib (Dec 2021)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/month-in-mathlib-dec-2021/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-01-01T12:13:11+01:00" itemprop="datePublished" title="2022-01-01 12:13">2022-01-01 12:13</time></a>
+            </p>
+		    <p><span class="text-dark">month-in-mathlib</span></p>
+                </div>
+            </header><div class="e-content entry-content">
+                    <p>December 2021 saw 565 commits to mathlib, which sets a new record.
+In this post we highlight some of these contributions.</p>
+<ul>
+<li>Combinatorics.<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10287">PR #10287</a> defines graph colorings and partitions.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10981">PR #10981</a> defines the concepts of walks, paths, cycles in graph theory.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10509">PR #10509</a> defines <a href="https://en.wikipedia.org/wiki/Salem%E2%80%93Spencer_set">Salem-Spencer sets</a> and Roth numbers.</li>
+</ul>
+</li>
+<li>Commutative algebra.<ul>
+<li>There is now a systematic way to talk about local properties of rings and
+  ring homomorphisms.
+  <a href="https://github.com/leanprover-community/mathlib/pull/10734">PR #10734</a> and
+  <a href="https://github.com/leanprover-community/mathlib/pull/10775">PR #10775</a>
+  prove
+  that being reduced, finite or of finite type are local properties.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9888">PR #9888</a>
+  does not introduce new mathematics, but introduces a new way that makes
+  it exceedingly easy to apply lemmas about group homomorphisms to a ring
+  homomorphism (or a linear map, or an algebra homomorphism, etc).</li>
+</ul>
+</li>
+<li>Algebraic topology.<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9762">PR #9762</a>
+  defines simplicial complexes embedded in an ambient vector space or more generally in a module over an ordered ring.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10927">PR #10927</a>
+  defines the alternating face map complex of a simplicial object.</li>
+</ul>
+</li>
+<li>Geometry<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10733">PR #10733</a>
+  shows that an integral scheme is reduced and irreducible.
+  That a scheme is reduced iff its stalks are reduced is shown in
+  <a href="https://github.com/leanprover-community/mathlib/pull/10879">PR #10879</a>.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8611">PR #8611</a> defines the action of <code>SL(2, ℤ)</code> on the upper half plane and partially classifies its orbits.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10306">PR #10306</a> defines
+  orientations of modules and rays in modules. This will be useful in particular in order to define oriented angles in Euclidean plane geometry.</li>
+</ul>
+</li>
+<li>General topology <ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10967">PR #10967</a>
+  defines uniform convergence on compact subsets for maps from a topological space to a uniform space (for instance a metric space or a topological group). It also shows that the underlying
+  topology is the compact-open topology.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10914">PR #10914</a>
+  introduces the specialization order for topological spaces
+  as well as the notion of generic points and sober spaces. Then 
+  <a href="https://github.com/leanprover-community/mathlib/pull/10989">PR #10989</a> and
+  <a href="https://github.com/leanprover-community/mathlib/pull/11040">PR #11040</a>
+  show that schemes are sober.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10701">PR #10701</a>
+  proves the <a href="https://en.wikipedia.org/wiki/Tietze_extension_theorem">Tietze extension theorem</a>.</li>
+</ul>
+</li>
+<li>Functional analysis<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10825">PR #10825</a> defines the adjoint of a continuous linear map between Hilbert spaces, made possible by the <a href="https://leanprover-community.github.io/blog/posts/semilinear-maps">semilinear map refactor</a>, and <a href="https://github.com/leanprover-community/mathlib/pull/10837">PR #10837</a> uses this to put a $C^\ast$-algebra structure on the continuous linear maps on a Hilbert space.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10322">PR #10322</a> proves continuous bounded real-valued functions form a normed vector lattice.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10663">PR #10663</a>
+  proves the <a href="https://en.wikipedia.org/wiki/Uniform_boundedness_principle">Banach-Steinhaus theorem</a>.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9836">PR #9836</a> adds polar sets in preparation for the Banach-Alaoglu theorem.</li>
+</ul>
+</li>
+<li>Measure theory, integration and probability<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11035">PR #11035</a>
+  proves one can cover a set in a real vector by balls with controlled
+  measure. This continues the preparation for differentiation of measures.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10906">PR #10906</a>
+  define integration on circles in the complex plane. This is foundational
+  material for complex analysis. Important applications will follow very
+  soon.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10625">PR #10625</a> defines martingales, and <a href="https://github.com/leanprover-community/mathlib/pull/10710">PR #10710</a> adds super/sub-martingales.</li>
+</ul>
+</li>
+</ul>
+</div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-update/" class="u-url">Liquid Tensor Experiment: an update</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/johan-commelin/">Johan Commelin</a>
@@ -1204,107 +1309,6 @@ In the near future, the center will focus on supporting the port of mathlib to L
 developing automation and the user interface, and, perhaps most importantly,
 preparing textbooks and educational materials based on Lean.</p>
                 </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-sep-2021/" class="u-url">This month in mathlib (Sep 2021)</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/month-in-mathlib-sep-2021/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-10-01T09:00:05+02:00" itemprop="datePublished" title="2021-10-01 09:00">2021-10-01 09:00</time></a>
-            </p>
-		    <p><span class="text-dark">month-in-mathlib</span></p>
-                </div>
-            </header><div class="e-content entry-content">
-                    <p>This post summarizes some of the activity that happened in mathlib in September.</p>
-<h3>Highlighted PRs</h3>
-<ul>
-<li>Number fields.
-  The <a href="https://github.com/lean-forward/class-number">Dedekind saga</a> continues with
-  <a href="https://github.com/leanprover-community/mathlib/pull/8847">PR #8847</a>,
-  <a href="https://github.com/leanprover-community/mathlib/pull/8701">PR #8701</a> (define number fields, rings of integers),
-  <a href="https://github.com/leanprover-community/mathlib/pull/8949">PR #8949</a>,
-  <a href="https://github.com/leanprover-community/mathlib/pull/8964">PR #8964</a>, and
-  <a href="https://github.com/leanprover-community/mathlib/pull/9063">PR #9063</a>,
-  culminating in
-  <a href="https://github.com/leanprover-community/mathlib/pull/9059">PR #9059</a>
-  which shows that, in the presence of an admissible absolute value, the class group of an integral closure is finite.</li>
-<li>Probability theory.
-  Foundations of probability theory are (finally!) coming to mathlib.
-  With
-  <a href="https://github.com/leanprover-community/mathlib/pull/8939">PR #8939</a> and
-  <a href="https://github.com/leanprover-community/mathlib/pull/8920">PR #8920</a> (conditional expectation of an indicator)
-  the way was open for
-  <a href="https://github.com/leanprover-community/mathlib/pull/9114">PR #9114</a>
-  which defines the conditional expectation of a function.</li>
-<li>Algebraic closures.
-  Over two years ago,
-  <a href="https://github.com/leanprover-community/mathlib/pull/1297">PR #1297</a>
-  was opened, showing that algebraic closures are unique (up to non-unique isomorphism).
-  Due to various issues, the material was not yet in shape for inclusion in mathlib.
-  Over summer, the material got a facelift, leading to
-  <a href="https://github.com/leanprover-community/mathlib/pull/9110">PR #9110</a>,
-  <a href="https://github.com/leanprover-community/mathlib/pull/9231">PR #9231</a>, and
-  <a href="https://github.com/leanprover-community/mathlib/pull/9376">PR #9376</a>.
-  There probably are no other commits that had to wait so long before being merged into mathlib.</li>
-<li>Riesz theorem on compact unit ball and finite dimension.
-  Mathlib now knows the main difference between the topology of real normed
-  spaces in finite and infinite dimensions: the closed unit ball in such a
-  space is compact if and only if the space is finite dimensional. The
-  implication from finite dimension to compactness was proved in
-  <a href="https://github.com/leanprover-community/mathlib/pull/1687">PR #1687</a>
-  and <a href="https://github.com/leanprover-community/mathlib/pull/9147">PR #9147</a>
-  proves the converse.</li>
-<li>Measure theory.
-  <a href="https://github.com/leanprover-community/mathlib/pull/9325">PR #9325</a>
-  shows that any additive Haar measure on a finite-dimensional real vector space is rescaled by a linear map through its determinant,
-  and computes the measure of balls and spheres.
-  <a href="https://github.com/leanprover-community/mathlib/pull/9065">PR #9065</a> adds Radon-Nikodym and Lebesgue decomposition for signed measures,
-  see <a href="posts/the-radon-nikodym-theorem-in-lean/">this blogpost</a> for more details.</li>
-<li>Henselian local rings. 
-  <a href="https://github.com/leanprover-community/mathlib/pull/8986">PR #8986</a> 
-  sets up the theory of Henselian rings. A ring $R$ is <em>Henselian</em> at an ideal 
-  $I$ if the following conditions hold:  <ul>
-<li>$I$ is contained in the Jacobson radical of $R$</li>
-<li>for every polynomial $f$ over $R$, with a <em>simple</em> root $a₀$ over the
-  quotient ring $R/I$, there exists a lift $a ∈ R$ of $a₀$ that is a root 
-  of $f$.</li>
-</ul>
-</li>
-<li>Semilinear maps.
-  Several people undertook a massive refactor to generalize linear maps to semilinear maps.
-  This opens the door for the use of semilinear maps in functional analysis,
-  but also Frobenius semilinear maps in characteristic $p &gt; 0$.
-  <a href="https://github.com/leanprover-community/mathlib/pull/8857">PR #8857</a> introduces notation for <code>linear_map.comp</code> and <code>linear_equiv.trans</code>
-  which makes it easy to work with identity-semilinear maps (aka, linear maps) without getting distracted by the redundant semilinearity conditions.
-  With this notation in place,
-  <a href="https://github.com/leanprover-community/mathlib/pull/9272">PR #9272</a> performs the actual redefinition of <code>linear_map</code> and <code>linear_equiv</code> to be semilinear.</li>
-<li>Convexity refactor.
-  Another ongoing refactor aims to massively generalize and restructure material on convex sets/functions.
-  One of the gems in a long stream of PRs shows that it is now trivial to deduce concave results from their convex counterparts:
-  <a href="https://github.com/leanprover-community/mathlib/pull/9356">PR #9356</a> generalizes lemmas about convexity/concavity of functions, and proves concave Jensen.</li>
-</ul>
-<h3>Other mathematical contributions</h3>
-<p>The following PRs are ordered by the date that they were merged into mathlib.</p>
-<ul>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8894">PR #8894</a>: add topological localization</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8962">PR #8962</a>: Prove (co)reflectivity for Kan extensions</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8801">PR #8801</a>: class formula, Burnside's lemma</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8947">PR #8947</a>: Define homotopy between functions</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8946">PR #8946</a>: rigid (autonomous) monoidal categories</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/8579">PR #8579</a>: one-point compactification of a topological space (the Stone-Cech compactification had been around for ages, and now its little brother joined the gang)</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/9165">PR #9165</a>: upgrade to Lean 3.33.0c</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib/pull/9288">PR #9288</a>: Sylow's theorems for infinite groups</li>
-</ul>
-</div>
             </article>
 </div>
             <nav class="postindexpager"><ul class="pager">

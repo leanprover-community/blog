@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Mathlib community)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/mathlib-community.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Mon, 03 Jan 2022 13:45:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Nov 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;This post summarizes some of the activity that happened in mathlib in November.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Mathlib community)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/mathlib-community.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Jan 2022 21:54:47 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-dec-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;December 2021 saw 565 commits to mathlib, which sets a new record.
+In this post we highlight some of these contributions.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Combinatorics.&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10287"&gt;PR #10287&lt;/a&gt; defines graph colorings and partitions.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10981"&gt;PR #10981&lt;/a&gt; defines the concepts of walks, paths, cycles in graph theory.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10509"&gt;PR #10509&lt;/a&gt; defines &lt;a href="https://en.wikipedia.org/wiki/Salem%E2%80%93Spencer_set"&gt;Salem-Spencer sets&lt;/a&gt; and Roth numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Commutative algebra.&lt;ul&gt;
+&lt;li&gt;There is now a systematic way to talk about local properties of rings and
+  ring homomorphisms.
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/10734"&gt;PR #10734&lt;/a&gt; and
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/10775"&gt;PR #10775&lt;/a&gt;
+  prove
+  that being reduced, finite or of finite type are local properties.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9888"&gt;PR #9888&lt;/a&gt;
+  does not introduce new mathematics, but introduces a new way that makes
+  it exceedingly easy to apply lemmas about group homomorphisms to a ring
+  homomorphism (or a linear map, or an algebra homomorphism, etc).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Algebraic topology.&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9762"&gt;PR #9762&lt;/a&gt;
+  defines simplicial complexes embedded in an ambient vector space or more generally in a module over an ordered ring.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10927"&gt;PR #10927&lt;/a&gt;
+  defines the alternating face map complex of a simplicial object.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Geometry&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10733"&gt;PR #10733&lt;/a&gt;
+  shows that an integral scheme is reduced and irreducible.
+  That a scheme is reduced iff its stalks are reduced is shown in
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/10879"&gt;PR #10879&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8611"&gt;PR #8611&lt;/a&gt; defines the action of &lt;code&gt;SL(2, ℤ)&lt;/code&gt; on the upper half plane and partially classifies its orbits.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10306"&gt;PR #10306&lt;/a&gt; defines
+  orientations of modules and rays in modules. This will be useful in particular in order to define oriented angles in Euclidean plane geometry.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;General topology &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10967"&gt;PR #10967&lt;/a&gt;
+  defines uniform convergence on compact subsets for maps from a topological space to a uniform space (for instance a metric space or a topological group). It also shows that the underlying
+  topology is the compact-open topology.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10914"&gt;PR #10914&lt;/a&gt;
+  introduces the specialization order for topological spaces
+  as well as the notion of generic points and sober spaces. Then 
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/10989"&gt;PR #10989&lt;/a&gt; and
+  &lt;a href="https://github.com/leanprover-community/mathlib/pull/11040"&gt;PR #11040&lt;/a&gt;
+  show that schemes are sober.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10701"&gt;PR #10701&lt;/a&gt;
+  proves the &lt;a href="https://en.wikipedia.org/wiki/Tietze_extension_theorem"&gt;Tietze extension theorem&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Functional analysis&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10825"&gt;PR #10825&lt;/a&gt; defines the adjoint of a continuous linear map between Hilbert spaces, made possible by the &lt;a href="https://leanprover-community.github.io/blog/posts/semilinear-maps"&gt;semilinear map refactor&lt;/a&gt;, and &lt;a href="https://github.com/leanprover-community/mathlib/pull/10837"&gt;PR #10837&lt;/a&gt; uses this to put a $C^\ast$-algebra structure on the continuous linear maps on a Hilbert space.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10322"&gt;PR #10322&lt;/a&gt; proves continuous bounded real-valued functions form a normed vector lattice.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10663"&gt;PR #10663&lt;/a&gt;
+  proves the &lt;a href="https://en.wikipedia.org/wiki/Uniform_boundedness_principle"&gt;Banach-Steinhaus theorem&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9836"&gt;PR #9836&lt;/a&gt; adds polar sets in preparation for the Banach-Alaoglu theorem.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Measure theory, integration and probability&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/11035"&gt;PR #11035&lt;/a&gt;
+  proves one can cover a set in a real vector by balls with controlled
+  measure. This continues the preparation for differentiation of measures.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10906"&gt;PR #10906&lt;/a&gt;
+  define integration on circles in the complex plane. This is foundational
+  material for complex analysis. Important applications will follow very
+  soon.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/10625"&gt;PR #10625&lt;/a&gt; defines martingales, and &lt;a href="https://github.com/leanprover-community/mathlib/pull/10710"&gt;PR #10710&lt;/a&gt; adds super/sub-martingales.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-dec-2021/</guid><pubDate>Sat, 01 Jan 2022 11:13:11 GMT</pubDate></item><item><title>This month in mathlib (Nov 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;This post summarizes some of the activity that happened in mathlib in November.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Geometry and algebraic topology.&lt;/p&gt;
