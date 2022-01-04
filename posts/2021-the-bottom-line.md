@@ -57,7 +57,7 @@ Mohamed Al-Fahim<!-- Github account has been deleted  -->, [David Kurniadi Angdi
 
   The group of mathlib maintainers has also grown! In 2021, Rémy Degenne ([remydegenne](https://github.com/remydegenne)), Markus Himmel ([TwoFX](https://github.com/TwoFX)), Bhavik Mehta ([b-mehta](https://github.com/b-mehta)), Oliver Nash ([ocfnash](https://github.com/ocfnash)), Adam Topaz ([adamtopaz](https://github.com/adamtopaz)), and Eric Wieser ([eric-wieser](https://github.com/eric-wieser)) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
 
-# New Lean 3.xc releases
+# New Lean 3 community releases
 
 The community has continued to maintain its version of Lean 3. Lean 3.24.0c was released Jan 4, 2021; as of Dec 31, the current version was 3.35.1c. Changes include:
 
