@@ -147,3 +147,9 @@ Since the creation of this blog in summer 2021 we have recapped the project acti
 * [Octover](https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/)
 * [November](https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/)
 
+## Looking forward
+
+A lot has changed in 2021. What's to come in 2022? 
+Nobody knows for sure, but there's plenty to look forward to!
+Come [join the crowd](https://leanprover.zulipchat.com) 
+and help make this year an even bigger one than the last.
