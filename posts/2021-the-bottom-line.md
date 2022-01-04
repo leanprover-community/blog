@@ -136,6 +136,7 @@ In total, 864 commits were from new contributors.
 ## New Lean 3.xc releases
 
 The community has continued to maintain its version of Lean 3. Lean 3.24.0c was released Jan 4, 2021; as of Dec 31, the current version was 3.35.1c. Changes include:
+
 * Parts of the core library were transitioned to mathlib to ease maintenance.
 * Features were changed to support the transition to Lean 4, including coercion handling, `ite`/`dite`, and export formats.
 * Many bugs were squashed, much documentation was added.
