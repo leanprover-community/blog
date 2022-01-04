@@ -90,12 +90,12 @@ and a number of panelists discussed [using proof assistants in the classroom](ht
 
 ## Liquid Tensor Experiment
 
-One of the spectacular highlights in 2021 was the formalization of Theorem 9.4
-of [Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf).
-This is the main technical ingredient in the proof of the main theorem of liquid vector spaces,
-a recent result of Clausen and Scholze.
-We embarked on this project after Scholze posted a
-[challenge](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/)
+One of the spectacular highlights in 2021 was the formalization of Theorem 9.4 of Scholze's 
+[Lectures on Analytic Geometry](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf). This
+is the main technical ingredient in the proof of the main theorem of
+liquid vector spaces, a recent result of Clausen and Scholze. We embarked
+on this project after Scholze posted
+a [challenge](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/)
 to the formalization communities.
 
 We reached the milestone within half a year, faster than anyone had expected,
@@ -111,6 +111,30 @@ See one of our recent blogposts for a
 [progress report](https://leanprover-community.github.io/blog/posts/lte-update/).
 
 ## Sphere eversion
+
+The 
+[sphere eversion project](https://leanprover-community.github.io/sphere-eversion/) 
+aims to formalize flexibility results in differential topology, including
+the celebrated existence of sphere eversions in $ℝ^3$. It was officially
+launched by Patrick Massot in June 2020 but at first a lot of very basic
+prerequisites were missing, and then a lot of energy has been diverted
+by the Liquid tensor experiment in the first half of 2021. The project
+really took off in September 2021 with Floris van Doorn and Oliver Nash
+joining the project, with some extra help from Anatone Dedecker.
+
+All the affine geometry of the project is now done, thanks to the work of
+Oliver, which was mostly contributed directly to mathlib. Most of general
+topology entering the project has been done, with Floris proving some
+delicate continuous function gluing results, and currently finishing some
+covering lemmas. The calculus backbone has been worked out by Patrick who
+proved many results about continuity and differentiability of integrals
+depending on parameters (still to be fully brought to mathlib) with help
+from Floris. Using this, the fundamental corrugation estimates have been
+proved. The project is now ready to merge those three aspect (affine
+geometry, topology and calculus) to prove all local results. Then the
+final part will be to handle the global theory using the differentiable
+manifolds theory in mathlib.
+
 
 ## Fermat's Last Theorem for regular primes
 
