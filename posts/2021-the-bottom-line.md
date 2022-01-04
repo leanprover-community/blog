@@ -167,6 +167,7 @@ Since the creation of this blog in summer 2021 we have recapped the project acti
 * [September](https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/)
 * [Octover](https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/)
 * [November](https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/)
+* [December](https://leanprover-community.github.io/blog/posts/month-in-mathlib-dec-2021/)
 
 # Looking forward
 
