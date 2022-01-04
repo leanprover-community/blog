@@ -127,6 +127,17 @@ We can then work in $\mathbb{Z}[\zeta_p]$:
 doing arithmetic in $\mathbb{Z}[\zeta_p]$ is more complicated than in $\mathbb{Z}$,
 but the regularity assumption allows to prove the results we need.
 
+### Lean 4 porting effort
+
+An early version of Lean 4 was released on Jan 4, 2021. 
+Since then, effort has been going into tooling to help port mathlib from Lean 3.
+The [`mathlib4` library stub](https://github.com/leanprover-community/mathlib4)
+and [`mathport` tool](https://github.com/leanprover-community/mathport)
+are both ongoing projects.
+
+A [recent blog post](https://leanprover-community.github.io/blog/posts/intro-to-mathport/)
+describes the current state of the effort.
+
 ## Monthly recaps
 
 Since the creation of this blog in summer 2021 we have recapped the project activity each month.
