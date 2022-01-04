@@ -115,12 +115,9 @@ See one of our recent blogposts for a
 The 
 [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/) 
 aims to formalize flexibility results in differential topology, including
-the celebrated existence of sphere eversions in $ℝ^3$. It was officially
-launched by Patrick Massot in June 2020 but at first a lot of very basic
-prerequisites were missing, and then a lot of energy has been diverted
-by the Liquid tensor experiment in the first half of 2021. The project
-really took off in September 2021 with Floris van Doorn and Oliver Nash
-joining the project, with some extra help from Anatone Dedecker.
+the celebrated existence of sphere eversions in $ℝ^3$. The project really
+took off in September 2021 with Floris van Doorn and Oliver Nash joining
+Patrick Massot in the project, with some extra help from Anatone Dedecker.
 
 All the affine geometry of the project is now done, thanks to the work of
 Oliver, which was mostly contributed directly to mathlib. Most of general
