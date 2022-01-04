@@ -129,7 +129,14 @@ In total, 864 commits were from new contributors.
 *  l534zhan ([l534zhan](https://github.com/l534zhan))
 *  thejohncrafter ([thejohncrafter](https://github.com/thejohncrafter))
 
+## New Lean 3.xc releases
 
+The community has continued to maintain its version of Lean 3. Lean 3.24.0c was released Jan 4, 2021; as of Dec 31, the current version was 3.35.1c. Changes include:
+* Parts of the core library were transitioned to mathlib to ease maintenance.
+* Features were changed to support the transition to Lean 4, including coercion handling, `ite`/`dite`, and export formats.
+* Many bugs were squashed, much documentation was added.
+
+The Lean 3 repository includes a [full change log](https://github.com/leanprover-community/lean/blob/master/doc/changes.md).
 
 ## Hoskinson Centre for Formal Mathematics
 
@@ -138,6 +145,7 @@ Carnegie Mellon University [announced](https://www.cmu.edu/news/stories/archives
 a $20 million gift from blockchain entrepreneur Charles C. Hoskinson 
 will be used to establish the Hoskinson Center for Formal Mathematics, 
 housed in the Department of Philosophy. 
+This center is expected to support the development of mathlib and applications of proof assistants to mathematis in general.
 
 ## Big projects
 
