@@ -129,6 +129,10 @@ In total, 864 commits were from new contributors.
 *  l534zhan ([l534zhan](https://github.com/l534zhan))
 *  thejohncrafter ([thejohncrafter](https://github.com/thejohncrafter))
 
+## New mathlib maintainers
+
+  The group of mathlib maintainers has also grown! In 2021, Rémy Degenne ([remydegenne](remydegenne)), Markus Himmel ([TwoFX](https://github.com/TwoFX)), Bhavik Mehta ([b-mehta](https://github.com/b-mehta)), Oliver Nash ([ocfnash](https://github.com/ocfnash)), Adam Topaz ([adamtopaz](https://github.com/adamtopaz)), and Eric Wieser ([eric-wieser](https://github.com/eric-wieser)) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
+
 ## New Lean 3.xc releases
 
 The community has continued to maintain its version of Lean 3. Lean 3.24.0c was released Jan 4, 2021; as of Dec 31, the current version was 3.35.1c. Changes include:
@@ -145,7 +149,7 @@ Carnegie Mellon University [announced](https://www.cmu.edu/news/stories/archives
 a $20 million gift from blockchain entrepreneur Charles C. Hoskinson 
 will be used to establish the Hoskinson Center for Formal Mathematics, 
 housed in the Department of Philosophy. 
-This center is expected to support the development of mathlib and applications of proof assistants to mathematics in general.
+This center is expected to support the development of mathlib and applications of proof assistants to mathematis in general.
 
 ## Big projects
 
