@@ -55,9 +55,7 @@ In this post we highlight some of these contributions.
     - [PR #10701](https://github.com/leanprover-community/mathlib/pull/10701)
       proves the [Tietze extension theorem](https://en.wikipedia.org/wiki/Tietze_extension_theorem).
 * Functional analysis
-    - [PR #10825](https://github.com/leanprover-community/mathlib/pull/10825) defines the adjoint of a continuous linear map between Hilbert spaces,
-      made possible by the [semilinear map refactor](https://leanprover-community.github.io/blog/posts/semilinear-maps).
-    - [PR #10837](https://github.com/leanprover-community/mathlib/pull/10837) shows that continuous linear maps on a Hilbert space form a $C^\ast$-algebra.
+    - [PR #10825](https://github.com/leanprover-community/mathlib/pull/10825) defines the adjoint of a continuous linear map between Hilbert spaces, made possible by the [semilinear map refactor](https://leanprover-community.github.io/blog/posts/semilinear-maps), and [PR #10837](https://github.com/leanprover-community/mathlib/pull/10837) uses this to put a $C^\ast$-algebra structure on the continuous linear maps on a Hilbert space.
     - [PR #10322](https://github.com/leanprover-community/mathlib/pull/10322) proves continuous bounded real-valued functions form a normed vector lattice.
     - [PR #10663](https://github.com/leanprover-community/mathlib/pull/10663)
       proves the [Banach-Steinhaus theorem](https://en.wikipedia.org/wiki/Uniform_boundedness_principle).
