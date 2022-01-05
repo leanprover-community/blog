@@ -42,7 +42,7 @@ December 2021 set a record as the month with the highest number of commits, at 5
 Four of the five most active months happened in 2021;
 December, October, and September were mathlib's first, second, and third most active months, respectively.
 
-Yury Kurdryashov was the year's most prolific contributor, with 662 commits, surpassing his previous year's record of 624.
+Yury Kudryashov was the year's most prolific contributor, with 662 commits, surpassing his previous year's record of 624.
 Yaël Dillies deserves a special shoutout: 
 in his first year of contributing, he became the year's fourth most prolific contributor, with 301 commits.
 
