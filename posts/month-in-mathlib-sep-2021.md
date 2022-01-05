@@ -13,7 +13,7 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in September.
 
-## Highlighted PRs
+# Highlighted PRs
 
 * Number fields.
   The [Dedekind saga](https://github.com/lean-forward/class-number) continues with
@@ -78,7 +78,7 @@ This post summarizes some of the activity that happened in mathlib in September.
   One of the gems in a long stream of PRs shows that it is now trivial to deduce concave results from their convex counterparts:
   [PR #9356](https://github.com/leanprover-community/mathlib/pull/9356) generalizes lemmas about convexity/concavity of functions, and proves concave Jensen.
 
-## Other mathematical contributions
+# Other mathematical contributions
 
 The following PRs are ordered by the date that they were merged into mathlib.
 
