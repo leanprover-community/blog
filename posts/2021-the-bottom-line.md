@@ -55,7 +55,7 @@ Mohamed Al-Fahim<!-- Github account has been deleted  -->, [David Kurniadi Angdi
 
 # New mathlib maintainers
 
-The group of mathlib maintainers has also grown! In 2021, [Rémy Degenne](https://github.com/remydegenne), [Markus Himmel](https://github.com/TwoFX), [Bhavik Mehta](https://github.com/b-mehta), [Oliver Nash](https://github.com/ocfnash), [Adam Topaz](https://github.com/adamtopaz), and [Eric Wieser](https://github.com/eric-wieser) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
+The group of [mathlib maintainers](https://leanprover-community.github.io/meet.html#maintainers) has also grown! In 2021, [Rémy Degenne](https://github.com/remydegenne), [Markus Himmel](https://github.com/TwoFX), [Bhavik Mehta](https://github.com/b-mehta), [Oliver Nash](https://github.com/ocfnash), [Adam Topaz](https://github.com/adamtopaz), and [Eric Wieser](https://github.com/eric-wieser) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
 
 # New Lean 3 community releases
 
