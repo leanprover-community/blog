@@ -20,16 +20,16 @@ As an end-of-year retrospective, we look at how the mathlib library and communit
 Since early 2019, mathlib has followed a "squash and merge" strategy for pull requests.
 One commit to the main branch corresponds to one merged pull request.
 
-| | Dec 31, 2020 | Dec 31, 2021 | Increase |
-| | -------------- | ------------ | |
-| Number of files | 1498 | 2329 | 831 (55%) |
-| Lines of code in repository [^1] | 455152 | 745259 | 290107 (64%) |
-| SLOC in `/src` [^1] | 284441 | 473644 | 189203 (67%) |
-| Lines of comments | 65219 | 108658 | 43439 (67%) |
-| Total commits | 5751 | 10960 | 5209 (91%) |
-| Definitions | 15437 | 24861 | 9424 (61%) |
-| Theorems | 44038 | 72847 | 28809 (64%) | 
-| Contributors | 132 | 209 | 77 (58%) |
+|                                  | Dec 31, 2020 | Dec 31, 2021 | Increase     |
+| -------------------------------- | ------------ | ------------ | ------------ |
+| Number of files                  |         1498 |         2329 |    831 (55%) |
+| Lines of code in repository [^1] |       455152 |       745259 | 290107 (64%) |
+| SLOC in `/src` [^1]              |       284441 |       473644 | 189203 (67%) |
+| Lines of comments                |        65219 |       108658 |  43439 (67%) |
+| Total commits                    |         5751 |        10960 |   5209 (91%) |
+| Definitions                      |        15437 |        24861 |   9424 (61%) |
+| Theorems                         |        44038 |        72847 |  28809 (64%) |
+| Contributors                     |          132 |          209 |     77 (58%) |
 
 [^1]: We count source lines of code using [`cloc`](http://cloc.sourceforge.net/). This count includes only non-comment, non-whitespace lines of Lean code in the `/src` directory of mathlib. The "lines of code in repository" count includes blank and comment lines in all file types in all directories of the mathlib repository.
 
@@ -55,7 +55,7 @@ Mohamed Al-Fahim<!-- Github account has been deleted  -->, [David Kurniadi Angdi
 
 # New mathlib maintainers
 
-  The group of mathlib maintainers has also grown! In 2021, [Rémy Degenne](https://github.com/remydegenne), [Markus Himmel](https://github.com/TwoFX), [Bhavik Mehta](https://github.com/b-mehta), [Oliver Nash](https://github.com/ocfnash), [Adam Topaz](https://github.com/adamtopaz), and [Eric Wieser](https://github.com/eric-wieser) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
+The group of mathlib maintainers has also grown! In 2021, [Rémy Degenne](https://github.com/remydegenne), [Markus Himmel](https://github.com/TwoFX), [Bhavik Mehta](https://github.com/b-mehta), [Oliver Nash](https://github.com/ocfnash), [Adam Topaz](https://github.com/adamtopaz), and [Eric Wieser](https://github.com/eric-wieser) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
 
 # New Lean 3 community releases
 
