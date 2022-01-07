@@ -57,6 +57,10 @@ Mohamed Al-Fahim<!-- Github account has been deleted  -->, [David Kurniadi Angdi
 
 The group of [mathlib maintainers](https://leanprover-community.github.io/meet.html#maintainers) has also grown! In 2021, [Rémy Degenne](https://github.com/remydegenne), [Markus Himmel](https://github.com/TwoFX), [Bhavik Mehta](https://github.com/b-mehta), [Oliver Nash](https://github.com/ocfnash), [Adam Topaz](https://github.com/adamtopaz), and [Eric Wieser](https://github.com/eric-wieser) joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)
 
+# New field in mathlib: probability theory
+
+The measure theory and analysis libraries have been developed enough to allow the definition of some probability theory concepts. mathlib now contains definitions of independence, probability density functions, conditional expectations, martingales and stopping times. We don't have many theorems about them yet and many other basic definitions are still missing, but the foundations are in place and 2022 should see a large development of probability theory in mathlib.
+
 # New Lean 3 community releases
 
 The community has continued to maintain its version of Lean 3. Lean 3.24.0c was released Jan 4, 2021; as of Dec 31, the current version was 3.35.1c. Changes include:
