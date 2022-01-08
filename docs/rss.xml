@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 04 Jan 2022 22:20:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-dec-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;December 2021 saw 565 commits to mathlib, which sets a new record.
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Jan 2022 19:34:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-dec-2021/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;December 2021 saw 565 commits to mathlib, which sets a new record.
 In this post we highlight some of these contributions.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Combinatorics.&lt;ul&gt;
@@ -168,7 +168,192 @@ We hope to fix both of these issues in the near future.&lt;/p&gt;
 The proof of the lemma uses the tensor-hom adjunction and the fact that the homotopy category of complexes is pretriangulated.
 The formalisation of these two prerequisites is active work in progress.&lt;/p&gt;
 &lt;p&gt;You can follow our progress on all the remaining tasks at the following
-&lt;a href="https://github.com/leanprover-community/lean-liquid/projects/2"&gt;Github project&lt;/a&gt;.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/lte-update/</guid><pubDate>Fri, 31 Dec 2021 19:04:21 GMT</pubDate></item><item><title>Update on mathport (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/intro-to-mathport/</link><dc:creator>Scott Morrison</dc:creator><description>&lt;p&gt;&lt;code&gt;mathport&lt;/code&gt; is the tool we're planning on using to help us port &lt;code&gt;mathlib&lt;/code&gt; to Lean 4.
+&lt;a href="https://github.com/leanprover-community/lean-liquid/projects/2"&gt;Github project&lt;/a&gt;.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/lte-update/</guid><pubDate>Fri, 31 Dec 2021 19:04:21 GMT</pubDate></item><item><title>2021 - The Bottom Line</title><link>https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;Since the mathlib repository was created in summer 2017,
+each year has been bigger than the last. 
+As an end-of-year retrospective, we look at how the mathlib library and community have developed in 2021.&lt;/p&gt;
+&lt;h2&gt;Statistics&lt;/h2&gt;
+&lt;p&gt;Since early 2019, mathlib has followed a "squash and merge" strategy for pull requests.
+One commit to the main branch corresponds to one merged pull request.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Dec 31, 2020&lt;/th&gt;
+&lt;th&gt;Dec 31, 2021&lt;/th&gt;
+&lt;th&gt;Increase&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Number of files&lt;/td&gt;
+&lt;td&gt;1498&lt;/td&gt;
+&lt;td&gt;2329&lt;/td&gt;
+&lt;td&gt;831 (55%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lines of code in repository &lt;sup id="fnref2:1"&gt;&lt;a class="footnote-ref" href="https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td&gt;455152&lt;/td&gt;
+&lt;td&gt;745259&lt;/td&gt;
+&lt;td&gt;290107 (64%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SLOC in &lt;code&gt;/src&lt;/code&gt; &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td&gt;284441&lt;/td&gt;
+&lt;td&gt;473644&lt;/td&gt;
+&lt;td&gt;189203 (67%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lines of comments&lt;/td&gt;
+&lt;td&gt;65219&lt;/td&gt;
+&lt;td&gt;108658&lt;/td&gt;
+&lt;td&gt;43439 (67%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Total commits&lt;/td&gt;
+&lt;td&gt;5751&lt;/td&gt;
+&lt;td&gt;10960&lt;/td&gt;
+&lt;td&gt;5209 (91%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Definitions&lt;/td&gt;
+&lt;td&gt;15437&lt;/td&gt;
+&lt;td&gt;24861&lt;/td&gt;
+&lt;td&gt;9424 (61%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Theorems&lt;/td&gt;
+&lt;td&gt;44038&lt;/td&gt;
+&lt;td&gt;72847&lt;/td&gt;
+&lt;td&gt;28809 (64%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Contributors&lt;/td&gt;
+&lt;td&gt;132&lt;/td&gt;
+&lt;td&gt;209&lt;/td&gt;
+&lt;td&gt;77 (58%)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For more information, see the page on &lt;a href="https://leanprover-community.github.io/mathlib_stats.html"&gt;mathlib statistics&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Records&lt;/h3&gt;
+&lt;p&gt;December 2021 set a record as the month with the highest number of commits, at 565. 
+Four of the five most active months happened in 2021;
+December, October, and September were mathlib's first, second, and third most active months, respectively.&lt;/p&gt;
+&lt;p&gt;Yury Kudryashov was the year's most prolific contributor, with 662 commits, surpassing his previous year's record of 624.
+Yaël Dillies deserves a special shoutout: 
+in his first year of contributing, he became the year's fourth most prolific contributor, with 301 commits.&lt;/p&gt;
+&lt;h2&gt;New contributors to mathlib&lt;/h2&gt;
+&lt;p&gt;77 people contributed to mathlib for the first time in 2021.
+In total, 864 commits were from new contributors. Many thanks to:&lt;/p&gt;
+&lt;p&gt;Mohamed Al-Fahim&lt;!-- Github account has been deleted  --&gt;, &lt;a href="https://github.com/Multramate"&gt;David Kurniadi Angdinata&lt;/a&gt;, &lt;a href="https://github.com/atarnoam"&gt;Noam Atar&lt;/a&gt;, &lt;a href="https://github.com/MantasBaksys"&gt;Mantas Baksys&lt;/a&gt;, &lt;a href="https://github.com/itaibn"&gt;Itai Bar-Natan&lt;/a&gt;, &lt;a href="https://github.com/CBirkbeck"&gt;Chris Birkbeck&lt;/a&gt;, &lt;a href="https://github.com/manuelcandales"&gt;Manuel Candales&lt;/a&gt;, &lt;a href="https://github.com/carloscaralps"&gt;Carlos Caralps&lt;/a&gt;, &lt;a href="https://github.com/robin-carlier"&gt;Robin Carlier&lt;/a&gt;, &lt;a href="https://github.com/AntoineChambert-Loir"&gt;Antoine Chambert-Loir&lt;/a&gt;, &lt;a href="https://github.com/peakpoint"&gt;Tian Chen&lt;/a&gt;, &lt;a href="https://github.com/jchoules"&gt;Joanna Choules&lt;/a&gt;, &lt;a href="https://github.com/isadofschi"&gt;Iván Sadofschi Costa&lt;/a&gt;, &lt;a href="https://github.com/saradiazr11"&gt;Sara Díaz Real&lt;/a&gt;, &lt;a href="https://github.com/YaelDillies"&gt;Yaël Dillies&lt;/a&gt;, &lt;a href="https://github.com/FrickHazard"&gt;Ender Doe&lt;/a&gt;, &lt;a href="https://github.com/mcdoll"&gt;Moritz Doll&lt;/a&gt;, &lt;a href="https://github.com/joneugster"&gt;Jon Eugster&lt;/a&gt;, &lt;a href="https://github.com/mo271"&gt;Moritz Firsching&lt;/a&gt;, &lt;a href="https://github.com/Nazgand"&gt;Mark Gerads&lt;/a&gt;, &lt;a href="https://github.com/SymmetryUnbroken"&gt;Vladimir Goryachev&lt;/a&gt;, &lt;a href="https://github.com/mguaypaq"&gt;Mathieu Guay-Paquet&lt;/a&gt;, &lt;a href="https://github.com/vihdzp"&gt;Violeta Hernández&lt;/a&gt;, &lt;a href="https://github.com/mans0954"&gt;Christopher Hoskin&lt;/a&gt;, &lt;a href="https://github.com/Jlh18"&gt;Joseph Hua&lt;/a&gt;, &lt;a href="https://github.com/mariainesdff"&gt;María Inés de Frutos-Fernández&lt;/a&gt;, &lt;a href="https://github.com/ashwiniyengar"&gt;Ashwin Iyengar&lt;/a&gt;, &lt;a href="https://github.com/matt-kempster"&gt;Matt Kempster&lt;/a&gt;, &lt;a href="https://github.com/l-kershaw"&gt;Luke Kershaw&lt;/a&gt;, &lt;a href="https://github.com/huynhtrankhanh"&gt;Huỳnh Trần Khanh&lt;/a&gt;, &lt;a href="https://github.com/prakol16"&gt;Praneeth Kolichala&lt;/a&gt;, &lt;a href="https://github.com/AlexKontorovich"&gt;Alex Kontorovich&lt;/a&gt;, &lt;a href="https://github.com/kkytola"&gt;Kalle Kytölä&lt;/a&gt;, &lt;a href="https://github.com/Julian-Kuelshammer"&gt;Julian Külshammer&lt;/a&gt;, &lt;a href="https://github.com/antoinelab01"&gt;Antoine Labelle&lt;/a&gt;, &lt;a href="https://github.com/RaitoBezarius"&gt;Ryan Lahfa&lt;/a&gt;, &lt;a href="https://github.com/Paul-Lez"&gt;Paul Lezeau&lt;/a&gt;, &lt;a href="https://github.com/j-loreaux"&gt;Jireh Loreaux&lt;/a&gt;, &lt;a href="https://github.com/berndlosert"&gt;Bernd Losert&lt;/a&gt;, &lt;a href="https://github.com/GiacomoMaletto"&gt;Giacomo Maletto&lt;/a&gt;, &lt;a href="https://github.com/thejohncrafter"&gt;Julien Marquet&lt;/a&gt;, &lt;a href="https://github.com/mmasdeu"&gt;Marc Masdeu&lt;/a&gt;, &lt;a href="https://github.com/cemulate"&gt;Chase Meadors&lt;/a&gt;, &lt;a href="https://github.com/yuma-mizuno"&gt;Yuma Mizuno&lt;/a&gt;, &lt;a href="https://github.com/gabrielmoise"&gt;Gabriel Moise&lt;/a&gt;, &lt;a href="https://github.com/Sebastian-Monnet"&gt;Sebastian Monnet&lt;/a&gt;, &lt;a href="https://github.com/hmonroe"&gt;Hunter Monroe&lt;/a&gt;, &lt;a href="https://github.com/apurvnakade"&gt;Apurva Nakade&lt;/a&gt;, &lt;a href="https://github.com/AaronGreen001"&gt;Anupam Nayak&lt;/a&gt;, &lt;a href="https://github.com/apnelson1"&gt;Peter Nelson&lt;/a&gt;, &lt;a href="https://github.com/lukenels"&gt;Luke Nelson&lt;/a&gt;, &lt;a href="https://github.com/arthurpaulino"&gt;Arthur Paulino&lt;/a&gt;, &lt;a href="https://github.com/sorawee"&gt;Sorawee Porncharoenwase&lt;/a&gt;, &lt;a href="https://github.com/stuart-presnell"&gt;Stuart Presnell&lt;/a&gt;, &lt;a href="https://github.com/gnprice"&gt;Greg Price&lt;/a&gt;, &lt;a href="https://github.com/EPronovost"&gt;Ethan Pronovost&lt;/a&gt;, &lt;a href="https://github.com/javra"&gt;Jakob von Raumer&lt;/a&gt;, &lt;a href="https://github.com/dwrensha"&gt;David Renshaw&lt;/a&gt;, &lt;a href="https://github.com/joelriou"&gt;Joël Riou&lt;/a&gt;, &lt;a href="https://github.com/ericrbg"&gt;Eric Rodriguez&lt;/a&gt;, &lt;a href="https://github.com/shadasali"&gt;Shadman Sakib&lt;/a&gt;, &lt;a href="https://github.com/JakobScholbach"&gt;Jakob Scholbach&lt;/a&gt;, &lt;a href="https://github.com/asouther4"&gt;Andrew Souther&lt;/a&gt;, &lt;a href="https://github.com/justus-springer"&gt;Justus Springer&lt;/a&gt;, &lt;a href="https://github.com/frankymacster"&gt;François Sunatori&lt;/a&gt;, &lt;a href="https://github.com/HenrySwanson"&gt;Henry Swanson&lt;/a&gt;, &lt;a href="https://github.com/bentoner"&gt;Ben Toner&lt;/a&gt;, &lt;a href="https://github.com/verberkm"&gt;Alain Verberkmoes&lt;/a&gt;, &lt;a href="https://github.com/greysome"&gt;Way Yan Win&lt;/a&gt;, &lt;a href="https://github.com/winestone"&gt; Winston&lt;/a&gt;, &lt;a href="https://github.com/ineswright"&gt;Ines Wright&lt;/a&gt;, &lt;a href="https://github.com/erdOne"&gt;Andrew Yang&lt;/a&gt;, &lt;a href="https://github.com/justadzr"&gt;Yourong Zang&lt;/a&gt;, &lt;a href="https://github.com/l534zhan"&gt;Alex Zhang&lt;/a&gt;, &lt;a href="https://github.com/acxxa"&gt;Hanting Zhang&lt;/a&gt;, &lt;a href="https://github.com/cocohearts"&gt;Alex Zhao&lt;/a&gt;, &lt;a href="https://github.com/hallow-world"&gt; hallow-world&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;New mathlib maintainers&lt;/h2&gt;
+&lt;p&gt;The group of &lt;a href="https://leanprover-community.github.io/meet.html#maintainers"&gt;mathlib maintainers&lt;/a&gt; has also grown! In 2021, &lt;a href="https://github.com/remydegenne"&gt;Rémy Degenne&lt;/a&gt;, &lt;a href="https://github.com/TwoFX"&gt;Markus Himmel&lt;/a&gt;, &lt;a href="https://github.com/b-mehta"&gt;Bhavik Mehta&lt;/a&gt;, &lt;a href="https://github.com/ocfnash"&gt;Oliver Nash&lt;/a&gt;, &lt;a href="https://github.com/adamtopaz"&gt;Adam Topaz&lt;/a&gt;, and &lt;a href="https://github.com/eric-wieser"&gt;Eric Wieser&lt;/a&gt; joined the team, which now numbers 23. (With the latter three, the team finally includes surnames from the second half of the alphabet.)&lt;/p&gt;
+&lt;h2&gt;New field in mathlib: probability theory&lt;/h2&gt;
+&lt;p&gt;The measure theory and analysis libraries have been developed enough to allow the definition of some probability theory concepts. mathlib now contains definitions of independence, probability density functions, conditional expectations, martingales and stopping times. We don't have many theorems about them yet and many other basic definitions are still missing, but the foundations are in place and 2022 should see a large development of probability theory in mathlib.&lt;/p&gt;
+&lt;h2&gt;New Lean 3 community releases&lt;/h2&gt;
+&lt;p&gt;The community has continued to maintain its version of Lean 3. Lean 3.24.0c was released Jan 4, 2021; as of Dec 31, the current version was 3.35.1c. Changes include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Parts of the core library were transitioned to mathlib to ease maintenance.&lt;/li&gt;
+&lt;li&gt;Features were changed to support the transition to Lean 4, including coercion handling, &lt;code&gt;ite&lt;/code&gt;/&lt;code&gt;dite&lt;/code&gt;, and export formats.&lt;/li&gt;
+&lt;li&gt;Many bugs were squashed, much documentation was added.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The Lean 3 repository includes a &lt;a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md"&gt;full change log&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Hoskinson Centre for Formal Mathematics&lt;/h2&gt;
+&lt;p&gt;In &lt;a href="https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/"&gt;September&lt;/a&gt;,
+Carnegie Mellon University &lt;a href="https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html"&gt;announced&lt;/a&gt; that 
+a $20 million gift from blockchain entrepreneur Charles C. Hoskinson 
+will be used to establish the Hoskinson Center for Formal Mathematics, 
+housed in the Department of Philosophy. 
+The center supports work making formal mathematics accessible and enjoyable to as wide an audience as possible.&lt;/p&gt;
+&lt;h2&gt;Lean Together 2021&lt;/h2&gt;
+&lt;p&gt;Way back in January, we hosted &lt;a href="https://leanprover-community.github.io/lt2021/"&gt;Lean Together 2021&lt;/a&gt;, 
+an online meeting for Lean users and people from other formalization communities. 
+The meeting included a number of talks, 
+all &lt;a href="https://www.youtube.com/playlist?list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt"&gt;recorded and posted on YouTube&lt;/a&gt;,
+as well as informal discussions and social time. 
+Some highlights: Leonardo de Moura and Sebastian Ullrich &lt;a href="https://www.youtube.com/watch?v=UeGvhfW1v9M&amp;amp;list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt&amp;amp;index=5&amp;amp;ab_channel=leanprovercommunity"&gt;officially introduced Lean 4&lt;/a&gt;,
+and a number of panelists discussed &lt;a href="https://www.youtube.com/watch?v=mTLuON5eRZI&amp;amp;list=PLlF-CfQhukNnO8z3TcFcoKozif9gbl7Yt&amp;amp;index=23&amp;amp;t=6s&amp;amp;ab_channel=leanprovercommunity"&gt;using proof assistants in the classroom&lt;/a&gt;. &lt;/p&gt;
+&lt;h2&gt;Big projects&lt;/h2&gt;
+&lt;h3&gt;Liquid Tensor Experiment&lt;/h3&gt;
+&lt;p&gt;One of the spectacular highlights in 2021 was the formalization of Theorem 9.4 of Scholze's 
+&lt;a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf"&gt;Lectures on Analytic Geometry&lt;/a&gt;. This
+is the main technical ingredient in the proof of the main theorem of
+liquid vector spaces, a recent result of Clausen and Scholze. We embarked
+on this project after Scholze posted
+a &lt;a href="https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/"&gt;challenge&lt;/a&gt;
+to the formalization communities.&lt;/p&gt;
+&lt;p&gt;We reached the milestone within half a year, faster than anyone had expected,
+surprising ourselves and others.
+The accomplishment was covered by
+&lt;a href="https://www.nature.com/articles/d41586-021-01627-2"&gt;Nature&lt;/a&gt;
+and
+&lt;a href="https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/"&gt;Quanta&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The full challenge is not yet completed,
+and is actively worked on right now.
+See one of our recent blogposts for a
+&lt;a href="https://leanprover-community.github.io/blog/posts/lte-update/"&gt;progress report&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Sphere eversion&lt;/h3&gt;
+&lt;p&gt;The 
+&lt;a href="https://leanprover-community.github.io/sphere-eversion/"&gt;sphere eversion project&lt;/a&gt; 
+aims to formalize flexibility results in differential topology, including
+the celebrated existence of sphere eversions in $ℝ^3$. Development really
+took off in September 2021 with Floris van Doorn and Oliver Nash joining
+Patrick Massot in the project, with some extra help from Anatone Dedecker.&lt;/p&gt;
+&lt;p&gt;All the affine geometry of the project is now done, thanks to the work of
+Oliver, which was mostly contributed directly to mathlib. Most of general
+topology entering the project has been done, with Floris proving some
+delicate continuous function gluing results, and currently finishing some
+covering lemmas. The calculus backbone has been worked out by Patrick who
+proved many results about continuity and differentiability of integrals
+depending on parameters (still to be fully brought to mathlib) with help
+from Floris. Using this, the fundamental corrugation estimates have been
+proved. The project is now ready to merge those three aspects (affine
+geometry, topology and calculus) to prove all local results. Then the
+final part will be to handle the global theory using the differentiable
+manifolds theory in mathlib.&lt;/p&gt;
+&lt;h3&gt;Fermat's Last Theorem for regular primes&lt;/h3&gt;
+&lt;p&gt;The aim of the &lt;a href="https://github.com/leanprover-community/flt-regular"&gt;flt-regular project&lt;/a&gt;
+is to prove Fermat's Last Theorem for
+&lt;a href="https://en.wikipedia.org/wiki/Regular_prime"&gt;regular primes&lt;/a&gt;,
+an important result proved in 1850.
+This project continues the development of
+&lt;a href="https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/"&gt;algebraic number theory&lt;/a&gt; in mathlib.
+You can have a look at the &lt;a href="https://leanprover-community.github.io/flt-regular/"&gt;blueprint&lt;/a&gt; to check the mathematical details.
+After having developed the basic properties of cyclotomic extensions and of the discriminant,
+we are now computing the ring of integers of a cyclotomic extension.
+We can then work in $\mathbb{Z}[\zeta_p]$:
+doing arithmetic in $\mathbb{Z}[\zeta_p]$ is more complicated than in $\mathbb{Z}$,
+but the regularity assumption allows to prove the results we need.&lt;/p&gt;
+&lt;h3&gt;Lean 4 porting effort&lt;/h3&gt;
+&lt;p&gt;An early version of Lean 4 was released on Jan 4, 2021. 
+Since then, effort has been going into tooling to help port mathlib from Lean 3.
+The &lt;a href="https://github.com/leanprover-community/mathlib4"&gt;&lt;code&gt;mathlib4&lt;/code&gt; library stub&lt;/a&gt;
+and &lt;a href="https://github.com/leanprover-community/mathport"&gt;&lt;code&gt;mathport&lt;/code&gt; tool&lt;/a&gt;
+are both ongoing projects.&lt;/p&gt;
+&lt;p&gt;A &lt;a href="https://leanprover-community.github.io/blog/posts/intro-to-mathport/"&gt;recent blog post&lt;/a&gt;
+describes the current state of the effort.&lt;/p&gt;
+&lt;h2&gt;Monthly recaps&lt;/h2&gt;
+&lt;p&gt;Since the creation of this blog in summer 2021 we have recapped the project activity each month.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-aug-2021/"&gt;August&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-sep-2021/"&gt;September&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/"&gt;Octover&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-nov-2021/"&gt;November&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-dec-2021/"&gt;December&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Looking forward&lt;/h2&gt;
+&lt;p&gt;A lot has changed in 2021. What's to come in 2022? 
+Nobody knows for sure, but there's plenty to look forward to!
+Come &lt;a href="https://leanprover.zulipchat.com"&gt;join the crowd&lt;/a&gt; 
+and help make this year an even bigger one than the last.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;We count source lines of code using &lt;a href="http://cloc.sourceforge.net/"&gt;&lt;code&gt;cloc&lt;/code&gt;&lt;/a&gt;. This count includes only non-comment, non-whitespace lines of Lean code in the &lt;code&gt;/src&lt;/code&gt; directory of mathlib. The "lines of code in repository" count includes blank and comment lines in all file types in all directories of the mathlib repository. &lt;a class="footnote-backref" href="https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/#fnref:1" title="Jump back to footnote 1 in the text"&gt;↩&lt;/a&gt;&lt;a class="footnote-backref" href="https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/#fnref2:1" title="Jump back to footnote 1 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/</guid><pubDate>Thu, 30 Dec 2021 22:59:59 GMT</pubDate></item><item><title>Update on mathport (Dec 2021)</title><link>https://leanprover-community.github.io/blog/posts/intro-to-mathport/</link><dc:creator>Scott Morrison</dc:creator><description>&lt;p&gt;&lt;code&gt;mathport&lt;/code&gt; is the tool we're planning on using to help us port &lt;code&gt;mathlib&lt;/code&gt; to Lean 4.
 It has mostly been written by Mario Carneiro and Daniel Selsam,
 and Gabriel Ebner and I have been making some fixes.&lt;/p&gt;
 &lt;p&gt;To provide some context, &lt;a href="https://github.com/leanprover-community/mathlib"&gt;mathlib&lt;/a&gt;
@@ -1043,21 +1228,4 @@ a Sylow $p$-subgroup of $N$, then $\text{N}_G(P)*N=G$.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9988"&gt;PR #9988&lt;/a&gt; update to Lean-3.35.0c&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</guid><pubDate>Mon, 01 Nov 2021 05:38:50 GMT</pubDate></item><item><title>Hoskinson Center announced</title><link>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</link><dc:creator>Jeremy Avigad</dc:creator><description>&lt;p&gt;On September 22, 2021, Carnegie Mellon University announced that a $20 million gift
-from blockchain entrepreneur Charles C. Hoskinson will be used to establish the Hoskinson
-Center for Formal Mathematics, housed in the Department of Philosophy.
-You can read the &lt;a href="https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html"&gt;university press release&lt;/a&gt; and
-watch Hoskinson's &lt;a href="https://www.youtube.com/watch?v=3snIzhjqsk0&amp;amp;ab_channel=CharlesHoskinson"&gt;YouTube announcement&lt;/a&gt;. You can also watch
-&lt;a href="https://www.youtube.com/watch?v=gCLJOrJFLZQ&amp;amp;ab_channel=IOHK"&gt;Hoskinson's presentation&lt;/a&gt; and
-&lt;a href="https://www.youtube.com/watch?v=tbz6cdnFyPc&amp;amp;ab_channel=IOHK"&gt;my presentation&lt;/a&gt; at an
-inauguration ceremony that was held at Carnegie Mellon the day before.
-The slides I used for the presentation are &lt;a href="https://www.andrew.cmu.edu/user/avigad/Talks/hoskinson_inaugural.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The center's mission is to support the work being done by the Lean community,
-to promote the use of Lean and its libraries,
-and to seek out ways of using the technology to make mathematics accessible and enjoyable to
-as wide an audience as possible.&lt;/p&gt;
-&lt;p&gt;The initial endowment will be used to support postdoctoral researchers and graduate students,
-as well as occasional meetings and visitors.
-In the near future, the center will focus on supporting the port of mathlib to Lean 4,
-developing automation and the user interface, and, perhaps most importantly,
-preparing textbooks and educational materials based on Lean.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/</guid><pubDate>Sat, 02 Oct 2021 21:39:15 GMT</pubDate></item></channel></rss>
+&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-oct-2021/</guid><pubDate>Mon, 01 Nov 2021 05:38:50 GMT</pubDate></item></channel></rss>
