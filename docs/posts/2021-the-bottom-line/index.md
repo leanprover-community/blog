@@ -71,7 +71,7 @@ The community has continued to maintain its version of Lean 3. Lean 3.24.0c was 
 
 The Lean 3 repository includes a [full change log](https://github.com/leanprover-community/lean/blob/master/doc/changes.md).
 
-# Hoskinson Centre for Formal Mathematics
+# Hoskinson Center for Formal Mathematics
 
 In [September](https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/),
 Carnegie Mellon University [announced](https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html) that 

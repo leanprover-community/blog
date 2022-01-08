@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Jan 2022 19:38:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>2021 - The Bottom Line</title><link>https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;Since the mathlib repository was created in summer 2017,
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Jan 2022 19:39:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>2021 - The Bottom Line</title><link>https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;Since the mathlib repository was created in summer 2017,
 each year has been bigger than the last. 
 As an end-of-year retrospective, we look at how the mathlib library and community have developed in 2021.&lt;/p&gt;
 &lt;h2&gt;Statistics&lt;/h2&gt;
@@ -89,7 +89,7 @@ In total, 864 commits were from new contributors. Many thanks to:&lt;/p&gt;
 &lt;li&gt;Many bugs were squashed, much documentation was added.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The Lean 3 repository includes a &lt;a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md"&gt;full change log&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Hoskinson Centre for Formal Mathematics&lt;/h2&gt;
+&lt;h2&gt;Hoskinson Center for Formal Mathematics&lt;/h2&gt;
 &lt;p&gt;In &lt;a href="https://leanprover-community.github.io/blog/posts/hoskinson-center-announced/"&gt;September&lt;/a&gt;,
 Carnegie Mellon University &lt;a href="https://www.cmu.edu/news/stories/archives/2021/september/hoskinson-center-for-formal-mathematics.html"&gt;announced&lt;/a&gt; that 
 a $20 million gift from blockchain entrepreneur Charles C. Hoskinson 
