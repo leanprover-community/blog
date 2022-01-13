@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Mathlib community)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/mathlib-community.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Jan 2022 19:39:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>2021 - The Bottom Line</title><link>https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;Since the mathlib repository was created in summer 2017,
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Mathlib community)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/mathlib-community.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 13 Jan 2022 18:00:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>2021 - The Bottom Line</title><link>https://leanprover-community.github.io/blog/posts/2021-the-bottom-line/</link><dc:creator>Mathlib community</dc:creator><description>&lt;p&gt;Since the mathlib repository was created in summer 2017,
 each year has been bigger than the last. 
 As an end-of-year retrospective, we look at how the mathlib library and community have developed in 2021.&lt;/p&gt;
 &lt;h2&gt;Statistics&lt;/h2&gt;
@@ -72,7 +72,7 @@ Four of the five most active months happened in 2021;
 December, October, and September were mathlib's first, second, and third most active months, respectively.&lt;/p&gt;
 &lt;p&gt;Yury Kudryashov was the year's most prolific contributor, with 662 commits, surpassing his previous year's record of 624.
 Yaël Dillies deserves a special shoutout: 
-in his first year of contributing, he became the year's fourth most prolific contributor, with 301 commits.&lt;/p&gt;
+in their first year of contributing, they became the year's fourth most prolific contributor, with 301 commits.&lt;/p&gt;
 &lt;h2&gt;New contributors to mathlib&lt;/h2&gt;
 &lt;p&gt;77 people contributed to mathlib for the first time in 2021.
 In total, 864 commits were from new contributors. Many thanks to:&lt;/p&gt;
