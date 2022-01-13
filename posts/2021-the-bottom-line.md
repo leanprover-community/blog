@@ -44,7 +44,7 @@ December, October, and September were mathlib's first, second, and third most ac
 
 Yury Kudryashov was the year's most prolific contributor, with 662 commits, surpassing his previous year's record of 624.
 Yaël Dillies deserves a special shoutout: 
-in his first year of contributing, he became the year's fourth most prolific contributor, with 301 commits.
+in their first year of contributing, they became the year's fourth most prolific contributor, with 301 commits.
 
 # New contributors to mathlib
 
