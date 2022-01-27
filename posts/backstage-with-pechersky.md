@@ -17,6 +17,8 @@ The next installment in the series of
 backstage interviews with mathlib's active contributors!
 
 Today, Johan Commelin interviews Yakov Pechersky.
+The first half of the interview's video was lost, so it was "recovered"
+via written communication.
 
 
 JMC: **Please tell us a bit about yourself, about your background.**
