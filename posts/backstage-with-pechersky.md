@@ -210,25 +210,205 @@ But once they are there, they seem so integral; how could you ever work without 
 **JMC: Yeah, technology makes a real difference.
 So, next question: What are your plans for the next/upcoming year? For 2022.**
 
-Because I work in this new startup,
-and I lead a computational team within it.
+YP: Because I work in this new startup,
+and I lead a computational team within it,
+I haven't had as much time to contribute to mathlib as I would like.
+I still read about it, but I don't code and push my pull requests as fast.
+Regardless,
+I really hope to learn more about p-adic theory.
+Maybe even formalize some p-adic analysis.
+That's a long term thing.
 
-**JMC: Yes, certainly. Which is connected to the next few questions.
-I will just ask them as a batch, and then you can pick in which order you answer them.
-What change would you like to see in the community?
-What would help you to work more effectively with mathlib and/or Lean?
+And in the mean time,
+if I can just contribute a bit to ring theory,
+as I'm learning it myself.
+And just building the API; I think that'd be great.
+Because it hopefully will set the foundation for someone else
+to express some really cool results.
+
+Oh, I also want to say, it's also been fun interacting with Yaël,
+who's been driving a lot of the order hierarchy.
+And I really appreciate they called me out the last interview,
+for the refactor that separated certain things out as Prop-mixins.
+I think with those sort of refactors, mathlib makes them really easy.
+You need a reason to do it;
+and just talking through it with Yaël, that was great.
+
+**JMC: So, speaking of Yaël, they had a question for the next interviewee.
+So here's a question for you:
+In which ways did the community help you?**
+
+YP: It helped me think more clearly.
+It helped me have a sense of community, and feeling that I'm interacting with people.
+It helped me learn new things;
+and helped me understand some thing I already knew --
+how to get them accross clearer to others.
+
+**JMC: And a follow-up question about the community:
+what change would you like to see in the community?**
+
+YP: Right now, I don't really understand how mathport works.
+[JMC: mathport is the ongoing effort of porting mathlib from Lean 3 to Lean 4.]
+There's a lot of things going on with porting mathlib,
+binport, synport, all of that.
+Which is really exciting!
+I'm not asking for there to be more transparancy or clarity around it, because it's really moving.
+
+I'd mentioned and hinted at a fragmentation, earlier in the interview,
+because we have a lot of people excited about Lean 4 right now.
+And we have a lot of people excited about contributing math to mathlib right now.
+Because Lean 4 is now really usable, and people are making cool libraries in it,
+I'm worried a little bit about this fragmentation.
+I'm worried that people are coming in, people who don't know --
+as it flourishes more in both, it'll be harder to tell people
+"oh if you want to do that stuff, go do it in mathlib3" or
+"here if you want to do that stuff, do it in Lean 4".
+
+So something -- and I'm not pushing for the speed -- to like, make it happen.
+And maybe, Mario, Scott, Gabriel have had kind of roadmaps.
+We've talked about a flag day, where we stop accepting pull requests to mathlib3,
+and spend all our efforts to move everything to mathlib4.
+
+We could also do it piecewise.
+In DNA, you know, DNA is replicated, and there's a 5 prime strand and a 3 prime strand.
+And DNA can really only get replicated in one direction.
+So one of the strands, and it just goes and goes and goes and goes.
+And then the other one, it has to go forward, go back a little bit, go forward, go back a little bit.
+And so it has these fragments --
+they are called Okazaki fragments.
+It's really cool that it does that.
+
+I think we need to Okazaki-fragmentize our port.
+We won't be able to do it in one way.
+But we should pick a file in the tree, and say: let's just get that file ported and work backwards.
+Some people have already been doing that a little bit.
+Maybe we could just do it as community.
+But it's not exciting, because these are really really basic things
+that isn't interesting math.
+That's the challenge.
+
+So, to prevent future fragmentation, future separation,
+I think we should take a bit more of this patchy approach.
+
+JMC: I think one of the roadblocks right now is also a lack of tactics in Lean 4.
+
+YP: It's a chicken and egg problem.
+We've gotten too powerful, but also too reliant.
+And this has been discussed on Zulip:
+for example, is it ok, if tactic steps can be replaced by `sorry`.
+
+It's similar to what I've been doing with the textbook.
+One of the reasons tactics haven't been ported yet is because,
+which tactic do you do first?
+But what I did with the textbook is that I just picked a page,
+and said "I'm just gonna get this sentence working."
+And then you hit a tactic that doesn't work; and so you port that.
+And people have already been doing that.
+
+It's exactly the same approach: it's something that has already been done.
+Can you make it so that you can express it easier.
+
+**JMC: What would help you to work more effectively with mathlib and/or Lean?**
+
+YP: It's hard to say.
+I think with `leanproject`, with VSCode, with the `olean`s,
+it makes it really smooth.
+
+Here's a weird implementation thing:
+I think parallel compilation of goals would be cool.
+Right now, if you have -- let's say you split your goal into several goals.
+And you have one goal that takes a lot;
+and then another goal below, that takes a little,
+and a third goal that takes a little.
+If I want to work on that little bit, and get it nice,
+I have to wait for this whole first goal to be compiled.
+And the way you work around it, as you develop, is that you just `sorry` that whole first goal,
+work on the second one, and then unsorry the first goal.
+
+Is it possible to do them in parallel?
+Again, it's not blocking me from working better.
+But I think it would be cool.
+
+Oh, and I have another thing.
+This has been coming up in the chat a lot.
+It has to do with matrices.
+Inferring of dependent Pi-types is complicated.
+It's very hard to say
+"Hey, my `1` of a matrix is really `1`s along the diagonal, not `1`s in every single cell.
+The constant function `1`."
+What's the right API for that?
+It's not blocking me right now,
+but I think it blocks a lot of people
+from expressing concrete results on things that can be used as functions.
+Either you build really big irreducible barriers between them,
+or you try to juggle them.
+
+But matrices are particularly pernicious.
+Because people are just so cavalier with how they work with matrices.
+Really, you know, should we have a column type?
+And a transpose operation,
+so a matrix isn't just a function of two variables?
+A lot of questions here.
+
+**JMC: Those are good points, and we'll have to find some answers.
+We're approaching the end. Here's two more questions:
 What do you enjoy the most? What could increase the fun?**
 
-**JMC: Thanks for all your answers! It's time for the final two questions.
-Do you have a question for the next interviewee?**
+YP: Interactions are great!
+New people coming in all the time. There's a nice flux.
+Seeing how people grow.
+I love seeing people that were originally asking lots of questions,
+now answering them; now being relied on.
+More!
 
-YP: 
+I thought Jeremy Avigad's talk at the Hoskinson Center,
+where he described this "cottage industry" that really makes it work.
+That was such a good way of describing it!
+And I think people can be proud of it.
+
+You know, there is a lot of collaboration in academic math.
+But there often isn't.
+There's often a lot of competition, and secrecy, and mistrust.
+Being proud of the community that's been built is really good.
+
+Having more North American contributors would be cool.
+I don't know why exactly,
+but in my evenings it's sometimes very dead on Zulip,
+because people in Europe are asleep.
+But not just North America, also South America, Asia.
+Let's get even more global interaction!
+
+And what's great about it:
+It's not like Lean and mathlib growing, takes it away from any other community.
+This is like adding lanes to a highway;
+you are not removing it.
+I want other interactive theorem provers to succeed.
+I think it just all gets better, and we all become better there.
+
+**JMC: Do you have a question for the next interviewee?**
+
+YP: What mathlib result helped you understand a concept better than you ever had before?
+
+It could have been a math idea, some proof.
+Or the fact that you can state something in much larger generality.
+Or maybe the infrastructure, the things around mathlib.
 
 **JMC: And do you have any parting words or proverbial wisdom that you want to share with us?**
 
+YP: It's important to have appreciative inquiry.
+One can ask questions of someone else,
+but have the optimism and the kindness to ask them with good faith.
+I think the mathlib and the Lean community does this very well.
+It's good to do it, keeping in mind that this is why we're doing it.
+You're trying to bring people in, have them learn something new,
+and also you yourself learn something new.
 
+It's hard to do all the time.
+And there isn't an expectation that everyone does it to you.
+But I think this idea of appreciative inquiry is something that we embody
+and we should remember that; that we shouldn't lose it.
 
-**JMC: A great suggestion. Thanks a lot for your time!**
+**JMC: Wise words. Thanks a lot for your time!**
 
 
 
