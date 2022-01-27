@@ -19,7 +19,7 @@ backstage interviews with mathlib's active contributors!
 Today, Johan Commelin interviews Yakov Pechersky.
 
 
-**JMC: Please tell us a bit about yourself, about your background.**
+JMC: **Please tell us a bit about yourself, about your background.**
 
 YP: I am Yakov Pechersky. I'm thirty years old, living in New York City.
 Originally, I am from St. Petersburg, Russia -- 
@@ -84,13 +84,13 @@ stronger interest in "wet-lab" biology and chemistry. I also did not have a form
 university education in computer science or programming -- I had amazing teachers
 of those topics in high school.
 
-**JMC: How did you first learn about Lean? How did you get involved?**
+JMC: **How did you first learn about Lean? How did you get involved?**
 
-I do not remember exactly how I found out about Lean and mathlib. Likely it was
+YP: I do not remember exactly how I found out about Lean and mathlib. Likely it was
 via the Natural Numbers Game that Kevin Buzzard helped develop. I had done things
 like the Incredible Proof Machine game that Joachim Breitner developed, and
 it's been great to see him in Zulip recently!  I had a long interest in Haskell,
-and nomeata (Joachim's nick) was a very common and helpful presence in the Haskell IRC
+and `nomeata` (Joachim's nick) was a very common and helpful presence in the Haskell IRC
 channels.
 
 I of course had done real analysis in university, but here was a much more fun
@@ -113,7 +113,7 @@ is exactly equal to the determinant as defined in mathlib, I think by Anne Baane
 as a sum over permutations over something else. I found it really hard!
 That led to some of the contributions I've had in reorganizing `fin`, or
 making permutations expressible via `cycle`, and just learning more in general.
-I think that in the end, through the work of Anne and Reid Barton and Sebastien Gouezel,
+I think that in the end, through the work of Anne and Reid Barton and Sébastien Gouëzel,
 we do have that the Laplacian expansion of `det` is equal.
 
 That time that I joined the mathlib community was May/June 2020. I was very lonely,
@@ -124,9 +124,9 @@ topics. And it gave me the opportunity to take some of my thoughts that were
 being wasted on anxious thoughts about safety and food and health and renavigate
 them to something interesting -- mathlib and Lean!
 
-**JMC: Which parts of mathlib have you worked on? How would you describe your role in the community?**
+JMC: **Which parts of mathlib have you worked on? How would you describe your role in the community?**
 
-I see myself as the perpetual "new member", because I do not have a deep formal
+YP: I see myself as the perpetual "new member", because I do not have a deep formal
 mathematics education. I am happy to help answer questions to other new members,
 thinking about the assumptions that people come into Zulip with from their CS 
 backgrounds, for example.
@@ -145,7 +145,7 @@ types better, and how to build API.
 Kyle Miller has a very nice inductive definition of walks on graphs, which
 one can show is isomorphic to the `list.chain` proposition on lists. But graph cycles
 are right now walks with a constraint that the first and last vertex satisfy that 
-their adjacent. That means that a cycle of 4 vertices can actually be represented
+they're adjacent. That means that a cycle of 4 vertices can actually be represented
 in 4 slightly incompatible ways. So mathlib also lets us explore different 
 usage and design strategies.
 
@@ -177,8 +177,8 @@ people.
 JMC: So you are going sentence-by-sentence through this book,
 and making sure that everything can be expressed in Lean.
 
-YP: Right, because thinking about pedagogy.
-We'd love to have these documents that someone can just click and explore.
+YP: Right, because thinking about pedagogy,
+we'd love to have these documents that someone can just click and explore.
 But for me, it's also been great to learn about ring theory and field theory and localizations.
 It's been great to talk with others in the community to learn more about this.
 
@@ -253,7 +253,7 @@ which is what we need to drive computer science -- and science in general! -- an
 
 I love the work that Leo and Sebastian are doing for Lean 4, to make it even simpler.
 
-**JMC: What do you like best about your work with Lean and mathlib?**
+JMC: **What do you like best about your work with Lean and mathlib?**
 
 YP: I love interacting with people!
 I love that people have the kindness, and the inquisitiveness
@@ -290,7 +290,7 @@ and just reading the chat on Zulip:
 I do that a couple of times per day, and it's just...
 it makes me feel part of the world in a time where it's really hard to interact with people in person.
 
-**JMC: What are you the most proud of?**
+JMC: **What are you the most proud of?**
 
 YP: Not really any pull request in particular.
 But understanding how Lean expressions work, and how tactics work.
@@ -351,7 +351,7 @@ If those things were gone, it would be so much harder to work.
 There are these little things, that might be difficult to set up initially.
 But once they are there, they seem so integral; how could you ever work without them?
 
-**JMC: Yeah, technology makes a real difference.
+JMC: **Yeah, technology makes a real difference.
 So, next question: What are your plans for the next/upcoming year? For 2022.**
 
 YP: Because I work in this new startup,
@@ -378,7 +378,7 @@ I think with those sort of refactors, mathlib makes them really easy.
 You need a reason to do it;
 and just talking through it with Yaël, that was great.
 
-**JMC: So, speaking of Yaël, they had a question for the next interviewee.
+JMC: **So, speaking of Yaël, they had a question for the next interviewee.
 So here's a question for you:
 In which ways did the community help you?**
 
@@ -388,7 +388,7 @@ It helped me learn new things;
 and helped me understand some thing I already knew --
 how to get them across clearer to others.
 
-**JMC: And a follow-up question about the community:
+JMC: **And a follow-up question about the community:
 what change would you like to see in the community?**
 
 YP: Right now, I don't really understand how mathport works.
@@ -451,7 +451,7 @@ And people have already been doing that.
 It's exactly the same approach: it's something that has already been done.
 Can you make it so that you can express it easier?
 
-**JMC: What would help you to work more effectively with mathlib and/or Lean?**
+JMC: **What would help you to work more effectively with mathlib and/or Lean?**
 
 YP: It's hard to say.
 I think with `leanproject`, with VSCode, with the `olean`s,
@@ -493,7 +493,7 @@ And a transpose operation,
 so a matrix isn't just a function of two variables?
 A lot of questions here.
 
-**JMC: Those are good points, and we'll have to find some answers.
+JMC: **Those are good points, and we'll have to find some answers.
 We're approaching the end. Here's two more questions:
 What do you enjoy the most? What could increase the fun?**
 
@@ -529,7 +529,7 @@ you are not removing traffic from elsewhere.
 I want other interactive theorem provers to succeed.
 I think it just all gets better, and we all become better there.
 
-**JMC: Do you have a question for the next interviewee?**
+JMC: **Do you have a question for the next interviewee?**
 
 YP: What mathlib result helped you understand a concept better than you ever had before?
 
@@ -537,7 +537,7 @@ It could have been a math idea, some proof.
 Or the fact that you can state something in much larger generality.
 Or maybe the infrastructure, the things around mathlib.
 
-**JMC: And do you have any parting words or proverbial wisdom that you want to share with us?**
+JMC: **And do you have any parting words or proverbial wisdom that you want to share with us?**
 
 YP: It's important to have appreciative inquiry.
 One can ask questions of someone else,
@@ -552,7 +552,7 @@ And there isn't an expectation that everyone does it to you.
 But I think this idea of appreciative inquiry is something that we embody
 and we should remember that; that we shouldn't lose it.
 
-**JMC: Wise words. Thanks a lot for your time!**
+JMC: **Wise words. Thanks a lot for your time!**
 
 
 
