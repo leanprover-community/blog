@@ -32,8 +32,9 @@ startup, Treeline Biosciences. My training is in experimental chemical biology,
 how antibiotics are made. Most antibiotics come from bacteria! How do the 
 bacteria make them, why is it hard for us to do the same thing in a chemistry lab?
 
-After my training, I helped build a startup (Ginkgo Bioworks) to automate
-engineering of microorganisms, using robots to construct yeast, which in turn,
+After my training, I worked in an early-stage startup (Ginkgo Bioworks), building
+a team to automate design and engineering of microorganisms,
+using robots to construct yeast, which in turn,
 generate fragrances, materials, etc. And before Treeline, for 5 years I worked
 in simulating proteins using specialty-built supercomputers.
 
@@ -50,18 +51,21 @@ Once the Soviet Union fell apart, governmental and law-based persecution disappe
 but ad hoc discrimination and animosity appeared, especially in the difficult 90s. 
 
 In NYC, I initially attended a Jewish day school where my mother taught,
-so that I could have a formal Jewish education, and also to save money since,
-as new immigrants, single mother household, we did not have anything --
+so that I could have a formal Jewish education.
+An anonymous donor paid for my tuition.
+As new immigrants, single mother household, we did not have anything --
 we didn't have much in Russia, and whatever we had, we were unable to bring anything 
 with us. We had a large library of books in Russia, and that was the hardest to leave
 behind.
 
 My mother and grandmother are both teachers. We've always really valued a strong
-education. Thanks to them, by age 2, I was reading and writing in Russian, Hebrew,
-and Yiddish. My mom tells me that when I was 4, I came up to her and said
-"Sure, there is addition. But if you do it many times, what if you wanted to have a
-symbol to write that? And what if you want to do that many times? But you can't undo 
-it in the same way..."
+education. Thanks to them, by age 2, I was reading and starting to write in Russian,
+Hebrew, and Yiddish. My mom tells me that when I was 4, after she shared with me a
+Russian pun/riddle of wordplay between the words for "three" and "rub", I got really
+focused on the repetition of "3, 3, 3". She says I came up with a way to notate
+repeated addition, and when she showed me the `×` notation
+and the name "multiplication", I then thought through to what I later found out 
+were fractions and powers.
 So I've had an interest in mathematics for a long time.
 
 The NYC public school system can be pretty good. I was fortunate to go to 1st grade
@@ -79,12 +83,12 @@ being strong in math, science, humanities. Anyone in the city can take a test to
 in, so it is a really nice mix of everyone from all over the city. There,
 they helped me further in learning math -- once I finished the whole school curriculum,
 they allowed me to take a graduate topology course at the Courant Institute (at NYU)
-with Sylvain Cappell.
+with Sylvain Cappell. I also had amazing teachers of computer science and programming
+in high school.
 
 In university, I had the option of continuing my math education, but I had a
-stronger interest in "wet-lab" biology and chemistry. I also did not have a formal
-university education in computer science or programming -- I had amazing teachers
-of those topics in high school.
+stronger interest in "wet-lab" biology and chemistry. High school then also
+became the last time I had formal CS training.
 
 JMC: **How did you first learn about Lean? How did you get involved?**
 
@@ -119,8 +123,9 @@ I think that in the end, through the work of Anne and Reid Barton and Sébastien
 we do have that the Laplacian expansion of `det` is equal.
 
 That time that I joined the mathlib community was May/June 2020. I was very lonely,
-due to the pandemic I was not interacting with any one other than my mother and
-grandmother, very anxious, all I had was my work. So Zulip and the mathlib community
+due to the pandemic I was not interacting with any one daily in person other than
+my mother and grandmother, very anxious, all I had was my work.
+So Zulip and the mathlib community
 was such a warm place where I could interact with others on mutually interesting 
 topics. And it gave me the opportunity to take some of my thoughts that were 
 being wasted on anxious thoughts about safety and food and health and renavigate
@@ -276,7 +281,7 @@ I think it's hard to build concensus.
 But really,
 for all of the negatives of the Soviet Union,
 there's like a Soviet going on,
-a sort of counsel that sets some overarching ideas, and do jump in at certain points,
+a sort of council that sets some overarching ideas, and do jump in at certain points,
 but the rest of the community is able to work within these ideas, these ideals.
 And push something forward!
 But it's hard to not fragment it.
