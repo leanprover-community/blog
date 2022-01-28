@@ -517,9 +517,7 @@ That was such a good way of describing it!
 And I think people can be proud of it.
 
 You know, there is a lot of collaboration in academic math.
-But there often isn't.
-There's often a lot of competition, and secrecy, and mistrust.
-Being proud of the community that's been built is really good.
+Being proud of the community that's been built with this at its core is really good.
 
 Having more North American contributors would be cool.
 I don't know why exactly,
