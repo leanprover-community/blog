@@ -1,6 +1,6 @@
 ---
 author: 'Johan Commelin'
-category: 'Announcements'
+category: 'Interviews'
 date: 2021-01-27 09:35:23 UTC+02:00
 description: ''
 has_math: true
@@ -198,7 +198,7 @@ Or you can go from polynomials to power series, and then to Laurent series.
 Anyway, long story short:
 I want to take rational functions, and be able to talk about roots, and poles, etc.
 And also connect this corner of algebra to analysis,
-to the work that people liky Yury Kudryashov and Patrick Massot have been doing.
+to the work that people like Yury Kudryashov and Patrick Massot have been doing.
 We now only have the Taylor expansion for polynomials.
 But we can start talking about approximating functions,
 approximating them by polynomials, or by rational functions.
