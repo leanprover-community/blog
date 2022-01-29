@@ -11,7 +11,7 @@ title: Backstage with Yakov Pechersky
 type: text
 ---
 
-{{% thumbnail "/images/yakov_pechersky.jpg" align="right" %}}{{% /thumbnail %}}
+{{% thumbnail "/images/yakov_pechersky.png" align="right" %}}{{% /thumbnail %}}
 
 The next installment in the series of
 backstage interviews with mathlib's active contributors!
