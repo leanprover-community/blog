@@ -13,6 +13,8 @@ type: text
 In [PR #8281](https://github.com/leanprover-community/mathlib/pull/8281), Yury
 Kudryashov completed his work on continuous and smooth partitions of unity.
 
+<!-- TEASER_END -->
+
 A continuous partition of unity on a topological space $X$ is a collection of continuous functions
 $f_i : X → ℝ$ such that:
 

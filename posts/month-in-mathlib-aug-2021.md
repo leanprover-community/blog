@@ -13,6 +13,8 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in August.
 
+<!-- TEASER_END -->
+
 # Highlighted PRs
 
 * [PR #8652](https://github.com/leanprover-community/mathlib/pull/8652): chore(*): update lean to 3.32.1  

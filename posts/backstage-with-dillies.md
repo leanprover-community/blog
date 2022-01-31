@@ -18,6 +18,7 @@ backstage interviews with mathlib's active contributors!
 
 Today, Johan Commelin interviews Yaël Dillies.
 
+<!-- TEASER_END -->
 
 **JMC: Please tell us a bit about yourself, about your background.**
 

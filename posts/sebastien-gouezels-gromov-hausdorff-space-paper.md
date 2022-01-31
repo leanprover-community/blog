@@ -14,6 +14,8 @@ Sébastien Gouëzel wrote a [paper about the Gromov-Hausdorff space](https://eas
 [CICM 2021](https://cicm-conference.org/2021/) conference on intelligent computer
 mathematics. 
 
+<!-- TEASER_END -->
+
 The Gromov-Hausdorff space is the space of all nonempty compact metric
 spaces up to isometry. It has been introduced by Gromov, and plays now
 an important role in branches of geometry and probability theory. Its

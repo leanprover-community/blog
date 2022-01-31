@@ -13,6 +13,8 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in October.
 
+<!-- TEASER_END -->
+
 # Highlighted PRs
 
 * In algebraic geometry, there has been a surge in activity.

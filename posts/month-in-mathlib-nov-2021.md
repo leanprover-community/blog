@@ -13,6 +13,8 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in November.
 
+<!-- TEASER_END -->
+
 * Geometry and algebraic topology.
     - The series 
       [PR #10284](https://github.com/leanprover-community/mathlib/pull/10284),
