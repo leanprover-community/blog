@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="This is the blog of the Lean prover community.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean community blog (old posts, page 2) | Lean community blog</title>
+<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/index-2.html">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<link rel="prev" href="." type="text/html">
+<link rel="next" href="index-1.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Lean community blog (old posts, page 2) | Lean community blog">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="." title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="archive.html">Archive</a></li>
+                <li><a href="categories/">Tags</a></li>
+                <li><a href="about/">About</a></li>
+                <li><a href="rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><div class="postindex">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-oct-2021/" class="u-url">This month in mathlib (Oct 2021)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/month-in-mathlib-oct-2021/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-11-01T06:38:50+01:00" itemprop="datePublished" title="2021-11-01 06:38">2021-11-01 06:38</time></a>
+            </p>
+		    <p><span class="text-dark">month-in-mathlib</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <p>This post summarizes some of the activity that happened in mathlib in October.</p>
+<h2>Highlighted PRs</h2>
+<ul>
+<li>In algebraic geometry, there has been a surge in activity.
+  After the definition of schemes entered mathlib, the development stalled for a while,
+  because the Liquid Tensor Experiment took up a lot of energy and attention.
+  But new contributors showed up, and are pushing the library forward.
+  Two highlights this month include:<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9416">PR #9416</a> Global sections of the spectrum of a ring are isomorphic to that ring.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9861">PR #9861</a> Closed points in the prime spectrum correspond to maximal ideals.</li>
+</ul>
+</li>
+<li>
+<p>In commutative algebra:</p>
+<ul>
+<li>algebraic indepence and transcendence are introduced in 
+<a href="https://github.com/leanprover-community/mathlib/pull/9229">PR #9229</a> and 
+<a href="https://github.com/leanprover-community/mathlib/pull/9377">PR #9377</a> proved
+the existence of transcendence bases. 
+See the <a href="https://stacks.math.columbia.edu/tag/030D">stacks project</a> for an informal account.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9817">PR #9817</a> and <a href="https://github.com/leanprover-community/mathlib/pull/9834">PR #9834</a>
+fills a glaring hole in the field theory library: finite fields of the same cardinality are isomorphic.</li>
+</ul>
+</li>
+<li>
+<p>In group theory:</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8976">PR #8976</a> proves the Jordan Hölder theorem. It also proves a version for submodules.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9662">PR #9662</a>
+proves Frattini's Argument: If $N$ is a normal subgroup of $G$, and $P$ is
+a Sylow $p$-subgroup of $N$, then $\text{N}_G(P)*N=G$.</li>
+</ul>
+</li>
+<li>In number theory, <a href="https://github.com/leanprover-community/mathlib/pull/9646">PR #9646</a> and 
+  <a href="https://github.com/leanprover-community/mathlib/pull/9702">PR #9702</a> prove that Liouville numbers form a dense $G_δ$ set which has measure zero.</li>
+<li>In combinatorics, <a href="https://github.com/leanprover-community/mathlib/pull/7825">PR #7825</a> proves a
+  generalized version of Hall's marriage theorem using a compactness argument.
+  Using the language of category theory, there is an inverse system of solutions to the marriage problem when restricted to finite subsets of the domain,
+  and <a href="https://leanprover-community.github.io/mathlib_docs/topology/category/Top/limits.html#nonempty_sections_of_fintype_inverse_system">the limit of this kind of inverse system is nonempty</a>.</li>
+<li>In measure theory, the series of PRs <a href="https://github.com/leanprover-community/mathlib/pull/9462">PR #9462</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/9461">PR #9461</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/9576">PR #9576</a>,
+  <a href="https://github.com/leanprover-community/mathlib/pull/9679">PR #9679</a> and
+  <a href="https://github.com/leanprover-community/mathlib/pull/9680">PR #9680</a>
+  prove the Vitali and Besicovitch covering theorems (with
+  the optimal constant for the Besicovitch covering theorem, following 
+  <a href="https://www.jstor.org/stable/2161215">Füredi and Loeb, On the best constant for the Besicovitch covering theorem</a>).
+  These theorems ensure that, from a covering of a (not necessarily measurable)
+  set $s$ by nice enough sets (e.g. balls), one can extract a disjoint subfamily
+  covering almost all $s$. They are instrumental in forthcoming results on
+  differentiation of measures.</li>
+<li>In probability:<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9323">PR #9323</a> defines probability density functions, </li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9378">PR #9378</a> proves that conditional expectation on real functions equal Radon-Nikodym derivative</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9469">PR #9469</a> brought us notations that really demonstrate we're now doing probability in mathlib!</li>
+</ul>
+</li>
+<li>In algebraic topology, <a href="https://github.com/leanprover-community/mathlib/pull/9252">PR #9252</a> and
+  <a href="https://github.com/leanprover-community/mathlib/pull/9141">PR #9141</a> set up some basic homotopy theory.</li>
+<li>
+<p>In topological algebra, some foundational parts of the perfectoid project were moved to mathlib after a long time of inactivity:</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9521">PR #9521</a> defines the adic topology associated to an ideal</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9589">PR #9589</a> defines the topology associated to a valuation on a ring and proves its fundamental properties. In particular a valuation on a field <code>𝕂</code> is extended to the completion of <code>𝕂</code> with respect to the valuation topology.</li>
+</ul>
+</li>
+<li>
+<p>In differential calculus, </p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9496">PR #9496</a> and <a href="https://github.com/leanprover-community/mathlib/pull/9811">PR #9811</a> prove the divergence theorem on a box, for a Henstock-style integral and the Bochner integral respectively. This is a foundational result that will be used in complex analysis and differential topology.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9440">PR #9440</a> defines superpolynomial decay of a function</li>
+</ul>
+</li>
+<li>
+<p>In functional analysis:</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9540">PR #9540</a> proves the open mapping theorem for maps between affine spaces</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9924">PR #9924</a>
+   states the Riesz representation theorem uniformly over $ℝ$ and $ℂ$. In
+   2020, Frédéric Dupuis proved this theorem over both $ℝ$ and $ℂ$ (see <a href="https://github.com/leanprover-community/mathlib/pull/4379">PR
+   #4379</a>),
+   but, since mathlib lacked conjugate-linear maps at that time,
+   the $ℂ$-version was stated in a rather awkward way.
+   Conjugate-linear maps were added to mathlib <a href="posts/month-in-mathlib-sep-2021/">last month</a> and now the $ℝ$ and $ℂ$ versions of the theorem can be stated uniformly.</li>
+</ul>
+</li>
+<li>
+<p>The core version of Lean was bumped twice in the past month.
+  Most of the <a href="https://github.com/leanprover-community/lean/blob/master/doc/changes.md#3350c-28-october-2021">changes</a>
+  are in preparation for porting mathlib to Lean 4.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9824">PR #9824</a> update to Lean-3.34.0</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9988">PR #9988</a> update to Lean-3.35.0c</li>
+</ul>
+</li>
+</ul>
+</div>
+            </article>
+</div>
+            <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="." rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-1.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></main><footer id="footer"><p>Contents © 2022         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
