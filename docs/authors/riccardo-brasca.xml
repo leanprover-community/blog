@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Riccardo Brasca)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/riccardo-brasca.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Mon, 31 Jan 2022 13:53:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Riccardo Brasca)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/riccardo-brasca.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Mon, 31 Jan 2022 14:08:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
 in December 2020, mathlib already
 &lt;a href="https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space"&gt;had&lt;/a&gt;
 a decent theory of normed spaces. With this post I want to show how mathlib can benefit
@@ -8,36 +8,4 @@ to the theory of normed spaces in almost one year of work (this is only a small 
 been added to mathlib from &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;LTE&lt;/a&gt;, for a more
 complete list, see the history of &lt;a href="https://github.com/leanprover-community/lean-liquid/commits/master/src/for_mathlib"&gt;for_mathlib&lt;/a&gt;
 folder).&lt;/p&gt;
-&lt;p&gt;Besides several small missing lemmas, we added the following notions.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;normed_group_hom&lt;/code&gt;: we already had the operator norm, but no bundled hom between normed
-  groups. We introduced &lt;code&gt;normed_group_hom G H&lt;/code&gt;, that it is itself a normed group. We also
-  introduced kernels and images of a normed groups hom.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;semi_normed_group&lt;/code&gt;: a seminorm generalizes a norm by allowing nonzero vectors of zero
-  (semi)norm. This notion is needed in &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;LTE&lt;/a&gt;,
-  and we introduced it in mathlib (providing a reasonable API). Since &lt;code&gt;normed_group&lt;/code&gt; depends on
-  &lt;code&gt;metric_space&lt;/code&gt; that in turn depends on &lt;code&gt;emetric_space&lt;/code&gt;, we had first of all introduced
-  (extended) pseudo metric spaces. We also introduced &lt;code&gt;semi_normed_space&lt;/code&gt; and similar related notions.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;normed_group_quotient&lt;/code&gt;: the theory of quotients of (semi) normed groups was completely
-  missing. We now have a good API for it.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;normed_group_hom.completion&lt;/code&gt;: similarly to &lt;code&gt;normed_group_quotient&lt;/code&gt;, mathlib did not know
-  completions of normed groups. Using the already existing theory for topological groups,
-  we added an API for completions of normed groups. &lt;/li&gt;
-&lt;li&gt;&lt;code&gt;nnnorm&lt;/code&gt;: sometimes it is useful to consider the norm as taking values in the nonnegative
-  reals. We introduced the class &lt;code&gt;has_nnnorm&lt;/code&gt;, with the obvious instances, and wrote an API for it.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SemiNormedGroup&lt;/code&gt;: we introduced &lt;code&gt;SemiNormedGroup&lt;/code&gt;, the category of semi normed groups,
-  as a preadditive category with kernels and cokernels. We promoted &lt;code&gt;normed_group_hom.completion&lt;/code&gt;
-  to a functor, showing its universal property. Working with cokernels, an interesting problem
-  arose: if &lt;code&gt;f : X → Y&lt;/code&gt; is a normed groups hom, one usually consider &lt;em&gt;the&lt;/em&gt; cokernel
-  &lt;code&gt;coker(f) = Y/Im(f)&lt;/code&gt;, with the quotient norm and it is obvious that the projection
-  &lt;code&gt;π : Y → coker(f)&lt;/code&gt; satisfies &lt;code&gt;∥π∥ ≤ 1&lt;/code&gt;. This is often needed in computations, but
-  the category theory API doesn't promise any particular model of the cokernel,
-  so one can for example scale the quotient norm by any positive factor, ending up with another
-  cokernel, whose natural projection has norm bigger than &lt;code&gt;1&lt;/code&gt;. If &lt;code&gt;f&lt;/code&gt; itself has norm less or
-  equal than &lt;code&gt;1&lt;/code&gt;, one can work with &lt;code&gt;SemiNormedGroup₁&lt;/code&gt;, the category of seminormed groups and
-  norm nonincreasing morphisms (that we proved has cokernels), but in general we ended up
-  providing &lt;code&gt;explicit_cokernel f&lt;/code&gt;, an explicit choice of cokernel, which has good properties with
-  respect to the norm. This was enough for &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;LTE&lt;/a&gt;,
-  but still not completely satisfying, since one cannot directly use the category theory API for
-  &lt;code&gt;explicit_cokernel&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;</description><guid>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</guid><pubDate>Tue, 02 Nov 2021 09:04:21 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</guid><pubDate>Tue, 02 Nov 2021 09:04:21 GMT</pubDate></item></channel></rss>

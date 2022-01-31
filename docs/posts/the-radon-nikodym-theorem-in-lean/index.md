@@ -15,6 +15,8 @@ I have for the past two months been working on formalising the Radon-Nikodym the
 in Lean, and with [PR #9065](https://github.com/leanprover-community/mathlib/pull/9065) 
 merged into mathlib, this journey seems to have finally come to an end. 
 
+<!-- TEASER_END -->
+
 The Radon-Nikodym theorem provides a necessary and sufficient condition for 
 comparing two measures, and allows us (under certain conditions) to express 
 one measure in terms of another.

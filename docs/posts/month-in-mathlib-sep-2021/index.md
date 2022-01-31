@@ -13,6 +13,8 @@ type: text
 
 This post summarizes some of the activity that happened in mathlib in September.
 
+<!-- TEASER_END -->
+
 # Highlighted PRs
 
 * Number fields.

@@ -20,6 +20,8 @@ been added to mathlib from [LTE](https://github.com/leanprover-community/lean-li
 complete list, see the history of [for_mathlib](https://github.com/leanprover-community/lean-liquid/commits/master/src/for_mathlib)
 folder).
 
+<!-- TEASER_END -->
+
 Besides several small missing lemmas, we added the following notions.
 
 * `normed_group_hom`: we already had the operator norm, but no bundled hom between normed

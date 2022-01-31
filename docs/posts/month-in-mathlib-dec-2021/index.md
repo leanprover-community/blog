@@ -14,6 +14,8 @@ type: text
 December 2021 saw 565 commits to mathlib, which sets a new record.
 In this post we highlight some of these contributions.
 
+<!-- TEASER_END -->
+
 * Combinatorics.
     - [PR #10287](https://github.com/leanprover-community/mathlib/pull/10287) defines graph colorings and partitions.
     - [PR #10981](https://github.com/leanprover-community/mathlib/pull/10981) defines the concepts of walks, paths, cycles in graph theory.

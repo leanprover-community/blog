@@ -15,6 +15,8 @@ Since the mathlib repository was created in summer 2017,
 each year has been bigger than the last. 
 As an end-of-year retrospective, we look at how the mathlib library and community have developed in 2021.
 
+<!-- TEASER_END -->
+
 # Statistics
 
 Since early 2019, mathlib has followed a "squash and merge" strategy for pull requests.

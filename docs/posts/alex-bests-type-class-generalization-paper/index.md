@@ -15,6 +15,8 @@ Alex J. Best wrote a
 [CICM 2021](https://cicm-conference.org/2021/) conference on intelligent computer
 mathematics. 
 
+<!-- TEASER_END -->
+
 When producing large formally verified mathematical developments that
 make use of typeclasses as in mathlib, it is easy to introduce overly strong
 assumptions for theorems and definitions. This paper considers the problem of

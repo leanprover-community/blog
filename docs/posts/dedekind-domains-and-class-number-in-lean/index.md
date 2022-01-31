@@ -20,6 +20,8 @@ Of course, we could not have done this without the assistance of the entire math
 Sander, Ashvni, Filippo and I wrote [a paper](https://github.com/lean-forward/class-number) on the formalization project for the [ITP 2021](http://easyconferences.eu/itp2021/) conference;
 this blog post goes through the highlights of the paper.
 
+<!-- TEASER_END -->
+
 Algebraic number theory is an associative term:
 parsing it as (algebraic (number theory)) we get a subarea of number theory, the study of the integer numbers, that uses algebraic techniques to solve equations such as $x^2 + 2 = y^3$.
 Alternatively, we can parse ((algebraic number) theory) as the area of mathematics studying [algebraic](https://leanprover-community.github.io/mathlib_docs/ring_theory/algebraic.html#is_algebraic) numbers, those satisfying a polynomial equation $f(\alpha) = 0$ for some nonzero polynomial $f$ with rational coefficients.

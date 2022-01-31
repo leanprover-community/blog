@@ -24,6 +24,8 @@ While the type theory and kernel in Lean 4 are quite similar from a user point o
 it is certainly not the case that we can run Lean 3 code in Lean 4.
 Our aspiration is to achieve a "semi-automated" port.
 
+<!-- TEASER_END -->
+
 The `mathport` tool first of all provides a complete binary level port of `mathlib`
 (i.e. generating a Lean 4 `.olean` file for every `.olean` file in `mathlib`).
 This means that you will be able to `import` all files from `mathlib`,
