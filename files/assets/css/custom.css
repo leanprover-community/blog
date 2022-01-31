@@ -20,6 +20,16 @@ h1, h2, h3, h4, h5, h6,
   padding-bottom: 1em;
 }
 
+article img.align-right {
+  margin: 1em;
+  margin-right: 0;
+}
+
+.postindex article img {
+  max-height: 12em;
+  margin-top: 0;
+}
+
 h1.entry-title {
   font-size: 2.1em;
   margin-bottom: 0.25rem;
