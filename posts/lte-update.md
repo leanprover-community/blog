@@ -18,6 +18,8 @@ and
 [Quanta](https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/).
 Since then, we haven't been sitting still, and it's high time for a status update.
 
+<!-- TEASER_END -->
+
 The first milestone was a proof of the following
 [statement](https://github.com/leanprover-community/lean-liquid/blob/b94b4bf4c9a60aa72bc226d0ee4218f8ef9e6049/src/liquid.lean#L37)
 ```lean
