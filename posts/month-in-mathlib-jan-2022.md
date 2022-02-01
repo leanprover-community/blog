@@ -74,8 +74,9 @@ In this post we highlight some of these contributions.
 	- [PR #11653](https://github.com/leanprover-community/mathlib/pull/11653) :: feat(README.md): add Kyle Miller as new maintainer
 
 * Other.
+	- [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) :: feat(tactic/linear_combination): add tactic for combining equations 
+	- [PR #11707](https://github.com/leanprover-community/mathlib/pull/11707) :: feat(topology/algebra/continuous_monoid_hom): Add topological_group instance
 	- [PR #10497](https://github.com/leanprover-community/mathlib/pull/10497) :: feat(algebra/group/freiman): Freiman homomorphisms
-	- [PR #11665](https://github.com/leanprover-community/mathlib/pull/11665) :: feat(topology/continuous_function/algebra): C(α, β) is a topological group
 	- [PR #11372](https://github.com/leanprover-community/mathlib/pull/11372) :: feat(combinatorics/double_counting): Double-counting the edges of a bipartite graph
 	- [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) :: feat(algebra/order/rearrangement) : Rearrangement Inequality
 	- [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) :: feat(archive/100-theorems-list): add proof of the solution of the cubic
