@@ -20,9 +20,10 @@ In this post we highlight some of these contributions.
 	- [PR #10000](https://github.com/leanprover-community/mathlib/pull/10000) :: feat(measure_theory/integral): Cauchy integral formula for a circle
 	- [PR #11686](https://github.com/leanprover-community/mathlib/pull/11686) :: feat(analysis/complex): removable singularity theorem
 	- [PR #11491](https://github.com/leanprover-community/mathlib/pull/11491) :: feat(analysis/inner_product_space): proof of the Lax Milgram theorem
-	- [PR #11094](https://github.com/leanprover-community/mathlib/pull/11094) :: feat(analysis/normed_space/lp_space): completeness of the lp space on `Π i, E i`
-	- [PR #11255](https://github.com/leanprover-community/mathlib/pull/11255) :: feat(analysis/inner_product_space/l2): a Hilbert space is isometrically isomorphic to `ℓ²`
-	- [PR #11314](https://github.com/leanprover-community/mathlib/pull/11314) :: feat(analysis/mean_inequalities): Hölder's inequality for infinite sums
+	- [PR #11604](https://github.com/leanprover-community/mathlib/pull/11604) :: feat(analysis/seminorm): define the topology induced by a family of seminorms 
+	- [PR #11015](https://github.com/leanprover-community/mathlib/pull/11015) :: feat(analysis/normed_space/lp_space): Lp space for `Π i, E i`
+	- [PR #11255](https://github.com/leanprover-community/mathlib/pull/11255) :: feat(analysis/inner_product_space/l2_space): a Hilbert space is isometrically isomorphic to `ℓ²`
+	- [PR #11320](https://github.com/leanprover-community/mathlib/pull/11320) :: feat(analysis/fourier): Fourier series for functions in L2; Parseval's identity
 
 * Algebraic geometry.
 	- [PR #11147](https://github.com/leanprover-community/mathlib/pull/11147) :: feat(algebraic_geometry): The function field of an integral scheme
@@ -74,8 +75,7 @@ In this post we highlight some of these contributions.
 
 * Other.
 	- [PR #10497](https://github.com/leanprover-community/mathlib/pull/10497) :: feat(algebra/group/freiman): Freiman homomorphisms
-	- [PR #10961](https://github.com/leanprover-community/mathlib/pull/10961) :: feat(linear_algebra/eigenspace): prove eigenvalues are exactly elements of the spectrum when the space is finite dimensional
+	- [PR #11665](https://github.com/leanprover-community/mathlib/pull/11665) :: feat(topology/continuous_function/algebra): C(α, β) is a topological group
 	- [PR #11372](https://github.com/leanprover-community/mathlib/pull/11372) :: feat(combinatorics/double_counting): Double-counting the edges of a bipartite graph
-	- [PR #11526](https://github.com/leanprover-community/mathlib/pull/11526) :: feat(analysis/normed_space/finite_dimension): the determinant is continuous on the space of continuous linear maps
 	- [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) :: feat(algebra/order/rearrangement) : Rearrangement Inequality
 	- [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) :: feat(archive/100-theorems-list): add proof of the solution of the cubic
