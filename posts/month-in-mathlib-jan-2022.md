@@ -16,67 +16,55 @@ In this post we highlight some of these contributions.
 
 <!-- TEASER_END -->
 
-* Analysis.
-	- [PR #10000](https://github.com/leanprover-community/mathlib/pull/10000) :: feat(measure_theory/integral): Cauchy integral formula for a circle
-	- [PR #11686](https://github.com/leanprover-community/mathlib/pull/11686) :: feat(analysis/complex): removable singularity theorem
-	- [PR #11491](https://github.com/leanprover-community/mathlib/pull/11491) :: feat(analysis/inner_product_space): proof of the Lax Milgram theorem
-	- [PR #11604](https://github.com/leanprover-community/mathlib/pull/11604) :: feat(analysis/seminorm): define the topology induced by a family of seminorms 
-	- [PR #11015](https://github.com/leanprover-community/mathlib/pull/11015) :: feat(analysis/normed_space/lp_space): Lp space for `Π i, E i`
-	- [PR #11255](https://github.com/leanprover-community/mathlib/pull/11255) :: feat(analysis/inner_product_space/l2_space): a Hilbert space is isometrically isomorphic to `ℓ²`
-	- [PR #11320](https://github.com/leanprover-community/mathlib/pull/11320) :: feat(analysis/fourier): Fourier series for functions in L2; Parseval's identity
+* Analysis. PR number 10000 was saved for something special: the Cauchy integral formula is in mathlib!
+  This is a major milestone, and unlocks complex analysis.
+  - [PR #10000](https://github.com/leanprover-community/mathlib/pull/10000) Cauchy integral formula for a circle
+  - [PR #11686](https://github.com/leanprover-community/mathlib/pull/11686) Removable singularity theorem
+  - [PR #11491](https://github.com/leanprover-community/mathlib/pull/11491) Lax Milgram theorem
+  - [PR #11604](https://github.com/leanprover-community/mathlib/pull/11604) The topology induced by a family of seminorms 
+  - [PR #11015](https://github.com/leanprover-community/mathlib/pull/11015) Lp space for `Π i, E i`
+  - [PR #11255](https://github.com/leanprover-community/mathlib/pull/11255) A Hilbert space is isometrically isomorphic to `ℓ²`
+  - [PR #11320](https://github.com/leanprover-community/mathlib/pull/11320) Fourier series for functions in L2; Parseval's identity
 
-* Algebraic geometry.
-	- [PR #11147](https://github.com/leanprover-community/mathlib/pull/11147) :: feat(algebraic_geometry): The function field of an integral scheme
-	- [PR #9802](https://github.com/leanprover-community/mathlib/pull/9802) :: feat(algebraic_geometry): Gamma-Spec adjunction
-	- [PR #11431](https://github.com/leanprover-community/mathlib/pull/11431) :: feat(algebraic_geometry): Gluing schemes
-	- [PR #10605](https://github.com/leanprover-community/mathlib/pull/10605) :: feat(algebraic_geometry): Fiber products of schemes
-	- [PR #11450](https://github.com/leanprover-community/mathlib/pull/11450) :: feat (algebraic_geometry): Constructions of fibred products of schemes
+* Algebraic geometry. This month, mathlib learned about the Gamma-Spec adjunction in [PR #9802](https://github.com/leanprover-community/mathlib/pull/9802).
+  A construction for gluing schemes was added in [PR #11431](https://github.com/leanprover-community/mathlib/pull/11431),
+  which was used in [PR #10605](https://github.com/leanprover-community/mathlib/pull/10605) to show that the category of schemes has fiber products.
+  The function field of an integral scheme is defined in [PR #11147](https://github.com/leanprover-community/mathlib/pull/11147).
 
-* Synthetic geometry.
-	- [PR #11390](https://github.com/leanprover-community/mathlib/pull/11390) :: feat(combinatorics/configuration): Define projective planes
-	- [PR #11550](https://github.com/leanprover-community/mathlib/pull/11550) :: feat(combinatorics/configuration): The order of a projective plane is at least 2
-	- [PR #11462](https://github.com/leanprover-community/mathlib/pull/11462) :: feat(combinatorics/configuration): Formula for cardinality of a projective plane
+* Synthetic geometry. [PR #11390](https://github.com/leanprover-community/mathlib/pull/11390) defines synthetic projective planes,
+  [PR #11550](https://github.com/leanprover-community/mathlib/pull/11550) shows that the order of a projective plane is at least 2,
+  and [PR #11462](https://github.com/leanprover-community/mathlib/pull/11462) proves the familiar formula for the cardinality of a projective plane
+  in terms of the order (i.e., the number of points on a line, minus 1).
 
-* Topos theory.
-	- [PR #11252](https://github.com/leanprover-community/mathlib/pull/11252) :: feat(category_theory/sites/left_exact): Sheafification is left exact.
-	- [PR #11273](https://github.com/leanprover-community/mathlib/pull/11273) :: feat(category_theory/sites): The pushforward pullback adjunction
+* Topos theory. [PR #11252](https://github.com/leanprover-community/mathlib/pull/11252) shows that sheafification is left exact,
+  and [PR #11273](https://github.com/leanprover-community/mathlib/pull/11273) provides the pushforward-pullback adjunction.
 
-* Group theory.
-	- [PR #11166](https://github.com/leanprover-community/mathlib/pull/11166) :: feat(group_theory/specific_groups): computes the exponents of the dihedral and generalised quaternion groups
-	- [PR #11512](https://github.com/leanprover-community/mathlib/pull/11512) :: feat(src/group_theory/nilpotent): solvable_of_nilpotent
+* Group theory. [PR #11166](https://github.com/leanprover-community/mathlib/pull/11166) computes the exponents of the dihedral and generalised quaternion groups,
+  and [PR #11512](https://github.com/leanprover-community/mathlib/pull/11512) shows that nilpotent groups are solvable.
 
-* Algebra.
-	- [PR #11139](https://github.com/leanprover-community/mathlib/pull/11139) :: feat(data/polynomial/taylor): taylor's formula
-	- [PR #11697](https://github.com/leanprover-community/mathlib/pull/11697) :: feat(ring_theory/polynomial/eisenstein): add miscellaneous results about Eisenstein polynomials
-	- [PR #11156](https://github.com/leanprover-community/mathlib/pull/11156) :: feat(ring_theory/algebraic): algebraic functions
-	- [PR #11346](https://github.com/leanprover-community/mathlib/pull/11346) :: feat(ring_theory/witt_vector): Witt vectors over a domain are a domain
-	- [PR #9080](https://github.com/leanprover-community/mathlib/pull/9080) :: feat(number_theory/prime_counting): The prime counting function
-	- [PR #10730](https://github.com/leanprover-community/mathlib/pull/10730) :: feat(linear_algebra/clifford_algebra/equivs): There is a clifford algebra isomorphic to the dual numbers
+* Algebra. [PR #11139](https://github.com/leanprover-community/mathlib/pull/11139) proves Taylor's formula for polynomials,
+  [PR #11697](https://github.com/leanprover-community/mathlib/pull/11697) adds miscellaneous results about Eisenstein polynomials,
+  [PR #11156](https://github.com/leanprover-community/mathlib/pull/11156) adds algebraic functions,
+  [PR #11346](https://github.com/leanprover-community/mathlib/pull/11346) shows that Witt vectors of a domain are a domain,
+  [PR #9080](https://github.com/leanprover-community/mathlib/pull/9080) add the prime counting function,
+  and [PR #10730](https://github.com/leanprover-community/mathlib/pull/10730) shows that the dual numbers are a clifford algebra.
 
-* Measure theory.
-	- [PR #11328](https://github.com/leanprover-community/mathlib/pull/11328) :: feat(measure_theory/function/uniform_integrable): Egorov's theorem
-	- [PR #11554](https://github.com/leanprover-community/mathlib/pull/11554) :: feat(measure_theory/covering): Lebesgue density points
+* Measure theory. [PR #11328](https://github.com/leanprover-community/mathlib/pull/11328) proves Egorov's theorem,
+  while [PR #11554](https://github.com/leanprover-community/mathlib/pull/11554) defines Lebesgue density points.
 
-* Lie theory.
-	- [PR #11422](https://github.com/leanprover-community/mathlib/pull/11422) :: feat(algebra/lie/nilpotent): central extensions of nilpotent Lie modules / algebras are nilpotent
-	- [PR #11598](https://github.com/leanprover-community/mathlib/pull/11598) :: feat(algebra/lie/cartan_subalgebra): add self-normalizing characterisation for Lie subalgebra
+* Lie theory. [PR #11422](https://github.com/leanprover-community/mathlib/pull/11422) shows that central extensions of nilpotent Lie modules / algebras are nilpotent.
 
-* Probability theory.
-	- [PR #11007](https://github.com/leanprover-community/mathlib/pull/11007) :: feat(probability_theory/martingale): one direction of the optional stopping theorem
+* Probability theory. [PR #11007](https://github.com/leanprover-community/mathlib/pull/11007) proves one direction of the optional stopping theorem.
 
-* Algebraic topology.
-	- [PR #10529](https://github.com/leanprover-community/mathlib/pull/10529) :: feat(topology/homotopy/equiv): Add homotopy equivalences between topological spaces
-	- [PR #11153](https://github.com/leanprover-community/mathlib/pull/11153) :: feat(topology/homotopy/product): Product of homotopic paths
-
-* New maintainers.
-	- [PR #11647](https://github.com/leanprover-community/mathlib/pull/11647) :: feat(README.md): add Riccardo Brasca as new maintainer
-	- [PR #11651](https://github.com/leanprover-community/mathlib/pull/11651) :: feat(README.md): add Frédéric Dupuis as new maintainer
-	- [PR #11653](https://github.com/leanprover-community/mathlib/pull/11653) :: feat(README.md): add Kyle Miller as new maintainer
+* New maintainers. Three people joined the mathlib's maintainer team:
+  Riccardo Brasca [PR #11647](https://github.com/leanprover-community/mathlib/pull/11647),
+  Frédéric Dupuis [PR #11651](https://github.com/leanprover-community/mathlib/pull/11651), and
+  Kyle Miller [PR #11653](https://github.com/leanprover-community/mathlib/pull/11653).
 
 * Other.
-	- [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) :: feat(tactic/linear_combination): add tactic for combining equations 
-	- [PR #11707](https://github.com/leanprover-community/mathlib/pull/11707) :: feat(topology/algebra/continuous_monoid_hom): Add topological_group instance
-	- [PR #10497](https://github.com/leanprover-community/mathlib/pull/10497) :: feat(algebra/group/freiman): Freiman homomorphisms
-	- [PR #11372](https://github.com/leanprover-community/mathlib/pull/11372) :: feat(combinatorics/double_counting): Double-counting the edges of a bipartite graph
-	- [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) :: feat(algebra/order/rearrangement) : Rearrangement Inequality
-	- [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) :: feat(archive/100-theorems-list): add proof of the solution of the cubic
+  - [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) add tactic for combining equations 
+  - [PR #11707](https://github.com/leanprover-community/mathlib/pull/11707) Add topological_group instance
+  - [PR #10497](https://github.com/leanprover-community/mathlib/pull/10497) Freiman homomorphisms
+  - [PR #11372](https://github.com/leanprover-community/mathlib/pull/11372) Double-counting the edges of a bipartite graph
+  - [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) Rearrangement Inequality
+  - [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) add proof of the solution of the cubic
