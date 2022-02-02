@@ -56,6 +56,10 @@ In this post we highlight some of these contributions.
 
 * Probability theory. [PR #11007](https://github.com/leanprover-community/mathlib/pull/11007) proves one direction of the optional stopping theorem.
 
+* Tactics. [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) adds a new tactic, `linear_combination`,
+  that computes a weighted sum of equality hypotheses (with coefficients given by the user) and attempts to use this to close the goal. 
+  This tactic is useful on its own, and can also be seen as a "certificate checker" for a future Gröbner basis tactic that finds these coefficients automatically.
+
 * New maintainers. Three people joined the mathlib's maintainer team:
   Riccardo Brasca [PR #11647](https://github.com/leanprover-community/mathlib/pull/11647),
   Frédéric Dupuis [PR #11651](https://github.com/leanprover-community/mathlib/pull/11651), and
