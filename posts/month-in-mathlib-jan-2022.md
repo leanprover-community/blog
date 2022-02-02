@@ -46,7 +46,7 @@ In this post we highlight some of these contributions.
   [PR #11697](https://github.com/leanprover-community/mathlib/pull/11697) adds miscellaneous results about Eisenstein polynomials,
   [PR #11156](https://github.com/leanprover-community/mathlib/pull/11156) adds algebraic functions,
   [PR #11346](https://github.com/leanprover-community/mathlib/pull/11346) shows that Witt vectors of a domain are a domain,
-  [PR #9080](https://github.com/leanprover-community/mathlib/pull/9080) add the prime counting function,
+  [PR #9080](https://github.com/leanprover-community/mathlib/pull/9080) adds the prime counting function,
   and [PR #10730](https://github.com/leanprover-community/mathlib/pull/10730) shows that the dual numbers are a clifford algebra.
 
 * Measure theory. [PR #11328](https://github.com/leanprover-community/mathlib/pull/11328) proves Egorov's theorem,
@@ -66,7 +66,6 @@ In this post we highlight some of these contributions.
   Kyle Miller [PR #11653](https://github.com/leanprover-community/mathlib/pull/11653).
 
 * Other.
-  - [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) add tactic for combining equations 
   - [PR #11707](https://github.com/leanprover-community/mathlib/pull/11707) Add topological_group instance
   - [PR #10497](https://github.com/leanprover-community/mathlib/pull/10497) Freiman homomorphisms
   - [PR #11372](https://github.com/leanprover-community/mathlib/pull/11372) Double-counting the edges of a bipartite graph
