@@ -50,7 +50,7 @@ In this post we highlight some of these contributions.
      - [PR #11390](https://github.com/leanprover-community/mathlib/pull/11390) defines synthetic projective planes, [PR #11550](https://github.com/leanprover-community/mathlib/pull/11550) shows that the order of a projective plane is at least 2, and [PR #11462](https://github.com/leanprover-community/mathlib/pull/11462) proves the familiar formula for the cardinality of a projective plane in terms of the order (i.e., the number of points on a line, minus 1).
      - [PR #10497](https://github.com/leanprover-community/mathlib/pull/10497) defines Freiman homomorphisms.
      - [PR #11372](https://github.com/leanprover-community/mathlib/pull/11372) applies a double-counting arguments to the edges of a bipartite graph.
-     - [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) proved the rearrangement inequality.
+     - [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) proves the rearrangement inequality.
 
 
 * Tactics. [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) adds a new tactic, `linear_combination`.
