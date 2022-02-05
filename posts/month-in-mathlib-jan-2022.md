@@ -18,8 +18,9 @@ In this post we highlight some of these contributions.
 
 * Analysis. 
      - [PR number 10000](https://github.com/leanprover-community/mathlib/pull/10000) was saved for something special: the Cauchy integral formula on circles is in mathlib! This is a major milestone, and unlocks complex analysis. In particular the same PR deduces from it that complex differentiable functions are analytic. Then [PR #11686](https://github.com/leanprover-community/mathlib/pull/11686) proved Riemann's removable singularity theorem.
-     - In functional analysis, [PR #11604](https://github.com/leanprover-community/mathlib/pull/11604) introduces the topology induced by a family of seminorms and [PR #11491](https://github.com/leanprover-community/mathlib/pull/11491) proves the Lax Milgram theorem.
-     - [PR #11015](https://github.com/leanprover-community/mathlib/pull/11015) defines $ℓ^p$ spaces and [PR #11255](https://github.com/leanprover-community/mathlib/pull/11255) proves a Hilbert space is isometrically isomorphic to $ℓ^2(ι)$ for some type $ι$
+     - In functional analysis, [PR #11604](https://github.com/leanprover-community/mathlib/pull/11604) introduces the topology induced by a family of seminorms and [PR #11491](https://github.com/leanprover-community/mathlib/pull/11491) proves the Lax-Milgram theorem.
+     - [PR #11707](https://github.com/leanprover-community/mathlib/pull/11707) constructs the Pontryagin dual of a topological group.
+     - [PR #11015](https://github.com/leanprover-community/mathlib/pull/11015) defines $ℓ^p$ spaces and [PR #11255](https://github.com/leanprover-community/mathlib/pull/11255) proves a Hilbert space is isometrically isomorphic to $ℓ^2(ι)$ for some type $ι$.
      - [PR #11320](https://github.com/leanprover-community/mathlib/pull/11320) builds Fourier series as an isometric isomorphism from $L^2(ℂ)$ to $ℓ^2(ℤ, ℂ)$. This includes Parseval's identity.
 
 * Probability and measure theory. 
@@ -40,8 +41,8 @@ In this post we highlight some of these contributions.
      - [PR #11346](https://github.com/leanprover-community/mathlib/pull/11346) shows that Witt vectors of a domain are a domain.
      - [PR #11166](https://github.com/leanprover-community/mathlib/pull/11166) computes the exponents of the dihedral and generalised quaternion groups, and [PR #11512](https://github.com/leanprover-community/mathlib/pull/11512) shows that nilpotent groups are solvable.
      - [PR #11422](https://github.com/leanprover-community/mathlib/pull/11422) shows that central extensions of nilpotent Lie modules / algebras are nilpotent.
-     - [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) add proof of the solution of the cubic (Theorem 37 of the [100 Theorems List](https://www.cs.ru.nl/~freek/100/)).
-     - [PR #10730](https://github.com/leanprover-community/mathlib/pull/10730) shows that the dual numbers are a clifford algebra.
+     - [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) adds the proof of the solution of the cubic (Theorem 37 of the [100 Theorems List](https://www.cs.ru.nl/~freek/100/)).
+     - [PR #10730](https://github.com/leanprover-community/mathlib/pull/10730) shows that the dual numbers are a Clifford algebra.
 
 
 
@@ -52,7 +53,7 @@ In this post we highlight some of these contributions.
      - [PR #10861](https://github.com/leanprover-community/mathlib/pull/10861) proved the rearrangement inequality.
 
 
-* Tactics. [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) adds a new tactic, `linear_combination`,
+* Tactics. [PR #11646](https://github.com/leanprover-community/mathlib/pull/11646) adds a new tactic, `linear_combination`.
   that computes a weighted sum of equality hypotheses (with coefficients given by the user) and attempts to use this to close the goal. 
   This tactic is useful on its own, and can also be seen as a "certificate checker" for a future Gröbner basis tactic that finds these coefficients automatically.
 
