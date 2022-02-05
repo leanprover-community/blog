@@ -36,8 +36,8 @@ In this post we highlight some of these contributions.
 
 
 * Algebra. 
-     - [PR #11139](https://github.com/leanprover-community/mathlib/pull/11139) proves Taylor's formula for polynomials,
-     - [PR #11346](https://github.com/leanprover-community/mathlib/pull/11346) shows that Witt vectors of a domain are a domain,
+     - [PR #11139](https://github.com/leanprover-community/mathlib/pull/11139) proves Taylor's formula for polynomials.
+     - [PR #11346](https://github.com/leanprover-community/mathlib/pull/11346) shows that Witt vectors of a domain are a domain.
      - [PR #11166](https://github.com/leanprover-community/mathlib/pull/11166) computes the exponents of the dihedral and generalised quaternion groups, and [PR #11512](https://github.com/leanprover-community/mathlib/pull/11512) shows that nilpotent groups are solvable.
      - [PR #11422](https://github.com/leanprover-community/mathlib/pull/11422) shows that central extensions of nilpotent Lie modules / algebras are nilpotent.
      - [PR #11635](https://github.com/leanprover-community/mathlib/pull/11635) add proof of the solution of the cubic (Theorem 37 of the [100 Theorems List](https://www.cs.ru.nl/~freek/100/)).
