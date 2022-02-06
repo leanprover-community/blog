@@ -24,8 +24,8 @@ In this post we highlight some of these contributions.
      - [PR #11320](https://github.com/leanprover-community/mathlib/pull/11320) builds Fourier series as an isometric isomorphism from $L^2(ℂ)$ to $ℓ^2(ℤ, ℂ)$. This includes Parseval's identity.
 
 * Probability and measure theory. 
-     - [PR #11328](https://github.com/leanprover-community/mathlib/pull/11328) proves Egorov's theorem,
-       while [PR #11554](https://github.com/leanprover-community/mathlib/pull/11554) defines Lebesgue density points.
+     - [PR #11328](https://github.com/leanprover-community/mathlib/pull/11328) proves Egorov's theorem.
+     - [PR #11554](https://github.com/leanprover-community/mathlib/pull/11554) proves almost every point of a set in a Besicovitch space (for instance a finite dimensional real vector space) is a Lebesgue density point.
      - [PR #11007](https://github.com/leanprover-community/mathlib/pull/11007) proves one direction of the optional stopping theorem.
   
 
