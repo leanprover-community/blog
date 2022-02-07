@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This month in mathlib (Jan 2022) | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-jan-2022/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="This month in mathlib (Jan 2022) | Lean community blog">
+<meta name="author" content="Mathlib community">
+<link rel="prev" href="../backstage-with-pechersky/" title="Backstage with Yakov Pechersky" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="This month in mathlib (Jan 2022)">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/month-in-mathlib-jan-2022/">
+<meta property="og:description" content="January 2022 saw 533 commits to mathlib.
+In this post we highlight some of these contributions.
+
+
+
+
+Analysis. 
+
+PR number 10000 was saved for something special: the Cauchy integral formula on circles ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-02-07T07:34:52+01:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">This month in mathlib (Jan 2022)</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../authors/mathlib-community/">Mathlib community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-02-07T07:34:52+01:00" itemprop="datePublished" title="2022-02-07 07:34">2022-02-07 07:34</time></a>
+            </p>
+                    <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>January 2022 saw 533 commits to mathlib.
+In this post we highlight some of these contributions.</p>
+<!-- TEASER_END -->
+
+<ul>
+<li>
+<p>Analysis. </p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10000">PR number 10000</a> was saved for something special: the Cauchy integral formula on circles is in mathlib! This is a major milestone, and unlocks complex analysis. In particular the same PR deduces from it that complex differentiable functions are analytic. Then <a href="https://github.com/leanprover-community/mathlib/pull/11686">PR #11686</a> proved Riemann's removable singularity theorem.</li>
+<li>In functional analysis, <a href="https://github.com/leanprover-community/mathlib/pull/11604">PR #11604</a> introduces the topology induced by a family of seminorms and <a href="https://github.com/leanprover-community/mathlib/pull/11491">PR #11491</a> proves the Lax-Milgram theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11707">PR #11707</a> constructs the Pontryagin dual of a topological group.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11015">PR #11015</a> defines $ℓ^p$ spaces and <a href="https://github.com/leanprover-community/mathlib/pull/11255">PR #11255</a> proves a Hilbert space is isometrically isomorphic to $ℓ^2(ι)$ for some type $ι$.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11320">PR #11320</a> builds Fourier series as an isometric isomorphism from $L^2(ℂ)$ to $ℓ^2(ℤ, ℂ)$. This includes Parseval's identity.</li>
+</ul>
+</li>
+<li>
+<p>Probability and measure theory. </p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11328">PR #11328</a> proves Egorov's theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11554">PR #11554</a> proves almost every point of a set in a Besicovitch space (for instance a finite dimensional real vector space) is a Lebesgue density point.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11007">PR #11007</a> proves one direction of the optional stopping theorem.</li>
+</ul>
+</li>
+<li>
+<p>Algebraic geometry. </p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9802">PR #9802</a> built the the Gamma-Spec adjunction.</li>
+<li>A construction for gluing schemes was added in <a href="https://github.com/leanprover-community/mathlib/pull/11431">PR #11431</a>, which was used in <a href="https://github.com/leanprover-community/mathlib/pull/10605">PR #10605</a> to show that the category of schemes has fiber products.</li>
+<li>The function field of an integral scheme is defined in <a href="https://github.com/leanprover-community/mathlib/pull/11147">PR #11147</a>.</li>
+<li>In topos theory, <a href="https://github.com/leanprover-community/mathlib/pull/11252">PR #11252</a> shows that sheafification is left exact, and <a href="https://github.com/leanprover-community/mathlib/pull/11273">PR #11273</a> provides the pushforward-pullback adjunction.</li>
+</ul>
+</li>
+<li>
+<p>Algebra. </p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11139">PR #11139</a> proves Taylor's formula for polynomials.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11346">PR #11346</a> shows that Witt vectors of a domain are a domain.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11166">PR #11166</a> computes the exponents of the dihedral and generalised quaternion groups, and <a href="https://github.com/leanprover-community/mathlib/pull/11512">PR #11512</a> shows that nilpotent groups are solvable.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11422">PR #11422</a> shows that central extensions of nilpotent Lie modules / algebras are nilpotent.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11635">PR #11635</a> adds the proof of the solution of the cubic (Theorem 37 of the <a href="https://www.cs.ru.nl/~freek/100/">100 Theorems List</a>).</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10730">PR #10730</a> shows that the dual numbers are a Clifford algebra.</li>
+</ul>
+</li>
+<li>
+<p>Combinatorics. </p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11390">PR #11390</a> defines synthetic projective planes, <a href="https://github.com/leanprover-community/mathlib/pull/11550">PR #11550</a> shows that the order of a projective plane is at least 2, and <a href="https://github.com/leanprover-community/mathlib/pull/11462">PR #11462</a> proves the familiar formula for the cardinality of a projective plane in terms of the order (i.e., the number of points on a line, minus 1).</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10497">PR #10497</a> defines Freiman homomorphisms.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11372">PR #11372</a> applies a double-counting arguments to the edges of a bipartite graph.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/10861">PR #10861</a> proves the rearrangement inequality.</li>
+</ul>
+</li>
+<li>
+<p>Tactics. <a href="https://github.com/leanprover-community/mathlib/pull/11646">PR #11646</a> adds a new tactic, <code>linear_combination</code>,
+  that computes a weighted sum of equality hypotheses (with coefficients given by the user) and attempts to use this to close the goal. 
+  This tactic is useful on its own, and can also be seen as a "certificate checker" for a future Gröbner basis tactic that finds these coefficients automatically.</p>
+</li>
+</ul>
+<h2>New maintainers</h2>
+<p>Three people joined the <a href="https://leanprover-community.github.io/meet.html#maintainers">mathlib maintainer team</a>:</p>
+<ul>
+<li>Riccardo Brasca from Université de Paris in France</li>
+<li>Frédéric Dupuis from Université de Montréal in Canada</li>
+<li>Kyle Miller from University of California, Santa Cruz in the USA.</li>
+</ul>
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../backstage-with-pechersky/" rel="prev" title="Backstage with Yakov Pechersky">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article></main><footer id="footer"><p>Contents © 2022         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
