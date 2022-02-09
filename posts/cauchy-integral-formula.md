@@ -15,16 +15,18 @@ About a month ago, the [Cauchy integral
 theorem](https://en.wikipedia.org/wiki/Cauchy%27s_integral_theorem)
 for some simple domains
 [landed](https://github.com/leanprover-community/mathlib/pull/10000)
-in mathlib. Unlike all other formalizations of the Cauchy integral
-formula, this one is based on a very general version of the
-[divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem).
+in mathlib. PR number 10000 was specially allocated for this occasion
+in advance. In this post I will recollect the events that led to this
+formalization.
 
 <!-- TEASER_END -->
 
-I discuss the technical decisions behind this formalization in a
+Unlike all other formalizations of the Cauchy integral formula, this
+one is based on a very general version of the [divergence
+theorem](https://en.wikipedia.org/wiki/Divergence_theorem). I discuss
+the technical decisions behind this formalization in a
 [paper](https://github.com/urkud/divthm-paper) I have recently
-submitted to the ITP conference. In this post I will recollect the
-events that led to this formalization.
+submitted to the ITP conference.
 
 The simplest version of the divergence theorem says that for a
 continuously differentiable vector field $v$ on a rectangular box $I$
