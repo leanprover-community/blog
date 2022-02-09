@@ -19,6 +19,8 @@ in mathlib. Unlike all other formalizations of the Cauchy integral
 formula, this one is based on a very general version of the
 [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem).
 
+<!-- TEASER_END -->
+
 I discuss the technical decisions behind this formalization in a
 [paper](https://github.com/urkud/divthm-paper) I have recently
 submitted to the ITP conference. In this post I will recollect the
@@ -56,8 +58,8 @@ field $v_f$ introduced above has divergence zero, hence this version
 of the divergence theorem implies the Cauchy-Goursat theorem.
 
 I started formalizing a simplified version of Acker's proof right
-away, and had a draft version by November 2020. Later I droped this
-version but some traces of this attempt can be found in
+away, and had a draft version by November 2020. Later I dropped this
+version, but some traces of this attempt can be found in
 [this](https://github.com/leanprover-community/mathlib/pull/4913)
 abandoned pull request.
 
@@ -66,7 +68,8 @@ the proof of the Fundamental Theorem of Calculus for the
 Henstock-Kurzweil integral. I have heard about this integral when I
 was a student at the Moscow State University, and some of my
 classmates complained that their professor Lukashenko[^MSU] makes them
-study the Henstock integral.
+study the useless Henstock integral as a part of a standard 1st year
+analysis course.
 
 [^MSU]: The undergraduate education at MSU (and most other Russian
     universities) is very different from what you see on the
@@ -76,7 +79,7 @@ study the Henstock integral.
     are determined by the student's major. Moreover, the students are
     distributed into groups of about 20-25 people, and students from
     one group go to the same section of each course. All ~300 of math
-    major freshment have to take proof-based courses in Analysis,
+    major freshmen have to take proof-based courses in Analysis,
     Algebra, and Linear algebra.
 
 So, I opened some old lecture notes written by my classmates,
