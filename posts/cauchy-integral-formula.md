@@ -47,7 +47,7 @@ y)=(\operatorname{Re} f(x+iy), -\operatorname{Im} f(x+iy))$.
 
 Many students (including me) were taught that this argument can't be
 patched to work for any differentiable function, and one has to use a
-trick specific to complex analysis (e.g., an explicit infinite descend
+trick specific to complex analysis (e.g., an explicit infinite descent
 on triangles). In October 2020, we [had a chat on
 Zulip](https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there.20code.20for.20X.3F/topic/Single.20variable.20complex.20analysis)
 about formalization of complex analysis, where Patrick Massot
@@ -65,11 +65,11 @@ version, but some traces of this attempt can be found in
 [this](https://github.com/leanprover-community/mathlib/pull/4913)
 abandoned pull request.
 
-Once I had the first draft, I realized that the proof reminds me of
+Once I had the first draft, I realized that the proof reminded me of
 the proof of the Fundamental Theorem of Calculus for the
-Henstock-Kurzweil integral. I have heard about this integral when I
+Henstock-Kurzweil integral. I had heard about this integral when I
 was a student at the Moscow State University, and some of my
-classmates complained that their professor Lukashenko[^MSU] makes them
+classmates complained that their professor Lukashenko[^MSU] made them
 study the useless Henstock integral as a part of a standard 1st year
 analysis course.
 
@@ -82,10 +82,10 @@ analysis course.
     distributed into groups of about 20-25 people, and students from
     one group go to the same section of each course. All ~300 of math
     major freshmen have to take proof-based courses in Analysis,
-    Algebra, and Linear algebra.
+    Algebra, and Linear Algebra.
 
 So, I opened some old lecture notes written by my classmates,
-refreshed my knowledge of the Henstrock integral, and realized that
+refreshed my knowledge of the Henstock integral, and realized that
 actually I prove that the divergence is integrable in the sense of one
 of possible generalizations of this integral to $ℝ^n$. Thus I decided
 to formalize the Henstock integral in Lean and split the proof into
@@ -93,9 +93,9 @@ two parts: the divergence theorem for a Henstock-like integral that
 required no regularity from the divergence, and a proof of the fact
 that any Bochner integrable function is Henstock integrable.
 
-Most of 2021 I worked on other projects but in the fall I came back to
+During most of 2021 I worked on other projects but in the fall I came back to
 the divergence theorem and formalized it. The university library was
-closed because of the pandemic and I failed to find good source on the
+closed because of the pandemic and I failed to find a good source on the
 multivariable Henstock integral online, so I had to generalize
 theorems myself.
 
@@ -116,11 +116,11 @@ Jireh Loreaux already used my new additions to the library to
 [prove](https://github.com/leanprover-community/mathlib/pull/11916)
 Gelfand's formula for the spectral radius, pending review.
 
-In January 2022, I've decided to write an ITP paper about this
+In January 2022, I decided to write an ITP paper about this
 project. While searching for references for the paper, I found a
 [survey by Benedetto
 Bongiorno](https://doi.org/10.1016/B978-044450263-6/50014-2). I still
-can't understand why I haven't found this survey half a year earlier
+can't understand why I didn't find this survey half a year earlier
 (I found it by googling for something like "Henstock integral
 divergence theorem"). I read the survey and found out that the version
 of the Henstock-Kurzweil integral I used in the project was introduced
