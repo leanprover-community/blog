@@ -1,7 +1,7 @@
 ---
 author: 'Yury Kudryashov'
 category: 'New in mathlib'
-date: 2022-02-08 18:46:20 UTC+02:00
+date: 2022-02-10 18:46:20 UTC+02:00
 description: ''
 has_math: true
 link: ''
