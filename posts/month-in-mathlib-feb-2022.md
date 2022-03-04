@@ -34,7 +34,7 @@ type: text
 	- A particularly exciting application of the complex analysis work is [PR #11916](https://github.com/leanprover-community/mathlib/pull/11916), Gelfand's formula for the spectral radius of an element of a Banach algebra.  This is proved by considering the resolvent as a holomorphic function with values in the Banach algebra.
 	- [PR #12123](https://github.com/leanprover-community/mathlib/pull/12123) :: feat(measure_theory/integral/set_integral): Bochner integral with respect to a measure with density
 
-* Geometry: [PR #12236](https://github.com/leanprover-community/mathlib/pull/12236) :: feat(geometry/euclidean/oriented_angle), the culmination of a series of PRs, defines the oriented angle between vectors in an oriented two-dimensional vector space.
+* Geometry: [PR #12236](https://github.com/leanprover-community/mathlib/pull/12236), the culmination of a series of PRs, defines the oriented angle between vectors in an oriented two-dimensional vector space.
 
 
 * Combinatorics.
