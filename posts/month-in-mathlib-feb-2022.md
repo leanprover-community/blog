@@ -30,15 +30,11 @@ type: text
 	- [PR #12213](https://github.com/leanprover-community/mathlib/pull/12213) :: feat(ring_theory/witt_vector): Witt vectors are a DVR
 
 * Analysis.
-	- [PR #11864](https://github.com/leanprover-community/mathlib/pull/11864) :: feat(analysis/complex): add the Cauchy-Goursat theorem for an annulus
-	- [PR #11916](https://github.com/leanprover-community/mathlib/pull/11916) :: feat (analysis/normed_space/spectrum): prove Gelfand's formula for the spectral radius
+	- The Cauchy integral formula ([PR #10000](https://github.com/leanprover-community/mathlib/pull/10000), last month) unlocked elementary complex analysis, and now the applications are coming quickly.  This month saw [PR #11864](https://github.com/leanprover-community/mathlib/pull/11864) (the Cauchy-Goursat theorem for an annulus), [PR #12095](https://github.com/leanprover-community/mathlib/pull/12095) (Liouville's theorem), and [PR #12050](https://github.com/leanprover-community/mathlib/pull/12050) (the maximum modulus principle).
+	- A particularly exciting application of the complex analysis work is [PR #11916](https://github.com/leanprover-community/mathlib/pull/11916), Gelfand's formula for the spectral radius of an element of a Banach algebra.  This is proved by considering the resolvent as a holomorphic function with values in the Banach algebra.
 	- [PR #12123](https://github.com/leanprover-community/mathlib/pull/12123) :: feat(measure_theory/integral/set_integral): Bochner integral with respect to a measure with density
-	- [PR #11908](https://github.com/leanprover-community/mathlib/pull/11908) :: feat(analysis/specific_limits): dirichlet and alternating series tests 
-	- [PR #12238](https://github.com/leanprover-community/mathlib/pull/12238) :: feat(analysis/normed_space/star/spectrum): prove the spectrum of a unitary element in a `C*`-algebra is a subset of the unit sphere
-	- [PR #12236](https://github.com/leanprover-community/mathlib/pull/12236) :: feat(geometry/euclidean/oriented_angle): oriented angles with respect to an orientation
-	- [PR #12095](https://github.com/leanprover-community/mathlib/pull/12095) :: feat(analysis/complex/liouville): prove Liouville's theorem
-	- [PR #12050](https://github.com/leanprover-community/mathlib/pull/12050) :: feat(analysis/complex): maximum modulus principle
-	- [PR #12036](https://github.com/leanprover-community/mathlib/pull/12036) :: feat(topology/bornology/basic): Define bornology
+
+* Geometry: [PR #12236](https://github.com/leanprover-community/mathlib/pull/12236) :: feat(geometry/euclidean/oriented_angle), the culmination of a series of PRs, defines the oriented angle between vectors in an oriented two-dimensional vector space.
 
 
 * Combinatorics.
