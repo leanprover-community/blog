@@ -16,7 +16,7 @@ In this post we highlight some of these contributions.
 
 <!-- TEASER_END -->
 
-* Model theory. This month saw a serious push to get model theory off the ground.
+* Model theory. This month saw a serious push to get model theory off the ground, partly leveraging work from the [Flypitch project](https://flypitch.github.io/).
   The series of PRs
   [PR #11089](https://github.com/leanprover-community/mathlib/pull/11089),
   [PR #11906](https://github.com/leanprover-community/mathlib/pull/11906),
