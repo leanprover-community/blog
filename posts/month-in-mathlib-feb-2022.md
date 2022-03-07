@@ -11,7 +11,12 @@ title: This month in mathlib (Feb 2022)
 type: text
 ---
 
-* Model theory. This month saw a serious push to get model theory of the ground.
+February 2022 saw 501 commits to mathlib.
+In this post we highlight some of these contributions.
+
+<!-- TEASER_END -->
+
+* Model theory. This month saw a serious push to get model theory off the ground.
   The series of PRs
   [PR #11089](https://github.com/leanprover-community/mathlib/pull/11089),
   [PR #11906](https://github.com/leanprover-community/mathlib/pull/11906),
