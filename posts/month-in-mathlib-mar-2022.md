@@ -67,7 +67,6 @@ There's still a long way to go before we can relate these definitions!
 * [PR #12715](https://github.com/leanprover-community/mathlib/pull/12715) :: feat(number_theory/function_field): add completion with respect to place at infinity
 * [PR #12712](https://github.com/leanprover-community/mathlib/pull/12712) :: feat(ring_theory/dedekind_domain/adic_valuation): add adic valuation on a Dedekind domain
 
-* [PR #12376](https://github.com/leanprover-community/mathlib/pull/12376) :: feat(ring_theory/integral_domain): finite integral domain is a field
 * [PR #12866](https://github.com/leanprover-community/mathlib/pull/12866) :: feat(ring_theory/polynomial): mv_polynomial over UFD is UFD
 
 * [PR #12041](https://github.com/leanprover-community/mathlib/pull/12041) :: feat(ring_theory/witt_vector): classify 1d isocrystals
