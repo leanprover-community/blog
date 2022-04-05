@@ -22,10 +22,15 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 * [PR #12036](https://github.com/leanprover-community/mathlib/pull/12036) :: feat(topology/bornology/basic): Define bornology
 * [PR #12721](https://github.com/leanprover-community/mathlib/pull/12721) :: feat(analysis/locally_convex): characterize the natural bornology in terms of seminorms
 
+Jireh Loreaux has pressed forward with some foundational results on the spectrum of an operator.
+Von Neumann and C*-algebras may be on the horizon in mathlib soon; Scott Morrison provided two definitions of a von Neumann algebra (concrete and abstract).
+There's still a long way to go before we can relate these definitions!
+
 * [PR #12351](https://github.com/leanprover-community/mathlib/pull/12351) :: feat(algebra/algebra/spectrum): show the star and spectrum operations commute
 * [PR #12787](https://github.com/leanprover-community/mathlib/pull/12787) :: feat(analysis/normed_space/spectrum): Prove the Gelfand-Mazur theorem
-* [PR #12449](https://github.com/leanprover-community/mathlib/pull/12449) :: feat(analysis/locally_convex): define von Neumann boundedness
 * [PR #12329](https://github.com/leanprover-community/mathlib/pull/12329) :: feat(analysis/von_neumann): concrete and abstract definitions of a von Neumann algebra
+
+* [PR #12449](https://github.com/leanprover-community/mathlib/pull/12449) :: feat(analysis/locally_convex): define von Neumann boundedness
 
 * [PR #12216](https://github.com/leanprover-community/mathlib/pull/12216) :: feat(measure_theory/function/locally_integrable): define locally integrable
 * [PR #12539](https://github.com/leanprover-community/mathlib/pull/12539) :: feat(measure_theory/integral): continuous functions with exponential decay are integrable
@@ -73,9 +78,14 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 * [PR #12635](https://github.com/leanprover-community/mathlib/pull/12635) :: feat(algebraic_geometry/projective_spectrum): basic definitions of projective spectrum
 * [PR #12784](https://github.com/leanprover-community/mathlib/pull/12784) :: feat(ring_theory/graded_algebra): define homogeneous localisation
 
+Jujian Zhang dualized the existing material on projective resolutions, and as a consequence now have right derived functors and some basic properties.
+
 * [PR #12545](https://github.com/leanprover-community/mathlib/pull/12545) :: feat(category_theory/abelian): injective resolutions of an object in a category with enough injectives
 * [PR #12841](https://github.com/leanprover-community/mathlib/pull/12841) :: feat(category_theory/abelian): right derived functor
 * [PR #12810](https://github.com/leanprover-community/mathlib/pull/12810) :: feat(category_theory/abelian): right derived functor in abelian category with enough injectives
+
+The coherence theorem (which we already had for monoidal categories) has been extended to bicategories, by Yuma Mizuno.
+We're now investigating writing tactics which make using coherence practical in proofs.
 
 * [PR #12155](https://github.com/leanprover-community/mathlib/pull/12155) :: feat(category_theory/bicategory/coherence): prove the coherence theorem for bicategories
 
