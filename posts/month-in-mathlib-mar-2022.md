@@ -21,6 +21,7 @@ type: text
 * [PR #12115](https://github.com/leanprover-community/mathlib/pull/12115) :: feat(algebra/algebra/spectrum, analysis/normed_space/spectrum): prove the spectrum of any element in a complex Banach algebra is nonempty
 * [PR #12171](https://github.com/leanprover-community/mathlib/pull/12171) :: feat(category_theory/abelian/homology): Adds API for homology mimicking that of (co)kernels.
 * [PR #12367](https://github.com/leanprover-community/mathlib/pull/12367) :: chore(algebra/group/prod): `prod.swap` commutes with arithmetic
+
 * [PR #12376](https://github.com/leanprover-community/mathlib/pull/12376) :: feat(ring_theory/integral_domain): finite integral domain is a field
 * [PR #11962](https://github.com/leanprover-community/mathlib/pull/11962) :: chore(topology/algebra/valuation): add universe
 * [PR #12036](https://github.com/leanprover-community/mathlib/pull/12036) :: feat(topology/bornology/basic): Define bornology
@@ -31,6 +32,7 @@ type: text
 * [PR #12300](https://github.com/leanprover-community/mathlib/pull/12300) :: feat(algebra/ring): add non-unital and non-associative rings
 * [PR #12385](https://github.com/leanprover-community/mathlib/pull/12385) :: doc(*): fix broken markdown links
 * [PR #12389](https://github.com/leanprover-community/mathlib/pull/12389) :: perf(data/fintype/basic): speed up mem_of_mem_perms_of_list
+
 * [PR #12344](https://github.com/leanprover-community/mathlib/pull/12344) :: feat(probability): define conditional probability and add basic related theorems
 * [PR #12375](https://github.com/leanprover-community/mathlib/pull/12375) :: chore(ring_theory/localization): `localization_map_bijective` rename & `field` instance version
 * [PR #12354](https://github.com/leanprover-community/mathlib/pull/12354) :: chore(algebra/big_operators): generalize `map_prod` to `monoid_hom_class`
@@ -41,6 +43,7 @@ type: text
 * [PR #12396](https://github.com/leanprover-community/mathlib/pull/12396) :: feat(linear_algebra/matrix.determinant): add `matrix.det_neg`
 * [PR #12402](https://github.com/leanprover-community/mathlib/pull/12402) :: chore(measure_theory/function/egorov): rename `uniform_integrability` file to `egorov`
 * [PR #12405](https://github.com/leanprover-community/mathlib/pull/12405) :: feat(algebra/module/submodule_pointwise): pointwise negation
+
 * [PR #12400](https://github.com/leanprover-community/mathlib/pull/12400) :: chore(probability/independence): change to set notation and `measurable_set`
 * [PR #12410](https://github.com/leanprover-community/mathlib/pull/12410) :: refactor(analysis/normed_space/basic): split into normed_space and ../normed/normed_field
 * [PR #12411](https://github.com/leanprover-community/mathlib/pull/12411) :: chore(algebra/ring/basic): generalize lemmas to non-associative rings
@@ -51,6 +54,7 @@ type: text
 * [PR #12420](https://github.com/leanprover-community/mathlib/pull/12420) :: chore(analysis/normed_space/star/basic): golf a proof
 * [PR #12328](https://github.com/leanprover-community/mathlib/pull/12328) :: feat(set_theory/cofinality): Prove simple theorems on regular cardinals
 * [PR #12351](https://github.com/leanprover-community/mathlib/pull/12351) :: feat(algebra/algebra/spectrum): show the star and spectrum operations commute
+
 * [PR #12404](https://github.com/leanprover-community/mathlib/pull/12404) :: chore(algebra/group/hom): more generic `f x ≠ 1` lemmas
 * [PR #12409](https://github.com/leanprover-community/mathlib/pull/12409) :: feat(data/complex/basic): add abs_hom
 * [PR #12421](https://github.com/leanprover-community/mathlib/pull/12421) :: docs(set_theory/cofinality): Fix cofinality definition
@@ -61,6 +65,7 @@ type: text
 * [PR #12319](https://github.com/leanprover-community/mathlib/pull/12319) :: feat(set_theory/ordinal): `enum` is injective
 * [PR #12330](https://github.com/leanprover-community/mathlib/pull/12330) :: feat(category_theory/preadditive): the category of additive functors
 * [PR #12331](https://github.com/leanprover-community/mathlib/pull/12331) :: fix(number_theory/number_field): make ring_of_integers_algebra not an instance
+
 * [PR #12350](https://github.com/leanprover-community/mathlib/pull/12350) :: refactor(measure_theory): enable dot notation for measure.map
 * [PR #12416](https://github.com/leanprover-community/mathlib/pull/12416) :: feat(data/nat/fib): sum of initial fragment of the Fibonacci sequence is one less than a Fibonacci number
 * [PR #12423](https://github.com/leanprover-community/mathlib/pull/12423) :: feat(dynamics/fixed_points/basic): Fixed points are a subset of the range
@@ -71,6 +76,7 @@ type: text
 * [PR #12392](https://github.com/leanprover-community/mathlib/pull/12392) :: feat(algebra/homology/homotopy): compatibilities of null_homotopic_map with composition and additive functors
 * [PR #12412](https://github.com/leanprover-community/mathlib/pull/12412) :: feat(algebra/star/basic + analysis/normed_space/star/basic): add two eq_zero/ne_zero lemmas
 * [PR #11976](https://github.com/leanprover-community/mathlib/pull/11976) :: feat(analysis/calculus): support and cont_diff
+
 * [PR #12352](https://github.com/leanprover-community/mathlib/pull/12352) :: feat(analysis/special_functions/trigonometric): inequality `tan x  > x`
 * [PR #12356](https://github.com/leanprover-community/mathlib/pull/12356) :: feat(number_theory/cyclotomic/primitive_roots): add is_primitive_root.sub_one_power_basis
 * [PR #12357](https://github.com/leanprover-community/mathlib/pull/12357) :: feat(field_theory/minpoly): add minpoly_add_algebra_map and minpoly_sub_algebra_map
@@ -81,6 +87,7 @@ type: text
 * [PR #12380](https://github.com/leanprover-community/mathlib/pull/12380) :: feat(data/int/basic): add three lemmas about ints, nats and int_nat_abs
 * [PR #12414](https://github.com/leanprover-community/mathlib/pull/12414) :: chore(algebra/*): provide `non_assoc_ring` instances
 * [PR #12041](https://github.com/leanprover-community/mathlib/pull/12041) :: feat(ring_theory/witt_vector): classify 1d isocrystals
+
 * [PR #12197](https://github.com/leanprover-community/mathlib/pull/12197) :: feat(set_theory/cardinal_divisibility): add lemmas about divisibility in the cardinals
 * [PR #12210](https://github.com/leanprover-community/mathlib/pull/12210) :: feat(group_theory/free_product): the 🏓-lemma
 * [PR #12285](https://github.com/leanprover-community/mathlib/pull/12285) :: feat(field_theory/cardinality): cardinality of fields & localizations
@@ -91,6 +98,7 @@ type: text
 * [PR #12426](https://github.com/leanprover-community/mathlib/pull/12426) :: feat(polynomial/cyclotomic): some divisibility results
 * [PR #12432](https://github.com/leanprover-community/mathlib/pull/12432) :: feat(group_theory/torsion): all torsion monoids are groups
 * [PR #12435](https://github.com/leanprover-community/mathlib/pull/12435) :: refactor(linear_algebra/bilinear_form): split off matrix part
+
 * [PR #11991](https://github.com/leanprover-community/mathlib/pull/11991) :: feat(algebra/star/self_adjoint): define normal elements of a star monoid
 * [PR #12268](https://github.com/leanprover-community/mathlib/pull/12268) :: feat(data/nat/gcd): add coprime_prod_left and coprime_prod_right
 * [PR #12387](https://github.com/leanprover-community/mathlib/pull/12387) :: feat(algebra/category): Module R is monoidal closed for comm_ring R
@@ -101,6 +109,7 @@ type: text
 * [PR #12359](https://github.com/leanprover-community/mathlib/pull/12359) :: feat(number_theory/cyclotomic/primitive_roots): generalize norm_eq_one
 * [PR #12379](https://github.com/leanprover-community/mathlib/pull/12379) :: feat(set_theory/ordinal_arithmetic): `is_normal.blsub_eq`
 * [PR #12440](https://github.com/leanprover-community/mathlib/pull/12440) :: chore(algebra/algebra/operations): add missing `@[elab_as_eliminator]` on recursors
+
 * [PR #12381](https://github.com/leanprover-community/mathlib/pull/12381) :: feat(set_theory/ordinal_arithmetic): `bsup` / `blsub` of function composition
 * [PR #12433](https://github.com/leanprover-community/mathlib/pull/12433) :: chore(analysis/complex/basic): golf `norm_rat/int/int_of_nonneg`
 * [PR #12434](https://github.com/leanprover-community/mathlib/pull/12434) :: chore(topology/algebra/uniform_mul_action): add `has_uniform_continuous_const_smul.op`
@@ -111,6 +120,7 @@ type: text
 * [PR #12439](https://github.com/leanprover-community/mathlib/pull/12439) :: chore(algebra/group_with_zero/basic): generalize `units.exists_iff_ne_zero` to arbitrary propositions
 * [PR #12441](https://github.com/leanprover-community/mathlib/pull/12441) :: feat(algebra/algebra/operations): more lemmas about `mul_opposite`
 * [PR #11813](https://github.com/leanprover-community/mathlib/pull/11813) :: refactor(tactic/interactive): use 1-indexing in work_on_goal
+
 * [PR #11921](https://github.com/leanprover-community/mathlib/pull/11921) :: feat(category_theory/preadditive/injective) : definition of injective objects in a category
 * [PR #12305](https://github.com/leanprover-community/mathlib/pull/12305) :: feat(data/set/sigma): Indexed sum of sets
 * [PR #12309](https://github.com/leanprover-community/mathlib/pull/12309) :: refactor(group_theory/commutator): Define commutators of subgroups in terms of commutators of elements
@@ -121,6 +131,7 @@ type: text
 * [PR #12243](https://github.com/leanprover-community/mathlib/pull/12243) :: feat(data/equiv/{mul_add,ring}): Coercions to types of morphisms from their `_class`
 * [PR #12284](https://github.com/leanprover-community/mathlib/pull/12284) :: feat(topology/algebra/weak_dual): generalize to weak topologies for arbitrary dualities
 * [PR #10113](https://github.com/leanprover-community/mathlib/pull/10113) :: feat(ring_theory/polynomial/homogeneous) : add lemma `homogeneous_component_homogeneous_polynomial`
+
 * [PR #11927](https://github.com/leanprover-community/mathlib/pull/11927) :: feat(ring_theory/simple_module): Simple modules as simple objects in the Module category
 * [PR #12363](https://github.com/leanprover-community/mathlib/pull/12363) :: feat(order/category/Frame): The category of frames
 * [PR #12231](https://github.com/leanprover-community/mathlib/pull/12231) :: feat(ring_theory/adjoin/basic): if a set of elements of a subobject commute, its closure/adjoin is also commutative
@@ -131,6 +142,7 @@ type: text
 * [PR #12315](https://github.com/leanprover-community/mathlib/pull/12315) :: feat(set_theory/ordinal_arithmetic): `add_le_of_forall_add_lt`
 * [PR #12444](https://github.com/leanprover-community/mathlib/pull/12444) :: feat(data/nat/fib): add bit0/bit1 lemmas and fast_fib
 * [PR #12373](https://github.com/leanprover-community/mathlib/pull/12373) :: feat(linear_algebra/clifford_algebra/conjugation): reverse and involute are grade-preserving
+
 * [PR #12452](https://github.com/leanprover-community/mathlib/pull/12452) :: feat(order/category/BoolAlg): The category of Boolean algebras
 * [PR #12422](https://github.com/leanprover-community/mathlib/pull/12422) :: feat(measure_theory/card_measurable_space): cardinality of generated sigma-algebras
 * [PR #12453](https://github.com/leanprover-community/mathlib/pull/12453) :: doc(topology/uniform_space/cauchy): fix typo
@@ -141,6 +153,7 @@ type: text
 * [PR #12276](https://github.com/leanprover-community/mathlib/pull/12276) :: feat(model_theory/terms_and_formulas): Using a list encoding, bounds the number of terms
 * [PR #12335](https://github.com/leanprover-community/mathlib/pull/12335) :: feat(category_theory/full_subcategory): full_subcategory.map and full_subcategory.lift
 * [PR #12446](https://github.com/leanprover-community/mathlib/pull/12446) :: feat(data/polynomial/monic): add monic_of_mul_monic_left/right
+
 * [PR #12342](https://github.com/leanprover-community/mathlib/pull/12342) :: feat(category_theory/limits): uniqueness of preadditive structures
 * [PR #11992](https://github.com/leanprover-community/mathlib/pull/11992) :: feal(category_theory/bicategory/functor): define pseudofunctors
 * [PR #12166](https://github.com/leanprover-community/mathlib/pull/12166) :: feat(category_theory/limits): transport is_limit along F.left_op and similar
@@ -151,6 +164,7 @@ type: text
 * [PR #12249](https://github.com/leanprover-community/mathlib/pull/12249) :: feat(analysis/normed_space/star/spectrum): prove the spectral radius of a star normal element is its norm
 * [PR #12475](https://github.com/leanprover-community/mathlib/pull/12475) :: chore(set_theory/ordinal_arithmetic): Reorder theorems
 * [PR #12458](https://github.com/leanprover-community/mathlib/pull/12458) :: chore(set_theory/cardinal_divisibility): add instance unique (units cardinal)
+
 * [PR #12277](https://github.com/leanprover-community/mathlib/pull/12277) :: feat(ring_theory/graded_algebra/radical) : radical of homogeneous ideal is homogeneous
 * [PR #12476](https://github.com/leanprover-community/mathlib/pull/12476) :: doc(algebra/group/to_additive): `to_additive` and docstring interaction
 * [PR #8295](https://github.com/leanprover-community/mathlib/pull/8295) :: feat(geometry/manifold/tangent_bundle): the `tangent_bundle` is a `topological_vector_bundle`
@@ -161,6 +175,7 @@ type: text
 * [PR #12464](https://github.com/leanprover-community/mathlib/pull/12464) :: feat(measure_theory/group/arithmetic): actions by int and nat are measurable
 * [PR #12465](https://github.com/leanprover-community/mathlib/pull/12465) :: feat(analysis/normed/group/hom): add a module instance
 * [PR #12468](https://github.com/leanprover-community/mathlib/pull/12468) :: refactor(set_theory/*): `o.out.r` → `<`
+
 * [PR #12477](https://github.com/leanprover-community/mathlib/pull/12477) :: feat(algebra/group/to_additive): let to_additive turn `pow` into `nsmul`
 * [PR #12486](https://github.com/leanprover-community/mathlib/pull/12486) :: chore(data/equiv/basic): rename `involutive.to_equiv` to `to_perm`
 * [PR #12168](https://github.com/leanprover-community/mathlib/pull/12168) :: feat(category_theory/limits): limit preservation properties of functor.left_op and similar
@@ -171,6 +186,7 @@ type: text
 * [PR #12488](https://github.com/leanprover-community/mathlib/pull/12488) :: feat(measure_theory/integral/periodic): further properties of periodic integrals
 * [PR #12489](https://github.com/leanprover-community/mathlib/pull/12489) :: fix(tactic/interactive): use non-interactive admit tactic
 * [PR #12496](https://github.com/leanprover-community/mathlib/pull/12496) :: docs(overview): Add overview of model theory
+
 * [PR #12394](https://github.com/leanprover-community/mathlib/pull/12394) :: feat(category_theory): (co)kernels of biproduct projection and inclusion
 * [PR #12495](https://github.com/leanprover-community/mathlib/pull/12495) :: feat(data/real/nnreal): floor_semiring instance
 * [PR #11350](https://github.com/leanprover-community/mathlib/pull/11350) :: feat(probability_theory/stopping): define progressively measurable processes
@@ -181,6 +197,7 @@ type: text
 * [PR #12500](https://github.com/leanprover-community/mathlib/pull/12500) :: feat(measure_theory/integral/periodic.lean): add lemma `function.periodic.tendsto_at_bot_interval_integral_of_pos'`
 * [PR #12502](https://github.com/leanprover-community/mathlib/pull/12502) :: chore(*): move `has_scalar` instances before `add_comm_monoid` instances
 * [PR #12504](https://github.com/leanprover-community/mathlib/pull/12504) :: chore(counterexamples/canonically_ordered_comm_semiring_two_mul): golf
+
 * [PR #12327](https://github.com/leanprover-community/mathlib/pull/12327) :: feat(analysis/normed_space): allow non-unital C^* rings
 * [PR #12457](https://github.com/leanprover-community/mathlib/pull/12457) :: feat(algebra/homology/homotopy) : `mk_coinductive`
 * [PR #12471](https://github.com/leanprover-community/mathlib/pull/12471) :: chore(set_theory/game/nim): General golfing
@@ -191,6 +208,7 @@ type: text
 * [PR #12513](https://github.com/leanprover-community/mathlib/pull/12513) :: feat(set_theory/cardinal): `sum_le_sup_lift`
 * [PR #12515](https://github.com/leanprover-community/mathlib/pull/12515) :: chore(combinatorics/configuration): don't use classical.some in a proof
 * [PR #12516](https://github.com/leanprover-community/mathlib/pull/12516) :: chore(field_theory/laurent): drop unused 'have'.
+
 * [PR #12126](https://github.com/leanprover-community/mathlib/pull/12126) :: refactor(algebra/group/inj_surj): add npow and zpow to all definitions
 * [PR #12483](https://github.com/leanprover-community/mathlib/pull/12483) :: feat(set_theory/ordinal_arithmetic): `brange_const`
 * [PR #12522](https://github.com/leanprover-community/mathlib/pull/12522) :: feat(data/int/gcd): add gcd_pos_iff
@@ -201,6 +219,7 @@ type: text
 * [PR #12505](https://github.com/leanprover-community/mathlib/pull/12505) :: feat(group_theory/subgroup/basic): disjoint_iff_mul_eq_one
 * [PR #12521](https://github.com/leanprover-community/mathlib/pull/12521) :: feat(data/finset/noncomm_prod): add noncomm_prod_commute
 * [PR #12158](https://github.com/leanprover-community/mathlib/pull/12158) :: feat(algebra/order/hom/ring): Ordered ring isomorphisms
+
 * [PR #12498](https://github.com/leanprover-community/mathlib/pull/12498) :: feat(category_theory): cases in which (co)equalizers are split monos (epis)
 * [PR #12512](https://github.com/leanprover-community/mathlib/pull/12512) :: feat(topology/vector_bundle): direct sum of topological vector bundles
 * [PR #12519](https://github.com/leanprover-community/mathlib/pull/12519) :: feat(set_theory/cardinal_ordinal): `#(list α) ≤ max ω (#α)`
@@ -211,6 +230,7 @@ type: text
 * [PR #12534](https://github.com/leanprover-community/mathlib/pull/12534) :: chore(data/{finsupp,dfinsupp}/basic): use the injective APIs
 * [PR #12535](https://github.com/leanprover-community/mathlib/pull/12535) :: chore(algebra/module/linear_map): golf using injective APIs
 * [PR #12536](https://github.com/leanprover-community/mathlib/pull/12536) :: chore(linear_algebra/alternating): golf using injective APIs
+
 * [PR #12517](https://github.com/leanprover-community/mathlib/pull/12517) :: chore(set_theory/cardinal): `min` → `Inf`
 * [PR #12530](https://github.com/leanprover-community/mathlib/pull/12530) :: chore(data/polynomial): use dot notation for monic lemmas
 * [PR #12532](https://github.com/leanprover-community/mathlib/pull/12532) :: chore(analysis/complex/upper_half_plane): use `coe` instead of `coe_fn`
@@ -221,6 +241,7 @@ type: text
 * [PR #12398](https://github.com/leanprover-community/mathlib/pull/12398) :: feat(field_theory/krull_topology): added krull_topology_totally_disconnected
 * [PR #12541](https://github.com/leanprover-community/mathlib/pull/12541) :: fix(linear_algebra/quadratic_form/basic): align diamonds in the nat- and int- action
 * [PR #12543](https://github.com/leanprover-community/mathlib/pull/12543) :: chore(linear_algebra/affine_space/affine_map): golf using the injective APIs
+
 * [PR #9490](https://github.com/leanprover-community/mathlib/pull/9490) :: feat(group_theory/double_cosets): definition of double cosets and some basic lemmas.
 * [PR #12547](https://github.com/leanprover-community/mathlib/pull/12547) :: refactor(topology/opens): Turn `opens.gi` into a Galois coinsertion
 * [PR #12555](https://github.com/leanprover-community/mathlib/pull/12555) :: refactor(group_theory/commutator): Generalize `map_commutator_element`
@@ -231,6 +252,7 @@ type: text
 * [PR #12567](https://github.com/leanprover-community/mathlib/pull/12567) :: chore(cardinal_divisibility): tiny golf
 * [PR #12559](https://github.com/leanprover-community/mathlib/pull/12559) :: chore(order/galois_connection): Make lifting instances reducible
 * [PR #12569](https://github.com/leanprover-community/mathlib/pull/12569) :: chore(*): remove lines claiming to introduce variables
+
 * [PR #12550](https://github.com/leanprover-community/mathlib/pull/12550) :: feat(tactic/norm_num_command): add user command to run norm_num on an expression
 * [PR #12566](https://github.com/leanprover-community/mathlib/pull/12566) :: feat(field_theory/is_alg_closed/basic): add `is_alg_closed.infinite`
 * [PR #12570](https://github.com/leanprover-community/mathlib/pull/12570) :: chore(*): clear up some excessive by statements
@@ -241,6 +263,7 @@ type: text
 * [PR #12582](https://github.com/leanprover-community/mathlib/pull/12582) :: feat(data/list/basic): Lists over empty type are `unique`
 * [PR #12584](https://github.com/leanprover-community/mathlib/pull/12584) :: refactor(group_theory/commutator): Golf proof of `commutator_mem_commutator`
 * [PR #12554](https://github.com/leanprover-community/mathlib/pull/12554) :: feat(group_theory/commutator): Add some basic lemmas
+
 * [PR #12560](https://github.com/leanprover-community/mathlib/pull/12560) :: feat(data/nat/{nth,prime}): add facts about primes
 * [PR #12583](https://github.com/leanprover-community/mathlib/pull/12583) :: fix(probability): remove unused argument from `cond_cond_eq_cond_inter`
 * [PR #12459](https://github.com/leanprover-community/mathlib/pull/12459) :: feat(data/setoid/partition): Relate `setoid.is_partition` and `finpartition`
@@ -251,6 +274,7 @@ type: text
 * [PR #12585](https://github.com/leanprover-community/mathlib/pull/12585) :: feat(order/hom): `prod.swap` as an `order_iso`
 * [PR #12586](https://github.com/leanprover-community/mathlib/pull/12586) :: refactor(group_theory/commutator): Golf some proofs
 * [PR #12542](https://github.com/leanprover-community/mathlib/pull/12542) :: chore(topology/algebra/module/basic): cleanup variables and coercions
+
 * [PR #12549](https://github.com/leanprover-community/mathlib/pull/12549) :: feat(order/sup_indep): add `finset.sup_indep_pair`
 * [PR #12568](https://github.com/leanprover-community/mathlib/pull/12568) :: feat(algebra/order/monoid): add `with_zero.canonically_linear_ordered_add_monoid`
 * [PR #12202](https://github.com/leanprover-community/mathlib/pull/12202) :: feat(set_theory/ordinal_arithmetic): The derivative of multiplication
@@ -261,6 +285,7 @@ type: text
 * [PR #12484](https://github.com/leanprover-community/mathlib/pull/12484) :: feat(set_theory/ordinal_arithmetic): Further theorems on normal functions
 * [PR #12524](https://github.com/leanprover-community/mathlib/pull/12524) :: feat(data/finset/noncomm_prod): add noncomm_prod_mul_distrib
 * [PR #12594](https://github.com/leanprover-community/mathlib/pull/12594) :: feat(algebra/module): add `module.nontrivial`
+
 * [PR #12591](https://github.com/leanprover-community/mathlib/pull/12591) :: chore(*): update to 3.41.0c
 * [PR #12576](https://github.com/leanprover-community/mathlib/pull/12576) :: feat(category_theory): interderivability of kernel and equalizers in preadditive cats
 * [PR #12577](https://github.com/leanprover-community/mathlib/pull/12577) :: feat(algebra/group/units_hom): make `is_unit.map` work on `monoid_hom_class`
@@ -271,6 +296,7 @@ type: text
 * [PR #12523](https://github.com/leanprover-community/mathlib/pull/12523) :: feat(group_theory/subgroup/basic): {multiset_,}noncomm_prod_mem
 * [PR #12139](https://github.com/leanprover-community/mathlib/pull/12139) :: feat(analysis/inner_product_space/adjoint): gram lemmas
 * [PR #12616](https://github.com/leanprover-community/mathlib/pull/12616) :: fix(tactic/suggest): fixing `library_search`
+
 * [PR #12600](https://github.com/leanprover-community/mathlib/pull/12600) :: refactor(group_theory/commutator): Golf proof of `commutator_comm`
 * [PR #12614](https://github.com/leanprover-community/mathlib/pull/12614) :: refactor(set_theory/ordinal_arithmetic): remove dot notation
 * [PR #12619](https://github.com/leanprover-community/mathlib/pull/12619) :: refactor(group_theory/commutator): Golf proof of `commutator_mono`
@@ -281,6 +307,7 @@ type: text
 * [PR #12624](https://github.com/leanprover-community/mathlib/pull/12624) :: split(analysis/locally_convex/basic): Split off `analysis.seminorm`
 * [PR #12525](https://github.com/leanprover-community/mathlib/pull/12525) :: feat(group_theory/subgroup/basic): add eq_one_of_noncomm_prod_eq_one_of_independent
 * [PR #12598](https://github.com/leanprover-community/mathlib/pull/12598) :: feat(group_theory/commutator): Prove `commutator_eq_bot_iff_le_centralizer`
+
 * [PR #12606](https://github.com/leanprover-community/mathlib/pull/12606) :: chore(category_theory/limits): correct lemma names
 * [PR #12612](https://github.com/leanprover-community/mathlib/pull/12612) :: chore(category_theory/closed/monoidal): fix notation
 * [PR #12625](https://github.com/leanprover-community/mathlib/pull/12625) :: chore(data/nat/prime): restate card_multiples without finset.sep
@@ -291,6 +318,7 @@ type: text
 * [PR #12580](https://github.com/leanprover-community/mathlib/pull/12580) :: feat(topology/category/Locale): The category of locales
 * [PR #12602](https://github.com/leanprover-community/mathlib/pull/12602) :: feat(topology/algebra/continuous_monoid_hom): Define the Pontryagin dual
 * [PR #12607](https://github.com/leanprover-community/mathlib/pull/12607) :: feat(algebra/category/Module): monoidal_preadditive
+
 * [PR #12611](https://github.com/leanprover-community/mathlib/pull/12611) :: feat(model_theory/definability): Definability with parameters
 * [PR #12617](https://github.com/leanprover-community/mathlib/pull/12617) :: feat(category_theory/preadditive/Mat): ring version
 * [PR #12629](https://github.com/leanprover-community/mathlib/pull/12629) :: refactor(group_theory/commutator): Use variables and rearrange lemmas
@@ -301,6 +329,7 @@ type: text
 * [PR #12636](https://github.com/leanprover-community/mathlib/pull/12636) :: chore(algebra/algebra/subalgebra): reduce imports
 * [PR #12417](https://github.com/leanprover-community/mathlib/pull/12417) :: feat(analysis/*/{exponential, spectrum}): spectrum of a selfadjoint element is real
 * [PR #12603](https://github.com/leanprover-community/mathlib/pull/12603) :: feat(measure_theory/group/fundamental_domain): ess_sup_measure_restrict
+
 * [PR #12192](https://github.com/leanprover-community/mathlib/pull/12192) :: feat(analysis/inner_product_space/pi_L2): `linear_isometry.extend`
 * [PR #12578](https://github.com/leanprover-community/mathlib/pull/12578) :: docs(algebra/*): Add docstrings to additive lemmas
 * [PR #12661](https://github.com/leanprover-community/mathlib/pull/12661) :: refactor(set_theory/ordinal_arithmetic): Turn various results into simp lemmas
@@ -311,6 +340,7 @@ type: text
 * [PR #12653](https://github.com/leanprover-community/mathlib/pull/12653) :: chore(topology/algebra/group_with_zero): fix docstring for has_continuous_inv0
 * [PR #12654](https://github.com/leanprover-community/mathlib/pull/12654) :: feat(algebra/support) support of power is subset of support
 * [PR #12662](https://github.com/leanprover-community/mathlib/pull/12662) :: feat(set_theory/ordinal): `ord 1 = 1`
+
 * [PR #12663](https://github.com/leanprover-community/mathlib/pull/12663) :: refactor(set_theory/cardinal_ordinal): `aleph_is_principal_aleph` → `principal_add_aleph`
 * [PR #12406](https://github.com/leanprover-community/mathlib/pull/12406) :: feat(topology/hom/open): Continuous open maps
 * [PR #12633](https://github.com/leanprover-community/mathlib/pull/12633) :: feat(analysis/complex/schwarz): some versions of the Schwarz lemma
@@ -321,6 +351,7 @@ type: text
 * [PR #12608](https://github.com/leanprover-community/mathlib/pull/12608) :: chore(algebra/category/Module): simp lemmas for monoidal closed
 * [PR #12631](https://github.com/leanprover-community/mathlib/pull/12631) :: chore(topology/homotopy): Move more algebraic-flavored content about fundamental groupoid to algebraic_topology folder
 * [PR #12634](https://github.com/leanprover-community/mathlib/pull/12634) :: feat(group_theory/commutator): The three subgroups lemma
+
 * [PR #12664](https://github.com/leanprover-community/mathlib/pull/12664) :: feat(set_theory/principal): If `a` isn't additive principal, it's the sum of two smaller ordinals
 * [PR #12669](https://github.com/leanprover-community/mathlib/pull/12669) :: chore(ci): update trepplein to version 1.1
 * [PR #12291](https://github.com/leanprover-community/mathlib/pull/12291) :: feat(data/finset/noncomm_prod): finite pi lemmas
@@ -331,6 +362,7 @@ type: text
 * [PR #12668](https://github.com/leanprover-community/mathlib/pull/12668) :: feat(tactic/interactive): guard_{hyp,target}_mod_implicit
 * [PR #12679](https://github.com/leanprover-community/mathlib/pull/12679) :: chore(analysis/complex/upper_half_plane): don't use `abbreviation`
 * [PR #12292](https://github.com/leanprover-community/mathlib/pull/12292) :: feat(data/W/constructions): add constructions of W types
+
 * [PR #12245](https://github.com/leanprover-community/mathlib/pull/12245) ::  feat(number_theory/function_field): add place at infinity 
 * [PR #12615](https://github.com/leanprover-community/mathlib/pull/12615) :: chore(set_theory/ordinal_arithmetic): `well_founded` → `wf`
 * [PR #12605](https://github.com/leanprover-community/mathlib/pull/12605) :: feat(algebra/category): show categorical image in Module agrees with range
@@ -341,6 +373,7 @@ type: text
 * [PR #12641](https://github.com/leanprover-community/mathlib/pull/12641) :: feat(category_theory/preadditive) : definition of injective resolution
 * [PR #12645](https://github.com/leanprover-community/mathlib/pull/12645) :: chore(analysis/seminorm): Weaken typeclasses on `convex` and `locally_convex` lemmas
 * [PR #12677](https://github.com/leanprover-community/mathlib/pull/12677) :: feat(group_theory/abelianization): An application of the three subgroups lemma
+
 * [PR #12690](https://github.com/leanprover-community/mathlib/pull/12690) :: chore(algebra/module/basic): Move the scalar action earlier
 * [PR #12693](https://github.com/leanprover-community/mathlib/pull/12693) :: chore(cyclotomic/gal): update todo
 * [PR #12698](https://github.com/leanprover-community/mathlib/pull/12698) :: doc(data/equiv/encodable): +2 docstrings
@@ -351,6 +384,7 @@ type: text
 * [PR #12673](https://github.com/leanprover-community/mathlib/pull/12673) :: feat(ring_theory/graded_algebra/homogeneous_ideal): refactor `homogeneous_ideal` as a structure extending ideals
 * [PR #12630](https://github.com/leanprover-community/mathlib/pull/12630) :: feat(model_theory/terms_and_formulas): Notation for terms and formulas from Flypitch
 * [PR #12675](https://github.com/leanprover-community/mathlib/pull/12675) :: perf(analysis/convec/topology): remove topological_add_group.path_connected instance
+
 * [PR #12702](https://github.com/leanprover-community/mathlib/pull/12702) :: chore(category_theory/preadditive/projective_resolution): typo
 * [PR #12652](https://github.com/leanprover-community/mathlib/pull/12652) :: feat(group_theory/finiteness): quotient of fg is fg
 * [PR #12672](https://github.com/leanprover-community/mathlib/pull/12672) :: feat(linear_algebra/clifford_algebra/conjugation): add lemmas showing interaction between `involute` and `even_odd`
@@ -361,6 +395,7 @@ type: text
 * [PR #12682](https://github.com/leanprover-community/mathlib/pull/12682) :: feat(linear_algebra/matrix/determinant): special case of the matrix determinant lemma
 * [PR #12695](https://github.com/leanprover-community/mathlib/pull/12695) :: feat(algebra/algebra/subalgebra/pointwise): lemmas about `*` and `to_submodule`
 * [PR #12658](https://github.com/leanprover-community/mathlib/pull/12658) :: feat(group_theory/submonoid/operations): monoids are isomorphic to themselves as submonoids
+
 * [PR #12706](https://github.com/leanprover-community/mathlib/pull/12706) :: chore(algebra/associated): move prime_dvd_prime_iff_eq
 * [PR #12724](https://github.com/leanprover-community/mathlib/pull/12724) :: chore(data/equiv/basic): use `option.elim` and `sum.elim`
 * [PR #12728](https://github.com/leanprover-community/mathlib/pull/12728) :: chore(scripts): update nolints.txt
@@ -371,6 +406,7 @@ type: text
 * [PR #12436](https://github.com/leanprover-community/mathlib/pull/12436) :: feat(algebra/group_power/order): add le_pow
 * [PR #12656](https://github.com/leanprover-community/mathlib/pull/12656) :: feat(ring_theory/fractional_ideal): two span_singleton lemmas
 * [PR #12711](https://github.com/leanprover-community/mathlib/pull/12711) :: chore(measure_theory/function): split files strongly_measurable and simple_func_dense
+
 * [PR #12111](https://github.com/leanprover-community/mathlib/pull/12111) :: feat(group_theory/subsemigroup/basic): subsemigroups
 * [PR #12413](https://github.com/leanprover-community/mathlib/pull/12413) :: feat(data/pnat/find): port over `nat.find` API
 * [PR #12463](https://github.com/leanprover-community/mathlib/pull/12463) :: feat(data/nat/fib): norm_num plugin for fib
@@ -381,6 +417,7 @@ type: text
 * [PR #12518](https://github.com/leanprover-community/mathlib/pull/12518) :: feat(set_theory/cardinal): Lift `min` and `max`
 * [PR #12492](https://github.com/leanprover-community/mathlib/pull/12492) :: feat(measure_theory/function/jacobian): change of variable formula in integrals in higher dimension
 * [PR #12703](https://github.com/leanprover-community/mathlib/pull/12703) :: feat(category_theory/abelian/injective_resolution): descents of a morphism
+
 * [PR #12717](https://github.com/leanprover-community/mathlib/pull/12717) :: feat(data/finset/basic): add finset.filter_eq_self
 * [PR #12716](https://github.com/leanprover-community/mathlib/pull/12716) :: feat(number_theory/cyclotomic/basic): add is_primitive_root.adjoin
 * [PR #12727](https://github.com/leanprover-community/mathlib/pull/12727) :: feat(topology/algebra/order/basic): f ≤ᶠ[l] g implies limit of f ≤ limit of g
@@ -391,6 +428,7 @@ type: text
 * [PR #12739](https://github.com/leanprover-community/mathlib/pull/12739) :: chore(category_theory/preadditive/projective_resolution): some minor golf
 * [PR #12753](https://github.com/leanprover-community/mathlib/pull/12753) :: chore(*): move code, golf
 * [PR #12234](https://github.com/leanprover-community/mathlib/pull/12234) :: feat(topology/homotopy/fundamental_group): prove fundamental group is independent of basepoint in path-connected spaces
+
 * [PR #12726](https://github.com/leanprover-community/mathlib/pull/12726) :: feat(category_theory/punit): A groupoid is equivalent to punit iff it has a unique arrow between any two objects
 * [PR #12604](https://github.com/leanprover-community/mathlib/pull/12604) :: feat(combinatorics/simple_graph/connectivity): API for get_vert
 * [PR #12745](https://github.com/leanprover-community/mathlib/pull/12745) :: docs(algebraic_topology/fundamental_groupoid/induced_maps): fix diagram rendering
@@ -401,6 +439,7 @@ type: text
 * [PR #12761](https://github.com/leanprover-community/mathlib/pull/12761) :: feat(algebra/parity + *): generalize lemmas about parity
 * [PR #12755](https://github.com/leanprover-community/mathlib/pull/12755) :: feat(model_theory/basic, elementary_maps): Uses `fun_like` approach for first-order maps
 * [PR #11778](https://github.com/leanprover-community/mathlib/pull/11778) :: feat(group_theory/sylow): direct product of sylow groups if all normal
+
 * [PR #12705](https://github.com/leanprover-community/mathlib/pull/12705) :: feat(number_theory/function_field): the ring of integers of a function field is not a field
 * [PR #12725](https://github.com/leanprover-community/mathlib/pull/12725) :: feat(group_theory/subgroup/basic): One-sided closure induction lemmas
 * [PR #12738](https://github.com/leanprover-community/mathlib/pull/12738) :: chore(topology/compact_open): remove `continuous_map.ev`, and rename related lemmas to `eval'`
@@ -411,6 +450,7 @@ type: text
 * [PR #12735](https://github.com/leanprover-community/mathlib/pull/12735) :: feat(data/nat/sqrt_norm_num): norm_num extension for sqrt
 * [PR #12756](https://github.com/leanprover-community/mathlib/pull/12756) :: docs(algebra/order/floor): Update floor_semiring docs to reflect it's just an ordered_semiring
 * [PR #12767](https://github.com/leanprover-community/mathlib/pull/12767) :: feat(linear_algebra/matrix): The Weinstein–Aronszajn identity
+
 * [PR #12770](https://github.com/leanprover-community/mathlib/pull/12770) :: chore(topology/algebra/group_with_zero): mark `has_continuous_inv₀` as a `Prop`
 * [PR #12132](https://github.com/leanprover-community/mathlib/pull/12132) :: feat(analysis/normed_space/basic): add `normed_division_ring`
 * [PR #12467](https://github.com/leanprover-community/mathlib/pull/12467) :: feat(model_theory/terms_and_formulas): Casting and lifting terms and formulas
@@ -421,6 +461,7 @@ type: text
 * [PR #12778](https://github.com/leanprover-community/mathlib/pull/12778) :: refactor(topology/algebra/field): make `topological_division_ring` extend `has_continuous_inv₀`
 * [PR #12776](https://github.com/leanprover-community/mathlib/pull/12776) :: feat(group_theory/index): Intersection of finite index subgroups
 * [PR #12768](https://github.com/leanprover-community/mathlib/pull/12768) :: chore(algebraic_geometry/prime_spectrum/basic): remove TODO
+
 * [PR #12782](https://github.com/leanprover-community/mathlib/pull/12782) :: refactor(data/list/big_operators): review API
 * [PR #12793](https://github.com/leanprover-community/mathlib/pull/12793) :: feat(measure_theory/group/action): add `null_measurable_set.smul`
 * [PR #12689](https://github.com/leanprover-community/mathlib/pull/12689) :: feat(number_theory/arithmetic_function): add eq of multiplicative functions
@@ -431,6 +472,7 @@ type: text
 * [PR #12545](https://github.com/leanprover-community/mathlib/pull/12545) :: feat(category_theory/abelian) : injective resolutions of an object in a category with enough injectives
 * [PR #12557](https://github.com/leanprover-community/mathlib/pull/12557) :: feat(model_theory/terms_and_formulas): Atomic, Quantifier-Free, and Prenex Formulas
 * [PR #12657](https://github.com/leanprover-community/mathlib/pull/12657) :: feat(set_theory/*): Redefine `sup f` as `supr f`
+
 * [PR #12758](https://github.com/leanprover-community/mathlib/pull/12758) :: feat(order/rel_iso): Add `subrel` instances
 * [PR #12802](https://github.com/leanprover-community/mathlib/pull/12802) :: chore(model_theory/definability): Change variable order in definability
 * [PR #12803](https://github.com/leanprover-community/mathlib/pull/12803) :: doc(archive/100-theorems-list/9_area_of_a_circle): fix `×`
@@ -441,6 +483,7 @@ type: text
 * [PR #12800](https://github.com/leanprover-community/mathlib/pull/12800) :: feat(algebra/char_p/two): add `simp` attribute to some lemmas involving characteristic two identities
 * [PR #12794](https://github.com/leanprover-community/mathlib/pull/12794) :: feat(topology/{order,separation}): several lemmas from an old branch
 * [PR #12801](https://github.com/leanprover-community/mathlib/pull/12801) :: feat(*/sort): sorting empty sets/singletons
+
 * [PR #12816](https://github.com/leanprover-community/mathlib/pull/12816) :: chore(scripts): update nolints.txt
 * [PR #12737](https://github.com/leanprover-community/mathlib/pull/12737) :: chore(ring_theory/dedekind_domain/ideal): golf
 * [PR #12403](https://github.com/leanprover-community/mathlib/pull/12403) :: feat(category_theory/abelian/derived): add left_derived_zero_iso_self
@@ -451,6 +494,7 @@ type: text
 * [PR #12807](https://github.com/leanprover-community/mathlib/pull/12807) :: chore(number_theory/primorial): golf a proof
 * [PR #12809](https://github.com/leanprover-community/mathlib/pull/12809) :: chore(measure_theory/measure): move subtraction to a new file
 * [PR #12813](https://github.com/leanprover-community/mathlib/pull/12813) :: feat(ring_theory/fractional_ideal): fractional ideal is one if and only if ideal is one
+
 * [PR #12814](https://github.com/leanprover-community/mathlib/pull/12814) :: feat(group_theory/subgroup/basic): Alternate version of `mem_normalizer_iff`
 * [PR #12825](https://github.com/leanprover-community/mathlib/pull/12825) :: chore(algebra/char_p/exp_char): golf char_eq_exp_char_iff
 * [PR #12818](https://github.com/leanprover-community/mathlib/pull/12818) :: chore(*): update to lean 3.42.0c
@@ -461,6 +505,7 @@ type: text
 * [PR #12787](https://github.com/leanprover-community/mathlib/pull/12787) :: feat(analysis/normed_space/spectrum): Prove the Gelfand-Mazur theorem
 * [PR #12834](https://github.com/leanprover-community/mathlib/pull/12834) :: chore(ring_theory/algebraic): fix typo + golf
 * [PR #12839](https://github.com/leanprover-community/mathlib/pull/12839) :: feat(category_theory/abelian/*): add some missing lemmas
+
 * [PR #12823](https://github.com/leanprover-community/mathlib/pull/12823) :: refactor(group_theory/group_action/basic): Golf definition of action on cosets
 * [PR #12449](https://github.com/leanprover-community/mathlib/pull/12449) :: feat(analysis/locally_convex): define von Neumann boundedness
 * [PR #12821](https://github.com/leanprover-community/mathlib/pull/12821) :: feat(data/rat/denumerable): Make `mk_rat` into a simp lemma
@@ -471,6 +516,7 @@ type: text
 * [PR #12840](https://github.com/leanprover-community/mathlib/pull/12840) :: feat(algebra/homology/additive): dualise statement of chain complex to cochain complex
 * [PR #12847](https://github.com/leanprover-community/mathlib/pull/12847) :: chore(category/abelian/derived): shorten proof
 * [PR #12843](https://github.com/leanprover-community/mathlib/pull/12843) :: feat(measure_theory/constructions/borel_space): generalize a lemma
+
 * [PR #12531](https://github.com/leanprover-community/mathlib/pull/12531) :: feat(model_theory/ultraproducts): Ultraproducts and the Compactness Theorem
 * [PR #12831](https://github.com/leanprover-community/mathlib/pull/12831) :: split(data/{finset,set}/pointwise): Split off `algebra.pointwise`
 * [PR #12262](https://github.com/leanprover-community/mathlib/pull/12262) :: feat(model_theory/definability): Definability lemmas
@@ -481,6 +527,7 @@ type: text
 * [PR #12736](https://github.com/leanprover-community/mathlib/pull/12736) :: feat(linear_algebra/span): generalize span_singleton_smul_eq
 * [PR #12817](https://github.com/leanprover-community/mathlib/pull/12817) :: feat(model_theory/fraisse): Defines Fraïssé classes
 * [PR #12846](https://github.com/leanprover-community/mathlib/pull/12846) :: refactor(analysis/locally_convex/with_seminorms): use abbreviations to allow for dot notation
+
 * [PR #12854](https://github.com/leanprover-community/mathlib/pull/12854) :: feat(data/polynomial/eval + data/polynomial/ring_division): move a lemma and remove assumptions
 * [PR #12841](https://github.com/leanprover-community/mathlib/pull/12841) :: feat(category_theory/abelian): right derived functor
 * [PR #12687](https://github.com/leanprover-community/mathlib/pull/12687) :: feat(topology/continuous_function/units): basic results about units in `C(α, β)`
@@ -491,6 +538,7 @@ type: text
 * [PR #12754](https://github.com/leanprover-community/mathlib/pull/12754) :: refactor(measure_theory/integral): restrict interval integrals to real intervals
 * [PR #12740](https://github.com/leanprover-community/mathlib/pull/12740) :: feat(algebra/big_operators/associated): generalize prod_primes_dvd
 * [PR #12241](https://github.com/leanprover-community/mathlib/pull/12241) :: feat(topology/order/hom/esakia): Esakia morphisms
+
 * [PR #12688](https://github.com/leanprover-community/mathlib/pull/12688) :: feat(analysis/calculus): define `diff_on_int_cont`
 * [PR #12865](https://github.com/leanprover-community/mathlib/pull/12865) :: feat(data/finset/pointwise): Missing operations
 * [PR #12855](https://github.com/leanprover-community/mathlib/pull/12855) :: refactor(order/hom/complete_lattice): Fix the definition of `frame_hom`
@@ -501,6 +549,7 @@ type: text
 * [PR #12286](https://github.com/leanprover-community/mathlib/pull/12286) :: feat(order/concept): Concept lattices
 * [PR #12837](https://github.com/leanprover-community/mathlib/pull/12837) :: feat(model_theory/*): Language equivalences
 * [PR #12887](https://github.com/leanprover-community/mathlib/pull/12887) :: feat(set_theory/ordinal): Small iff cardinality less than `cardinal.univ`
+
 * [PR #12886](https://github.com/leanprover-community/mathlib/pull/12886) :: chore(data/nat/prime): golf nat.dvd_prime_pow
 * [PR #12881](https://github.com/leanprover-community/mathlib/pull/12881) :: feat(linear_algebra/matrix): add variants of the existing `det_units_conj` lemmas
 * [PR #12898](https://github.com/leanprover-community/mathlib/pull/12898) :: feat(algebra/homology/quasi_iso): 2-out-of-3 property
@@ -511,6 +560,7 @@ type: text
 * [PR #12785](https://github.com/leanprover-community/mathlib/pull/12785) :: refactor(algebraic_geometry/*): rename structure sheaf to `Spec.structure_sheaf`
 * [PR #12810](https://github.com/leanprover-community/mathlib/pull/12810) :: feat(category_theory/abelian): right derived functor in abelian category with enough injectives
 * [PR #12644](https://github.com/leanprover-community/mathlib/pull/12644) :: refactor(order/upper_lower): Use `⨆` rather than `Sup`
+
 * [PR #12889](https://github.com/leanprover-community/mathlib/pull/12889) :: feat(order/hom/*): more superclass instances for `order_iso_class`
 * [PR #12876](https://github.com/leanprover-community/mathlib/pull/12876) :: chore(data/{lists,multiset}/*): More dot notation
 * [PR #12871](https://github.com/leanprover-community/mathlib/pull/12871) :: feat(data/complex/basic): `#ℂ = 𝔠`
@@ -521,6 +571,7 @@ type: text
 * [PR #12870](https://github.com/leanprover-community/mathlib/pull/12870) :: fix(ring_theory/algebraic): Make `is_transcendental_of_subsingleton` fully general
 * [PR #12873](https://github.com/leanprover-community/mathlib/pull/12873) :: chore(data/int/basic): remove some `eq.mpr`s from `int.induction_on'`
 * [PR #12875](https://github.com/leanprover-community/mathlib/pull/12875) :: feat(tactic/ext): support rintro patterns in `ext`
+
 * [PR #12877](https://github.com/leanprover-community/mathlib/pull/12877) :: feat(data/complex/is_R_or_C): generalize `is_R_or_C.proper_space_span_singleton` to all finite dimensional submodules
 * [PR #12878](https://github.com/leanprover-community/mathlib/pull/12878) :: docs(data/set/pairwise): Explain preference for `s.pairwise_disjoint id`
 * [PR #12883](https://github.com/leanprover-community/mathlib/pull/12883) :: feat(topology/separation): generalize tendsto_const_nhds_iff to t1_space
@@ -531,6 +582,7 @@ type: text
 * [PR #12903](https://github.com/leanprover-community/mathlib/pull/12903) :: feat(ring_theory/principal_ideal_domain): add some irreducible lemmas
 * [PR #12539](https://github.com/leanprover-community/mathlib/pull/12539) :: feat(measure_theory/integral): continuous functions with exponential decay are integrable
 * [PR #12908](https://github.com/leanprover-community/mathlib/pull/12908) :: feat(topology/nhds_set): add `has_basis_nhds_set`
+
 * [PR #12715](https://github.com/leanprover-community/mathlib/pull/12715) :: feat(number_theory/function_field): add completion with respect to place at infinity
 * [PR #12775](https://github.com/leanprover-community/mathlib/pull/12775) :: chore(fintype/card_embedding): generalize instances
 * [PR #12796](https://github.com/leanprover-community/mathlib/pull/12796) :: feat(number_theory/arithmetic_function): The moebius function is multiplicative
@@ -541,6 +593,7 @@ type: text
 * [PR #12856](https://github.com/leanprover-community/mathlib/pull/12856) :: feat(*): facts about degrees/multiplicites of derivatives
 * [PR #12866](https://github.com/leanprover-community/mathlib/pull/12866) :: feat(ring_theory/polynomial): mv_polynomial over UFD is UFD
 * [PR #12748](https://github.com/leanprover-community/mathlib/pull/12748) :: feat(topology/algebra/group): define `has_continuous_inv` and `has_continuous_neg` type classes
+
 * [PR #12175](https://github.com/leanprover-community/mathlib/pull/12175) :: chore(order/zorn): Review
 * [PR #12027](https://github.com/leanprover-community/mathlib/pull/12027) :: feat(algebra/module/torsion): define torsion submodules
 * [PR #12431](https://github.com/leanprover-community/mathlib/pull/12431) :: feat(combinatorics/simple_graph/density): Edge density
@@ -551,6 +604,7 @@ type: text
 * [PR #12906](https://github.com/leanprover-community/mathlib/pull/12906) :: feat(order/category/FinBoolAlg): The category of finite Boolean algebras
 * [PR #12920](https://github.com/leanprover-community/mathlib/pull/12920) :: feat(data/pfun): Remove unneeded assumption from pfun.fix_induction
 * [PR #12752](https://github.com/leanprover-community/mathlib/pull/12752) :: docs(docs/undergrad): Update TODO list
+
 * [PR #12647](https://github.com/leanprover-community/mathlib/pull/12647) :: move(algebra/hom/*): Move group hom files together
 * [PR #12045](https://github.com/leanprover-community/mathlib/pull/12045) :: feat(topology/category/Born): The category of bornologies
 * [PR #12937](https://github.com/leanprover-community/mathlib/pull/12937) :: chore(nnreal): rename lemmas based on real.to_nnreal when they mention of_real
@@ -561,6 +615,7 @@ type: text
 * [PR #12926](https://github.com/leanprover-community/mathlib/pull/12926) :: feat(topology/instances/ennreal): add `ennreal.has_sum_to_real`
 * [PR #12922](https://github.com/leanprover-community/mathlib/pull/12922) :: feat(set_theory/cardinal_ordinal): `κ ^ n = κ` for infinite cardinals
 * [PR #12925](https://github.com/leanprover-community/mathlib/pull/12925) :: feat(logic/nontrivial): `exists_pair_lt`
+
 * [PR #12167](https://github.com/leanprover-community/mathlib/pull/12167) :: feat(algebra/is_prime_pow): add `is_prime_pow_iff_factorization_single`
 * [PR #12935](https://github.com/leanprover-community/mathlib/pull/12935) :: feat(topology/constructions): continuity of uncurried functions when the first factor is discrete
 * [PR #12936](https://github.com/leanprover-community/mathlib/pull/12936) :: feat(topology/bases): separable subsets of topological spaces
@@ -571,6 +626,7 @@ type: text
 * [PR #11794](https://github.com/leanprover-community/mathlib/pull/11794) :: feat(analysis/convex/strict_convex_space): Strictly convex spaces
 * [PR #12929](https://github.com/leanprover-community/mathlib/pull/12929) :: chore(data/equiv): split and move to `logic/equiv`
 * [PR #12943](https://github.com/leanprover-community/mathlib/pull/12943) :: fix(data/set/prod): fix the way `×ˢ` associates
+
 * [PR #12947](https://github.com/leanprover-community/mathlib/pull/12947) :: feat(algebra/ring/basic): all non-zero elements in a non-trivial ring with no non-zero zero divisors are regular
 * [PR #12950](https://github.com/leanprover-community/mathlib/pull/12950) :: refactor(data/list/basic): Remove many redundant hypotheses
 * [PR #12707](https://github.com/leanprover-community/mathlib/pull/12707) :: feat(ring_theory/polynomial/eisenstein): add cyclotomic_prime_pow_comp_X_add_one_is_eisenstein_at
@@ -581,6 +637,7 @@ type: text
 * [PR #12918](https://github.com/leanprover-community/mathlib/pull/12918) :: chore(model_theory/*): Split up big model theory files
 * [PR #12978](https://github.com/leanprover-community/mathlib/pull/12978) :: feat(measure_theory/measure/measure_space): remove measurable_set assumption in ae_measurable.subtype_mk
 * [PR #12944](https://github.com/leanprover-community/mathlib/pull/12944) :: feat(data/zmod/basic): add `int_coe_eq_int_coe_iff_dvd_sub`
+
 * [PR #12329](https://github.com/leanprover-community/mathlib/pull/12329) :: feat(analysis/von_neumann): concrete and abstract definitions of a von Neumann algebra
 * [PR #12858](https://github.com/leanprover-community/mathlib/pull/12858) :: chore(data/polynomial/degree/lemmas + data/polynomial/ring_division): move lemmas, reduce assumptions, golf
 * [PR #12790](https://github.com/leanprover-community/mathlib/pull/12790) :: feat(analysis/inner_product_space): an inner product space is strictly convex
@@ -591,6 +648,7 @@ type: text
 * [PR #12974](https://github.com/leanprover-community/mathlib/pull/12974) :: feat(measure_theory/measure): add some simp lemmas, golf
 * [PR #12986](https://github.com/leanprover-community/mathlib/pull/12986) :: chore(test/matrix): clean up an unused argument
 * [PR #12888](https://github.com/leanprover-community/mathlib/pull/12888) :: feat(order/hom/*): equivalences mapping morphisms to their dual
+
 * [PR #11261](https://github.com/leanprover-community/mathlib/pull/11261) :: feat(topology/continuous/algebra) : giving `C(α, M)` a `has_continuous_mul` and a `has_continuous_smul` structure
 * [PR #12316](https://github.com/leanprover-community/mathlib/pull/12316) :: feat(set_theory/cofinality): Lemmas relating `cof` to `lsub` and `blsub`
 * [PR #12763](https://github.com/leanprover-community/mathlib/pull/12763) :: feat(set_theory/cardinal): `cardinal.to_nat` is order-preserving on finite cardinals
@@ -601,6 +659,7 @@ type: text
 * [PR #12980](https://github.com/leanprover-community/mathlib/pull/12980) :: doc({linear_algebra,matrix}/charpoly): add crosslinks
 * [PR #12981](https://github.com/leanprover-community/mathlib/pull/12981) :: doc(data/polynomial/field_division): fix broken docstring links
 * [PR #12425](https://github.com/leanprover-community/mathlib/pull/12425) :: feat(ring_theory/localization): lemmas about `Frac(R)`-spans
+
 * [PR #12861](https://github.com/leanprover-community/mathlib/pull/12861) :: feat({ring_theory,group_theory}/localization): add some small lemmas for localisation API
 * [PR #12984](https://github.com/leanprover-community/mathlib/pull/12984) :: chore(data/polynomial/ring_division): remove nontrivial assumptions
 * [PR #12985](https://github.com/leanprover-community/mathlib/pull/12985) :: feat(measure_theory/functions/strongly_measurable): almost everywhere strongly measurable functions
@@ -611,6 +670,7 @@ type: text
 * [PR #12967](https://github.com/leanprover-community/mathlib/pull/12967) :: feat(data/list/cycle): Define the empty cycle
 * [PR #12979](https://github.com/leanprover-community/mathlib/pull/12979) :: feat(category_theory): the category of small categories has all small limits
 * [PR #13002](https://github.com/leanprover-community/mathlib/pull/13002) :: chore(algebra/group_power/lemmas): turn `[zn]smul` lemmas into instances
+
 * [PR #12005](https://github.com/leanprover-community/mathlib/pull/12005) :: refactor(measure_theory/group/fundamental_domain): allow `null_measurable_set`s
 * [PR #12882](https://github.com/leanprover-community/mathlib/pull/12882) :: refactor(algebra/group/to_additive + files containing even/odd): move many lemmas involving even/odd to the same file
 * [PR #12995](https://github.com/leanprover-community/mathlib/pull/12995) :: feat(group_theory/group_action/opposite): Add `smul_eq_mul_unop`
@@ -621,6 +681,7 @@ type: text
 * [PR #12915](https://github.com/leanprover-community/mathlib/pull/12915) :: feat(algebra/field_power): add min_le_of_zpow_le_max
 * [PR #13001](https://github.com/leanprover-community/mathlib/pull/13001) :: chore(data/{nat,int,rat}/cast): add bundled version of `cast_id` lemmas
 * [PR #13011](https://github.com/leanprover-community/mathlib/pull/13011) :: feat(data/set/basic): Laws for n-ary image
+
 * [PR #9729](https://github.com/leanprover-community/mathlib/pull/9729) :: feat(number_theory/frobenius_number): Frobenius numbers
 * [PR #12659](https://github.com/leanprover-community/mathlib/pull/12659) :: feat(set_theory/{ordinal_arithmetic, game/nim}): Minimum excluded ordinal
 * [PR #12844](https://github.com/leanprover-community/mathlib/pull/12844) :: feat(measure_theory/constructions/borel_space): add `borelize` tactic
@@ -631,6 +692,7 @@ type: text
 * [PR #12969](https://github.com/leanprover-community/mathlib/pull/12969) :: feat(data/list/chain): Simp lemma for `chain r a (l ++ b :: c :: m)`
 * [PR #12537](https://github.com/leanprover-community/mathlib/pull/12537) :: feat(analysis/locally_convex): add balanced hull and core
 * [PR #12712](https://github.com/leanprover-community/mathlib/pull/12712) :: feat(ring_theory/dedekind_domain/adic_valuation): add adic valuation on a Dedekind domain
+
 * [PR #12948](https://github.com/leanprover-community/mathlib/pull/12948) :: feat(data/polynomial/derivative): if `p` is a polynomial, then `p.derivative.nat_degree ≤ p.nat_degree - 1`
 * [PR #13013](https://github.com/leanprover-community/mathlib/pull/13013) :: feat(topology/algebra/monoid): `finprod` is eventually equal to `finset.prod`
 * [PR #12931](https://github.com/leanprover-community/mathlib/pull/12931) :: feat(topology/algebra/group): add small topology lemma
@@ -641,6 +703,7 @@ type: text
 * [PR #13023](https://github.com/leanprover-community/mathlib/pull/13023) :: chore(algebra/field_power): slightly simplify proof of min_le_of_zpow_le_max
 * [PR #13026](https://github.com/leanprover-community/mathlib/pull/13026) :: chore(topology/vector_bundle): fix timeout by optimizing proof
 * [PR #12914](https://github.com/leanprover-community/mathlib/pull/12914) :: feat(ring_theory/valuation/basic): add add_valuation.valuation
+
 * [PR #13029](https://github.com/leanprover-community/mathlib/pull/13029) :: chore(data/list): two lemmas about bind
 * [PR #13030](https://github.com/leanprover-community/mathlib/pull/13030) :: chore(data/list/pairwise): add `pairwise_bind`
 * [PR #13032](https://github.com/leanprover-community/mathlib/pull/13032) :: chore(analysis/normed_space/exponential): fix lemma names in docstrings
@@ -651,6 +714,7 @@ type: text
 * [PR #13045](https://github.com/leanprover-community/mathlib/pull/13045) :: chore(ring_theory/valuation/basic): fix valuation_apply
 * [PR #12601](https://github.com/leanprover-community/mathlib/pull/12601) :: feat(algebra/algebra/unitization): define unitization of a non-unital algebra
 * [PR #12958](https://github.com/leanprover-community/mathlib/pull/12958) :: feat(combinatorics/simple_graph/regularity/energy): Energy of a partition
+
 * [PR #12667](https://github.com/leanprover-community/mathlib/pull/12667) :: fix(tactic/norm_num): make norm_num user command match norm_num better
 * [PR #13010](https://github.com/leanprover-community/mathlib/pull/13010) :: feat(set_theory/cardinal): bit lemmas for exponentiation
 * [PR #13049](https://github.com/leanprover-community/mathlib/pull/13049) :: feat(algebra/ring/basic): neg_zero for distrib_neg
@@ -661,6 +725,7 @@ type: text
 * [PR #13055](https://github.com/leanprover-community/mathlib/pull/13055) :: fix(data/fintype/basic): generalize fintype instance for fintype.card_coe
 * [PR #12863](https://github.com/leanprover-community/mathlib/pull/12863) :: feat(algebra/associates): add two instances and a lemma about the order on the monoid of associates of a monoid
 * [PR #12784](https://github.com/leanprover-community/mathlib/pull/12784) :: feat(ring_theory/graded_algebra): define homogeneous localisation
+
 * [PR #13038](https://github.com/leanprover-community/mathlib/pull/13038) :: chore(*): sort out some to_additive and simp orderings
 * [PR #12849](https://github.com/leanprover-community/mathlib/pull/12849) :: feat(analysis/locally_convex): polar sets for dualities
 * [PR #12910](https://github.com/leanprover-community/mathlib/pull/12910) :: feat(data/polynomial/erase_lead): add two erase_lead lemmas
