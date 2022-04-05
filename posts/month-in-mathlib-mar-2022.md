@@ -11,6 +11,8 @@ title: This month in mathlib (Mar 2022)
 type: text
 ---
 
+March 2022 saw a record number of new contributions to mathlib: 682 PRs were merged, obliterating the old record of 565 merged PRs.
+
 * [PR #12216](https://github.com/leanprover-community/mathlib/pull/12216) :: feat(measure_theory/function/locally_integrable): define locally integrable
 * [PR #12358](https://github.com/leanprover-community/mathlib/pull/12358) :: feat(linear_algebra): generalize `linear_equiv.finrank_eq` to rings
 * [PR #12362](https://github.com/leanprover-community/mathlib/pull/12362) :: chore(category_theory/idempotents) replaced "idempotence" by "idem"
