@@ -78,7 +78,7 @@ There's still a long way to go before we can relate these definitions!
 * [PR #12635](https://github.com/leanprover-community/mathlib/pull/12635) :: feat(algebraic_geometry/projective_spectrum): basic definitions of projective spectrum
 * [PR #12784](https://github.com/leanprover-community/mathlib/pull/12784) :: feat(ring_theory/graded_algebra): define homogeneous localisation
 
-Jujian Zhang dualized the existing material on projective resolutions, and as a consequence now have right derived functors and some basic properties.
+Jujian Zhang dualized the existing material on projective resolutions, and as a consequence we now have right derived functors and some basic properties.
 
 * [PR #12545](https://github.com/leanprover-community/mathlib/pull/12545) :: feat(category_theory/abelian): injective resolutions of an object in a category with enough injectives
 * [PR #12841](https://github.com/leanprover-community/mathlib/pull/12841) :: feat(category_theory/abelian): right derived functor
