@@ -66,7 +66,7 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 - Number theory.
 	* [PR #12245](https://github.com/leanprover-community/mathlib/pull/12245) and [PR #12715](https://github.com/leanprover-community/mathlib/pull/12715) add completion with respect to place at infinity
 	* [PR #12712](https://github.com/leanprover-community/mathlib/pull/12712) add adic valuation on a Dedekind domain
-	* The $$p$$-adics form a complete space [PR #12424](https://github.com/leanprover-community/mathlib/pull/12424).
+	* The $p$-adics form a complete space [PR #12424](https://github.com/leanprover-community/mathlib/pull/12424).
 	* [PR #12796](https://github.com/leanprover-community/mathlib/pull/12796) The Möbius function is multiplicative.
 - Algebraic geometry. 
 	* [PR #12548](https://github.com/leanprover-community/mathlib/pull/12548) definition of irrelevant ideal of a graded algebra
