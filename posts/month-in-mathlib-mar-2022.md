@@ -23,9 +23,9 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 - Algebra.
 	* After the definition of the Krull topology last month, [PR #11973](https://github.com/leanprover-community/mathlib/pull/11973) and [PR #12398](https://github.com/leanprover-community/mathlib/pull/12398) show the Krull topology is Hausdorff and totally disconnected
 	* Joachim Breitner made major contributions to group theory by establishing the Ping Pong Lemma in [PR #12210](https://github.com/leanprover-community/mathlib/pull/12210), then [PR #11778](https://github.com/leanprover-community/mathlib/pull/11778) completes the last in a chain of equivalences for finite nilpotent groups (direct product of Sylow subgroups), culiminating in [PR #11835](https://github.com/leanprover-community/mathlib/pull/11835)
-	* [PR #12866](https://github.com/leanprover-community/mathlib/pull/12866) `mv_polynomial` over UFD is UFD
+	* [PR #12866](https://github.com/leanprover-community/mathlib/pull/12866) a polynomial ring in arbitrarily many variables over a UFD is a UFD
 	* [PR #12300](https://github.com/leanprover-community/mathlib/pull/12300) adds non-unital and non-associative rings, thereby opening the door for applications elsewhere. For instance [PR #12913](https://github.com/leanprover-community/mathlib/pull/12913) square matrices over a non-unital ring form a non-unital ring, [PR #12326](https://github.com/leanprover-community/mathlib/pull/12326) non-unital normed rings, [PR #12327](https://github.com/leanprover-community/mathlib/pull/12327) allow non-unital C∗-rings, and [PR #12601](https://github.com/leanprover-community/mathlib/pull/12601) define unitization of a non-unital algebra.
-	* [PR #12041](https://github.com/leanprover-community/mathlib/pull/12041) classifies 1d isocrystals and in so doing exhibits an application of the [semilinear map refactor](https://leanprover-community.github.io/blog/posts/semilinear-maps/) *other* than linear or conjugate-linear maps.
+	* [PR #12041](https://github.com/leanprover-community/mathlib/pull/12041) classifies 1d isocrystals in p-adic Hodge theory, and in so doing exhibits an application of the [semilinear map refactor](https://leanprover-community.github.io/blog/posts/semilinear-maps/) *other* than linear or conjugate-linear maps.
 	* [PR #12485](https://github.com/leanprover-community/mathlib/pull/12485) adds a nice counterexample to mathlib: a homogeneous ideal that is not prime but homogeneously prime
 	* [PR #12634](https://github.com/leanprover-community/mathlib/pull/12634) The three subgroups lemma
 	* [PR #12646](https://github.com/leanprover-community/mathlib/pull/12646) the isomorphism between `R[a]/I[a]` and `(R/I[X])/(f mod I)` for `a` a root of polynomial `f` and `I` and ideal of `R`
@@ -50,7 +50,7 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 	* [PR #11595](https://github.com/leanprover-community/mathlib/pull/11595) Homotopic maps induce naturally isomorphic functors between fundamental groupoid
 	* [PR #12406](https://github.com/leanprover-community/mathlib/pull/12406) introduces continuous open maps
 	* [PR #12934](https://github.com/leanprover-community/mathlib/pull/12934) define and use a metrizable typeclass
-	* [PR #11229](https://github.com/leanprover-community/mathlib/pull/11229) basis for `𝓤 C(α, β)` and convergence of a series of `f : C(α, β)`
+	* [PR #11229](https://github.com/leanprover-community/mathlib/pull/11229) provide a basis for the uniformity on `C(α, β)` and convergence of a series of continuous maps `f : C(α, β)`
 - Linear algebra.
 	* [PR #12767](https://github.com/leanprover-community/mathlib/pull/12767) The Weinstein–Aronszajn identity
 	* [PR #12438](https://github.com/leanprover-community/mathlib/pull/12438) The projectivization of a vector space.
@@ -62,10 +62,10 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 	* [PR #10867](https://github.com/leanprover-community/mathlib/pull/10867) Incidence matrix
 	* [PR #12431](https://github.com/leanprover-community/mathlib/pull/12431) Edge density
 	* [PR #12958](https://github.com/leanprover-community/mathlib/pull/12958) Energy of a partition
-	* [PR #12360](https://github.com/leanprover-community/mathlib/pull/12360) add walk.darts
+	* [PR #12360](https://github.com/leanprover-community/mathlib/pull/12360) add `walk.darts`
 - Number theory.
 	* [PR #12245](https://github.com/leanprover-community/mathlib/pull/12245) and [PR #12715](https://github.com/leanprover-community/mathlib/pull/12715) add completion with respect to place at infinity
-	* [PR #12712](https://github.com/leanprover-community/mathlib/pull/12712) add adic valuation on a Dedekind domain
+	* [PR #12712](https://github.com/leanprover-community/mathlib/pull/12712) adds the adic valuation on a Dedekind domain associated with a maximal ideal
 	* The $p$-adics form a complete space [PR #12424](https://github.com/leanprover-community/mathlib/pull/12424).
 	* [PR #12796](https://github.com/leanprover-community/mathlib/pull/12796) The Möbius function is multiplicative.
 - Algebraic geometry. 
