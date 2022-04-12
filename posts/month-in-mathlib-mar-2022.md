@@ -15,12 +15,6 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 
 <!-- TEASER_END -->
 
-- General. The community release of Lean was updated twice, and we got `#norm_num` and `borelize` features.
-	* [PR #12591](https://github.com/leanprover-community/mathlib/pull/12591) Updates to Lean 3.41.0c, which allows `sorry` to skip a tactic block, introduces the option `pp.numeral_types` to show numeral type ascriptions, and adds a search engine for finding relevant lemmas [Lean PR #696](https://github.com/leanprover-community/mathlib/pull/12591).
-	* [PR #12818](https://github.com/leanprover-community/mathlib/pull/12818) Updates to Lean 3.42.0c, which includes a fix for the "unknown declaration" error when rebuilding oleans involving `private` definitions, and adds a `noncomputable!` modifier to completely inhibit VM compilation.
-	* [PR #12550](https://github.com/leanprover-community/mathlib/pull/12550) Adds user command to run `norm_num` on an expression.
-	* [PR #12844](https://github.com/leanprover-community/mathlib/pull/12844) Adds `borelize` tactic to realize a measurable topological space as a Borel measurable space.
-
 - Algebra.
 	* After the definition of the Krull topology last month, [PR #11973](https://github.com/leanprover-community/mathlib/pull/11973) and [PR #12398](https://github.com/leanprover-community/mathlib/pull/12398) show the Krull topology is Hausdorff and totally disconnected
 	* Joachim Breitner contributed to group theory by establishing the Ping Pong Lemma in [PR #12210](https://github.com/leanprover-community/mathlib/pull/12210), then [PR #11778](https://github.com/leanprover-community/mathlib/pull/11778) completes the last in a chain of equivalences for finite nilpotent groups (direct product of Sylow subgroups), culiminating in [PR #11835](https://github.com/leanprover-community/mathlib/pull/11835).
@@ -80,4 +74,8 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 	* [PR #12548](https://github.com/leanprover-community/mathlib/pull/12548) Irrelevant ideal of a graded algebra
 	* [PR #12635](https://github.com/leanprover-community/mathlib/pull/12635) Basic definitions of projective spectrum
 	* [PR #12784](https://github.com/leanprover-community/mathlib/pull/12784) Homogeneous localisation
+
+- General. The community release of Lean was updated twice.
+	* [PR #12591](https://github.com/leanprover-community/mathlib/pull/12591) Updates to Lean 3.41.0c, which allows `sorry` to skip a tactic block, introduces the option `pp.numeral_types` to show numeral type ascriptions, and adds a search engine for finding relevant lemmas [Lean PR #696](https://github.com/leanprover-community/mathlib/pull/12591).
+	* [PR #12818](https://github.com/leanprover-community/mathlib/pull/12818) Updates to Lean 3.42.0c, which includes a fix for the "unknown declaration" error when rebuilding oleans involving `private` definitions, and adds a `noncomputable!` modifier to completely inhibit VM compilation.
 
