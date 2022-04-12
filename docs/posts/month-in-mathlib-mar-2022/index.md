@@ -54,7 +54,7 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 
 - Graph theory.
 	* [PR #10867](https://github.com/leanprover-community/mathlib/pull/10867) defines the incidence matrix of a simple graph.
-	* Szemerédi's regularity lemma is slowly getting in. Building on edge density ([PR #12431](https://github.com/leanprover-community/mathlib/pull/12431)), [PR #12958](https://github.com/leanprover-community/mathlib/pull/12958) defines the energy of a partition and [PR #12957](https://github.com/leanprover-community/mathlib/pull/12958) introduces $$\varepsilon$$-regular partitions.
+	* Szemerédi's regularity lemma is slowly getting in. Building on edge density ([PR #12431](https://github.com/leanprover-community/mathlib/pull/12431)), [PR #12958](https://github.com/leanprover-community/mathlib/pull/12958) defines the energy of a partition and [PR #12957](https://github.com/leanprover-community/mathlib/pull/12958) introduces $\varepsilon$-regular partitions.
 
 - Probability theory. Foundational work in probability theory occurred in:
 	* [PR #12678](https://github.com/leanprover-community/mathlib/pull/12678) Adds API for uniform integrability in the probability sense.
