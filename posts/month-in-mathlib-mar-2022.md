@@ -75,6 +75,6 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 	* [PR #12784](https://github.com/leanprover-community/mathlib/pull/12784) Homogeneous localisation
 
 - General. The community release of Lean was updated twice.
-	* [PR #12591](https://github.com/leanprover-community/mathlib/pull/12591) Updates to Lean 3.41.0c, which allows `sorry` to skip a tactic block, introduces the option `pp.numeral_types` to show numeral type ascriptions, and adds a search engine for finding relevant lemmas [Lean PR #696](https://github.com/leanprover-community/mathlib/pull/12591).
+	* [PR #12591](https://github.com/leanprover-community/mathlib/pull/12591) Updates to Lean 3.41.0c, which allows `sorry` to skip a tactic block, introduces the option `pp.numeral_types` to show numeral type ascriptions, and adds a search engine for finding relevant lemmas [Lean PR #696](https://github.com/leanprover-community/lean/pull/696).
 	* [PR #12818](https://github.com/leanprover-community/mathlib/pull/12818) Updates to Lean 3.42.0c, which includes a fix for the "unknown declaration" error when rebuilding oleans involving `private` definitions, and adds a `noncomputable!` modifier to completely inhibit VM compilation.
 
