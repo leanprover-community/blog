@@ -157,11 +157,12 @@ without having to run it yourself.</p>
     It largely works, and means that you can import <code>mathlib3</code> content into Lean
     4 (as long as you don't expect to have source files!)
     This is what lets us do things like: </p>
-<pre class="code literal-block"><span class="kn">import</span> <span class="nn">Mathbin</span>
+<div class="code"><pre class="code literal-block"><span class="kn">import</span> <span class="nn">Mathbin</span>
 
 <span class="c1">#lookup3 algebraic_geometry.Scheme</span>
 <span class="c1">#check AlgebraicGeometry.Scheme</span>
-</pre>
+</pre></div>
+
 <p>Yay, Lean 4 has schemes! :-)
 To see this file in action, you should check out a copy of the <code>mathlib3port</code> repository described below,
 and make a new file there.</p>
