@@ -35,3 +35,4 @@ jobs:
         with:
           branch: this-month-in-mathlib/${{ steps.generate.iso-date}}
           title: This month in mathlib (${{ steps.generate.iso-date}})
+          path: blog
