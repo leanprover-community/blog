@@ -37,7 +37,7 @@ jobs:
           date="$(date +%Y-%m-15) -1 month"
           date_info=$(date --date="$date" +"%Y %-m %m");
           echo "::set-output name=iso-date::$(date --date="$date" +"%Y-%m")"
-          ./monthly_blog "$(date --date="$date" +"%Y")" "$(date --date="$date" +"%-m")" ../mathlib
+          ./monthly_blog.sh "$(date --date="$date" +"%Y")" "$(date --date="$date" +"%-m")" ../mathlib
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
