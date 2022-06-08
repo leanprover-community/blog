@@ -23,13 +23,18 @@ jobs:
       - name: Generate the blog post
         id: generate
         run: |
-          cd blog
           # get the first day of last month. Hack taken from https://www.gnu.org/software/coreutils/manual/html_node/Relative-items-in-date-strings.html
           date="$(date +%Y-%m-15) -1 month"
           date="$(date --date "$date" +%Y-%m-01)"
           echo "::set-output name=iso-date::$(date --date="$date" +"%Y-%m")"
           slug_date="$(date --date="$date" +"%b-%Y")";
           slug_date="${slug_date,,}";  # lowercase
+          
+          # fetch all the commits from that date onwards
+          ( cd mathlib;
+            git fetch origin master --shallow-since="$date" );
+
+          cd blog
           ./monthly-blog.sh "$(date --date="$date" +"%Y")" "$(date --date="$date" +"%-m")" ../mathlib > posts/month-in-mathlib-$slug_date.md
 
       - name: Create Pull Request
