@@ -6,6 +6,9 @@ name: "Create 'This month in mathlib' PR"
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+  push:
+    branches: [automate-this-month-in]  # hack so that I can test this in the PR
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
