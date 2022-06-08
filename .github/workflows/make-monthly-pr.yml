@@ -28,7 +28,9 @@ jobs:
           date="$(date +%Y-%m-15) -1 month"
           date="$(date --date "$date" +%Y-%m-01)"
           echo "::set-output name=iso-date::$(date --date="$date" +"%Y-%m")"
-          ./monthly-blog.sh "$(date --date="$date" +"%Y")" "$(date --date="$date" +"%-m")" ../mathlib > posts/month-in-mathlib-${$(date --date="$date" +"%b-%Y"),,}.md
+          slug_date="$(date --date="$date" +"%b-%Y")";
+          slug_date="${slug_date,,}";  # lowercase
+          ./monthly-blog.sh "$(date --date="$date" +"%Y")" "$(date --date="$date" +"%-m")" ../mathlib > posts/month-in-mathlib-$slug_date.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
