@@ -31,7 +31,7 @@ In the [flt-regular](https://github.com/leanprover-community/flt-regular) projec
 `x ^ p + y ^ p = z ^ p` over `ℤ`, where `p` is a (regular, but this is irrelevant for our discussion)
 prime. The natural idea is to consider the field `ℚ(ζₚ)` and the ring `ℤ[ζₚ]`, where `ζₚ` is a primitive
 `p`-th root of unity, to write `x ^ p + y ^ p = (x + y)(x + ζₚy)⋯(x + ζₚ ^ (p - 1))`. This was indeed the
-original ideal to attack Fermat's last theorem, and it can be seen as the birth of algebraic number
+original ideal to tackle Fermat's last theorem, and it can be seen as the birth of algebraic number
 theory. Since we want to study prime factorizations in `ℤ[ζₚ]`, we need to know that this ring
 is well behaved. For example, when it is a UFD, the equation can be completely solved. Unfortunately,
 this rarely happens, but we can replace unique factorization of elements by unique factorization of
@@ -58,12 +58,12 @@ follow is the following.
   are actually computed, but they don't matter here).
 * Given an algebraic integer `α`, the discriminant of `K = ℚ(α)` kills the quotient `𝓞 K / ℤ[α]`.
 * If moreover the minimal polynomial of `α` is Eiseinstein at a prime `p`, then any `x ∈ 𝓞 K` such that
-  `p ^ k x ∈ ℤ[α]` for some `k`, lies in `ℤ[α]`.
+  `p ^ k x ∈ ℤ[α]` for some `k` lies in `ℤ[α]`.
 Since `ℚ(ζₚ) = ℚ(εₚ)` and `ℤ[ζₚ] = ℤ[εₚ]`, where `εₚ = ζₚ - 1` and the minimal polynomial of `εₚ` is
 Eiseinstein at `p`, the result immediately follows. We actually proved this for the `p ^ n`-cyclotomic
 field, but the strategy is essentially the same.
 
 Beside results specific to cyclotomic fields, the most important part of this work is by far the
 introduction of the discriminant in mathlib. The computation of the discriminant of cyclotomic fields
-shows that we have enough API to treat, say, the case of quadratic extensions of `ℚ`. Also, connecting
-it with ramification should now be doable.
+shows that we have enough API to treat, say, the case of quadratic extensions of `ℚ`. Lastly, it should
+now be possible to connect it with ramification.
