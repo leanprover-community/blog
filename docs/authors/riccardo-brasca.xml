@@ -1,54 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Riccardo Brasca)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/riccardo-brasca.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 14 Jun 2022 14:07:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The ring of integers of a cyclotomic field</title><link>https://leanprover-community.github.io/blog/posts/the-ring-of-integers-of-a-cyclotomic-field/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;p&gt;In &lt;a href="https://github.com/leanprover-community/mathlib/pull/13585"&gt;PR #13585&lt;/a&gt; we compute the
-discriminant of cyclotomic fields. This is an important result, usually treated in a first year
-graduate course in number theory. In this post we would like to explain why it is an important
-result, and briefly explain how we proved it.&lt;/p&gt;
-&lt;p&gt;Number fields, finite extensions of &lt;code&gt;ℚ&lt;/code&gt;, are fundamental objects in modern number theory.
-To give a simple application, let us consider the equation &lt;code&gt;x² + 2 = y³&lt;/code&gt;, where we are
-looking for integers solutions. It's not easy to treat this equation directly in &lt;code&gt;ℤ&lt;/code&gt;, since
-the left hand side is irreducible. On the other hand, working in &lt;code&gt;ℚ(√-2)&lt;/code&gt; (the finite extension
-of &lt;code&gt;ℚ&lt;/code&gt; obtained adding a root of &lt;code&gt;x² + 2&lt;/code&gt;), the equation becomes &lt;code&gt;(x + √-2)(x - (√-2)) = y³&lt;/code&gt;.
-We have now written a cube as product and we can reason about the prime factors of the left and
-of the right hand side. One problem is that &lt;code&gt;ℚ(√-2)&lt;/code&gt; is a field, so there is no useful notion of
-prime factors. The idea is that the same decomposition holds in &lt;code&gt;ℤ[√-2]&lt;/code&gt; (the smallest subring of &lt;code&gt;ℂ&lt;/code&gt;
-containing &lt;code&gt;√-2&lt;/code&gt;).  This is a ring that "looks like &lt;code&gt;ℤ&lt;/code&gt;" (to be precise it is a euclidean domain),
-and so we can do arithmetic and solve the equation (whose only solution is &lt;code&gt;x = ±5&lt;/code&gt; and &lt;code&gt;y = 3&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;In the &lt;a href="https://github.com/leanprover-community/flt-regular"&gt;flt-regular&lt;/a&gt; project we consider the equation
-&lt;code&gt;x ^ p + y ^ p = z ^ p&lt;/code&gt; over &lt;code&gt;ℤ&lt;/code&gt;, where &lt;code&gt;p&lt;/code&gt; is a (regular, but this is irrelevant for our discussion)
-prime. The natural idea is to consider the field &lt;code&gt;ℚ(ζₚ)&lt;/code&gt; and the ring &lt;code&gt;ℤ[ζₚ]&lt;/code&gt;, where &lt;code&gt;ζₚ&lt;/code&gt; is a primitive
-&lt;code&gt;p&lt;/code&gt;-th root of unity, to write &lt;code&gt;x ^ p + y ^ p = (x + y)(x + ζₚy)⋯(x + ζₚ ^ (p - 1))&lt;/code&gt;. This was indeed the
-original ideal to attack Fermat's last theorem, and it can be seen as the birth of algebraic number
-theory. Since we want to reason about prime factorization in &lt;code&gt;ℤ[ζₚ]&lt;/code&gt;, we need to know that this ring
-is well behaved. For example, when it is a UFD, the equation can be completely solved. Unfortunately
-this rarely happens, but we can replace unique factorization of elements by unique factorization of
-ideals, a property that holds in any Dedekind domain. So we need to know that &lt;code&gt;ℤ[ζₚ]&lt;/code&gt; is a Dedekind
-domain.&lt;/p&gt;
-&lt;p&gt;Mathlib already &lt;a href="https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/"&gt;knows&lt;/a&gt;
-quite a lot about Dedekind domains. In particular, it knows that the ring of integers of any number
-field is such a domain. Given &lt;code&gt;K&lt;/code&gt; a number field, its ring of integers &lt;code&gt;𝓞 K&lt;/code&gt; is the set of elements
-of &lt;code&gt;K&lt;/code&gt; that are root of a monic polynomial with integers coefficients. If &lt;code&gt;K = ℚ(α)&lt;/code&gt;, with &lt;code&gt;α&lt;/code&gt; an
-algebraic integer, then &lt;code&gt;ℤ[α] ⊆ 𝓞 K&lt;/code&gt;, but in general &lt;code&gt;𝓞 K&lt;/code&gt; can be bigger: for example if &lt;code&gt;α = √-3&lt;/code&gt;,
-then &lt;code&gt;(1 + √-3)/2&lt;/code&gt; is a root of &lt;code&gt;x² + x + 1&lt;/code&gt; and it lies in &lt;code&gt;𝓞 K&lt;/code&gt; but not in &lt;code&gt;ℤ[α]&lt;/code&gt;. In general,
-&lt;code&gt;𝓞 K&lt;/code&gt; is the "correct" ring to work with.&lt;/p&gt;
-&lt;p&gt;To be able to attack Fermat's Last theorem in the &lt;a href="https://github.com/leanprover-community/flt-regular"&gt;flt-regular&lt;/a&gt;
-project we hence need to explicitly compute &lt;code&gt;𝓞 ℚ(ζₚ)&lt;/code&gt;. It turns out that &lt;code&gt;𝓞 ℚ(ζₚ) = ℤ[ζₚ]&lt;/code&gt;, as
-proved in &lt;a href="https://github.com/leanprover-community/mathlib/pull/13585"&gt;PR #13585&lt;/a&gt;. This a nontrivial
-result, and it is a good demonstration that we can do serious algebraic number theory in mathlib.&lt;/p&gt;
-&lt;p&gt;We didn't want to prove the result in the fastest way, but we prefer to develop the theory organically,
-to pave the way for similar theorem. Here is a short account of what we did. The math proof we decided to
-follow is the following.
-* First of all we computed the discriminant of &lt;code&gt;ℚ(ζₚ)&lt;/code&gt;, that is &lt;code&gt;±p ^ n&lt;/code&gt; for some &lt;code&gt;n&lt;/code&gt; (both the sign and &lt;code&gt;n&lt;/code&gt;
-  are actually computed, but they don't matter here).
-* Given an algebraic integer &lt;code&gt;α&lt;/code&gt;, the discriminant of &lt;code&gt;K = ℚ(α)&lt;/code&gt; kills the quotient &lt;code&gt;𝓞 K / ℤ[α]&lt;/code&gt;.
-* If moreover the minimal polynomial of &lt;code&gt;α&lt;/code&gt; is Eiseinstein at a prime &lt;code&gt;p&lt;/code&gt;, then for any &lt;code&gt;x ∈ 𝓞 K&lt;/code&gt;
-  such that &lt;code&gt;p ^ k x ∈ ℤ[α]&lt;/code&gt; for some &lt;code&gt;k&lt;/code&gt; lies in &lt;code&gt;ℤ[α]&lt;/code&gt;.
-Since &lt;code&gt;ℚ(ζₚ) = ℚ(εₚ)&lt;/code&gt; and &lt;code&gt;ℤ[ζₚ] = ℤ[εₚ]&lt;/code&gt;, where &lt;code&gt;εₚ = ζₚ - 1&lt;/code&gt; and the minimal polynomial of &lt;code&gt;εₚ&lt;/code&gt; is
-Eiseinstein at &lt;code&gt;p&lt;/code&gt;, the result immediately follows. We actually proved this for the &lt;code&gt;p ^ n&lt;/code&gt;-cyclotomic
-field, but the strategy is essentially the same.&lt;/p&gt;
-&lt;p&gt;Beside results specific to cyclotomic fields, the most important part of this work is by far the
-introduction of the discriminant in mathlib. The computation of the discriminant of cyclotomic fields
-shows that we have enough API to treat, say, the case of quadratic extensions of &lt;code&gt;ℚ&lt;/code&gt;. Also, connecting
-it with ramification should now be doable.&lt;/p&gt;</description><guid>https://leanprover-community.github.io/blog/posts/the-ring-of-integers-of-a-cyclotomic-field/</guid><pubDate>Tue, 14 Jun 2022 08:24:12 GMT</pubDate></item><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Riccardo Brasca)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/riccardo-brasca.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Tue, 14 Jun 2022 14:10:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Contributions to mathlib from LTE about normed groups</title><link>https://leanprover-community.github.io/blog/posts/contributions-to-mathlib-from-lte-about-normed-groups/</link><dc:creator>Riccardo Brasca</dc:creator><description>&lt;div&gt;&lt;p&gt;When the &lt;a href="https://github.com/leanprover-community/lean-liquid/"&gt;Liquid Tensor Experiment&lt;/a&gt; started,
 in December 2020, mathlib already
 &lt;a href="https://github.com/leanprover-community/mathlib/tree/c5009dd7140cf6ae53bf4ddeb57992eb10053b0b/src/analysis/normed_space"&gt;had&lt;/a&gt;
 a decent theory of normed spaces. With this post I want to show how mathlib can benefit
