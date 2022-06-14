@@ -145,6 +145,69 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 </ul>
 <p>Note also that, with <a href="https://github.com/leanprover-community/mathlib/pull/14237">PR #14237</a> we finally completed the long quest to provide module docstring for all math files in mathlib.</p>
                 </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-ring-of-integers-of-a-cyclotomic-field/" class="u-url">The ring of integers of a cyclotomic field</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/riccardo-brasca/">Riccardo Brasca</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/the-ring-of-integers-of-a-cyclotomic-field/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-06-14T10:24:12+02:00" itemprop="datePublished" title="2022-06-14 10:24">2022-06-14 10:24</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <p>In <a href="https://github.com/leanprover-community/mathlib/pull/13585">PR #13585</a> we compute the
+discriminant of cyclotomic fields. This is an important result, usually treated in a first year
+graduate course in number theory. In this post we would like to explain why it is an important
+result, and briefly explain how we proved it.</p>
+<p>Number fields, finite extensions of <code>ℚ</code>, are fundamental objects in modern number theory.
+To give a simple application, let us consider the equation <code>x² + 2 = y³</code>, where we are
+looking for integers solutions. It's not easy to treat this equation directly in <code>ℤ</code>, since
+the left hand side is irreducible. On the other hand, working in <code>ℚ(√-2)</code> (the finite extension
+of <code>ℚ</code> obtained adding a root of <code>x² + 2</code>), the equation becomes <code>(x + √-2)(x - (√-2)) = y³</code>.
+We have now written a cube as product and we can reason about the prime factors of the left and
+of the right hand side. One problem is that <code>ℚ(√-2)</code> is a field, so there is no useful notion of
+prime factors. The idea is that the same decomposition holds in <code>ℤ[√-2]</code> (the smallest subring of <code>ℂ</code>
+containing <code>√-2</code>).  This is a ring that "looks like <code>ℤ</code>" (to be precise it is a euclidean domain),
+and so we can do arithmetic and solve the equation (whose only solution is <code>x = ±5</code> and <code>y = 3</code>).</p>
+<p>In the <a href="https://github.com/leanprover-community/flt-regular">flt-regular</a> project we consider the equation
+<code>x ^ p + y ^ p = z ^ p</code> over <code>ℤ</code>, where <code>p</code> is a (regular, but this is irrelevant for our discussion)
+prime. The natural idea is to consider the field <code>ℚ(ζₚ)</code> and the ring <code>ℤ[ζₚ]</code>, where <code>ζₚ</code> is a primitive
+<code>p</code>-th root of unity, to write <code>x ^ p + y ^ p = (x + y)(x + ζₚy)⋯(x + ζₚ ^ (p - 1))</code>. This was indeed the
+original ideal to attack Fermat's last theorem, and it can be seen as the birth of algebraic number
+theory. Since we want to reason about prime factorization in <code>ℤ[ζₚ]</code>, we need to know that this ring
+is well behaved. For example, when it is a UFD, the equation can be completely solved. Unfortunately
+this rarely happens, but we can replace unique factorization of elements by unique factorization of
+ideals, a property that holds in any Dedekind domain. So we need to know that <code>ℤ[ζₚ]</code> is a Dedekind
+domain.</p>
+<p>Mathlib already <a href="https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/">knows</a>
+quite a lot about Dedekind domains. In particular, it knows that the ring of integers of any number
+field is such a domain. Given <code>K</code> a number field, its ring of integers <code>𝓞 K</code> is the set of elements
+of <code>K</code> that are root of a monic polynomial with integers coefficients. If <code>K = ℚ(α)</code>, with <code>α</code> an
+algebraic integer, then <code>ℤ[α] ⊆ 𝓞 K</code>, but in general <code>𝓞 K</code> can be bigger: for example if <code>α = √-3</code>,
+then <code>(1 + √-3)/2</code> is a root of <code>x² + x + 1</code> and it lies in <code>𝓞 K</code> but not in <code>ℤ[α]</code>. In general,
+<code>𝓞 K</code> is the "correct" ring to work with.</p>
+<p>To be able to attack Fermat's Last theorem in the <a href="https://github.com/leanprover-community/flt-regular">flt-regular</a>
+project we hence need to explicitly compute <code>𝓞 ℚ(ζₚ)</code>. It turns out that <code>𝓞 ℚ(ζₚ) = ℤ[ζₚ]</code>, as
+proved in <a href="https://github.com/leanprover-community/mathlib/pull/13585">PR #13585</a>. This a nontrivial
+result, and it is a good demonstration that we can do serious algebraic number theory in mathlib.</p>
+<p>We didn't want to prove the result in the fastest way, but we prefer to develop the theory organically,
+to pave the way for similar theorem. Here is a short account of what we did. The math proof we decided to
+follow is the following.
+* First of all we computed the discriminant of <code>ℚ(ζₚ)</code>, that is <code>±p ^ n</code> for some <code>n</code> (both the sign and <code>n</code>
+  are actually computed, but they don't matter here).
+* Given an algebraic integer <code>α</code>, the discriminant of <code>K = ℚ(α)</code> kills the quotient <code>𝓞 K / ℤ[α]</code>.
+* If moreover the minimal polynomial of <code>α</code> is Eiseinstein at a prime <code>p</code>, then for any <code>x ∈ 𝓞 K</code>
+  such that <code>p ^ k x ∈ ℤ[α]</code> for some <code>k</code> lies in <code>ℤ[α]</code>.
+Since <code>ℚ(ζₚ) = ℚ(εₚ)</code> and <code>ℤ[ζₚ] = ℤ[εₚ]</code>, where <code>εₚ = ζₚ - 1</code> and the minimal polynomial of <code>εₚ</code> is
+Eiseinstein at <code>p</code>, the result immediately follows. We actually proved this for the <code>p ^ n</code>-cyclotomic
+field, but the strategy is essentially the same.</p>
+<p>Beside results specific to cyclotomic fields, the most important part of this work is by far the
+introduction of the discriminant in mathlib. The computation of the discriminant of cyclotomic fields
+shows that we have enough API to treat, say, the case of quadratic extensions of <code>ℚ</code>. Also, connecting
+it with ramification should now be doable.</p>
+                </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-apr-2022/" class="u-url">This month in mathlib (Apr 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
@@ -295,29 +358,6 @@ As an end-of-year retrospective, we look at how the mathlib library and communit
 <p>December 2021 saw 565 commits to mathlib, which sets a new record.
 In this post we highlight some of these contributions.</p>
 <p class="more"><a href="posts/month-in-mathlib-dec-2021/">Read more…</a></p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-update/" class="u-url">Liquid Tensor Experiment: an update</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/johan-commelin/">Johan Commelin</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/lte-update/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-12-31T21:04:21+02:00" itemprop="datePublished" title="2021-12-31 21:04">2021-12-31 21:04</time></a>
-            </p>
-		    <p><span class="text-dark">Community projects</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p>In June 2021, we <a href="https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/">celebrated</a>
-the first milestone of the Liquid Tensor Experiment.
-The achievement was covered in
-<a href="https://www.nature.com/articles/d41586-021-01627-2">Nature</a>
-and
-<a href="https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/">Quanta</a>.
-Since then, we haven't been sitting still, and it's high time for a status update.</p>
-<p class="more"><a href="posts/lte-update/">Read more…</a></p>
 </div>
                 </div>
             </article>
