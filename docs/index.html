@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/month-in-mathlib-apr-2022/" type="text/html">
+<link rel="prefetch" href="posts/month-in-mathlib-may-2022/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,109 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-apr-2022/" class="u-url">This month in mathlib (Apr 2022)</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-may-2022/" class="u-url">This month in mathlib (May 2022)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/month-in-mathlib-may-2022/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-06-14T15:35:21+02:00" itemprop="datePublished" title="2022-06-14 15:35">2022-06-14 15:35</time></a>
+            </p>
+		    <p><span class="text-dark">month-in-mathlib</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <p>In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.</p>
+<ul>
+<li>
+<p>Model theory</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13980">PR #13980</a> proves that any theory with infinite models has arbitrarily large models</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13723">PR #13723</a> and <a href="https://github.com/leanprover-community/mathlib/pull/13982">PR #13982</a> prove the Löwenheim–Skolem theorem</li>
+</ul>
+</li>
+<li>
+<p>Category theory and homological algebra</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13882">PR #13882</a> proves that simple objects are indecomposable</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13707">PR #13707</a> proves that a left rigid category is monoidal closed and that functors from a groupoid to a rigid category is again a rigid category.</li>
+<li>Homology is still making progress, both in concrete setups such as <a href="https://github.com/leanprover-community/mathlib/pull/12622">PR #12622</a> which develops the API for complexes of modules, and in abelian categories with <a href="https://github.com/leanprover-community/mathlib/pull/14009">PR #14009</a> bringing short exact sequences from the Liquid Tensor Experiment.</li>
+<li>In algebraic topology, <a href="https://github.com/leanprover-community/mathlib/pull/14304">PR #14304</a> defines the nerve of a category as a simplicial set. </li>
+</ul>
+</li>
+<li>
+<p>Algebra</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13414">PR #13414</a> starts the study of torsion ideals. This is a step towards the long awaited classification of finite type modules over principal ideal domains, stay tuned!</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13784">PR #13784</a> starts the formalization of Laurent Polynomials. Many more PRs followed or are on their way.</li>
+<li>The work to remove unneeded commutativity assumptions continued, in particular in <a href="https://github.com/leanprover-community/mathlib/pull/13966">PR #13966</a> and <a href="https://github.com/leanprover-community/mathlib/pull/13865">PR #13865</a>.</li>
+<li>Matrices also got some work, both on the algebraic side with <a href="https://github.com/leanprover-community/mathlib/pull/13845">PR #13845</a> proving that invertible matrices over a ring with invariant basis number are square, and the analytical side with <a href="https://github.com/leanprover-community/mathlib/pull/13520">PR #13520</a> defining the matrix exponential. In order to make this easier to work with, mathlib now has two different normed algebra structures on matrices, the $L^\infty$ operator norm from <a href="https://github.com/leanprover-community/mathlib/pull/13518">PR #13518</a> and the frobenius norm from <a href="https://github.com/leanprover-community/mathlib/pull/13497">PR #13497</a>.</li>
+<li>In representation theory, <a href="https://github.com/leanprover-community/mathlib/pull/13685">PR #13685</a> proves the category of <code>Rep k G</code> of representations of a group <code>G</code> on <code>k</code>-vector spaces is symmetric monoidal, and <a href="https://github.com/leanprover-community/mathlib/pull/13782">PR #13782</a> proves it is linear. <a href="https://github.com/leanprover-community/mathlib/pull/13740">PR #13740</a> introduces the category of finite dimensional representations. </li>
+</ul>
+</li>
+<li>
+<p>Number theory</p>
+<ul>
+<li>The general theory of Dedekind domains progressed with <a href="https://github.com/leanprover-community/mathlib/pull/13067">PR #13067</a> about the Chinese remainder theorem and
+   <a href="https://github.com/leanprover-community/mathlib/pull/13462">PR #13462</a> which extends the v-adic valuation on a Dedekind domain to its field of fractions K and defines the completion of K with respect to this valuation, as well as its ring of integers, and provides some topological instances.</li>
+<li>On the concrete examples side, <a href="https://github.com/leanprover-community/mathlib/pull/13585">PR #13585</a> computes the ring of integers of a $p^ n$-th cyclotomic extension of $ℚ$. </li>
+</ul>
+</li>
+<li>
+<p>Functional analysis and geometry:</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9862">PR #9862</a> finished the Banach-Alaoglu theorem.</li>
+<li>A long series of PRs culminated in <a href="https://github.com/leanprover-community/mathlib/pull/7288">PR #7288</a> proving several versions of the geometric Hahn Banach theorem.</li>
+<li>Also related to convexity, there had been progress on locally convex topological vector spaces, including <a href="https://github.com/leanprover-community/mathlib/pull/13547">PR #13547</a> characterizing the topology induced by seminorms in terms of neighborhoods of zero, and the introduction of uniformly convex normed spaces in 
+   <a href="https://github.com/leanprover-community/mathlib/pull/13480">PR #13480</a>.</li>
+<li>The theory of vector bundles over topological spaces progressed with <a href="https://github.com/leanprover-community/mathlib/pull/14361">PR #14361</a> and
+   <a href="https://github.com/leanprover-community/mathlib/pull/8545">PR #8545</a> building the pullback of a vector bundle under a continuous map.</li>
+</ul>
+</li>
+<li>
+<p>Integration theory and calculus</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13540">PR #13540</a> defines the convolution of two functions. It proves that when one of the functions has compact support and is $C^n$ and the other function is locally integrable, the convolution is $C^n$ and its total derivative can be expressed as a convolution (this requires to generalize the usual notion of convolution which would be enough only for partial derivatives). This PR also proves that when taking the convolution with functions that "tend to the Dirac delta function", the convolution tends to the original function. This all comes from the sphere eversion project.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13179">PR #13179</a> proves comparison lemmas between finite sums and integrals.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14129">PR #14129</a> ensure that the asymptotic relations <code>is_o</code>/<code>is_O</code> work in <code>calc</code> blocks.</li>
+</ul>
+</li>
+<li>
+<p>Complex analysis</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13178">PR #13178</a> proves the <a href="https://en.wikipedia.org/wiki/Phragm%C3%A9n%E2%80%93Lindel%C3%B6f_principle">Phragmen-Lindelöf principle</a> for some shapes in the complex plane.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13000">PR #13000</a> continues the study of the $\Gamma$ function, proving it is complex analytic (away from its poles at non-positive integrers of course).</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/12892">PR #12892</a> introduces torus integrals, paving the way towards the higher-dimensional Cauchy formula.</li>
+</ul>
+</li>
+<li>
+<p>Probability theory</p>
+<ul>
+<li>In elementary probabilities, <a href="https://github.com/leanprover-community/mathlib/pull/13484">PR #13484</a> use the counting measure to reformulate earliers contributions.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13630">PR #13630</a> proves the optional stopping theorem from martingale theory.</li>
+<li>After a long series of PRs including <a href="https://github.com/leanprover-community/mathlib/pull/13912">PR #13912</a> which defines the variance of a random variable, and proves its basic properties, 
+   and <a href="https://github.com/leanprover-community/mathlib/pull/14024">PR #14024</a> which defines identically distributed random variables, we finally got
+   <a href="https://github.com/leanprover-community/mathlib/pull/13690">PR #13690</a> which proves the strong law of large numbers!</li>
+</ul>
+</li>
+</ul>
+<p>Note also that, with <a href="https://github.com/leanprover-community/mathlib/pull/14237">PR #14237</a> we finally completed the long quest to provide module docstring for all math files in mathlib.</p>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-apr-2022/" class="u-url">This month in mathlib (Apr 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/mathlib-community/">Mathlib community</a>
@@ -216,33 +318,6 @@ and
 <a href="https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/">Quanta</a>.
 Since then, we haven't been sitting still, and it's high time for a status update.</p>
 <p class="more"><a href="posts/lte-update/">Read more…</a></p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/intro-to-mathport/" class="u-url">Update on mathport (Dec 2021)</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/scott-morrison/">Scott Morrison</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/intro-to-mathport/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-12-22T12:41:00+01:00" itemprop="datePublished" title="2021-12-22 12:41">2021-12-22 12:41</time></a>
-            </p>
-		    <p><span class="text-dark">mathport</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p><code>mathport</code> is the tool we're planning on using to help us port <code>mathlib</code> to Lean 4.
-It has mostly been written by Mario Carneiro and Daniel Selsam,
-and Gabriel Ebner and I have been making some fixes.</p>
-<p>To provide some context, <a href="https://github.com/leanprover-community/mathlib">mathlib</a>
-is the primary library for mathematics in Lean 3,
-containing over 700k lines of code and growing fast!
-Lean 4 now has a preliminary release, and we would really like to transition to
-building a mathematics library in Lean 4.
-While the type theory and kernel in Lean 4 are quite similar from a user point of view to Lean 3,
-it is certainly not the case that we can run Lean 3 code in Lean 4.
-Our aspiration is to achieve a "semi-automated" port.</p>
-<p class="more"><a href="posts/intro-to-mathport/">Read more…</a></p>
 </div>
                 </div>
             </article>
