@@ -29,7 +29,7 @@ is $x = \pm 5$ and $y = 3$).
 
 In the [flt-regular](https://github.com/leanprover-community/flt-regular) project we consider the equation
 $x ^ p + y ^ p = z ^ p$ over $ℤ$, where $p$ is a (regular, but this is irrelevant for our discussion)
-prime. The natural idea is to consider the field $\mathbb{Q}(\zeta_p)$ and the ring $\mathbb{Z}[\zeta_p]$,
+prime. The natural idea is to consider the cyclotomic field $\mathbb{Q}(\zeta_p)$ and the ring $\mathbb{Z}[\zeta_p]$,
 where $\zeta_p$ is a primitive $p$-th root of unity, to write
 $$x ^ p + y ^ p = (x + y)(x + \zeta_p y)\cdots(x + \zeta_p ^ {p - 1}).$$
 This was indeed the original ideal to tackle Fermat's last theorem, and it can be seen as the birth of algebraic number
