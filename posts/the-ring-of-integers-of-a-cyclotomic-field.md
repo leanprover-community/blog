@@ -58,11 +58,11 @@ to pave the way for similar theorems. Here is a short account of what we did. Th
 follow is the following.
 
 * First of all we computed the discriminant of $\mathbb{Q}(\zeta_p)$. It is $\pm p ^ n$ for some $n$ (both the sign and $n$
-  are actually computed, but they don't matter here).
+  are actually computed, but they don't matter here). See [is_cyclotomic_extension.discr_prime_pow](https://leanprover-community.github.io/mathlib_docs/number_theory/cyclotomic/discriminant.html#is_cyclotomic_extension.discr_prime_pow).
 * Given an algebraic integer $\alpha$, the discriminant of $K = \mathbb{Q}(\alpha)$ kills the quotient
-  $\mathcal{O}_K / \mathbb{Z}[\alpha]$.
-* If moreover the minimal polynomial of $\alpha$ is Eiseinstein at a prime $p$, then any $x \in \mathcal{O}_K$ such that
-  $p ^ k x \in \mathbb{Z}[\alpha]$ for some $k$ lies in $\mathbb{Z}[\alpha]$.
+  $\mathcal{O}_K / \mathbb{Z}[\alpha]$. See [algebra.discr_mul_is_integral_mem_adjoin](https://leanprover-community.github.io/mathlib_docs/ring_theory/discriminant.html#algebra.discr_mul_is_integral_mem_adjoin).
+* If moreover the minimal polynomial of $\alpha$ is [Eiseinstein](https://leanprover-community.github.io/mathlib_docs/ring_theory/polynomial/eisenstein.html#polynomial.is_eisenstein_at) at a prime $p$, then any $x \in \mathcal{O}_K$ such that
+  $p ^ k x \in \mathbb{Z}[\alpha]$ for some $k$ lies in $\mathbb{Z}[\alpha]$. See [mem_adjoin_of_smul_prime_pow_smul_of_minpoly_is_eiseinstein_at](https://leanprover-community.github.io/mathlib_docs/ring_theory/polynomial/eisenstein.html#mem_adjoin_of_smul_prime_pow_smul_of_minpoly_is_eiseinstein_at).
 
 Since $\mathbb{Q}(\zeta_p) = \\mathbb{Q}(\varepsilon_p)$ and $\mathbb{Z}[\zeta_p] = \mathbb{Z}[\varepsilon_p]$,
 where $\varepsilon_p = \zeta_p - 1$ and the minimal polynomial of $\varepsilon_p$ is
