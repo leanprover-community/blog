@@ -15,11 +15,11 @@ discriminant of cyclotomic fields. This is an important result, usually treated 
 graduate course in number theory. In this post we would like to explain why it is an important
 result, and briefly explain how we proved it.
 
-Number fields, finite extensions of $ℚ$, are fundamental objects in modern number theory.
+Number fields, finite extensions of $\mathbb{Q}$, are fundamental objects in modern number theory.
 To give a simple application, let us consider the equation $x^2 + 2 = y^3$, where we are
 looking for integer solutions. It's not easy to treat this equation directly in $ℤ$, since
-the left hand side is irreducible. On the other hand, working in $ℚ(\sqrt{-2})$ (the finite extension
-of $ℚ$ obtained adding a root of $x^2 + 2$), the equation becomes $(x + \sqrt{-2})(x - \sqrt{-2}) = y^3$.
+the left hand side is irreducible. On the other hand, working in $\mathbb{Q}(\sqrt{-2})$ (the finite extension
+of $\mathbb{Q}$ obtained adding a root of $x^2 + 2$), the equation becomes $(x + \sqrt{-2})(x - \sqrt{-2}) = y^3$.
 We have now written a cube as a product and we can study the relations between the prime factors
 of the left and of the right hand side. One problem is that $ℚ(\sqrt{-2})$ is a field, so there is no
 useful notion of prime factors. The idea is that the same decomposition holds in $ℤ[\sqrt{-2}]$ (the
