@@ -1,7 +1,7 @@
 ---
 author: 'Riccardo Brasca'
 category: 'New in mathlib'
-date: 2022-06-14 10:24:12 UTC+02:00
+date: 2022-06-17 22:24:12 UTC+02:00
 description: ''
 has_math: true
 link: ''
