@@ -17,7 +17,7 @@ result, and briefly explain how we proved it.
 
 Number fields, finite extensions of $ℚ$, are fundamental objects in modern number theory.
 To give a simple application, let us consider the equation $x^2 + 2 = y^3$, where we are
-looking for integer solutions. It's not easy to treat this equation directly in `$ℤ$, since
+looking for integer solutions. It's not easy to treat this equation directly in $ℤ$, since
 the left hand side is irreducible. On the other hand, working in $ℚ(\sqrt{-2})$ (the finite extension
 of $ℚ$ obtained adding a root of $x^2 + 2$), the equation becomes $(x + \sqrt{-2})(x - \sqrt{-2}) = y^3$.
 We have now written a cube as a product and we can study the relations between the prime factors
