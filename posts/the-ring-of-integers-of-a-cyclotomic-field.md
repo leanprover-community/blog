@@ -36,7 +36,7 @@ This was indeed the original ideal to tackle Fermat's last theorem, and it can b
 theory. Since we want to study prime factorizations in $\mathbb{Z}[\zeta_p]$, we need to know that this ring
 is well behaved. For example, when it is a unique factorization domain, the equation can be completely solved.
 Unfortunately, this rarely happens, but we can replace unique factorization of elements by unique factorization of
-ideals, a property that holds in any Dedekind domain. In particular we need to know that $\mathbb{Q}[\zeta_p]$ is a
+ideals, a property that holds in any Dedekind domain. In particular we need to know that $\mathbb{Z}[\zeta_p]$ is a
 Dedekind domain.
 
 Mathlib already [knows](https://leanprover-community.github.io/blog/posts/dedekind-domains-and-class-number-in-lean/)
