@@ -66,7 +66,8 @@ To ">
         </div>
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <p><code>mathport</code> is the tool we're planning on using to help us port <code>mathlib</code> to Lean 4.
+    <div>
+<p><code>mathport</code> is the tool we're planning on using to help us port <code>mathlib</code> to Lean 4.
 It has mostly been written by Mario Carneiro and Daniel Selsam,
 and Gabriel Ebner and I have been making some fixes.</p>
 <p>To provide some context, <a href="https://github.com/leanprover-community/mathlib">mathlib</a>
@@ -157,12 +158,11 @@ without having to run it yourself.</p>
     It largely works, and means that you can import <code>mathlib3</code> content into Lean
     4 (as long as you don't expect to have source files!)
     This is what lets us do things like: </p>
-<div class="code"><pre class="code literal-block"><span class="kn">import</span> <span class="nn">Mathbin</span>
+<pre class="code literal-block"><span class="kn">import</span> <span class="nn">Mathbin</span>
 
 <span class="c1">#lookup3 algebraic_geometry.Scheme</span>
 <span class="c1">#check AlgebraicGeometry.Scheme</span>
-</pre></div>
-
+</pre>
 <p>Yay, Lean 4 has schemes! :-)
 To see this file in action, you should check out a copy of the <code>mathlib3port</code> repository described below,
 and make a new file there.</p>
@@ -288,6 +288,7 @@ after which you can skip the <code>make predata</code> and/or <code>make port</c
 you can also use the <code>make TARGET=data.nat.bitwise port-mathbin-single</code> target
 (similarly for <code>port-lean-single</code>) to run <code>mathport</code> on a single file.
 This is useful if you are testing a change to <code>mathport</code>.</p>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">

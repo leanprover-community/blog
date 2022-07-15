@@ -63,7 +63,8 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
         </div>
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <p>Pull request <a href="https://github.com/leanprover-community/mathlib/pull/9071">#9701</a> marks the completion of a string of additions to mathlib centered around formalizing Dedekind domains and class groups of global fields (those words will be explained below). Previous PRs had shown that nonzero ideals of a Dedekind domain factor uniquely into prime ideals, and had defined class groups in some generality. The main result in this PR is the finiteness of the class group of a global field (and in particular of the ring of integers of a number field).
+    <div>
+<p>Pull request <a href="https://github.com/leanprover-community/mathlib/pull/9071">#9701</a> marks the completion of a string of additions to mathlib centered around formalizing Dedekind domains and class groups of global fields (those words will be explained below). Previous PRs had shown that nonzero ideals of a Dedekind domain factor uniquely into prime ideals, and had defined class groups in some generality. The main result in this PR is the finiteness of the class group of a global field (and in particular of the ring of integers of a number field).
 Formalizing these subjects has been one of my long-term goals for mathlib,
 and as far as we are aware, Lean is the first system in which this level of algebraic number theory is available.
 These formalizations have been joint work:
@@ -135,6 +136,7 @@ in the end creating a tactic that takes a number field and returns its class num
 (perhaps interfacing with computer algebra systems to do the hard computations, and certifying the results within Lean).
 The end goal for this kind of automation is a system where you can enter an equation like $x^2 + 2 = y^3$ for $x, y \in \mathbb{Z}$,
 and Lean would output a formally verified set of solutions.</p>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">

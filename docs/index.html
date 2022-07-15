@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/the-ring-of-integers-of-a-cyclotomic-field/" type="text/html">
+<link rel="prefetch" href="posts/lte-final/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,37 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-ring-of-integers-of-a-cyclotomic-field/" class="u-url">The ring of integers of a cyclotomic field</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-final/" class="u-url">Completion of the Liquid Tensor Experiment</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/lte-final/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-07-15T15:00:00+02:00" itemprop="datePublished" title="2022-07-15 15:00">2022-07-15 15:00</time></a>
+            </p>
+		    <p><span class="text-dark">Community projects</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>We are proud to announce that as of 15:46:13 (EST) on Thursday, July 14 2022 the Liquid Tensor Experiment has been
+<a href="https://github.com/leanprover-community/lean-liquid/commit/aa36e06b53778b97ada30c82979ae168521aee7b">completed</a>.
+A year and a half after the
+<a href="https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/">challenge</a>
+was posed by Peter Scholze we have finally formally verified the main theorem of liquid vector spaces using the Lean proof assistant.
+The blueprint for the project can be found <a href="https://leanprover-community.github.io/liquid/">here</a> and the formalization itself is available on <a href="https://github.com/leanprover-community/lean-liquid">GitHub</a>.</p>
+<p>The first major milestone was
+<a href="https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/">announced</a>
+in June last year. The achievement was described in
+<a href="https://www.nature.com/articles/d41586-021-01627-2">Nature</a>
+and
+<a href="https://www.quantamagazine.org/lean-computer-program-confirms-peter-scholze-proof-20210728/">Quanta</a>.</p>
+<p>For more information about Lean and formalization of mathematics, see the
+<a href="https://leanprover-community.github.io/">Lean community website</a>.</p>
+<p class="more"><a href="posts/lte-final/">Read more…</a></p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-ring-of-integers-of-a-cyclotomic-field/" class="u-url">The ring of integers of a cyclotomic field</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         <a href="authors/riccardo-brasca/">Riccardo Brasca</a>
@@ -55,7 +85,8 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 		    <p><span class="text-dark">New in mathlib</span></p>
                 </div>
             </header><div class="p-summary entry-summary">
-                    <p>In <a href="https://github.com/leanprover-community/mathlib/pull/13585">PR #13585</a> we compute the
+                    <div>
+<p>In <a href="https://github.com/leanprover-community/mathlib/pull/13585">PR #13585</a> we compute the
 discriminant of cyclotomic fields. This is an important result, usually treated in a first year
 graduate course in number theory. In this post we would like to explain why it is an important
 result, and briefly explain how we proved it.</p>
@@ -112,6 +143,7 @@ field, but the strategy is essentially the same.</p>
 introduction of the discriminant in mathlib. The computation of the discriminant of cyclotomic fields
 shows that we have enough API to treat, say, the case of quadratic extensions of $\mathbb{Q}$. Lastly, it should
 now be possible to connect it with ramification.</p>
+</div>
                 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-may-2022/" class="u-url">This month in mathlib (May 2022)</a></h1>
                 <div class="metadata">
@@ -125,7 +157,8 @@ now be possible to connect it with ramification.</p>
 		    <p><span class="text-dark">month-in-mathlib</span></p>
                 </div>
             </header><div class="p-summary entry-summary">
-                    <p>In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.</p>
+                    <div>
+<p>In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.</p>
 <ul>
 <li>
 <p>Model theory</p>
@@ -214,6 +247,7 @@ now be possible to connect it with ramification.</p>
 </li>
 </ul>
 <p>Note also that, with <a href="https://github.com/leanprover-community/mathlib/pull/14237">PR #14237</a> we finally completed the long quest to provide module docstring for all math files in mathlib.</p>
+</div>
                 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-apr-2022/" class="u-url">This month in mathlib (Apr 2022)</a></h1>
                 <div class="metadata">
@@ -347,24 +381,6 @@ via written communication.</p>
 each year has been bigger than the last. 
 As an end-of-year retrospective, we look at how the mathlib library and community have developed in 2021.</p>
 <p class="more"><a href="posts/2021-the-bottom-line/">Read more…</a></p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-dec-2021/" class="u-url">This month in mathlib (Dec 2021)</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/month-in-mathlib-dec-2021/" rel="bookmark">
-            <time class="published dt-published" datetime="2022-01-01T12:13:11+01:00" itemprop="datePublished" title="2022-01-01 12:13">2022-01-01 12:13</time></a>
-            </p>
-		    <p><span class="text-dark">month-in-mathlib</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p>December 2021 saw 565 commits to mathlib, which sets a new record.
-In this post we highlight some of these contributions.</p>
-<p class="more"><a href="posts/month-in-mathlib-dec-2021/">Read more…</a></p>
 </div>
                 </div>
             </article>

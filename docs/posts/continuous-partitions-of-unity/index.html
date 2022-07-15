@@ -68,7 +68,8 @@ $f_i ">
         </div>
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <p>In <a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>, Yury
+    <div>
+<p>In <a href="https://github.com/leanprover-community/mathlib/pull/8281">PR #8281</a>, Yury
 Kudryashov completed his work on continuous and smooth partitions of unity.</p>
 <!-- TEASER_END -->
 
@@ -85,21 +86,21 @@ functions that act as a partition of unity only on some part $s$ of $X$. In that
 we keep the above two conditions everywhere but ask that the sum in the last item equals one on $s$
 and is less than or equal to one everywhere. This is encoded in the following Lean structure, from
 <code>topology.partition_of_unity</code>.</p>
-<div class="code"><pre class="code literal-block"><span class="kd">structure</span> <span class="n">partition_of_unity</span> <span class="o">(</span><span class="n">ι</span> <span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">topological_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">set</span> <span class="n">X</span> <span class="o">:=</span> <span class="n">univ</span><span class="o">)</span> <span class="o">:=</span>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">partition_of_unity</span> <span class="o">(</span><span class="n">ι</span> <span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">topological_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">set</span> <span class="n">X</span> <span class="o">:=</span> <span class="n">univ</span><span class="o">)</span> <span class="o">:=</span>
 <span class="o">(</span><span class="n">to_fun</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span> <span class="n">ℝ</span><span class="o">))</span>
 <span class="o">(</span><span class="n">locally_finite'</span> <span class="o">:</span> <span class="n">locally_finite</span> <span class="o">(</span><span class="bp">λ</span> <span class="n">i</span><span class="o">,</span> <span class="n">support</span> <span class="o">(</span><span class="n">to_fun</span> <span class="n">i</span><span class="o">)))</span>
 <span class="o">(</span><span class="n">nonneg'</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">≤</span> <span class="n">to_fun</span><span class="o">)</span>
 <span class="o">(</span><span class="n">sum_eq_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span> <span class="bp">∈</span> <span class="n">s</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">1</span><span class="o">)</span>
 <span class="o">(</span><span class="n">sum_le_one'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">x</span><span class="o">,</span> <span class="bp">∑ᶠ</span> <span class="n">i</span><span class="o">,</span> <span class="n">to_fun</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)</span>
-</pre></div>
-
+</pre>
 <p>The main result from that file is then the following existence theorem.</p>
-<div class="code"><pre class="code literal-block"><span class="sd">/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set</span>
+<pre class="code literal-block"><span class="sd">/-- If `X` is a paracompact normal topological space and `U` is an open covering of a closed set</span>
 <span class="sd">`s`, then there exists a `partition_of_unity ι X s` that is subordinate to `U`. -/</span>
 <span class="kd">lemma</span> <span class="n">exists_is_subordinate</span> <span class="o">[</span><span class="n">normal_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">[</span><span class="n">paracompact_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">(</span><span class="n">hs</span> <span class="o">:</span> <span class="n">is_closed</span> <span class="n">s</span><span class="o">)</span>
   <span class="o">(</span><span class="n">U</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">set</span> <span class="n">X</span><span class="o">)</span> <span class="o">(</span><span class="n">ho</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span> <span class="n">is_open</span> <span class="o">(</span><span class="n">U</span> <span class="n">i</span><span class="o">))</span> <span class="o">(</span><span class="n">hU</span> <span class="o">:</span> <span class="n">s</span> <span class="bp">⊆</span> <span class="bp">⋃</span> <span class="n">i</span><span class="o">,</span> <span class="n">U</span> <span class="n">i</span><span class="o">)</span> <span class="o">:</span>
   <span class="bp">∃</span> <span class="n">f</span> <span class="o">:</span> <span class="n">partition_of_unity</span> <span class="n">ι</span> <span class="n">X</span> <span class="n">s</span><span class="o">,</span> <span class="n">f.is_subordinate</span> <span class="n">U</span>
-</pre></div>
+</pre>
+</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
