@@ -11,6 +11,10 @@ title: 'Liquid Tensor Experiment: Complete Verification Project'
 type: text
 ---
 
+It was 15:46:13 (EST) on Thursday, July 14 2022, when the Lean theorem prover
+verified a complete formal proof of the main theorem of liquid vector spaces.
+TODO: link to commit hash
+
 Links to first two blogposts:
 [Scholze I](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/)
 [Scholze II](https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-experiment-amazing-developments/)
@@ -24,8 +28,10 @@ and
 
 Acknowledgements:
 
-Johan Commelin
+Major contributor:
 Adam Topaz
+
+Contributions in formalizing mathematics:
 Kevin Buzzard
 Joël Riou
 Andrew Yang
@@ -36,16 +42,18 @@ Scott Morrison
 Riccardo Brasca
 Fabian Glöckle
 Patrick Massot
-Ben Toner
-leanprover-community-bot
 Markus Himmel
-Mario Carneiro
 Yaël Dillies
 Heather Macbeth
 Alex J. Best
 Floris van Doorn
-Rob Lewis
 Reid Barton
+
+Technical contributions:
+Ben Toner
+leanprover-community-bot
+Mario Carneiro
+Rob Lewis
 Bryan Gin-ge Chen
 Eric Wieser
 
