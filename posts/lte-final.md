@@ -12,7 +12,7 @@ type: text
 ---
 
 We are proud to announce that as of 15:46:13 (EST) on Thursday, July 14 2022 the Liquid Tensor Experiment has been
-[completed](https://github.com/leanprover-community/lean-liquid/commit/aa36e06b53778b97ada30c82979ae168521aee7b).
+[completed](https://github.com/leanprover-community/lean-liquid/commits/completed).
 A year and a half after the
 [challenge](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/)
 was posed by Peter Scholze we have finally formally verified the main theorem of liquid vector spaces using the Lean proof assistant.
