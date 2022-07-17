@@ -94,9 +94,9 @@ the main mathematical library for the Lean proof assistant.
 
 # Acknowledgements
 
-The project was completed at the Institute for Computational and Experimental Research in Mathematics (ICERM)
-during the week-long workshop [Lean for the Curious Mathematician 2022](https://icerm.brown.edu/topical_workshops/tw-22-lean/).
-Johan Commelin was supported by a Walter Benjamin position of the Deutsche Forschungsgemeinschaft (DFG)
-to work on this project.
+Johan Commelin was supported by a Walter Benjamin position of the Deutsche Forschungsgemeinschaft (DFG) to work on this project.
 Kevin Buzzard's work in this project was partially supported by a Microsoft Research grant.
 The Hoskinson Center for Formal Mathematics at Carnegie Mellon University provided server support.
+The project was completed at the Institute for Computational Research and Experimentation in Mathematics (ICERM) in Providence, RI,
+during the week-long workshop [Lean for the Curious Mathematician 2022](https://icerm.brown.edu/topical_workshops/tw-22-lean/).
+ICERM is funded by NSF Grant No. DMS-1929284.
