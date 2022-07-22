@@ -28,8 +28,8 @@ automorphism of that ring.  Let's backtrack to catch everyone up ....
 
 # Witt vectors and isocrystals
 
-Back in 20XX, one of us (Rob), together with Johan Commelin, formalized the theory of Witt vectors in Lean.  The $p$-typical Witt 
-vectors over a ring $R$, $\mathbb{W}(R)$ are, concretely, sequences of elements of $R$, but equipped with a rather wild multipicative and additive
+Back in 2020, one of us (Rob), together with Johan Commelin, formalized the theory of Witt vectors in Lean.  The $p$-typical Witt 
+vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements of $R$, but equipped with a rather wild multipicative and additive
 structure (dependent on $p$) to make this set into a ring.  The canonical example is the $p$-adic numbers, which are the Witt vectors
 of $\mathbb{Z}/p\mathbb{Z}$.
 
@@ -38,10 +38,10 @@ endomorphism is an automorphism.  And under mild further conditions ($R$ an inte
 to an automorphism of the field of fractions of $\mathbb{W}(R)$, which we will denote $\varphi$.  It's *Frobenius-semilinearity*, i.e. semilinearity with respect $\varphi$, that the number theorists
 want to consider!  <!-- grammar -->
 
-The fundamental result here is a classification theorem about
+The fundamental result here is a classification theorem for
 Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
 vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence (Frobenius-equivariant
-isomorphism), was proved by Manin [cite] building on work of Dieudonne [cite]
+isomorphism), was proved by Manin [cite] building on work of Dieudonné [cite].
  <!-- check history. -->
 
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
@@ -78,7 +78,9 @@ Also, the cosests of this subgroup in $K^*$ are precisely in bijection with the 
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker"](https://mathoverflow.net/users/14572/asker), you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
-So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are precisely the sequences whose first element is nonzero.
+So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are precisely the sequences whose first element is nonzero. [LINK]
+
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Thus every nonzero Witt vector is of the form $p^m x$ for $m\in\mathbb{N}$ for some $x\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m x$ for some $m\in\mathbb{Z}$ and some Witt vector $x\in\mathbb{W}(k)^\times$. 
 
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices).  We actually only need, and only prove, one direction of this:
 
@@ -87,7 +89,6 @@ This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$
 for some $b \in \mathbb{W}(k)$.
 ---
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Thus every nonzero Witt vector is of the form $p^m x$ for $m\in\mathbb{N}$ for some Witt vector $x$ whose first sequence term is nonzero. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m x$ for some $m\in\mathbb{Z}$ and some Witt vector $x\in\mathbb{W}(k)^\times$. 
 
 Thus, summarizing, every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated simple isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.
 
