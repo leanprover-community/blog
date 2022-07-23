@@ -16,12 +16,12 @@ a more abstract concept which, importantly, unifies linear and conjugate-linear 
 
 But this is not the full extent of the generalization!  Our number theorist friends here in mathlib told us that we should
 make sure we chose this full generality of *semilinear* maps, maps $f:M \to N$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism
-s between the scalar rings of the modules $M$ and N.  So we implemented this in full generality, and then asked them for some
+s between the scalar rings of the modules $M$ and N.  So we and our coauthor Frédéric Dupuis implemented this in full generality, and then asked them for some
 examples to illustrate their need for this more abstract definition.
 
 
 It turns out that the standard use of semilinear maps in number theory is for *Frobenius-semilinearity*, semilinearity with
-respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ ring which is induced by the Frobenius
+respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ integral domain which is induced by the Frobenius
 automorphism of that ring.  Let's backtrack to catch everyone up ....
 
 <!-- TEASER_END -->
@@ -73,14 +73,13 @@ So, for the fraction field $K$ of the Witt vectors of an algebraically closed fi
 $ \\{ \varphi(x) / x : x \in K^\* \\}$
 of the nonzero elements 
 $K^\*$ ?
-Also, the cosests of this subgroup in $K^*$ are precisely in bijection with the simple isocrystals of dimension 1, so what is a complete set of representatives of the cosets?  
-<!-- These are precisely the simple isocrystals of dimension 1. -->
+Also, the cosests of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?  
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker"](https://mathoverflow.net/users/14572/asker), you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
 So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are precisely the sequences whose first element is nonzero. [LINK]
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Thus every nonzero Witt vector is of the form $p^m x$ for $m\in\mathbb{N}$ for some $x\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m x$ for some $m\in\mathbb{Z}$ and some Witt vector $x\in\mathbb{W}(k)^\times$. 
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with 0 in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m x$ for some $m\in\mathbb{N}$ and some $x\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m x$ for some $m\in\mathbb{Z}$ and some Witt vector $x\in\mathbb{W}(k)^\times$. 
 
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices).  We actually only need, and only prove, one direction of this:
 
@@ -89,8 +88,7 @@ This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$
 for some $b \in \mathbb{W}(k)$.
 ---
 
-
-Thus, summarizing, every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated simple isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.
+We will discuss this lemma in the next section.  But to conclude the main discussion, the summary is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form.
 
 # The key lemma
 
