@@ -567,7 +567,7 @@ HIDDEN_CATEGORIES = []
 HIDDEN_AUTHORS = ['Guest']
 
 # Allow multiple, comma-separated authors for a post? (Requires theme support, present in built-in themes)
-# MULTIPLE_AUTHORS_PER_POST = False
+MULTIPLE_AUTHORS_PER_POST = True
 
 # Final location for the main blog page and sibling paginated pages is
 # output / TRANSLATION[lang] / INDEX_PATH / index-*.html
