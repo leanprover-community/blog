@@ -81,24 +81,14 @@ So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fract
 
 The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with 0 in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m x$ for some $m\in\mathbb{N}$ and some $x\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m x$ for some $m\in\mathbb{Z}$ and some Witt vector $x\in\mathbb{W}(k)^\times$. 
 
-This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices).  We actually only need, and only prove, one direction of this:
+This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices).  The rest of this blog post will be devoted to proving this.
 
----
-**Key lemma**. Every element of $\mathbb{W}(k)^\times$, i.e. every Witt vector with nonzero leading term, can be expressed in the form $\varphi(b)/b$
-for some $b \in \mathbb{W}(k)$.
----
-
-We will discuss this lemma in the next section.  But to conclude the main discussion, the summary is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form.
+But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
 
 <!-- Retitle -->
-# The key lemma
+# Multiplication of Witt vectors
 
-For Witt vectors $v, w$ with nonzero leading coefficients, we want to find a Witt vector $b$ such that $\varphi(b)\cdot v = b \cdot w$, i.e.,
-
-$$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{\*}$$
-
-This is a slight generalization for convenience; the statement of the key lemma above fixed $v = 1$.
-Here $\cdot$ denotes Witt vector multiplication, so at this point we need to dive into the weeds of what this means. Here is the fact we'll use:
+Given the structure of our goal, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the following statement:
 
 ---
 **Lemma.**
@@ -108,7 +98,36 @@ $$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ld
 
 ---
 
-We'll come back to the proof of this lemma in a moment. The crucial consequence of this lemma is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
+The $n$th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
+for each $n$ there is an integer polynomial $m_n$ such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
+
+The following turns out to completely characterize the polynomials $m_n$. If we define the $n$th *Witt polynomial* to be $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$, then 
+
+$$w_n(m_0, m_1, \ldots, m_n) = w_n(x_0, \ldots, x_n)w_n(y_0, \ldots, y_n),$$
+
+that is,
+
+\begin{align}
+& w_n\left(m_0\left(x_0, y_0\right), m_1\left(x_0, x_1, y_0, y_1\right), \ldots, m_n\left(x_0, \ldots, x_n, y_0, \ldots, y_n\right)\right) 
+\newline 
+& = \ w_n\left(x_0, \ldots, x_n\right)w_n\left(y_0, \ldots, y_n\right).
+\end{align}
+
+
+
+<!-- Retitle -->
+# Key lemma
+
+
+For Witt vectors $v, w$ with nonzero leading coefficients, we want to find a Witt vector $b$ such that $\varphi(b)\cdot v = b \cdot w$, i.e.,
+
+$$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{\*}$$
+
+This is a slight generalization for convenience; the statement of the key lemma above fixed $v = 1$.
+Here $\cdot$ denotes Witt vector multiplication, so at this point we need to dive into the weeds of what this means. Here is the fact we'll use:
+
+
+The crucial consequence of this lemma (from the previous section) is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
 
 \begin{align}
 & b^p_{n+1}v_0^{p^{n+1}} + v_{n+1}b_0 ^{p^{n+2}} + f_n(b^p_0, \ldots, b^p_n, v_0, \ldots, v_n) 
@@ -118,6 +137,17 @@ We'll come back to the proof of this lemma in a moment. The crucial consequence 
 <!-- TODO: Finish -->
 which is polynomial of degree $p$ in $b_{n+1}$, since $v_0$ and therefore $v_0^{p^{n+1}}$ are nonzero. 
 This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closure of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(\*)$.
+
+
+
+
+We actually only need, and only prove, one direction of this:
+
+---
+**Key lemma**. Every element of $\mathbb{W}(k)^\times$, i.e. every Witt vector with nonzero leading term, can be expressed in the form $\varphi(b)/b$
+for some $b \in \mathbb{W}(k)$.
+---
+
 
 <!-- 
 ```lean
