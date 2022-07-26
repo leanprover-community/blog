@@ -7,7 +7,7 @@ has_math: false
 link: ''
 slug: mathlib-changelog
 tags: ''
-title: Introducing Mathlib Changlog
+title: Introducing Mathlib Changelog
 type: text
 ---
 
