@@ -30,7 +30,7 @@ automorphism of that ring.  Let's backtrack to catch everyone up ....
 
 Back in 2020, one of us (Rob), together with Johan Commelin, formalized the theory of Witt vectors in Lean.  The $p$-typical Witt 
 vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements of $R$, but equipped with a rather wild multipicative and additive
-structure (dependent on $p$) to make this set into a ring.  The canonical example is the $p$-adic numbers, which are the Witt vectors
+structure (dependent on $p$) to make this set into a commutative ring.  The canonical example is the $p$-adic numbers, which are the Witt vectors
 of $\mathbb{Z}/p\mathbb{Z}$.
 
 A ring $R$ of characteristic $p$ has an endomorphism, constructed by sending each element $x$ to $x ^ p$.  $R$ is called *perfect* if this
@@ -90,7 +90,50 @@ for some $b \in \mathbb{W}(k)$.
 
 We will discuss this lemma in the next section.  But to conclude the main discussion, the summary is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form.
 
+<!-- Retitle -->
 # The key lemma
+
+For Witt vectors $v, w$ with nonzero leading coefficients, we want to find a Witt vector $b$ such that $\varphi(b)\cdot v = b \cdot w$, i.e.,
+
+$$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{\*}$$
+
+This is a slight generalization for convenience; the statement of the key lemma above fixed $v = 1$.
+Here $\cdot$ denotes Witt vector multiplication, so at this point we need to dive into the weeds of what this means. Here is the fact we'll use:
+
+---
+**Lemma.**
+For every $n \in \mathbb{N}$, there is a function $f_n : k^{n+1} \times k^{n+1} \to k$ such that for every $x, y \in \mathbb{W}(k)$, the $(n+1)$-st coefficient of $x \cdot y$ is given by 
+
+$$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ldots, y_n).  $$
+
+---
+
+We'll come back to the proof of this lemma in a moment. The crucial consequence of this lemma is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
+
+\begin{align}
+& b^p_{n+1}v_0^{p^{n+1}} + v_{n+1}b_0 ^{p^{n+2}} + f_n(b^p_0, \ldots, b^p_n, v_0, \ldots, v_n) 
+\newline  
+& = \ b_{n+1}w_0^{p^{n+1}} + w_{n+1}b_0 ^{p^{n+1}} + f_n(b_0, \ldots, b_n, w_0, \ldots, w_n)
+\end{align}
+<!-- TODO: Finish -->
+which is polynomial of degree $p$ in $b_{n+1}$, since $v_0$ and therefore $v_0^{p^{n+1}}$ are nonzero. 
+This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closure of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(\*)$.
+
+<!-- 
+```lean
+lemma nth_mul_coeff (n : ℕ) :
+  ∃ f : truncated_witt_vector p (n+1) k → truncated_witt_vector p (n+1) k → k, 
+    ∀ (x y : 𝕎 k),
+      (x * y).coeff (n+1) =
+        x.coeff (n+1) * y.coeff 0 ^ (p^(n+1)) + y.coeff (n+1) * x.coeff 0 ^ (p^(n+1)) +
+        f (truncate_fun (n+1) x) (truncate_fun (n+1) y)
+```
+
+
+```lean
+lemma frobenius_frobenius_rotation {a₁ a₂ : 𝕎 k} (ha₁ : a₁.coeff 0 ≠ 0) (ha₂ : a₂.coeff 0 ≠ 0) :
+  frobenius (frobenius_rotation p ha₁ ha₂) * a₁ = (frobenius_rotation p ha₁ ha₂) * a₂ :=
+``` -->
 
 [discuss proof]
 
