@@ -70,7 +70,7 @@ In general, the characterization of equivalence is the following: two $\sigma$-s
 
 
 So, for the fraction field $K$ of the Witt vectors of an algebraically closed field $k$, what is this multiplicative subgroup
-$ \\{ \varphi(x) / x : x \in K^\* \\}$
+$ \\{ \varphi(b) / b : b \in K^\* \\}$
 of the nonzero elements 
 $K^\*$ ?
 Also, the cosests of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?  
@@ -79,9 +79,11 @@ At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/ques
 
 So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are precisely the sequences whose first element is nonzero. [LINK]
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with 0 in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m x$ for some $m\in\mathbb{N}$ and some $x\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m x$ for some $m\in\mathbb{Z}$ and some Witt vector $x\in\mathbb{W}(k)^\times$. 
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with 0 in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m w$ for some $m\in\mathbb{N}$ and some $w\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
-This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices).  The rest of this blog post will be devoted to proving this.
+<a name="key-lemma"></a>
+This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of this blog post will be devoted to proving this.
+
 
 But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
 
@@ -91,7 +93,7 @@ But to conclude the main discussion, our theorem is that every coset of the spec
 Given the structure of our goal, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the following statement:
 
 ---
-**Lemma.**
+**Multiplication lemma.**
 For every $n \in \mathbb{N}$, there is a function $f_n : k^{n+1} \times k^{n+1} \to k$ such that for every $x, y \in \mathbb{W}(k)$, the $(n+1)$-st coefficient of $x \cdot y$ is given by 
 
 $$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ldots, y_n).  $$
@@ -99,7 +101,7 @@ $$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ld
 ---
 
 The $n$th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
-for each $n$ there is an integer polynomial $m_n$ such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
+for each $n$ there is a polynomial $m_n$ such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
 
 The following turns out to completely characterize the polynomials $m_n$. If we define the $n$th *Witt polynomial* to be $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$, then 
 
@@ -113,21 +115,29 @@ that is,
 & = \ w_n\left(x_0, \ldots, x_n\right)w_n\left(y_0, \ldots, y_n\right).
 \end{align}
 
+Intuitively, it's not so hard to see why this should characterize the family of polynomials $m$: $m_n$ only appears once in the $n$th such equation as stated above, so we can solve for it. But there is a wrinkle. It appears with coefficient $p^n$ and we are working over a field $k$ of characteristic $p$. 
+So we need the insight that these polynomials $m_n$ should in fact be constructed as integer polynomials which are interpreted in $k$ as a final step, rather than being native $k$-polynomials.
+
+Come back: some algebra to connect the equation above to the lemma.
 
 
 <!-- Retitle -->
-# Key lemma
+# A recursive construction
 
+Let's come back to our [key lemma](#key-lemma) above. Here is the precise form we prove:
 
-For Witt vectors $v, w$ with nonzero leading coefficients, we want to find a Witt vector $b$ such that $\varphi(b)\cdot v = b \cdot w$, i.e.,
+---
+**Existence lemma**.
+For Witt vectors $v, w$ with nonzero leading coefficients, there exists a Witt vector $b$ such that $\varphi(b)\cdot v = b \cdot w$.
+---
+
+This is actually only one direction of our earlier claim, but it's the direction we need. On the other hand, it is slightly more general, for the sake of convenience: the earlier statement effectively fixed $v = 1$.
+
+Let's write this out in coordinates:
 
 $$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{\*}$$
 
-This is a slight generalization for convenience; the statement of the key lemma above fixed $v = 1$.
-Here $\cdot$ denotes Witt vector multiplication, so at this point we need to dive into the weeds of what this means. Here is the fact we'll use:
-
-
-The crucial consequence of this lemma (from the previous section) is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
+Here $\cdot$ denotes Witt vector multiplication, so now our investigation into this operation will come in handy. The crucial consequence of the "multiplication lemma" from the previous section is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
 
 \begin{align}
 & b^p_{n+1}v_0^{p^{n+1}} + v_{n+1}b_0 ^{p^{n+2}} + f_n(b^p_0, \ldots, b^p_n, v_0, \ldots, v_n) 
@@ -138,34 +148,50 @@ The crucial consequence of this lemma (from the previous section) is that the co
 which is polynomial of degree $p$ in $b_{n+1}$, since $v_0$ and therefore $v_0^{p^{n+1}}$ are nonzero. 
 This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closure of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(\*)$.
 
+This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
 
+# The formalization process
 
+Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project: [our paper with Frédéric Dupuis on semilinear maps](link). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of [Witt vectors](link to Witt paper). But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
 
-We actually only need, and only prove, one direction of this:
+To quote from Rob and Johan's paper, "Witt vectors have a reputation among mathematicians of being forbidding and impenetrable." And indeed this was our experience in multiple ways. 
+Not only was it difficult to learn to work with Witt vectors; 
+what's more, this barrier to entry means that there are few elementary expositions of mathematical subjects (such as isocrystals) that depend on them.
+We couldn't find the one-dimensional case, worked through as above, written down anywhere. 
 
----
-**Key lemma**. Every element of $\mathbb{W}(k)^\times$, i.e. every Witt vector with nonzero leading term, can be expressed in the form $\varphi(b)/b$
-for some $b \in \mathbb{W}(k)$.
----
+It's a cliche to say that the name "proof assistant" is a misnomer. Usually, formalizing a mathematical result is strictly harder than understanding it in the traditional way, and the computer just gets in the way. But we had the opposite experience proving this theorem. Working out the details of this argument on paper was difficult, and we were rarely sure that we were understanding a given statement correctly, or even that it was well formed. Seeing the confirmation from Lean that a theorem statement typechecked---and the back and forth with the system to write a type-correct statement---greatly helped us understand the mathematics. 
 
+And the proof-checking helped too. We mentioned above a wrinkle when proving the "multiplication lemma": some coefficients of the polynomial we were interested in vanish in characteristic $p$, so we had to work first with integer polynomials and later, after canceling a power of $p$, interpret them in the field $k$. This subtlety escaped us the first time around! 
 
-<!-- 
+![Oops...](/images/isocrystal-oops.png)
+
+Back to our original motivation: the semilinear maps machinery worked great. As we had hoped, it sat invisibly in the background. Lean's extensible syntax was easy to use to set up notation ``M₁ ≃ᶠˡ[p, k] M₂`` for the type of Frobenius-semilinear isomorphisms from `M₁` to `M₂`.
+
+```lean 
+notation M₁ ` ≃ᶠˡ[` p `,` k `] ` M₂ :=
+  linear_equiv (witt_vector.fraction_ring.frobenius_ring_hom p k) M₁ M₂
+``` 
+
+From there, an isocrystal could be defined exactly as on paper: a $K$-module equipped with a Frobenius-semilinear automorphism.
+
 ```lean
-lemma nth_mul_coeff (n : ℕ) :
-  ∃ f : truncated_witt_vector p (n+1) k → truncated_witt_vector p (n+1) k → k, 
-    ∀ (x y : 𝕎 k),
-      (x * y).coeff (n+1) =
-        x.coeff (n+1) * y.coeff 0 ^ (p^(n+1)) + y.coeff (n+1) * x.coeff 0 ^ (p^(n+1)) +
-        f (truncate_fun (n+1) x) (truncate_fun (n+1) y)
+class isocrystal (V : Type*) [add_comm_group V] extends module K(p, k) V :=
+( frob : V ≃ᶠˡ[p, k] V )
 ```
 
+Check out the final statement of the classification theorem in mathlib [here](link).
 
-```lean
-lemma frobenius_frobenius_rotation {a₁ a₂ : 𝕎 k} (ha₁ : a₁.coeff 0 ≠ 0) (ha₂ : a₂.coeff 0 ≠ 0) :
-  frobenius (frobenius_rotation p ha₁ ha₂) * a₁ = (frobenius_rotation p ha₁ ha₂) * a₂ :=
-``` -->
+<!-- Points:
 
-[discuss proof]
+* Fun 
+*! Known to experts, not written down (that we could find)
+* Impossible without Johan 
+*! Impossible without proof assistant: really assisted a logician and a geometer to figure out this corner of number theory
+*! Missed the char-p wrinkle at first 
+* Type checking itself helped, especially when dealing with the structure polynomials 
+  * really fumbling around in the dark
+  * confidence that we were asserting meaningful things 
+* Working backward
+* Definition was easy, semilinear infrastructure was totally invisible (it really works!) -->
 
-[link to our article at the end]
 
