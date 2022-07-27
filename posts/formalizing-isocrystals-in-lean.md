@@ -122,7 +122,7 @@ The multiplication lemma asks for a little more, namely, the leading terms of $m
 
 Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which can be canceled because we're in characteristic $p$. 
 
-Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot Z$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be integer polynomials, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
+Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
 
 
 <!-- Retitle -->
@@ -161,9 +161,9 @@ Rob is a logician and Heather is a geometer, and this theorem was just a quick p
 To quote from Rob and Johan's paper, "Witt vectors have a reputation among mathematicians of being forbidding and impenetrable." And indeed this was our experience in multiple ways. 
 Not only was it difficult to learn to work with Witt vectors; 
 what's more, this barrier to entry means that there are few elementary expositions of mathematical subjects (such as isocrystals) that depend on them.
-We couldn't find the one-dimensional case, worked through as above, written down anywhere. 
+We couldn't find the one-dimensional isocrystal classification, worked through as above, written down anywhere. 
 
-It's a cliche to say that the name "proof assistant" is a misnomer. Usually, formalizing a mathematical result is strictly harder than understanding it in the traditional way, and the computer just gets in the way. But we had the opposite experience proving this theorem. Working out the details of this argument on paper was difficult, and we were rarely sure that we were understanding a given statement correctly, or even that it was well formed. Seeing the confirmation from Lean that a theorem statement typechecked---and the back and forth with the system to write a type-correct statement---greatly helped us understand the mathematics. 
+It's a cliché to say that the name "proof assistant" is a misnomer. Usually, formalizing a mathematical result is strictly harder than understanding it in the traditional way, and the computer just gets in the way. But we had the opposite experience proving this theorem. Working out the details of this argument on paper was difficult, and we were rarely sure that we were understanding a given statement correctly, or even that it was well formed. Seeing the confirmation from Lean that a theorem statement typechecked---and the back and forth with the system to write a type-correct statement---greatly helped us understand the mathematics. 
 
 And the proof-checking helped too. We mentioned above a wrinkle when proving the "multiplication lemma": some coefficients of the polynomial we were interested in vanish in characteristic $p$, so we had to work first with integer polynomials and later, after canceling a power of $p$, interpret them in the field $k$. This subtlety escaped us the first time around! 
 
