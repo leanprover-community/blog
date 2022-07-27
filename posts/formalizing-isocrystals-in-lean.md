@@ -88,9 +88,9 @@ Given the structure of the statement we're working toward, it's not surprising t
 
 ---
 **Multiplication lemma.**
-For every $n \in \mathbb{N}$, there is a function $f_n : k^{n+1} \times k^{n+1} \to k$ such that for every $x, y \in \mathbb{W}(k)$, the $(n+1)$-st coefficient of $x \cdot y$ is given by 
+For every positive $n \in \mathbb{N}$, there is a function $f_n : k^{n} \times k^{n} \to k$ such that for every $x, y \in \mathbb{W}(k)$, the $n$-th coefficient of $x \cdot y$ is given by 
 
-$$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ldots, y_n).  $$
+$$ x_{n}y_0^{p^{n}} + y_{n}x_0 ^{p^{n}} + f_n(x_0, \ldots, x_{n-1}, y_0, \ldots, y_{n-1}).  $$
 
 ---
 
@@ -139,16 +139,17 @@ Let's write this out in coordinates:
 
 $$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{*}$$
 
-Here $\cdot$ denotes Witt vector multiplication, so now our investigation into this operation will come in handy. The crucial consequence of the "multiplication lemma" from the previous section is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
+Here $\cdot$ denotes Witt vector multiplication, so now our investigation into this operation will come in handy. The crucial consequence of the "multiplication lemma" from the previous section is that the constraint imposed by comparing $n$-th coefficients of $(\*)$ is polynomial. Specifically, it says that for positive $n$,
 
 \begin{align}
-& b^p_{n+1}v_0^{p^{n+1}} + v_{n+1}b_0 ^{p^{n+2}} + f_n(b^p_0, \ldots, b^p_n, v_0, \ldots, v_n) 
+& b^p_{n}v_0^{p^{n}} + v_{n}b_0 ^{p^{n+1}} + f_n(b^p_0, \ldots, b^p_{n-1}, v_0, \ldots, v_{n-1}) 
 \newline  
-& = \ b_{n+1}w_0^{p^{n+1}} + w_{n+1}b_0 ^{p^{n+1}} + f_n(b_0, \ldots, b_n, w_0, \ldots, w_n)
+& = \ b_{n}w_0^{p^{n}} + w_{n}b_0 ^{p^{n}} + f_n(b_0, \ldots, b_{n-1}, w_0, \ldots, w_{n-1})
 \end{align}
 
-which is polynomial of degree $p$ in $b_{n+1}$, since $v_0$ and therefore $v_0^{p^{n+1}}$ are nonzero. 
-This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
+which is polynomial of degree $p$ in $b_{n}$, since $v_0$ and therefore $v_0^{p^{n}}$ are nonzero. 
+This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward, since for any Witt vectors $x$ and $y$, 
+$ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
 
 This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
 
