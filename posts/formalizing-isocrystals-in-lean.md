@@ -15,11 +15,11 @@ Last year, there was a [big mathlib refactor](https://leanprover-community.githu
 a more abstract concept which, importantly, unifies linear and conjugate-linear maps.
 
 But this is not the full extent of the generalization!  Our number theorist friends here in mathlib told us that we should
-make sure we chose this full generality of *semilinear* maps, maps $f:M \to N$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism $\sigma$ between the scalar rings of the modules $M$ and $N$.  So we and our coauthor Frédéric Dupuis implemented this full generality, and then asked them for an example to illustrate their need for this more abstract definition. This blog post tells the story of our little adventure in number theory.
+make sure we chose this full generality of *semilinear* maps, maps $f:M \to sN$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism $\sigma$ between the scalar rings of the modules $M$ and $N$.  So we and our coauthor Frédéric Dupuis implemented this full generality, and then asked them for an example to illustrate their need for this more abstract definition. This blog post tells the story of our little adventure in number theory.
 
 It turns out that the standard use of semilinear maps in number theory is for *Frobenius-semilinearity*, semilinearity with
 respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ integral domain which is induced by the Frobenius
-automorphism of that domain.  Let's backtrack to catch everyone up ....
+automorphism of that domain.  Let's backtrack to catch everyone up...
 
 <!-- TEASER_END -->
 
