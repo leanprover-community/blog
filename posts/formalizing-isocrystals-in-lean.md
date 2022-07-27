@@ -120,7 +120,7 @@ The multiplication lemma asks for a little more, namely, the leading terms of $m
 & = \ (x_0^{p^n} + p\[\cdots\] + p^n x_n)(y_0^{p^n} + p\[\cdots\] + p^n y_n).
 \end{align}
 
-Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which can be canceled because we're in characteristic $p$. 
+Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which again can be canceled because we're in characteristic $p$. 
 
 Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
 
