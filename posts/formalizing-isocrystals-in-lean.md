@@ -146,7 +146,7 @@ Here $\cdot$ denotes Witt vector multiplication, so now our investigation into t
 \newline  
 & = \ b_{n+1}w_0^{p^{n+1}} + w_{n+1}b_0 ^{p^{n+1}} + f_n(b_0, \ldots, b_n, w_0, \ldots, w_n)
 \end{align}
-<!-- TODO: Finish -->
+
 which is polynomial of degree $p$ in $b_{n+1}$, since $v_0$ and therefore $v_0^{p^{n+1}}$ are nonzero. 
 This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
 
@@ -184,19 +184,6 @@ class isocrystal (V : Type*) [add_comm_group V]
 
 Check out the final statement of the classification theorem in mathlib 
 [here](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/isocrystal.lean#L163).
-
-<!-- Points:
-
-* Fun 
-*! Known to experts, not written down (that we could find)
-* Impossible without Johan 
-*! Impossible without proof assistant: really assisted a logician and a geometer to figure out this corner of number theory
-*! Missed the char-p wrinkle at first 
-* Type checking itself helped, especially when dealing with the structure polynomials 
-  * really fumbling around in the dark
-  * confidence that we were asserting meaningful things 
-* Working backward
-* Definition was easy, semilinear infrastructure was totally invisible (it really works!) -->
 
 
 [^1]: Ju. I. Manin. [Theory of commutative formal groups over fields of finite characteristic.](https://doi.org/10.1070%2FRM1963v018n06ABEH001142) 
