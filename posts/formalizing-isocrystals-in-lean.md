@@ -37,7 +37,7 @@ want to consider!  <!-- grammar -->
 
 The fundamental result here is a classification theorem for
 Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
-vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin [cite] building on work of Dieudonné [cite].
+vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin [^1] building on work of Dieudonné [^2].
  <!-- check history. -->
 
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
@@ -72,9 +72,9 @@ Also, the cosets of this subgroup in $K^*$ are precisely in bijection with the i
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker"](https://mathoverflow.net/users/14572/asker), you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
-So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are precisely the sequences whose first element is nonzero. [LINK]
+So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are [precisely](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L58) the sequences whose first element is nonzero.
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m w$ for some $m\in\mathbb{N}$ and some $w\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is [of the form $p^m w$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117) for some $m\in\mathbb{N}$ and some $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
 <a name="existence-lemma"></a>
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
@@ -156,7 +156,7 @@ This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b 
 
 # The formalization process
 
-Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project: [our paper with Frédéric Dupuis on semilinear maps](link). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of [Witt vectors](link to Witt paper). But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
+Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project: [our paper with Frédéric Dupuis on semilinear maps](https://arxiv.org/abs/2202.05360). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of [Witt vectors](https://arxiv.org/abs/2010.02595). But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
 
 To quote from Rob and Johan's paper, "Witt vectors have a reputation among mathematicians of being forbidding and impenetrable." And indeed this was our experience in multiple ways. 
 Not only was it difficult to learn to work with Witt vectors; 
@@ -183,7 +183,8 @@ class isocrystal (V : Type*) [add_comm_group V] extends module K(p, k) V :=
 ( frob : V ≃ᶠˡ[p, k] V )
 ```
 
-Check out the final statement of the classification theorem in mathlib [here](link).
+Check out the final statement of the classification theorem in mathlib 
+[here](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/isocrystal.lean#L163).
 
 <!-- Points:
 
@@ -199,3 +200,6 @@ Check out the final statement of the classification theorem in mathlib [here](li
 * Definition was easy, semilinear infrastructure was totally invisible (it really works!) -->
 
 
+[^1]: Ju. I. Manin. Theory of commutative formal groups over fields of finite characteristic. 
+Uspehi Mat. Nauk, 18(6 (114)):3–90, 1963.
+[^2]: Dieudonne reference here
