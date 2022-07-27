@@ -33,7 +33,7 @@ of $\mathbb{Z}/p\mathbb{Z}$.
 A ring $R$ of characteristic $p$ has an endomorphism, constructed by sending each element $x$ to $x ^ p$.  $R$ is called *perfect* if this
 endomorphism is an automorphism.  And under mild further conditions ($R$ an integral domain) this automorphism "lifts" <!-- check terminology -->
 to an automorphism of the field of fractions of $\mathbb{W}(R)$, which we will denote $\varphi$.  It's *Frobenius-semilinearity*, i.e. semilinearity with respect $\varphi$, that the number theorists
-want to consider!  <!-- grammar -->
+want to consider! 
 
 The fundamental result here is a classification theorem for
 Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
@@ -82,7 +82,6 @@ This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$
 
 But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
 
-<!-- Retitle -->
 # Multiplication of Witt vectors
 
 Given the structure of the statement we're working toward, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the following lemma:
@@ -125,7 +124,6 @@ Thought experiment: cancel all three $p\[\cdots\]$ because we're in characterist
 Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
 
 
-<!-- Retitle -->
 # Recursively constructing a Witt vector
 
 Let's come back to [the statement](#existence-lemma) whose proof we deferred above. Here is the precise variant we prove:
@@ -201,6 +199,7 @@ Check out the final statement of the classification theorem in mathlib
 * Definition was easy, semilinear infrastructure was totally invisible (it really works!) -->
 
 
-[^1]: Ju. I. Manin. Theory of commutative formal groups over fields of finite characteristic. 
+[^1]: Ju. I. Manin. [Theory of commutative formal groups over fields of finite characteristic.](https://doi.org/10.1070%2FRM1963v018n06ABEH001142) 
 Uspehi Mat. Nauk, 18(6 (114)):3–90, 1963.
-[^2]: Dieudonne reference here
+[^2]: Jean Dieudonné. [Lie groups and Lie hyperalgebras over a field of characteristic $p > 0$, IV.](https://doi.org/10.2307%2F2372633)
+American Journal of Mathematics, 77 (3): 429–452, 1955.
