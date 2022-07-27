@@ -47,7 +47,7 @@ way on the mathematics we had built up.  And the full proof of the theorem seeme
 
 # Semilinear automorphisms of a general field
 
-So we started playing with the one-dimensional version more concretely.  Consider, for a moment, a general field $F$, equipped with a field automorphism $\sigma$.  We are interested in the following objects: pairs $(V, f)$ of a one-dimensional vector space over $F$ and a $\sigma$-semilinear automorphism of $V$.  
+So we started playing with the one-dimensional version more concretely.  Consider, for a moment, a general field $F$, equipped with a field automorphism $\sigma$.  We are interested in the following objects: pairs $(V, f)$ of a one-dimensional vector space over $F$ and a $\sigma$-semilinear automorphism of $V$.
 
 When the scalar field $F$ is $\mathbb{C}$, these objects have a natural geometric interpretation. The objects here are one-dimensional vector spaces over $\mathbb{C}$ equipped with a conjugate-linear automorphism, which you might visualize as a plane with a marked point and equipped with an orientation-reversing [similarity transformation](https://en.wikipedia.org/wiki/Similarity_(geometry)#In_Euclidean_space) which fixes that point.  Why this phrase "marked point"? This is effectively the structure you have on a one-dimensional vector space over $\mathbb{C}$. There are no "coordinates" -- for this you need a fixed basis vector -- but there is a well-defined origin point.
 
@@ -68,7 +68,7 @@ So, for the fraction field $K$ of the Witt vectors of an algebraically closed fi
 $ \\{ \varphi(b) / b : b \in K^\* \\}$
 of the nonzero elements 
 $K^\*$ ?
-Also, the cosets of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?  
+Also, the cosets of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker,"](https://mathoverflow.net/users/14572/asker) you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
@@ -80,7 +80,9 @@ The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ a
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
 
 
-But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
+But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the 
+[associated isocrystal](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/isocrystal.lean#L150):
+$K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
 
 # Multiplication of Witt vectors
 
@@ -96,10 +98,14 @@ $$ x_{n}y_0^{p^{n}} + y_{n}x_0 ^{p^{n}} + f_n(x_0, \ldots, x_{n-1}, y_0, \ldots,
 ---
 
 The $n$-th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
-for each $n$ there is a polynomial $m_n$ such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
+for each $n$ there is a
+[polynomial $m_n$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/defs.lean#L128)
+such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
 
 What we know about the polynomials $m_n$ from the abstract construction of Witt vector multiplication is the following.
-Let $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$. (These polynomials, the "Witt polynomials," are ubiquitous in the theory of Witt vectors.) Then,
+Let $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$. (These polynomials, 
+the "[Witt polynomials](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/witt_polynomial.lean#L75)," 
+are ubiquitous in the theory of Witt vectors.) Then,
 
 $$w_n(m_0, m_1, \ldots, m_n) = w_n(x_0, \ldots, x_n)w_n(y_0, \ldots, y_n),$$
 
@@ -148,7 +154,7 @@ Here $\cdot$ denotes Witt vector multiplication, so now our investigation into t
 
 \begin{align}
 & b^p_{n}v_0^{p^{n}} + v_{n}b_0 ^{p^{n+1}} + f_n(b^p_0, \ldots, b^p_{n-1}, v_0, \ldots, v_{n-1}) 
-\newline  
+\newline
 & = \ b_{n}w_0^{p^{n}} + w_{n}b_0 ^{p^{n}} + f_n(b_0, \ldots, b_{n-1}, w_0, \ldots, w_{n-1})
 \end{align}
 
