@@ -84,7 +84,8 @@ But to conclude the main discussion, our theorem is that every coset of the spec
 
 # Multiplication of Witt vectors
 
-Given the structure of the statement we're working toward, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the following lemma:
+Given the structure of the statement we're working toward, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the
+[following lemma](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/mul_coeff.lean#L275):
 
 ---
 **Multiplication lemma.**
@@ -121,12 +122,16 @@ The multiplication lemma asks for a little more, namely, the leading terms of $m
 
 Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$-th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which again can be canceled because we're in characteristic $p$. 
 
-Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
+Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, 
+[interpreting them as polynomials over $k$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/mul_coeff.lean#L234)
+ only before the final step.
 
 
 # Recursively constructing a Witt vector
 
-Let's come back to [the statement](#existence-lemma) whose proof we deferred above. Here is the precise variant we prove:
+Let's come back to [the statement](#existence-lemma) whose proof we deferred above. Here is the 
+[precise variant](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L202)
+we prove:
 
 ---
 **Existence lemma**.
@@ -148,8 +153,14 @@ Here $\cdot$ denotes Witt vector multiplication, so now our investigation into t
 \end{align}
 
 which is polynomial of degree $p$ in $b_{n}$, since $v_0$ and therefore $v_0^{p^{n}}$ are nonzero. 
-This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward, since for any Witt vectors $x$ and $y$, 
-$ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_{n-1}$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_n$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
+This allows us to 
+[construct $b$ recursively](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L181), 
+coefficient by coefficient. 
+The [base case](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L135)
+is straightforward, since for any Witt vectors $x$ and $y$, 
+$ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_{n-1}$.
+We [invoke the algebraic closedness of $k$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L95)
+to solve the above polynomial equation for $b_n$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
 
 This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
 
