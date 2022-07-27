@@ -37,7 +37,7 @@ want to consider!
 
 The fundamental result here is a classification theorem for
 Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
-vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin [^1] building on work of Dieudonné [^2].
+vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin[^1] building on work of Dieudonné.[^2]
  <!-- check history. -->
 
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
