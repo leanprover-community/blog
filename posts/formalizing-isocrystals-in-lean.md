@@ -1,6 +1,6 @@
 ---
 author: 'Robert Y. Lewis, Heather Macbeth'
-category: ''
+category: 'New in mathlib'
 date: 2022-07-19 19:30:08 UTC+02:00
 description: ''
 has_math: true
