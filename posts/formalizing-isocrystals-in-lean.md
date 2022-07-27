@@ -49,7 +49,7 @@ way on the mathematics we had built up.  And the full proof of the theorem seeme
 
 So we started playing with the one-dimensional version more concretely.  Consider, for a moment, a general field $F$, equipped with a field automorphism $\sigma$.  We are interested in the following objects: pairs $(V, f)$ of a one-dimensional vector space over $F$ and a $\sigma$-semilinear automorphism of $V$.  
 
-When the scalar field $F$ is $\mathbb{C}$, these objects have a natural geometric interpretation. The objects here are one-dimensional vector spaces over $\mathbb{C}$ equipped with a conjugate-linear automorphism, which you might visualize as a plane with a marked point and equipped with an orientation-reversing [similarity transformation](https://en.wikipedia.org/wiki/Similarity_(geometry)#In_Euclidean_space) which fixes that point.  Why this phrase "marked point"? This is effectively the structure you have on a one-dimensional vector space over $\mathbb{C}$: there are no "coordinates" -- for this you need a fixed basis vector -- but there is a well-defined origin point.
+When the scalar field $F$ is $\mathbb{C}$, these objects have a natural geometric interpretation. The objects here are one-dimensional vector spaces over $\mathbb{C}$ equipped with a conjugate-linear automorphism, which you might visualize as a plane with a marked point and equipped with an orientation-reversing [similarity transformation](https://en.wikipedia.org/wiki/Similarity_(geometry)#In_Euclidean_space) which fixes that point.  Why this phrase "marked point"? This is effectively the structure you have on a one-dimensional vector space over $\mathbb{C}$. There are no "coordinates" -- for this you need a fixed basis vector -- but there is a well-defined origin point.
 
 There is a natural notion of equivalence on these objects: $(V_1, f_1)$ and $(V_2, f_2)$ are equivalent, if there exists a (linear) isomorphism $g:V_1\to V_2$, which is equivariant in the sense that $g \circ f_1=f_2 \circ g$.   In the case of one-dimensional objects over $\mathbb{C}$, this agrees well with our geometric intuition for when two orientation-reversing similarities of planes with marked points are "the same".  
 
@@ -156,7 +156,7 @@ This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b 
 
 # The formalization process
 
-Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project: [our paper with Frédéric Dupuis on semilinear maps](https://arxiv.org/abs/2202.05360). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of [Witt vectors](https://arxiv.org/abs/2010.02595). But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
+Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project, [our paper with Frédéric Dupuis on semilinear maps](https://arxiv.org/abs/2202.05360). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of [Witt vectors](https://arxiv.org/abs/2010.02595). But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
 
 To quote from Rob and Johan's paper, "Witt vectors have a reputation among mathematicians of being forbidding and impenetrable." And indeed this was our experience in multiple ways. 
 Not only was it difficult to learn to work with Witt vectors; 
