@@ -169,7 +169,7 @@ And the proof-checking helped too. We mentioned above a wrinkle when proving the
 
 ![Oops...](/images/isocrystal-oops.png)
 
-Back to our original motivation: the semilinear maps machinery worked great. As we had hoped, it sat invisibly in the background. Lean's extensible syntax was easy to use to set up notation ``M₁ ≃ᶠˡ[p, k] M₂`` for the type of Frobenius-semilinear isomorphisms from `M₁` to `M₂`.
+Back to our original motivation: the semilinear maps machinery worked great. As we had hoped, it sat invisibly in the background. Lean's extensible syntax was easy to use to set up notation <code style="white-space:nowrap;">M₁ ≃ᶠˡ[p, k] M₂</code> for the type of Frobenius-semilinear isomorphisms from `M₁` to `M₂`.
 
 ```lean 
 notation M₁ ` ≃ᶠˡ[` p `,` k `] ` M₂ :=
@@ -179,7 +179,8 @@ notation M₁ ` ≃ᶠˡ[` p `,` k `] ` M₂ :=
 From there, an isocrystal could be defined exactly as on paper: a $K$-module equipped with a Frobenius-semilinear automorphism.
 
 ```lean
-class isocrystal (V : Type*) [add_comm_group V] extends module K(p, k) V :=
+class isocrystal (V : Type*) [add_comm_group V] 
+  extends module K(p, k) V :=
 ( frob : V ≃ᶠˡ[p, k] V )
 ```
 
