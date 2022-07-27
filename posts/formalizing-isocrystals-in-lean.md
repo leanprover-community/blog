@@ -25,7 +25,7 @@ automorphism of that domain.  Let's backtrack to catch everyone up ....
 
 # Witt vectors and isocrystals
 
-Back in 2020, one of us (Rob), together with Johan Commelin, formalized the theory of Witt vectors in Lean.  The $p$-typical Witt 
+Back in 2020, one of us (Rob), together with Johan Commelin, [formalized the theory of Witt vectors](https://arxiv.org/abs/2010.02595) in Lean.  The $p$-typical Witt 
 vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements of $R$, but equipped with a rather wild multiplicative and additive
 structure (dependent on $p$) to make this set into a commutative ring.  The canonical example is the $p$-adic numbers, which are the Witt vectors
 of $\mathbb{Z}/p\mathbb{Z}$.
@@ -155,7 +155,7 @@ This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b 
 
 # The formalization process
 
-Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project, [our paper with Frédéric Dupuis on semilinear maps](https://arxiv.org/abs/2202.05360). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of [Witt vectors](https://arxiv.org/abs/2010.02595). But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
+Rob is a logician and Heather is a geometer, and this theorem was just a quick proof of concept for a larger project, [our paper with Frédéric Dupuis on semilinear maps](https://arxiv.org/abs/2202.05360). Rob and Johan Commelin (who provided a lot of helpful advice on this formalization) worked together on the initial mathlib development of Witt vectors. But this was Rob's first foray into the subject on his own, and Heather's first foray at all. 
 
 To quote from Rob and Johan's paper, "Witt vectors have a reputation among mathematicians of being forbidding and impenetrable." And indeed this was our experience in multiple ways. 
 Not only was it difficult to learn to work with Witt vectors; 
