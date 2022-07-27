@@ -15,10 +15,7 @@ Last year, there was a [big mathlib refactor](https://leanprover-community.githu
 a more abstract concept which, importantly, unifies linear and conjugate-linear maps.
 
 But this is not the full extent of the generalization!  Our number theorist friends here in mathlib told us that we should
-make sure we chose this full generality of *semilinear* maps, maps $f:M \to N$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism
-s between the scalar rings of the modules $M$ and N.  So we and our coauthor Frédéric Dupuis implemented this in full generality, and then asked them for some
-examples to illustrate their need for this more abstract definition.
-
+make sure we chose this full generality of *semilinear* maps, maps $f:M \to N$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism $\sigma$ between the scalar rings of the modules $M$ and $N$.  So we and our coauthor Frédéric Dupuis implemented this full generality, and then asked them for an example to illustrate their need for this more abstract definition. This blog post tells the story of our little adventure in number theory.
 
 It turns out that the standard use of semilinear maps in number theory is for *Frobenius-semilinearity*, semilinearity with
 respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ integral domain which is induced by the Frobenius
@@ -40,31 +37,29 @@ want to consider!  <!-- grammar -->
 
 The fundamental result here is a classification theorem for
 Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
-vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence (Frobenius-equivariant
-isomorphism), was proved by Manin [cite] building on work of Dieudonné [cite].
+vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin [cite] building on work of Dieudonné [cite].
  <!-- check history. -->
 
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
 *simple isocrystals* which we will not describe here.  Initially, we had the idea of testing out our semilinear maps API by stating
 this theorem.  It turned out, though, that the bare statement did not depend in an essential
-way on the mathematics we had built up.  And the full proof of the theorem seemed a bit hard ... at least for us.  It's left as an exercise for the reader
- (or for Johan, who got very excited about this idea).
+way on the mathematics we had built up.  And the full proof of the theorem seemed a bit hard given the current state of mathlib. For example, it relies on the classification of simple modules in the noncommutative setting as a one-line throwaway. It's left as an exercise for the reader.
 
 # Semilinear automorphisms of a general field
 
 So we started playing with the one-dimensional version more concretely.  Consider, for a moment, a general field $F$, equipped with a field automorphism $\sigma$.  We are interested in the following objects: pairs $(V, f)$ of a one-dimensional vector space over $F$ and a $\sigma$-semilinear automorphism of $V$.  
 
-For example, when the scalar field $F$ is $\mathbb{C}$, these objects have a natural geometric interpretation. The objects here are one-dimensional vector spaces over $\mathbb{C}$ equipped with a conjugate-linear automorphism, which you might visualize as a plane with a marked origin point and equipped with an orientation-reversing [similarity transformation](https://en.wikipedia.org/wiki/Similarity_(geometry)#In_Euclidean_space) which fixes that point.  Why this phrase "marked origin point"? This is effectively the structure you have on a one-dimensional vector space over $\mathbb{C}$: there are no "co-ordinates" -- for this you need a fixed basis vector -- but there is a well-defined origin point.
+When the scalar field $F$ is $\mathbb{C}$, these objects have a natural geometric interpretation. The objects here are one-dimensional vector spaces over $\mathbb{C}$ equipped with a conjugate-linear automorphism, which you might visualize as a plane with a marked point and equipped with an orientation-reversing [similarity transformation](https://en.wikipedia.org/wiki/Similarity_(geometry)#In_Euclidean_space) which fixes that point.  Why this phrase "marked point"? This is effectively the structure you have on a one-dimensional vector space over $\mathbb{C}$: there are no "coordinates" -- for this you need a fixed basis vector -- but there is a well-defined origin point.
 
-
-There is a natural notion of equivalence on these objects: $(V_1, f_1)$ and $(V_2, f_2)$ are equivalent, if there exists a (linear) isomorphism $g:V_1\to V_2$, which is equivariant in the sense that $g \circ f_1=f_2 \circ g$.   In the case of one-dimensional objects over $\mathbb{C}$, this agrees well with our geometric intuition for when two orientation-reversing similarities of planes with marked origin points are "the same".  
+There is a natural notion of equivalence on these objects: $(V_1, f_1)$ and $(V_2, f_2)$ are equivalent, if there exists a (linear) isomorphism $g:V_1\to V_2$, which is equivariant in the sense that $g \circ f_1=f_2 \circ g$.   In the case of one-dimensional objects over $\mathbb{C}$, this agrees well with our geometric intuition for when two orientation-reversing similarities of planes with marked points are "the same".  
 
 It's easy to cook up a large family of such objects with $V$ taken to be the field $F$ itself, considered as a one-dimensional vector space over itself:  take the $\sigma$-semilinear automorphism to be $x \mapsto a \sigma(x)$ for any $a\ne 0$ in $F$.  It's also fairly easy to see that, up to the sense of equivalence described above, this covers all possible one-dimensional objects. <!-- say any more? -->
 
 But this is not the interesting part of the story.  Some choices of $a\in F$ lead to equivalent objects, and the question is, which? For example, in the case of  $\mathbb{C}$, the equivalent transformations $f_1(z)=a_1\overline{z}$, $f_2(z)=a_2\overline{z}$ are precisely those for which $|a_1|=|a_2|$.  That is, for a given $r\in\mathbb{R}^+$, all transformations $f(z)=a\overline{z}$ with $|a|=r$ are equivalent to $f(z)=r\overline{z}$ itself, geometrically corresponding to the same transformation of a "rescaling by $r$" about the marked point of a reflection in a line through that marked point.
 
-In general, the characterization of equivalence is the following: two $\sigma$-semilinear transformations $f_1(x)=a_1\sigma(x)$, $f_2(x)=a_2\sigma(x)$ of $F$ are equivalent if there exists a nonzero element $b\in F$ such that $a_1/a_2 = \sigma(b)/b$.  The set of elements of $F$ of the form $\sigma(b)/b$ form a multiplicative subgroup of $F^*:=F\setminus\\{0\\}$ -- in the case of conjugation on $\mathbb{C}$ this subgroup is the unit circle.  And classifiying the equivalence classes of one-dimensional objects reduces to finding a family of canonical representatives of the cosets of this subgroup  -- in the case of $\mathbb{C}$, each coset of the unit circle action has a unique representative $r \in\mathbb{R}^+$.
+In general, the characterization of equivalence is the following: two $\sigma$-semilinear transformations $f_1(x)=a_1\sigma(x)$, $f_2(x)=a_2\sigma(x)$ of $F$ are equivalent if there exists a nonzero element $b\in F$ such that $a_1/a_2 = \sigma(b)/b$.  The set of elements of $F$ of the form $\sigma(b)/b$ forms a multiplicative subgroup of $F^*:=F\setminus\\{0\\}$. In the case of conjugation on $\mathbb{C}$ this subgroup is the unit circle.  And classifiying the equivalence classes of one-dimensional objects reduces to finding a family of canonical representatives of the cosets of this subgroup  -- in the case of $\mathbb{C}$, each coset of the unit circle action has a unique representative $r \in\mathbb{R}^+$.
 
+[Possible to-do: add image?]
 
 # Frobenius-semilinear automorphisms of the fraction field of the Witt vectors
 
@@ -79,10 +74,10 @@ At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/ques
 
 So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are precisely the sequences whose first element is nonzero. [LINK]
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with 0 in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m w$ for some $m\in\mathbb{N}$ and some $w\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is of the form $p^m w$ for some $m\in\mathbb{N}$ and some $w\in\mathbb{W}(k)^\times$. [Link].  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
-<a name="key-lemma"></a>
-This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of this blog post will be devoted to proving this.
+<a name="existence-lemma"></a>
+This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
 
 
 But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the associated isocrystal:  $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
@@ -90,7 +85,7 @@ But to conclude the main discussion, our theorem is that every coset of the spec
 <!-- Retitle -->
 # Multiplication of Witt vectors
 
-Given the structure of our goal, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the following statement:
+Given the structure of the statement we're working toward, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the following lemma:
 
 ---
 **Multiplication lemma.**
@@ -103,7 +98,8 @@ $$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ld
 The $n$th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
 for each $n$ there is a polynomial $m_n$ such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
 
-The following turns out to completely characterize the polynomials $m_n$. If we define the $n$th *Witt polynomial* to be $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$, then 
+What we know about the polynomials $m_n$ from the abstract construction of Witt vector multiplication is the following.
+Let $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$. (These polynomials, the "Witt polynomials," are ubiquitous in the theory of Witt vectors.) Then,
 
 $$w_n(m_0, m_1, \ldots, m_n) = w_n(x_0, \ldots, x_n)w_n(y_0, \ldots, y_n),$$
 
@@ -115,16 +111,24 @@ that is,
 & = \ w_n\left(x_0, \ldots, x_n\right)w_n\left(y_0, \ldots, y_n\right).
 \end{align}
 
-Intuitively, it's not so hard to see why this should characterize the family of polynomials $m$: $m_n$ only appears once in the $n$th such equation as stated above, so we can solve for it. But there is a wrinkle. It appears with coefficient $p^n$ and we are working over a field $k$ of characteristic $p$. 
-So we need the insight that these polynomials $m_n$ should in fact be constructed as integer polynomials which are interpreted in $k$ as a final step, rather than being native $k$-polynomials.
+This turns out to completely characterize the polynomials $m_n$, and intuitively, it's not so hard to see why: $m_n$ only appears once in the $n$th such equation as stated above, so we can solve for it.
 
-Come back: some algebra to connect the equation above to the lemma.
+The multiplication lemma asks for a little more, namely, the leading terms of $m_n$. To get this, let's partially unfold the definition of $w_n$ above. We end up with something like
+
+\begin{align}
+& m_0(x_0, y_0)^{p^n} + p\[\cdots\] + p^nm_n(x_0, \ldots, x_n, y_0, \ldots, y_n) \newline
+& = \ (x_0^{p^n} + p\[\cdots\] + p^n x_n)(y_0^{p^n} + p\[\cdots\] + p^n y_n).
+\end{align}
+
+Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which can be canceled because we're in characteristic $p$. 
+
+Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot Z$ vanish and characteristic not-$p$ to cancel common factors of $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be integer polynomials, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
 
 
 <!-- Retitle -->
-# A recursive construction
+# Recursively constructing a Witt vector
 
-Let's come back to our [key lemma](#key-lemma) above. Here is the precise form we prove:
+Let's come back to [the statement](#existence-lemma) whose proof we deferred above. Here is the precise variant we prove:
 
 ---
 **Existence lemma**.
@@ -135,7 +139,7 @@ This is actually only one direction of our earlier claim, but it's the direction
 
 Let's write this out in coordinates:
 
-$$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{\*}$$
+$$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{*}$$
 
 Here $\cdot$ denotes Witt vector multiplication, so now our investigation into this operation will come in handy. The crucial consequence of the "multiplication lemma" from the previous section is that the constraint imposed by comparing $(n+1)$-st coefficients of $(\*)$ is polynomial. Specifically, it says that
 
@@ -146,7 +150,7 @@ Here $\cdot$ denotes Witt vector multiplication, so now our investigation into t
 \end{align}
 <!-- TODO: Finish -->
 which is polynomial of degree $p$ in $b_{n+1}$, since $v_0$ and therefore $v_0^{p^{n+1}}$ are nonzero. 
-This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closure of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(\*)$.
+This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
 
 This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
 
