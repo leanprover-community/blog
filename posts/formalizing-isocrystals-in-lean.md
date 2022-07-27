@@ -26,7 +26,7 @@ automorphism of that ring.  Let's backtrack to catch everyone up ....
 # Witt vectors and isocrystals
 
 Back in 2020, one of us (Rob), together with Johan Commelin, formalized the theory of Witt vectors in Lean.  The $p$-typical Witt 
-vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements of $R$, but equipped with a rather wild multipicative and additive
+vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements of $R$, but equipped with a rather wild multiplicative and additive
 structure (dependent on $p$) to make this set into a commutative ring.  The canonical example is the $p$-adic numbers, which are the Witt vectors
 of $\mathbb{Z}/p\mathbb{Z}$.
 
@@ -68,7 +68,7 @@ So, for the fraction field $K$ of the Witt vectors of an algebraically closed fi
 $ \\{ \varphi(b) / b : b \in K^\* \\}$
 of the nonzero elements 
 $K^\*$ ?
-Also, the cosests of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?  
+Also, the cosets of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?  
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker"](https://mathoverflow.net/users/14572/asker), you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
@@ -95,7 +95,7 @@ $$ x_{n+1}y_0^{p^{n+1}} + y_{n+1}x_0 ^{p^{n+1}} + f_n(x_0, \ldots, x_n, y_0, \ld
 
 ---
 
-The $n$th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
+The $n$-th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
 for each $n$ there is a polynomial $m_n$ such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
 
 What we know about the polynomials $m_n$ from the abstract construction of Witt vector multiplication is the following.
@@ -111,7 +111,7 @@ that is,
 & = \ w_n\left(x_0, \ldots, x_n\right)w_n\left(y_0, \ldots, y_n\right).
 \end{align}
 
-This turns out to completely characterize the polynomials $m_n$, and intuitively, it's not so hard to see why: $m_n$ only appears once in the $n$th such equation as stated above, so we can solve for it.
+This turns out to completely characterize the polynomials $m_n$, and intuitively, it's not so hard to see why: $m_n$ only appears once in the $n$-th such equation as stated above, so we can solve for it.
 
 The multiplication lemma asks for a little more, namely, the leading terms of $m_n$. To get this, let's partially unfold the definition of $w_n$ above. We end up with something like
 
@@ -120,7 +120,7 @@ The multiplication lemma asks for a little more, namely, the leading terms of $m
 & = \ (x_0^{p^n} + p\[\cdots\] + p^n x_n)(y_0^{p^n} + p\[\cdots\] + p^n y_n).
 \end{align}
 
-Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which again can be canceled because we're in characteristic $p$. 
+Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$-th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which again can be canceled because we're in characteristic $p$. 
 
 Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, interpreting them as polynomials over $k$ only before the final step.
 
