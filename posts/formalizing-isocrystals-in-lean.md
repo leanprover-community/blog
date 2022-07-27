@@ -19,7 +19,7 @@ make sure we chose this full generality of *semilinear* maps, maps $f:M \to N$ s
 
 It turns out that the standard use of semilinear maps in number theory is for *Frobenius-semilinearity*, semilinearity with
 respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ integral domain which is induced by the Frobenius
-automorphism of that ring.  Let's backtrack to catch everyone up ....
+automorphism of that domain.  Let's backtrack to catch everyone up ....
 
 <!-- TEASER_END -->
 
