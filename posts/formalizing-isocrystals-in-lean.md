@@ -149,7 +149,7 @@ Here $\cdot$ denotes Witt vector multiplication, so now our investigation into t
 
 which is polynomial of degree $p$ in $b_{n}$, since $v_0$ and therefore $v_0^{p^{n}}$ are nonzero. 
 This allows us to construct $b$ recursively, coefficient by coefficient. The base case is straightforward, since for any Witt vectors $x$ and $y$, 
-$ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_n$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_{n+1}$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
+$ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_{n-1}$. We invoke the algebraic closedness of $k$ to solve the above polynomial equation for $b_n$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
 
 This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
 
