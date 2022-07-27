@@ -43,7 +43,7 @@ vector space over $K$ equipped with a Frobenius-semilinear automorphism) is call
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
 *simple isocrystals* which we will not describe here.  Initially, we had the idea of testing out our semilinear maps API by stating
 this theorem.  It turned out, though, that the bare statement did not depend in an essential
-way on the mathematics we had built up.  And the full proof of the theorem seemed a bit hard given the current state of mathlib. For example, it relies on the classification of simple modules in the noncommutative setting as a one-line throwaway. It's left as an exercise for the reader.
+way on the mathematics we had built up.  And the full proof of the theorem seemed a bit hard given the current state of mathlib. For example, it relies on the classification of simple modules in the noncommutative setting as a one-line throwaway. We leave it as an exercise for the reader.
 
 # Semilinear automorphisms of a general field
 
@@ -163,7 +163,7 @@ Not only was it difficult to learn to work with Witt vectors;
 what's more, this barrier to entry means that there are few elementary expositions of mathematical subjects (such as isocrystals) that depend on them.
 We couldn't find the one-dimensional isocrystal classification, worked through as above, written down anywhere. 
 
-It's a cliché to say that the name "proof assistant" is a misnomer. Usually, formalizing a mathematical result is strictly harder than understanding it in the traditional way, and the computer just gets in the way. But we had the opposite experience proving this theorem. Working out the details of this argument on paper was difficult, and we were rarely sure that we were understanding a given statement correctly, or even that it was well formed. Seeing the confirmation from Lean that a theorem statement typechecked---and the back and forth with the system to write a type-correct statement---greatly helped us understand the mathematics. 
+It's a cliché to say that the name "proof assistant" is a misnomer. Usually, formalizing a mathematical result is strictly harder than proving it in the traditional manner---the computer just gets in the way. But we had the opposite experience proving this theorem. Working out the details of this argument on paper was difficult, and we were rarely sure that we were understanding a given statement correctly, or even that it was well formed. Seeing the confirmation from Lean that a theorem statement typechecked---and the back and forth with the system to write a type-correct statement---greatly helped us understand the mathematics. 
 
 And the proof-checking helped too. We mentioned above a wrinkle when proving the "multiplication lemma": some coefficients of the polynomial we were interested in vanish in characteristic $p$, so we had to work first with integer polynomials and later, after canceling a power of $p$, interpret them in the field $k$. This subtlety escaped us the first time around! 
 
