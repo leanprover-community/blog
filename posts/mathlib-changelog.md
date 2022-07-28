@@ -1,7 +1,7 @@
 ---
 author: "David Chanin"
 category: "Community projects"
-date: 2022-07-27 09:35:23 UTC+02:00
+date: 2022-07-28 09:35:23 UTC+02:00
 description: ""
 has_math: false
 link: ""
@@ -10,6 +10,8 @@ tags: ""
 title: Introducing Mathlib Changelog
 type: text
 ---
+
+![mathlib-changelog sample page](/images/changelog_lemma.png)
 
 Tldr; check out [mathlib-changelog.org](https://mathlib-changelog.org) to explore the historical changes to mathlib, and find out what happened to that lemma you were using.
 
@@ -48,6 +50,6 @@ The website search is all handled on the frontend. It just downloads a full list
 
 If there’s anything the changelog is missing, or if you have any ideas for improvements, open an issue or pull request in the [GitHub repo](https://github.com/chanind/mathlib-changelog). Contributions are welcome!
 
-## Thank you to the mathlib community
+## Thank you to the mathlib community!
 
 Thank you to everyone on Zulip who tried out the changelog, found bugs, offered suggestions, and helped brainstorm ideas for how this can work. This includes Alex Best, Damiano Testa, Eric Wieser, Floris van Doorn, Heather Macbeth, Johan Commelin, Kevin Buzzard, Kyle Miller, and others!
