@@ -1,7 +1,7 @@
 ---
 author: "David Chanin"
 category: "Community projects"
-date: 2022-07-29 09:35:23 UTC+02:00
+date: 2022-07-27 09:35:23 UTC+02:00
 description: ""
 has_math: false
 link: ""
@@ -17,9 +17,9 @@ Tldr; check out [mathlib-changelog.org](https://mathlib-changelog.org) to explor
 
 ## A changelog for mathlib
 
-As a beginner in the world of Lean and mathlib (and formal math in general), once I started branching out from the offical tutorials and the excellent [Natural Numbers Game](https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/) and started looking at proofs online that I kept getting confusing errors, even when typing verbatim what I would see on the screen. Searching on Google didn't help, and I often couldn’t find any reference to some of the definitions and lemmas I was seeing in the mathlib docs.
+As a beginner in the world of Lean and mathlib (and formal math in general), once I started branching out from the offical tutorials and the excellent [Natural Numbers Game](https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/) and started looking at proofs online I found that I kept getting confusing errors, even when typing verbatim what I would see on the screen. Searching on Google didn't help, and I often couldn’t find any reference to some of the definitions and lemmas I was seeing in the mathlib docs.
 
-Disoriented, I eventually stumbled onto the amazing [Leanprover Community Zulip](https://leanprover.zulipchat.com/) chat where I learned that mathlib changes very fast, so it’s common for lemmas and theorems to be added and removed all the time. This means mathlib can improve at lightning speed, but also means that content created even a few months ago might not work with new versions of Mathlib. As a beginner, it can be especially confusing to see lemmas and definitions used successfully in a proof in a GitHub repo or YouTube video, but then get errors when I try out the same techniques in my own projects. After discussing on Zulip the pros and cons of ideas for versioning or maintaining an official changelog, it seemed like the most practical path forward would be to build a tool to automatically extract a searchable changelog from the mathlib git history. Or it could be because I work as a software engineer, so somehow my solution to every problem is to build more software...
+Disoriented, I eventually stumbled onto the amazing [Leanprover Community Zulip](https://leanprover.zulipchat.com/) chat where I learned that mathlib changes very fast, so it’s common for lemmas and theorems to be added and removed all the time. This means mathlib can improve at lightning speed, but also means that content created even a few months ago might not work with new versions of Mathlib. After discussing on Zulip the pros and cons of ideas for versioning or maintaining an official changelog, it seemed like the most practical path forward would be to build a tool to automatically extract a searchable changelog from the mathlib git history. Or it could be because I work as a software engineer, so somehow my solution to every problem is to build more software...
 
 The result is [mathlib-changelog.org](https://mathlib-changelog.org), a tool which keeps track of changes to mathlib, and lets you search for any `lemma`, `theorem`, `def`, `abbreviation`, `structure`, or `inductive` which was part of mathlib at any point in the past and track which commits may have modified it. The hope is that this will make it easier to figure out what happened when a theorem you’re using disappears, and what the replacement is.
 
