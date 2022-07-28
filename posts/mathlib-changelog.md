@@ -13,6 +13,7 @@ type: text
 
 Tldr; check out [mathlib-changelog.org](https://mathlib-changelog.org) to explore the historical changes to Mathlib, and find out what happened to that lemma you were using.
 
+<!-- TEASER_END -->
 
 ## A Changelog for Mathlib
 As a beginner in the world of Lean and Mathlib (and formal math in general), I found that when I try to follow along with tutorials I find online that I’d often get errors when typing verbatim what I would see on the screen. Searching on Google wouldn’t help, and I often couldn’t find any reference to some of the definitions and lemmas I was seeing in the Mathlib docs.
