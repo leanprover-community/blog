@@ -36,13 +36,13 @@ While building this, I had a few goals for the project:
 - It should stay up to date with mathlib automatically
 - It should be fully open-source
 
-To accomplish this, the project uses a GitHub repo as its main “database” containing the current state of the changelog in both JSON and TXT formats. The GitHub repo updates itself nightly on a cron using GitHub actions to import new changes from mathlib.
+To accomplish this, the project uses a GitHub repo as its main “database” containing the current state of the changelog in both JSON and TXT formats. The GitHub repo updates itself nightly on a cron using GitHub Actions to import new changes from mathlib.
 
-The main technical challenge of building the changelog is how to extract all the relevant changes from every commit to mathlib, and do it fast enough to run in a GitHub action. Running a full Lean environment and parsing every commit, while it would be the most accurate (and awesome) solution, isn’t feasible because it’s too slow. mathlib has over 14,000 commits, and Lean takes at least a few seconds to load mathlib, meaning a faster solution was needed.
+The main technical challenge of building the changelog is how to extract all the relevant changes from every commit to mathlib, and do it fast enough to run in a GitHub Action. Running a full Lean environment and parsing every commit, while it would be the most accurate (and awesome) solution, isn’t feasible because it’s too slow. mathlib has over 14,000 commits, and Lean takes 30+ seconds to load mathlib, meaning a faster solution was needed.
 
 The solution I settled on was to use Python and just scan through each modified file in each commit as a string and keep track of which tracked keywords are present. This isn’t guaranteed to catch everything, but it seems to work surprisingly well.
 
-The website itself is a static site built using NextJS generated from the JSON version of the changelog in the GitHub repo. NextJS has the added benefit of being able to lazily generate static pages. There are over 100,000 pages on the changelog, so generating and uploading them each up-front would take too long to be feasible in a GitHub action (I tried).
+The website itself is a static site built using NextJS generated from the JSON version of the changelog in the GitHub repo. NextJS has the added benefit of being able to lazily generate static pages. There are over 100,000 pages on the changelog, so generating and uploading them each up-front would take too long to be feasible in a GitHub Action (I tried).
 
 The website search is all handled on the frontend. It just downloads a full list of every item in the changelog and does full-text search locally in the browser. It’s not the most advanced search in the world, but being run locally at least means it’s extremely fast!
 
