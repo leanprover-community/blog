@@ -17,7 +17,7 @@ Tldr; check out [mathlib-changelog.org](https://mathlib-changelog.org) to explor
 
 <!-- TEASER_END -->
 
-## A changelog for mathlib
+# A changelog for mathlib
 
 As a beginner in the world of Lean and mathlib (and formal math in general), once I started branching out from the [offical tutorials](https://github.com/leanprover-community/tutorials) and the excellent [Natural Number Game](https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/) and started looking at proofs online, I found that I kept getting confusing errors, even when typing verbatim what I would see on the screen. Searching on Google didn't help, and I often couldn’t find any reference to some of the definitions and lemmas I was seeing in the mathlib docs.
 
