@@ -25,7 +25,7 @@ Disoriented, I eventually stumbled onto the amazing [Leanprover Community Zulip]
 
 The result is [mathlib-changelog.org](https://mathlib-changelog.org), a tool which keeps track of changes to mathlib, and lets you search for any `lemma`, `theorem`, `def`, `abbreviation`, `structure`, or `inductive` which was part of mathlib at any point in the past and track which commits may have modified it. The hope is that this will make it easier to figure out what happened when a theorem you’re using disappears, and what the replacement is.
 
-The rest of this post will talk about the engineering behind how this works. And if you have ideas for improvements, contributions are welcome!
+The rest of this post will talk about the engineering behind how this works.
 
 # How it works
 
