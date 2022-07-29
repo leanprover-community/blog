@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Mathlib community)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/mathlib-community.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Sun, 17 Jul 2022 22:30:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Completion of the Liquid Tensor Experiment</title><link>https://leanprover-community.github.io/blog/posts/lte-final/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;We are proud to announce that as of 15:46:13 (EST) on Thursday, July 14 2022 the Liquid Tensor Experiment has been
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts by Mathlib community)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/authors/mathlib-community.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Fri, 29 Jul 2022 14:24:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Completion of the Liquid Tensor Experiment</title><link>https://leanprover-community.github.io/blog/posts/lte-final/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;We are proud to announce that as of 15:46:13 (EST) on Thursday, July 14 2022 the Liquid Tensor Experiment has been
 &lt;a href="https://github.com/leanprover-community/lean-liquid/commits/completed"&gt;completed&lt;/a&gt;.
 A year and a half after the
 &lt;a href="https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/"&gt;challenge&lt;/a&gt;
@@ -14,80 +14,7 @@ and
 &lt;p&gt;For more information about Lean and formalization of mathematics, see the
 &lt;a href="https://leanprover-community.github.io/"&gt;Lean community website&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/lte-final/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/lte-final/</guid><pubDate>Fri, 15 Jul 2022 13:00:00 GMT</pubDate></item><item><title>This month in mathlib (May 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-may-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Model theory&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13980"&gt;PR #13980&lt;/a&gt; proves that any theory with infinite models has arbitrarily large models&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13723"&gt;PR #13723&lt;/a&gt; and &lt;a href="https://github.com/leanprover-community/mathlib/pull/13982"&gt;PR #13982&lt;/a&gt; prove the Löwenheim–Skolem theorem&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Category theory and homological algebra&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13882"&gt;PR #13882&lt;/a&gt; proves that simple objects are indecomposable&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13707"&gt;PR #13707&lt;/a&gt; proves that a left rigid category is monoidal closed and that functors from a groupoid to a rigid category is again a rigid category.&lt;/li&gt;
-&lt;li&gt;Homology is still making progress, both in concrete setups such as &lt;a href="https://github.com/leanprover-community/mathlib/pull/12622"&gt;PR #12622&lt;/a&gt; which develops the API for complexes of modules, and in abelian categories with &lt;a href="https://github.com/leanprover-community/mathlib/pull/14009"&gt;PR #14009&lt;/a&gt; bringing short exact sequences from the Liquid Tensor Experiment.&lt;/li&gt;
-&lt;li&gt;In algebraic topology, &lt;a href="https://github.com/leanprover-community/mathlib/pull/14304"&gt;PR #14304&lt;/a&gt; defines the nerve of a category as a simplicial set. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Algebra&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13414"&gt;PR #13414&lt;/a&gt; starts the study of torsion ideals. This is a step towards the long awaited classification of finite type modules over principal ideal domains, stay tuned!&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13784"&gt;PR #13784&lt;/a&gt; starts the formalization of Laurent Polynomials. Many more PRs followed or are on their way.&lt;/li&gt;
-&lt;li&gt;The work to remove unneeded commutativity assumptions continued, in particular in &lt;a href="https://github.com/leanprover-community/mathlib/pull/13966"&gt;PR #13966&lt;/a&gt; and &lt;a href="https://github.com/leanprover-community/mathlib/pull/13865"&gt;PR #13865&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Matrices also got some work, both on the algebraic side with &lt;a href="https://github.com/leanprover-community/mathlib/pull/13845"&gt;PR #13845&lt;/a&gt; proving that invertible matrices over a ring with invariant basis number are square, and the analytical side with &lt;a href="https://github.com/leanprover-community/mathlib/pull/13520"&gt;PR #13520&lt;/a&gt; defining the matrix exponential. In order to make this easier to work with, mathlib now has two different normed algebra structures on matrices, the $L^\infty$ operator norm from &lt;a href="https://github.com/leanprover-community/mathlib/pull/13518"&gt;PR #13518&lt;/a&gt; and the frobenius norm from &lt;a href="https://github.com/leanprover-community/mathlib/pull/13497"&gt;PR #13497&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;In representation theory, &lt;a href="https://github.com/leanprover-community/mathlib/pull/13685"&gt;PR #13685&lt;/a&gt; proves the category of &lt;code&gt;Rep k G&lt;/code&gt; of representations of a group &lt;code&gt;G&lt;/code&gt; on &lt;code&gt;k&lt;/code&gt;-vector spaces is symmetric monoidal, and &lt;a href="https://github.com/leanprover-community/mathlib/pull/13782"&gt;PR #13782&lt;/a&gt; proves it is linear. &lt;a href="https://github.com/leanprover-community/mathlib/pull/13740"&gt;PR #13740&lt;/a&gt; introduces the category of finite dimensional representations. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Number theory&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The general theory of Dedekind domains progressed with &lt;a href="https://github.com/leanprover-community/mathlib/pull/13067"&gt;PR #13067&lt;/a&gt; about the Chinese remainder theorem and
-   &lt;a href="https://github.com/leanprover-community/mathlib/pull/13462"&gt;PR #13462&lt;/a&gt; which extends the v-adic valuation on a Dedekind domain to its field of fractions K and defines the completion of K with respect to this valuation, as well as its ring of integers, and provides some topological instances.&lt;/li&gt;
-&lt;li&gt;On the concrete examples side, &lt;a href="https://github.com/leanprover-community/mathlib/pull/13585"&gt;PR #13585&lt;/a&gt; computes the ring of integers of a $p^ n$-th cyclotomic extension of $ℚ$. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Functional analysis and geometry:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/9862"&gt;PR #9862&lt;/a&gt; finished the Banach-Alaoglu theorem.&lt;/li&gt;
-&lt;li&gt;A long series of PRs culminated in &lt;a href="https://github.com/leanprover-community/mathlib/pull/7288"&gt;PR #7288&lt;/a&gt; proving several versions of the geometric Hahn Banach theorem.&lt;/li&gt;
-&lt;li&gt;Also related to convexity, there had been progress on locally convex topological vector spaces, including &lt;a href="https://github.com/leanprover-community/mathlib/pull/13547"&gt;PR #13547&lt;/a&gt; characterizing the topology induced by seminorms in terms of neighborhoods of zero, and the introduction of uniformly convex normed spaces in 
-   &lt;a href="https://github.com/leanprover-community/mathlib/pull/13480"&gt;PR #13480&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;The theory of vector bundles over topological spaces progressed with &lt;a href="https://github.com/leanprover-community/mathlib/pull/14361"&gt;PR #14361&lt;/a&gt; and
-   &lt;a href="https://github.com/leanprover-community/mathlib/pull/8545"&gt;PR #8545&lt;/a&gt; building the pullback of a vector bundle under a continuous map.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Integration theory and calculus&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13540"&gt;PR #13540&lt;/a&gt; defines the convolution of two functions. It proves that when one of the functions has compact support and is $C^n$ and the other function is locally integrable, the convolution is $C^n$ and its total derivative can be expressed as a convolution (this requires to generalize the usual notion of convolution which would be enough only for partial derivatives). This PR also proves that when taking the convolution with functions that "tend to the Dirac delta function", the convolution tends to the original function. This all comes from the sphere eversion project.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13179"&gt;PR #13179&lt;/a&gt; proves comparison lemmas between finite sums and integrals.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14129"&gt;PR #14129&lt;/a&gt; ensure that the asymptotic relations &lt;code&gt;is_o&lt;/code&gt;/&lt;code&gt;is_O&lt;/code&gt; work in &lt;code&gt;calc&lt;/code&gt; blocks.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Complex analysis&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13178"&gt;PR #13178&lt;/a&gt; proves the &lt;a href="https://en.wikipedia.org/wiki/Phragm%C3%A9n%E2%80%93Lindel%C3%B6f_principle"&gt;Phragmen-Lindelöf principle&lt;/a&gt; for some shapes in the complex plane.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13000"&gt;PR #13000&lt;/a&gt; continues the study of the $\Gamma$ function, proving it is complex analytic (away from its poles at non-positive integrers of course).&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/12892"&gt;PR #12892&lt;/a&gt; introduces torus integrals, paving the way towards the higher-dimensional Cauchy formula.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Probability theory&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In elementary probabilities, &lt;a href="https://github.com/leanprover-community/mathlib/pull/13484"&gt;PR #13484&lt;/a&gt; use the counting measure to reformulate earliers contributions.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/13630"&gt;PR #13630&lt;/a&gt; proves the optional stopping theorem from martingale theory.&lt;/li&gt;
-&lt;li&gt;After a long series of PRs including &lt;a href="https://github.com/leanprover-community/mathlib/pull/13912"&gt;PR #13912&lt;/a&gt; which defines the variance of a random variable, and proves its basic properties, 
-   and &lt;a href="https://github.com/leanprover-community/mathlib/pull/14024"&gt;PR #14024&lt;/a&gt; which defines identically distributed random variables, we finally got
-   &lt;a href="https://github.com/leanprover-community/mathlib/pull/13690"&gt;PR #13690&lt;/a&gt; which proves the strong law of large numbers!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note also that, with &lt;a href="https://github.com/leanprover-community/mathlib/pull/14237"&gt;PR #14237&lt;/a&gt; we finally completed the long quest to provide module docstring for all math files in mathlib.&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-may-2022/</guid><pubDate>Tue, 14 Jun 2022 13:35:21 GMT</pubDate></item><item><title>This month in mathlib (Apr 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-apr-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;In April 2022 there were 661 PRs merged into mathlib. We list some of the highlights below.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-may-2022/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-may-2022/</guid><pubDate>Tue, 14 Jun 2022 13:35:21 GMT</pubDate></item><item><title>This month in mathlib (Apr 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-apr-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;In April 2022 there were 661 PRs merged into mathlib. We list some of the highlights below.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-apr-2022/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-apr-2022/</guid><pubDate>Sun, 01 May 2022 08:35:42 GMT</pubDate></item><item><title>This month in mathlib (Mar 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-mar-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;March 2022 saw a record number of new contributions to mathlib: 682 PRs were merged, obliterating the old record of 565 merged PRs.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-mar-2022/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-mar-2022/</guid><pubDate>Tue, 05 Apr 2022 03:48:58 GMT</pubDate></item><item><title>This month in mathlib (Feb 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-feb-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;February 2022 saw 501 commits to mathlib.
 In this post we highlight some of these contributions.&lt;/p&gt;
