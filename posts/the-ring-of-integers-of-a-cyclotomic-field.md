@@ -15,6 +15,8 @@ discriminant of cyclotomic fields. This is an important result, usually treated 
 graduate course in number theory. In this post we would like to explain why it is an important
 result, and briefly explain how we proved it.
 
+<!-- TEASER_END -->
+
 Number fields, finite extensions of $\mathbb{Q}$, are fundamental objects in modern number theory.
 To give a simple application, let us consider the equation $x^2 + 2 = y^3$, where we are
 looking for integer solutions. It's not easy to treat this equation directly in $\mathbb{Z}$, since

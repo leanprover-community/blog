@@ -14,6 +14,8 @@ type: text
 
 In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.
 
+<!-- TEASER_END -->
+
 * Model theory
      * [PR #13980](https://github.com/leanprover-community/mathlib/pull/13980) proves that any theory with infinite models has arbitrarily large models
      * [PR #13723](https://github.com/leanprover-community/mathlib/pull/13723) and [PR #13982](https://github.com/leanprover-community/mathlib/pull/13982) prove the Löwenheim–Skolem theorem
