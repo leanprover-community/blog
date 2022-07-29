@@ -44,7 +44,7 @@ The main technical challenge of building the changelog is how to extract all the
 
 The solution I settled on was to use Python and just scan through each modified file in each commit as a string and keep track of which tracked keywords are present. This isn’t guaranteed to catch everything, but it seems to work surprisingly well.
 
-The website itself is a static site built using NextJS generated from the JSON version of the changelog in the GitHub repo. NextJS has the added benefit of being able to lazily generate static pages. There are over 100,000 pages on the changelog, so generating and uploading them each up-front would take too long to be feasible in a GitHub Action (I tried).
+The website itself is a static site built using [NextJS](https://nextjs.org/) and generated from the JSON version of the changelog in the GitHub repo. NextJS has the added benefit of being able to lazily generate static pages. There are over 100,000 pages on the changelog, so generating and uploading them each up-front would take too long to be feasible in a GitHub Action (I tried).
 
 The website search is all handled on the frontend. It just downloads a full list of every item in the changelog and does full-text search locally in the browser. It’s not the most advanced search in the world, but being run locally at least means it’s extremely fast!
 
