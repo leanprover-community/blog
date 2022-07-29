@@ -27,7 +27,7 @@ The result is [mathlib-changelog.org](https://mathlib-changelog.org), a tool whi
 
 The rest of this post will talk about the engineering behind how this works. And if you have ideas for improvements, contributions are welcome!
 
-## How it works
+# How it works
 
 While building this, I had a few goals for the project:
 
