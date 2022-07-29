@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducing Mathlib Changelog | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/mathlib-changelog/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Introducing Mathlib Changelog | Lean community blog">
+<meta name="author" content="David Chanin">
+<link rel="prev" href="../lte-final/" title="Completion of the Liquid Tensor Experiment" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Introducing Mathlib Changelog">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/mathlib-changelog/">
+<meta property="og:description" content="Tldr; check out mathlib-changelog.org to explore the historical changes to mathlib, and find out what happened to that lemma you were using.
+
+
+A changelog for mathlib
+As a beginner in the world of Lea">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-07-28T09:35:23+02:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Introducing Mathlib Changelog</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../authors/david-chanin/">David Chanin</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-07-28T09:35:23+02:00" itemprop="datePublished" title="2022-07-28 09:35">2022-07-28 09:35</time></a>
+            </p>
+                    <p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p><img alt="mathlib-changelog sample page" src="../../images/changelog_lemma.png"></p>
+<p>Tldr; check out <a href="https://mathlib-changelog.org">mathlib-changelog.org</a> to explore the historical changes to mathlib, and find out what happened to that lemma you were using.</p>
+<!-- TEASER_END -->
+
+<h2>A changelog for mathlib</h2>
+<p>As a beginner in the world of Lean and mathlib (and formal math in general), once I started branching out from the <a href="https://github.com/leanprover-community/tutorials">offical tutorials</a> and the excellent <a href="https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/">Natural Number Game</a> and started looking at proofs online, I found that I kept getting confusing errors, even when typing verbatim what I would see on the screen. Searching on Google didn't help, and I often couldn’t find any reference to some of the definitions and lemmas I was seeing in the mathlib docs.</p>
+<p>Disoriented, I eventually stumbled onto the amazing <a href="https://leanprover.zulipchat.com/">Leanprover Community Zulip</a> chat where I learned that mathlib changes very fast, so it’s common for lemmas and theorems to be added and removed all the time. This means mathlib can improve at lightning speed, but also means that content created even a few months ago might not work with new versions of mathlib. After discussing on Zulip the pros and cons of ideas for versioning or maintaining an official changelog, it seemed like the most practical path forward would be to build a tool to automatically extract a searchable changelog from the mathlib git history. Or it could be because I work as a software engineer, so somehow my solution to every problem is to build more software...</p>
+<p>The result is <a href="https://mathlib-changelog.org">mathlib-changelog.org</a>, a tool which keeps track of changes to mathlib, and lets you search for any <code>lemma</code>, <code>theorem</code>, <code>def</code>, <code>abbreviation</code>, <code>structure</code>, or <code>inductive</code> which was part of mathlib at any point in the past and track which commits may have modified it. The hope is that this will make it easier to figure out what happened when a theorem you’re using disappears, and what the replacement is.</p>
+<p>The rest of this post will talk about the engineering behind how this works.</p>
+<h2>How it works</h2>
+<p>While building this, I had a few goals for the project:</p>
+<ul>
+<li>It should be free to run</li>
+<li>It should not require a backend</li>
+<li>It should have a search capability</li>
+<li>Google should be able to index all pages</li>
+<li>It should stay up to date with mathlib automatically</li>
+<li>It should be fully open-source</li>
+</ul>
+<p>To accomplish this, the project uses a GitHub repo as its main “database” containing the current state of the changelog in both JSON and TXT formats. The GitHub repo updates itself nightly on a cron using GitHub Actions to import new changes from mathlib.</p>
+<p>The main technical challenge of building the changelog is how to extract all the relevant changes from every commit to mathlib, and do it fast enough to run in a GitHub Action. Running a full Lean environment and parsing every commit, while it would be the most accurate (and awesome) solution, isn’t feasible because it’s too slow. mathlib has over 14,000 commits, and Lean takes 30+ seconds to load mathlib, meaning a faster solution was needed.</p>
+<p>The solution I settled on was to use Python and just scan through each modified file in each commit as a string and keep track of which tracked keywords are present. This isn’t guaranteed to catch everything, but it seems to work surprisingly well.</p>
+<p>The website itself is a static site built using <a href="https://nextjs.org/">NextJS</a> and generated from the JSON version of the changelog in the GitHub repo. NextJS has the added benefit of being able to lazily generate static pages. There are over 100,000 pages on the changelog, so generating and uploading them each up-front would take too long to be feasible in a GitHub Action (I tried).</p>
+<p>The website search is all handled on the frontend. It just downloads a full list of every item in the changelog and does full-text search locally in the browser. It’s not the most advanced search in the world, but being run locally at least means it’s extremely fast!</p>
+<p>If there’s anything the changelog is missing, or if you have any ideas for improvements, open an issue or pull request in the <a href="https://github.com/chanind/mathlib-changelog">GitHub repo</a>. Contributions are welcome!</p>
+<h2>Thank you to the mathlib community!</h2>
+<p>Thank you to everyone on Zulip who tried out the changelog, found bugs, offered suggestions, and helped brainstorm ideas for how this can work. This includes Alex Best, Damiano Testa, Eric Wieser, Floris van Doorn, Heather Macbeth, Johan Commelin, Kevin Buzzard, Kyle Miller, and others!</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../lte-final/" rel="prev" title="Completion of the Liquid Tensor Experiment">Previous post</a>
+            </li>
+        </ul></nav></aside></article></main><footer id="footer"><p>Contents © 2022         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
