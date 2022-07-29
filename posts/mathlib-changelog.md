@@ -50,6 +50,6 @@ The website search is all handled on the frontend. It just downloads a full list
 
 If there’s anything the changelog is missing, or if you have any ideas for improvements, open an issue or pull request in the [GitHub repo](https://github.com/chanind/mathlib-changelog). Contributions are welcome!
 
-## Thank you to the mathlib community!
+# Thank you to the mathlib community!
 
 Thank you to everyone on Zulip who tried out the changelog, found bugs, offered suggestions, and helped brainstorm ideas for how this can work. This includes Alex Best, Damiano Testa, Eric Wieser, Floris van Doorn, Heather Macbeth, Johan Commelin, Kevin Buzzard, Kyle Miller, and others!
