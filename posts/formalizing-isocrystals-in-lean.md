@@ -11,7 +11,7 @@ title: Classification of one-dimensional isocrystals
 type: text
 ---
 
-Last year, there was a [big mathlib refactor](https://leanprover-community.github.io/blog/posts/semilinear-maps/) to replace linear maps throughout the library with  *semilinear maps*,
+Last year, there was a [big mathlib refactor](link://filename/posts/semilinear-maps.md) to replace linear maps throughout the library with  *semilinear maps*,
 a more abstract concept which, importantly, unifies linear and conjugate-linear maps.
 
 But this is not the full extent of the generalization!  Our number theorist friends here in mathlib told us that we should
@@ -27,12 +27,12 @@ automorphism of that domain.  Let's backtrack to catch everyone up...
 
 Back in 2020, one of us (Rob), together with Johan Commelin, [formalized the theory of Witt vectors](https://arxiv.org/abs/2010.02595) in Lean.  The $p$-typical Witt 
 vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements of $R$, but equipped with a rather wild multiplicative and additive
-structure (dependent on $p$) to make this set into a commutative ring.  The canonical example is the $p$-adic numbers, which are the Witt vectors
+structure (dependent on $p$) to make this set into a commutative ring.  The canonical example is the $p$-adic integers, which are the Witt vectors
 of $\mathbb{Z}/p\mathbb{Z}$.
 
 A ring $R$ of characteristic $p$ has an endomorphism, constructed by sending each element $x$ to $x ^ p$.  $R$ is called *perfect* if this
 endomorphism is an automorphism.  And under mild further conditions ($R$ an integral domain) this automorphism "lifts" <!-- check terminology -->
-to an automorphism of the field of fractions of $\mathbb{W}(R)$, which we will denote $\varphi$.  It's *Frobenius-semilinearity*, i.e. semilinearity with respect $\varphi$, that the number theorists
+to an automorphism of the field of fractions of $\mathbb{W}(R)$, which we will denote $\varphi$.  It's *Frobenius-semilinearity*, i.e. semilinearity with respect to $\varphi$, that the number theorists
 want to consider! 
 
 The fundamental result here is a classification theorem for
@@ -75,7 +75,7 @@ At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/ques
 
 So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are [precisely](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L58) the sequences whose first element is nonzero.
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is [of the form $p^m w$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117) for some $m\in\mathbb{N}$ and some $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is [of the form](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117)  $p^m w$ for some unique $m\in\mathbb{N}$ and some unique $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
 <a name="existence-lemma"></a>
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
