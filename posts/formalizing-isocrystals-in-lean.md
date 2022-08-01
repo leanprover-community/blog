@@ -73,22 +73,22 @@ Also, the cosets of this subgroup in $K^*$ are precisely in bijection with the i
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker,"](https://mathoverflow.net/users/14572/asker) you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
-So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are [precisely](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L58) the sequences whose first element is nonzero.
+So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are [precisely](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L58) the sequences whose first element is nonzero.
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is [of the form](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117)  $p^m w$ for some unique $m\in\mathbb{N}$ and some unique $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
+The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is [of the form](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117)  $p^m w$ for some unique $m\in\mathbb{N}$ and some unique $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
 <a name="existence-lemma"></a>
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K$ (and it turns out that $b \in \mathbb{W}(k)$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
 
 
 But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the 
-[associated isocrystal](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/isocrystal.lean#L150):
+[associated isocrystal](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/isocrystal.lean#L150):
 $K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
 
 # Multiplication of Witt vectors
 
 Given the structure of the statement we're working toward, it's not surprising that we'll need to dive into how multiplication on Witt vectors works. In this section we'll prove the
-[following lemma](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/mul_coeff.lean#L275):
+[following lemma](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/mul_coeff.lean#L275):
 
 ---
 **Multiplication lemma.**
@@ -100,12 +100,12 @@ $$ x_{n}y_0^{p^{n}} + y_{n}x_0 ^{p^{n}} + f_n(x_0, \ldots, x_{n-1}, y_0, \ldots,
 
 The $n$-th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
 for each $n$ there is a
-[polynomial $m_n$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/defs.lean#L128)
+[polynomial $m_n$](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/defs.lean#L128)
 such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
 
 What we know about the polynomials $m_n$ from the abstract construction of Witt vector multiplication is the following.
 Let $w_n(x_0, \ldots, x_n) = x_0^{p^n} + p x_1^{p^{n-1}} + \ldots + p^n x_n$. (These polynomials, 
-the "[Witt polynomials](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/witt_polynomial.lean#L75)," 
+the "[Witt polynomials](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/witt_polynomial.lean#L75)," 
 are ubiquitous in the theory of Witt vectors.) Then,
 
 $$w_n(m_0, m_1, \ldots, m_n) = w_n(x_0, \ldots, x_n)w_n(y_0, \ldots, y_n),$$
@@ -130,14 +130,14 @@ The multiplication lemma asks for a little more, namely, the leading terms of $m
 Thought experiment: cancel all three $p\[\cdots\]$ because we're in characteristic $p$. Then subtract the $p^n$-th power of the identity $m_0(x_0, y_0) = x_0y_0$. Then both sides have a common factor of $p^n$, which you can divide through. This gives exactly the multiplication lemma above, except for one last term $p^n x_n y_n$, which again can be canceled because we're in characteristic $p$. 
 
 Unfortunately there's a flaw in this thought experiment. We're alternatingly using characteristic $p$ to make terms of the form $p\cdot X$ vanish and characteristic not-$p$ to divide through by $p$. This argument can be made to work, but it requires a careful restructuring of the idea to frontload the characteristic-zero operations. We make the polynomials $m_n$ be polynomials over $\mathbb{Z}$, and perform the first part of the argument in that setting, 
-[interpreting them as polynomials over $k$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/mul_coeff.lean#L234)
+[interpreting them as polynomials over $k$](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/mul_coeff.lean#L234)
  only before the final step.
 
 
 # Recursively constructing a Witt vector
 
 Let's come back to [the statement](#existence-lemma) whose proof we deferred above. Here is the 
-[precise variant](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L202)
+[precise variant](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L202)
 we prove:
 
 ---
@@ -161,12 +161,12 @@ Here $\cdot$ denotes Witt vector multiplication, so now our investigation into t
 
 which is polynomial of degree $p$ in $b_{n}$, since $v_0$ and therefore $v_0^{p^{n}}$ are nonzero. 
 This allows us to 
-[construct $b$ recursively](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L181), 
+[construct $b$ recursively](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L181), 
 coefficient by coefficient. 
-The [base case](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L135)
+The [base case](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L135)
 is straightforward, since for any Witt vectors $x$ and $y$, 
 $ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_{n-1}$.
-We [invoke the algebraic closedness of $k$](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L95)
+We [invoke the algebraic closedness of $k$](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L95)
 to solve the above polynomial equation for $b_n$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
 
 This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
@@ -202,7 +202,7 @@ class isocrystal (V : Type*) [add_comm_group V]
 ```
 
 Check out the final statement of the classification theorem in mathlib 
-[here](https://github.com/leanprover-community/mathlib/blob/lean-3.44.1/src/ring_theory/witt_vector/isocrystal.lean#L163).
+[here](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/isocrystal.lean#L163).
 
 
 [^1]: Ju. I. Manin. [Theory of commutative formal groups over fields of finite characteristic.](https://doi.org/10.1070%2FRM1963v018n06ABEH001142) 
