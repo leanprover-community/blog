@@ -63,7 +63,8 @@ print("---\nauthor: 'Mathlib community'\ncategory: 'month-in-mathlib'\ndate: " +
         str(now) + "\ndescription: ''\nhas_math: true\nlink: ''\nslug: month-in-mathlib-" +
         monthnames_lc[args.month] + "-" + str(args.year) +
         "\ntags: ''\ntitle: This month in mathlib (" + monthnames_uc[args.month]
-        + " " + str(args.year) + ")\ntype: text\n---\n", file=this_month_file)
+        + " " + str(args.year) + ")\ntype: text\n---\nThis month there were " +
+        number_of_commits + " PRs merged into mathlib.\n\n<!-- TEASER_END -->", file=this_month_file)
 
 for commit in sorted_commits:
     if commit.feature:
