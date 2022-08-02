@@ -11,8 +11,9 @@ title: This month in mathlib (Jul 2022)
 type: text
 ---
 
-[PR #15085](https://github.com/leanprover-community/mathlib/pull/15085) *: add lemmas about sigma types 
-[PR #15609](https://github.com/leanprover-community/mathlib/pull/15609) */partition_of_unity: more lemmas based on the partition of unity 
+* [PR #15085](https://github.com/leanprover-community/mathlib/pull/15085) *: add lemmas about sigma types 
+* [PR #15609](https://github.com/leanprover-community/mathlib/pull/15609) */partition_of_unity: more lemmas based on the partition of unity 
+
 [PR #15744](https://github.com/leanprover-community/mathlib/pull/15744) algebra/algebra/subalgebra/basic: Swap arguments of `map` and `comap` 
 [PR #15556](https://github.com/leanprover-community/mathlib/pull/15556) algebra/big_operators: add lemmas about sum of disjoint multiset 
 [PR #15095](https://github.com/leanprover-community/mathlib/pull/15095) algebra/category: forgetful functors from modules reflect limits 
