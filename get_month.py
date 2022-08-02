@@ -23,7 +23,7 @@ def extract_msg_title(title):
     start = title.index(')') # this is totally stupid, but some people forget the colon
     words = title.split()
     end = len(words[-1])
-    return title[start+2:-end].lstrip()
+    return title[start+2:-end].strip()
 
 class mathlib_commit():
     def __init__(self, commit):
@@ -55,7 +55,7 @@ number_of_commits = len(mathlib_commits)
 
 sorted_commits = sorted(mathlib_commits, key=lambda commit: commit.folder)
 
-this_month_file = open("this_month_" + str(args.year) + "_" + monthnames_lc[args.month], "a")
+this_month_file = open("month-in-mathlib-" + monthnames_lc[args.month] + "_" + str(args.year) + ".md", "a")
 
 print("Number of commits: " + str(number_of_commits))
 
@@ -67,6 +67,6 @@ print("---\nauthor: 'Mathlib community'\ncategory: 'month-in-mathlib'\ndate: " +
 
 for commit in sorted_commits:
     if commit.feature:
-        print("[PR #" + commit.pr +
+        print("* [PR #" + commit.pr +
                 "](https://github.com/leanprover-community/mathlib/pull/" +
                 commit.pr + ")" + " " + commit.folder + ": " + commit.msg_title, file=this_month_file)
