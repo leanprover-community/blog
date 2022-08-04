@@ -81,7 +81,7 @@ The $p$-typical Witt vector $(\ldots, 0,1,0)$ is referred to in $\mathbb{W}(k)$ 
 to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. In fact, every nonzero Witt vector is [of the form](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117)  $p^m w$ for some unique $m\in\mathbb{N}$ and some unique $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
 <a name="existence-lemma"></a>
-This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K^\times$ (and it turns out that $b \in \mathbb{W}(k)\setminus {0}$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
+This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K^\times$ (and it turns out that $b \in \mathbb{W}(k)\setminus {0}$ suffices).[^4] Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
 
 
 But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the 
@@ -214,3 +214,6 @@ Check out the final statement of the classification theorem in mathlib
 Uspehi Mat. Nauk, 18(6 (114)):3–90, 1963.
 [^3]: Jean Dieudonné. [Lie groups and Lie hyperalgebras over a field of characteristic $p > 0$, IV.](https://doi.org/10.2307%2F2372633)
 American Journal of Mathematics, 77 (3): 429–452, 1955.
+
+[^4]: Another [note](https://github.com/leanprover-community/blog/pull/47#issuecomment-1205748855) from the number theorists:
+"both the unit circle in $\mathbb{C}$ and the units $W(k)^\times$ in $K^\times$ can be computed as the set of elements of absolute value $1$."
