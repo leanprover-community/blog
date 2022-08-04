@@ -31,13 +31,13 @@ structure (dependent on $p$) to make this set into a commutative ring.  The cano
 of $\mathbb{Z}/p\mathbb{Z}$.
 
 A ring $R$ of characteristic $p$ has an endomorphism, constructed by sending each element $x$ to $x ^ p$.  $R$ is called *perfect* if this
-endomorphism is an automorphism.  And under mild further conditions ($R$ an integral domain) this automorphism "lifts" <!-- check terminology -->
+endomorphism is an automorphism.  And under mild further conditions ($R$ an integral domain) this automorphism "lifts" 
 to an automorphism of the field of fractions of $\mathbb{W}(R)$, which we will denote $\varphi$.  It's *Frobenius-semilinearity*, i.e. semilinearity with respect to $\varphi$, that the number theorists
-want to consider! 
+want to consider![^1]
 
 The fundamental result here is a classification theorem for
 Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
-vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin[^1] building on work of Dieudonné.[^2]
+vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin[^2] building on work of Dieudonné.[^3]
  <!-- check history. -->
 
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
@@ -53,29 +53,32 @@ When the scalar field $F$ is $\mathbb{C}$, these objects have a natural geometri
 
 There is a natural notion of equivalence on these objects: $(V_1, f_1)$ and $(V_2, f_2)$ are equivalent, if there exists a (linear) isomorphism $g:V_1\to V_2$, which is equivariant in the sense that $g \circ f_1=f_2 \circ g$.   In the case of one-dimensional objects over $\mathbb{C}$, this agrees well with our geometric intuition for when two orientation-reversing similarities of planes with marked points are "the same." 
 
-It's easy to cook up a large family of such objects with $V$ taken to be the field $F$ itself, considered as a one-dimensional vector space over itself:  take the $\sigma$-semilinear automorphism to be $x \mapsto a \sigma(x)$ for any $a\ne 0$ in $F$.  It's also fairly easy to see that, up to the sense of equivalence described above, this covers all possible one-dimensional objects. <!-- say any more? -->
+It's easy to cook up a large family of such objects with $V$ taken to be the field $F$ itself, considered as a one-dimensional vector space over itself:  take the $\sigma$-semilinear automorphism to be $x \mapsto a \sigma(x)$ for any $a\ne 0$ in $F$.  It's also fairly easy to see that, up to the sense of equivalence described above, this covers all possible one-dimensional objects. 
 
 But this is not the interesting part of the story.  Some choices of $a\in F$ lead to equivalent objects, and the question is, which? For example, in the case of  $\mathbb{C}$, the equivalent transformations $f_1(z)=a_1\overline{z}$, $f_2(z)=a_2\overline{z}$ are precisely those for which $|a_1|=|a_2|$.  That is, for a given $r\in\mathbb{R}^+$, all transformations $f(z)=a\overline{z}$ with $|a|=r$ are equivalent to $f(z)=r\overline{z}$ itself, geometrically corresponding to the same transformation of a "rescaling by $r$" about the marked point of a reflection in a line through that marked point.
 
 ![Rescale and reflect](/images/isocrystal-geo.png)
 
-In general, the characterization of equivalence is the following: two $\sigma$-semilinear transformations $f_1(x)=a_1\sigma(x)$, $f_2(x)=a_2\sigma(x)$ of $F$ are equivalent if there exists a nonzero element $b\in F$ such that $a_1/a_2 = \sigma(b)/b$.  The set of elements of $F$ of the form $\sigma(b)/b$ forms a multiplicative subgroup of $F^*:=F\setminus\\{0\\}$. In the case of conjugation on $\mathbb{C}$ this subgroup is the unit circle.  And classifiying the equivalence classes of one-dimensional objects reduces to finding a family of canonical representatives of the cosets of this subgroup  -- in the case of $\mathbb{C}$, each coset of the unit circle action has a unique representative $r \in\mathbb{R}^+$.
+In general, the characterization of equivalence is the following: two $\sigma$-semilinear transformations $f_1(x)=a_1\sigma(x)$, $f_2(x)=a_2\sigma(x)$ of $F$ are equivalent if there exists a nonzero element $b\in F$ such that $a_1/a_2 = \sigma(b)/b$.  The set of elements of $F$ of the form $\sigma(b)/b$ forms a multiplicative subgroup of $F^\times:=F\setminus\\{0\\}$. In the case of conjugation on $\mathbb{C}$ this subgroup is the unit circle.  And classifiying the equivalence classes of one-dimensional objects reduces to finding a family of canonical representatives of the cosets of this subgroup  -- in the case of $\mathbb{C}$, each coset of the unit circle action has a unique representative $r \in\mathbb{R}^+$.
 
 
 # Frobenius-semilinear automorphisms of the fraction field of the Witt vectors
 
 
 So, for the fraction field $K$ of the Witt vectors of an algebraically closed field $k$, what is this multiplicative subgroup
-$ \\{ \varphi(b) / b : b \in K^\* \\}$
+$ \\{ \varphi(b) / b : b \in K^\times \\}$
 of the nonzero elements 
-$K^\*$ ?
-Also, the cosets of this subgroup in $K^*$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?
+$K^\times$ ?
+Also, the cosets of this subgroup in $K^\times$ are precisely in bijection with the isocrystals of dimension 1, so what is a complete set of representatives of the cosets?
 
 At this point, we found a [2011 MathOverflow post](https://mathoverflow.net/questions/62468/about-frobenius-of-witt-vectors) from a drive-by pseudonym asking precisely this reformulated question.  ["Asker,"](https://mathoverflow.net/users/14572/asker) you gave no motivation for this rather specific and technical question ... we're still wondering whether you came up with it by the same route that we did!
 
-So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^*$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are [precisely](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L58) the sequences whose first element is nonzero.
+So here is the answer.  The Witt vectors $\mathbb{W}(k)$ live inside their fraction field $K$ and there is a distinguished multiplicative subgroup $\mathbb{W}(k)^\times$ of $K^\times$, the original units of $\mathbb{W}(k)$.  In the representation of $\mathbb{W}(k)$ as a sequence of elements of $k$, the units are [precisely](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L58) the sequences whose first element is nonzero.
 
-The $p$-typical Witt vector $(0,1,0,\ldots)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(1,0,0,\ldots)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ sends any Witt vector to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. <!-- double-check how it works --> In fact, every nonzero Witt vector is [of the form](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117)  $p^m w$ for some unique $m\in\mathbb{N}$ and some unique $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
+Recall that a Witt vector $x$ over $k$ is given by a sequence $(\ldots, x_1, x_0)$ of elements of $k$. (Witt vectors are traditionally written as trailing to the left, to be suggestive of how we write numbers in decimal notation from largest place value to smallest.)
+The $p$-typical Witt vector $(\ldots, 0,1,0)$ is referred to in $\mathbb{W}(k)$ as $p$ (it actually ends up being the sum of $p$ copies of $1=(\ldots, 0,0, 1)$, under the crazy Witt vector addition).  Multiplication (in the crazy Witt vector sense) by $p$ 
+[sends any Witt vector](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/identities.lean#L37)
+to a Witt vector with $0$ in the first position, and more generally multiplication by $p^m$ for any $m\in \mathbb{N}$ sends any Witt vector to a Witt vector with $m$ leading zeros. In fact, every nonzero Witt vector is [of the form](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/discrete_valuation_ring.lean#L117)  $p^m w$ for some unique $m\in\mathbb{N}$ and some unique $w\in\mathbb{W}(k)^\times$.  The statement for the fraction field $K$ is only slightly more complicated -- every nonzero element of $K$ is of the form $p^m w$ for some $m\in\mathbb{Z}$ and some Witt vector $w\in\mathbb{W}(k)^\times$. 
 
 <a name="existence-lemma"></a>
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K^\times$ (and it turns out that $b \in \mathbb{W}(k)\setminus {0}$ suffices). Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
@@ -98,7 +101,7 @@ $$ x_{n}y_0^{p^{n}} + y_{n}x_0 ^{p^{n}} + f_n(x_0, \ldots, x_{n-1}, y_0, \ldots,
 
 ---
 
-The $n$-th coefficient of the product of two Witt vectors $x = (x_0, x_1, \ldots)$ and $y=(y_0, y_1, \ldots)$ is polynomial in the first $n$ coefficients of each: that is,
+The $n$-th coefficient of the product of two Witt vectors $x = (\ldots, x_1, x_0)$ and $y=(\ldots, y_1, y_0)$ is polynomial in the first $n$ coefficients of each: that is,
 for each $n$ there is a
 [polynomial $m_n$](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/defs.lean#L128)
 such that $(xy)_n = m_n(x_0, \ldots, x_n, y_0, \ldots, y_n)$. 
@@ -149,7 +152,7 @@ This is actually only one direction of our earlier claim, but it's the direction
 
 Let's write this out in coordinates:
 
-$$(b_0^p, b_1^p, \ldots) \cdot (v_0, v_1, \ldots) = (b_0, b_1, \ldots) \cdot (w_0, w_1, \ldots). \tag{*}$$
+$$(\ldots, b_1^p, b_0^p) \cdot (\ldots, v_1, v_0) = (\ldots, b_1, b_0) \cdot (\ldots, w_1, w_0). \tag{*}$$
 
 Here $\cdot$ denotes Witt vector multiplication, so now our investigation into this operation will come in handy. The crucial consequence of the "multiplication lemma" from the previous section is that the constraint imposed by comparing $n$-th coefficients of $(\*)$ is polynomial. Specifically, it says that for positive $n$,
 
@@ -167,7 +170,7 @@ The [base case](https://github.com/leanprover-community/mathlib/blob/25706131162
 is straightforward, since for any Witt vectors $x$ and $y$, 
 $ (xy)\_{0} = x_{0} y_{0} $. Suppose we have found suitable coefficients $b_0, \ldots, b_{n-1}$.
 We [invoke the algebraic closedness of $k$](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/frobenius_fraction_field.lean#L95)
-to solve the above polynomial equation for $b_n$. The sequence $(b_0, b_1, \ldots)$ thus constructed forms a Witt vector that solves $(^*)$.
+to solve the above polynomial equation for $b_n$. The sequence $(\ldots, b_1, b_0)$ thus constructed forms a Witt vector that solves $(^*)$.
 
 This completes the analysis of the set of possible ratios $\varphi(b)/b$ for $b \in \mathbb{W}(k)$, and thus the classification of one-dimensional isocrystals.
 
@@ -204,8 +207,10 @@ class isocrystal (V : Type*) [add_comm_group V]
 Check out the final statement of the classification theorem in mathlib 
 [here](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/isocrystal.lean#L163).
 
+[^1]: A [couple](https://github.com/leanprover-community/blog/pull/47#discussion_r933252221) [notes](https://github.com/leanprover-community/blog/pull/47#issuecomment-1197789224) from the number theorists: 
+"You know that Frobenius is complex conjugation, right? Frobenius is the canonical Galois element for a $p$-adic place, like complex conjugation is the canonical Galois element for an infinite place.... [O]ne could argue that the two different motivations for formalising semilinear maps boil down to an archimedean and a nonarchimedean avatar of the same underlying idea."
 
-[^1]: Ju. I. Manin. [Theory of commutative formal groups over fields of finite characteristic.](https://doi.org/10.1070%2FRM1963v018n06ABEH001142) 
+[^2]: Ju. I. Manin. [Theory of commutative formal groups over fields of finite characteristic.](https://doi.org/10.1070%2FRM1963v018n06ABEH001142) 
 Uspehi Mat. Nauk, 18(6 (114)):3–90, 1963.
-[^2]: Jean Dieudonné. [Lie groups and Lie hyperalgebras over a field of characteristic $p > 0$, IV.](https://doi.org/10.2307%2F2372633)
+[^3]: Jean Dieudonné. [Lie groups and Lie hyperalgebras over a field of characteristic $p > 0$, IV.](https://doi.org/10.2307%2F2372633)
 American Journal of Mathematics, 77 (3): 429–452, 1955.
