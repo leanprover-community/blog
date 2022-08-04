@@ -208,7 +208,7 @@ Check out the final statement of the classification theorem in mathlib
 [here](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/isocrystal.lean#L163).
 
 [^1]: A [couple](https://github.com/leanprover-community/blog/pull/47#discussion_r933252221) [notes](https://github.com/leanprover-community/blog/pull/47#issuecomment-1197789224) from the number theorists: 
-"You know that Frobenius is complex conjugation, right? Frobenius is the canonical Galois element for a $p$-adic place, like complex conjugation is the canonical Galois element for an infinite place.... [O]ne could argue that the two different motivations for formalising semilinear maps boil down to an archimedean and a nonarchimedean avatar of the same underlying idea."
+"You know that Frobenius *is* complex conjugation, right? Frobenius is the canonical Galois element for a $p$-adic place, like complex conjugation is the canonical Galois element for an infinite place.... [O]ne could argue that the two different motivations for formalising semilinear maps boil down to an archimedean and a nonarchimedean avatar of the same underlying idea."
 
 [^2]: Ju. I. Manin. [Theory of commutative formal groups over fields of finite characteristic.](https://doi.org/10.1070%2FRM1963v018n06ABEH001142) 
 Uspehi Mat. Nauk, 18(6 (114)):3–90, 1963.
