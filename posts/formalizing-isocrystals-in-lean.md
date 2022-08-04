@@ -215,4 +215,4 @@ Uspehi Mat. Nauk, 18(6 (114)):3–90, 1963.
 American Journal of Mathematics, 77 (3): 429–452, 1955.
 
 [^4]: Another [note](https://github.com/leanprover-community/blog/pull/47#issuecomment-1205748855) from the number theorists:
-"both the unit circle in $\mathbb{C}$ and the units $W(k)^\times$ in $K^\times$ can be computed as the set of elements of absolute value $1$."
+"both the unit circle in $\mathbb{C}^\times$ and the units $W(k)^\times$ in $K^\times$ can be computed as the set of elements of absolute value $1$."
