@@ -1,7 +1,7 @@
 ---
 author: 'Robert Y. Lewis, Heather Macbeth'
 category: 'New in mathlib'
-date: 2022-07-19 19:30:08 UTC+02:00
+date: 2022-08-06 06:30:08 UTC+02:00
 description: ''
 has_math: true
 link: ''
@@ -30,13 +30,13 @@ vectors $\mathbb{W}(R)$ over a ring $R$  are, concretely, sequences of elements 
 structure (dependent on $p$) to make this set into a commutative ring.  The canonical example is the $p$-adic integers, which are the Witt vectors
 of $\mathbb{Z}/p\mathbb{Z}$.
 
-A ring $R$ of characteristic $p$ has an endomorphism, constructed by sending each element $x$ to $x ^ p$.  $R$ is called *perfect* if this
+A ring $R$ of characteristic $p$ has an endomorphism, constructed by sending each element $x$ to $x ^ p$.  We say that $R$ is *perfect* if this
 endomorphism is an automorphism.  And under mild further conditions ($R$ an integral domain) this automorphism "lifts" 
 to an automorphism of the field of fractions of $\mathbb{W}(R)$, which we will denote $\varphi$.  It's *Frobenius-semilinearity*, i.e. semilinearity with respect to $\varphi$, that the number theorists
 want to consider![^1]
 
 The fundamental result here is a classification theorem for
-Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field (and hence a perfect integral domain).  Such an object (a finite-dimensional 
+Frobenius-semilinear automorphisms of finite-dimensional vector spaces over $K$, the field of fractions of $\mathbb{W}(k)$, for $k$ an algebraically closed field of characteristic $p$ (and hence a perfect integral domain).  Such an object (a finite-dimensional 
 vector space over $K$ equipped with a Frobenius-semilinear automorphism) is called an *isocrystal*.  The classification, which is up to a natural notion of equivalence which we'll make precise later, was proved by Manin[^2] building on work of Dieudonné.[^3]
 
 The classification is a structure theorem, expressing each isocrystal as a direct sum of elements of a certain family of
@@ -85,9 +85,10 @@ to a Witt vector with $0$ in the first position, and more generally multiplicati
 This subgroup $\mathbb{W}(k)^\times$ turns out to be precisely the things in $K$ which can be expressed as $\varphi(b)/b$ for some $b \in K^\times$ (and it turns out that $b \in \mathbb{W}(k)\setminus \\{0\\}$ suffices).[^4] Make a note of this statement. The rest of the math in this blog post will be devoted to proving this.
 
 
-But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.  This integer $m$ is called the *slope* of the 
-[associated isocrystal](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/isocrystal.lean#L150):
-$K$ itself (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$.  All one-dimensional isocrystals are equivalent to an isocrystal of this form. 
+But to conclude the main discussion, our theorem is that every coset of the special subgroup has a representative of the form $p^m$ for some $m\in\mathbb{Z}$.
+We call $K$ (considered as a one-dimensional vector space over itself), equipped with the Frobenius-semilinear automorphism sending $x\in K$ to $p^m\varphi(x)$,
+the [standard isocrystal of slope $m$](https://github.com/leanprover-community/mathlib/blob/25706131162465df8e6daecec75505f782fd428c/src/ring_theory/witt_vector/isocrystal.lean#L150).
+All one-dimensional isocrystals are equivalent to one of these standard isocrystals. 
 
 # Multiplication of Witt vectors
 
