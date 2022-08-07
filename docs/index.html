@@ -17,11 +17,11 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="https://leanprover-community.github.io/blog/">
 <link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
-<link rel="next" href="index-2.html" type="text/html">
+<link rel="next" href="index-3.html" type="text/html">
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/mathlib-changelog/" type="text/html">
+<link rel="prefetch" href="posts/classification-of-one-dimensional-isocrystals/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,10 +43,34 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mathlib-changelog/" class="u-url">Introducing Mathlib Changelog</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/classification-of-one-dimensional-isocrystals/" class="u-url">Classification of one-dimensional isocrystals</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/david-chanin/">David Chanin</a>
+                            <a href="authors/robert-y-lewis/">Robert Y. Lewis</a>
+                            <a href="authors/heather-macbeth/">Heather Macbeth</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/classification-of-one-dimensional-isocrystals/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-08-06T06:30:08+02:00" itemprop="datePublished" title="2022-08-06 06:30">2022-08-06 06:30</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>Last year, there was a <a href="posts/semilinear-maps">big mathlib refactor</a> to replace linear maps throughout the library with  <em>semilinear maps</em>,
+a more abstract concept which, importantly, unifies linear and conjugate-linear maps.</p>
+<p>But this is not the full extent of the generalization!  Our number theorist friends here in mathlib told us that we should
+make sure we chose this full generality of <em>semilinear</em> maps, maps $f:M \to N$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism $\sigma$ between the scalar rings of the modules $M$ and $N$.  So we and our coauthor Frédéric Dupuis implemented this full generality, and then asked them for an example to illustrate their need for this more abstract definition. This blog post tells the story of our little adventure in number theory.</p>
+<p>It turns out that the standard use of semilinear maps in number theory is for <em>Frobenius-semilinearity</em>, semilinearity with
+respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ integral domain which is induced by the Frobenius
+automorphism of that domain.  Let's backtrack to catch everyone up...</p>
+<p class="more"><a href="posts/classification-of-one-dimensional-isocrystals/">Read more…</a></p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mathlib-changelog/" class="u-url">Introducing Mathlib Changelog</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                            <a href="authors/david-chanin/">David Chanin</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/mathlib-changelog/" rel="bookmark">
@@ -64,7 +88,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-final/" class="u-url">Completion of the Liquid Tensor Experiment</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
+                            <a href="authors/mathlib-community/">Mathlib community</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/lte-final/" rel="bookmark">
@@ -94,7 +118,7 @@ and
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/the-ring-of-integers-of-a-cyclotomic-field/" class="u-url">The ring of integers of a cyclotomic field</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/riccardo-brasca/">Riccardo Brasca</a>
+                            <a href="authors/riccardo-brasca/">Riccardo Brasca</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/the-ring-of-integers-of-a-cyclotomic-field/" rel="bookmark">
@@ -114,7 +138,7 @@ result, and briefly explain how we proved it.</p>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-may-2022/" class="u-url">This month in mathlib (May 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
+                            <a href="authors/mathlib-community/">Mathlib community</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/month-in-mathlib-may-2022/" rel="bookmark">
@@ -131,7 +155,7 @@ result, and briefly explain how we proved it.</p>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-apr-2022/" class="u-url">This month in mathlib (Apr 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
+                            <a href="authors/mathlib-community/">Mathlib community</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/month-in-mathlib-apr-2022/" rel="bookmark">
@@ -148,7 +172,7 @@ result, and briefly explain how we proved it.</p>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-mar-2022/" class="u-url">This month in mathlib (Mar 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
+                            <a href="authors/mathlib-community/">Mathlib community</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/month-in-mathlib-mar-2022/" rel="bookmark">
@@ -165,7 +189,7 @@ result, and briefly explain how we proved it.</p>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-feb-2022/" class="u-url">This month in mathlib (Feb 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
+                            <a href="authors/mathlib-community/">Mathlib community</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/month-in-mathlib-feb-2022/" rel="bookmark">
@@ -183,7 +207,7 @@ In this post we highlight some of these contributions.</p>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/adventure-10000/" class="u-url">Adventure 10000</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/yury-kudryashov/">Yury Kudryashov</a>
+                            <a href="authors/yury-kudryashov/">Yury Kudryashov</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/adventure-10000/" rel="bookmark">
@@ -206,7 +230,7 @@ formalization.</p>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-jan-2022/" class="u-url">This month in mathlib (Jan 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/mathlib-community/">Mathlib community</a>
+                            <a href="authors/mathlib-community/">Mathlib community</a>
                     </span></p>
             <p class="dateline">
             <a href="posts/month-in-mathlib-jan-2022/" rel="bookmark">
@@ -221,33 +245,11 @@ In this post we highlight some of these contributions.</p>
 <p class="more"><a href="posts/month-in-mathlib-jan-2022/">Read more…</a></p>
 </div>
                 </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/backstage-with-pechersky/" class="u-url">Backstage with Yakov Pechersky</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        <a href="authors/johan-commelin/">Johan Commelin</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/backstage-with-pechersky/" rel="bookmark">
-            <time class="published dt-published" datetime="2022-01-27T09:35:23+02:00" itemprop="datePublished" title="2022-01-27 09:35">2022-01-27 09:35</time></a>
-            </p>
-		    <p><span class="text-dark">Interviews</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p><a href="images/yakov_pechersky.png" class="image-reference"><img src="images/yakov_pechersky.thumbnail.png" class=" align-right"></a></p>
-<p>The next installment in the series of
-backstage interviews with mathlib's active contributors!</p>
-<p>Today, Johan Commelin interviews Yakov Pechersky.
-The first half of the interview's video was lost, so it was "recovered"
-via written communication.</p>
-<p class="more"><a href="posts/backstage-with-pechersky/">Read more…</a></p>
-</div>
-                </div>
             </article>
 </div>
             <nav class="postindexpager"><ul class="pager">
 <li class="next">
-                <a href="index-2.html" rel="next">Older posts</a>
+                <a href="index-3.html" rel="next">Older posts</a>
             </li>
         </ul></nav><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
