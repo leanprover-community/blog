@@ -11,6 +11,9 @@ title: This month in mathlib (Jul 2022)
 type: text
 ---
 
+In July 2022 there were 611 PRs merged into mathlib. We list some of the highlights below.
+
+
 * [PR #14878](https://github.com/leanprover-community/mathlib/pull/14878) :: feat(tactic/polyrith): a tactic using Sage to solve polynomial equalities with hypotheses
 
 * [PR #15487](https://github.com/leanprover-community/mathlib/pull/15487) :: feat(algebraic_geometry/AffineScheme): Affine communication lemma
