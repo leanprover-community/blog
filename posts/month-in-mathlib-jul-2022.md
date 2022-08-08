@@ -18,7 +18,6 @@ type: text
 * [PR #14944](https://github.com/leanprover-community/mathlib/pull/14944) :: feat(algebraic_geometry/morphisms): Basic framework for classes of morphisms between schemes
 * [PR #15379](https://github.com/leanprover-community/mathlib/pull/15379) :: feat(ring_theory/ring_hom/finite): Finite type is a local property
 * [PR #15427](https://github.com/leanprover-community/mathlib/pull/15427) :: feat(ring_theory/ring_hom/finite): Finite ring morphisms are stable under base change
-* [PR #15512](https://github.com/leanprover-community/mathlib/pull/15512) :: feat(ring_theory/tensor_product): A predicate for being the tensor product.
 * [PR #15243](https://github.com/leanprover-community/mathlib/pull/15243) :: feat(ring_theory): Formally étale/smooth/unramified morphisms are stable under base change.
 
 * [PR #15091](https://github.com/leanprover-community/mathlib/pull/15091) :: feat(ring_theory/bezout): Define Bézout rings.
