@@ -14,7 +14,6 @@ type: text
 * [PR #14135](https://github.com/leanprover-community/mathlib/pull/14135) :: feat(analysis/normed_space/star/character_space): compactness of the character space of a normed algebra
 * [PR #14229](https://github.com/leanprover-community/mathlib/pull/14229) :: feat(tactic/linear_combination): allow combinations of arbitrary proofs
 * [PR #14231](https://github.com/leanprover-community/mathlib/pull/14231) :: feat(linear_algebra/matrix): Spectral theorem for matrices
-* [PR #12415](https://github.com/leanprover-community/mathlib/pull/12415) :: feat(analysis/complex/upper_half_plane): extend action on upper half plane to GL_pos
 * [PR #14528](https://github.com/leanprover-community/mathlib/pull/14528) :: feat(measure_theory/integral/lebesgue): approximate a function by a finite integral function in a sigma-finite measure space.
 * [PR #14460](https://github.com/leanprover-community/mathlib/pull/14460) :: feat(analysis/normed_space/hahn-banach/separation): Eidelheit's theorem
 * [PR #8112](https://github.com/leanprover-community/mathlib/pull/8112) :: feat(analysis/convex/krein_milman): The Krein-Milman theorem
