@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 11 Aug 2022 13:13:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Jun 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-jun-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;We apologize for the delay in posting this overview.
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog</title><link>https://leanprover-community.github.io/blog/</link><description>This is the blog of the Lean prover community.</description><atom:link href="https://leanprover-community.github.io/blog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 11 Aug 2022 13:13:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>This month in mathlib (Jul 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-jul-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;In July 2022 there were 611 PRs merged into mathlib. We list some of the highlights below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Arithmetic&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15091"&gt;PR #15091&lt;/a&gt; defines Bézout rings and &lt;a href="https://github.com/leanprover-community/mathlib/pull/15424"&gt;PR #15424&lt;/a&gt; proves that Bezout domains are integrally closed. &lt;a href="https://github.com/leanprover-community/mathlib/pull/15109"&gt;PR #15109&lt;/a&gt; proves the same for GCD domains.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14717"&gt;PR #14717&lt;/a&gt; proves Wilson's Theorem.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15315"&gt;PR #15315&lt;/a&gt; proves &lt;code&gt;[Frac(S):Frac(R)] = [S/pS:R/p]&lt;/code&gt;for a Dedekind domain $R$ and its integral closure $S$ and maximal ideal $p$. This is the first step in showing the fundamental identity of inertia degree and ramification index.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8002"&gt;PR #8002&lt;/a&gt; proves Bertrand's postulate.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Algebraic geometry and commutative algebra&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15487"&gt;PR #15487&lt;/a&gt; proves the affine communication lemma.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14944"&gt;PR #14944&lt;/a&gt; introduces a basic framework for classes of morphisms between schemes.
+    Examples are provided by
+    &lt;a href="https://github.com/leanprover-community/mathlib/pull/15379"&gt;PR #15379&lt;/a&gt; (finite type is a local property),
+    &lt;a href="https://github.com/leanprover-community/mathlib/pull/15427"&gt;PR #15427&lt;/a&gt; (finite ring morphisms are stable under base change), and
+    &lt;a href="https://github.com/leanprover-community/mathlib/pull/15243"&gt;PR #15243&lt;/a&gt; (formally étale/smooth/unramified morphisms are stable under base change).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15089"&gt;PR #15089&lt;/a&gt; defines the Rees algebra of an ideal.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/12895"&gt;PR #12895&lt;/a&gt; adds injective modules and Baer's criterion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Group theory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/8632"&gt;PR #8632&lt;/a&gt; proves that groups of order $p^2$ are commutative.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15402"&gt;PR #15402&lt;/a&gt; proves that a finitely generated torsion abelian group is finite.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Non-commutative or non-associative algebra&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14348"&gt;PR #14348&lt;/a&gt; defines the Ore localization of a ring (a non-commutative analogue of the usual localization).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14790"&gt;PR #14790&lt;/a&gt; gives the universal property and isomorphisms for the even subalgebra of a Clifford algebra.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14179"&gt;PR #14179&lt;/a&gt; characterises Cartan subalgebras as limiting values of upper central series.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/11073"&gt;PR #11073&lt;/a&gt; introduces Jordan rings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Topology and functional analysis&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14965"&gt;PR #14965&lt;/a&gt; introduces Noetherian spaces.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15124"&gt;PR #15124&lt;/a&gt; proves that in a normed space, a set is von Neumann bounded if and only if it is bounded in the metric sense.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15055"&gt;PR #15055&lt;/a&gt; proves the Hellinger-Toeplitz theorem: if a symmetric operator is defined everywhere, then it is automatically continuous.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Probability and measure theory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14737"&gt;PR #14737&lt;/a&gt; proves Doob's maximal inequality for non-negative submartingales.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14909"&gt;PR #14909&lt;/a&gt; proves the discrete stochastic integral of a submartingale is a submartingale.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15106"&gt;PR #15106&lt;/a&gt; computes gaussian integrals.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15129"&gt;PR #15129&lt;/a&gt; establishes Chernoff's bound on the upper/lower tail of a real random variable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Combinatorics&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;In additive combinatorics, &lt;a href="https://github.com/leanprover-community/mathlib/pull/14697"&gt;PR #14697&lt;/a&gt; proves Ruzsa's covering lemma: for finite sets $s$ and $t$ in a commutative group, we can cover $s$ with at most $|s + t|/ |t|$ copies of $t - t$. &lt;a href="https://github.com/leanprover-community/mathlib/pull/14070"&gt;PR #14070&lt;/a&gt; introduces Behrend's construction and &lt;a href="https://github.com/leanprover-community/mathlib/pull/15327"&gt;PR #15327&lt;/a&gt; establish Behrend's lower bound on Roth numbers.&lt;/li&gt;
+&lt;li&gt;In combinatorics of families of finite sets, &lt;a href="https://github.com/leanprover-community/mathlib/pull/14497"&gt;PR #14497&lt;/a&gt; proves the Harris-Kleitman inequality and &lt;a href="https://github.com/leanprover-community/mathlib/pull/14543"&gt;PR #14543&lt;/a&gt; proves Kleitman's bound.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In graph theory, &lt;a href="https://github.com/leanprover-community/mathlib/pull/15158"&gt;PR #15158&lt;/a&gt; proves Euler's condition for trails.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Computability theory and information theory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14739"&gt;PR #14739&lt;/a&gt; introduces the Hamming distance and norm.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/15505"&gt;PR #15505&lt;/a&gt; proves the Ackermann function isn't primitive recursive.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tactics&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/leanprover-community/mathlib/pull/14878"&gt;PR #14878&lt;/a&gt; brings &lt;code&gt;polyrith&lt;/code&gt;, a tactic using Sage to solve polynomial equalities with hypotheses.&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-jul-2022/</guid><pubDate>Thu, 11 Aug 2022 05:42:53 GMT</pubDate></item><item><title>This month in mathlib (Jun 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-jun-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;We apologize for the delay in posting this overview.
 In June 2022 there were 460 PRs merged into mathlib. We list some of the highlights below.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-jun-2022/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-jun-2022/</guid><pubDate>Thu, 11 Aug 2022 05:42:45 GMT</pubDate></item><item><title>Classification of one-dimensional isocrystals</title><link>https://leanprover-community.github.io/blog/posts/classification-of-one-dimensional-isocrystals/</link><dc:creator>Robert Y. Lewis, Heather Macbeth</dc:creator><description>&lt;div&gt;&lt;p&gt;Last year, there was a &lt;a href="https://leanprover-community.github.io/blog/posts/semilinear-maps"&gt;big mathlib refactor&lt;/a&gt; to replace linear maps throughout the library with  &lt;em&gt;semilinear maps&lt;/em&gt;,
 a more abstract concept which, importantly, unifies linear and conjugate-linear maps.&lt;/p&gt;
@@ -33,11 +109,4 @@ result, and briefly explain how we proved it.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-apr-2022/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-apr-2022/</guid><pubDate>Sun, 01 May 2022 08:35:42 GMT</pubDate></item><item><title>This month in mathlib (Mar 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-mar-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;March 2022 saw a record number of new contributions to mathlib: 682 PRs were merged, obliterating the old record of 565 merged PRs.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-mar-2022/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-mar-2022/</guid><pubDate>Tue, 05 Apr 2022 03:48:58 GMT</pubDate></item><item><title>This month in mathlib (Feb 2022)</title><link>https://leanprover-community.github.io/blog/posts/month-in-mathlib-feb-2022/</link><dc:creator>Mathlib community</dc:creator><description>&lt;div&gt;&lt;p&gt;February 2022 saw 501 commits to mathlib.
 In this post we highlight some of these contributions.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-feb-2022/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-feb-2022/</guid><pubDate>Thu, 03 Mar 2022 05:57:37 GMT</pubDate></item><item><title>Adventure 10000</title><link>https://leanprover-community.github.io/blog/posts/adventure-10000/</link><dc:creator>Yury Kudryashov</dc:creator><description>&lt;div&gt;&lt;p&gt;About a month ago, the &lt;a href="https://en.wikipedia.org/wiki/Cauchy%27s_integral_theorem"&gt;Cauchy integral
-theorem&lt;/a&gt;
-for some simple domains
-&lt;a href="https://github.com/leanprover-community/mathlib/pull/10000"&gt;landed&lt;/a&gt;
-in mathlib. PR number 10000 was specially allocated for this occasion
-in advance. In this post I will recollect the events that led to this
-formalization.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/adventure-10000/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/adventure-10000/</guid><pubDate>Thu, 10 Feb 2022 16:46:20 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="https://leanprover-community.github.io/blog/posts/month-in-mathlib-feb-2022/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><guid>https://leanprover-community.github.io/blog/posts/month-in-mathlib-feb-2022/</guid><pubDate>Thu, 03 Mar 2022 05:57:37 GMT</pubDate></item></channel></rss>

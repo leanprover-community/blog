@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/month-in-mathlib-jun-2022/" type="text/html">
+<link rel="prefetch" href="posts/month-in-mathlib-jul-2022/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,115 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-jun-2022/" class="u-url">This month in mathlib (Jun 2022)</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-jul-2022/" class="u-url">This month in mathlib (Jul 2022)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                            <a href="authors/mathlib-community/">Mathlib community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/month-in-mathlib-jul-2022/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-08-11T07:42:53+02:00" itemprop="datePublished" title="2022-08-11 07:42">2022-08-11 07:42</time></a>
+            </p>
+		    <p><span class="text-dark">month-in-mathlib</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>In July 2022 there were 611 PRs merged into mathlib. We list some of the highlights below.</p>
+<ul>
+<li>Arithmetic</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15091">PR #15091</a> defines Bézout rings and <a href="https://github.com/leanprover-community/mathlib/pull/15424">PR #15424</a> proves that Bezout domains are integrally closed. <a href="https://github.com/leanprover-community/mathlib/pull/15109">PR #15109</a> proves the same for GCD domains.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14717">PR #14717</a> proves Wilson's Theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15315">PR #15315</a> proves <code>[Frac(S):Frac(R)] = [S/pS:R/p]</code>for a Dedekind domain $R$ and its integral closure $S$ and maximal ideal $p$. This is the first step in showing the fundamental identity of inertia degree and ramification index.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/8002">PR #8002</a> proves Bertrand's postulate.</p>
+</li>
+<li>
+<p>Algebraic geometry and commutative algebra</p>
+</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/15487">PR #15487</a> proves the affine communication lemma.</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14944">PR #14944</a> introduces a basic framework for classes of morphisms between schemes.
+    Examples are provided by
+    <a href="https://github.com/leanprover-community/mathlib/pull/15379">PR #15379</a> (finite type is a local property),
+    <a href="https://github.com/leanprover-community/mathlib/pull/15427">PR #15427</a> (finite ring morphisms are stable under base change), and
+    <a href="https://github.com/leanprover-community/mathlib/pull/15243">PR #15243</a> (formally étale/smooth/unramified morphisms are stable under base change).</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15089">PR #15089</a> defines the Rees algebra of an ideal.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/12895">PR #12895</a> adds injective modules and Baer's criterion.</p>
+</li>
+<li>
+<p>Group theory</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/8632">PR #8632</a> proves that groups of order $p^2$ are commutative.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/15402">PR #15402</a> proves that a finitely generated torsion abelian group is finite.</p>
+</li>
+<li>
+<p>Non-commutative or non-associative algebra</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14348">PR #14348</a> defines the Ore localization of a ring (a non-commutative analogue of the usual localization).</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14790">PR #14790</a> gives the universal property and isomorphisms for the even subalgebra of a Clifford algebra.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14179">PR #14179</a> characterises Cartan subalgebras as limiting values of upper central series.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/11073">PR #11073</a> introduces Jordan rings.</p>
+</li>
+<li>
+<p>Topology and functional analysis</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14965">PR #14965</a> introduces Noetherian spaces.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15124">PR #15124</a> proves that in a normed space, a set is von Neumann bounded if and only if it is bounded in the metric sense.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/15055">PR #15055</a> proves the Hellinger-Toeplitz theorem: if a symmetric operator is defined everywhere, then it is automatically continuous.</p>
+</li>
+<li>
+<p>Probability and measure theory</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14737">PR #14737</a> proves Doob's maximal inequality for non-negative submartingales.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14909">PR #14909</a> proves the discrete stochastic integral of a submartingale is a submartingale.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15106">PR #15106</a> computes gaussian integrals.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/15129">PR #15129</a> establishes Chernoff's bound on the upper/lower tail of a real random variable.</p>
+</li>
+<li>
+<p>Combinatorics</p>
+</li>
+<li>In additive combinatorics, <a href="https://github.com/leanprover-community/mathlib/pull/14697">PR #14697</a> proves Ruzsa's covering lemma: for finite sets $s$ and $t$ in a commutative group, we can cover $s$ with at most $|s + t|/ |t|$ copies of $t - t$. <a href="https://github.com/leanprover-community/mathlib/pull/14070">PR #14070</a> introduces Behrend's construction and <a href="https://github.com/leanprover-community/mathlib/pull/15327">PR #15327</a> establish Behrend's lower bound on Roth numbers.</li>
+<li>In combinatorics of families of finite sets, <a href="https://github.com/leanprover-community/mathlib/pull/14497">PR #14497</a> proves the Harris-Kleitman inequality and <a href="https://github.com/leanprover-community/mathlib/pull/14543">PR #14543</a> proves Kleitman's bound.</li>
+<li>
+<p>In graph theory, <a href="https://github.com/leanprover-community/mathlib/pull/15158">PR #15158</a> proves Euler's condition for trails.</p>
+</li>
+<li>
+<p>Computability theory and information theory</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14739">PR #14739</a> introduces the Hamming distance and norm.</li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib/pull/15505">PR #15505</a> proves the Ackermann function isn't primitive recursive.</p>
+</li>
+<li>
+<p>Tactics</p>
+</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14878">PR #14878</a> brings <code>polyrith</code>, a tactic using Sage to solve polynomial equalities with hypotheses.</li>
+</ul>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-jun-2022/" class="u-url">This month in mathlib (Jun 2022)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                             <a href="authors/mathlib-community/">Mathlib community</a>
@@ -220,29 +328,6 @@ result, and briefly explain how we proved it.</p>
 <p>February 2022 saw 501 commits to mathlib.
 In this post we highlight some of these contributions.</p>
 <p class="more"><a href="posts/month-in-mathlib-feb-2022/">Read more…</a></p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/adventure-10000/" class="u-url">Adventure 10000</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                            <a href="authors/yury-kudryashov/">Yury Kudryashov</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/adventure-10000/" rel="bookmark">
-            <time class="published dt-published" datetime="2022-02-10T18:46:20+02:00" itemprop="datePublished" title="2022-02-10 18:46">2022-02-10 18:46</time></a>
-            </p>
-		    <p><span class="text-dark">New in mathlib</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p>About a month ago, the <a href="https://en.wikipedia.org/wiki/Cauchy%27s_integral_theorem">Cauchy integral
-theorem</a>
-for some simple domains
-<a href="https://github.com/leanprover-community/mathlib/pull/10000">landed</a>
-in mathlib. PR number 10000 was specially allocated for this occasion
-in advance. In this post I will recollect the events that led to this
-formalization.</p>
-<p class="more"><a href="posts/adventure-10000/">Read more…</a></p>
 </div>
                 </div>
             </article>
