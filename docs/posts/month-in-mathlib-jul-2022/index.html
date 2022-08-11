@@ -26,8 +26,12 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <meta property="og:url" content="https://leanprover-community.github.io/blog/posts/month-in-mathlib-jul-2022/">
 <meta property="og:description" content="In July 2022 there were 611 PRs merged into mathlib. We list some of the highlights below.
 
+
+
+
 Arithmetic
-PR #15091 defines Bézout rings and PR #15424 proves that Bezout domains are integrally closed. PR">
+
+PR #15091 defines Bézout rings and PR #15424 proves that Bezout domains are integrally closed">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2022-08-11T07:42:53+02:00">
 </head>
@@ -67,8 +71,12 @@ PR #15091 defines Bézout rings and PR #15424 proves that Bezout domains are int
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>In July 2022 there were 611 PRs merged into mathlib. We list some of the highlights below.</p>
+<!-- TEASER_END -->
+
 <ul>
-<li>Arithmetic</li>
+<li>
+<p>Arithmetic</p>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/15091">PR #15091</a> defines Bézout rings and <a href="https://github.com/leanprover-community/mathlib/pull/15424">PR #15424</a> proves that Bezout domains are integrally closed. <a href="https://github.com/leanprover-community/mathlib/pull/15109">PR #15109</a> proves the same for GCD domains.</li>
 <li>
@@ -76,36 +84,38 @@ PR #15091 defines Bézout rings and PR #15424 proves that Bezout domains are int
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/15315">PR #15315</a> proves <code>[Frac(S):Frac(R)] = [S/pS:R/p]</code>for a Dedekind domain $R$ and its integral closure $S$ and maximal ideal $p$. This is the first step in showing the fundamental identity of inertia degree and ramification index.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/8002">PR #8002</a> proves Bertrand's postulate.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/8002">PR #8002</a> proves Bertrand's postulate.</li>
+</ul>
 </li>
 <li>
 <p>Algebraic geometry and commutative algebra</p>
-</li>
+<ul>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/15487">PR #15487</a> proves the affine communication lemma.</p>
-</li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15487">PR #15487</a> proves the affine communication lemma.</li>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14944">PR #14944</a> introduces a basic framework for classes of morphisms between schemes.
-    Examples are provided by
-    <a href="https://github.com/leanprover-community/mathlib/pull/15379">PR #15379</a> (finite type is a local property),
-    <a href="https://github.com/leanprover-community/mathlib/pull/15427">PR #15427</a> (finite ring morphisms are stable under base change), and
-    <a href="https://github.com/leanprover-community/mathlib/pull/15243">PR #15243</a> (formally étale/smooth/unramified morphisms are stable under base change).</li>
+Examples are provided by
+<a href="https://github.com/leanprover-community/mathlib/pull/15379">PR #15379</a> (finite type is a local property),
+<a href="https://github.com/leanprover-community/mathlib/pull/15427">PR #15427</a> (finite ring morphisms are stable under base change), and
+<a href="https://github.com/leanprover-community/mathlib/pull/15243">PR #15243</a> (formally étale/smooth/unramified morphisms are stable under base change).</li>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/15089">PR #15089</a> defines the Rees algebra of an ideal.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/12895">PR #12895</a> adds injective modules and Baer's criterion.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/12895">PR #12895</a> adds injective modules and Baer's criterion.</li>
+</ul>
 </li>
 <li>
 <p>Group theory</p>
-</li>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/8632">PR #8632</a> proves that groups of order $p^2$ are commutative.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/15402">PR #15402</a> proves that a finitely generated torsion abelian group is finite.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/15402">PR #15402</a> proves that a finitely generated torsion abelian group is finite.</li>
+</ul>
 </li>
 <li>
 <p>Non-commutative or non-associative algebra</p>
-</li>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14348">PR #14348</a> defines the Ore localization of a ring (a non-commutative analogue of the usual localization).</li>
 <li>
@@ -113,21 +123,23 @@ PR #15091 defines Bézout rings and PR #15424 proves that Bezout domains are int
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14179">PR #14179</a> characterises Cartan subalgebras as limiting values of upper central series.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/11073">PR #11073</a> introduces Jordan rings.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/11073">PR #11073</a> introduces Jordan rings.</li>
+</ul>
 </li>
 <li>
 <p>Topology and functional analysis</p>
-</li>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14965">PR #14965</a> introduces Noetherian spaces.</li>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/15124">PR #15124</a> proves that in a normed space, a set is von Neumann bounded if and only if it is bounded in the metric sense.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/15055">PR #15055</a> proves the Hellinger-Toeplitz theorem: if a symmetric operator is defined everywhere, then it is automatically continuous.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/15055">PR #15055</a> proves the Hellinger-Toeplitz theorem: if a symmetric operator is defined everywhere, then it is automatically continuous.</li>
+</ul>
 </li>
 <li>
 <p>Probability and measure theory</p>
-</li>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14737">PR #14737</a> proves Doob's maximal inequality for non-negative submartingales.</li>
 <li>
@@ -135,29 +147,33 @@ PR #15091 defines Bézout rings and PR #15424 proves that Bezout domains are int
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/15106">PR #15106</a> computes gaussian integrals.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/15129">PR #15129</a> establishes Chernoff's bound on the upper/lower tail of a real random variable.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/15129">PR #15129</a> establishes Chernoff's bound on the upper/lower tail of a real random variable.</li>
+</ul>
 </li>
 <li>
 <p>Combinatorics</p>
-</li>
+<ul>
 <li>In additive combinatorics, <a href="https://github.com/leanprover-community/mathlib/pull/14697">PR #14697</a> proves Ruzsa's covering lemma: for finite sets $s$ and $t$ in a commutative group, we can cover $s$ with at most $|s + t|/ |t|$ copies of $t - t$. <a href="https://github.com/leanprover-community/mathlib/pull/14070">PR #14070</a> introduces Behrend's construction and <a href="https://github.com/leanprover-community/mathlib/pull/15327">PR #15327</a> establish Behrend's lower bound on Roth numbers.</li>
 <li>In combinatorics of families of finite sets, <a href="https://github.com/leanprover-community/mathlib/pull/14497">PR #14497</a> proves the Harris-Kleitman inequality and <a href="https://github.com/leanprover-community/mathlib/pull/14543">PR #14543</a> proves Kleitman's bound.</li>
-<li>
-<p>In graph theory, <a href="https://github.com/leanprover-community/mathlib/pull/15158">PR #15158</a> proves Euler's condition for trails.</p>
+<li>In graph theory, <a href="https://github.com/leanprover-community/mathlib/pull/15158">PR #15158</a> proves Euler's condition for trails.</li>
+</ul>
 </li>
 <li>
 <p>Computability theory and information theory</p>
-</li>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14739">PR #14739</a> introduces the Hamming distance and norm.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib/pull/15505">PR #15505</a> proves the Ackermann function isn't primitive recursive.</p>
+<a href="https://github.com/leanprover-community/mathlib/pull/15505">PR #15505</a> proves the Ackermann function isn't primitive recursive.</li>
+</ul>
 </li>
 <li>
 <p>Tactics</p>
-</li>
+<ul>
 <li>
 <a href="https://github.com/leanprover-community/mathlib/pull/14878">PR #14878</a> brings <code>polyrith</code>, a tactic using Sage to solve polynomial equalities with hypotheses.</li>
+</ul>
+</li>
 </ul>
 </div>
     </div>
