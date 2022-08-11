@@ -29,7 +29,7 @@ set is the closure of the convex hull of its extreme points.
   - [PR #13592](https://github.com/leanprover-community/mathlib/pull/13592) solves the Ballot problem: if in an election, candidate A receives $p$ votes whereas candidate B receives $q$ votes where $p > q$ then the probability that candidate A is strictly ahead throughout the count is $(p - q) / (p + q)$.
 
 * Model theory
-  - [PR #14758](https://github.com/leanprover-community/mathlib/pull/14758) proves the Łoś–Vaught Test
+  - [PR #14758](https://github.com/leanprover-community/mathlib/pull/14758) proves the Łoś–Vaught Test.
 
 * Number theory and group theory
   - [PR #14332](https://github.com/leanprover-community/mathlib/pull/14332) defines the ramification index and inertia degree of ring extensions.
