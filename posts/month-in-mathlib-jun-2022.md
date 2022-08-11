@@ -11,33 +11,31 @@ title: This month in mathlib (Jun 2022)
 type: text
 ---
 
+We apologize for the delay in posting this overview.
 In June 2022 there were 460 PRs merged into mathlib. We list some of the highlights below.
 
 <!-- TEASER_END -->
 
 
 * Functional analysis
-  - [PR #14135](https://github.com/leanprover-community/mathlib/pull/14135) :: feat(analysis/normed_space/star/character_space): compactness of the character space of a normed algebra
-  - [PR #14460](https://github.com/leanprover-community/mathlib/pull/14460) :: feat(analysis/normed_space/hahn-banach/separation): Eidelheit's theorem
-  - [PR #8112](https://github.com/leanprover-community/mathlib/pull/8112) :: feat(analysis/convex/krein_milman): The Krein-Milman theorem
-
-  - [PR #14677](https://github.com/leanprover-community/mathlib/pull/14677) :: feat(analysis/convex/stone_separation): Stone's separation theorem
+  - [PR #14135](https://github.com/leanprover-community/mathlib/pull/14135) adds compactness of the character space of a normed algebra.
+  - [PR #14460](https://github.com/leanprover-community/mathlib/pull/14460) proves Eidelheit's theorem.
+  - [PR #8112](https://github.com/leanprover-community/mathlib/pull/8112) proves the Krein-Milman theorem.
+  - [PR #14677](https://github.com/leanprover-community/mathlib/pull/14677) proves Stone's separation theorem.
 
 * Linear algebra
-  - [PR #14514](https://github.com/leanprover-community/mathlib/pull/14514) :: feat(analysis/inner_product_space): Gram-Schmidt Basis
-  - [PR #14379](https://github.com/leanprover-community/mathlib/pull/14379) :: feat(analysis/inner_product_space): Generalize Gram-Schmidt
-  - [PR #14231](https://github.com/leanprover-community/mathlib/pull/14231) :: feat(linear_algebra/matrix): Spectral theorem for matrices
+  - [PR #14231](https://github.com/leanprover-community/mathlib/pull/14231) reformulates the spectral theorem in terms of matrices.
 
 * Measure theory and probability
-  - [PR #14528](https://github.com/leanprover-community/mathlib/pull/14528) :: feat(measure_theory/integral/lebesgue): approximate a function by a finite integral function in a sigma-finite measure space.
-  - [PR #14578](https://github.com/leanprover-community/mathlib/pull/14578) :: feat(measure_theory/measure/finite_measure_weak_convergence): Characterize weak convergence of finite measures in terms of integrals of bounded continuous real-valued functions.
-  - [PR #14755](https://github.com/leanprover-community/mathlib/pull/14755) :: feat(probability/moments): moments and moment generating function of a real random variable
+  - [PR #14528](https://github.com/leanprover-community/mathlib/pull/14528) shows that functions can be approximated a finite integral function in a sigma-finite measure space.
+  - [PR #14578](https://github.com/leanprover-community/mathlib/pull/14578) characterizes weak convergence of finite measures in terms of integrals of bounded continuous real-valued functions.
+  - [PR #14755](https://github.com/leanprover-community/mathlib/pull/14755) adds moments and the moment generating function of a real random variable.
 
 * Model theory
-  - [PR #14758](https://github.com/leanprover-community/mathlib/pull/14758) :: feat(model_theory/satisfiability): The Łoś–Vaught Test
+  - [PR #14758](https://github.com/leanprover-community/mathlib/pull/14758) adds the Łoś–Vaught test
 
 * Combinatorics
-  - [PR #13592](https://github.com/leanprover-community/mathlib/pull/13592) :: feat(combinatorics/ballot): the Ballot problem
+  - [PR #13592](https://github.com/leanprover-community/mathlib/pull/13592) adds the Ballot problem
 
 * Number theory and group theory.
   - [PR #14332](https://github.com/leanprover-community/mathlib/pull/14332) defines the ramification index and inertia degree of ring extensions.
