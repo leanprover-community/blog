@@ -31,7 +31,7 @@ set is the closure of the convex hull of its extreme points.
 * Model theory
   - [PR #14758](https://github.com/leanprover-community/mathlib/pull/14758) proves the Łoś–Vaught Test
 
-* Number theory and group theory.
+* Number theory and group theory
   - [PR #14332](https://github.com/leanprover-community/mathlib/pull/14332) defines the ramification index and inertia degree of ring extensions.
   - [PR #14312](https://github.com/leanprover-community/mathlib/pull/14312) defines the p-primary component of a group.
   - [PR #13524](https://github.com/leanprover-community/mathlib/pull/13524) gives the classification of finitely generated torsion modules over a PID and
@@ -40,5 +40,5 @@ set is the closure of the convex hull of its extreme points.
 * Linear algebra
   - [PR #14231](https://github.com/leanprover-community/mathlib/pull/14231) reformulates the spectral theorem in terms of matrices.
 
-* Tactics. 
+* Tactics
   - The `linear_combination` tactic became more powerful in [PR #14229](https://github.com/leanprover-community/mathlib/pull/14229) by allowing combinations of arbitrary proofs.
