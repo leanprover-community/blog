@@ -18,7 +18,7 @@ In June 2022 there were 460 PRs merged into mathlib. We list some of the highlig
 
 
 * Functional analysis
-        - [PR #14135](https://github.com/leanprover-community/mathlib/pull/14135) proves compactness of the character space of a normed algebra. This is a key step in developing the continuous functional calculus.
+     - [PR #14135](https://github.com/leanprover-community/mathlib/pull/14135) proves compactness of the character space of a normed algebra. This is a key step in developing the continuous functional calculus.
      - [PR #8112](https://github.com/leanprover-community/mathlib/pull/8112) proves the Krein-Milman theorem for real normed spaces: any compact convex
 set is the closure of the convex hull of its extreme points. 
      - [PR #14677](https://github.com/leanprover-community/mathlib/pull/14677) proves Stone's separation theorem: in a vector space over a linearly ordered field, for any pair of disjoint convex subsets, one can partition the whole space into two convex subsets containing the given sets. This is a generalization of the geometric Hahn-Banach theorem where the partition is made of half-spaces. 
