@@ -35,16 +35,14 @@ In July 2022 there were 611 PRs merged into mathlib. We list some of the highlig
 
 
 * Arithmetic
-  - [PR #15091](https://github.com/leanprover-community/mathlib/pull/15091) :: feat(ring_theory/bezout): Define Bézout rings.
-  - [PR #15109](https://github.com/leanprover-community/mathlib/pull/15109) :: feat(algebra/gcd_monoid): GCD domains are integrally closed.
-  - [PR #15424](https://github.com/leanprover-community/mathlib/pull/15424) :: feat(ring_theory/bezout): Bezout domains are integrally closed
-  - [PR #14717](https://github.com/leanprover-community/mathlib/pull/14717) :: feat(number_theory/wilson): add Wilson's Theorem
-  - [PR #15315](https://github.com/leanprover-community/mathlib/pull/15315) :: feat(number_theory): degree `[Frac(S):Frac(R)]` is degree `[S/pS:R/p]`
-  - [PR #8002](https://github.com/leanprover-community/mathlib/pull/8002) :: feat(number_theory): Bertrand's postulate, slightly different approach
+  - [PR #15091](https://github.com/leanprover-community/mathlib/pull/15091) defines Bézout rings and [PR #15424](https://github.com/leanprover-community/mathlib/pull/15424) proves that Bezout domains are integrally closed. [PR #15109](https://github.com/leanprover-community/mathlib/pull/15109) proves the same for GCD domains.
+  - [PR #14717](https://github.com/leanprover-community/mathlib/pull/14717) proves Wilson's Theorem
+  - [PR #15315](https://github.com/leanprover-community/mathlib/pull/15315) proves `[Frac(S):Frac(R)] = [S/pS:R/p]`for a Dedekind domain $R$ and its integral closure $S$ and maximal ideal $p$. This is the first step in showing the fundamental identity of inertia degree and ramification index.
+  - [PR #8002](https://github.com/leanprover-community/mathlib/pull/8002) proves Bertrand's postulate
 
 * Group theory
-  - [PR #8632](https://github.com/leanprover-community/mathlib/pull/8632) :: feat(group_theory/p_group): Groups of order p^2 are commutative
-  - [PR #15402](https://github.com/leanprover-community/mathlib/pull/15402) :: feat(group_theory/finite_abelian): a finitely generated torsion abelian group is finite
+  - [PR #8632](https://github.com/leanprover-community/mathlib/pull/8632) proves that groups of order $p^2$ are commutative
+  - [PR #15402](https://github.com/leanprover-community/mathlib/pull/15402) proves that a finitely generated torsion abelian group is finite.
 
 * Probability and measure theory
   - [PR #14737](https://github.com/leanprover-community/mathlib/pull/14737) :: feat(probability/martingale): Doob's maximal inequality
