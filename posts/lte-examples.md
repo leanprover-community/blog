@@ -26,14 +26,14 @@ The code block above, which is taken directly from the file [`challenge.lean`](h
 Fortunately, it's relatively straightforward to unravel the notation to see the underlying definitions themselves.
 But there is a bigger issue: How can we verify that the *definitions* we introduced in Lean are *correct*? 
 
-To answer this question, we spent the last few weeks building a new `examples` folder in the repository which contains several files corresponding to the main players in the statement above.
-This blog post gives an overview of this folder and its contents, and how it relates to the definitions used in the main statement of the liquid tensor experiment (LTE).
+To answer this question, we spent the last few weeks building a new [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/master/src/examples) in the repository which contains several files corresponding to the main players in the statement above.
+This blog post gives an overview of this folder and its contents, and how it relates to the definitions used in the main statement of the [liquid tensor experiment (LTE)](https://github.com/leanprover-community/lean-liquid).
 
 <!-- TEASER_END -->
 
 # Unraveling the statement
 
-Let's first unravel the statement of the theorem of Clausen-Scholze which was the focus of LTE:
+Let's first unravel the statement of the [theorem of Clausen-Scholze](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf) which was the focus of LTE:
 
 **Theorem** (Clausen-Scholze). *Let $0 < p' < p \le 1$ be real numbers. 
 Let $S$ be a profinite set, and let $V$ be a $p$-Banach space.
@@ -54,7 +54,7 @@ Let's go through the ingredients in this statement individually:
   Here $C(S,\mathbb{R})$ is a Banach space with respect to the sup norm and its linear dual is endowed with the weak topology.
   It is in this sense that one can consider $\mathcal{M}\_{p'}(S)$ as the space of $p'$-measures on $S$. 
 2. The `Ext` groups appearing in the statement of the theorem are computed in the category $\mathrm{Cond(Ab)}$ of condensed abelian groups, which is the category of sheaves of abelian groups on the category of profinite sets with respect to the Grothendieck topology where a cover of $B$ is a finite jointly surjective family of morphisms $(X_i \to B)_{i}$.
-  This an exceptionally nice abelian category with compact projective generators. 
+  This is an exceptionally nice abelian category with compact projective generators. 
 3. It's possible to interpret any topological abelian group as a condensed abelian group.
    For example, any $p'$-Banach space $V$, which is a topological vector space over $\mathbb{R}$ satisfying additional conditions, can be viewed as an object of $\mathrm{Cond(Ab)}$.
    It's also possible to interpret $\mathcal{M}\_{p'}(S)$ (better, any CompHaus-filtered-pseudo-normed-group) as a condensed abelian group. 
@@ -181,7 +181,7 @@ rfl
 One last comment about universes is warranted in this section.
 Just like `Profinite.{0}` is the category of profinite sets whose underlying type lives in `Type 0`, the category `Ab.{1}` is the category of abelian groups whose underlying type lives in `Type 1`.
 We need to bump the universe level of the category of abelian groups precisely because `Profinite.{0}` is a *large category*, meaning that `Profinite.{0} : Type 1`, while `X ⟶ Y : Type 0` for `X Y : Profinite.{0}`.
-Technically speaking, condensed mathematics in the sense of Clausen-Scholze works in ZFC by imposing cardinality bounds on profinite sets, whereas our approach more closely resembles that of *pyknotic objects*.
+Technically speaking, condensed mathematics in the sense of [Clausen-Scholze](https://www.math.uni-bonn.de/people/scholze/Condensed.pdf) works in ZFC by imposing cardinality bounds on profinite sets, whereas our approach more closely resembles that of *pyknotic objects*, in the sense of [Barwick-Haine](https://arxiv.org/abs/1904.09966).
 
 # Radon Measures
 
@@ -230,9 +230,11 @@ example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0}) :
     continuous g ∧ f = coe ∘ g }) := 
 rfl
 ```
+
 Since Lean's type theory does not have cumulative universes, this definition involves a universe bump using `ulift`, in order to obtain an object of `Ab.{1}` as opposed to `Ab.{0}` (see the discussion above).
-Putting that aside, the sections of the condensed abelian group associated to a CHFPNG $X$ over a profinite set $S$ is the set of functions $f : S \to M$ which factor through a continuous map $f : S \to M_c$ for some $c$.
-The group structure on this set of sections is the obivous one:
+Putting that aside, the sections of the condensed abelian group associated to a CHFPNG $X$ over a profinite set $S$ is the set of functions $f : S \to M$ which factor through a continuous map $g : S \to M_c$ for some $c$.
+
+The group structure on this set of sections is the obivous one.
 ```lean
 example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0})
   (f g : Γ_ (CompHausFiltPseuNormGrp.to_Condensed X) S) (s : S) :
@@ -245,7 +247,7 @@ We will now discuss the relationship between $\mathcal{M}\_{p}(S)$ and the space
 First we address the question of actually defining the space of $p$-Radon measures.
 Given any `S : Profinite.{0}`, and $p$ as above, we define `S.Radon_png p`, an object of `CompHausFiltPseuNormGrp₁`, as follows.
 
-As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $B \in \mathbb{R}_{\geq 0}$, where for any partition $S = C_1 \cup \cdots \cup C_n$ into disjoint clopen sets, letting $I_i \in C(S,\mathbb{R})$ denote the (continuous) indicator function of $C_i$, one has 
+As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $C \in \mathbb{R}_{\geq 0}$, where for any partition $S = V_1 \cup \cdots \cup V_n$ into disjoint clopen sets, letting $I_i \in C(S,\mathbb{R})$ denote the (continuous) indicator function of $V_i$, one has 
 $$ \sum_i |\mu(I_i)|^p \le C. $$
 Since $S$ is compact, Hausdorff and totally disconnected, this does indeed agree with the usual space of signed $p$-Radon measures (which reduces to the usual notion of a signed Radon measure when $p = 1$). 
 The $c$-th part of the filtration on `S.Radon_png p` is given by those $\mu$ where the sums are bounded by `c`.
@@ -360,7 +362,7 @@ example : uniformity V = ⨅ (ε : ℝ) (H : ε > 0),
 ## The associated condensed abelian group
 Since `V` is, in particular, a topological abelian group, it can also be viewed as a condensed abelian group.
 The sections of the condensed abelian group associated to `V`, over a profinite set `S`, is given simply by `C(S,V)` (modulo a universe bump, similarly to the situation above).
-```
+```lean
 example : (Γ_ V S : Type 1) = ulift C(S,V) := rfl
 ```
 And the group structure is the obvious one.
@@ -409,7 +411,7 @@ example [fact (0 < p)] [fact (p ≤ 1)] (a : ℝ)
 # The `Ext` groups
 
 The file [`examples/Ext.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/Ext.lean) was arguably the original motivation for the `examples` folder.
-After we the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined `Ext` to always be zero!
+After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined `Ext` to always be zero!
 
 ![ext-zulip](/images/lte-ext-zulip-1.png)
 ![ext-zulip](/images/lte-ext-zulip-2.png)
@@ -455,7 +457,7 @@ example (X Y : 𝓐) : Ext' 0 (op X) Y ≅ AddCommGroup.of (X ⟶ Y) :=
 ```
 
 ## Universality
-Finally, if `G` is another (contravariant, cohomological) $\delta$-functor and $\eta : \operatorname{Hom}(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from `Ext_δ_functor 𝓐 Y` to `G` which restricts to $\eta$ after composition with the isomorphism `Ext'_zero_flip_iso` mentioned in the code block above.
+Finally, if `G` is another (contravariant, cohomological) $\delta$-functor and $e_0 : \operatorname{Hom}(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from `Ext_δ_functor 𝓐 Y` to `G` which restricts to $e_0$ after composition with the isomorphism `Ext'_zero_flip_iso` mentioned in the code block above.
 In other words, `Ext_δ_functor 𝓐 Y` is *universal*.
 ```lean
 theorem Ext_δ_functor_is_universal_for_Hom (Y : 𝓐) (F : 𝓐ᵒᵖ ⥤δ Ab.{v})
