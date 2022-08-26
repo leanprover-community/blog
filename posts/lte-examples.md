@@ -312,6 +312,8 @@ example (S : Profinite.{0}) :
 
 # $p$-Banach spaces
 
+The file [`examples/pBanach.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/pBanach.lean) discusses $p$-Banach spaces and gives an explicit example.
+
 Let $p$ be a real number satisfying $0 < p \le 1$.
 A $p$-Banach space is a topological real vector space $V$ such that there exists a $p$-norm on $V$ which induces the topology on $V$ and for which $V$ is complete.
 Here a $p$-norm is a map $\|| \cdot \|| : V \to \mathbb{R}_{\geq 0}$ which is similar to a norm, except that the scaling behavior involves $p$: $\|| a \cdot v \|| = |a|^p \cdot \|| v \||$ for all $a \in \mathbb{R}$ and $v \in V$. 
