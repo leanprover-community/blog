@@ -66,7 +66,7 @@ We tried to write the files in this folder in a way which should be (approximate
 # The real numbers
 
 There is not much to say about the file `examples/real.lean`.
-The reals $\mathbb{R}$ are the unique conditionally complete linearly ordered field in the sense that any such field is isomorphic to $\mathbb{R}$ in a unique way.
+The reals $\mathbb{R}$ are the unique conditionally complete linearly ordered field in the sense that any such field is isomorphic (as an ordered field) to $\mathbb{R}$ in a unique way.
 ```lean
 example : conditionally_complete_linear_ordered_field ℝ := infer_instance
 
@@ -81,9 +81,9 @@ This result is actually a [recent addition](https://github.com/leanprover-commun
 
 # Profinite sets and condensed abelian groups
 
-The first file we will discuss is [`examples/profinite.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/profinite.lean).
-This file explains the formalization of profinite sets, and condensed abelian groups.
+Let's discuss the file [`examples/profinite.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/profinite.lean), which explains the formalization of profinite sets, and condensed abelian groups.
 
+## Profinite sets
 First of all, we have the category `Profinite` of profinite sets.
 ```lean
 example : Type 1 := Profinite.{0}
@@ -97,14 +97,14 @@ example (X : Profinite.{0}) : Type := X
 Since `Type 0` is a term of `Type 1`, we also have `Profinite.{0} : Type 1`.
 Such universe annotations are all over the place in this repository, and we will mostly ignore them in the discussion below (with a few notable exceptions).
 
-As we mentioned above, any `X : Profinite.{0}` is a topological space which is compact, Hausdorff and totally disconnected:
+As we mentioned above, any `X : Profinite.{0}` is a topological space which is compact, Hausdorff and totally disconnected.
 ```lean
 example (X : Profinite.{0}) : topological_space X := infer_instance
 example (X : Profinite.{0}) : compact_space X := infer_instance
 example (X : Profinite.{0}) : t2_space X := infer_instance
 example (X : Profinite.{0}) : totally_disconnected_space X := infer_instance
 ```
-And conversely, any such topological space yields an object of `Profinite.{0}`:
+Conversely, any such topological space yields an object of `Profinite.{0}`.
 ```lean
 example (X : Type)
   [topological_space X]
@@ -115,12 +115,15 @@ example (X : Type)
 Profinite.of X
 ```
 
+## The category structure on `Profinite`
 In Lean, the type of morphisms between objects `X` and `Y` in a category is denoted with a special arrow `X ⟶ Y`, not to be confused with the arrow used for the type of functions `X → Y`.
 While `Profinite.{0}` is itself a type (whose terms are themselves profinite sets), this type is endowed with a natural structure of a category whose morphisms are simply continunous maps.
 ```lean
 example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := rfl
 ```
 The fact that `rfl` works in this example shows that morphisms in the category of profinite sets are *defined* as continuous maps.
+
+## Condensed abelian groups
 
 The category `Profinite.{0}` also has the Grothendieck topology mentioned above, which we call `proetale_topology` in LTE (this name is used because the corresponding site agrees with the pro-étale site of a geometric point).
 ```lean
@@ -173,6 +176,7 @@ example : Condensed.{0} Ab.{1} = Sheaf proetale_topology.{0} Ab.{1} :=
 rfl
 ```
 
+## A comment on universes
 One last comment about universes is waranted in this section.
 Just like `Profinite.{0}` is the category of profinite sets whose underlying type lives in `Type 0`, the category `Ab.{1}` is the category of abelian groups whose underlying type lives in `Type 1`.
 We need to bump the universe level of the category of abelian groups precisely because `Profinite.{0}` is a *large category*, meaning that `Profinite.{0} : Type 1`, while `X ⟶ Y : Type 0` for `X Y : Profinite.{0}`.
@@ -180,21 +184,34 @@ Technically speaking, condensed mathematics in the sense of Clausen-Scholze work
 
 # Radon Measures
 
-Next we discuss the file [`examples/radon_measures.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/radon_measures.lean), which covers $\mathcal{M}_{p'}(S)$ and its condensed variant.
+Next we discuss the file [`examples/radon_measures.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/radon_measures.lean), which covers the condensed abelian group $\mathcal{M}_{p'}(S)$ and its relationship with signed Radon measures.
 
+## Pseudo-normed groups
 There are really two sides in this project: the condensed side, which deals with the category of condensed abelian groups, and a more concrete side which deals with so-called pseudo-normed groups.
-A pseudo-normed group is an (additive) abelian group $M$ endowed with an increasing filtration $M_c$ indexed by $c \in \mathbb{R}\_{\geq 0}$ satisfying the following conditions:
+A *pseudo-normed group* is an (additive) abelian group $M$ endowed with an increasing filtration $M_c$ indexed by $c \in \mathbb{R}\_{\geq 0}$ satisfying the following conditions:
 
-1. The trivial element $0$ is contained in $M_c$ for all $c$.
+1. The neutral element $0$ is contained in $M_c$ for all $c$.
 2. If $x \in M_c$ then $-x \in M_c$. 
 3. If $x \in M_c$ and $y \in M_d$ then $x + y \in M_{c + d}$.
 
-If furthermore $M_c$ is endowed with a compact-Hausdorff topology, so that the inclusions $M_c \to M_d$ for $c \le d$, the negation map $M_c \to M_c$ and the addition map $M_c \times M_d \to M_{c+d}$ are all continuous, then $M$ is called a *CompHaus-filtered-pseudo-normed-group* (CHFPNG).
+If furthermore $M_c$ is endowed with a compact Hausdorff topology, where the inclusions $M_c \to M_d$ for $c \le d$, the negation map $M_c \to M_c$ and the addition map $M_c \times M_d \to M_{c+d}$ are all continuous, then $M$ is called a *CompHaus-filtered-pseudo-normed-group* (CHFPNG).
 
 The collection of CHFPNGs forms a category where morphisms are morphisms of abelian groups which are compatible with the filtration in a non-strict sense.
 Namely, a morphism $f : M \to N$ of CHFPNGs is a morphism of abelian groups such that there exists some constant $C \in \mathbb{R}\_{\geq 0}$ where $f$ restricts to *continuous* maps $M_c \to N_{C \cdot c}$ for all $c$.
 In LTE, we call this category `CompHausFiltPseuNormGrp.{0}` (again, the $0$ is the universe level of the underlying type).
 
+Most of the CHFPNGs we're interested in are actually objects of a slightly different category than the one described above, which is denoted by `CompHausFiltPseuNormGrp₁`.
+The objects of this category are CHFPNGs whose filtration is exhaustive, and the morphisms are assumed to be *strict*, meaning that a morphism $f : M \to N$ restricts to a continuous map $f : M_c \to N_c$ for all $c$.
+There is an obvious forgetful functor to the non-strict category, which is denoted by `CHFPNG₁_to_CHFPNGₑₗ`:
+```lean
+example : CompHausFiltPseuNormGrp₁ ⥤ CompHausFiltPseuNormGrp :=
+CHFPNG₁_to_CHFPNGₑₗ
+
+example (X : CompHausFiltPseuNormGrp₁) :
+  (CHFPNG₁_to_CHFPNGₑₗ X : Type*) = X := rfl
+```
+
+## The associated condensed abelian group
 There is a natural functor from `CompHausFiltPseuNormGrp.{0}` to `Condensed.{0} Ab.{1}` which sends $M$ to the colimit $\bigcup_c M_c$.
 Here $M_c$ is viewed as a condensed *set* whose underlying presheaf is the representable presheaf associated to the topological space $M_c$.
 In LTE, we defined this functor in a more hands-on way.
@@ -221,33 +238,24 @@ example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0})
   (f + g) s = f s + g s := rfl
 ```
 
-Most of the CHFPNGs we're interested in are actually objects of a slightly different category than the one described above, which is denoted by `CompHausFiltPseuNormGrp₁`.
-The objects of this category are CHFPNGs whose filtration is exhaustive, and the morphisms are assumed to be *strict*, meaning that a morphism $f : M \to N$ restricts to a continuous map $f : M_c \to N_c$ for all $c$.
-There is an obvious forgetful functor to the non-strict category, which is denoted by `CHFPNG₁_to_CHFPNGₑₗ`:
-```lean
-example : CompHausFiltPseuNormGrp₁ ⥤ CompHausFiltPseuNormGrp :=
-CHFPNG₁_to_CHFPNGₑₗ
-
-example (X : CompHausFiltPseuNormGrp₁) :
-  (CHFPNG₁_to_CHFPNGₑₗ X : Type*) = X := rfl
-```
-
+## $p$-Radon measures
 Fix a real number $p$ satisfying $0 < p \le 1$.
 We will now discuss the relationship between $\mathcal{M}\_{p}(S)$ and the space of $p$-Radon measures.
-First of all is the question of actually defining the space of $p$-Radon measures.
-Given any `S : Profinite.{0}`, and $p$ as above, we define `S.Radon_png p` as an object of `CompHausFiltPseuNormGrp₁`, as follows.
+First we address the question of actually defining the space of $p$-Radon measures.
+Given any `S : Profinite.{0}`, and $p$ as above, we define `S.Radon_png p`, an object of `CompHausFiltPseuNormGrp₁`, as follows.
+
 As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $B \in \mathbb{R}_{\geq 0}$, where for any partition $S = C_1 \cup \cdots \cup C_n$ into disjoint clopen sets, letting $I_i \in C(S,\mathbb{R})$ denote the (continuous) indicator function of $C_i$, one has 
 $$ \sum_i |\mu(I_i)|^p \le C. $$
 Since $S$ is compact, Hausdorff and totally disconnected, this does indeed agree with the usual space of signed $p$-Radon measures (which reduces to the usual notion of a signed Radon measure when $p = 1$). 
 The $c$-th part of the filtration on `S.Radon_png p` is given by those $\mu$ where the sums are bounded by `c`.
-If one endowes the continuous dual with the weak topology, this does indeed yield a CHFPNG.
+If one endowes the continuous dual with the weak topology, and endowes the $c$-th terms of the filtration of `S.Radon_png p` with the induced topology, then this does indeed yield a CHFPNG.
 
-Se added several examples in the file `examples/radon_measures.lean` explaining dedicated to this object `S.Radon_png p`.
-First, any element of `S.Radon_png p` can be considered as a continuous functional on $C(S,\mathbb{R})$:
+We added several examples in the file `examples/radon_measures.lean` dedicated to this object `S.Radon_png p`.
+First, any element of `S.Radon_png p` can be considered as a continuous functional on $C(S,\mathbb{R})$.
 ```lean
 example (S : Profinite.{0}) (μ : S.Radon_png p) : C(S,ℝ) →L[ℝ] ℝ := μ.1
 ```
-and the boundedness condition mentioned above does indeed hold
+The boundedness condition mentioned above does indeed hold.
 ```lean
 example (S : Profinite.{0}) (μ : S.Radon_png p) :
   ∃ c : ℝ≥0,
@@ -256,12 +264,12 @@ example (S : Profinite.{0}) (μ : S.Radon_png p) :
     ∑ i : ι, ∥ μ (clopens.indicator ⟨e i, he i⟩) ∥₊^(p : ℝ) ≤ c :=
 -- the proof...
 ```
-As expected, `clopens.indicator` is the indicator function on a clopen set:
+In the code block above, the continuous function `clopens.indicator` is the indicator function on a clopen set.
 ```lean
 example (S : Profinite.{0}) (C : set S) (hC : is_clopen C) (s : S) :
   clopens.indicator ⟨C,hC⟩ s = if s ∈ C then 1 else 0 := rfl
 ```
-Conversely, we may construct elements of the `c`-th term of the filtration of `S.Radon_png p` given a continuous functional satisfying the bound for `c`:
+Conversely, we may construct elements of the `c`-th term of the filtration of `S.Radon_png p` given a continuous functional satisfying the bound for `c`.
 ```lean
 example (S : Profinite.{0}) (μ : C(S,ℝ) →L[ℝ] ℝ) (c : ℝ≥0)
   (h : ∀ (ι : Fintype.{0}) (e : ι → set S)
@@ -271,7 +279,7 @@ example (S : Profinite.{0}) (μ : C(S,ℝ) →L[ℝ] ℝ) (c : ℝ≥0)
 { val := ⟨μ, c, by { ... }⟩,
   property := by { ... } }
 ```
-Finally, the topology on this `c`-th term of the filtration is induced by the weak topology of the continuous dual:
+The topology on this `c`-th term of the filtration is *defined* to be induced by the weak topology of the continuous dual.
 ```lean
 def embedding_into_the_weak_dual (S : Profinite.{0}) :
   S.Radon_png p ↪ weak_dual ℝ C(S,ℝ) := ⟨λ μ, μ.1, ...⟩
@@ -285,8 +293,7 @@ example (S : Profinite.{0}) (c : ℝ≥0) :
       (filtration_embedding p S c)) :=
 inducing.mk rfl
 ```
-
-The group structure on `S.Radon_png p` is just the one induced by that of the dual of $C(S,\mathbb{R})$:
+Finally, the group structure on `S.Radon_png p` is just the one induced by that of the dual of $C(S,\mathbb{R})$.
 ```lean
 example (S : Profinite.{0}) (F G : S.Radon_png p) :
   embedding_into_the_weak_dual p S (F + G) =
@@ -294,7 +301,7 @@ example (S : Profinite.{0}) (F G : S.Radon_png p) :
   embedding_into_the_weak_dual p S G := rfl
 ```
 
-Although we will not explain precisely the definition of the condensed abelian group `ℳ_{p} S` which appears in the statement of the challenge (it is essentially defined as a union of limits as indicated above), we can nevertheless show that it is isomorphic to the condensed abelian group associated to `S.Radon_png p`:
+Although we will not explain precisely the definition of the condensed abelian group `ℳ_{p} S` which appears in the main statement of the challenge (it is essentially defined as a colimit of limits as indicated above), we do nevertheless show that it is isomorphic to the condensed abelian group associated to `S.Radon_png p`:
 ```lean
 example (S : Profinite.{0}) :
   (ℳ_{p} S) ≅
@@ -308,7 +315,9 @@ Let $p$ be a real number satisfying $0 < p \le 1$.
 A $p$-Banach space is a topological real vector space $V$ such that there exists a $p$-norm on $V$ which induces the topology on $V$ and for which $V$ is complete.
 Here a $p$-norm is a map $\|| \cdot \|| : V \to \mathbb{R}_{\geq 0}$ which is similar to a norm, except that the scaling behavior involves $p$: $\|| a \cdot v \|| = |a|^p \cdot \|| v \||$ for all $a \in \mathbb{R}$ and $v \in V$. 
 In LTE, the type of $p$-Banach spaces is denoted `pBanach.{0} p`.
-The topological properties of `V : pBanah.{0} p` are summarized in the following examples:
+
+## Basic properties
+The topological properties of `V : pBanach.{0} p` are summarized in the following examples:
 ```lean
 example : topological_add_group V := infer_instance
 example : module ℝ V := infer_instance
@@ -317,7 +326,7 @@ example : complete_space V := infer_instance
 example : separated_space V := infer_instance
 ```
 
-As expected, we should be able to *choose* a $p$-norm on such a `V`:
+As expected, we should be able to *choose* a $p$-norm on such a `V`.
 ```lean
 def pBanach.has_norm : has_norm V :=
 (p_banach.exists_p_norm V.p_banach').some.to_has_norm
@@ -345,35 +354,37 @@ example : uniformity V = ⨅ (ε : ℝ) (H : ε > 0),
 (p_banach.exists_p_norm V.p_banach').some.uniformity
 ```
 
-Since `V` is, in particular, a topological abelian group, it can be viewed as a condensed abelian group.
-The sections of `V` over a profinite set `S` is simply `C(S,V)` (modulo a universe bump, similarly to the above):
+## The associated condensed abelian group
+Since `V` is, in particular, a topological abelian group, it can also be viewed as a condensed abelian group.
+The sections of the condensed abelian group associated to `V`, over a profinite set `S`, is given simply by `C(S,V)` (modulo a universe bump, similarly to the situation above).
 ```
 example : (Γ_ V S : Type 1) = ulift C(S,V) := rfl
 ```
-and the group structure is the obvious one:
+And the group structure is the obvious one.
 ```lean
 example (f g : Γ_ V S) (s : S) : (f + g) s = f s + g s := rfl
 ```
 
-We have also provided an explicit example of a $p$-Banach space. 
-Namely, the space $\ell^p(\mathbb{N})$ of real sequences $(a_i)_i$ such that the sum $\sum_i |a_i|^p$ exists is a $p$-Banach space.
-This example is denoted `pBanach.lp p`: 
+## $\ell^p(\mathbb{N})$
+We have also provided an explicit example of a $p$-Banach space: the space $\ell^p(\mathbb{N})$ of real sequences $(a_i)_i$ such that the sum $\sum_i |a_i|^p$ exists is a $p$-Banach space.
+
+This example is denoted `pBanach.lp p`. 
 ```lean
 example [fact (0 < p)] [fact (p ≤ 1)] : pBanach p :=
 pBanach.lp p
 ```
-Indeed, elements of `pBanach.lp p` can be considered as functions $\mathbb{N} \to \mathbb{R}$:
+Indeed, elements of `pBanach.lp p` can be considered as functions $\mathbb{N} \to \mathbb{R}$.
 ```lean
 example [fact (0 < p)] [fact (p ≤ 1)] (f : pBanach.lp p) : ℕ → ℝ :=
 λ i, f i
 ```
-for which the sum above exists:
+And the sum mentioned above exists.
 ```lean
 example [fact (0 < p)] [fact (p ≤ 1)] (f : pBanach.lp p) :
   summable (λ n, | f n |^(p : ℝ)) :=
 pBanach.lp_type.summable f
 ```
-Conversely, such sequences yield elements of `pBanach.lp p`:
+Conversely, such sequences yield elements of `pBanach.lp p`.
 ```lean
 example [fact (0 < p)] [fact (p ≤ 1)] (f : ℕ → ℝ) 
   (hf : summable (λ n, | f n |^(p : ℝ))) :
@@ -381,7 +392,7 @@ example [fact (0 < p)] [fact (p ≤ 1)] (f : ℕ → ℝ)
 { val := f,
   property := ... }
 ```
-The vector space structure is, of course, the obvious one:
+Finally, the vector space structure is, of course, the obvious one.
 ```lean
 example [fact (0 < p)] [fact (p ≤ 1)] 
   (f g : pBanach.lp p) (n : ℕ) :
@@ -395,17 +406,23 @@ example [fact (0 < p)] [fact (p ≤ 1)] (a : ℝ)
 # The `Ext` groups
 
 The file `examples/Ext.lean` was arguably the original motivation for the `examples` folder.
-After we completed the liquid tensor experiment was completed, we joked about the fact that we could have easily defined `Ext` to be always zero!
+After we the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined `Ext` to always be zero!
+
+![ext-zulip](/images/lte-ext-zulip-1.png)
+![ext-zulip](/images/lte-ext-zulip-2.png)
+
 Of course, then quickly came the question of how we could be convinced that the definition we had was correct.
-We came up with two computations that should be sufficiently convincing:
+
+We came up with two computations that were sufficiently convincing for us:
 
 1. We showed that our definition of `Ext` yields a universal $\delta$-functor (in the first variable).
   Unfortunately, at the time of writing, $\delta$-functors are still not part of mathlib.
   Their definition is in the LTE repository, and can be found [here](https://github.com/leanprover-community/lean-liquid/blob/25dc13f472934009786afaaaa2392fa2c8d73e3c/src/for_mathlib/universal_delta_functor/basic.lean#L24).
 2. We did the very first exercise one might do when first learning about Ext groups: $\operatorname{Ext}^1(\mathbb{Z}/n,\mathbb{Z}/n) \cong \mathbb{Z}/n$.
 
+## `Ext` vs. `Ext'`
 While `mathlib` does have the definition of Ext groups of two objects in an abelian category with enough projectives, for the purposes of LTE, we had to also consider Ext groups of complexes.
-We ended up making a new definition `Ext i A B` where `A` and `B` are arbitrary bounded above complexes in an abelian category with enough projectives.
+We ended up making a new definition `Ext i A B` where `A` and `B` are arbitrary bounded above complexes in an abelian category with enough projectives (more precisely, we ended up working with the homotopy category of bounded above cochain complexes).
 The Ext groups for objects, denoted `Ext' i X Y` is then defined by viewing an object $X$ as the complex $X[0]$ concentrated in degree zero.
 ```lean
 example (n : ℕ) (X Y : 𝓐) :
@@ -415,7 +432,8 @@ example (n : ℕ) (X Y : 𝓐) :
 The presence of `↑` in this code indicates that a coercion is involved.
 In this case, it is the coercion from the abelian category `𝓐` to the bounded-above homotopy category of cochain complexes in `𝓐`, denoted `bounded_homotopy_category 𝓐` throughout the repository.
 
-As aluded to in item 1 above, `Ext' i - Y` can be patched together to form a (contravariant, cohomological) $\delta$-functor:
+## `Ext'` a $\delta$-functor
+As aluded to in item 1 above, `Ext' i (-) Y` can be assembeled to form a (contravariant, cohomological) $\delta$-functor.
 ```lean
 example (Y : 𝓐) : 𝓐ᵒᵖ ⥤δ Ab.{v} := Ext_δ_functor 𝓐 Y
 
@@ -425,13 +443,17 @@ example (n : ℕ) (X Y : 𝓐) :
   (Ext_δ_functor 𝓐 Y n) (op X) = Ext' n (op X) Y :=
 rfl
 ```
-In degree zero `Ext' 0 X Y` is isomorphic to the usual Hom functor, as expected:
+
+## Comparison with `Hom`
+In degree zero `Ext' 0 X Y` is isomorphic to the usual Hom functor, as expected.
 ```lean
 example (X Y : 𝓐) : Ext' 0 (op X) Y ≅ AddCommGroup.of (X ⟶ Y) :=
 (Ext'_zero_flip_iso _ _).app _
 ```
-Finally, if `G` is another (contravariant, cohomological) $\delta$-functor and $\eta : Hom(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from `Ext_δ_functor 𝓐 Y` to `G` which restricts to $\eta$ after composition with the isomorphism `Ext'_zero_flip_iso` mentioned in the code block above.
-In other words, `Ext_δ_functor 𝓐 Y` is *universal*:
+
+## Universality
+Finally, if `G` is another (contravariant, cohomological) $\delta$-functor and $\eta : \operatorname{Hom}(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from `Ext_δ_functor 𝓐 Y` to `G` which restricts to $\eta$ after composition with the isomorphism `Ext'_zero_flip_iso` mentioned in the code block above.
+In other words, `Ext_δ_functor 𝓐 Y` is *universal*.
 ```lean
 theorem Ext_δ_functor_is_universal_for_Hom (Y : 𝓐) (F : 𝓐ᵒᵖ ⥤δ Ab.{v})
   (e0 : preadditive_yoneda Y ⟶ F 0) :
@@ -440,7 +462,8 @@ theorem Ext_δ_functor_is_universal_for_Hom (Y : 𝓐) (F : 𝓐ᵒᵖ ⥤δ Ab.
 ...
 ```
 
-And, of course, we conclude this file with the first exercise in the book:
+## A basic exercise
+We conclude with the first exercise in the book.
 ```lean
 example (n : ℕ) (hn : n ≠ 0) :
   Ext' 1 (op $ of $ zmod n) (of $ zmod n) ≅ of (zmod n) :=
