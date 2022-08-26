@@ -26,8 +26,8 @@ The code block above, which is taken directly from the file [`challenge.lean`](h
 Fortunately, it's relatively straightforward to unravel the notation to see the underlying definitions themselves.
 But there is a bigger issue: How can we verify that the *definitions* we introduced in Lean are *correct*? 
 
-To answer this question, we spent the last few weeks building a new `examples` folder in the LTE repository which contains several files corresponding to the main players in the statement above.
-This blog post gives an overview of this folder and its contents, and how it could be used to verify the correctness of the definitions used in the liquid tensor experiment.
+To answer this question, we spent the last few weeks building a new `examples` folder in the repository which contains several files corresponding to the main players in the statement above.
+This blog post gives an overview of this folder and its contents, and how it relates to the definitions used in the main statement of the liquid tensor experiment (LTE).
 
 <!-- TEASER_END -->
 
@@ -41,7 +41,7 @@ Let $\mathcal{M}\_{p'}(S)$ be the space of $p'$-measures on $S$. Then
 $$\operatorname{Ext}^i_{\mathrm{Cond(Ab)}}(\mathcal{M}_{p'}(S),V) = 0$$
 for all $i \geq 1$.*
 
-Let's go through the ingredients in the statement step-by-step:
+Let's go through the ingredients in this statement individually:
 
 1. A profinite set $S$ is a topological space which is compact, Hausdorff and totally disconnected. 
   Equivalently, it is a limit (in the category of topological spaces) of finite (discrete) sets.
@@ -52,20 +52,21 @@ Let's go through the ingredients in the statement step-by-step:
   $$\mathbb{R}[S_i]\_{\le c} = \left\\{ f : S_i \to \mathbb{R} \ {\Big{|}} \ \Sigma\_{t \in S_i} | f(t) |^{p'} \le c \right\\}. $$
   It turns out that elements of $\lim\_i\mathbb{R}[S_i]\_{\le c}$ can be identified with the space of continuous linear maps $C(S,\mathbb{R}) \to \mathbb{R}$ satisfying an analogous "bounded-by-$c$" condition. 
   Here $C(S,\mathbb{R})$ is a Banach space with respect to the sup norm and its linear dual is endowed with the weak topology.
-  It is in this sense that one can view $\mathcal{M}\_{p'}(S)$ as the space of $p'$-measures on $S$. 
-2. The ext groups in the statement of the theorem are computed in the category $\mathrm{Cond(Ab)}$ of condensed abelian groups, which is the category of sheaves of abelian groups on the category of profinite sets with respect to the Grothendieck topology where a cover of $B$ is a finite jointly surjective family of morphisms $(X_i \to B)_{i}$.
+  It is in this sense that one can consider $\mathcal{M}\_{p'}(S)$ as the space of $p'$-measures on $S$. 
+2. The `Ext` groups appearing in the statement of the theorem are computed in the category $\mathrm{Cond(Ab)}$ of condensed abelian groups, which is the category of sheaves of abelian groups on the category of profinite sets with respect to the Grothendieck topology where a cover of $B$ is a finite jointly surjective family of morphisms $(X_i \to B)_{i}$.
   This an exceptionally nice abelian category with compact projective generators. 
 3. It's possible to interpret any topological abelian group as a condensed abelian group.
    For example, any $p'$-Banach space $V$, which is a topological vector space over $\mathbb{R}$ satisfying additional conditions, can be viewed as an object of $\mathrm{Cond(Ab)}$.
-   It's also possible to interpret $\mathcal{M}\_{p'}(S)$ (better, any $\mathrm{CompHaus}$-filtered-pseudo-normed-abelian-group) as a condensed abelian group. 
+   It's also possible to interpret $\mathcal{M}\_{p'}(S)$ (better, any CompHaus-filtered-pseudo-normed-group) as a condensed abelian group. 
    See below for more details.
 
 The files in the `examples` folder describe how each of these ingredients has been formalized in the liquid tensor experiment.
 We tried to write the files in this folder in a way which should be (approximately) readable by mathematicians who have little experience with Lean.
+We will discuss each file individually in the following sections.
 
 # The real numbers
 
-There is not much to say about the file `examples/real.lean`.
+There is not much to say about the file [`examples/real.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/real.lean).
 The reals $\mathbb{R}$ are the unique conditionally complete linearly ordered field in the sense that any such field is isomorphic (as an ordered field) to $\mathbb{R}$ in a unique way.
 ```lean
 example : conditionally_complete_linear_ordered_field ℝ := infer_instance
@@ -117,7 +118,7 @@ Profinite.of X
 
 ## The category structure on `Profinite`
 In Lean, the type of morphisms between objects `X` and `Y` in a category is denoted with a special arrow `X ⟶ Y`, not to be confused with the arrow used for the type of functions `X → Y`.
-While `Profinite.{0}` is itself a type (whose terms are themselves profinite sets), this type is endowed with a natural structure of a category whose morphisms are simply continunous maps.
+While `Profinite.{0}` is itself a type (whose terms are themselves profinite sets), this type is endowed with a natural structure of a category whose morphisms are simply continuous maps.
 ```lean
 example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := rfl
 ```
@@ -177,7 +178,7 @@ rfl
 ```
 
 ## A comment on universes
-One last comment about universes is waranted in this section.
+One last comment about universes is warranted in this section.
 Just like `Profinite.{0}` is the category of profinite sets whose underlying type lives in `Type 0`, the category `Ab.{1}` is the category of abelian groups whose underlying type lives in `Type 1`.
 We need to bump the universe level of the category of abelian groups precisely because `Profinite.{0}` is a *large category*, meaning that `Profinite.{0} : Type 1`, while `X ⟶ Y : Type 0` for `X Y : Profinite.{0}`.
 Technically speaking, condensed mathematics in the sense of Clausen-Scholze works in ZFC by imposing cardinality bounds on profinite sets, whereas our approach more closely resembles that of *pyknotic objects*.
@@ -405,7 +406,7 @@ example [fact (0 < p)] [fact (p ≤ 1)] (a : ℝ)
 
 # The `Ext` groups
 
-The file `examples/Ext.lean` was arguably the original motivation for the `examples` folder.
+The file [`examples/Ext.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/examples/Ext.lean) was arguably the original motivation for the `examples` folder.
 After we the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined `Ext` to always be zero!
 
 ![ext-zulip](/images/lte-ext-zulip-1.png)
@@ -432,7 +433,7 @@ example (n : ℕ) (X Y : 𝓐) :
 The presence of `↑` in this code indicates that a coercion is involved.
 In this case, it is the coercion from the abelian category `𝓐` to the bounded-above homotopy category of cochain complexes in `𝓐`, denoted `bounded_homotopy_category 𝓐` throughout the repository.
 
-## `Ext'` a $\delta$-functor
+## `Ext'` as a $\delta$-functor
 As aluded to in item 1 above, `Ext' i (-) Y` can be assembeled to form a (contravariant, cohomological) $\delta$-functor.
 ```lean
 example (Y : 𝓐) : 𝓐ᵒᵖ ⥤δ Ab.{v} := Ext_δ_functor 𝓐 Y
@@ -474,6 +475,6 @@ example (n : ℕ) (hn : n ≠ 0) :
 
 We hope that these examples are sufficiently convincing that our definitions match what's on paper.
 They certainly helped convince us!
-We encourage the readers of this blogpost to download the repository, build it locally, and explore the various definitions and proofs using the `#check` and `#print` commands, as well as the "jump to definition" functionality available with the supported editors.
+We encourage the readers of this post to download the repository, build it locally, and explore the various definitions and proofs using the `#check` and `#print` commands, as well as the "jump to definition" functionality available with the supported editors.
 Even better would be writing additional examples to explore the definitions.
 For those readers who are still skeptical (or curious), it's always possible to follow and unravel the definitions all the way down to the axioms of Lean's type theory.
