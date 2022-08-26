@@ -7,7 +7,7 @@ has_math: true
 link: ''
 slug: lte-examples
 tags: ''
-title: Examples in the liquid tensor experiment
+title: Did we get the definitions right in the liquid tensor experiment?
 type: text
 ---
 
@@ -24,9 +24,17 @@ theorem liquid_tensor_experiment
 The code block above, which is taken directly from the file [`challenge.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/challenge.lean) in the main LTE repository, uses some custom notation to make the statement appear as close as possible to the main theorem mentioned in 
 [Scholze's original challenge](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/).
 Fortunately, it's relatively straightforward to unravel the notation to see the underlying definitions themselves.
-But there is a bigger issue: How can we verify that the *definitions* we introduced in Lean are *correct*? 
+But there is a bigger issue: How can we convince ourselves that the *definitions* we introduced in Lean are *correct*? 
+
+For instance, we could have *defined* `Ext` to be $0$ (spoiler: we didn't).
+Or, we could have made some subtle innocent mistake in setting up the definitions that somehow *implies* that `Ext` is always $0$, or that all condensed abelian groups are trivial, or one of several other pitfalls that renders the statement above meaningless.
 
 To answer this question, we spent the last few weeks building a new [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/master/src/examples) in the repository which contains several files corresponding to the main players in the statement above.
+These examples can be considered as centralized "sanity checks" that the definitions we wrote in Lean actually match their intended purpose.
+
+Also, we tried to write the files in this folder in a way which should be (approximately) readable by mathematicians who have little experience with Lean.
+The goal is to make it easy for non-experts to look through the examples folder, then look through the concise final statement in `challenge.lean`, and be confident to a reasonable extent that the challenge was accomplished.
+
 This blog post gives an overview of this folder and its contents, and how it relates to the definitions used in the main statement of the [liquid tensor experiment (LTE)](https://github.com/leanprover-community/lean-liquid).
 
 <!-- TEASER_END -->
@@ -61,7 +69,6 @@ Let's go through the ingredients in this statement individually:
    See below for more details.
 
 The files in the `examples` folder describe how each of these ingredients has been formalized in the liquid tensor experiment.
-We tried to write the files in this folder in a way which should be (approximately) readable by mathematicians who have little experience with Lean.
 We will discuss each file individually in the following sections.
 
 # The real numbers
@@ -262,22 +269,22 @@ The boundedness condition mentioned above does indeed hold.
 ```lean
 example (S : Profinite.{0}) (μ : S.Radon_png p) :
   ∃ c : ℝ≥0,
-  ∀ (ι : Fintype.{0}) (e : ι → set S)
-    (I : indexed_partition e) (he : ∀ i, is_clopen (e i)),
-    ∑ i : ι, ∥ μ (clopens.indicator ⟨e i, he i⟩) ∥₊^(p : ℝ) ≤ c :=
+  ∀ (ι : Fintype.{0}) (V : ι → set S)
+    (I : indexed_partition V) (hV : ∀ i, is_clopen (V i)),
+    ∑ i : ι, ∥ μ (clopens.indicator ⟨V i, hV i⟩) ∥₊^(p : ℝ) ≤ c :=
 -- the proof...
 ```
 In the code block above, the continuous function `clopens.indicator` is the indicator function on a clopen set.
 ```lean
-example (S : Profinite.{0}) (C : set S) (hC : is_clopen C) (s : S) :
-  clopens.indicator ⟨C,hC⟩ s = if s ∈ C then 1 else 0 := rfl
+example (S : Profinite.{0}) (V : set S) (hV : is_clopen C) (s : S) :
+  clopens.indicator ⟨V,hV⟩ s = if s ∈ V then 1 else 0 := rfl
 ```
 Conversely, we may construct elements of the `c`-th term of the filtration of `S.Radon_png p` given a continuous functional satisfying the bound for `c`.
 ```lean
 example (S : Profinite.{0}) (μ : C(S,ℝ) →L[ℝ] ℝ) (c : ℝ≥0)
-  (h : ∀ (ι : Fintype.{0}) (e : ι → set S)
-    (I : indexed_partition e) (he : ∀ i, is_clopen (e i)),
-    ∑ i : ι, ∥ μ (clopens.indicator ⟨e i, he i⟩) ∥₊^(p : ℝ) ≤ c) :
+  (h : ∀ (ι : Fintype.{0}) (V : ι → set S)
+    (I : indexed_partition V) (hV : ∀ i, is_clopen (V i)),
+    ∑ i : ι, ∥ μ (clopens.indicator ⟨V i, hV i⟩) ∥₊^(p : ℝ) ≤ c) :
   filtration (S.Radon_png p) c :=
 { val := ⟨μ, c, by { ... }⟩,
   property := by { ... } }
