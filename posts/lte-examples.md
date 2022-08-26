@@ -54,7 +54,7 @@ Let's go through the ingredients in this statement individually:
   Here $C(S,\mathbb{R})$ is a Banach space with respect to the sup norm and its linear dual is endowed with the weak topology.
   It is in this sense that one can consider $\mathcal{M}\_{p'}(S)$ as the space of $p'$-measures on $S$. 
 2. The `Ext` groups appearing in the statement of the theorem are computed in the category $\mathrm{Cond(Ab)}$ of condensed abelian groups, which is the category of sheaves of abelian groups on the category of profinite sets with respect to the Grothendieck topology where a cover of $B$ is a finite jointly surjective family of morphisms $(X_i \to B)_{i}$.
-  This is an exceptionally nice abelian category with compact projective generators. 
+  This is an exceptionally nice abelian category with compact projective generators.
 3. It's possible to interpret any topological abelian group as a condensed abelian group.
    For example, any $p'$-Banach space $V$, which is a topological vector space over $\mathbb{R}$ satisfying additional conditions, can be viewed as an object of $\mathrm{Cond(Ab)}$.
    It's also possible to interpret $\mathcal{M}\_{p'}(S)$ (better, any CompHaus-filtered-pseudo-normed-group) as a condensed abelian group. 
