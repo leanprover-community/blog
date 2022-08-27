@@ -58,7 +58,7 @@ Let's go through the ingredients in this statement individually:
   $$\mathcal{M}_{p'}(S) = \bigcup\_{0 \le c} \lim\_i \mathbb{R}[S_i]\_{\le c}$$
   where 
   $$\mathbb{R}[S_i]\_{\le c} = \left\\{ f : S_i \to \mathbb{R} \ {\Big{|}} \ \Sigma\_{t \in S_i} | f(t) |^{p'} \le c \right\\}. $$
-  It turns out that elements of $\lim\_i\mathbb{R}[S_i]\_{\le c}$ can be identified with the space of continuous linear maps $C(S,\mathbb{R}) \to \mathbb{R}$ satisfying an analogous "bounded-by-$c$" condition. 
+  It turns out that elements of $\lim\_i\mathbb{R}[S_i]\_{\le c}$ can be identified with continuous linear maps $C(S,\mathbb{R}) \to \mathbb{R}$ satisfying an analogous "bounded-by-$c$" condition. 
   Here $C(S,\mathbb{R})$ is a Banach space with respect to the sup norm and its linear dual is endowed with the weak topology.
   It is in this sense that one can consider $\mathcal{M}\_{p'}(S)$ as the space of $p'$-measures on $S$. 
 2. The `Ext` groups appearing in the statement of the theorem are computed in the category $\mathrm{Cond(Ab)}$ of condensed abelian groups, which is the category of sheaves of abelian groups on the category of profinite sets with respect to the Grothendieck topology where a cover of $B$ is a finite jointly surjective family of morphisms $(X_i \to B)_{i}$.
@@ -435,7 +435,7 @@ We came up with two computations that were sufficiently convincing for us:
 ## `Ext` vs. `Ext'`
 While `mathlib` does have the definition of Ext groups of two objects in an abelian category with enough projectives, for the purposes of LTE, we had to also consider Ext groups of complexes.
 We ended up making a new definition `Ext i A B` where `A` and `B` are arbitrary bounded above complexes in an abelian category with enough projectives (more precisely, we ended up working with the homotopy category of bounded above cochain complexes).
-The Ext groups for objects, denoted `Ext' i X Y` is then defined by viewing an object $X$ as the complex $X[0]$ concentrated in degree zero.
+The Ext groups for objects, denoted `Ext' i X Y`, is then defined by viewing an object $X$ as the complex $X[0]$ concentrated in degree zero.
 ```lean
 example (n : ℕ) (X Y : 𝓐) :
   Ext' n (op X) Y =
