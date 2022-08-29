@@ -39,6 +39,115 @@ This blog post gives an overview of this folder and its contents, and how it rel
 
 <!-- TEASER_END -->
 
+# Definitions and examples in Lean
+
+This post contains several Lean code blocks. 
+Most of them have only `example`s, but a few also contain `def`enitions.
+Let's briefly review how to read such a piece of code.
+Lean experts can safely skip this section.
+
+## The anatomy of definition
+
+Let's take a look at the following code block:
+```lean
+import algebra
+
+def translate_by {G : Type} [group G] (g : G) : 
+  G → G := 
+λ h, g * h
+```
+The first line, 
+```lean
+import algebra
+```
+is just an import statement, meaning that we want to the the stuff available from the algebra part of `mathlib`.
+We need this import statement to have access to the `group` typeclass (more below). 
+We have omitted the imports from all the code blocks below, but we mention this here because it is important to remember that imports are indeed involved.
+
+The next two lines
+```lean
+def translate_by {G : Type} [group G] (g : G) : 
+  G → G := 
+```
+tell Lean what we want to define.
+In this case, we are making a *definition* which can be later accessed with the name `translate_by`.
+The code to the left of the `:` on the first line can be thought of as "hypotheses". 
+This tells Lean what variables this definition should have.
+
+In this case, we are assuming that `G` is a type endowed with a group structure and `g` is an element of `G`.
+There are three kinds of brackets used here: `{...}`, `[...]` and `(...)`.
+The first one, `{G : Type}`, declares `G` as an *implicit* variable taking values in `Type`, and the last one `(g : G)` declares `g` as an *explicit* variable taking values in `G` itself.
+The fact that `G` is implicit means that Lean will try to figure out what this variable should be from the other information available. 
+In this case, once the user provides `g : G`, Lean will be able to figure out `G` since each term (`g` in this case) has a unique type (`G` in this case) -- it is thus safe to leave `{G : Type}` implicit.
+
+The other variable used here is `[group G]`.
+The use of square brackets `[...]` tells Lean's *typeclass system* that `G` should be endowed with a group structure.
+This is what allows us to use the notation `g * h` on the next line -- without this, Lean would have no idea how to "multiply" elements of `G`.
+The typeclass system is used for other algebraic structures like `monoid`, `comm_ring`, etc., as well as for topological structures with `topological_space`, `t2_space`, etc.
+
+The part of this code after the `:` tells Lean what type to expect this definition to be.
+In this case, we have 
+```lean
+  G → G := 
+```
+which means that Lean should expect a function from `G` to itself.
+
+The text following `:=` is the actual definition.
+In this case, we have 
+```lean
+λ h, g * h
+```
+which is an (unnamed) function declared with notation from lambda calculus.
+A mathematician might write $h \mapsto g * h$ instead.
+
+To summarize, what we have done is made a new declaration `translate_by`, which takes in a type `G` with a group structure, an element `g : G`, and gives a function from `G` to itself.
+So far, this can all be seen from 
+```lean
+def translate_by {G : Type} [group G] (g : G) : 
+  G → G := 
+```
+Finally, the *actual* definition of this function is 
+```lean
+λ h, g * h
+```
+which means that `translate_by` is defined as (left) translation by `g`.
+
+We can investigate what we have done in two ways, using the `#check` and `#print` commands placed *after* the definition has been declared.
+```lean
+#check translate_by
+```
+will print the following message in the info section:
+```lean
+translate_by : Π (G : Type) [_inst_1 : group G], G → G → G
+```
+This tells us the *type* of `translate_by`: it takes a type `G` with a group structure and gives us a function from `G` (this argument corresponds to the `g : G` in the description above) to the type of functions from `G` to `G`.
+To see the actual definition of `translate_by` we can use
+```lean
+#print translate_by
+```
+which displays
+```lean
+def translate_by : Π (G : Type) [_inst_1 : group G], G → G → G :=
+λ (G : Type) [_inst_1 : group G] (g h : G), g * h
+```
+as expected. 
+
+## Examples vs definitions
+
+An example is just like a definition, except that it will not add any declaration to the current environment, so it does not require that a name is provided.
+This is still useful because it can give us information about the type of the code to the right of `:=`.
+For example
+```lean
+example {G : Type} [group G] (g : G) : 
+  G → G := 
+λ h, g * h
+```
+tells us that the code on the right hand side of the `:=`, i.e. `λ h, g * h`, does indeed have the type `G → G` under the assumptions given on the left-hand side of the `:`, i.e. `{G : Type} [group G] (g : G)`.
+
+For most of the examples appearing below, the actual code appearing after `:=` will not play much of a role, and in some cases it is completely omitted! 
+Rather, most of our examples should be seen as evidence that a term of a given type *can* be constructed, perhaps also indicating the name of the definiton used to construct such a term.
+In some exceptional cases where the the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
+
 # Unraveling the statement
 
 Let's first unravel the statement of the [theorem of Clausen-Scholze](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf) which was the focus of LTE:
@@ -85,6 +194,7 @@ example {R : Type*} [conditionally_complete_linear_ordered_field R]
   (e₁ e₂ : R ≃+*o ℝ) :
   e₁ = e₂ := subsingleton.elim _ _
 ```
+In the code above, the symbol `A ≃+*o B` is notation for the type of *isomorphisms of ordered rings* between `A` and `B`. 
 This result is actually a [recent addition](https://github.com/leanprover-community/mathlib/pull/3292) to `mathlib`! 
 
 # Profinite sets and condensed abelian groups
@@ -112,6 +222,8 @@ example (X : Profinite.{0}) : compact_space X := infer_instance
 example (X : Profinite.{0}) : t2_space X := infer_instance
 example (X : Profinite.{0}) : totally_disconnected_space X := infer_instance
 ```
+The fact that all of these examples can be solved with `infer_instance` means that Lean's typeclass system is automatically able to find the proof(s) that `X` is a compact Hausdorff totally disconnected topological space.
+
 Conversely, any such topological space yields an object of `Profinite.{0}`.
 ```lean
 example (X : Type)
@@ -130,6 +242,8 @@ While `Profinite.{0}` is itself a type (whose terms are themselves profinite set
 example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := rfl
 ```
 The fact that `rfl` works in this example shows that morphisms in the category of profinite sets are *defined* as continuous maps.
+
+TODO: Explanation of `C(A,B)`, should be moved from the `pBanach` file to the `Profinite` file.
 
 ## Condensed abelian groups
 
@@ -189,6 +303,7 @@ One last comment about universes is warranted in this section.
 Just like `Profinite.{0}` is the category of profinite sets whose underlying type lives in `Type 0`, the category `Ab.{1}` is the category of abelian groups whose underlying type lives in `Type 1`.
 We need to bump the universe level of the category of abelian groups precisely because `Profinite.{0}` is a *large category*, meaning that `Profinite.{0} : Type 1`, while `X ⟶ Y : Type 0` for `X Y : Profinite.{0}`.
 Technically speaking, condensed mathematics in the sense of [Clausen-Scholze](https://www.math.uni-bonn.de/people/scholze/Condensed.pdf) works in ZFC by imposing cardinality bounds on profinite sets, whereas our approach more closely resembles that of *pyknotic objects*, in the sense of [Barwick-Haine](https://arxiv.org/abs/1904.09966).
+See the footnote on page 7 of [`Condensed.pdf`](https://www.math.uni-bonn.de/people/scholze/Condensed.pdf) and/or section 0.3 of [Barwick-Haine](https://arxiv.org/pdf/1904.09966.pdf) for the comparison between condensed and pyknotic sets.
 
 # Radon Measures
 
@@ -202,7 +317,7 @@ A *pseudo-normed group* is an (additive) abelian group $M$ endowed with an incre
 2. If $x \in M_c$ then $-x \in M_c$. 
 3. If $x \in M_c$ and $y \in M_d$ then $x + y \in M_{c + d}$.
 
-If furthermore $M_c$ is endowed with a compact Hausdorff topology, where the inclusions $M_c \to M_d$ for $c \le d$, the negation map $M_c \to M_c$ and the addition map $M_c \times M_d \to M_{c+d}$ are all continuous, then $M$ is called a *CompHaus-filtered-pseudo-normed-group* (CHFPNG).
+If furthermore each $M_c$ is endowed with a compact Hausdorff topology, where the inclusions $M_c \to M_d$ for $c \le d$, the negation map $M_c \to M_c$ and the addition map $M_c \times M_d \to M_{c+d}$ are all continuous, then $M$ is called a *CompHaus-filtered-pseudo-normed-group* (CHFPNG).
 
 The collection of CHFPNGs forms a category where morphisms are morphisms of abelian groups which are compatible with the filtration in a non-strict sense.
 Namely, a morphism $f : M \to N$ of CHFPNGs is a morphism of abelian groups such that there exists some constant $C \in \mathbb{R}\_{\geq 0}$ where $f$ restricts to *continuous* maps $M_c \to N_{C \cdot c}$ for all $c$.
@@ -221,7 +336,7 @@ example (X : CompHausFiltPseuNormGrp₁) :
 
 ## The associated condensed abelian group
 There is a natural functor from `CompHausFiltPseuNormGrp.{0}` to `Condensed.{0} Ab.{1}` which sends $M$ to the colimit $\bigcup_c M_c$.
-Here $M_c$ is viewed as a condensed *set* whose underlying presheaf is the representable presheaf associated to the topological space $M_c$.
+Here $M_c$ is viewed as a condensed *set* whose underlying presheaf is the restriction to `Profinite.{0}` of the representable presheaf associated to the topological space $M_c$.
 In LTE, we defined this functor in a more hands-on way.
 The functor itself is called `CompHausFiltPseuNormGrp.to_Condensed`:
 ```lean
@@ -265,19 +380,24 @@ First, any element of `S.Radon_png p` can be considered as a continuous function
 ```lean
 example (S : Profinite.{0}) (μ : S.Radon_png p) : C(S,ℝ) →L[ℝ] ℝ := μ.1
 ```
+In this code, `A →L[ℝ] B` denotes the type of continuous $\mathbb{R}$-linear maps from `A` to `B`.
+
 The boundedness condition mentioned above does indeed hold.
 ```lean
 example (S : Profinite.{0}) (μ : S.Radon_png p) :
-  ∃ c : ℝ≥0,
-  ∀ (ι : Fintype.{0}) (V : ι → set S)
-    (I : indexed_partition V) (hV : ∀ i, is_clopen (V i)),
+  ∃ c : ℝ≥0, -- there exists a constant `c` such that
+  ∀ (ι : Fintype.{0}) -- for all finite indexing sets
+    (V : ι → set S) -- and families of subsets of `S` indexed by `ι`,
+    (I : indexed_partition V) -- which form a partition of `V`
+    (hV : ∀ i, is_clopen (V i)), -- by clopen subsets,
+    -- The following bound holds true:
     ∑ i : ι, ∥ μ (clopens.indicator ⟨V i, hV i⟩) ∥₊^(p : ℝ) ≤ c :=
 -- the proof...
 ```
 In the code block above, the continuous function `clopens.indicator` is the indicator function on a clopen set.
 ```lean
 example (S : Profinite.{0}) (V : set S) (hV : is_clopen C) (s : S) :
-  clopens.indicator ⟨V,hV⟩ s = if s ∈ V then 1 else 0 := rfl
+  clopens.indicator ⟨V,hV⟩ s = if s ∈  then 1 else 0 := rfl
 ```
 Conversely, we may construct elements of the `c`-th term of the filtration of `S.Radon_png p` given a continuous functional satisfying the bound for `c`.
 ```lean
