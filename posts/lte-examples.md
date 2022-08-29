@@ -114,21 +114,23 @@ which means that `translate_by` is defined as (left) translation by `g`.
 
 We can investigate what we have done in two ways, using the `#check` and `#print` commands placed *after* the definition has been declared.
 ```lean
-#check translate_by
+#check @translate_by
 ```
 will print the following message in the info section:
 ```lean
-translate_by : Π (G : Type) [_inst_1 : group G], G → G → G
+translate_by : Π {G : Type} [_inst_1 : group G], G → G → G
 ```
-This tells us the *type* of `translate_by`: it takes a type `G` with a group structure and gives us a function from `G` (this argument corresponds to the `g : G` in the description above) to the type of functions from `G` to `G`.
+This tells us the *type* of `translate_by`: it takes a type `G` (as an implicit variable) with a group structure and gives us a function from `G` (this argument corresponds to the `g : G` in the description above) to the type of functions from `G` to `G`.
+Note that the `@` in `#check @translate_by` is requires to ensure that Lean will display the implicit variables. 
+
 To see the actual definition of `translate_by` we can use
 ```lean
 #print translate_by
 ```
 which displays
 ```lean
-def translate_by : Π (G : Type) [_inst_1 : group G], G → G → G :=
-λ (G : Type) [_inst_1 : group G] (g h : G), g * h
+def translate_by : Π {G : Type} [_inst_1 : group G], G → G → G :=
+λ {G : Type} [_inst_1 : group G] (g h : G), g * h
 ```
 as expected. 
 
