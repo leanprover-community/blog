@@ -256,10 +256,10 @@ The precise definition of `proetale_topology` is the Grothendieck topology induc
 In the case of (pre)sheaves of abelian groups, the sheaf condition for the pro-étale topology on `Profinite.{0}` is equivalent to what one would expect given the description above.
 ```lean
 example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1}) :
-  -- `F` is a sheaf for `proetale_topology` if and only if...
+  -- `F` is a sheaf for `proetale_topology` 
   presheaf.is_sheaf proetale_topology F 
-  ↔
-  -- For any finite indexing type `α`,
+  ↔ -- if and only if...
+  -- for any finite indexing type `α`,
   ∀ (α : Fintype.{0}) 
   -- profinite set `B`,
     (B : Profinite.{0}) 
@@ -282,6 +282,8 @@ example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1}) :
     :=
 -- the proof...
 ```
+The notation `C ⥤ D` is used in `mathlib` to denote the type of functors from `C` to `D` and `Cᵒᵖ` denotes the opposite category associated to `C`.
+In particular, the code above takes a presheaf `F` of abelian groups (at universe level `1`) on `Profinite.{0}`, and gives a necessary and sufficient condition for `F` to be a sheaf with respect to `proetale_topology`. 
 
 Finally, the category `Condensed.{0} Ab.{1}` of condensed abelian groups used in the statement of the main theorem is defined simply as the category of sheaves of abelian groups over `proetale_topology`.
 ```lean
@@ -297,6 +299,8 @@ example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1})
 example : Condensed.{0} Ab.{1} = Sheaf proetale_topology.{0} Ab.{1} := 
 rfl
 ```
+The type of sheaves `Sheaf J D`, where `J` is a grothendieck topology on a category `C` is defined as the type of *dependent pairs*, say `P`, where the first component of `P`, denoted above as `P.1`, is a presheaf on `C` with values in `D` and the second component `P.2` is a proof that `P.1` is a sheaf for `J`.
+Lean's anonymous constructor syntax `⟨F,hF⟩` can be used to construct such a pair from a presheaf `F` and a proof `hF` that `F` is a sheaf.
 
 ## A comment on universes
 One last comment about universes is warranted in this section.
@@ -352,6 +356,7 @@ example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0}) :
     continuous g ∧ f = coe ∘ g }) := 
 rfl
 ```
+If `X : Condensed.{0} Ab.{1}` and `S : Profinite.{0}`, then the notation `Γ_ X S` appearing in the second line should be read as $\Gamma(X,S)$, i.e. the sections of `X` over `S`.
 
 Since Lean's type theory does not have cumulative universes, this definition involves a universe bump using `ulift`, in order to obtain an object of `Ab.{1}` as opposed to `Ab.{0}` (see the discussion above).
 Putting that aside, the sections of the condensed abelian group associated to a CHFPNG $X$ over a profinite set $S$ is the set of functions $f : S \to M$ which factor through a continuous map $g : S \to M_c$ for some $c$.
@@ -371,9 +376,10 @@ Given any `S : Profinite.{0}`, and $p$ as above, we define `S.Radon_png p`, an o
 
 As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $C \in \mathbb{R}_{\geq 0}$, where for any partition $S = V_1 \cup \cdots \cup V_n$ into disjoint clopen sets, letting $I_i \in C(S,\mathbb{R})$ denote the (continuous) indicator function of $V_i$, one has 
 $$ \sum_i |\mu(I_i)|^p \le C. $$
-Since $S$ is compact, Hausdorff and totally disconnected, this does indeed agree with the usual space of signed $p$-Radon measures (which reduces to the usual notion of a signed Radon measure when $p = 1$). 
-The $c$-th part of the filtration on `S.Radon_png p` is given by those $\mu$ where the sums are bounded by `c`.
-If one endowes the continuous dual with the weak topology, and endowes the $c$-th terms of the filtration of `S.Radon_png p` with the induced topology, then this does indeed yield a CHFPNG.
+Since $S$ is compact, Hausdorff and totally disconnected, this does indeed agree with the usual space of signed $p$-Radon measures (which reduces to the usual notion of a [signed Radon measure](https://en.wikipedia.org/wiki/Radon_measure) when $p = 1$); see Exercise 3.3 of [`Analytic.pdf`](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf). 
+
+The $c$-th part of the filtration on `S.Radon_png p` is given by those $\mu$ where the sums are bounded by `c`, and if one endowes the continuous dual with the weak topology, this subspace agrees with the corresponding subspace of the space of signed $p$-Radon measures.
+These subspaces are all compact and Hausdorff, making `S.Radon_png p` into a CHFPNG.
 
 We added several examples in the file `examples/radon_measures.lean` dedicated to this object `S.Radon_png p`.
 First, any element of `S.Radon_png p` can be considered as a continuous functional on $C(S,\mathbb{R})$.
@@ -409,6 +415,8 @@ example (S : Profinite.{0}) (μ : C(S,ℝ) →L[ℝ] ℝ) (c : ℝ≥0)
 { val := ⟨μ, c, by { ... }⟩,
   property := by { ... } }
 ```
+The line `val := ⟨μ, c, by { ... }⟩` indicates that the underlying function of this measure, when considered as a continuous functional, agrees with `μ `.
+
 The topology on this `c`-th term of the filtration is *defined* to be induced by the weak topology of the continuous dual.
 ```lean
 def embedding_into_the_weak_dual (S : Profinite.{0}) :
