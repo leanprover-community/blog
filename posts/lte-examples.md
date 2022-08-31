@@ -50,105 +50,47 @@ Lean experts can safely skip this section.
 
 Let's take a look at the following code block:
 ```lean
-import algebra
+def translate_by_pos (a : ℕ) (ha : 0 < a) : 
+  ℕ → ℕ := 
+λ t, a + t
+```
+In this case, we are making a *definition* which can be later accessed with the name `translate_by_pos`.
+The code to the left of the `:` on the first line can be thought of as "hypotheses" for the definition, which in this case consists of a natural number `a` and a hypothesis `ha` that `a` is positive.
 
-def translate_by {G : Type} [group G] (g : G) : 
-  G → G := 
-λ h, g * h
-```
-The first line, 
-```lean
-import algebra
-```
-is just an import statement, meaning that we want to the the stuff available from the algebra part of `mathlib`.
-We need this import statement to have access to the `group` typeclass (more below). 
-We have omitted the imports from all the code blocks below, but we mention this here because it is important to remember that imports are indeed involved.
+The code after the `:` at the end of the first line and before the `:=` on the second line tells Lean what to expect from the actual definition.
+In this case, we are defining a function from `ℕ` to itself, and the collection of such functions is denoted with an arrow as `ℕ → ℕ`.
 
-The next two lines
-```lean
-def translate_by {G : Type} [group G] (g : G) : 
-  G → G := 
-```
-tell Lean what we want to define.
-In this case, we are making a *definition* which can be later accessed with the name `translate_by`.
-The code to the left of the `:` on the first line can be thought of as "hypotheses". 
-This tells Lean what variables this definition should have.
-
-In this case, we are assuming that `G` is a type endowed with a group structure and `g` is an element of `G`.
-There are three kinds of brackets used here: `{...}`, `[...]` and `(...)`.
-The first one, `{G : Type}`, declares `G` as an *implicit* variable taking values in `Type`, and the last one `(g : G)` declares `g` as an *explicit* variable taking values in `G` itself.
-The fact that `G` is implicit means that Lean will try to figure out what this variable should be from the other information available. 
-In this case, once the user provides `g : G`, Lean will be able to figure out `G` since each term (`g` in this case) has a unique type (`G` in this case) -- it is thus safe to leave `{G : Type}` implicit.
-
-The other variable used here is `[group G]`.
-The use of square brackets `[...]` tells Lean's *typeclass system* that `G` should be endowed with a group structure.
-This is what allows us to use the notation `g * h` on the next line -- without this, Lean would have no idea how to "multiply" elements of `G`.
-The typeclass system is used for other algebraic structures like `monoid`, `comm_ring`, etc., as well as for topological structures with `topological_space`, `t2_space`, etc.
-
-The part of this code after the `:` tells Lean what type to expect this definition to be.
-In this case, we have 
-```lean
-  G → G := 
-```
-which means that Lean should expect a function from `G` to itself.
-
-The text following `:=` is the actual definition.
-In this case, we have 
-```lean
-λ h, g * h
-```
-which is an (unnamed) function declared with notation from lambda calculus.
-A mathematician might write $h \mapsto g * h$ instead.
-
-To summarize, what we have done is made a new declaration `translate_by`, which takes in a type `G` with a group structure, an element `g : G`, and gives a function from `G` to itself.
-So far, this can all be seen from 
-```lean
-def translate_by {G : Type} [group G] (g : G) : 
-  G → G := 
-```
-Finally, the *actual* definition of this function is 
-```lean
-λ h, g * h
-```
-which means that `translate_by` is defined as (left) translation by `g`.
-
-We can investigate what we have done in two ways, using the `#check` and `#print` commands placed *after* the definition has been declared.
-```lean
-#check @translate_by
-```
-will print the following message in the info section:
-```lean
-translate_by : Π {G : Type} [_inst_1 : group G], G → G → G
-```
-This tells us the *type* of `translate_by`: it takes a type `G` (as an implicit variable) with a group structure and gives us a function from `G` (this argument corresponds to the `g : G` in the description above) to the type of functions from `G` to `G`.
-Note that the `@` in `#check @translate_by` is requires to ensure that Lean will display the implicit variables. 
-
-To see the actual definition of `translate_by` we can use
-```lean
-#print translate_by
-```
-which displays
-```lean
-def translate_by : Π {G : Type} [_inst_1 : group G], G → G → G :=
-λ {G : Type} [_inst_1 : group G] (g h : G), g * h
-```
-as expected. 
+The text following `:=` is the actual definition which in this case is `λ t, a + t`.
+This is an (unnamed) function declared with notation from lambda calculus.
+A mathematician might write $t \mapsto a + t$ instead.
 
 ## Examples vs definitions
 
 An example is just like a definition, except that it will not add any declaration to the current environment, so it does not require that a name is provided.
-This is still useful because it can give us information about the type of the code to the right of `:=`.
-For example
+For instance, if we did not need to refer to `translate_by_pos` in the future, we could have just written
 ```lean
-example {G : Type} [group G] (g : G) : 
-  G → G := 
-λ h, g * h
+example (a : ℕ) (ha : 0 < a) : 
+  ℕ → ℕ := 
+λ t, a + t
 ```
-tells us that the code on the right hand side of the `:=`, i.e. `λ h, g * h`, does indeed have the type `G → G` under the assumptions given on the left-hand side of the `:`, i.e. `{G : Type} [group G] (g : G)`.
+This can still useful because it tells us that `λ t, a + t` is a valid element of `ℕ → ℕ`, given the hypotheses on the first line. 
 
-For most of the examples appearing below, the actual code appearing after `:=` will not play much of a role, and in some cases it is completely omitted! 
-Rather, most of our examples should be seen as evidence that a term of a given type *can* be constructed, perhaps also indicating the name of the definiton used to construct such a term.
-In some exceptional cases where the the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
+Examples can also be used to illustrate useful properties of preexisting definitions.
+For instance,
+```lean
+example (a b : ℕ) (ha : 0 < a) : 
+  0 < translate_by_pos a ha b :=
+nat.add_pos_left ha b
+```
+tells us that `translate_by_pos a ha b` is positive for any natural number `b`.
+Recall that `translate_by_pos a ha` is indeed a function `ℕ → ℕ`, and can thus be applied to `b`.
+
+In this code block, we included `nat.add_pos_left ha b` (which requires an `import` statement that we have omitted).
+This is the actual *proof* of the assertion that `translate_by_pos a ha b` is positive.
+In most of the examples below, we merely want to convey that a proof (or some other object) *can* be constructed, without actually spelling it out.
+In those cases, the actual code appearing after `:=` will be completely omitted in this blogpost.
+In some exceptional situations where the the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
+Readers who are interested in seeing the missing proofs/definitions should consult the files in the [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/master/src/examples).
 
 # Unraveling the statement
 
