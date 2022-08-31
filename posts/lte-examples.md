@@ -217,10 +217,12 @@ example : grothendieck_topology Profinite.{0} := proetale_topology
 The precise definition of `proetale_topology` is the Grothendieck topology induced by a Grothendieck pretopology `proetale_pretopology`, which is can be found [here](https://github.com/leanprover-community/lean-liquid/blob/25dc13f472934009786afaaaa2392fa2c8d73e3c/src/condensed/proetale_site.lean#L66). 
 In the case of (pre)sheaves of abelian groups, the sheaf condition for the pro-étale topology on `Profinite.{0}` is equivalent to what one would expect given the description above.
 ```lean
+-- Let `F` be a presheaf on `Profinite.{0}` with values in `Ab.{1}`.
 example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1}) :
   -- `F` is a sheaf for `proetale_topology` 
   presheaf.is_sheaf proetale_topology F 
-  ↔ -- if and only if...
+  -- if and only if
+  ↔ 
   -- for any finite indexing type `α`,
   ∀ (α : Fintype.{0}) 
   -- profinite set `B`,
