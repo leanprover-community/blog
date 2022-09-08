@@ -27,7 +27,7 @@ In August 2022 there were 506 PRs merged into mathlib. We list some of the highl
   - [PR #16144](https://github.com/leanprover-community/mathlib/pull/16144) defines the normal closure of a fields extension.
 
 * Number theory.
-  - [PR #15316](https://github.com/leanprover-community/mathlib/pull/15316) proves that $[S/P^e : R/p] = e \cdot [S/P : R/p]$, where $e$ is th ramification index of an extension of Dedekind domains $S/R$ and $P$ is an ideal over $p$.
+  - [PR #15316](https://github.com/leanprover-community/mathlib/pull/15316) proves that $[S/P^e : R/p] = e \cdot [S/P : R/p]$, where $e$ is the ramification index of an extension of Dedekind domains $R \hookrightarrow S$ and $P$ is an ideal over $p$.
   - [PR #12287](https://github.com/leanprover-community/mathlib/pull/12287) proves the fundamental identity of ramification index and inertia degree.
   - [PR #16171](https://github.com/leanprover-community/mathlib/pull/16171) gives a new proof of quadratic reciprocity, using Gauss sums.
 
