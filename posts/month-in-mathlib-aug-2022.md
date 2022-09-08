@@ -46,7 +46,7 @@ In August 2022 there were 506 PRs merged into mathlib. We list some of the highl
 
 * Geometry.
   - [PR #15667](https://github.com/leanprover-community/mathlib/pull/15667) proves that any holomorphic function on a compact connected manifold is constant.
-  - [PR #16059](https://github.com/leanprover-community/mathlib/pull/16059) allows to define a property of a schemes' morphism from the corresponding rings homomorphism property.
+  - [PR #16059](https://github.com/leanprover-community/mathlib/pull/16059) allows to define a property of a scheme morphism from the corresponding ring homomorphism property.
   - [PR #15230](https://github.com/leanprover-community/mathlib/pull/15230) defines $2$-torsion polynomials of an elliptic curve.
 
 * Linear algebra.
