@@ -30,6 +30,7 @@ In August 2022 there were 506 PRs merged into mathlib. We list some of the highl
   - [PR #15316](https://github.com/leanprover-community/mathlib/pull/15316) proves that $[S/P^e : R/p] = e \cdot [S/P : R/p]$, where $e$ is the ramification index of an extension of Dedekind domains $R \hookrightarrow S$ and $P$ is an ideal over $p$.
   - [PR #12287](https://github.com/leanprover-community/mathlib/pull/12287) proves the fundamental identity of ramification index and inertia degree.
   - [PR #16171](https://github.com/leanprover-community/mathlib/pull/16171) gives a new proof of quadratic reciprocity, using Gauss sums.
+  - [PR #15230](https://github.com/leanprover-community/mathlib/pull/15230) defines $2$-torsion polynomials of an elliptic curve.
 
 * Representation theory.
   - [PR #15501](https://github.com/leanprover-community/mathlib/pull/15501) shows that $k[G^(n + 1)] is free over k[G]$.
@@ -44,16 +45,15 @@ In August 2022 there were 506 PRs merged into mathlib. We list some of the highl
   - [PR #15904](https://github.com/leanprover-community/mathlib/pull/15904) proves the a.e. martingale convergence theorem.
   - [PR #16042](https://github.com/leanprover-community/mathlib/pull/16042) proves the $L^1$ martingale convergence theorem and Lévy's upwards theorem.
 
-* Geometry.
+* Algebraic and differential geometry.
   - [PR #15667](https://github.com/leanprover-community/mathlib/pull/15667) proves that any holomorphic function on a compact connected manifold is constant.
   - [PR #16059](https://github.com/leanprover-community/mathlib/pull/16059) allows to define a property of a scheme morphism from the corresponding ring homomorphism property.
-  - [PR #15230](https://github.com/leanprover-community/mathlib/pull/15230) defines $2$-torsion polynomials of an elliptic curve.
 
 * Linear algebra.
   - [PR #15220](https://github.com/leanprover-community/mathlib/pull/15220) proves the existence of the LDL decomposition.
 
 * Category theory.
-  - [PR #15987](https://github.com/leanprover-community/mathlib/pull/15987) proves the sSpecial Adjoint Functor Theorem
+  - [PR #15987](https://github.com/leanprover-community/mathlib/pull/15987) proves the Special Adjoint Functor Theorem
   - [PR #16246](https://github.com/leanprover-community/mathlib/pull/16246) proves that the normalized Moore complex is homotopy equivalent to the alternating face map complex.
 
 * Logic/order theory.
