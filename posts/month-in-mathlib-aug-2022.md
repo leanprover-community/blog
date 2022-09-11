@@ -33,7 +33,7 @@ In August 2022 there were 506 PRs merged into mathlib. We list some of the highl
      - [PR #15230](https://github.com/leanprover-community/mathlib/pull/15230) defines $2$-torsion polynomials of an elliptic curve.
 
 * Representation theory.
-     - [PR #15501](https://github.com/leanprover-community/mathlib/pull/15501) shows that $k[G^(n + 1)]$ is free over $k[G]$.
+     - [PR #15501](https://github.com/leanprover-community/mathlib/pull/15501) shows that $k[G^{n + 1}]$ is free over $k[G]$.
      - [PR #15822](https://github.com/leanprover-community/mathlib/pull/15822) defines Young diagrams.
 
 * Topology.
