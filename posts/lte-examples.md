@@ -205,8 +205,6 @@ example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := rfl
 ```
 The fact that `rfl` works in this example shows that morphisms in the category of profinite sets are *defined* as continuous maps.
 
-TODO: Explanation of `C(A,B)`, should be moved from the `pBanach` file to the `Profinite` file.
-
 ## Condensed abelian groups
 
 The category `Profinite.{0}` also has the Grothendieck topology mentioned above, which we call `proetale_topology` in LTE (this name is used because the corresponding site agrees with the pro-étale site of a geometric point).
@@ -272,7 +270,6 @@ example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1})
   Condensed.{0} Ab.{1} := 
 ⟨F,hF⟩
 ```
-TODO: Reorganize the profinite example file to match this.
 
 ## A comment on universes
 One last comment about universes is warranted in this section.
@@ -340,8 +337,6 @@ example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0})
   (f + g) s = f s + g s := rfl
 ```
 
-TODO: The notation $\Gamma(X,S)$ has `S` and `X` backwards. Modify the Lean notation `\Gamma_ _ _`.
-
 ## $p$-Radon measures
 Fix a real number $p$ satisfying $0 < p \le 1$.
 We will now discuss the relationship between $\mathcal{M}\_{p}(S)$ and the space of $p$-Radon measures.
@@ -393,8 +388,6 @@ example (S : Profinite.{0}) (μ : C(S,ℝ) →L[ℝ] ℝ) (c : ℝ≥0)
   property := by { ... } }
 ```
 The line `val := ⟨μ, c, by { ... }⟩` indicates that the underlying function of this measure, when considered as a continuous functional, agrees with `μ `.
-
-TODO: Change C to V in the example files.
 
 The topology on this `c`-th term of the filtration is *defined* to be induced by the weak topology of the continuous dual.
 ```lean
@@ -571,8 +564,6 @@ We came up with two computations that were sufficiently convincing for us:
 
 ## `Ext` vs. `Ext'`
 
--- TODO: add example to unfold the notation `Ext` in `challenge.lean`.
-
 While `mathlib` does have the definition of Ext groups of two objects in an abelian category with enough projectives, for the purposes of LTE, we had to also consider Ext groups of complexes.
 We ended up making a new definition `Ext i A B` where `A` and `B` are arbitrary bounded above complexes in an abelian category with enough projectives (more precisely, we ended up working with the homotopy category of bounded above cochain complexes).
 The Ext groups for objects, denoted `Ext' i X Y`, is then defined by viewing an object $X$ as the complex $X[0]$ concentrated in degree zero.
@@ -606,8 +597,6 @@ Here we are using a new notation `⥤δ` for the collection of delta functors (r
 
 ## Comparison with `Hom`
 
-TODO: Add example for the isomorphism of functors (it's used in the next example).
-
 In degree zero `Ext' 0 X Y` is isomorphic to the usual Hom functor, as expected.
 ```lean
 example (X Y : 𝓐) : Ext' 0 (op X) Y ≅ AddCommGroup.of (X ⟶ Y) :=
@@ -635,7 +624,6 @@ example (n : ℕ) (hn : n ≠ 0) :
   AddCommGroup.of (zmod n) :=
 -- the proof ...
 ```
-TODO: Use `AddCommGroup.of` to match notation above, get rid of `$` in actual code.
 
 # What's next?
 
