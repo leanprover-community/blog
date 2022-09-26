@@ -23,7 +23,7 @@
 
 {% macro html_sourcelink() %}
     {% if show_sourcelink %}
-        <p class="sourceline"><a href="{{ post.source_link().replace('https://leanprover-community.github.io/blog/', 'https://github.com/leanprover-community/blog/blob/deploy/docs/') }}" class="sourcelink">{{ messages("Source") }}</a></p>
+        <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs{{ post.source_link() }}" class="sourcelink">{{ messages("Source") }}</a></p>
     {% endif %}
 {% endmacro %}
 
