@@ -45,8 +45,8 @@ In September 2022 there were 361 PRs merged into mathlib. We list some of the hi
 
 * Number theory
 
+    - Pull request number [#15000](https://github.com/leanprover-community/mathlib/pull/15000) proved the Dedekind-Kummer theorem for a ring extension `R[α]/R`, showing the primes over a prime ideal `p` are determined by the factorization of the minimal polynomial of `α` in the quotient ring `R/p`. We are currently working on extending this theorem to the non-monogenic case.
     - [PR #15646](https://github.com/leanprover-community/mathlib/pull/15646) :: feat(ring_theory/dedekind_domain/integer_unit): define S-integers and S-units
-    - [PR #15000](https://github.com/leanprover-community/mathlib/pull/15000) :: feat(number_theory): Dedekind-Kummer theorem
 
 * Measure theory
 
