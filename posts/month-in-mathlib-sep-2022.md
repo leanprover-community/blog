@@ -17,7 +17,7 @@ In September 2022 there were 361 PRs merged into mathlib. We list some of the hi
 
 * Analysis
      - [PR #14874](https://github.com/leanprover-community/mathlib/pull/14874) and [PR #14875](https://github.com/leanprover-community/mathlib/pull/14875) brought us Stirling's formula.
-     - [PR #15087](https://github.com/leanprover-community/mathlib/pull/15087) proves Taylor's formula with various kinds of remainders, hence filling an important gap in our undergrad math coverage.
+     - [PR #15087](https://github.com/leanprover-community/mathlib/pull/15087) proves Taylor's formula with various kinds of remainders, hence filling an important gap in our [undergrad math coverage](https://leanprover-community.github.io/undergrad.html).
      - [PR #15908](https://github.com/leanprover-community/mathlib/pull/15908) proves the principle of isolated zeros in complex analysis.
      - [PR #15850](https://github.com/leanprover-community/mathlib/pull/15850) defines of the Schwartz space, aiming for tempered distributions.
 
