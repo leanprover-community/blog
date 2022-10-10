@@ -15,46 +15,35 @@ In September 2022 there were 361 PRs merged into mathlib. We list some of the hi
 
 <!-- TEASER_END -->
 
-* Algebra
-
-    - [PR #16293](https://github.com/leanprover-community/mathlib/pull/16293) :: feat(matrix/spectrum): The determinant of a hermitian matrix is the product of its eigenvalues.
-
 * Analysis
+     - [PR #14874](https://github.com/leanprover-community/mathlib/pull/14874) and [PR #14875](https://github.com/leanprover-community/mathlib/pull/14875) brought us Stirling's formula.
+     - [PR #15087](https://github.com/leanprover-community/mathlib/pull/15087) proves Taylor's formula with various kinds of remainders, hence filling an important gap in our undergrad math coverage.
+     - [PR #15908](https://github.com/leanprover-community/mathlib/pull/15908) proves the principle of isolated zeros in complex analysis.
+     - [PR #15850](https://github.com/leanprover-community/mathlib/pull/15850) defines of the Schwartz space, aiming for tempered distributions.
 
-    - [PR #15908](https://github.com/leanprover-community/mathlib/pull/15908) :: feat(analysis/analytic/isolated_zeros): Principle of isolated zeros
-    - [PR #14874](https://github.com/leanprover-community/mathlib/pull/14874) :: feat(analysis/special_functions/stirling): Stirling's formula, part I
-    - [PR #14875](https://github.com/leanprover-community/mathlib/pull/14875) :: feat(archive/100-theorems-list): Stirling, part 2
-    - [PR #15009](https://github.com/leanprover-community/mathlib/pull/15009) :: feat(analysis/complex/upper_half_plane): Functions bounded at infinity
-    - [PR #15850](https://github.com/leanprover-community/mathlib/pull/15850) :: feat(analysis/schwartz): Definition of the Schwartz space
-    - [PR #15087](https://github.com/leanprover-community/mathlib/pull/15087) :: feat(analysis/calculus): Taylor's theorem
-    - [PR #14703](https://github.com/leanprover-community/mathlib/pull/14703) :: feat(analysis/complex/poincare_metric): new file
+* Probability theory
 
-* Combinatorics
+     - [PR #16532](https://github.com/leanprover-community/mathlib/pull/16532) proves uniqueness of Doob's decomposition.
+     - [PR #16375](https://github.com/leanprover-community/mathlib/pull/16375) proves the stopped process of a submartingale is a submartingale.
+     - [PR #16358](https://github.com/leanprover-community/mathlib/pull/16358) proves Lévy's generalized Borel-Cantelli.
 
-    - [PR #16120](https://github.com/leanprover-community/mathlib/pull/16120) :: feat(combinatorics/young_diagram): add transposes, rows and columns of Young diagrams
-    - [PR #15440](https://github.com/leanprover-community/mathlib/pull/15440) :: feat(combinatorics/additive/pluennecke_ruzsa): The Plünnecke-Ruzsa inequality
-
+* Algebraic topology
+     - [PR #16403](https://github.com/leanprover-community/mathlib/pull/16403) proves the category of sheaves on a site with values is an abelian category is abelian. It also proves that sheafification is an additive functor.
 
 * Geometry
+     - [PR #16243](https://github.com/leanprover-community/mathlib/pull/16243) has many lemmas about signs of angles between linear combinations of vectors.
+     - [PR #14703](https://github.com/leanprover-community/mathlib/pull/14703) and [PR #15009](https://github.com/leanprover-community/mathlib/pull/15009) are working towards hyperbolic geometry in dimension 2 with a eye towards modular forms.
 
-    - [PR #16243](https://github.com/leanprover-community/mathlib/pull/16243) :: feat(geometry/euclidean/oriented_angle): signs of angles between linear combinations of vectors
+* Combinatorics
+     - [PR #16120](https://github.com/leanprover-community/mathlib/pull/16120) continues developping the theory of Young diagrams.
+     - [PR #15440](https://github.com/leanprover-community/mathlib/pull/15440) proves the Plünnecke-Ruzsa inequality.
 
-* Logic
-
-    - [PR #16548](https://github.com/leanprover-community/mathlib/pull/16548) :: feat(model_theory/types): Complete types over a theory
+* Model theory
+     - [PR #16548](https://github.com/leanprover-community/mathlib/pull/16548) defines the space of complete types over a first-order theory.
 
 * Number theory
 
-    - Pull request number [#15000](https://github.com/leanprover-community/mathlib/pull/15000) proved the Dedekind-Kummer theorem for a ring extension `R[α]/R`, showing the primes over a prime ideal `p` are determined by the factorization of the minimal polynomial of `α` in the quotient ring `R/p`. We are currently working on extending this theorem to the non-monogenic case.
-    - [PR #15646](https://github.com/leanprover-community/mathlib/pull/15646) :: feat(ring_theory/dedekind_domain/integer_unit): define S-integers and S-units
+     - [PR #15000](https://github.com/leanprover-community/mathlib/pull/15000) proves the Dedekind-Kummer theorem for a ring extension `R[α]/R`, showing the primes over a prime ideal `p` are determined by the factorization of the minimal polynomial of `α` in the quotient ring `R/p`. We are currently working on extending this theorem to the non-monogenic case.
+     - [PR #15646](https://github.com/leanprover-community/mathlib/pull/15646) defines S-integers and S-units.
 
-* Measure theory
 
-    - [PR #16291](https://github.com/leanprover-community/mathlib/pull/16291) :: feat(measure_theory/integral/bochner): Hölder's inequality for real nonnegative functions
-    - [PR #16532](https://github.com/leanprover-community/mathlib/pull/16532) :: feat(probability/martingale/centering): uniqueness of Doob's decomposition
-    - [PR #16375](https://github.com/leanprover-community/mathlib/pull/16375) :: feat(probability/martingale/basic): the stopped process of a submartingale is a submartingale
-    - [PR #16358](https://github.com/leanprover-community/mathlib/pull/16358) :: feat(probability/martingale/borel_cantelli): Lévy's generalized Borel-Cantelli
-
-* Topology
-
-    - [PR #16403](https://github.com/leanprover-community/mathlib/pull/16403) :: feat(topology/sheaves/abelian): category of sheaves is abelian
