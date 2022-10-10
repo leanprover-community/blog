@@ -24,7 +24,6 @@ In September 2022 there were 361 PRs merged into mathlib. We list some of the hi
 * Probability theory
 
      - [PR #16532](https://github.com/leanprover-community/mathlib/pull/16532) proves uniqueness of Doob's decomposition.
-     - [PR #16375](https://github.com/leanprover-community/mathlib/pull/16375) proves the stopped process of a submartingale is a submartingale.
      - [PR #16358](https://github.com/leanprover-community/mathlib/pull/16358) proves Lévy's generalized Borel-Cantelli.
 
 * Algebraic topology
