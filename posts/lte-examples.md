@@ -1,13 +1,13 @@
 ---
 author: 'Adam Topaz'
 category: ''
-date: 2022-08-25 05:29:11 UTC+02:00
+date: 2022-10-11
 description: ''
 has_math: true
 link: ''
 slug: lte-examples
 tags: ''
-title: Did we get the definitions right in the liquid tensor experiment?
+title: On definitions in the liquid tensor experiment
 type: text
 ---
 
@@ -383,8 +383,9 @@ We will now discuss the relationship between $\mathcal{M}\_{p}(S)$ and the space
 First we address the question of actually defining the space of $p$-Radon measures.
 
 Given any `S : Profinite.{0}`, and $p$ as above, we define `S.Radon_png p`, an object of `CompHausFiltPseuNormGrp₁`, as follows.
-As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $C \in \mathbb{R}_{\geq 0}$, where for any partition $S = V_1 \cup \cdots \cup V_n$ into disjoint clopen sets, letting $I_i \in C(S,\mathbb{R})$ denote the (continuous) indicator function of $V_i$, one has 
-$$ \sum_i |\mu(I_i)|^p \le C. $$
+As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $C \in \mathbb{R}_{\geq 0}$ satisfying the following condition: For any partition $S = V_1 \cup \cdots \cup V_n$ into disjoint clopen sets, one has 
+$$ \sum_i |\mu(I_i)|^p \le C, $$
+where $I_i \in C(S,\mathbb{R})$ denotes the (continuous) indicator function of $V_i$.
 Since $S$ is compact, Hausdorff and totally disconnected, one may verify that this agrees with the usual space of signed $p$-Radon measures (which reduces to the usual notion of a [signed Radon measure](https://en.wikipedia.org/wiki/Radon_measure) when $p = 1$); see also Exercise 3.3 of [`Analytic.pdf`](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf). 
 
 The $c$-th part of the filtration on `S.Radon_png p` is given by those $\mu$ where the sums above are all bounded by `c`. 
