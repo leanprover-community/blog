@@ -92,7 +92,7 @@ In this code block, we included `nat.add_pos_left ha b` (which requires an `impo
 This is the actual *proof* of the assertion that `translate_by_pos a ha b` is positive.
 In most of the examples below, we merely want to convey that a proof (or some other object) *can* be constructed, without actually spelling it out.
 In those cases, the actual code appearing after `:=` will be completely omitted in this blogpost.
-In some exceptional situations where the the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
+In some exceptional situations where the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
 Readers who are interested in seeing the missing proofs/definitions should consult the files in the [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples).
 
 # Unraveling the statement
@@ -131,7 +131,7 @@ We will discuss each file individually in the following sections.
 A linearly ordered field is called *conditionally complete* provided that every nonempty subset which is bounded above has a least upper bound, and every subset which is bounded below has a greatest lower bound.
 The reals are an example of such a field, and any two such fields are (uniquely) isomorphic, as ordered fields.
 
-The file [`examples/real.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/real.lean) indicates these facts in the following examples as evidence that Leans' definition of the reals is correct.
+The file [`examples/real.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/real.lean) indicates these facts in the following examples as evidence that Lean's definition of the reals is correct.
 ```lean
 -- The reals are a conditionally complete linearly ordered field.
 example : conditionally_complete_linear_ordered_field ℝ := 
@@ -139,14 +139,14 @@ example : conditionally_complete_linear_ordered_field ℝ :=
 
 -- Any conditionally complete linearly ordered field `K` is 
 -- isomorphic to the reals.
-example {K : Type*} [conditionally_complete_linear_ordered_field K] : 
+example {K : Type} [conditionally_complete_linear_ordered_field K] : 
   K ≃+*o ℝ := 
 -- the proof ...
 
 -- If `K` is a conditionally complete linearly ordered field
 -- then any two order-preserving isomorphisms between `K` and 
 -- the reals are equal.
-example {K : Type*} [conditionally_complete_linear_ordered_field K] 
+example {K : Type} [conditionally_complete_linear_ordered_field K] 
   (e₁ e₂ : K ≃+*o ℝ) : e₁ = e₂ := 
 -- the proof ...
 ```
@@ -161,7 +161,7 @@ rfl
 ilustrating that `ℝ≥0` is defined to be the collection of all real numbers $r$ satisfying $r \geq 0$.
 This collection of nonnegative reals appears in the main statement of the challenge, and is otherwise used extensively throughout the project.
 
-In general, if `rfl` (or the tactic `refl`) can be used to prove an equality `A = B`, then `A` and `B` are equal *by definition!*
+In general, if `rfl` (or the tactic `refl`, both of which are shorthand for "reflexivity") can be used to prove an equality `A = B`, then `A` and `B` are equal *by definition!*
 We will use such examples several times in this posst to indicate how certain objects are defined.
 
 # Profinite sets and condensed abelian groups
@@ -234,7 +234,7 @@ example (f : X → Y) (hf : continuous f) : C(X,Y) :=
 ```
 
 ## The category structure on `Profinite`
-In Lean, the type of morphisms between objects `X` and `Y` in a category is denoted with a special arrow `X ⟶ Y`, not to be confused with the arrow used for the type of functions `X → Y`.
+In Lean, the type of morphisms between objects `X` and `Y` in a category is denoted with a special slightly longer arrow `X ⟶ Y`, not to be confused with the arrow used for the type of functions `X → Y`.
 While `Profinite.{0}` is itself a type (whose terms are themselves profinite sets), this type is endowed with a natural structure of a category whose morphisms are simply continuous maps.
 ```lean
 example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := rfl
@@ -255,7 +255,7 @@ Here is the statement written in Lean:
 ```lean
 -- Let `F` be a presheaf on `Profinite.{0}` with values in `Ab.{1}`.
 example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1}) :
-  -- `F` is a sheaf for `proetale_topology` 
+  -- Then `F` is a sheaf for `proetale_topology` 
   presheaf.is_sheaf proetale_topology F 
   -- if and only if
   ↔ 
@@ -269,8 +269,8 @@ example (F : Profinite.{0}ᵒᵖ ⥤ Ab.{1}) :
     (π : Π i, X i ⟶ B)
   -- such that `π` is jointly surjective,
     (hπ : ∀ b : B, ∃ i (x : X i), π i x = b) 
-  -- and all families of elements `x i : F (op $ X i)`,
-    (x : Π i, F (op $ X i)) 
+  -- and all families of elements `x i : F (op (X i))`,
+    (x : Π i, F (op (X i))) 
   -- which are compatible on pullbacks `X i ×_{B} X j`
     (hx : ∀ i j : α, 
       F.map (pullback.fst : pullback (π i) (π j) ⟶ X i).op (x i) =
@@ -336,13 +336,13 @@ In LTE, we call this category `CompHausFiltPseuNormGrp.{0}` (again, the $0$ is t
 
 Most of the CHFPNGs we're interested in are actually objects of a slightly different category than the one described above, which is denoted by `CompHausFiltPseuNormGrp₁`.
 The objects of this category are CHFPNGs whose filtration is exhaustive, and the morphisms are assumed to be *strict*, meaning that a morphism $f : M \to N$ restricts to a continuous map $f : M_c \to N_c$ for all $c$.
-There is an obvious forgetful functor to the non-strict category, which is denoted by `CHFPNG₁_to_CHFPNGₑₗ`:
+There is an obvious forgetful functor to the non-strict category, which is denoted by `CHFPNG₁_tto_CHFPNGₑₗ`:
 ```lean
 example : CompHausFiltPseuNormGrp₁ ⥤ CompHausFiltPseuNormGrp :=
 CHFPNG₁_to_CHFPNGₑₗ
 
 example (X : CompHausFiltPseuNormGrp₁) :
-  (CHFPNG₁_to_CHFPNGₑₗ X : Type*) = X := 
+  (CHFPNG₁_to_CHFPNGₑₗ X : Type) = X := 
 rfl
 ```
 
@@ -359,7 +359,7 @@ and on objects it is defined as follows:
 ```lean
 example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0}) :
 (Γ_ S (CompHausFiltPseuNormGrp.to_Condensed X) : Type 1) =
-(ulift.{1}  
+(ulift.{1}
   { f : S → X | ∃ (c : ℝ≥0) (g : S → filtration X c), 
     continuous g ∧ f = coe ∘ g }) := 
 rfl
@@ -395,7 +395,8 @@ First, any element of `S.Radon_png p` can be considered as a continuous function
 ```lean
 example (S : Profinite.{0}) (μ : S.Radon_png p) : C(S,ℝ) →L[ℝ] ℝ := μ.1
 ```
-In this code, `A →L[ℝ] B` is Lean's notation for the type of *continuous* $\mathbb{R}$-linear maps from `A` to `B`.
+In this code, `A →L[ℝ] B` is Lean's notation for the type of *continuous* $\mathbb{R}$-linear maps from `A` to `B`. 
+Note that `S.Radon_png p` is also an example of a type defined in terms of dependent pairs, similar to `C(X,Y)` and `Sheaf J D` discussed above, and `μ.1` is the first component of the dependent pair `μ : S.Radon_png p`.
 
 The boundedness condition mentioned above does indeed hold.
 ```lean
@@ -403,7 +404,7 @@ example (S : Profinite.{0}) (μ : S.Radon_png p) :
   ∃ c : ℝ≥0, -- there exists a constant `c` such that
   ∀ (ι : Fintype.{0}) -- for all finite indexing sets
     (V : ι → set S) -- and families of subsets of `S` indexed by `ι`,
-    (I : indexed_partition V) -- which form a partition of `V`
+    (I : indexed_partition V) -- which form a partition of `S`
     (hV : ∀ i, is_clopen (V i)), -- by clopen subsets,
     -- The following bound holds true:
     ∑ i : ι, ∥ μ (clopens.indicator ⟨V i, hV i⟩) ∥₊^(p : ℝ) ≤ c :=
@@ -411,7 +412,7 @@ example (S : Profinite.{0}) (μ : S.Radon_png p) :
 ```
 In the code block above, the continuous function `clopens.indicator` is the indicator function on a clopen set.
 ```lean
-example (S : Profinite.{0}) (V : set S) (hV : is_clopen C) (s : S) :
+example (S : Profinite.{0}) (V : set S) (hV : is_clopen V) (s : S) :
   clopens.indicator ⟨V,hV⟩ s = if s ∈ V then 1 else 0 := 
 rfl
 ```
@@ -505,10 +506,12 @@ def pBanach.has_norm : has_norm V :=
 -- Use this choice for the rest of the file.
 local attribute [instance] pBanach.has_norm
 ```
-The fact that `some` (more precisely, `exists.some`) appears on the second line of the above code block is an indication that this is an actual *choice* that must be made.
-The last line tells Lean to use this choice for the rest of the file -- with this command, we will be able to use the notation `∥-∥` for the chosen $p$-norm.
+The fact that `some` (more precisely, `exists.some`) appears on the example above is an indication that this is an actual *choice* that must be made.
+More precisely, `p_banach.exists_p_norm V.p_banach'` is a *proof* that there exists a $p$-norm on `V` satisfying some additional condition -- this is a proof of an existential proposition!
+The subsequent `.some` tells Lean to actually *choose* some such `p`-norm, while the last `.to_has_norm` essentially forgets about the properties of the `p`-norm, while keeping only the underlying function $V \to \mathbb{R}$.
+The last line tells Lean to use this choice for the rest of the file -- essentially, this command "activates" the notation `∥-∥` for the chosen $p$-norm in the rest of the file.
 
-With this choice made, we can illustrate the various necessary properties with the following examples.
+With this choice made and activated, we can illustrate the various necessary properties with the following examples.
 The scaling behavior:
 ```lean
 example (r : ℝ) (v : V) : ∥r • v∥ = |r|^(p : ℝ) * ∥v∥ :=
@@ -517,7 +520,6 @@ example (r : ℝ) (v : V) : ∥r • v∥ = |r|^(p : ℝ) * ∥v∥ :=
 The triangle inequality:
 ```lean
 example (v w : V) : ∥v + w∥ ≤ ∥v∥ + ∥w∥ :=
-
 -- the proof ...
 ```
 And the fact that the topological structure is induced by the norm (more precisely, this is formulated in terms of the *uniformity* on `V`, while the compatibility with the topology follows as an axiom of a uniform space):
@@ -592,7 +594,7 @@ Of course, then quickly came the question of how we could be convinced that the 
 
 We came up with two computations that were sufficiently convincing for us:
 
-1. We showed that our definition of `Ext` yields a universal $\delta$-functor (in the first variable).
+1. We showed that our definition of `Ext` yields a [universal $\delta$-functor](https://en.wikipedia.org/wiki/Delta-functor#Universal_%CE%B4-functor) (in the first variable).
   Unfortunately, at the time of writing, $\delta$-functors are still not part of mathlib.
   Their definition is in the LTE repository, and can be found [here](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/for_mathlib/universal_delta_functor/basic.lean#L24).
 2. We did the very first exercise one might do when first learning about Ext groups: $\operatorname{Ext}^1(\mathbb{Z}/n,\mathbb{Z}/n) \cong \mathbb{Z}/n$.
@@ -647,29 +649,36 @@ Here we are using a new notation `⥤δ` for the collection of delta functors (r
 In degree zero `Ext' 0 X Y` is isomorphic to the usual Hom functor, as expected.
 ```lean
 example (X Y : 𝓐) : Ext' 0 (op X) Y ≅ AddCommGroup.of (X ⟶ Y) :=
-(Ext'_zero_flip_iso _ _).app _
+(Ext'_zero_flip_iso 𝓐 Y).app (op X)
 ```
 Similarly to `Profinite.of` used above, `AddCommGroup.of A` constructs an object of `Ab` from an abelian group `A`.
-In this case, `X ⟶ Y`, the type of morphisms from `X` to `Y`, obtains such an abelian group structure from the fact that `𝓐` is an abelian category.
+In this case, `X ⟶ Y`, the type of morphisms from `X` to `Y`, obtains such an abelian group structure from the fact that `𝓐` is an abelian category, and `Ext' 0 (op X) Y` is isomorphic, *as an abelian group*, to `X ⟶ Y`.
+The code `(Ext'_zero_flip_iso 𝓐 Y).app (op X)` is the name of an actual isomorphism between the two groups.
+
 We will need to use the fact that this isomorphism is functorial in the first variable in an example in the next subsection. 
-However, the syntax indicating this functoriality is not quite as readable as the example above:
+Fortunately, the isomorphism above was actually obtained by specializing a natural isomorphism of functors (in the variable `op X`):
 ```lean
 example (Y : 𝓐) : (Ext' 0).flip.obj Y ≅ preadditive_yoneda.obj Y :=
 Ext'_zero_flip_iso 𝓐 Y
 ```
-The important observation to make is that `Ext'_zero_flip_iso 𝓐 Y`, which is a natural isomorphism of *functors*, is used to obtain the isomorphism in both of the above examples. 
-The only difference is that we *specialize* (or *apply*, hence the `.app`) this natural isomorphism to the object `X` to obtain the first isomorphism from the second.
+The important observation to make in this case is that the natural isomorphism `Ext'_zero_flip_iso 𝓐 Y` was used in *both* of the examples above.
+The only difference is that we *specialize* (or *apply*, hence the `.app`) this natural isomorphism to the object `op X` to obtain the first isomorphism from the second.
+In usual mathematical notation, `Ext'_zero_flip_iso 𝓐 Y` should be thought of as an isomorphism of functors
+$$ \operatorname{Ext}^0(-,Y) \cong \operatorname{Hom}(-,Y) $$
+while `(Ext'_zero_flip_iso 𝓐 Y).app (op X)` is the corresponding isomorphism $\operatorname{Ext}^0(X,Y) \cong \operatorname{Hom}(X,Y)$ of abelian groups.
 
 ## Universality
-Finally, if `G` is another (contravariant, cohomological) $\delta$-functor and $e_0 : \operatorname{Hom}(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from `Ext_δ_functor 𝓐 Y` to `G` which restricts to $e_0$ after composition with the isomorphism `Ext'_zero_flip_iso` mentioned in the previous subsection.
+Finally, if `G` is another (contravariant, cohomological) $\delta$-functor and $e_0 : \operatorname{Hom}(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from `Ext_δ_functor 𝓐 Y` to `G` which restricts to $e_0$ after composition with the isomorphism `Ext'_zero_flip_iso 𝓐 Y` mentioned in the previous subsection.
 In other words, our $\delta$-functor `Ext_δ_functor 𝓐 Y` is *universal*.
 ```lean
 theorem Ext_δ_functor_is_universal_for_Hom (Y : 𝓐) (F : 𝓐ᵒᵖ ⥤δ Ab.{v})
   (e0 : preadditive_yoneda Y ⟶ F 0) :
   ∃! (e : Ext_δ_functor 𝓐 Y ⟶ F),
-  e0 = (Ext'_zero_flip_iso _ _).inv ≫ (e : Ext_δ_functor 𝓐 Y ⟶ F) 0 :=
+  e0 = (Ext'_zero_flip_iso 𝓐 Y).inv ≫ (e : Ext_δ_functor 𝓐 Y ⟶ F) 0 :=
 -- the proof...
 ```
+In this code `(Ext'_zero_flip_iso 𝓐 Y).inv` refers to the natural transformation $\operatorname{Hom}(-,Y) \to \operatorname{Ext}^0(-,X)$ which is the "inverse" of the isomorphism `(Ext'_zero_flip_iso 𝓐 Y)` discussed above.
+The strange symbol `≫` is Lean's notation for composition of morphisms in a category *with the order reversed*: `f ≫ g` would be written as $g \circ f$ using the usual conventions of function composition.
 
 ## A basic exercise
 We conclude with the first exercise in the book.
