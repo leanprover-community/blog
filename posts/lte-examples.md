@@ -151,18 +151,22 @@ example {K : Type} [conditionally_complete_linear_ordered_field K]
 -- the proof ...
 ```
 In the code above, the symbol `A ≃+*o B` is notation for the type of *isomorphisms of ordered rings* between `A` and `B`, indicating that such an isomorphism is compatible with addition (`+`), multiplication (`*`), and the ordering (`o`). 
-This result is actually a [recent addition](https://github.com/leanprover-community/mathlib/pull/3292) to `mathlib`! 
+
+Another potentially new word here is `Type`, used specifically above in `K : Type`.
+For the purposes of this blogpost, it is safe to think of `K : Type` as saying that "$K$ is a set".
+Since `K  Type` appears in the "hypotheses" of the examples above, this is akin to saying "let $K$ be a set".
+There are additional important subtleties around `Type` that we will discuss in later subsections.
 
 This file also briefly mentions the following example regarding the nonnegative reals:
 ```lean
 example : ℝ≥0 = {r : ℝ // r ≥ 0} :=
-rfl
+rfl -- true by definition!
 ```
-ilustrating that `ℝ≥0` is defined to be the collection of all real numbers $r$ satisfying $r \geq 0$.
+illustrating that `ℝ≥0` is defined to be the collection of all real numbers $r$ satisfying $r \geq 0$.
 This collection of nonnegative reals appears in the main statement of the challenge, and is otherwise used extensively throughout the project.
 
 In general, if `rfl` (or the tactic `refl`, both of which are shorthand for "reflexivity") can be used to prove an equality `A = B`, then `A` and `B` are equal *by definition!*
-We will use such examples several times in this posst to indicate how certain objects are defined.
+We will use such examples several times in this post to indicate how certain objects are defined.
 
 # Profinite sets and condensed abelian groups
 
@@ -173,14 +177,20 @@ First of all, we have the category `Profinite` of profinite sets.
 ```lean
 example : Type 1 := Profinite.{0}
 ```
-As can be seen in the code above, there is an additional decoration `{0}`, and `Profinite.{0}` is a *term* of `Type 1`.
-The `0` and `1` here are universe annotations.
-Namely, `Profinite.{0}` is the type of all profinite sets `X`, where the underlying type of `X` lives in `Type = Type 0`. 
+As can be seen in the code above, there is an additional decoration `{0}`, and `Profinite.{0}` is a *term* (in other words, a "member") of `Type 1`.
+The `0` and `1` here are universe annotations, while `Type` is just syntactic sugar for `Type 0`.
+In terms of the usual set-theoretic foundations of mathematics, we think of `Type = Type 0` as "the collection of all sets", while `Type 1` corresponds to the "collection of classes".
+
+Since `Type` is itself a proper class, it is a term of `Type 1`. 
+The collection `Profinite.{0}` of all profinite sets is again a proper class, which corresponds to the type-theoretic fact that `Profinite.{0} : Type 1`.
+
+In the code above, `Profinite.{0}` is the type of all profinite sets `X`, so that the underlying type of `X` lives in `Type = Type 0`. 
 ```lean
 example (X : Profinite.{0}) : Type := X
 ```
-Since `Type 0` is a term of `Type 1`, we also have `Profinite.{0} : Type 1`.
-Such universe annotations are all over the place in this repository, and we will mostly ignore them in the discussion below (with a few notable exceptions).
+
+Such universe annotations are all over the place in this repository.
+In this blogpost, we will only need to consider universe levels $0$ and $1$, where, as noted above, `Type 0 = Type` can be thought of as "the collection of sets" and `Type 1` as "the collection of classes".
 
 As we mentioned above, any `X : Profinite.{0}` is a topological space which is compact, Hausdorff and totally disconnected.
 ```lean
@@ -216,7 +226,7 @@ In Lean, the type of continuous maps between two topological spaces `X` and `Y` 
 This type `C(X,Y)` of continuous maps from `X` to `Y` is defined as the type of *dependent pairs* `⟨f,hf⟩` where `f` is a function from `X` to `Y` and `hf` is a proof that `f` is continuous.
 The word "dependent" is used because the proposition that `hf` proves *depends* on `f`.
 The angled brackets in `⟨f,hf⟩` are Lean's anonymous constructor syntax, which allows us to construct an element of `C(X,Y)` from such a pair.
-Here is the relevant code from [`examples/cond.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/cond.lean) illustrating the behaviour of `C(X,Y)`.
+Here is the relevant code from [`examples/cond.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/cond.lean) illustrating the behavior of `C(X,Y)`.
 ```lean
 -- Let `X` and `Y` be topological spaces.
 variables {X Y : Type*} [topological_space X] [topological_space Y]
@@ -237,7 +247,8 @@ example (f : X → Y) (hf : continuous f) : C(X,Y) :=
 In Lean, the type of morphisms between objects `X` and `Y` in a category is denoted with a special slightly longer arrow `X ⟶ Y`, not to be confused with the arrow used for the type of functions `X → Y`.
 While `Profinite.{0}` is itself a type (whose terms are themselves profinite sets), this type is endowed with a natural structure of a category whose morphisms are simply continuous maps.
 ```lean
-example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := rfl
+example (X Y : Profinite.{0}) : (X ⟶ Y : Type) = C(X,Y) := 
+rfl -- true by definition!
 ```
 Note that this example is another case where `rfl` works, illustrating that morphisms in the category of profinite sets are *defined* as continuous maps.
 
@@ -289,7 +300,7 @@ The category `Condensed.{0} Ab.{1}` of condensed abelian groups used in the stat
 The category of sheaves over a Grothendieck topology `J` on a category `C`, taking values in `D` is usually denoted by `Sheaf J D`, but the two spellings for the category of condensed abelian groups are (definitionally!) the same.
 ```lean
 example : Condensed.{0} Ab.{1} = Sheaf proetale_topology.{0} Ab.{1} := 
-rfl
+rfl -- true by definition!
 ```
 
 The type of sheaves `Sheaf J D` (`J` and `D` as above) is again defined using dependent pairs, say `P`, where the first component of `P`, denoted above as `P.1`, is a presheaf on `C` with values in `D` and the second component `P.2` is a proof that `P.1` is a sheaf for `J`.
@@ -343,7 +354,7 @@ CHFPNG₁_to_CHFPNGₑₗ
 
 example (X : CompHausFiltPseuNormGrp₁) :
   (CHFPNG₁_to_CHFPNGₑₗ X : Type) = X := 
-rfl
+rfl -- true by definition!
 ```
 
 ## The associated condensed abelian group
@@ -362,7 +373,7 @@ example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0}) :
 (ulift.{1}
   { f : S → X | ∃ (c : ℝ≥0) (g : S → filtration X c), 
     continuous g ∧ f = coe ∘ g }) := 
-rfl
+rfl -- true by definition!
 ```
 If `S : Profinite.{0}` and `X : Condensed.{0} Ab.{1}`, then the notation `Γ_ S X` appearing in the second line should be read as $\Gamma(S,X)$, i.e. the sections of `X` over `S`.
 
@@ -372,7 +383,8 @@ The group structure on this set of sections is the obivous one, given by pointwi
 ```lean
 example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0})
   (f g : Γ_ S (CompHausFiltPseuNormGrp.to_Condensed X)) (s : S) :
-  (f + g) s = f s + g s := rfl
+  (f + g) s = f s + g s := 
+rfl -- true by definition!
 ```
 
 ## $p$-Radon measures
@@ -414,7 +426,7 @@ In the code block above, the continuous function `clopens.indicator` is the indi
 ```lean
 example (S : Profinite.{0}) (V : set S) (hV : is_clopen V) (s : S) :
   clopens.indicator ⟨V,hV⟩ s = if s ∈ V then 1 else 0 := 
-rfl
+rfl -- true by definition!
 ```
 
 Conversely, we may construct elements of the `c`-th term of the filtration of `S.Radon_png p` given a continuous functional satisfying the bound for `c`.
@@ -449,7 +461,7 @@ example (S : Profinite.{0}) (c : ℝ≥0) :
   inducing
     ((embedding_into_the_weak_dual p S) ∘ 
       (filtration_embedding p S c)) :=
-inducing.mk rfl
+inducing.mk rfl -- true by definition!
 ```
 Finally, the group structure on `S.Radon_png p` is just the one induced by that of the dual of $C(S,\mathbb{R})$.
 ```lean
@@ -457,7 +469,7 @@ example (S : Profinite.{0}) (F G : S.Radon_png p) :
   embedding_into_the_weak_dual p S (F + G) =
   embedding_into_the_weak_dual p S F +
   embedding_into_the_weak_dual p S G := 
-rfl
+rfl -- true by definition!
 ```
 
 Although we will not explain precisely the definition of the condensed abelian group `ℳ_{p} S` which appears in the main statement of the challenge (it is essentially defined as a colimit of limits as indicated above), we do nevertheless show that it is isomorphic to the condensed abelian group associated to `S.Radon_png p`:
@@ -534,12 +546,12 @@ Since `V` is, in particular, a topological abelian group, it can also be viewed 
 The sections of the condensed abelian group associated to `V`, over a profinite set `S`, is given simply by `C(S,V)` (modulo a universe bump, similarly to the situation above).
 ```lean
 example : (Γ_ S V : Type 1) = ulift C(S,V) := 
-rfl
+rfl -- true by definition!
 ```
 And the group structure is the obvious one given by pointwise addition.
 ```lean
 example (f g : Γ_ S V) (s : S) : (f + g) s = f s + g s := 
-rfl
+rfl -- true by definition!
 ```
 
 ## $\ell^p(\mathbb{N})$
@@ -574,12 +586,12 @@ Finally, the vector space structure is, of course, the obvious one given by the 
 example [fact (0 < p)] [fact (p ≤ 1)] 
   (f g : pBanach.lp p) (n : ℕ) :
   (f + g) n = f n + g n := 
-rfl
+rfl -- true by definition!
 
 example [fact (0 < p)] [fact (p ≤ 1)] (a : ℝ) 
   (f : pBanach.lp p) (n : ℕ) :
   (a • f) n = a * f n := 
-rfl
+rfl -- true by definition!
 ```
 
 # `Ext` groups
@@ -609,7 +621,7 @@ The Ext groups for objects, denoted `Ext' i X Y`, is then defined by viewing an 
 example (n : ℕ) (X Y : 𝓐) :
   Ext' n (op X) Y =
   Ext n (op ↑X) ↑Y := 
-rfl
+rfl -- true by definition!
 ```
 In this code block, `𝓐` denotes any abelian category with enough projectives.
 The presence of `↑` in this code indicates that a coercion is involved.
@@ -623,7 +635,7 @@ example
   ∀ i > 0,
     Ext i (ℳ_{p'} S) V =
     Ext' i (op (ℳ_{p'} S)) (Condensed.of_top_ab V) :=
-by { intros, refl }
+by { intros, refl } -- true by definition!
 ```
 
 ## `Ext'` as a $\delta$-functor
@@ -640,7 +652,7 @@ Ext_δ_functor 𝓐 Y n
 -- The `n`-th component of this `δ`-functor is defined using `Ext' n`.
 example (n : ℕ) (X Y : 𝓐) :
   (Ext_δ_functor 𝓐 Y n) (op X) = Ext' n (op X) Y :=
-rfl
+rfl -- true by definition!
 ```
 Here we are using a new notation `⥤δ` for the collection of delta functors (recall that `⥤` is notation for the collection of *functors*).
 
