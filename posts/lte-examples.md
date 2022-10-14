@@ -1,7 +1,7 @@
 ---
 author: 'Adam Topaz'
 category: ''
-date: 2022-10-11
+date: 2022-10-14
 description: ''
 has_math: true
 link: ''
@@ -21,7 +21,7 @@ theorem liquid_tensor_experiment
   ∀ i > 0, Ext i (ℳ_{p'} S) V ≅ 0 :=
 -- the proof ...
 ``` 
-The code block above, which is taken directly from the file [`challenge.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/challenge.lean) in the main [LTE repository](https://github.com/leanprover-community/lean-liquid), uses some custom notation to make the statement appear as close as possible to the main theorem mentioned in 
+The code block above, which is taken directly from the file [`challenge.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/challenge.lean) in the main [LTE repository](https://github.com/leanprover-community/lean-liquid), uses some custom notation to make the statement appear as close as possible to the main theorem mentioned in 
 [Scholze's original challenge](https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/).
 Fortunately, it's relatively straightforward to unravel the notation to see the underlying definitions themselves.
 But there is a bigger issue: How can we convince ourselves (and others) that the *definitions* we introduced in LTE are actually *correct*? 
@@ -29,16 +29,16 @@ But there is a bigger issue: How can we convince ourselves (and others) that the
 For instance, we could have *defined* `Ext` to be $0$ (spoiler: we didn't).
 Or, we could have made some subtle innocent mistake in setting up the definitions that somehow *implies* that `Ext` is always $0$, or that all condensed abelian groups are trivial, or one of several other pitfalls that renders the statement above meaningless.
 
-To answer this question, we built a new [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples) in the repository which contains several files corresponding to the main players in the statement above.
+To answer this question, we built a new [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples) in the repository which contains several files corresponding to the main players in the statement above.
 These examples can be considered as centralized "sanity checks" that the definitions we wrote using Lean actually behave as expected.
 
 We tried to write the files in this folder in a way which should be (approximately) readable by mathematicians who have minimal experience with Lean.
 The goal is to make it easy for non-experts to look through the examples folder, then look through the concise final statement in `challenge.lean`, and be reasonably confident that the challenge was accomplished.
 
 This blog post gives a detailed overview of this folder and its contents, and how it relates to the definitions used in the main statement of the [liquid tensor experiment](https://github.com/leanprover-community/lean-liquid).
-It is meant to be read *alongside* the actual files from the [examples folder](https://github.com/leanprover-community/lean-liquid/tree/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples).
+It is meant to be read *alongside* the actual files from the [examples folder](https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples).
 
-The links below involving LTE all point to files in [this commit](https://github.com/leanprover-community/lean-liquid/commit/ebb498cdd2caa39d51e7668e4072dc15825a76d5) of the LTE repository, which is the most recent one as of writing this post.
+The links below involving LTE all point to files in [this commit](https://github.com/leanprover-community/lean-liquid/commit/92f188bd17f34dbfefc92a83069577f708851aec) of the LTE repository, which is the most recent one as of writing this post.
 
 <!-- TEASER_END -->
 
@@ -93,7 +93,7 @@ This is the actual *proof* of the assertion that `translate_by_pos a ha b` is po
 In most of the examples below, we merely want to convey that a proof (or some other object) *can* be constructed, without actually spelling it out.
 In those cases, the actual code appearing after `:=` will be completely omitted in this blogpost.
 In some exceptional situations where the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
-Readers who are interested in seeing the missing proofs/definitions should consult the files in the [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples).
+Readers who are interested in seeing the missing proofs/definitions should consult the files in the [`examples` folder](https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples).
 
 # Unraveling the statement
 
@@ -131,7 +131,7 @@ We will discuss each file individually in the following sections.
 A linearly ordered field is called *conditionally complete* provided that every nonempty subset which is bounded above has a least upper bound, and every subset which is bounded below has a greatest lower bound.
 The reals are an example of such a field, and any two such fields are (uniquely) isomorphic, as ordered fields.
 
-The file [`examples/real.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/real.lean) indicates these facts in the following examples as evidence that Lean's definition of the reals is correct.
+The file [`examples/real.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/real.lean) indicates these facts in the following examples as evidence that Lean's definition of the reals is correct.
 ```lean
 -- The reals are a conditionally complete linearly ordered field.
 example : conditionally_complete_linear_ordered_field ℝ := 
@@ -170,7 +170,7 @@ We will use such examples several times in this post to indicate how certain obj
 
 # Profinite sets and condensed abelian groups
 
-Let's discuss the file [`examples/cond.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/cond.lean), which explains the formalization of profinite sets, and condensed abelian groups.
+Let's discuss the file [`examples/cond.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/cond.lean), which explains the formalization of profinite sets, and condensed abelian groups.
 
 ## Profinite sets
 First of all, we have the category `Profinite` of profinite sets.
@@ -226,7 +226,7 @@ In Lean, the type of continuous maps between two topological spaces `X` and `Y` 
 This type `C(X,Y)` of continuous maps from `X` to `Y` is defined as the type of *dependent pairs* `⟨f,hf⟩` where `f` is a function from `X` to `Y` and `hf` is a proof that `f` is continuous.
 The word "dependent" is used because the proposition that `hf` proves *depends* on `f`.
 The angled brackets in `⟨f,hf⟩` are Lean's anonymous constructor syntax, which allows us to construct an element of `C(X,Y)` from such a pair.
-Here is the relevant code from [`examples/cond.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/cond.lean) illustrating the behavior of `C(X,Y)`.
+Here is the relevant code from [`examples/cond.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/cond.lean) illustrating the behavior of `C(X,Y)`.
 ```lean
 -- Let `X` and `Y` be topological spaces.
 variables {X Y : Type*} [topological_space X] [topological_space Y]
@@ -259,7 +259,7 @@ The category `Profinite.{0}` also has the Grothendieck topology mentioned above,
 example : grothendieck_topology Profinite.{0} := proetale_topology
 ```
 
-The precise definition of `proetale_topology` is the Grothendieck topology induced by a Grothendieck pretopology `proetale_pretopology`, which can be found [here](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/condensed/proetale_site.lean#L66). 
+The precise definition of `proetale_topology` is the Grothendieck topology induced by a Grothendieck pretopology `proetale_pretopology`, which can be found [here](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/condensed/proetale_site.lean#L66). 
 In the case of (pre)sheaves of abelian groups, the sheaf condition for the pro-étale topology on `Profinite.{0}` is equivalent to what one would expect given the description above.
 In other words, a presheaf $\mathscr{F}$ of abelian groups on $\mathrm{Profinite}$ is a sheaf for this Grothendieck topology if and only if the following condition holds: For any profinite set $B$, finite jointly surjective family of morphisms $(X_i \to B)_i$, and families of elements $x_i \in \mathscr{F}(X_i)$ such that the restrictions of $x_i$ and $x_j$ agree in $\mathscr{F}(X_i \times_B X_j)$ for all $i,j$, there exists a unique element $s \in \mathscr{F}(B)$ whose restriction agrees with $x_i$ in $\mathscr{F}(X_i)$ for every $i$. 
 Here is the statement written in Lean:
@@ -329,7 +329,7 @@ See the footnote on page 7 of [`Condensed.pdf`](https://www.math.uni-bonn.de/peo
 
 # Radon Measures
 
-Next we discuss the file [`examples/radon_measures.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/radon_measures.lean), which covers the condensed abelian group $\mathcal{M}_{p'}(S)$ and its relationship with signed Radon measures.
+Next we discuss the file [`examples/radon_measures.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/radon_measures.lean), which covers the condensed abelian group $\mathcal{M}_{p'}(S)$ and its relationship with signed Radon measures.
 
 ## Pseudo-normed groups
 There are really two sides in this project: the condensed side, which deals with the category of condensed abelian groups, and a more concrete side which deals with so-called pseudo-normed groups.
@@ -483,7 +483,7 @@ example (S : Profinite.{0}) :
 
 # $p$-Banach spaces
 
-The file [`examples/pBanach.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/pBanach.lean) discusses $p$-Banach spaces and gives an explicit example.
+The file [`examples/pBanach.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/pBanach.lean) discusses $p$-Banach spaces and gives an explicit example.
 
 Let $p$ be a real number satisfying $0 < p \le 1$.
 A $p$-Banach space is a topological real vector space $V$ such that there exists a $p$-norm on $V$ which induces the topology on $V$ and for which $V$ is complete.
@@ -596,7 +596,7 @@ rfl -- true by definition!
 
 # `Ext` groups
 
-The file [`examples/Ext.lean`](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/examples/Ext.lean) was arguably the original motivation for the `examples` folder.
+The file [`examples/Ext.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/Ext.lean) was arguably the original motivation for the `examples` folder.
 After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined `Ext` to always be zero!
 
 ![ext-zulip](/images/lte-ext-zulip-1.png)
@@ -608,7 +608,7 @@ We came up with two computations that were sufficiently convincing for us:
 
 1. We showed that our definition of `Ext` yields a [universal $\delta$-functor](https://en.wikipedia.org/wiki/Delta-functor#Universal_%CE%B4-functor) (in the first variable).
   Unfortunately, at the time of writing, $\delta$-functors are still not part of mathlib.
-  Their definition is in the LTE repository, and can be found [here](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/for_mathlib/universal_delta_functor/basic.lean#L24).
+  Their definition is in the LTE repository, and can be found [here](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/for_mathlib/universal_delta_functor/basic.lean#L24).
 2. We did the very first exercise one might do when first learning about Ext groups: $\operatorname{Ext}^1(\mathbb{Z}/n,\mathbb{Z}/n) \cong \mathbb{Z}/n$.
 
 ## `Ext` vs. `Ext'`
@@ -627,7 +627,7 @@ In this code block, `𝓐` denotes any abelian category with enough projectives.
 The presence of `↑` in this code indicates that a coercion is involved.
 In this case, it is the coercion from the abelian category `𝓐` to the bounded-above homotopy category of cochain complexes in `𝓐`, denoted `bounded_homotopy_category 𝓐` throughout the repository.
 
-The symbol `Ext` appearing in the statement of the [challenge](https://github.com/leanprover-community/lean-liquid/blob/ebb498cdd2caa39d51e7668e4072dc15825a76d5/src/challenge.lean) is simply notation for `Ext'`:
+The symbol `Ext` appearing in the statement of the [challenge](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/challenge.lean) is simply notation for `Ext'`:
 ```lean
 example
   (p' p : ℝ≥0) [fact (0 < p')] [fact (p' < p)] [fact (p ≤ 1)]
