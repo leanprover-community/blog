@@ -1,7 +1,7 @@
 ---
 author: 'Adam Topaz'
 category: 'Community projects'
-date: 2022-10-14
+date: 2022-10-14 11:00:00 UTC-06:00
 description: ''
 has_math: true
 link: ''
@@ -38,9 +38,9 @@ The goal is to make it easy for non-experts to look through the examples folder,
 This blog post gives a detailed overview of this folder and its contents, and how it relates to the definitions used in the main statement of the [liquid tensor experiment](https://github.com/leanprover-community/lean-liquid).
 It is meant to be read *alongside* the actual files from the [examples folder](https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples).
 
-The links below involving LTE all point to files in [this commit](https://github.com/leanprover-community/lean-liquid/commit/92f188bd17f34dbfefc92a83069577f708851aec) of the LTE repository, which is the most recent one as of writing this post.
-
 <!-- TEASER_END -->
+
+The links below involving LTE all point to files in [this commit](https://github.com/leanprover-community/lean-liquid/commit/92f188bd17f34dbfefc92a83069577f708851aec) of the LTE repository, which is the most recent one as of writing this post.
 
 # Definitions and examples in Lean
 
