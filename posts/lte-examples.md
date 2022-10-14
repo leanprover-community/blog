@@ -154,7 +154,7 @@ In the code above, the symbol `A ≃+*o B` is notation for the type of *isomorph
 
 Another potentially new word here is `Type`, used specifically above in `K : Type`.
 For the purposes of this blogpost, it is safe to think of `K : Type` as saying that "$K$ is a set".
-Since `K  Type` appears in the "hypotheses" of the examples above, this is akin to saying "let $K$ be a set".
+Since `K : Type` appears in the "hypotheses" of the examples above, this is akin to saying "let $K$ be a set".
 There are additional important subtleties around `Type` that we will discuss in later subsections.
 
 This file also briefly mentions the following example regarding the nonnegative reals:
