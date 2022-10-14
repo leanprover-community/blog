@@ -1,13 +1,13 @@
 ---
 author: 'Adam Topaz'
-category: ''
+category: 'Community projects'
 date: 2022-10-14
 description: ''
 has_math: true
 link: ''
 slug: lte-examples
 tags: ''
-title: On definitions in the liquid tensor experiment
+title: Definitions in the liquid tensor experiment
 type: text
 ---
 
