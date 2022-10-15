@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Definitions in the liquid tensor experiment | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/lte-examples/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Definitions in the liquid tensor experiment | Lean community blog">
+<meta name="author" content="Adam Topaz">
+<link rel="prev" href="../month-in-mathlib-sep-2022/" title="This month in mathlib (Sep 2022)" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Definitions in the liquid tensor experiment">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/lte-examples/">
+<meta property="og:description" content="A few weeks ago, we announced the completion of the liquid tensor experiment (LTE for short).
+What this means is that we stated and (completely) proved the following result in Lean:
+variables (p' p : ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-10-14T11:00:00-06:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Definitions in the liquid tensor experiment</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/adam-topaz/">Adam Topaz</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-10-14T11:00:00-06:00" itemprop="datePublished" title="2022-10-14 11:00">2022-10-14 11:00</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/lte-examples/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>A few weeks ago, we announced the <a href="../lte-final/">completion of the liquid tensor experiment</a> (<strong>LTE</strong> for short).
+What this means is that we stated and (completely) proved the following result in Lean:</p>
+<pre class="code literal-block"><span class="kd">variables</span> <span class="o">(</span><span class="n">p'</span> <span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p'</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p'</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span>
+
+<span class="kd">theorem</span> <span class="n">liquid_tensor_experiment</span> 
+  <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite</span><span class="o">)</span> <span class="o">(</span><span class="n">V</span> <span class="o">:</span> <span class="n">pBanach</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span>
+  <span class="bp">∀</span> <span class="n">i</span> <span class="bp">&gt;</span> <span class="mi">0</span><span class="o">,</span> <span class="n">Ext</span> <span class="n">i</span> <span class="o">(</span><span class="n">ℳ_</span><span class="o">{</span><span class="n">p'</span><span class="o">}</span> <span class="n">S</span><span class="o">)</span> <span class="n">V</span> <span class="bp">≅</span> <span class="mi">0</span> <span class="o">:=</span>
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>The code block above, which is taken directly from the file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/challenge.lean"><code>challenge.lean</code></a> in the main <a href="https://github.com/leanprover-community/lean-liquid">LTE repository</a>, uses some custom notation to make the statement appear as close as possible to the main theorem mentioned in 
+<a href="https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/">Scholze's original challenge</a>.
+Fortunately, it's relatively straightforward to unravel the notation to see the underlying definitions themselves.
+But there is a bigger issue: How can we convince ourselves (and others) that the <em>definitions</em> we introduced in LTE are actually <em>correct</em>? </p>
+<p>For instance, we could have <em>defined</em> <code>Ext</code> to be $0$ (spoiler: we didn't).
+Or, we could have made some subtle innocent mistake in setting up the definitions that somehow <em>implies</em> that <code>Ext</code> is always $0$, or that all condensed abelian groups are trivial, or one of several other pitfalls that renders the statement above meaningless.</p>
+<p>To answer this question, we built a new <a href="https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples"><code>examples</code> folder</a> in the repository which contains several files corresponding to the main players in the statement above.
+These examples can be considered as centralized "sanity checks" that the definitions we wrote using Lean actually behave as expected.</p>
+<p>We tried to write the files in this folder in a way which should be (approximately) readable by mathematicians who have minimal experience with Lean.
+The goal is to make it easy for non-experts to look through the examples folder, then look through the concise final statement in <code>challenge.lean</code>, and be reasonably confident that the challenge was accomplished.</p>
+<p>This blog post gives a detailed overview of this folder and its contents, and how it relates to the definitions used in the main statement of the <a href="https://github.com/leanprover-community/lean-liquid">liquid tensor experiment</a>.
+It is meant to be read <em>alongside</em> the actual files from the <a href="https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples">examples folder</a>.</p>
+<!-- TEASER_END -->
+
+<p>The links below involving LTE all point to files in <a href="https://github.com/leanprover-community/lean-liquid/commit/92f188bd17f34dbfefc92a83069577f708851aec">this commit</a> of the LTE repository, which is the most recent one as of writing this post.</p>
+<h2>Definitions and examples in Lean</h2>
+<p>This post contains several Lean code blocks. 
+Most of them have only <code>example</code>s, but a few also contain <code>def</code>enitions.
+Let's briefly review how to read such a piece of code.
+Lean experts can safely skip this section.</p>
+<h3>The anatomy of definition</h3>
+<p>Let's take a look at the following code block:</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">translate_by_pos</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">ha</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span> 
+  <span class="n">ℕ</span> <span class="bp">→</span> <span class="n">ℕ</span> <span class="o">:=</span> 
+<span class="bp">λ</span> <span class="n">t</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">t</span>
+</pre>
+<p>In this case, we are making a <em>definition</em> which can be later accessed with the name <code>translate_by_pos</code>.
+The code to the left of the <code>:</code> on the first line can be thought of as "hypotheses" for the definition, which in this case consists of a natural number <code>a</code> and a hypothesis <code>ha</code> that <code>a</code> is positive.</p>
+<p>The code after the <code>:</code> at the end of the first line and before the <code>:=</code> on the second line tells Lean what to expect from the actual definition.
+In this case, we are defining a function from <code>ℕ</code> to itself, and the collection of such functions is denoted with an arrow as <code>ℕ → ℕ</code>.</p>
+<p>The text following <code>:=</code> is the actual definition which in this case is <code>λ t, a + t</code>.
+This is an (unnamed) function declared with notation from lambda calculus.
+A mathematician might write $t \mapsto a + t$ instead.</p>
+<h3>Examples vs definitions</h3>
+<p>An example is just like a definition, except that it will not add any declaration to the current environment, so it does not require that a name is provided.
+For instance, if we did not need to refer to <code>translate_by_pos</code> in the future, we could have just written</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">ha</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span> 
+  <span class="n">ℕ</span> <span class="bp">→</span> <span class="n">ℕ</span> <span class="o">:=</span> 
+<span class="bp">λ</span> <span class="n">t</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">t</span>
+</pre>
+<p>This can still be useful because it tells us that <code>λ t, a + t</code> is a valid function <code>ℕ → ℕ</code>, given the hypotheses on the first line. </p>
+<p>Examples can also be used to illustrate useful properties of preexisting definitions.
+For instance,</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">ha</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span> 
+  <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">translate_by_pos</span> <span class="n">a</span> <span class="n">ha</span> <span class="n">b</span> <span class="o">:=</span>
+<span class="n">nat.add_pos_left</span> <span class="n">ha</span> <span class="n">b</span>
+</pre>
+<p>tells us that <code>translate_by_pos a ha b</code> is positive for any natural number <code>b</code>.
+Recall that <code>translate_by_pos a ha</code> is indeed a function <code>ℕ → ℕ</code>, and can thus be applied to <code>b</code>.</p>
+<p>In this code block, we included <code>nat.add_pos_left ha b</code> (which requires an <code>import</code> statement that we have omitted).
+This is the actual <em>proof</em> of the assertion that <code>translate_by_pos a ha b</code> is positive.
+In most of the examples below, we merely want to convey that a proof (or some other object) <em>can</em> be constructed, without actually spelling it out.
+In those cases, the actual code appearing after <code>:=</code> will be completely omitted in this blogpost.
+In some exceptional situations where the actual definition is meaningful for a non-Lean-expert, an additional explanation will be provided.
+Readers who are interested in seeing the missing proofs/definitions should consult the files in the <a href="https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples"><code>examples</code> folder</a>.</p>
+<h2>Unraveling the statement</h2>
+<p>Let's first unravel the statement of the <a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf">theorem of Clausen-Scholze</a> which was the focus of LTE:</p>
+<p><strong>Theorem</strong> (Clausen-Scholze). <em>Let $0 &lt; p' &lt; p \le 1$ be real numbers. 
+Let $S$ be a profinite set, and let $V$ be a $p$-Banach space.
+Let $\mathcal{M}_{p'}(S)$ be the space of $p'$-measures on $S$. Then 
+$$\operatorname{Ext}^i_{\mathrm{Cond(Ab)}}(\mathcal{M}_{p'}(S),V) = 0$$
+for all $i \geq 1$.</em></p>
+<p>Let's go through the ingredients in this statement individually:</p>
+<ol>
+<li>A profinite set $S$ is a topological space which is compact, Hausdorff and totally disconnected. 
+  Equivalently, it is a limit (in the category of topological spaces) of finite (discrete) sets.</li>
+<li>To describe $\mathcal{M}_{p'}(S)$, first write $S$ as a limit of finite sets $S = \lim_i S_i$.
+  One then defines 
+  $$\mathcal{M}_{p'}(S) = \bigcup_{0 \le c} \lim_i \mathbb{R}[S_i]_{\le c}$$
+  where 
+  $$\mathbb{R}[S_i]_{\le c} = \left\{ f : S_i \to \mathbb{R} \ {\Big{|}} \ \Sigma_{t \in S_i} | f(t) |^{p'} \le c \right\}. $$
+  It turns out that elements of $\lim_i\mathbb{R}[S_i]_{\le c}$ can be identified with continuous linear maps $C(S,\mathbb{R}) \to \mathbb{R}$ satisfying a "bounded-by-$c$" which is related to the condition in the definition of $\mathbb{R}[S_i]_{\le c}$. 
+  Here $C(S,\mathbb{R})$ is a Banach space with respect to the sup norm and its linear dual is endowed with the weak topology.
+  It is in this sense that one can consider $\mathcal{M}_{p'}(S)$ as the space of $p'$-measures on the profinite set $S$. </li>
+<li>The <code>Ext</code> groups appearing in the statement of the theorem are computed in the category $\mathrm{Cond(Ab)}$ of condensed abelian groups, which is the category of sheaves of abelian groups on the category of profinite sets with respect to the Grothendieck topology where a cover of $B$ is a finite jointly surjective family of morphisms $(X_i \to B)_{i}$.
+  This is an exceptionally nice abelian category with compact projective generators.</li>
+<li>It's possible to interpret any topological abelian group as a condensed abelian group.
+   For example, any $p'$-Banach space $V$, which is a topological vector space over $\mathbb{R}$ satisfying additional conditions, can be viewed as an object of $\mathrm{Cond(Ab)}$.
+   It's also possible to interpret $\mathcal{M}_{p'}(S)$ as a condensed abelian group, since this object has a natural structure of a so-called <em>"CompHaus-filtered-pseudo-normed-group"</em> (see below for more details). </li>
+</ol>
+<p>The files in the examples folder describe how each of these ingredients has been formalized in the liquid tensor experiment.
+We will discuss each file individually in the following sections.</p>
+<h2>The real numbers</h2>
+<p>A linearly ordered field is called <em>conditionally complete</em> provided that every nonempty subset which is bounded above has a least upper bound, and every subset which is bounded below has a greatest lower bound.
+The reals are an example of such a field, and any two such fields are (uniquely) isomorphic, as ordered fields.</p>
+<p>The file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/real.lean"><code>examples/real.lean</code></a> indicates these facts in the following examples as evidence that Lean's definition of the reals is correct.</p>
+<pre class="code literal-block"><span class="c1">-- The reals are a conditionally complete linearly ordered field.</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">conditionally_complete_linear_ordered_field</span> <span class="n">ℝ</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+
+<span class="c1">-- Any conditionally complete linearly ordered field `K` is </span>
+<span class="c1">-- isomorphic to the reals.</span>
+<span class="kd">example</span> <span class="o">{</span><span class="n">K</span> <span class="o">:</span> <span class="kt">Type</span><span class="o">}</span> <span class="o">[</span><span class="n">conditionally_complete_linear_ordered_field</span> <span class="n">K</span><span class="o">]</span> <span class="o">:</span> 
+  <span class="n">K</span> <span class="bp">≃+*</span><span class="n">o</span> <span class="n">ℝ</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+
+<span class="c1">-- If `K` is a conditionally complete linearly ordered field</span>
+<span class="c1">-- then any two order-preserving isomorphisms between `K` and </span>
+<span class="c1">-- the reals are equal.</span>
+<span class="kd">example</span> <span class="o">{</span><span class="n">K</span> <span class="o">:</span> <span class="kt">Type</span><span class="o">}</span> <span class="o">[</span><span class="n">conditionally_complete_linear_ordered_field</span> <span class="n">K</span><span class="o">]</span> 
+  <span class="o">(</span><span class="n">e₁</span> <span class="n">e₂</span> <span class="o">:</span> <span class="n">K</span> <span class="bp">≃+*</span><span class="n">o</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">:</span> <span class="n">e₁</span> <span class="bp">=</span> <span class="n">e₂</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>In the code above, the symbol <code>A ≃+*o B</code> is notation for the type of <em>isomorphisms of ordered rings</em> between <code>A</code> and <code>B</code>, indicating that such an isomorphism is compatible with addition (<code>+</code>), multiplication (<code>*</code>), and the ordering (<code>o</code>). </p>
+<p>Another potentially new word here is <code>Type</code>, used specifically above in <code>K : Type</code>.
+For the purposes of this blogpost, it is safe to think of <code>K : Type</code> as saying that "$K$ is a set".
+Since <code>K : Type</code> appears in the "hypotheses" of the examples above, this is akin to saying "let $K$ be a set".
+There are additional important subtleties around <code>Type</code> that we will discuss in later subsections.</p>
+<p>This file also briefly mentions the following example regarding the nonnegative reals:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span> <span class="bp">=</span> <span class="o">{</span><span class="n">r</span> <span class="o">:</span> <span class="n">ℝ</span> <span class="bp">//</span> <span class="n">r</span> <span class="bp">≥</span> <span class="mi">0</span><span class="o">}</span> <span class="o">:=</span>
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>illustrating that <code>ℝ≥0</code> is defined to be the collection of all real numbers $r$ satisfying $r \geq 0$.
+This collection of nonnegative reals appears in the main statement of the challenge, and is otherwise used extensively throughout the project.</p>
+<p>In general, if <code>rfl</code> (or the tactic <code>refl</code>, both of which are shorthand for "reflexivity") can be used to prove an equality <code>A = B</code>, then <code>A</code> and <code>B</code> are equal <em>by definition!</em>
+We will use such examples several times in this post to indicate how certain objects are defined.</p>
+<h2>Profinite sets and condensed abelian groups</h2>
+<p>Let's discuss the file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/cond.lean"><code>examples/cond.lean</code></a>, which explains the formalization of profinite sets, and condensed abelian groups.</p>
+<h3>Profinite sets</h3>
+<p>First of all, we have the category <code>Profinite</code> of profinite sets.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="kt">Type</span> <span class="mi">1</span> <span class="o">:=</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span>
+</pre>
+<p>As can be seen in the code above, there is an additional decoration <code>{0}</code>, and <code>Profinite.{0}</code> is a <em>term</em> (in other words, a "member") of <code>Type 1</code>.
+The <code>0</code> and <code>1</code> here are universe annotations, while <code>Type</code> is just syntactic sugar for <code>Type 0</code>.
+In terms of the usual set-theoretic foundations of mathematics, we think of <code>Type = Type 0</code> as "the collection of all sets", while <code>Type 1</code> corresponds to the "collection of classes".</p>
+<p>Since <code>Type</code> is itself a proper class, it is a term of <code>Type 1</code>. 
+The collection <code>Profinite.{0}</code> of all profinite sets is again a proper class, which corresponds to the type-theoretic fact that <code>Profinite.{0} : Type 1</code>.</p>
+<p>In the code above, <code>Profinite.{0}</code> is the type of all profinite sets <code>X</code>, so that the underlying type of <code>X</code> lives in <code>Type = Type 0</code>. </p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span> <span class="kt">Type</span> <span class="o">:=</span> <span class="n">X</span>
+</pre>
+<p>Such universe annotations are all over the place in this repository.
+In this blogpost, we will only need to consider universe levels $0$ and $1$, where, as noted above, <code>Type 0 = Type</code> can be thought of as "the collection of sets" and <code>Type 1</code> as "the collection of classes".</p>
+<p>As we mentioned above, any <code>X : Profinite.{0}</code> is a topological space which is compact, Hausdorff and totally disconnected.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span> <span class="n">topological_space</span> <span class="n">X</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span> <span class="n">compact_space</span> <span class="n">X</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span> <span class="n">t2_space</span> <span class="n">X</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span> <span class="n">totally_disconnected_space</span> <span class="n">X</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>Conversely, any such topological space yields an object of <code>Profinite.{0}</code>.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="o">)</span>
+  <span class="o">[</span><span class="n">topological_space</span> <span class="n">X</span><span class="o">]</span>
+  <span class="o">[</span><span class="n">compact_space</span> <span class="n">X</span><span class="o">]</span>
+  <span class="o">[</span><span class="n">t2_space</span> <span class="n">X</span><span class="o">]</span>
+  <span class="o">[</span><span class="n">totally_disconnected_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">:</span>
+  <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="o">:=</span>
+<span class="n">Profinite.of</span> <span class="n">X</span>
+</pre>
+<p>The code <code>Profinite.of X</code> provides a way to construct an object of <code>Profinite.{0}</code> when <code>X</code> is a compact Hausdorff totally disconnected topological space.</p>
+<h3>Continuous maps</h3>
+<p>A morphism in the category of profinite sets (see the next subsection) will simply be a continuous map.
+In Lean, the type of continuous maps between two topological spaces <code>X</code> and <code>Y</code> is denoted by <code>C(X,Y)</code>.
+This type <code>C(X,Y)</code> of continuous maps from <code>X</code> to <code>Y</code> is defined as the type of <em>dependent pairs</em> <code>⟨f,hf⟩</code> where <code>f</code> is a function from <code>X</code> to <code>Y</code> and <code>hf</code> is a proof that <code>f</code> is continuous.
+The word "dependent" is used because the proposition that <code>hf</code> proves <em>depends</em> on <code>f</code>.
+The angled brackets in <code>⟨f,hf⟩</code> are Lean's anonymous constructor syntax, which allows us to construct an element of <code>C(X,Y)</code> from such a pair.
+Here is the relevant code from <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/cond.lean"><code>examples/cond.lean</code></a> illustrating the behavior of <code>C(X,Y)</code>.</p>
+<pre class="code literal-block"><span class="c1">-- Let `X` and `Y` be topological spaces.</span>
+<span class="kd">variables</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">topological_space</span> <span class="n">X</span><span class="o">]</span> <span class="o">[</span><span class="n">topological_space</span> <span class="n">Y</span><span class="o">]</span>
+
+<span class="c1">-- Any `f : C(X,Y)` yields a continuous function from `X` to `Y`.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="n">Y</span><span class="o">))</span> <span class="o">:</span> <span class="n">X</span> <span class="bp">→</span> <span class="n">Y</span> <span class="o">:=</span>
+<span class="n">f</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="n">Y</span><span class="o">))</span> <span class="o">:</span> <span class="n">continuous</span> <span class="n">f</span> <span class="o">:=</span>
+<span class="c1">-- The proof...</span>
+
+<span class="c1">-- Conversely, any continuous function yields an element of `C(X,Y)`.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">X</span> <span class="bp">→</span> <span class="n">Y</span><span class="o">)</span> <span class="o">(</span><span class="n">hf</span> <span class="o">:</span> <span class="n">continuous</span> <span class="n">f</span><span class="o">)</span> <span class="o">:</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="n">Y</span><span class="o">)</span> <span class="o">:=</span>
+<span class="o">⟨</span><span class="n">f</span><span class="o">,</span><span class="n">hf</span><span class="o">⟩</span>
+</pre>
+<h3>The category structure on <code>Profinite</code>
+</h3>
+<p>In Lean, the type of morphisms between objects <code>X</code> and <code>Y</code> in a category is denoted with a special slightly longer arrow <code>X ⟶ Y</code>, not to be confused with the arrow used for the type of functions <code>X → Y</code>.
+While <code>Profinite.{0}</code> is itself a type (whose terms are themselves profinite sets), this type is endowed with a natural structure of a category whose morphisms are simply continuous maps.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span> <span class="o">(</span><span class="n">X</span> <span class="bp">⟶</span> <span class="n">Y</span> <span class="o">:</span> <span class="kt">Type</span><span class="o">)</span> <span class="bp">=</span> <span class="n">C</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="n">Y</span><span class="o">)</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>Note that this example is another case where <code>rfl</code> works, illustrating that morphisms in the category of profinite sets are <em>defined</em> as continuous maps.</p>
+<h3>Condensed abelian groups</h3>
+<p>The category <code>Profinite.{0}</code> also has the Grothendieck topology mentioned above, which we call <code>proetale_topology</code> in LTE (this name is used because the corresponding site agrees with the pro-étale site of a geometric point).</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">grothendieck_topology</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="o">:=</span> <span class="n">proetale_topology</span>
+</pre>
+<p>The precise definition of <code>proetale_topology</code> is the Grothendieck topology induced by a Grothendieck pretopology <code>proetale_pretopology</code>, which can be found <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/condensed/proetale_site.lean#L66">here</a>. 
+In the case of (pre)sheaves of abelian groups, the sheaf condition for the pro-étale topology on <code>Profinite.{0}</code> is equivalent to what one would expect given the description above.
+In other words, a presheaf $\mathscr{F}$ of abelian groups on $\mathrm{Profinite}$ is a sheaf for this Grothendieck topology if and only if the following condition holds: For any profinite set $B$, finite jointly surjective family of morphisms $(X_i \to B)_i$, and families of elements $x_i \in \mathscr{F}(X_i)$ such that the restrictions of $x_i$ and $x_j$ agree in $\mathscr{F}(X_i \times_B X_j)$ for all $i,j$, there exists a unique element $s \in \mathscr{F}(B)$ whose restriction agrees with $x_i$ in $\mathscr{F}(X_i)$ for every $i$. 
+Here is the statement written in Lean:</p>
+<pre class="code literal-block"><span class="c1">-- Let `F` be a presheaf on `Profinite.{0}` with values in `Ab.{1}`.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">F</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span><span class="bp">ᵒᵖ</span> <span class="bp">⥤</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">})</span> <span class="o">:</span>
+  <span class="c1">-- Then `F` is a sheaf for `proetale_topology` </span>
+  <span class="n">presheaf.is_sheaf</span> <span class="n">proetale_topology</span> <span class="n">F</span> 
+  <span class="c1">-- if and only if</span>
+  <span class="bp">↔</span> 
+  <span class="c1">-- for any finite indexing type `α`,</span>
+  <span class="bp">∀</span> <span class="o">(</span><span class="n">α</span> <span class="o">:</span> <span class="n">Fintype.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> 
+  <span class="c1">-- profinite set `B`,</span>
+    <span class="o">(</span><span class="n">B</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> 
+  <span class="c1">-- family of profinite sets `X` indexed by `α`</span>
+    <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">α</span> <span class="bp">→</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> 
+  <span class="c1">-- which map to `B` with a family of maps `π`,</span>
+    <span class="o">(</span><span class="n">π</span> <span class="o">:</span> <span class="bp">Π</span> <span class="n">i</span><span class="o">,</span> <span class="n">X</span> <span class="n">i</span> <span class="bp">⟶</span> <span class="n">B</span><span class="o">)</span>
+  <span class="c1">-- such that `π` is jointly surjective,</span>
+    <span class="o">(</span><span class="n">hπ</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">b</span> <span class="o">:</span> <span class="n">B</span><span class="o">,</span> <span class="bp">∃</span> <span class="n">i</span> <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">X</span> <span class="n">i</span><span class="o">),</span> <span class="n">π</span> <span class="n">i</span> <span class="n">x</span> <span class="bp">=</span> <span class="n">b</span><span class="o">)</span> 
+  <span class="c1">-- and all families of elements `x i : F (op (X i))`,</span>
+    <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="bp">Π</span> <span class="n">i</span><span class="o">,</span> <span class="n">F</span> <span class="o">(</span><span class="n">op</span> <span class="o">(</span><span class="n">X</span> <span class="n">i</span><span class="o">)))</span> 
+  <span class="c1">-- which are compatible on pullbacks `X i ×_{B} X j`</span>
+    <span class="o">(</span><span class="n">hx</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">i</span> <span class="n">j</span> <span class="o">:</span> <span class="n">α</span><span class="o">,</span> 
+      <span class="n">F.map</span> <span class="o">(</span><span class="n">pullback.fst</span> <span class="o">:</span> <span class="n">pullback</span> <span class="o">(</span><span class="n">π</span> <span class="n">i</span><span class="o">)</span> <span class="o">(</span><span class="n">π</span> <span class="n">j</span><span class="o">)</span> <span class="bp">⟶</span> <span class="n">X</span> <span class="n">i</span><span class="o">)</span><span class="bp">.</span><span class="n">op</span> <span class="o">(</span><span class="n">x</span> <span class="n">i</span><span class="o">)</span> <span class="bp">=</span>
+      <span class="n">F.map</span> <span class="o">(</span><span class="n">pullback.snd</span> <span class="o">:</span> <span class="n">pullback</span> <span class="o">(</span><span class="n">π</span> <span class="n">i</span><span class="o">)</span> <span class="o">(</span><span class="n">π</span> <span class="n">j</span><span class="o">)</span> <span class="bp">⟶</span> <span class="n">X</span> <span class="n">j</span><span class="o">)</span><span class="bp">.</span><span class="n">op</span> <span class="o">(</span><span class="n">x</span> <span class="n">j</span><span class="o">)),</span>
+  <span class="c1">-- there is a unique `s : F (op B)`</span>
+    <span class="bp">∃!</span> <span class="n">s</span> <span class="o">:</span> <span class="n">F</span> <span class="o">(</span><span class="n">op</span> <span class="n">B</span><span class="o">),</span>
+  <span class="c1">-- which restricts to `x i` over `X i` for all `i`.</span>
+      <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span> <span class="n">F.map</span> <span class="o">(</span><span class="n">π</span> <span class="n">i</span><span class="o">)</span><span class="bp">.</span><span class="n">op</span> <span class="n">s</span> <span class="bp">=</span> <span class="n">x</span> <span class="n">i</span>
+    <span class="o">:=</span>
+<span class="c1">-- the proof...</span>
+</pre>
+<p>The notation <code>C ⥤ D</code> is used in <code>mathlib</code> to denote the type of functors from <code>C</code> to <code>D</code> and <code>Cᵒᵖ</code> denotes the opposite category associated to <code>C</code>.
+In particular, the code above takes a presheaf <code>F</code> of abelian groups (at universe level <code>1</code>) on <code>Profinite.{0}</code>, and gives a necessary and sufficient condition for <code>F</code> to be a sheaf with respect to <code>proetale_topology</code>. </p>
+<p>The category <code>Condensed.{0} Ab.{1}</code> of condensed abelian groups used in the statement of the main theorem is defined simply as the category of sheaves of abelian groups over <code>proetale_topology</code>.
+The category of sheaves over a Grothendieck topology <code>J</code> on a category <code>C</code>, taking values in <code>D</code> is usually denoted by <code>Sheaf J D</code>, but the two spellings for the category of condensed abelian groups are (definitionally!) the same.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">Condensed.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">}</span> <span class="bp">=</span> <span class="n">Sheaf</span> <span class="n">proetale_topology.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">}</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>The type of sheaves <code>Sheaf J D</code> (<code>J</code> and <code>D</code> as above) is again defined using dependent pairs, say <code>P</code>, where the first component of <code>P</code>, denoted above as <code>P.1</code>, is a presheaf on <code>C</code> with values in <code>D</code> and the second component <code>P.2</code> is a proof that <code>P.1</code> is a sheaf for <code>J</code>.
+We illustrate this in the case of condensed abelian groups with the following examples.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">F</span> <span class="o">:</span> <span class="n">Condensed.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">})</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span><span class="bp">ᵒᵖ</span> <span class="bp">⥤</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">}</span> <span class="o">:=</span> 
+<span class="n">F.1</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">F</span> <span class="o">:</span> <span class="n">Condensed.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">})</span> <span class="o">:</span> 
+  <span class="n">presheaf.is_sheaf</span> <span class="n">proetale_topology</span> <span class="n">F.1</span> <span class="o">:=</span> 
+<span class="n">F.2</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">F</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span><span class="bp">ᵒᵖ</span> <span class="bp">⥤</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">})</span> 
+  <span class="o">(</span><span class="n">hF</span> <span class="o">:</span> <span class="n">presheaf.is_sheaf</span> <span class="n">proetale_topology</span> <span class="n">F</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">Condensed.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">}</span> <span class="o">:=</span> 
+<span class="o">⟨</span><span class="n">F</span><span class="o">,</span><span class="n">hF</span><span class="o">⟩</span>
+</pre>
+<p>Note that we again use Lean's anonymous constructor syntax <code>⟨F,hF⟩</code> in the last example.</p>
+<h3>A comment on universes</h3>
+<p>One last comment about universes is warranted in this section.
+Just like <code>Profinite.{0}</code> is the category of profinite sets whose underlying type lives in <code>Type 0</code>, the category <code>Ab.{1}</code> is the category of abelian groups whose underlying type lives in <code>Type 1</code>.
+We need to bump the universe level of the category of abelian groups precisely because <code>Profinite.{0}</code> is a <em>large category</em>, meaning that <code>Profinite.{0} : Type 1</code>, while <code>X ⟶ Y : Type 0</code> for <code>X Y : Profinite.{0}</code>.
+Technically speaking, condensed mathematics in the sense of <a href="https://www.math.uni-bonn.de/people/scholze/Condensed.pdf">Clausen-Scholze</a> works in ZFC by imposing cardinality bounds on profinite sets, whereas our approach more closely resembles that of <em>pyknotic objects</em>, in the sense of <a href="https://arxiv.org/abs/1904.09966">Barwick-Haine</a>.
+See the footnote on page 7 of <a href="https://www.math.uni-bonn.de/people/scholze/Condensed.pdf"><code>Condensed.pdf</code></a> and/or section 0.3 of <a href="https://arxiv.org/abs/1904.09966">Barwick-Haine</a> for the comparison between condensed and pyknotic sets.</p>
+<h2>Radon Measures</h2>
+<p>Next we discuss the file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/radon_measures.lean"><code>examples/radon_measures.lean</code></a>, which covers the condensed abelian group $\mathcal{M}_{p'}(S)$ and its relationship with signed Radon measures.</p>
+<h3>Pseudo-normed groups</h3>
+<p>There are really two sides in this project: the condensed side, which deals with the category of condensed abelian groups, and a more concrete side which deals with so-called pseudo-normed groups.
+A <em>pseudo-normed group</em> is an (additive) abelian group $M$ endowed with an increasing filtration $M_c$ indexed by $c \in \mathbb{R}_{\geq 0}$ satisfying the following conditions:</p>
+<ol>
+<li>The neutral element $0$ is contained in $M_c$ for all $c$.</li>
+<li>If $x \in M_c$ then $-x \in M_c$. </li>
+<li>If $x \in M_c$ and $y \in M_d$ then $x + y \in M_{c + d}$.</li>
+</ol>
+<p>If furthermore each $M_c$ is endowed with a compact Hausdorff topology, where the inclusions $M_c \to M_d$ for $c \le d$, the negation map $M_c \to M_c$ and the addition map $M_c \times M_d \to M_{c+d}$ are all continuous, then $M$ is called a <em>CompHaus-filtered-pseudo-normed-group</em> (CHFPNG).</p>
+<p>The collection of CHFPNGs forms a category where morphisms are morphisms of abelian groups which are compatible with the filtration in a non-strict sense.
+Namely, a morphism $f : M \to N$ of CHFPNGs is a morphism of abelian groups such that there exists some constant $C \in \mathbb{R}_{\geq 0}$ where $f$ restricts to <em>continuous</em> maps $M_c \to N_{C \cdot c}$ for all $c$.
+In LTE, we call this category <code>CompHausFiltPseuNormGrp.{0}</code> (again, the $0$ is the universe level of the underlying type).</p>
+<p>Most of the CHFPNGs we're interested in are actually objects of a slightly different category than the one described above, which is denoted by <code>CompHausFiltPseuNormGrp₁</code>.
+The objects of this category are CHFPNGs whose filtration is exhaustive, and the morphisms are assumed to be <em>strict</em>, meaning that a morphism $f : M \to N$ restricts to a continuous map $f : M_c \to N_c$ for all $c$.
+There is an obvious forgetful functor to the non-strict category, which is denoted by <code>CHFPNG₁_tto_CHFPNGₑₗ</code>:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">CompHausFiltPseuNormGrp₁</span> <span class="bp">⥤</span> <span class="n">CompHausFiltPseuNormGrp</span> <span class="o">:=</span>
+<span class="n">CHFPNG₁_to_CHFPNGₑₗ</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">CompHausFiltPseuNormGrp₁</span><span class="o">)</span> <span class="o">:</span>
+  <span class="o">(</span><span class="n">CHFPNG₁_to_CHFPNGₑₗ</span> <span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="o">)</span> <span class="bp">=</span> <span class="n">X</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<h3>The associated condensed abelian group</h3>
+<p>There is a natural functor from <code>CompHausFiltPseuNormGrp.{0}</code> to <code>Condensed.{0} Ab.{1}</code> which sends $M$ to the colimit $\bigcup_c M_c$.
+Here $M_c$ is viewed as a condensed <em>set</em> whose underlying presheaf is the restriction to <code>Profinite.{0}</code> of the representable presheaf associated to the topological space $M_c$.
+In LTE, we defined this functor in a more hands-on way.
+The functor itself is called <code>CompHausFiltPseuNormGrp.to_Condensed</code>:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">CompHausFiltPseuNormGrp.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="bp">⥤</span> <span class="n">Condensed.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">Ab.</span><span class="o">{</span><span class="mi">1</span><span class="o">}</span> <span class="o">:=</span>
+<span class="n">CompHausFiltPseuNormGrp.to_Condensed</span>
+</pre>
+<p>and on objects it is defined as follows: </p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">CompHausFiltPseuNormGrp.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span>
+<span class="o">(</span><span class="bp">Γ</span><span class="n">_</span> <span class="n">S</span> <span class="o">(</span><span class="n">CompHausFiltPseuNormGrp.to_Condensed</span> <span class="n">X</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Type</span> <span class="mi">1</span><span class="o">)</span> <span class="bp">=</span>
+<span class="o">(</span><span class="n">ulift.</span><span class="o">{</span><span class="mi">1</span><span class="o">}</span>
+  <span class="o">{</span> <span class="n">f</span> <span class="o">:</span> <span class="n">S</span> <span class="bp">→</span> <span class="n">X</span> <span class="bp">|</span> <span class="bp">∃</span> <span class="o">(</span><span class="n">c</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">(</span><span class="n">g</span> <span class="o">:</span> <span class="n">S</span> <span class="bp">→</span> <span class="n">filtration</span> <span class="n">X</span> <span class="n">c</span><span class="o">),</span> 
+    <span class="n">continuous</span> <span class="n">g</span> <span class="bp">∧</span> <span class="n">f</span> <span class="bp">=</span> <span class="n">coe</span> <span class="bp">∘</span> <span class="n">g</span> <span class="o">})</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>If <code>S : Profinite.{0}</code> and <code>X : Condensed.{0} Ab.{1}</code>, then the notation <code>Γ_ S X</code> appearing in the second line should be read as $\Gamma(S,X)$, i.e. the sections of <code>X</code> over <code>S</code>.</p>
+<p>Since Lean's type theory does not have cumulative universes, the definition of <code>CompHausFiltPseuNormGrp.to_Condensed</code> involves a universe bump using <code>ulift</code>, in order to obtain an object of <code>Ab.{1}</code> as opposed to <code>Ab.{0}</code> (see the discussion above).
+Putting that aside, the sections $\Gamma(S,X)$ of the condensed abelian group associated to a CHFPNG $X$ over a profinite set $S$ is the set of functions $f : S \to M$ which factor as the composition of a continuous map $g : S \to M_c$ and the natural inclusion $\mathtt{coe} : M_c \to M$ for some $c$.
+The group structure on this set of sections is the obivous one, given by pointwise addition.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">CompHausFiltPseuNormGrp.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span>
+  <span class="o">(</span><span class="n">f</span> <span class="n">g</span> <span class="o">:</span> <span class="bp">Γ</span><span class="n">_</span> <span class="n">S</span> <span class="o">(</span><span class="n">CompHausFiltPseuNormGrp.to_Condensed</span> <span class="n">X</span><span class="o">))</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">S</span><span class="o">)</span> <span class="o">:</span>
+  <span class="o">(</span><span class="n">f</span> <span class="bp">+</span> <span class="n">g</span><span class="o">)</span> <span class="n">s</span> <span class="bp">=</span> <span class="n">f</span> <span class="n">s</span> <span class="bp">+</span> <span class="n">g</span> <span class="n">s</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<h3>$p$-Radon measures</h3>
+<p>Fix a real number $p$ satisfying $0 &lt; p \le 1$.
+We will now discuss the relationship between $\mathcal{M}_{p}(S)$ and the space of $p$-Radon measures.
+First we address the question of actually defining the space of $p$-Radon measures.</p>
+<p>Given any <code>S : Profinite.{0}</code>, and $p$ as above, we define <code>S.Radon_png p</code>, an object of <code>CompHausFiltPseuNormGrp₁</code>, as follows.
+As a set, it consists of all continuous linear maps $\mu : C(S,\mathbb{R}) \to \mathbb{R}$ such that there exists some $C \in \mathbb{R}_{\geq 0}$ satisfying the following condition: For any partition $S = V_1 \cup \cdots \cup V_n$ into disjoint clopen sets, one has 
+$$ \sum_i |\mu(I_i)|^p \le C, $$
+where $I_i \in C(S,\mathbb{R})$ denotes the (continuous) indicator function of $V_i$.
+Since $S$ is compact, Hausdorff and totally disconnected, one may verify that this agrees with the usual space of signed $p$-Radon measures (which reduces to the usual notion of a <a href="https://en.wikipedia.org/wiki/Radon_measure">signed Radon measure</a> when $p = 1$); see also Exercise 3.3 of <a href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf"><code>Analytic.pdf</code></a>. </p>
+<p>The $c$-th part of the filtration on <code>S.Radon_png p</code> is given by those $\mu$ where the sums above are all bounded by <code>c</code>. 
+If one endowes the continuous dual with the weak topology, this subspace agrees with the corresponding subspace of the space of signed $p$-Radon measures, and is a compact Hausdorff space.
+From here, it is straightforward to see that <code>S.Radon_png p</code> is a CHFPNG.</p>
+<p>We added several examples in the file <code>examples/radon_measures.lean</code> dedicated to this object <code>S.Radon_png p</code>.
+First, any element of <code>S.Radon_png p</code> can be considered as a continuous functional on $C(S,\mathbb{R})$.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">S.Radon_png</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span> <span class="n">C</span><span class="o">(</span><span class="n">S</span><span class="o">,</span><span class="n">ℝ</span><span class="o">)</span> <span class="bp">→</span><span class="n">L</span><span class="o">[</span><span class="n">ℝ</span><span class="o">]</span> <span class="n">ℝ</span> <span class="o">:=</span> <span class="n">μ.1</span>
+</pre>
+<p>In this code, <code>A →L[ℝ] B</code> is Lean's notation for the type of <em>continuous</em> $\mathbb{R}$-linear maps from <code>A</code> to <code>B</code>. 
+Note that <code>S.Radon_png p</code> is also an example of a type defined in terms of dependent pairs, similar to <code>C(X,Y)</code> and <code>Sheaf J D</code> discussed above, and <code>μ.1</code> is the first component of the dependent pair <code>μ : S.Radon_png p</code>.</p>
+<p>The boundedness condition mentioned above does indeed hold.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">S.Radon_png</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span>
+  <span class="bp">∃</span> <span class="n">c</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">,</span> <span class="c1">-- there exists a constant `c` such that</span>
+  <span class="bp">∀</span> <span class="o">(</span><span class="n">ι</span> <span class="o">:</span> <span class="n">Fintype.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="c1">-- for all finite indexing sets</span>
+    <span class="o">(</span><span class="n">V</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">set</span> <span class="n">S</span><span class="o">)</span> <span class="c1">-- and families of subsets of `S` indexed by `ι`,</span>
+    <span class="o">(</span><span class="n">I</span> <span class="o">:</span> <span class="n">indexed_partition</span> <span class="n">V</span><span class="o">)</span> <span class="c1">-- which form a partition of `S`</span>
+    <span class="o">(</span><span class="n">hV</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span> <span class="n">is_clopen</span> <span class="o">(</span><span class="n">V</span> <span class="n">i</span><span class="o">)),</span> <span class="c1">-- by clopen subsets,</span>
+    <span class="c1">-- The following bound holds true:</span>
+    <span class="bp">∑</span> <span class="n">i</span> <span class="o">:</span> <span class="n">ι</span><span class="o">,</span> <span class="bp">∥</span> <span class="n">μ</span> <span class="o">(</span><span class="n">clopens.indicator</span> <span class="o">⟨</span><span class="n">V</span> <span class="n">i</span><span class="o">,</span> <span class="n">hV</span> <span class="n">i</span><span class="o">⟩)</span> <span class="bp">∥₊^</span><span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> <span class="bp">≤</span> <span class="n">c</span> <span class="o">:=</span>
+<span class="c1">-- the proof...</span>
+</pre>
+<p>In the code block above, the continuous function <code>clopens.indicator</code> is the indicator function on a clopen set.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">V</span> <span class="o">:</span> <span class="n">set</span> <span class="n">S</span><span class="o">)</span> <span class="o">(</span><span class="n">hV</span> <span class="o">:</span> <span class="n">is_clopen</span> <span class="n">V</span><span class="o">)</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">S</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">clopens.indicator</span> <span class="o">⟨</span><span class="n">V</span><span class="o">,</span><span class="n">hV</span><span class="o">⟩</span> <span class="n">s</span> <span class="bp">=</span> <span class="k">if</span> <span class="n">s</span> <span class="bp">∈</span> <span class="n">V</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>Conversely, we may construct elements of the <code>c</code>-th term of the filtration of <code>S.Radon_png p</code> given a continuous functional satisfying the bound for <code>c</code>.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">C</span><span class="o">(</span><span class="n">S</span><span class="o">,</span><span class="n">ℝ</span><span class="o">)</span> <span class="bp">→</span><span class="n">L</span><span class="o">[</span><span class="n">ℝ</span><span class="o">]</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">(</span><span class="n">c</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span>
+  <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">(</span><span class="n">ι</span> <span class="o">:</span> <span class="n">Fintype.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">V</span> <span class="o">:</span> <span class="n">ι</span> <span class="bp">→</span> <span class="n">set</span> <span class="n">S</span><span class="o">)</span>
+    <span class="o">(</span><span class="n">I</span> <span class="o">:</span> <span class="n">indexed_partition</span> <span class="n">V</span><span class="o">)</span> <span class="o">(</span><span class="n">hV</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span> <span class="n">is_clopen</span> <span class="o">(</span><span class="n">V</span> <span class="n">i</span><span class="o">)),</span>
+    <span class="bp">∑</span> <span class="n">i</span> <span class="o">:</span> <span class="n">ι</span><span class="o">,</span> <span class="bp">∥</span> <span class="n">μ</span> <span class="o">(</span><span class="n">clopens.indicator</span> <span class="o">⟨</span><span class="n">V</span> <span class="n">i</span><span class="o">,</span> <span class="n">hV</span> <span class="n">i</span><span class="o">⟩)</span> <span class="bp">∥₊^</span><span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> <span class="bp">≤</span> <span class="n">c</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">filtration</span> <span class="o">(</span><span class="n">S.Radon_png</span> <span class="n">p</span><span class="o">)</span> <span class="n">c</span> <span class="o">:=</span>
+<span class="o">{</span> <span class="n">val</span> <span class="o">:=</span> <span class="o">⟨</span><span class="n">μ</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="kd">by</span> <span class="o">{</span> <span class="bp">...</span> <span class="o">}⟩,</span>
+  <span class="n">property</span> <span class="o">:=</span> <span class="kd">by</span> <span class="o">{</span> <span class="bp">...</span> <span class="o">}</span> <span class="o">}</span>
+</pre>
+<p>The line <code>val := ⟨μ, c, by { ... }⟩</code> indicates that the underlying function of this measure, when considered as a continuous functional, agrees with <code>μ</code>.</p>
+<p>The topology on this <code>c</code>-th term of the filtration is <em>defined</em> to be induced by the weak topology of the continuous dual.</p>
+<pre class="code literal-block"><span class="c1">-- The natural injective map from `S.Radon_png p` into </span>
+<span class="c1">-- the continuous linear dual of `C(S,ℝ)`, endowed with </span>
+<span class="c1">-- the weak topology.</span>
+<span class="kd">def</span> <span class="n">embedding_into_the_weak_dual</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span>
+  <span class="n">S.Radon_png</span> <span class="n">p</span> <span class="bp">↪</span> <span class="n">weak_dual</span> <span class="n">ℝ</span> <span class="n">C</span><span class="o">(</span><span class="n">S</span><span class="o">,</span><span class="n">ℝ</span><span class="o">)</span> <span class="o">:=</span> <span class="o">⟨</span><span class="bp">λ</span> <span class="n">μ</span><span class="o">,</span> <span class="n">μ.1</span><span class="o">,</span> <span class="bp">...</span><span class="o">⟩</span>
+
+<span class="c1">-- The embedding of the `c`-th filtered part of `S.Radon_png p`</span>
+<span class="c1">-- into `S.Radon_png p` itself.</span>
+<span class="kd">def</span> <span class="n">filtration_embedding</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">c</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">filtration</span> <span class="o">(</span><span class="n">S.Radon_png</span> <span class="n">p</span><span class="o">)</span> <span class="n">c</span> <span class="bp">↪</span> <span class="n">S.Radon_png</span> <span class="n">p</span> <span class="o">:=</span> <span class="o">⟨</span><span class="bp">λ</span> <span class="n">μ</span><span class="o">,</span> <span class="n">μ.1</span><span class="o">,</span> <span class="bp">...</span><span class="o">⟩</span> 
+
+<span class="c1">-- The composition of the two embeddings above induce the topology</span>
+<span class="c1">-- on `filtration (S.Radon_png p) c` from the weak topology on</span>
+<span class="c1">-- the continuous dual of `C(S,ℝ)`.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">c</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">inducing</span>
+    <span class="o">((</span><span class="n">embedding_into_the_weak_dual</span> <span class="n">p</span> <span class="n">S</span><span class="o">)</span> <span class="bp">∘</span> 
+      <span class="o">(</span><span class="n">filtration_embedding</span> <span class="n">p</span> <span class="n">S</span> <span class="n">c</span><span class="o">))</span> <span class="o">:=</span>
+<span class="n">inducing.mk</span> <span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>Finally, the group structure on <code>S.Radon_png p</code> is just the one induced by that of the dual of $C(S,\mathbb{R})$.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">F</span> <span class="n">G</span> <span class="o">:</span> <span class="n">S.Radon_png</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">embedding_into_the_weak_dual</span> <span class="n">p</span> <span class="n">S</span> <span class="o">(</span><span class="n">F</span> <span class="bp">+</span> <span class="n">G</span><span class="o">)</span> <span class="bp">=</span>
+  <span class="n">embedding_into_the_weak_dual</span> <span class="n">p</span> <span class="n">S</span> <span class="n">F</span> <span class="bp">+</span>
+  <span class="n">embedding_into_the_weak_dual</span> <span class="n">p</span> <span class="n">S</span> <span class="n">G</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>Although we will not explain precisely the definition of the condensed abelian group <code>ℳ_{p} S</code> which appears in the main statement of the challenge (it is essentially defined as a colimit of limits as indicated above), we do nevertheless show that it is isomorphic to the condensed abelian group associated to <code>S.Radon_png p</code>:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">:</span>
+  <span class="o">(</span><span class="n">ℳ_</span><span class="o">{</span><span class="n">p</span><span class="o">}</span> <span class="n">S</span><span class="o">)</span> <span class="bp">≅</span>
+  <span class="n">CompHausFiltPseuNormGrp.to_Condensed</span> 
+    <span class="o">(</span><span class="n">CHFPNG₁_to_CHFPNGₑₗ</span> <span class="o">(</span><span class="n">S.Radon_png</span> <span class="n">p</span><span class="o">))</span> <span class="o">:=</span> 
+<span class="c1">-- the proof ...</span>
+</pre>
+<h2>$p$-Banach spaces</h2>
+<p>The file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/pBanach.lean"><code>examples/pBanach.lean</code></a> discusses $p$-Banach spaces and gives an explicit example.</p>
+<p>Let $p$ be a real number satisfying $0 &lt; p \le 1$.
+A $p$-Banach space is a topological real vector space $V$ such that there exists a $p$-norm on $V$ which induces the topology on $V$ and for which $V$ is complete.
+Here a $p$-norm is a map $|| \cdot || : V \to \mathbb{R}_{\geq 0}$ which is similar to a norm, except that the scaling behavior involves $p$: $|| a \cdot v || = |a|^p \cdot || v ||$ for all $a \in \mathbb{R}$ and $v \in V$. 
+In LTE, the type of $p$-Banach spaces is denoted <code>pBanach.{0} p</code>.</p>
+<h3>Basic properties</h3>
+<p>The topological properties of <code>V : pBanach.{0} p</code> are summarized in the following examples:</p>
+<pre class="code literal-block"><span class="c1">-- A `p`-Banach space is a topological (additive) group</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">topological_add_group</span> <span class="n">V</span> <span class="o">:=</span> <span class="c1">-- the proof ...</span>
+
+<span class="c1">-- which is a vector space over `ℝ`</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">module</span> <span class="n">ℝ</span> <span class="n">V</span> <span class="o">:=</span> <span class="c1">-- the proof ...</span>
+
+<span class="c1">-- such that scalar multiplication is continuous,</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">has_continuous_smul</span> <span class="n">ℝ</span> <span class="n">V</span> <span class="o">:=</span> <span class="c1">-- the proof ...</span>
+
+<span class="c1">-- `V` is complete,</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">complete_space</span> <span class="n">V</span> <span class="o">:=</span> <span class="c1">-- the proof ...</span>
+
+<span class="c1">-- and `V` is separated.</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">separated_space</span> <span class="n">V</span> <span class="o">:=</span> <span class="c1">-- the proof ...</span>
+</pre>
+<p>As expected, we should be able to <em>choose</em> a $p$-norm on such a <code>V</code>.</p>
+<pre class="code literal-block"><span class="c1">-- A choice of a `p`-norm on `V`.</span>
+<span class="kd">def</span> <span class="n">pBanach.has_norm</span> <span class="o">:</span> <span class="n">has_norm</span> <span class="n">V</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">p_banach.exists_p_norm</span> <span class="n">V.p_banach'</span><span class="o">)</span><span class="bp">.</span><span class="n">some.to_has_norm</span>
+
+<span class="c1">-- Use this choice for the rest of the file.</span>
+<span class="kn">local</span> <span class="kn">attribute</span> <span class="o">[</span><span class="kd">instance</span><span class="o">]</span> <span class="n">pBanach.has_norm</span>
+</pre>
+<p>The fact that <code>some</code> (more precisely, <code>exists.some</code>) appears on the example above is an indication that this is an actual <em>choice</em> that must be made.
+More precisely, <code>p_banach.exists_p_norm V.p_banach'</code> is a <em>proof</em> that there exists a $p$-norm on <code>V</code> satisfying some additional condition -- this is a proof of an existential proposition!
+The subsequent <code>.some</code> tells Lean to actually <em>choose</em> some such <code>p</code>-norm, while the last <code>.to_has_norm</code> essentially forgets about the properties of the <code>p</code>-norm, while keeping only the underlying function $V \to \mathbb{R}$.
+The last line tells Lean to use this choice for the rest of the file -- essentially, this command "activates" the notation <code>∥-∥</code> for the chosen $p$-norm in the rest of the file.</p>
+<p>With this choice made and activated, we can illustrate the various necessary properties with the following examples.
+The scaling behavior:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">r</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">(</span><span class="n">v</span> <span class="o">:</span> <span class="n">V</span><span class="o">)</span> <span class="o">:</span> <span class="bp">∥</span><span class="n">r</span> <span class="bp">•</span> <span class="n">v</span><span class="bp">∥</span> <span class="bp">=</span> <span class="bp">|</span><span class="n">r</span><span class="bp">|^</span><span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> <span class="bp">*</span> <span class="bp">∥</span><span class="n">v</span><span class="bp">∥</span> <span class="o">:=</span>
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>The triangle inequality:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">v</span> <span class="n">w</span> <span class="o">:</span> <span class="n">V</span><span class="o">)</span> <span class="o">:</span> <span class="bp">∥</span><span class="n">v</span> <span class="bp">+</span> <span class="n">w</span><span class="bp">∥</span> <span class="bp">≤</span> <span class="bp">∥</span><span class="n">v</span><span class="bp">∥</span> <span class="bp">+</span> <span class="bp">∥</span><span class="n">w</span><span class="bp">∥</span> <span class="o">:=</span>
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>And the fact that the topological structure is induced by the norm (more precisely, this is formulated in terms of the <em>uniformity</em> on <code>V</code>, while the compatibility with the topology follows as an axiom of a uniform space):</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">uniformity</span> <span class="n">V</span> <span class="bp">=</span> <span class="bp">⨅</span> <span class="o">(</span><span class="n">ε</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">(</span><span class="n">H</span> <span class="o">:</span> <span class="n">ε</span> <span class="bp">&gt;</span> <span class="mi">0</span><span class="o">),</span>
+  <span class="n">filter.principal</span> <span class="o">{</span> <span class="n">p</span> <span class="o">:</span> <span class="n">V</span> <span class="bp">×</span> <span class="n">V</span> <span class="bp">|</span> <span class="bp">∥</span><span class="n">p.1</span> <span class="bp">-</span> <span class="n">p.2</span><span class="bp">∥</span> <span class="bp">&lt;</span> <span class="n">ε</span> <span class="o">}</span> <span class="o">:=</span>
+<span class="c1">-- the proof ...</span>
+</pre>
+<h3>The associated condensed abelian group</h3>
+<p>Since <code>V</code> is, in particular, a topological abelian group, it can also be viewed as a condensed abelian group.
+The sections of the condensed abelian group associated to <code>V</code>, over a profinite set <code>S</code>, is given simply by <code>C(S,V)</code> (modulo a universe bump, similarly to the situation above).</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="o">(</span><span class="bp">Γ</span><span class="n">_</span> <span class="n">S</span> <span class="n">V</span> <span class="o">:</span> <span class="kt">Type</span> <span class="mi">1</span><span class="o">)</span> <span class="bp">=</span> <span class="n">ulift</span> <span class="n">C</span><span class="o">(</span><span class="n">S</span><span class="o">,</span><span class="n">V</span><span class="o">)</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>And the group structure is the obvious one given by pointwise addition.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">f</span> <span class="n">g</span> <span class="o">:</span> <span class="bp">Γ</span><span class="n">_</span> <span class="n">S</span> <span class="n">V</span><span class="o">)</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">S</span><span class="o">)</span> <span class="o">:</span> <span class="o">(</span><span class="n">f</span> <span class="bp">+</span> <span class="n">g</span><span class="o">)</span> <span class="n">s</span> <span class="bp">=</span> <span class="n">f</span> <span class="n">s</span> <span class="bp">+</span> <span class="n">g</span> <span class="n">s</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<h3>$\ell^p(\mathbb{N})$</h3>
+<p>We have also provided an explicit example of a $p$-Banach space: the space $\ell^p(\mathbb{N})$ of real sequences $(a_i)_i$ such that the sum $\sum_i |a_i|^p$ exists is a $p$-Banach space.
+This example is denoted <code>pBanach.lp p</code> in LTE. </p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">:</span> <span class="n">pBanach</span> <span class="n">p</span> <span class="o">:=</span>
+<span class="n">pBanach.lp</span> <span class="n">p</span>
+</pre>
+<p>Elements of <code>pBanach.lp p</code> can indeed be considered as functions $\mathbb{N} \to \mathbb{R}$.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">pBanach.lp</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span> <span class="n">ℕ</span> <span class="bp">→</span> <span class="n">ℝ</span> <span class="o">:=</span>
+<span class="bp">λ</span> <span class="n">i</span><span class="o">,</span> <span class="n">f</span> <span class="n">i</span>
+</pre>
+<p>And the sum mentioned above exists.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">pBanach.lp</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">summable</span> <span class="o">(</span><span class="bp">λ</span> <span class="n">n</span><span class="o">,</span> <span class="bp">|</span> <span class="n">f</span> <span class="n">n</span> <span class="bp">|^</span><span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">))</span> <span class="o">:=</span>
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>Conversely, such sequences yield elements of <code>pBanach.lp p</code>.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">ℕ</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="o">)</span> 
+  <span class="o">(</span><span class="n">hf</span> <span class="o">:</span> <span class="n">summable</span> <span class="o">(</span><span class="bp">λ</span> <span class="n">n</span><span class="o">,</span> <span class="bp">|</span> <span class="n">f</span> <span class="n">n</span> <span class="bp">|^</span><span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)))</span> <span class="o">:</span>
+  <span class="n">pBanach.lp</span> <span class="n">p</span> <span class="o">:=</span>
+<span class="o">{</span> <span class="n">val</span> <span class="o">:=</span> <span class="n">f</span><span class="o">,</span> 
+  <span class="n">property</span> <span class="o">:=</span> <span class="bp">...</span> <span class="o">}</span>
+</pre>
+<p>Finally, the vector space structure is, of course, the obvious one given by the pointwise operations.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span> 
+  <span class="o">(</span><span class="n">f</span> <span class="n">g</span> <span class="o">:</span> <span class="n">pBanach.lp</span> <span class="n">p</span><span class="o">)</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">:</span>
+  <span class="o">(</span><span class="n">f</span> <span class="bp">+</span> <span class="n">g</span><span class="o">)</span> <span class="n">n</span> <span class="bp">=</span> <span class="n">f</span> <span class="n">n</span> <span class="bp">+</span> <span class="n">g</span> <span class="n">n</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+
+<span class="kd">example</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> 
+  <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">pBanach.lp</span> <span class="n">p</span><span class="o">)</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">:</span>
+  <span class="o">(</span><span class="n">a</span> <span class="bp">•</span> <span class="n">f</span><span class="o">)</span> <span class="n">n</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">f</span> <span class="n">n</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<h2>
+<code>Ext</code> groups</h2>
+<p>The file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/Ext.lean"><code>examples/Ext.lean</code></a> was arguably the original motivation for the <code>examples</code> folder.
+After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined <code>Ext</code> to always be zero!</p>
+<p><img alt="ext-zulip" src="../../images/lte-ext-zulip-1.png"><img alt="ext-zulip" src="../../images/lte-ext-zulip-2.png"></p>
+<p>Of course, then quickly came the question of how we could be convinced that the definition we had was correct.</p>
+<p>We came up with two computations that were sufficiently convincing for us:</p>
+<ol>
+<li>We showed that our definition of <code>Ext</code> yields a <a href="https://en.wikipedia.org/wiki/Delta-functor#Universal_%CE%B4-functor">universal $\delta$-functor</a> (in the first variable).
+  Unfortunately, at the time of writing, $\delta$-functors are still not part of mathlib.
+  Their definition is in the LTE repository, and can be found <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/for_mathlib/universal_delta_functor/basic.lean#L24">here</a>.</li>
+<li>We did the very first exercise one might do when first learning about Ext groups: $\operatorname{Ext}^1(\mathbb{Z}/n,\mathbb{Z}/n) \cong \mathbb{Z}/n$.</li>
+</ol>
+<h3>
+<code>Ext</code> vs. <code>Ext'</code>
+</h3>
+<p>While <code>mathlib</code> does have the definition of Ext groups of two objects in an abelian category with enough projectives, for the purposes of LTE, we had to also consider Ext groups of complexes.
+We ended up making a new definition <code>Ext i A B</code> where <code>A</code> and <code>B</code> are arbitrary bounded above complexes in an abelian category with enough projectives (more precisely, we ended up working with the homotopy category of bounded above cochain complexes).
+The Ext groups for objects, denoted <code>Ext' i X Y</code>, is then defined by viewing an object $X$ as the complex $X[0]$ concentrated in degree zero.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">Ext'</span> <span class="n">n</span> <span class="o">(</span><span class="n">op</span> <span class="n">X</span><span class="o">)</span> <span class="n">Y</span> <span class="bp">=</span>
+  <span class="n">Ext</span> <span class="n">n</span> <span class="o">(</span><span class="n">op</span> <span class="bp">↑</span><span class="n">X</span><span class="o">)</span> <span class="bp">↑</span><span class="n">Y</span> <span class="o">:=</span> 
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>In this code block, <code>𝓐</code> denotes any abelian category with enough projectives.
+The presence of <code>↑</code> in this code indicates that a coercion is involved.
+In this case, it is the coercion from the abelian category <code>𝓐</code> to the bounded-above homotopy category of cochain complexes in <code>𝓐</code>, denoted <code>bounded_homotopy_category 𝓐</code> throughout the repository.</p>
+<p>The symbol <code>Ext</code> appearing in the statement of the <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/challenge.lean">challenge</a> is simply notation for <code>Ext'</code>:</p>
+<pre class="code literal-block"><span class="kd">example</span>
+  <span class="o">(</span><span class="n">p'</span> <span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p'</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p'</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span>
+  <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">V</span> <span class="o">:</span> <span class="n">pBanach.</span><span class="o">{</span><span class="mi">0</span><span class="o">}</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span>
+  <span class="bp">∀</span> <span class="n">i</span> <span class="bp">&gt;</span> <span class="mi">0</span><span class="o">,</span>
+    <span class="n">Ext</span> <span class="n">i</span> <span class="o">(</span><span class="n">ℳ_</span><span class="o">{</span><span class="n">p'</span><span class="o">}</span> <span class="n">S</span><span class="o">)</span> <span class="n">V</span> <span class="bp">=</span>
+    <span class="n">Ext'</span> <span class="n">i</span> <span class="o">(</span><span class="n">op</span> <span class="o">(</span><span class="n">ℳ_</span><span class="o">{</span><span class="n">p'</span><span class="o">}</span> <span class="n">S</span><span class="o">))</span> <span class="o">(</span><span class="n">Condensed.of_top_ab</span> <span class="n">V</span><span class="o">)</span> <span class="o">:=</span>
+<span class="kd">by</span> <span class="o">{</span> <span class="n">intros</span><span class="o">,</span> <span class="n">refl</span> <span class="o">}</span> <span class="c1">-- true by definition!</span>
+</pre>
+<h3>
+<code>Ext'</code> as a $\delta$-functor</h3>
+<p>As aluded to in item 1 above, <code>Ext' i (-) Y</code>  for $i \geq 0$ can be assembeled to form a (contravariant, cohomological) $\delta$-functor, which we denote by <code>Ext_δ_functor 𝓐 Y</code>.</p>
+<pre class="code literal-block"><span class="c1">-- The functor `Ext^*(-,Y)`, as a `δ`-functor.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">:</span> <span class="bp">𝓐ᵒᵖ</span> <span class="bp">⥤</span><span class="n">δ</span> <span class="n">Ab.</span><span class="o">{</span><span class="n">v</span><span class="o">}</span> <span class="o">:=</span> 
+<span class="n">Ext_δ_functor</span> <span class="bp">𝓐</span> <span class="n">Y</span>
+
+<span class="c1">-- The `n`-th component of this `δ`-functor is a regular functor.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">:</span> <span class="bp">𝓐ᵒᵖ</span> <span class="bp">⥤</span> <span class="n">Ab.</span><span class="o">{</span><span class="n">v</span><span class="o">}</span> <span class="o">:=</span> 
+<span class="n">Ext_δ_functor</span> <span class="bp">𝓐</span> <span class="n">Y</span> <span class="n">n</span>
+
+<span class="c1">-- The `n`-th component of this `δ`-functor is defined using `Ext' n`.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">:</span>
+  <span class="o">(</span><span class="n">Ext_δ_functor</span> <span class="bp">𝓐</span> <span class="n">Y</span> <span class="n">n</span><span class="o">)</span> <span class="o">(</span><span class="n">op</span> <span class="n">X</span><span class="o">)</span> <span class="bp">=</span> <span class="n">Ext'</span> <span class="n">n</span> <span class="o">(</span><span class="n">op</span> <span class="n">X</span><span class="o">)</span> <span class="n">Y</span> <span class="o">:=</span>
+<span class="n">rfl</span> <span class="c1">-- true by definition!</span>
+</pre>
+<p>Here we are using a new notation <code>⥤δ</code> for the collection of delta functors (recall that <code>⥤</code> is notation for the collection of <em>functors</em>).</p>
+<h3>Comparison with <code>Hom</code>
+</h3>
+<p>In degree zero <code>Ext' 0 X Y</code> is isomorphic to the usual Hom functor, as expected.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">:</span> <span class="n">Ext'</span> <span class="mi">0</span> <span class="o">(</span><span class="n">op</span> <span class="n">X</span><span class="o">)</span> <span class="n">Y</span> <span class="bp">≅</span> <span class="n">AddCommGroup.of</span> <span class="o">(</span><span class="n">X</span> <span class="bp">⟶</span> <span class="n">Y</span><span class="o">)</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">Ext'_zero_flip_iso</span> <span class="bp">𝓐</span> <span class="n">Y</span><span class="o">)</span><span class="bp">.</span><span class="n">app</span> <span class="o">(</span><span class="n">op</span> <span class="n">X</span><span class="o">)</span>
+</pre>
+<p>Similarly to <code>Profinite.of</code> used above, <code>AddCommGroup.of A</code> constructs an object of <code>Ab</code> from an abelian group <code>A</code>.
+In this case, <code>X ⟶ Y</code>, the type of morphisms from <code>X</code> to <code>Y</code>, obtains such an abelian group structure from the fact that <code>𝓐</code> is an abelian category, and <code>Ext' 0 (op X) Y</code> is isomorphic, <em>as an abelian group</em>, to <code>X ⟶ Y</code>.
+The code <code>(Ext'_zero_flip_iso 𝓐 Y).app (op X)</code> is the name of an actual isomorphism between the two groups.</p>
+<p>We will need to use the fact that this isomorphism is functorial in the first variable in an example in the next subsection. 
+Fortunately, the isomorphism above was actually obtained by specializing a natural isomorphism of functors (in the variable <code>op X</code>):</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">:</span> <span class="o">(</span><span class="n">Ext'</span> <span class="mi">0</span><span class="o">)</span><span class="bp">.</span><span class="n">flip.obj</span> <span class="n">Y</span> <span class="bp">≅</span> <span class="n">preadditive_yoneda.obj</span> <span class="n">Y</span> <span class="o">:=</span>
+<span class="n">Ext'_zero_flip_iso</span> <span class="bp">𝓐</span> <span class="n">Y</span>
+</pre>
+<p>The important observation to make in this case is that the natural isomorphism <code>Ext'_zero_flip_iso 𝓐 Y</code> was used in <em>both</em> of the examples above.
+The only difference is that we <em>specialize</em> (or <em>apply</em>, hence the <code>.app</code>) this natural isomorphism to the object <code>op X</code> to obtain the first isomorphism from the second.
+In usual mathematical notation, <code>Ext'_zero_flip_iso 𝓐 Y</code> should be thought of as an isomorphism of functors
+$$ \operatorname{Ext}^0(-,Y) \cong \operatorname{Hom}(-,Y) $$
+while <code>(Ext'_zero_flip_iso 𝓐 Y).app (op X)</code> is the corresponding isomorphism $\operatorname{Ext}^0(X,Y) \cong \operatorname{Hom}(X,Y)$ of abelian groups.</p>
+<h3>Universality</h3>
+<p>Finally, if <code>G</code> is another (contravariant, cohomological) $\delta$-functor and $e_0 : \operatorname{Hom}(-,Y) \to G^0$ is a natural transformation, then there exists a unique morphism of delta functors from <code>Ext_δ_functor 𝓐 Y</code> to <code>G</code> which restricts to $e_0$ after composition with the isomorphism <code>Ext'_zero_flip_iso 𝓐 Y</code> mentioned in the previous subsection.
+In other words, our $\delta$-functor <code>Ext_δ_functor 𝓐 Y</code> is <em>universal</em>.</p>
+<pre class="code literal-block"><span class="kd">theorem</span> <span class="n">Ext_δ_functor_is_universal_for_Hom</span> <span class="o">(</span><span class="n">Y</span> <span class="o">:</span> <span class="bp">𝓐</span><span class="o">)</span> <span class="o">(</span><span class="n">F</span> <span class="o">:</span> <span class="bp">𝓐ᵒᵖ</span> <span class="bp">⥤</span><span class="n">δ</span> <span class="n">Ab.</span><span class="o">{</span><span class="n">v</span><span class="o">})</span>
+  <span class="o">(</span><span class="n">e0</span> <span class="o">:</span> <span class="n">preadditive_yoneda</span> <span class="n">Y</span> <span class="bp">⟶</span> <span class="n">F</span> <span class="mi">0</span><span class="o">)</span> <span class="o">:</span>
+  <span class="bp">∃!</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Ext_δ_functor</span> <span class="bp">𝓐</span> <span class="n">Y</span> <span class="bp">⟶</span> <span class="n">F</span><span class="o">),</span>
+  <span class="n">e0</span> <span class="bp">=</span> <span class="o">(</span><span class="n">Ext'_zero_flip_iso</span> <span class="bp">𝓐</span> <span class="n">Y</span><span class="o">)</span><span class="bp">.</span><span class="n">inv</span> <span class="bp">≫</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Ext_δ_functor</span> <span class="bp">𝓐</span> <span class="n">Y</span> <span class="bp">⟶</span> <span class="n">F</span><span class="o">)</span> <span class="mi">0</span> <span class="o">:=</span>
+<span class="c1">-- the proof...</span>
+</pre>
+<p>In this code <code>(Ext'_zero_flip_iso 𝓐 Y).inv</code> refers to the natural transformation $\operatorname{Hom}(-,Y) \to \operatorname{Ext}^0(-,X)$ which is the "inverse" of the isomorphism <code>(Ext'_zero_flip_iso 𝓐 Y)</code> discussed above.
+The strange symbol <code>≫</code> is Lean's notation for composition of morphisms in a category <em>with the order reversed</em>: <code>f ≫ g</code> would be written as $g \circ f$ using the usual conventions of function composition.</p>
+<h3>A basic exercise</h3>
+<p>We conclude with the first exercise in the book.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">ℕ</span><span class="o">)</span> <span class="o">(</span><span class="n">hn</span> <span class="o">:</span> <span class="n">n</span> <span class="bp">≠</span> <span class="mi">0</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">Ext'</span> <span class="mi">1</span> <span class="o">(</span><span class="n">op</span> <span class="o">(</span><span class="n">AddCommGroup.of</span> <span class="o">(</span><span class="n">zmod</span> <span class="n">n</span><span class="o">)))</span> <span class="o">(</span><span class="n">AddCommGroup.of</span> <span class="o">(</span><span class="n">zmod</span> <span class="n">n</span><span class="o">))</span> <span class="bp">≅</span> 
+  <span class="n">AddCommGroup.of</span> <span class="o">(</span><span class="n">zmod</span> <span class="n">n</span><span class="o">)</span> <span class="o">:=</span>
+<span class="c1">-- the proof ...</span>
+</pre>
+<p>Hopefully it is easy to guess that <code>zmod n</code> is Lean's spelling of $\mathbb{Z}/n$.</p>
+<h2>What's next?</h2>
+<p>We hope that these examples are sufficiently convincing that our definitions match what's on paper.
+They certainly helped convince us!
+We encourage the readers of this post to download the repository, build it locally, and explore the various definitions and proofs using the <code>#check</code> and <code>#print</code> commands, as well as the "jump to definition" functionality available with the supported editors.
+Even better would be writing additional examples to explore the definitions.
+For those readers who are still skeptical (or curious, or paranoid), it's always possible to follow and unravel the definitions all the way down to the axioms of Lean's type theory.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../month-in-mathlib-sep-2022/" rel="prev" title="This month in mathlib (Sep 2022)">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article></main><footer id="footer"><p>Contents © 2022         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
