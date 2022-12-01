@@ -25,7 +25,6 @@ In October and November 2022 there were PRs merged into mathlib. We list some of
     - [PR #14672](https://github.com/leanprover-community/mathlib/pull/14672) algebra/char_p/mixed_char_zero: define mixed/equal characteristic zero
     - [PR #16258](https://github.com/leanprover-community/mathlib/pull/16258) representation_theory/group_cohomology_resolution: add chain complex underlying the standard resolution
     - [PR #16920](https://github.com/leanprover-community/mathlib/pull/16920) ring_theory/dedekind_domain/ideal: height_one_spectrum is equivalent to maximal_spectrum
-    - [PR #15405](https://github.com/leanprover-community/mathlib/pull/15405) ring_theory/dedekind_domain/selmer_group: add Selmer groups of Dedekind domains
     - [PR #17018](https://github.com/leanprover-community/mathlib/pull/17018) ring_theory/derivation: The Kähler differential module is functorial
     - [PR #16849](https://github.com/leanprover-community/mathlib/pull/16849) ring_theory/etale: Formally unramified iff `Ω[S⁄R] = 0`
     - [PR #16000](https://github.com/leanprover-community/mathlib/pull/16000) ring_theory/filtration: Artin-Rees lemma and Krull's intersection theorems
