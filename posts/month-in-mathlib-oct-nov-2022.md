@@ -76,7 +76,8 @@ In October and November 2022 there were 512 and 453 PRs merged into mathlib. We 
 
 * Combinatorics
     - [PR #16195](https://github.com/leanprover-community/mathlib/pull/16195) adds the definition and some basic results about semistandard Young tableaux.
-    - [PR #17445](https://github.com/leanprover-community/mathlib/pull/17445) combinatorics/young: add equivalence between Young diagrams and lists of natural numbers.
+    - [PR #17445](https://github.com/leanprover-community/mathlib/pull/17445) adds an equivalence between Young diagrams and weakly decreasing lists of positive natural numbers.
+    - [PR #17306](https://github.com/leanprover-community/mathlib/pull/17306) and [PR #17213](https://github.com/leanprover-community/mathlib/pull/17213) define bridge edges, acyclic graphs, and trees for simple graphs, and provide some characterizations. 
 
 * Tactics
     - [PR #16313](https://github.com/leanprover-community/mathlib/pull/16313) introduces the `qify` tactic, to move from $\mathbb{Z}$ to $\mathbb{Q}$.
