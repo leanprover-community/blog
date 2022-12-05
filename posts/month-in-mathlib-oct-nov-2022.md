@@ -81,7 +81,7 @@ In October and November 2022 there were 512 and 453 PRs merged into mathlib. We 
 * Tactics
     - [PR #16313](https://github.com/leanprover-community/mathlib/pull/16313) introduces the `qify` tactic, to move from $\mathbb{Z}$ to $\mathbb{Q}$.
     - [PR #13483](https://github.com/leanprover-community/mathlib/pull/13483) adds a tactic for moving around summands.
-    - [PR #16911](https://github.com/leanprover-community/mathlib/pull/16911) adds a tactic to find the declarations use `sorry`, this is useful in large project.
+    - [PR #16911](https://github.com/leanprover-community/mathlib/pull/16911) adds a tactic to find declarations that use `sorry`. This tactic is intended for projects that depend on mathlib.
 
 
 During this months, we also got two new versions of Lean. We also started to systematically port mathlib to Lean4, see the [wiki](https://github.com/leanprover-community/mathlib4/wiki).
