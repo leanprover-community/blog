@@ -62,7 +62,7 @@ In October and November 2022 there were 512 and 453 PRs merged into mathlib. We 
 
 * Probability theory.
     - [PR #16882](https://github.com/leanprover-community/mathlib/pull/16882) proves the second Borel-Cantelli lemma.
-    - [PR #16648](https://github.com/leanprover-community/mathlib/pull/16648) show Kolmogorov's 0-1 law.
+    - [PR #16648](https://github.com/leanprover-community/mathlib/pull/16648) shows Kolmogorov's 0-1 law.
 
 * Algebraic and differential geometry.
     - [PR #16124](https://github.com/leanprover-community/mathlib/pull/16124), [PR #17117](https://github.com/leanprover-community/mathlib/pull/17117), [PR #17080](https://github.com/leanprover-community/mathlib/pull/17080) and [PR #17184](https://github.com/leanprover-community/mathlib/pull/17184) develop various properties for morphisms of schemes.
