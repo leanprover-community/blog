@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/lte-examples/" type="text/html">
+<link rel="prefetch" href="posts/this-month-in-mathlib-oct-and-nov-2022/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,180 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-examples/" class="u-url">Definitions in the liquid tensor experiment</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/this-month-in-mathlib-oct-and-nov-2022/" class="u-url">This month in mathlib (Oct and Nov 2022)</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                            <a href="authors/the-lean-prover-community/">The Lean prover community</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/this-month-in-mathlib-oct-and-nov-2022/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-12-01T14:56:21+01:00" itemprop="datePublished" title="2022-12-01 14:56">2022-12-01 14:56</time></a>
+            </p>
+		    <p><span class="text-dark"></span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>In October and November 2022 there were 512 and 453 PRs merged into mathlib. We list some of the highlights below.</p>
+<ul>
+<li>
+<p>Measure theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16830">PR #16830</a> improves Vitali families and Lebesgue density theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16762">PR #16762</a> adds a version of Lebesgue's density theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16906">PR #16906</a> proves Lebesgue differentiation theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16836">PR #16836</a> relates integrals over <code>add_circle</code> with integrals upstairs in <code>ℝ</code>.</li>
+</ul>
+</li>
+<li>
+<p>Algebra.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14672">PR #14672</a> defines mixed/equal characteristic zero.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17018">PR #17018</a>, <a href="https://github.com/leanprover-community/mathlib/pull/16849">PR #16849</a> and <a href="https://github.com/leanprover-community/mathlib/pull/17011">PR #17011</a> show the Kähler differential module is functorial and that $S/R$ is formally unramified if and only if $\Omega^1_{S/R} = 0$. They also give the standard presentation of the Kähler differential module.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16000">PR #16000</a> proves Artin-Rees lemma and Krull's intersection theorems.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16317">PR #16317</a> adds the multinomial theorem.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17295">PR #17295</a> proves the Jordan-Hölder theorem for modules.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17311">PR #17311</a> proves that a group with finitely many commutators has finite commutator subgroup.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17243">PR #17243</a> proves the Third Isomorphism theorem for rings.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13749">PR #13749</a> introduces non-unital subsemirings.</li>
+</ul>
+</li>
+<li>
+<p>Analysis</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16723">PR #16723</a> shows that two analytic functions that coincide locally coincide globally.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16683">PR #16683</a> and <a href="https://github.com/leanprover-community/mathlib/pull/16680">PR #16680</a> introduce functions of bounded variation and prove that they are almost everywhere differentiable. As a corollary, <a href="https://github.com/leanprover-community/mathlib/pull/16549">PR #16549</a> shows that a monotone function is differentiable almost everywhere.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17119">PR #17119</a> defines and gives basic properties of the complex unit disc.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16780">PR #16780</a> proves the open mapping theorem for holomorphic functions.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16487">PR #16487</a> constructs the volume form.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16796">PR #16796</a> generalizes the Hahn-Banach separation theorem to (locally convex) topological vector spaces.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16835">PR #16835</a> proves functoriality of the character space.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16638">PR #16638</a> introduces the Dirac delta distribution.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17110">PR #17110</a> proves smoothness of series of functions.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16201">PR #16201</a> and <a href="https://github.com/leanprover-community/mathlib/pull/17598">PR #17598</a> define the additive circle and develop Fourier analysis on it.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17543">PR #17543</a> computes $\Gamma(1/2)$.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16053">PR #16053</a> topology/algebra/module/strong_operator, analysis/normed_space/operator_norm: strong operator topology.</li>
+</ul>
+</li>
+<li>
+<p>Number theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/15405">PR #15405</a> introduces the Selmer group of a Dedekind domain.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17677">PR #17677</a> defines slash-invariant forms, a step towards the definition of modular forms.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17203">PR #17203</a> defines the absolute ideal norm.</li>
+</ul>
+</li>
+<li>
+<p>Representation theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17005">PR #17005</a> is about exactness properties of resolutions.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16043">PR #16043</a> proves the orthogonality of characters.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13794">PR #13794</a> proves Schur's lemma.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17443">PR #17443</a> adds the construction of a projective resolution of a representation.</li>
+</ul>
+</li>
+<li>
+<p>Topology.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16677">PR #16677</a> constructs the Galois correspondence between closed ideals in $C(X, 𝕜)$ and open sets in $X$.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16719">PR #16719</a> shows that maximal ideals of $C(X, 𝕜)$ correspond to (complements of) singletons.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16087">PR #16087</a> defines covering spaces.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16797">PR #16797</a> proves that the stalk functor preserves monomorphism.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17015">PR #17015</a> proves that Noetherian spaces have finite irreducible components.</li>
+</ul>
+</li>
+<li>
+<p>Probability theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16882">PR #16882</a> proves the second Borel-Cantelli lemma.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16648">PR #16648</a> shows Kolmogorov's 0-1 law.</li>
+</ul>
+</li>
+<li>
+<p>Algebraic and differential geometry.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16124">PR #16124</a>, <a href="https://github.com/leanprover-community/mathlib/pull/17117">PR #17117</a>, <a href="https://github.com/leanprover-community/mathlib/pull/17080">PR #17080</a> and <a href="https://github.com/leanprover-community/mathlib/pull/17184">PR #17184</a> develop various properties for morphisms of schemes.</li>
+</ul>
+</li>
+<li>
+<p>Linear algebra.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/11468">PR #11468</a> shows that the clifford algebra is isomorphic as a module to the exterior algebra.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16150">PR #16150</a> proves that the inverse of a block triangular matrix is block triangular.</li>
+</ul>
+</li>
+<li>
+<p>Category theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16969">PR #16969</a> adds basic results about localization of categories.</li>
+</ul>
+</li>
+<li>
+<p>Combinatorics</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16195">PR #16195</a> adds the definition and some basic results about semistandard Young tableaux.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/17445">PR #17445</a> combinatorics/young: add equivalence between Young diagrams and lists of natural numbers.</li>
+</ul>
+</li>
+<li>
+<p>Tactics</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16313">PR #16313</a> introduces the <code>qify</code> tactic, to move from $\mathbb{Z}$ to $\mathbb{Q}$.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13483">PR #13483</a> adds a tactic for moving around summands.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/16911">PR #16911</a> adds a tactic to find declarations that use <code>sorry</code>. This tactic is intended for projects that depend on mathlib.</li>
+</ul>
+</li>
+</ul>
+<p>During this months, we got two new versions of Lean. We also started to systematically port mathlib to Lean4, see the <a href="https://github.com/leanprover-community/mathlib4/wiki">wiki</a>.</p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-examples/" class="u-url">Definitions in the liquid tensor experiment</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                             <a href="authors/adam-topaz/">Adam Topaz</a>
@@ -239,23 +412,6 @@ discriminant of cyclotomic fields. This is an important result, usually treated 
 graduate course in number theory. In this post we would like to explain why it is an important
 result, and briefly explain how we proved it.</p>
 <p class="more"><a href="posts/the-ring-of-integers-of-a-cyclotomic-field/">Read more…</a></p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/month-in-mathlib-may-2022/" class="u-url">This month in mathlib (May 2022)</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                            <a href="authors/mathlib-community/">Mathlib community</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/month-in-mathlib-may-2022/" rel="bookmark">
-            <time class="published dt-published" datetime="2022-06-14T15:35:21+02:00" itemprop="datePublished" title="2022-06-14 15:35">2022-06-14 15:35</time></a>
-            </p>
-		    <p><span class="text-dark">month-in-mathlib</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p>In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.</p>
-<p class="more"><a href="posts/month-in-mathlib-may-2022/">Read more…</a></p>
 </div>
                 </div>
             </article>
