@@ -40,7 +40,7 @@ In October and November 2022 there were 512 and 453 PRs merged into mathlib. We 
     - [PR #17110](https://github.com/leanprover-community/mathlib/pull/17110) proves smoothness of series of functions.
     - [PR #16201](https://github.com/leanprover-community/mathlib/pull/16201) and [PR #17598](https://github.com/leanprover-community/mathlib/pull/17598) define the additive circle and develop Fourier analysis on it.
     - [PR #17543](https://github.com/leanprover-community/mathlib/pull/17543) computes $\Gamma(1/2)$.
-    - [PR #16053](https://github.com/leanprover-community/mathlib/pull/16053) topology/algebra/module/strong_operator, analysis/normed_space/operator_norm: strong operator topology.
+    - [PR #16053](https://github.com/leanprover-community/mathlib/pull/16053) introduces the strong operator topology.
 
 * Number theory.
     - [PR #15405](https://github.com/leanprover-community/mathlib/pull/15405) introduces the Selmer group of a Dedekind domain.
