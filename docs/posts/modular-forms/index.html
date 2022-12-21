@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modular forms | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/modular-forms/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Modular forms | Lean community blog">
+<meta name="author" content="Chris Birkbeck">
+<link rel="prev" href="../this-month-in-mathlib-oct-and-nov-2022/" title="This month in mathlib (Oct and Nov 2022)" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Modular forms">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/modular-forms/">
+<meta property="og:description" content="In PR# 13250  we define modular forms, cusp forms and prove that they form a complex vector space. These are analytic functions of number theoretic interest, due to their links with geometry, represen">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-12-21T12:41:21+01:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Modular forms</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/chris-birkbeck/">Chris Birkbeck</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-12-21T12:41:21+01:00" itemprop="datePublished" title="2022-12-21 12:41">2022-12-21 12:41</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/modular-forms/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>In <a href="https://github.com/leanprover-community/mathlib/pull/13250">PR# 13250</a>  we define modular forms, cusp forms and prove that they form a complex vector space. These are analytic functions of number theoretic interest, due to their links with geometry, representation theory and analysis. Most famously they are a  key ingredient in the proof of Fermat's Last Theorem. In this post we discuss the formalization process, motivate some design choices and map out some future work.</p>
+<!-- TEASER_END -->
+
+<p>Before going any further I should mention that this isn't the first time modular forms have been defined in Lean. Back in 2018, for Kevin Buzzard's birthday several people defined modular forms (amongst other things) <a href="https://github.com/semorrison/kbb">here</a>. Although the current definition looks quite different, it was of great use when I started learning Lean. Moreover, the current version benefited immensely from great feedback from many people, including Riccardo Brasca, Kevin Buzzard, David Loeffler, Jireh Loreaux, Heather Macbeth and Eric Wieser.</p>
+<h2>Basic definitions</h2>
+<p>At their most basic, modular forms are functions from the complex upper half plane $\mathbb{H}:=\{ z \in \mathbb{C} \mid 0 \lt  Im(z)\}$ to $\mathbb{C}$ satisfying certain properties. Before giving the definition, lets first define an action on this space of functions.</p>
+<p>For any </p>
+<p>$$\gamma =
+\left(\begin{array}{cc} 
+a &amp; b\ 
+c &amp; d
+\end{array}\right)
+$$</p>
+<p>in $\mathrm{GL}_2(\mathbb{R})^+$ ( $2 \times 2$ matrices with real entries and positive determinant) the weight $k \in \mathbb{Z}$ action of $\gamma$ on $f : \mathbb{H} \to \mathbb{C}$ is given by $$(f \mid_k \gamma) (z):=\mathrm{det} (\gamma)^{k-1} (cz+d)^{-k} f\left ( \frac{az+b}{cz+d}\right ).$$ One easily checks that this defines a right action on this space of functions, known as the weight $k$ <em>slash action</em>.</p>
+<p>Let  $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular form  of level $\Gamma$ and weight $k \in \mathbb{Z}$ is a function $f : \mathbb{H} \to \mathbb{C}$ such that:</p>
+<ul>
+<li>(🥓) For all $\gamma \in \Gamma$ we have $f\mid_k \gamma = f$. We will call such functions <em>slash invariant forms</em>.</li>
+<li>(🦖) $f$ is holomorphic on $\mathbb{H}$.</li>
+<li>(🐱) For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, there exist $A, B \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le Im(z)$, we have $|(f \mid_k \gamma) (z) |\le B$. Here $| - |$ denotes the standard complex absolute value. We call such functions <em>bounded at infinity</em>.</li>
+</ul>
+<p>This defines a complex vector space which we denote by $M_{k}(\Gamma)$. By replacing condition (🐱) in the above with (🐶) below defines the subspace of cusp forms, which we denote by $S_k(\Gamma)$.</p>
+<ul>
+<li>(🐶)  For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, and all  $0 &lt; \epsilon$, there exists $A \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le \mathrm{Im}(z)$, we have $|(f \mid_k \gamma) (z) |\le \epsilon$. We call such functions <em>zero at infinity</em>.</li>
+</ul>
+<p>In case you have never seen these things before, let me give an example known as <em>Eisenstein series</em>. Note that these examples are not part of this PR. These are functions defined as $$G_k(z) = \sum_{(c,d) \ne (0,0)} \frac{1}{(cz+d)^k}, \qquad \text{for } c,d \in \mathbb{Z}.$$ For $k \gt 2$ and even these functions are non-zero modular forms of weight $k$ and level $\mathrm{SL}_2(\mathbb{Z})$. </p>
+<h2>Formalised definitions</h2>
+<p>Lets now look at what this ended up as in mathlib. There were lots of small things that needed doing before getting to these definitions, such as defining $\mathrm{GL}_n$ (and $\mathrm{GL}_n^+$) (<a href="https://github.com/leanprover-community/mathlib/pull/8466">PR# 8466</a>)<sup id="fnref:0"><a class="footnote-ref" href="#fn:0">1</a></sup>, extending the action of $\mathrm{SL}_2(\mathbb{R})$ on $\mathbb{H}$ to an action of $\mathrm{GL}_2(\mathbb{R})^+$ (<a href="https://github.com/leanprover-community/mathlib/pull/12415">PR# 12415</a>), defining slash actions (<a href="https://github.com/leanprover-community/mathlib/pull/15007">PR# 15007</a>), defining when a function is zero or bounded at infinity (<a href="https://github.com/leanprover-community/mathlib/pull/15009">PR #15009</a>) amongst other things. But these aren't so interesting so lets skip them and move towards something closer to modular forms.</p>
+<p>The first useful definition is that of <a href="https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/slash_invariant_forms.html#slash_invariant_form"><code>slash_invariant_forms</code></a> which was introduced in <a href="https://github.com/leanprover-community/mathlib/pull/17677">PR# 17677</a> and defines spaces of functions $f : \mathbb{H} \to \mathbb{C}$ which are invariant under the slash action (of some specified weight and level)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>, i.e. they satisfy (🥓) above. Explicitly we define:</p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">slash_invariant_form</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">to_fun</span> <span class="o">:</span> <span class="n">ℍ</span> <span class="bp">→</span> <span class="n">ℂ</span><span class="o">)</span>
+<span class="o">(</span><span class="n">slash_action_eq'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="n">γ</span> <span class="o">:</span> <span class="bp">Γ</span><span class="o">,</span> <span class="n">to_fun</span> <span class="bp">∣</span><span class="o">[</span><span class="n">k</span><span class="o">,</span> <span class="n">γ</span><span class="o">]</span> <span class="bp">=</span> <span class="n">to_fun</span><span class="o">)</span>
+
+<span class="kd">class</span> <span class="n">slash_invariant_form_class</span> <span class="kd">extends</span> <span class="n">fun_like</span> <span class="n">F</span> <span class="n">ℍ</span> <span class="o">(</span><span class="bp">λ</span> <span class="n">_</span><span class="o">,</span> <span class="n">ℂ</span><span class="o">)</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">slash_action_eq</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">F</span><span class="o">)</span> <span class="o">(</span><span class="n">γ</span> <span class="o">:</span> <span class="bp">Γ</span><span class="o">),</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">ℍ</span> <span class="bp">→</span> <span class="n">ℂ</span><span class="o">)</span> <span class="bp">∣</span><span class="o">[</span><span class="n">k</span><span class="o">,</span> <span class="n">γ</span><span class="o">]</span> <span class="bp">=</span> <span class="n">f</span><span class="o">)</span>
+</pre>
+<p>Here <code>Γ</code> is a subgroup of $\mathrm{SL}_2(\mathbb{Z})$ and <code>∣[k, γ]</code> is notation for the weight <code>k</code> slash action by <code>γ</code>. The idea behind having a structure and a class<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup> which extends the <code>fun_like</code> class, is that later, we will define modular forms and cusp forms as extensions of these structures and classes. By doing this (and proving some number of other instances) we can make so that lemmas proven for <code>slash_invariant_forms</code> will automatically hold for modular forms and cusp forms (such as <a href="https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/slash_invariant_forms.html#slash_invariant_form.slash_action_eqn'">this</a>). This also allows us to prove algebraic instances using the <code>fun_like</code> machinery. </p>
+<p>Next we can define <a href="https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/basic.html#modular_form">modular forms</a> as follows: </p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">modular_form</span> <span class="kd">extends</span> <span class="n">slash_invariant_form</span> <span class="bp">Γ</span> <span class="n">k</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">holo'</span> <span class="o">:</span> <span class="n">mdifferentiable</span> <span class="bp">𝓘</span><span class="o">(</span><span class="n">ℂ</span><span class="o">)</span> <span class="bp">𝓘</span><span class="o">(</span><span class="n">ℂ</span><span class="o">)</span> <span class="o">(</span><span class="n">to_fun</span> <span class="o">:</span> <span class="n">ℍ</span> <span class="bp">→</span> <span class="n">ℂ</span><span class="o">))</span>
+<span class="o">(</span><span class="n">bdd_at_infty'</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">(</span><span class="n">A</span> <span class="o">:</span> <span class="n">SL</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">ℤ</span><span class="o">)),</span> <span class="n">is_bounded_at_im_infty</span> <span class="o">(</span><span class="n">to_fun</span> <span class="bp">∣</span><span class="o">[</span><span class="n">k</span><span class="o">,</span> <span class="n">A</span><span class="o">]))</span>
+
+<span class="kd">class</span> <span class="n">modular_form_class</span> <span class="kd">extends</span> <span class="n">slash_invariant_form_class</span> <span class="n">F</span> <span class="bp">Γ</span> <span class="n">k</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">holo</span><span class="o">:</span> <span class="bp">∀</span> <span class="n">f</span> <span class="o">:</span> <span class="n">F</span><span class="o">,</span> <span class="n">mdifferentiable</span> <span class="bp">𝓘</span><span class="o">(</span><span class="n">ℂ</span><span class="o">)</span> <span class="bp">𝓘</span><span class="o">(</span><span class="n">ℂ</span><span class="o">)</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">ℍ</span> <span class="bp">→</span> <span class="n">ℂ</span><span class="o">))</span>
+<span class="o">(</span><span class="n">bdd_at_infty</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">F</span><span class="o">)</span> <span class="o">(</span><span class="n">A</span> <span class="o">:</span> <span class="n">SL</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">ℤ</span><span class="o">)),</span> <span class="n">is_bounded_at_im_infty</span> <span class="o">(</span><span class="n">f</span> <span class="bp">∣</span><span class="o">[</span><span class="n">k</span><span class="o">,</span> <span class="n">A</span><span class="o">]))</span>
+</pre>
+<p>Here: 
+-  <code>mdifferentiable</code> enforces that the function is holomorphic (now as a function between complex manifolds $\mathbb{H}$ and $\mathbb{C}$. The <code>𝓘(ℂ)</code> appearing are giving $\mathbb{H}$ and $\mathbb{C}$ the structure of a complex manifold. 
+-  <a href="https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.is_bounded_at_im_infty"><code>is_bounded_at_im_infty</code></a> encodes (🐱) above by requiring that $f$ be bounded with respect to the <a href="https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.at_im_infty">filter</a> "tends to $i\infty$" (<code>at_im_infty</code>).<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">4</a></sup></p>
+<p>As a sanity check we prove that the filter definition of "bounded at infinity" agress with (🐱): </p>
+<pre class="code literal-block"><span class="kd">lemma</span> <span class="n">bounded_mem</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">ℍ</span> <span class="bp">→</span> <span class="n">ℂ</span><span class="o">)</span> <span class="o">:</span>
+  <span class="n">is_bounded_at_im_infty</span> <span class="n">f</span> <span class="bp">↔</span> <span class="bp">∃</span> <span class="o">(</span><span class="n">M</span> <span class="n">A</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">),</span> <span class="bp">∀</span> <span class="n">z</span> <span class="o">:</span> <span class="n">ℍ</span><span class="o">,</span> <span class="n">A</span> <span class="bp">≤</span> <span class="n">im</span> <span class="n">z</span> <span class="bp">→</span> <span class="n">abs</span> <span class="o">(</span><span class="n">f</span> <span class="n">z</span><span class="o">)</span> <span class="bp">≤</span> <span class="n">M</span> <span class="o">:=</span>
+</pre>
+<p>The definition of <a href="https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/basic.html#cusp_form">cusp forms</a> is the same, except we change <code>is_bounded_at_im_infty</code> for <a href="https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.is_zero_at_im_infty"><code>is_zero_at_im_infty</code></a>. We then give a long list of instances that these new types satisfy, ending up at:</p>
+<pre class="code literal-block"><span class="kd">instance</span> <span class="o">:</span> <span class="n">module</span> <span class="n">ℂ</span> <span class="o">(</span><span class="n">modular_form</span> <span class="bp">Γ</span> <span class="n">k</span><span class="o">)</span> <span class="o">:=</span>
+  <span class="n">function.injective.module</span> <span class="n">ℂ</span> <span class="n">coe_hom</span> <span class="n">fun_like.coe_injective</span> <span class="o">(</span><span class="bp">λ</span> <span class="n">_</span> <span class="n">_</span><span class="o">,</span> <span class="n">rfl</span><span class="o">)</span> <span class="c1">--note we are making use of the fun_like instance</span>
+</pre>
+<p>and similarly for cusp forms. Finally we have some instances which allow us exploit these structure/class definitions:</p>
+<pre class="code literal-block"><span class="kd">instance</span> <span class="n">modular_form_class.modular_form</span> <span class="o">:</span> <span class="n">modular_form_class</span> <span class="o">(</span><span class="n">modular_form</span> <span class="bp">Γ</span> <span class="n">k</span><span class="o">)</span> <span class="bp">Γ</span> <span class="n">k</span> <span class="o">:=</span>
+<span class="kd">instance</span> <span class="n">cusp_form_class.cusp_form</span> <span class="o">:</span> <span class="n">cusp_form_class</span> <span class="o">(</span><span class="n">cusp_form</span> <span class="bp">Γ</span> <span class="n">k</span><span class="o">)</span> <span class="bp">Γ</span> <span class="n">k</span> <span class="o">:=</span>
+<span class="kd">instance</span> <span class="o">[</span><span class="n">cusp_form_class</span> <span class="n">F</span> <span class="bp">Γ</span> <span class="n">k</span><span class="o">]</span> <span class="o">:</span> <span class="n">modular_form_class</span> <span class="n">F</span> <span class="bp">Γ</span> <span class="n">k</span> <span class="o">:=</span>
+</pre>
+<p>Now any lemma that holds, for example, for a <code>modular_form_class</code> will automatically hold for <code>modular_form</code>, <code>cusp_form</code> and <code>cusp_form_class</code>. </p>
+<p>At this point you are allowed to complain that these definitions are not as general as they could be. For example, why restrict the levels to subgroups of $\mathrm{SL}_2(\mathbb{Z})$ and not, say, a discrete subgroup of $\mathrm{SL}_2(\mathbb{R})$ ? or why only consider modular forms for $\mathrm{GL}_2$? or why are the weights not allowed to be rational numbers?, etc. These defintions go againts the philosophy of "doing things as generally as possible". In this situation, doing the most general definitions would require us to have more complicated conditions for (🐱)  and (🐶), or defining more general connected reductive groups over global fields. But as Kevin Buzzard <a href="https://leanprover.zulipchat.com/#narrow/stream/144837-PR-reviews/topic/.2313250.20Modular.20form.20definition/near/303611399">suggested</a>, we can reserve the name automorphic form until we  are ready to define these more general objects. Otherwise it would be years until we could talk about modular forms and even longer for things like Atkin--Lehner theory, multiplicity one, modularity conjectures, etc.</p>
+<h2>What's next?</h2>
+<p>The next thing we plan to PR about modular forms will be the fact that one can define a graded commutative ring of modular forms (i.e. prove a <code>gcomm_ring</code> instance). Originally, the definitions for the spaces of modular forms had them as subspaces of the complex vector space of functions $\mathbb{H} \to \mathbb{C}$, which made it relatively straight forward to construct this graded ring (as they were all terms of the same type). But now with these defitions one runs into the usual problems that <code>(modular_form Γ k)</code> isn't defeq to <code>(modular_form Γ (k + 0))</code> (and other similar issues). Meaning that one needs to work a bit harder to give the <code>gcomm_ring</code> instance (see <a href="https://github.com/leanprover-community/mathlib/pull/17879">PR# 17879</a>). This is also a nice test that our definition is workable.</p>
+<p>After this, the next obvious goal is to get some examples into mathlib, meaning Eisenstein series. There is a repo <a href="https://github.com/CBirkbeck/ModularForms">here</a> which has a proof that Eisenstein series are in fact modular forms. The repo is a WIP, containing several other things that should gradually make their way into mathlib (or more likely mathlib4) such a q-expansions, Hecke algebras, Petersson inner products, etc.</p>
+<p>Eventually we will want to prove much more interesting thing about these spaces, such as the multiplicity one theorem, which will require more theory to be formalised. For example, proving that these spaces are finite dimensional, will require us to either do a contour integral (where the contour isn't a rectangle or a circle) or use Riemann--Roch + GAGA. Either of which is currently a pretty big task. </p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:0">
+<p>If you are wondering why we would need this for defining modular forms, the answer is that we will eventually want Hecke operators acting on these spaces, so we need actions by more general matrices. <a class="footnote-backref" href="#fnref:0" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:1">
+<p>If you add the condition that such functions are also meromorphic you get <em>weakly modular functions</em>. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p>The idea of using these structures/classes and <code>fun_like</code> was suggested to us by Mortiz Doll and Jireh Loreaux. There is a nice explanation <a href="https://leanprover.zulipchat.com/#narrow/stream/144837-PR-reviews/topic/.2313250.20Modular.20form.20definition/near/303535771">here</a> as to why using these classes is useful. <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+<li id="fn:3">
+<p>This filter definition of bounded at infinity and zero at infinity was suggested to us by David Loeffler. <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../this-month-in-mathlib-oct-and-nov-2022/" rel="prev" title="This month in mathlib (Oct and Nov 2022)">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article></main><footer id="footer"><p>Contents © 2022         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
