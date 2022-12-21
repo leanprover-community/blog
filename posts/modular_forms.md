@@ -20,7 +20,7 @@ Before going any further I should mention that this isn't the first time modular
 
 # Basic definitions
 
-At their most basic, modular forms are functions from the complex upper half plane $\mathbb{H}:=\\{ z \in \mathbb{C} \mid 0 \lt  Im(z)\\}$ to $\mathbb{C}$ satisfying certain properties. Before giving the definition, lets first define an action on this space of functions.
+At their most basic, modular forms are functions from the complex upper half plane $\mathbb{H}:=\\{ z \in \mathbb{C} \mid 0 \lt  Im(z)\\}$ to $\mathbb{C}$ satisfying certain properties. Before giving the definition, let's first define an action on this space of functions.
 
 For any 
 
