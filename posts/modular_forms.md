@@ -109,7 +109,7 @@ The next thing we plan to PR about modular forms will be the fact that one can d
 
 After this, the next obvious goal is to get some examples into mathlib, meaning Eisenstein series. There is a repo [here](https://github.com/CBirkbeck/ModularForms) which has a proof that Eisenstein series are in fact modular forms. The repo is a WIP, containing several other things that should gradually make their way into mathlib (or more likely mathlib4) such a q-expansions, Hecke algebras, Petersson inner products, etc.
 
-Eventually we will want to prove much more interesting thing about these spaces, such as the multiplicity one theorem, which will require more theory to be formalised. For example, proving that these spaces are finite dimensional, will require us to either do a contour integral (where the contour isn't a rectangle or a circle) or use Riemann--Roch + GAGA. Either of which is currently a pretty big task. 
+Eventually we will want to prove much more interesting things about these spaces, such as the multiplicity one theorem, which will require more theory to be formalised. For example, proving that these spaces are finite dimensional, will require us to either do a contour integral (where the contour isn't a rectangle or a circle) or use Riemann--Roch + GAGA. Either of which is currently a pretty big task. 
 
 
 [^0]: If you are wondering why we would need this for defining modular forms, the answer is that we will eventually want Hecke operators acting on these spaces, so we need actions by more general matrices.
