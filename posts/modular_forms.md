@@ -12,7 +12,7 @@ type: text
 ---
 
 
-In [PR# 13250](https://github.com/leanprover-community/mathlib/pull/13250) 	we define modular forms, cusp forms and prove that they form a complex vector space. These are analytic functions of number theoretic interest with strong links to geometry, representation theory and analysis. Most famously they are a  key ingredient in the proof of Fermat's Last Theorem. In this post we discuss the formalization process, motivate some design choices and map out some future work.
+In [PR# 13250](https://github.com/leanprover-community/mathlib/pull/13250) we define modular forms, cusp forms and prove that they form a complex vector space. These are analytic functions of number theoretic interest with strong links to geometry, representation theory and analysis. Most famously they are a key ingredient in the proof of Fermat's Last Theorem. In this post we discuss the formalization process, motivate some design choices and map out some future work.
 
 <!-- TEASER_END -->
 
