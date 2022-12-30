@@ -41,7 +41,7 @@ Let  $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular f
 
 This defines a complex vector space which we denote by $M_{k}(\Gamma)$. By replacing condition (🐱) in the above with (🐶) below defines the subspace of cusp forms, which we denote by $S_k(\Gamma)$.
 
-- (🐶)  For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, and all  $0 < \epsilon$, there exists $A \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le \mathrm{Im}(z)$, we have $|(f \mid_k \gamma) (z) |\le \epsilon$. We call such functions *zero at infinity*.
+- (🐶) For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, and all $0 < \epsilon$, there exists $A \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le \mathrm{Im}(z)$, we have $|(f \mid_k \gamma) (z) |\le \epsilon$. We call such functions *zero at infinity*.
 
 In case you have never seen these things before, let me give an example known as *Eisenstein series*. Note that these examples are not part of this PR. These are functions defined as $$G_k(z) = \sum_{(c,d) \ne (0,0)} \frac{1}{(cz+d)^k}, \qquad \text{for } c,d \in \mathbb{Z}.$$ For $k \gt 2$ and even these functions are non-zero modular forms of weight $k$ and level $\mathrm{SL}_2(\mathbb{Z})$. 
 
