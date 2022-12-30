@@ -41,7 +41,7 @@ Let $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular fo
 
 This defines a complex vector space which we denote by $M_{k}(\Gamma)$. By replacing condition (🐱) in the above with (🐶) below defines the subspace of cusp forms, which we denote by $S_k(\Gamma)$.
 
-- (🐶) For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, and all $0 < \epsilon$, there exists $A \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le \mathrm{Im}(z)$, we have $|(f \mid_k \gamma) (z) |\le \epsilon$. We call such functions *zero at infinity*.
+- (🐶) For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, and all $0 < \epsilon$, there exists $A \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le \mathrm{Im}(z)$, we have $\lvert (f \mid_k \gamma) (z) \rvert \le \epsilon$. We call such functions *zero at infinity*.
 
 In case you have never seen these things before, let me give an example known as *Eisenstein series*. Note that these examples are not part of this PR. These are functions defined as $$G_k(z) = \sum_{(c,d) \ne (0,0)} \frac{1}{(cz+d)^k}, \qquad \text{for } c,d \in \mathbb{Z}.$$ For $k \gt 2$ and even these functions are non-zero modular forms of weight $k$ and level $\mathrm{SL}_2(\mathbb{Z})$. 
 
@@ -60,7 +60,7 @@ class slash_invariant_form_class extends fun_like F ℍ (λ _, ℂ) :=
 (slash_action_eq : ∀ (f : F) (γ : Γ), (f : ℍ → ℂ) ∣[k, γ] = f)
 ```
 
-Here `Γ` is a subgroup of $\mathrm{SL}_2(\mathbb{Z})$ and `∣[k, γ]` is notation for the weight `k` slash action by `γ`. The idea behind having a structure and a class[^2] which extends the `fun_like` class, is that later, we will define modular forms and cusp forms as extensions of these structures and classes. By doing this (and proving some number of other instances) we can make so that lemmas proven for `slash_invariant_forms` will automatically hold for modular forms and cusp forms (such as [this](https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/slash_invariant_forms.html#slash_invariant_form.slash_action_eqn')). This also allows us to prove algebraic instances using the `fun_like` machinery. 
+Here `Γ` is a subgroup of $\mathrm{SL}_2(\mathbb{Z})$ and `∣[k, γ]` is notation for the weight `k` slash action by `γ`. The idea behind having a structure and a class[^2] which extends the `fun_like` class, is that later, we will define modular forms and cusp forms as instances of these classes. By doing this (and proving some number of other instances) we can make so that lemmas proven for `slash_invariant_forms` will automatically hold for modular forms and cusp forms (such as [this](https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/slash_invariant_forms.html#slash_invariant_form.slash_action_eqn')). This also allows us to prove algebraic instances using the `fun_like` machinery. 
 
 Next we can define [modular forms](https://leanprover-community.github.io/mathlib_docs/number_theory/modular_forms/basic.html#modular_form) as follows: 
 
@@ -75,7 +75,7 @@ class modular_form_class extends slash_invariant_form_class F Γ k :=
 ```
 
 Here: 
--  `mdifferentiable` enforces that the function is holomorphic (now as a function between complex manifolds $\mathbb{H}$ and $\mathbb{C}$. The `𝓘(ℂ)` appearing are giving $\mathbb{H}$ and $\mathbb{C}$ the structure of a complex manifold. 
+-  `mdifferentiable` enforces that the function is holomorphic (now as a function between complex manifolds $\mathbb{H}$ and $\mathbb{C}$). The `𝓘(ℂ)` appearing are giving $\mathbb{H}$ and $\mathbb{C}$ the structure of a complex manifold. 
 -  [`is_bounded_at_im_infty`](https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.is_bounded_at_im_infty) encodes (🐱) above by requiring that $f$ be bounded with respect to the [filter](https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.at_im_infty) "tends to $i\infty$" (`at_im_infty`).[^3]
 
 As a sanity check we prove that the filter definition of "bounded at infinity" agress with (🐱): 
