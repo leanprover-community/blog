@@ -33,7 +33,7 @@ $$
 
 in $\mathrm{GL}_2(\mathbb{R})^+$ ($2 \times 2$ matrices with real entries and positive determinant) the weight $k \in \mathbb{Z}$ action of $\gamma$ on $f : \mathbb{H} \to \mathbb{C}$ is given by $$(f \mid_k \gamma) (z):=\mathrm{det} (\gamma)^{k-1} (cz+d)^{-k} f\left ( \frac{az+b}{cz+d}\right ).$$ One easily checks that this defines a right action on this space of functions, known as the weight $k$ *slash action*.
 
-Let  $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular form  of level $\Gamma$ and weight $k \in \mathbb{Z}$ is a function $f : \mathbb{H} \to \mathbb{C}$ such that:
+Let $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular form of level $\Gamma$ and weight $k \in \mathbb{Z}$ is a function $f : \mathbb{H} \to \mathbb{C}$ such that:
 
 - (🥓) For all $\gamma \in \Gamma$ we have $f\mid_k \gamma = f$. We will call such functions *slash invariant forms*.
 - (🦖) $f$ is holomorphic on $\mathbb{H}$.
