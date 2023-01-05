@@ -12,15 +12,17 @@ type: text
 ---
 
 
-In [PR# 13250](https://github.com/leanprover-community/mathlib/pull/13250) we define modular forms, cusp forms and prove that they form a complex vector space. These are analytic functions of number theoretic interest with strong links to geometry, representation theory and analysis. Most famously they are a key ingredient in the proof of Fermat's Last Theorem. In this post we discuss the formalization process, motivate some design choices and map out some future work.
+In [PR# 13250](https://github.com/leanprover-community/mathlib/pull/13250) we define modular forms and cusp forms, and prove that they form complex vector spaces. These are analytic functions of number theoretic interest with strong links to geometry, representation theory and analysis. Most famously they are a key ingredient in the proof of Fermat's Last Theorem. In this post we discuss the formalization process, motivate some design choices and map out some future work.
 
 <!-- TEASER_END -->
 
 Before going any further I should mention that this isn't the first time modular forms have been defined in Lean. Back in 2018, for Kevin Buzzard's birthday several people defined modular forms (amongst other things) [here](https://github.com/semorrison/kbb). Although the current definition looks quite different, it was of great use when I started learning Lean. Moreover, the current version benefited immensely from great feedback from many people, including Riccardo Brasca, Kevin Buzzard, David Loeffler, Jireh Loreaux, Heather Macbeth and Eric Wieser.
 
+Lastly, this is not the only theorem prover where these objects have been defined. There is forthcoming work of Manuel Eberl, Larry Paulson and Anthony Bordg in Isabelle/HOL, containing these definitions and more. 
+
 # Basic definitions
 
-At their most basic, modular forms are functions from the complex upper half plane $\mathbb{H}:=\\{ z \in \mathbb{C} \mid 0 \lt  Im(z)\\}$ to $\mathbb{C}$ satisfying certain properties. Before giving the definition, let's first define an action on this space of functions.
+At their most basic, modular forms are functions from the complex upper half plane $\mathbb{H}:=\\{ z \in \mathbb{C} \mid 0 \lt  \mathrm{Im}(z)\\}$ to $\mathbb{C}$ satisfying certain properties. Before giving the definition, let's first define an action on this space of functions.
 
 For any 
 
@@ -31,13 +33,13 @@ c & d
 \end{array}\right)
 $$
 
-in $\mathrm{GL}_2(\mathbb{R})^+$ ($2 \times 2$ matrices with real entries and positive determinant) the weight $k \in \mathbb{Z}$ action of $\gamma$ on $f : \mathbb{H} \to \mathbb{C}$ is given by $$(f \mid_k \gamma) (z):=\mathrm{det} (\gamma)^{k-1} (cz+d)^{-k} f\left ( \frac{az+b}{cz+d}\right ).$$ One easily checks that this defines a right action on this space of functions, known as the weight $k$ *slash action*.
+in $\mathrm{GL}_2(\mathbb{R})^+$ ( $2 \times 2$ matrices with real entries and positive determinant) the weight $k \in \mathbb{Z}$ action of $\gamma$ on $f : \mathbb{H} \to \mathbb{C}$ is given by $$(f \mid_k \gamma) (z):=\mathrm{det} (\gamma)^{k-1} (cz+d)^{-k} f\left ( \frac{az+b}{cz+d}\right ).$$ One easily checks that this defines a right action on this space of functions, known as the weight $k$ *slash action*.
 
 Let $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular form of level $\Gamma$ and weight $k \in \mathbb{Z}$ is a function $f : \mathbb{H} \to \mathbb{C}$ such that:
 
 - (🥓) For all $\gamma \in \Gamma$ we have $f\mid_k \gamma = f$. We will call such functions *slash invariant forms*.
 - (🦖) $f$ is holomorphic on $\mathbb{H}$.
-- (🐱) For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, there exist $A, B \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le Im(z)$, we have $|(f \mid_k \gamma) (z) |\le B$. Here $| - |$ denotes the standard complex absolute value. We call such functions *bounded at infinity*.
+- (🐱) For all $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, there exist $A, B \in \mathbb{R}$ such that for all $z \in \mathbb{H}$, with $A \le \mathrm{Im}(z)$, we have $|(f \mid_k \gamma) (z) |\le B$. Here $| - |$ denotes the standard complex absolute value. We call such functions *bounded at infinity*.
 
 This defines a complex vector space which we denote by $M_{k}(\Gamma)$. By replacing condition (🐱) in the above with (🐶) below defines the subspace of cusp forms, which we denote by $S_k(\Gamma)$.
 
@@ -78,7 +80,7 @@ Here:
 -  `mdifferentiable` enforces that the function is holomorphic (now as a function between complex manifolds $\mathbb{H}$ and $\mathbb{C}$). The `𝓘(ℂ)` appearing are giving $\mathbb{H}$ and $\mathbb{C}$ the structure of a complex manifold. 
 -  [`is_bounded_at_im_infty`](https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.is_bounded_at_im_infty) encodes (🐱) above by requiring that $f$ be bounded with respect to the [filter](https://leanprover-community.github.io/mathlib_docs/analysis/complex/upper_half_plane/functions_bounded_at_infty.html#upper_half_plane.at_im_infty) "tends to $i\infty$" (`at_im_infty`).[^3]
 
-As a sanity check we prove that the filter definition of "bounded at infinity" agress with (🐱): 
+As a sanity check we prove that the filter definition of "bounded at infinity" agrees with (🐱): 
 
 ```lean
 lemma bounded_mem (f : ℍ → ℂ) :
