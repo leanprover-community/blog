@@ -1,7 +1,7 @@
 ---
 author: 'Kevin Buzzard'
 category: 'overview'
-date: 2023-06-03 07:42:45+00:00
+date: 2023-06-12 07:42:45+00:00
 description: ''
 has_math: false
 link: ''
@@ -16,7 +16,7 @@ Kevin Buzzard rounds up the BIRS conference on formalising cohomology theories.
 <!-- TEASER_END -->
 # Formalising cohomology theories
 
-Last week a group of formalisation enthusiasts, many of them Lean experts, met together at a [BIRS workshop](http://www.birs.ca/events/2023/5-day-workshops/23w5124) in Banff Canada, and discussed the formalisation of cohomology theories. Cohomology groups are linear invariants associated to typically nonlinear objects, and play an important role in several areas of mathematics. We list a few examples here: One can prove that two nonlinear objects are not isomorphic by showing that they have different cohomology. There are certain mathematical constructions that can be made (such as extending a map from a subgroup to a map from the whole group, or lifting a scheme over a base to a bigger base) if and only if some element of a cohomology group is zero, so if the entire cohomology group vanishes then the construction can always be made. The Hodge conjecture and the Tate conjecture are conjectures predicting that geometric resp. arithmetic behaviour of an appropriate mathematical object can be predicted from behaviour of its cohomology.
+At the end of May a group of formalisation enthusiasts, many of them Lean experts, met together at a [BIRS workshop](http://www.birs.ca/events/2023/5-day-workshops/23w5124) in Banff Canada, and discussed the formalisation of cohomology theories. Cohomology groups are linear invariants associated to typically nonlinear objects, and play an important role in several areas of mathematics. We list a few examples here: One can prove that two nonlinear objects are not isomorphic by showing that they have different cohomology. There are certain mathematical constructions that can be made (such as extending a map from a subgroup to a map from the whole group, or lifting a scheme over a base to a bigger base) if and only if some element of a cohomology group is zero, so if the entire cohomology group vanishes then the construction can always be made. The Hodge conjecture and the Tate conjecture are conjectures predicting that geometric resp. arithmetic behaviour of an appropriate mathematical object can be predicted from behaviour of its cohomology.
 
 There are many cohomology theories in the mathematical literature, and some have already been formalised in other theorem provers. But this is, in my mind, not good enough: we need a system which knows all cohomology theories and which furthermore knows all definitions of all cohomology theories, enabling us to do things such as writing down isomorphisms between cohomology theories, and giving us access to all the homological algebra (exact sequences, spectral sequences, derived functors,...) associated to cohomology theories. My personal aim for the conference was to understand where we are, and where we need to be, with regards to definitions and basic properties of as many cohomology theories as possible.
 
