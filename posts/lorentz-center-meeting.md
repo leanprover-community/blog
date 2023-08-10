@@ -29,6 +29,25 @@ One of the most valuable takeaways from the workshop was learning about the Zuli
 # Inclusive Community
 For me, the best aspect of this workshop was definitely the welcoming environment. I got to know really kind and amazing people. As a woman in the field of mathematics, I felt incredibly welcome, and I got the impression that everyone felt very welcome, regardless of gender, sexuality, or appearance. Consequently, we were a colorful bunch of people with diverse styles and backgrounds, and I really enjoyed the variety.
 
+# Projects
+
+The first day of the workshop, participants got together to propose project ideas: things that weren't formalized in Lean yet that could be worked on that week. Then everyone split into project groups. Each group had at least one experienced Lean user and at least one newcomer. There were some really interesting and ambitious projects that people worked on:
+
+* Recurrence and minimality on metric spaces: Guillaume Dubach, Sébastien Goüezel, Marco Lenci, Marcello Seri
+* The Hasse-Minkowski Theorem: Alex Best, Kevin Buzzard, Marco Streng, Hanneke Wiersema, Rosa Winter
+* Octonions: Filippo Nuccio, Matthieu Piquerez
+* Formally real fields: Mahoor Alavioun, Riccardo Brasca, Maryam Emamjomeh Zadeh, Ignasi Sánchez Rodríguez, Florent Schaffhauser
+* Computing the Reduced Row Echelon Form: Mohanad Ahmed, Anne Baanen, Sudhir Murthy, Wessel de Weijer
+* Fuchsian groups: Jana Göken, Bhavik Mehta, Oliver Nash
+* Skew polynomial rings and Drinfeld modules: María Inés de Frutos Fernández, Carlos Caralps, Xavier Généreux, Benoît Guillemet, Nandagopal Ramachandran
+* Properties of scheme morphisms: Amelia Livingston, Wim Nijgh, Torger Olson, Jonas van der Schaaf
+* Moebius sum, Brouckner-Wallis algorithm: Sam van Gool, Harald Helfgott
+* Resultants: Sander Dahmen, Dimitrios Mitsios, Qizheng Yin
+* Goppa codes: D. J. Bernstein
+* Sturm polynomials: Antoine Chambert-Loir, Cyril Cohen
+
+(RL: pending confidentiality check, link to project descriptions?)
+
 # Exciting Future for Mathematics
 In conclusion, my experience at the Lean workshop in Leiden was amazing. I met wonderful people, explored new mathematical territories, and gained valuable skills that will undoubtedly shape the future of my mathematical journey. I wholeheartedly recommend anyone interested in proof assistants, particularly Lean, to attend such workshops. The education and sense of community you will discover are truly remarkable.
 
