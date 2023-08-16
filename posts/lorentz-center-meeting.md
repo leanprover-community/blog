@@ -27,7 +27,7 @@ The workshop spanned five days, from July 10th to July 14th, at the Lorentz Cent
 
 Each day of the workshop was filled with a variety of activities, including talks, guided tutorials, exercise sessions, and group projects. It was incredible to witness our progress throughout the week. On the first day, we struggled with seemingly simple proofs, like associativity of addition. But by the last day, everyone was presenting their unique contributions to the mathlib library, something I never thought possible at the beginning.
 
-One of the most valuable takeaways from the workshop was learning about the Zulip platform, where the Lean community actively communicates. Even after the workshop concluded, we could easily connect with the experts, ask questions, and seek guidance as we continued our projects.
+One of the most valuable takeaways from the workshop was learning about the [Zulip platform](https://leanprover.zulipchat.com), where the Lean community actively communicates. Even after the workshop concluded, we could easily connect with the experts, ask questions, and seek guidance as we continued our projects.
 
 # Projects
 
@@ -47,9 +47,9 @@ The highlight of the workshop was undoubtedly the group projects. On the initial
 * **Resultants** by Sander Dahmen, Dimitrios Mitsios, and Qizheng Yin
 * **Sturm polynomials** by Antoine Chambert-Loir, and Cyril Cohen
 
-The interested reader can find short project summaries at https://leanprover.zulipchat.com/user_uploads/3121/W46h1sYGR8pxNfKjg_w3ceP8/projects.pdf .
+The interested reader can find short project summaries [here](https://leanprover.zulipchat.com/user_uploads/3121/W46h1sYGR8pxNfKjg_w3ceP8/projects.pdf).
 
-(RL: pending confidentiality check, added link tom summary of project descriptions, the projects Cyclotomic Character and Sturm polynomials are missing in the summary)
+(RL: pending confidentiality check, added link to summary of project descriptions, the projects Cyclotomic Character and Sturm polynomials are missing in the summary)
 
 
 # Exciting Future for Mathematics
@@ -60,4 +60,4 @@ I am very grateful for this amazing opportunity, and I hope to see everyone agai
 If you're curious about the capability of Lean, don't hesitate to dive in and discover the power of proof assistants for yourself. 
 
 # Installing Lean
-For those interested in installing Lean and exploring its capabilities, detailed installation instructions can be found at https://leanprover-community.github.io/get_started.html. If you encounter any difficulties, you can seek assistance on the Zulip chat https://leanprover.zulipchat.com.
+For those interested in installing Lean and exploring its capabilities, detailed installation instructions can be found [here](https://leanprover-community.github.io/get_started.html). If you encounter any difficulties, you can seek assistance on the [Zulip chat](https://leanprover.zulipchat.com).
