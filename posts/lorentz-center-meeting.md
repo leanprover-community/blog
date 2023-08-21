@@ -47,9 +47,8 @@ The highlight of the workshop was undoubtedly the group projects. On the initial
 * **Resultants** by Sander Dahmen, Dimitrios Mitsios, and Qizheng Yin
 * **Sturm polynomials** by Antoine Chambert-Loir, and Cyril Cohen
 
-The interested reader can find short project summaries [here](https://leanprover.zulipchat.com/user_uploads/3121/W46h1sYGR8pxNfKjg_w3ceP8/projects.pdf).
+The interested reader can find short project summaries [here](https://leanprover-community.github.io/blog/files/lorentz-center-workshop-projects.pdf).
 
-(RL: pending confidentiality check, added link to summary of project descriptions, the projects Cyclotomic Character and Sturm polynomials are missing in the summary)
 
 
 # Exciting Future for Mathematics
