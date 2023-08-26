@@ -58,5 +58,3 @@ I am very grateful for this amazing opportunity, and I hope to see everyone agai
 
 If you're curious about the capability of Lean, don't hesitate to dive in and discover the power of proof assistants for yourself. 
 
-# Installing Lean
-For those interested in installing Lean and exploring its capabilities, detailed installation instructions can be found [here](https://leanprover-community.github.io/get_started.html). If you encounter any difficulties, you can seek assistance on the [Zulip chat](https://leanprover.zulipchat.com).
