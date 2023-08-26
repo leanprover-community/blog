@@ -1,7 +1,7 @@
 ---
 author: 'Jana Göken'
 category: 'meeting report'
-date: 2023-08-01 06:30:08 UTC+02:00
+date: 2023-08-26 16:30:00 UTC+02:00
 description: 'Explore my journey through the Machine-Checked Mathematics workshop, where I delve into the world of proof assistants and the vibrant Lean community.'
 has_math: true
 link: ''
