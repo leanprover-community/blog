@@ -16,7 +16,8 @@ The workshop took place in Leiden from July 10th to July 14th 2023, and it was a
 
 <!-- TEASER_END -->
 # My First Encounter with Lean
-The first time I heard about the proof assistant Lean, or any proof assistant, was in the summer of 2022 when I attended the International Congress of Mathematicians for Number Theory and Algebraic Geometry in Zürich. There, I took the opportunity to attend a fascinating talk by Kevin Buzzard about the proof assistant Lean. I was instantly intrigued because, with the current rise of AI, I saw the great potential in the idea of using Lean to aid in mathematical proofs. Despite the excitement, I wasn't sure whether I would be able to start my own journey with Lean by myself.
+The first time I heard about the proof assistant Lean, or any proof assistant, was in the summer of 2022 when I attended the International Congress of Mathematicians for Number Theory and Algebraic Geometry in Zürich. There, I took the opportunity to attend [a fascinating talk by Kevin Buzzard](https://www.youtube.com/watch?v=SEID4XYFN7o) about the proof assistant Lean.
+I was instantly intrigued because, with the current rise of AI, I saw the great potential in the idea of using Lean to aid in mathematical proofs. Despite the excitement, I wasn't sure whether I would be able to start my own journey with Lean by myself.
 
 Fast forward to May 2023, and I received an email from "Women in Number Theory" about an upcoming workshop in Leiden focused on learning the Lean proof assistant. This was the perfect opportunity for me! Excited about the prospect of learning Lean, I immediately signed up.
 
