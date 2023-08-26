@@ -10,7 +10,7 @@ tags: 'Machine-Checked_Mathematics, Workshop_Experiences, Lorentz_Center, Inclus
 title: My Experience at the Machine-Checked Mathematics workshop
 type: text
 ---
-# My Experience at the Machine-Checked Mathematics workshop
+
 Hello, everyone! My name is Jana Göken, a master's student in mathematics from Bremen. Today, I want to share with you my experiences at the [Machine-Checked Mathematics workshop](https://www.lorentzcenter.nl/machine-checked-mathematics.html) that introduced me to the world of proof assistants, specifically Lean.
 The workshop took place in Leiden from July 10th to July 14th 2023, and it was an amazing and educational journey.
 
@@ -49,7 +49,7 @@ The highlight of the workshop was undoubtedly the group projects. On the initial
 * **Resultants** by Sander Dahmen, Dimitrios Mitsios, and Qizheng Yin
 * **Sturm polynomials** by Antoine Chambert-Loir, and Cyril Cohen
 
-The interested reader can find short project summaries [here](https://leanprover-community.github.io/blog/files/lorentz-center-workshop-projects.pdf).
+The interested reader can find short project summaries [here](https://leanprover-community.github.io/blog/lorentz-center-workshop-projects.pdf).
 
 
 
