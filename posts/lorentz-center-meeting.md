@@ -6,7 +6,7 @@ description: 'Explore my journey through the Machine-Checked Mathematics worksho
 has_math: true
 link: ''
 slug: lorentz-center-meeting
-tags: 'Machine-Checked_Mathematics, Workshop_Experiences, Lorentz_Center, Inclusive_Environment'
+tags: ''
 title: My Experience at the Machine-Checked Mathematics workshop
 type: text
 ---
