@@ -11,7 +11,8 @@ title: My Experience at the Machine-Checked Mathematics workshop
 type: text
 ---
 # My Experience at the Machine-Checked Mathematics workshop
-Hello, everyone! My name is Jana Göken, a master's student in mathematics from Bremen. Today, I want to share with you my experiences at the Machine-Checked Mathematics workshop that introduced me to the world of proof assistants, specifically Lean. The workshop took place in Leiden from July 10th to July 14th 2023, and it was an amazing and educational journey.
+Hello, everyone! My name is Jana Göken, a master's student in mathematics from Bremen. Today, I want to share with you my experiences at the [Machine-Checked Mathematics workshop](https://www.lorentzcenter.nl/machine-checked-mathematics.html) that introduced me to the world of proof assistants, specifically Lean.
+The workshop took place in Leiden from July 10th to July 14th 2023, and it was an amazing and educational journey.
 
 <!-- TEASER_END -->
 # My First Encounter with Lean
