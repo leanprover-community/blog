@@ -35,7 +35,7 @@ One of the most valuable takeaways from the workshop was learning about the [Zul
 
 The highlight of the workshop was undoubtedly the group projects. On the initial day of the workshop, everyone convened to brainstorm project concepts—ideas that had not yet been formalized in Lean but showcased promise for a week-long development journey. Subsequently, participants formed project groups, ensuring a mix of experienced Lean users and newcomers within each group. Engaging in a hands-on Lean project was both enjoyable and enlightening, with daily progress adding to the experience. In this way, a range of captivating and ambitious projects were undertaken by all workshop attendees:
 
-* **Recurrence and Minimality on Metric Spaces** by Guillaume Dubach, Sébastien Goüezel, Marco Lenci, and Marcello Seri 
+* **Recurrence and Minimality on Metric Spaces** by Guillaume Dubach, Sébastien Gou&euml;zel, Marco Lenci, and Marcello Seri 
 * **The Hasse-Minkowski Theorem** by Alex Best, Kevin Buzzard, Marco Streng, Hanneke Wiersema, and Rosa Winter 
 * **Octonions** by Filippo Nuccio, and Matthieu Piquerez
 * **Formally Real Fields** by Mahoor Alavioun, Riccardo Brasca, Maryam Emamjomeh Zadeh, Ignasi Sánchez Rodríguez, and Florent Schaffhauser 
@@ -45,7 +45,7 @@ The highlight of the workshop was undoubtedly the group projects. On the initial
 * **Skew Polynomial rings and Drinfeld modules** by María Inés de Frutos Fernández, Carlos Caralps, Xavier Généreux, Benoît Guillemet, and Nandagopal Ramachandran
 * **Properties of scheme morphisms** by Amelia Livingston, Wim Nijgh, Torger Olson, and Jonas van der Schaaf
 * **Goppa codes** by D. J. Bernstein
-* **Moebius sum, Brouckner-Wallis algorithm** by Sam van Gool, and Harald Helfgott
+* **Möbius sum, Brouckner-Wallis algorithm** by Sam van Gool, and Harald Helfgott
 * **Resultants** by Sander Dahmen, Dimitrios Mitsios, and Qizheng Yin
 * **Sturm polynomials** by Antoine Chambert-Loir, and Cyril Cohen
 
