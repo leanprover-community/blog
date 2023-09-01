@@ -21,9 +21,10 @@ Currently most of the Lean ecosystem works with nightly releases,
 and projects depending on branches (often `master` or `main`!),
 rather than fixed versions of upstream dependencies.
 
-At the ecosystem grows, and Lean matures into (hopefully!) a significant programming language,
-as well as the best theorem prover for modern mathematics,
-we want to make sure that everyone can find compatible versions of libraries,
+As Lean matures into a significant programming language,
+as well as an even better theorem prover for modern mathematics and software/hardware verification,
+the ecosystem will grow.
+We want to make sure that everyone can find compatible versions of libraries,
 and that everything **just works**.
 
 It's a long road to get there,
