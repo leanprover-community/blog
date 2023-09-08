@@ -28,7 +28,7 @@ We want to make sure that everyone can find compatible versions of libraries,
 and that everything **just works**.
 
 It's a long road to get there,
-but the Lean Focused Research Organization intends to dedicate resources
+but the Lean [Focused Research Organization](https://lean-fro.org/) intends to dedicate resources
 towards making this happen.
 
 The core language releasing regular stable versions is a first step towards this!
