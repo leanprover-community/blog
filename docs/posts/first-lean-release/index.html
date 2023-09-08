@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="The first official release of Lean 4, and plans for regular releases.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The first official release of Lean 4 | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/first-lean-release/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="The first official release of Lean 4 | Lean community blog">
+<meta name="author" content="Scott Morrison">
+<link rel="prev" href="../lorentz-center-meeting/" title="My Experience at the Machine-Checked Mathematics workshop" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="The first official release of Lean 4">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/first-lean-release/">
+<meta property="og:description" content="The first official release of Lean 4, and plans for regular releases.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-09-08T15:58:40+10:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">The first official release of Lean 4</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/scott-morrison/">Scott Morrison</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-09-08T15:58:40+10:00" itemprop="datePublished" title="2023-09-08 15:58">2023-09-08 15:58</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/first-lean-release/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Lean 4 has just made its first official stable release, with the arrival of <a href="https://github.com/leanprover/lean4/releases/tag/v4.0.0"><code>v4.0.0</code></a>.
+We're excited to transition from only providing nightly releases to having regular stable releases.</p>
+<!-- TEASER_END -->
+<h3>Why?</h3>
+<p>Currently most of the Lean ecosystem works with nightly releases,
+and projects depending on branches (often <code>master</code> or <code>main</code>),
+rather than fixed versions of upstream dependencies.</p>
+<p>As Lean matures into a significant programming language,
+and an even better theorem prover for modern mathematics and software/hardware verification,
+that ecosystem will grow.
+We want to make sure that everyone can find compatible versions of libraries,
+and that everything <strong>just works</strong>.</p>
+<p>It's a long road to get there,
+but the Lean <a href="https://lean-fro.org/">Focused Research Organization</a> intends to dedicate resources
+towards making this happen.</p>
+<p>The core language releasing regular stable versions is a first step towards this!</p>
+<h3>Regular releases</h3>
+<p>The plan at this stage is to create a new "minor" version (i.e. <code>v4.1.0</code>, <code>v4.2.0</code>) approximately each month.
+There will be a release candidate <code>v4.1.0-rc1</code> early in each month, and if all goes well that will become the stable version at the end of the month.
+Further release candidates will be made if we find something broken,
+and sometimes also just to make new features available to Mathlib faster.</p>
+<p>We're hoping that Mathlib is able to begin tracking release candidate toolchains, rather than nightly toolchains.</p>
+<p>At this point the "patch" version (the <code>0</code> in <code>v4.2.0</code>) will be unused: it's space to grow later.</p>
+<p>We're not at the point that we can promise backwards compatibility between versions,
+beyond documenting all breaking changes in our <a href="https://github.com/leanprover/lean4/blob/master/RELEASES.md"><code>RELEASES.md</code></a>.
+As Lean and the Lean ecosystem matures we will update this approach.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../lorentz-center-meeting/" rel="prev" title="My Experience at the Machine-Checked Mathematics workshop">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2023         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>

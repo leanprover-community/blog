@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="This is the blog of the Lean prover community.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lean community blog (old posts, page 4) | Lean community blog</title>
+<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/index-4.html">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<link rel="prev" href="." type="text/html">
+<link rel="next" href="index-3.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Lean community blog (old posts, page 4) | Lean community blog">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="." title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="archive.html">Archive</a></li>
+                <li><a href="categories/">Tags</a></li>
+                <li><a href="about/">About</a></li>
+                <li><a href="rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><div class="postindex">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/classification-of-one-dimensional-isocrystals/" class="u-url">Classification of one-dimensional isocrystals</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                            <a href="authors/robert-y-lewis/">Robert Y. Lewis</a>
+                            <a href="authors/heather-macbeth/">Heather Macbeth</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/classification-of-one-dimensional-isocrystals/" rel="bookmark">
+            <time class="published dt-published" datetime="2022-08-06T06:30:08+02:00" itemprop="datePublished" title="2022-08-06 06:30">2022-08-06 06:30</time></a>
+            </p>
+		    <p><span class="text-dark">New in mathlib</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>Last year, there was a <a href="posts/semilinear-maps">big mathlib refactor</a> to replace linear maps throughout the library with  <em>semilinear maps</em>,
+a more abstract concept which, importantly, unifies linear and conjugate-linear maps.</p>
+<p>But this is not the full extent of the generalization!  Our number theorist friends here in mathlib told us that we should
+make sure we chose this full generality of <em>semilinear</em> maps, maps $f:M \to N$ such that $f(ax)=\sigma(a)f(x)$ for some ring homomorphism $\sigma$ between the scalar rings of the modules $M$ and $N$.  So we and our coauthor Frédéric Dupuis implemented this full generality, and then asked them for an example to illustrate their need for this more abstract definition. This blog post tells the story of our little adventure in number theory.</p>
+<p>It turns out that the standard use of semilinear maps in number theory is for <em>Frobenius-semilinearity</em>, semilinearity with
+respect to the ring homomorphism of the fraction field of the $p$-typical Witt vectors over a perfect characteristic-$p$ integral domain which is induced by the Frobenius
+automorphism of that domain.  Let's backtrack to catch everyone up...</p>
+<p class="more"><a href="posts/classification-of-one-dimensional-isocrystals/">Read more…</a></p>
+</div>
+                </div>
+            </article>
+</div>
+            <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="." rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-3.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2023         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
