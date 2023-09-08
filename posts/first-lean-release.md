@@ -12,18 +12,18 @@ type: text
 ---
 
 Lean 4 has just made its first official stable release, with the arrival of [`v4.0.0`](https://github.com/leanprover/lean4/releases/tag/v4.0.0).
-We're excited to begin the transition from only providing nightly releases towards having regular stable releases.
+We're excited to transition from only providing nightly releases to having regular stable releases.
 
 <!-- TEASER_END -->
 ## Why?
 
 Currently most of the Lean ecosystem works with nightly releases,
-and projects depending on branches (often `master` or `main`!),
+and projects depending on branches (often `master` or `main`),
 rather than fixed versions of upstream dependencies.
 
 As Lean matures into a significant programming language,
-as well as an even better theorem prover for modern mathematics and software/hardware verification,
-the ecosystem will grow.
+and an even better theorem prover for modern mathematics and software/hardware verification,
+that ecosystem will grow.
 We want to make sure that everyone can find compatible versions of libraries,
 and that everything **just works**.
 
@@ -44,6 +44,6 @@ We're hoping that Mathlib is able to begin tracking release candidate toolchains
 
 At this point the "patch" version (the `0` in `v4.2.0`) will be unused: it's space to grow later.
 
-We're not yet at the point that we can promise backwards compatibility between versions,
+We're not at the point that we can promise backwards compatibility between versions,
 beyond documenting all breaking changes in our [`RELEASES.md`](https://github.com/leanprover/lean4/blob/master/RELEASES.md).
-As Lean and the Lean ecosystem matures we will make progress on this.
+As Lean and the Lean ecosystem matures we will update this approach.
