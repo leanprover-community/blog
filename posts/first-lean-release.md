@@ -1,8 +1,8 @@
 ---
 author: 'Scott Morrison'
 category: 'announcement'
-date: 2023-08-29 16:30:00 UTC+02:00
-description: 'The first official release of Lean 4, and our plan for regular releases.'
+date: 2023-09-08 15:58:40 UTC+10:00
+description: 'The first official release of Lean 4, and plans for regular releases.'
 has_math: true
 link: ''
 slug: first-lean-release
