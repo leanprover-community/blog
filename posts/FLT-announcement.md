@@ -3,7 +3,7 @@ author: 'Kevin Buzzard'
 category: 'project announcement'
 date: 2024-04-30 18:00:00+00:00
 description: ''
-has_math: false
+has_math: true
 link: ''
 slug: FLT-announcement
 tags: ''
@@ -20,7 +20,7 @@ Fermat's Last Theorem (FLT) is the claim that some abstract equation has no solu
 The result has no practical applications.
 So why did the announcement of its resolution by Andrew Wiles in 1993 make the front page of the New York Times?
 
-One aspect of FLT is that the theorem is very simple to *state* (`x^n+y^n=z^n` has no solutions in positive integers if `n>=3`), and yet it was incredibly hard to *prove* (indeed, it took the mathematical community over 350 years).
+One aspect of FLT is that the theorem is very simple to *state* ($x^n+y^n=z^n$ has no solutions in positive integers if $n\geq3$), and yet it was incredibly hard to *prove* (indeed, it took the mathematical community over 350 years).
 Thus it serves as a great reminder of how profound mathematics is.
 But what really justifies the interest in the problem is that over the past few centuries a huge amount of mathematical theory has been developed and invented/discovered in an attempt to resolve the problem, and this mathematics has had applications from cryptography to physics.
 Wiles might have been motivated by FLT, but ultimately his work comprised of a breakthrough in the Langlands Program, a broad collection of conjectures which are still mostly wide open, and very much of interest in 2024.
@@ -37,7 +37,7 @@ Formalisation of mathematics is the art of translating paper mathematics into a 
 These programming languages, also called interactive theorem provers (ITPs), have been around for decades.
 Over the last few years however, the area seems to have captured the attention of parts of the mathematics community.
 We have now seen several examples of fashionable modern research mathematics being formalised in real time, the most recent of which (at the time of writing) is Tao et al's formalisation of his work with Gowers, Green and Manners resolving the polynomial Freiman--Ruzsa conjecture.
-This breakthrough 2023 paper was formalised in Lean in three weeks flat.
+This breakthrough 2023 paper was formalised in Lean in [three weeks flat](https://www.quantamagazine.org/a-team-of-math-proves-a-critical-link-between-addition-and-sets-20231206/).
 Success stories like these might lead casual observers to believe that ITPs such as Lean are now ready to formalise all modern mathematics.
 However the truth is far more sobering.
 In certain areas of mathematics, for example combinatorics, we see that some modern breakthroughs can be formalised in real time.
@@ -46,7 +46,7 @@ However, I attend the London Number Theory Seminar on a regular basis, and most 
 The fact that number theory is still "behind" in this regard is one of my main motivations to embark on a formalisation of a modern proof of FLT.
 Well before the project is finished, Lean will understand the concepts of automorphic forms and representations, Galois representations, potential automorphy, modularity lifting theorems, the arithmetic of varieties, class field theory, arithmetic duality theorems, Shimura varieties and many other concepts used in modern algebraic number theory; formalising the *statements* of what is happening in my own area of expertise will no longer be science fiction.
 And why might one want to do this? Well, if we are to believe some computer scientists, the exponential growth in AI should one day translate into computers being able to help mathematicians do their work.
-But what chance does this have of coming true if computers cannot even *understand what we are doing*?
+Work like this can be used to help computers understand what we are doing in modern mathematical research.
 
 # The FLT project
 
