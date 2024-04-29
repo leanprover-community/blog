@@ -72,7 +72,7 @@ The beauty of the system: you do not have to understand the whole proof of FLT i
 The blueprint breaks down the proof into many many small lemmas, and if you can formalise a proof of just one of those lemmas then I am eagerly awaiting your pull request.
 
 
-The project will be run on the [FLT stream](https://leanprover.zulipchat.com/#narrow/stream/416277-FLT) on the [Lean Zulip chat](https://leanprover.zulipchat.com/), a high-powered research forum where mathematicians and computer scientists can collaborate in real time, effortlessly posting code and mathematics using a thread and stream system which admirably handles the task of enabling many independent conversaions to happen simultaneously.
+The project will be run on the [FLT stream](https://leanprover.zulipchat.com/#narrow/stream/416277-FLT) on the [Lean Zulip chat](https://leanprover.zulipchat.com/), a high-powered research forum where mathematicians and computer scientists can collaborate in real time, effortlessly posting code and mathematics using a thread and stream system which admirably handles the task of enabling many independent conversations to happen simultaneously.
 People interested in watching progress of the project can occasionally check the blueprint graph; but people interested in contributing themselves should take a look at what's being discussed on the `#FLT` stream and make themselves known.
 You will need to know something about Lean to help contribute: I recommend the online textbook [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) if you are a mathematician who wants to learn this new way of expressing mathematics.
 
