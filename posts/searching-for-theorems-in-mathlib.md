@@ -74,6 +74,8 @@ The `exact?` tactic (formerly known as `library_search`) is a great way to find 
 
 A good time to use `exact?` is when you have a proof goal that you think is so straightforward that it is likely to be in mathlib already. If `exact?` doesn't find a proof, you can always extract the fact and prove it or `sorry` it as an independent lemma immediately above the theorem you are working on, and `exact?` should start to work. You can then prove the goal yourself and submit the proof to mathlib.
 
+A downside of this approach is that it depnds on the *exact* structure of the goal you are trying to prove being present in the library. If you are hoping to prove the goal `a - b = c` and the library only has the theorem `a = b + c`, `exact?` will not find it.
+
 ### `apply?`
 
 The `apply?` tactic is similar to `exact?`. It searches for theorems that can be applied to the current goal, without necessarily requiring that they close the goal (although if they do close the goal, `apply?` will show you that).
