@@ -10,7 +10,7 @@ tags: ''
 title: Searching for Theorems in Mathlib
 type: text
 ---
-A post for beginners on the different ways to search for theorems in mathlib.
+A post for beginners on the different ways to search for theorems in mathlib, inspired by [this talk](https://www.youtube.com/watch?v=UJrYKR01QwU).
 
 <!-- TEASER_END -->
 
@@ -48,9 +48,25 @@ The downside of Moogle is that semantic search isn't an exact science, so the re
 
 Loogle is a great tool for finding lemmas that you know the type of, but not the name of. It is a pretty precise tool; a downside is that it will not by default give you responses without you typing out the names of the definitions relevant to your search correctly and in full.
 
+## Other websites
+
+There are a few other websites that can be helpful for finding theorems in mathlib, although they are not conventional search engines like the ones above.
+
+### Zulip
+
+The [Zulip chat](https://leanprover.zulipchat.com/) for the Lean community has a channel called ["Is there code for X?"](https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F) where you can ask questions about the presence of particular theorems in mathlib, major and minor. If you are having trouble finding a theorem, you can ask in this channel and someone will likely be able to help you, although it might take longer than the search engine would.
+
+### The Library overview/The Undergrad list/Wiedijk's 100 Theorems
+
+The sidebar of [main page](https://leanprover-community.github.io/index.html) for the mathlib community lists three additional pages under the "Library Overiviews" heading. These pages have links to the docs for fixed collections of major declarations in mathlib. These are:
+
+* The [Library overview](https://leanprover-community.github.io/mathlib-overview.html): This page lists the overall most important high-level declarations in mathlib, organized by topic/subfield of mathematics.
+* The [Undergrad list](https://leanprover-community.github.io/undergrad/) is a list of theorems and declarations in mathlib that are considered to be at an undergraduate level. This list comes from a document compiled by the [French Ministry of Education](https://media.devenirenseignant.gouv.fr/file/agreg_externe/59/7/p2020_agreg_ext_maths_1107597.pdf)
+* [Wiedijk's 100 Theorems](https://leanprover-community.github.io/100.html): This page lists 100 important theorems from a variety of fields of mathematics. They were originally compiled by Freek Wiedijk in his [Formalizing 100 Theorems](https://www.cs.ru.nl/~freek/100/) project as a benchmark for proof assistants. The page has links to the mathlib documentation page for each theorem that mathlib has proven, as well as a link to a page with the list of theorems that mathlib has not (yet!) proven.
+
 ## Tactics
 
-In addition to the search engines, there are a few tactics you can use to find theorems in mathlib without leaving your lean development environment.
+In addition to the search engines and webpages, there are a few tactics you can use to find theorems in mathlib without leaving your lean development environment.
 
 ### `exact?`
 
