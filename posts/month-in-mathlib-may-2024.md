@@ -19,9 +19,7 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 
 * Algebra
 * [PR #13271](https://github.com/leanprover-community/mathlib4/pull/13271) :: chore(mathlib4/Algebra/BigOperators/Basic): unscope `∑ x ∈ s, f x` notations
-* [PR #12937](https://github.com/leanprover-community/mathlib4/pull/12937) :: feat: Lie algebra root spaces are 1-dimensional
-* [PR #12297](https://github.com/leanprover-community/mathlib4/pull/12297) :: feat(Algebra/Lie): existence of Cartan subalgebras
-* [PR #13307](https://github.com/leanprover-community/mathlib4/pull/13307) :: feat(Algebra/Lie/Weights): The root system of a lie algebra.
+* In Lie theory, [PR #12297](https://github.com/leanprover-community/mathlib4/pull/12297) proves that any finite-dimensional Lie algebra over an infinite field contains a Cartan subalgebra (in fact many). [PR #12937](https://github.com/leanprover-community/mathlib4/pull/12937) proves that the root spaces of a semisimple Lie algebra relative to a splitting Cartan subalgebra are 1-dimensional, and [PR #13307](https://github.com/leanprover-community/mathlib4/pull/13307) proves that the roots of a semisimple Lie algebra are actually an abstract (reduced, crystallographic) root system.
 * [PR #12721](https://github.com/leanprover-community/mathlib4/pull/12721) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules is abelian
 
 * Algebraic Geometry.
@@ -34,8 +32,7 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
   * Chris Birkbeck proved that Eisenstein series converge uniformly in [PR #10377](https://github.com/leanprover-community/mathlib4/pull/10377) and that they are holomorphic in [PR #11013](https://github.com/leanprover-community/mathlib4/pull/11013). This will soon to used to show that they are modular forms.
 
 * Category Theory.
-  * A tremendous amount of derived categories work by Joël Riou is hitting Mathlib at a rapid pace: [PR #12619](https://github.com/leanprover-community/mathlib4/pull/12619) defines t-structures in (pre)triangulated categories, [PR #11738](https://github.com/leanprover-community/mathlib4/pull/11738) and [PR #11786](https://github.com/leanprover-community/mathlib4/pull/11786) show that the localisation of a pretriangulated (resp. triangulated) category by a class of morphisms compatible with the triangulation and having a left (resp. left and right) calculus of fractions is also pretriangulated (resp. triangulated), [PR #11789](https://github.com/leanprover-community/mathlib4/pull/11789) defines the class of morphisms whose cone belongs to a triangulated subcategory, [PR #11805](https://github.com/leanprover-community/mathlib4/pull/11805) defines the long exact sequence of a homological functor from a pretriangulated category to an abelian category, and finally [PR #11806](https://github.com/leanprover-community/mathlib4/pull/11806) constructs the derived category of an abelian category and shows that it is triangulated.
-* [PR #11760](https://github.com/leanprover-community/mathlib4/pull/11760) :: feat: the homological functor on the homotopy category of cochain complexes in an abelian category
+  * After an important effort by Joël Riou, derived categories of abelian categories and their triangulated structure are now in Mathlib since [PR #11806](https://github.com/leanprover-community/mathlib4/pull/11806). Using the triangulated structure on the homotopy category of an abelian categories (which was already obtained during the [Liquid Tensor Experiment](https://leanprover-community.github.io/blog/posts/lte-final/)), this essentially follows from the localization theorem for triangulated categories [PR #11786](https://github.com/leanprover-community/mathlib4/pull/11786). Derived categories shall soon have more applications inside mathlib, thanks to the formalization of total derived functors [PR #12788](https://github.com/leanprover-community/mathlib4/pull/12788) and t-structures [PR #12619](https://github.com/leanprover-community/mathlib4/pull/12619).
 
 * Combinatorics
   * Thanks to the reviews by Thomas Bloom, a long list of two years old PRs by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:
@@ -44,7 +41,7 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
     * Building up on thoses two series of PRs, [PR #13074](https://github.com/leanprover-community/mathlib4/pull/13074) defines corners and corner-free set and [PR #9000](https://github.com/leanprover-community/mathlib4/pull/9000) finally proves the Corners theorem and Roth's theorem. They respectively state that a corner-free set in `[N] × [N]` and a 3AP-free set in `[N]` have vanishingly small density as `N` goes to infinity.
 
     [APAP](https://github.com/YaelDillies/LeanAPAP) already contains the stronger result that the density goes to zero as `1/log log N`, and will soon prove the state of the art result of `exp(-(log N)^1/9)`.
-  * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at the September 2023 Bonn by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in [PR #7102](https://github.com/leanprover-community/mathlib4/pull/7102).
+  * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in [PR #7102](https://github.com/leanprover-community/mathlib4/pull/7102).
 
 * Condensed mathematics.
 * [PR #11586](https://github.com/leanprover-community/mathlib4/pull/11586) :: feat(Condensed): light condensed objects
