@@ -46,6 +46,6 @@ echo ""
 pushd $mathlib > /dev/null
 
 git log --date=iso-local --pretty=oneline --abbrev-commit --since "$yy-$mm-01" --until "$yy-$mm-$daysOfMonth" | tac |
-sed 's|\([^ ]*\) \(.*\) (#\([0-9]*\))|* [PR #\3](https://github.com/leanprover-community/mathlib/pull/\3) :: \2|'
+sed 's|\([^ ]*\) \(.*\) (#\([0-9]*\))|* [PR #\3](https://github.com/leanprover-community/mathlib4/pull/\3) :: \2|'
 
 popd > /dev/null
