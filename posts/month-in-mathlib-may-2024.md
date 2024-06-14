@@ -26,9 +26,7 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
   * [PR #12917](https://github.com/leanprover-community/mathlib4/pull/12917) by Jonas van der Schaaf, Amelia Livingston and later Christian Merten defines closed immersions.
 
 * Analysis.
-  * Sébastien Gouëzel 
-    * [PR #12769](https://github.com/leanprover-community/mathlib4/pull/12769) :: feat: Fourier transform of iterated derivatives
-    * [PR #12144](https://github.com/leanprover-community/mathlib4/pull/12144) :: feat: Fourier transform as a continuous linear equiv on Schwartz space
+  * Sébastien Gouëzel completed the proof that the Fourier transform is well defined on the Schwartz space of a Euclidean space. [PR #12769](https://github.com/leanprover-community/mathlib4/pull/12769) shows how one can bound derivatives of the Fourier transform of a function (multiplied by a power function) in terms of derivatives of the initial function (multiplied by a power function). [PR #12144](https://github.com/leanprover-community/mathlib4/pull/12144) uses this to define the Fourier transform as a continuous linear equivalence on Schwartz space (taking advantage of the Fourier inversion formula to get the inverse direction from the forward direction). Note that the Schwartz space is a Fréchet space but not a normed space, so this builds on a lot of analysis on Fréchet spaces in terms of families of seminorms.
   * Chris Birkbeck proved that Eisenstein series converge uniformly in [PR #10377](https://github.com/leanprover-community/mathlib4/pull/10377) and that they are holomorphic in [PR #11013](https://github.com/leanprover-community/mathlib4/pull/11013). This will soon to used to show that they are modular forms.
 
 * Category Theory.
