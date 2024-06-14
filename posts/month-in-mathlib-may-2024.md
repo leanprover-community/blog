@@ -13,14 +13,18 @@ type: text
 
 The last Month in Mathlib posts date from before the port started, in November 2022. We apologise for the momentary disappearance. We aim to keep it a monthly occurrence from now on.
 
-There were 920 PRs merged in May 2024, a 35% percent increase compared to the 682 PRs merged two years ago in May 2022.
+There were 667 PRs merged in May 2024.
 
 <!-- TEASER_END -->
 
 * Algebra
-* [PR #13271](https://github.com/leanprover-community/mathlib4/pull/13271) :: chore(mathlib4/Algebra/BigOperators/Basic): unscope `∑ x ∈ s, f x` notations
-* In Lie theory, [PR #12297](https://github.com/leanprover-community/mathlib4/pull/12297) proves that any finite-dimensional Lie algebra over an infinite field contains a Cartan subalgebra (in fact many). [PR #12937](https://github.com/leanprover-community/mathlib4/pull/12937) proves that the root spaces of a semisimple Lie algebra relative to a splitting Cartan subalgebra are 1-dimensional, and [PR #13307](https://github.com/leanprover-community/mathlib4/pull/13307) proves that the roots of a semisimple Lie algebra are actually an abstract (reduced, crystallographic) root system.
-* [PR #12721](https://github.com/leanprover-community/mathlib4/pull/12721) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules is abelian
+  * In Lie theory, [PR #12297](https://github.com/leanprover-community/mathlib4/pull/12297) proves that any finite-dimensional Lie algebra over an infinite field contains a Cartan subalgebra (in fact many). [PR #12937](https://github.com/leanprover-community/mathlib4/pull/12937) proves that the root spaces of a semisimple Lie algebra relative to a splitting Cartan subalgebra are 1-dimensional, and [PR #13307](https://github.com/leanprover-community/mathlib4/pull/13307) proves that the roots of a semisimple Lie algebra are actually an abstract (reduced, crystallographic) root system.
+  * [PR #12721](https://github.com/leanprover-community/mathlib4/pull/12721) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules is abelian
+  * Amelia Livingstone
+    * [PR #11962](https://github.com/leanprover-community/mathlib4/pull/11962) :: feat: bialgebra homomorphisms
+    * [PR #11971](https://github.com/leanprover-community/mathlib4/pull/11971) :: feat: bialgebra isomorphisms
+    * [PR #11970](https://github.com/leanprover-community/mathlib4/pull/11970) :: feat: coalgebra isomorphisms
+    * [PR #11972](https://github.com/leanprover-community/mathlib4/pull/11972) :: feat: category of coalgebras
 
 * Algebraic Geometry.
   * [PR #12917](https://github.com/leanprover-community/mathlib4/pull/12917) by Jonas van der Schaaf, Amelia Livingston and later Christian Merten defines closed immersions.
@@ -33,7 +37,7 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
   * After an important effort by Joël Riou, derived categories of abelian categories and their triangulated structure are now in Mathlib since [PR #11806](https://github.com/leanprover-community/mathlib4/pull/11806). Using the triangulated structure on the homotopy category of an abelian categories (which was already obtained during the [Liquid Tensor Experiment](https://leanprover-community.github.io/blog/posts/lte-final/)), this essentially follows from the localization theorem for triangulated categories [PR #11786](https://github.com/leanprover-community/mathlib4/pull/11786). Derived categories shall soon have more applications inside mathlib, thanks to the formalization of total derived functors [PR #12788](https://github.com/leanprover-community/mathlib4/pull/12788) and t-structures [PR #12619](https://github.com/leanprover-community/mathlib4/pull/12619).
 
 * Combinatorics
-  * Thanks to the reviews by Thomas Bloom, a long list of two years old PRs by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:
+  * Thanks to the reviews by Thomas Bloom, a long sequence of three years old material by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:
     * [PR #12526](https://github.com/leanprover-community/mathlib4/pull/12526) defines locally linear graphs, [PR #12570](https://github.com/leanprover-community/mathlib4/pull/12570) constructs such graphs from a set of specified triangles respecting some conditions, [PR #12523](https://github.com/leanprover-community/mathlib4/pull/12523) uses that construction to deduce the Triangle removal lemma from the Regularity lemma.
     * [PR #12701](https://github.com/leanprover-community/mathlib4/pull/12701) redefines sets without arithmetic progressions of length 3 (aka 3AP-free sets) so that they behave correctly in characteristic two. [PR #12546](https://github.com/leanprover-community/mathlib4/pull/12546) refactors Freiman homomorphisms and isomorphisms from a bundled design to unbundled predicates. This makes them much easier to use. [PR #12551](https://github.com/leanprover-community/mathlib4/pull/12551) then proves the no wrap-around principle stating that additive structure in sets is independent of the ambient group so long as torsion is much bigger than the diameter of the sets.
     * Building up on thoses two series of PRs, [PR #13074](https://github.com/leanprover-community/mathlib4/pull/13074) defines corners and corner-free set and [PR #9000](https://github.com/leanprover-community/mathlib4/pull/9000) finally proves the Corners theorem and Roth's theorem. They respectively state that a corner-free set in `[N] × [N]` and a 3AP-free set in `[N]` have vanishingly small density as `N` goes to infinity.
@@ -42,20 +46,25 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
   * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in [PR #7102](https://github.com/leanprover-community/mathlib4/pull/7102).
 
 * Condensed mathematics.
-* [PR #11586](https://github.com/leanprover-community/mathlib4/pull/11586) :: feat(Condensed): light condensed objects
-* [PR #12870](https://github.com/leanprover-community/mathlib4/pull/12870) :: feat(Condensed): prove the explicit sheaf condition for a general target category
-* [PR #13501](https://github.com/leanprover-community/mathlib4/pull/13501) :: feat(Condensed): light condensed modules
-* [PR #13503](https://github.com/leanprover-community/mathlib4/pull/13503) :: feat(Condensed): explicit sheaf condition for light condensed sets
-* [PR #13500](https://github.com/leanprover-community/mathlib4/pull/13500) :: feat(Condensed): discrete light condensed objects
-* [PR #13502](https://github.com/leanprover-community/mathlib4/pull/13502) :: feat(Condensed): functor from light profinite sets to light condensed sets
+  * The work towards getting the basics of condensed mathematics into Mathlib started about a year ago at a workshop in Copenhagen organized by Dagur Asgeirsson. The participants made great progress and proved results like the characterization of condensed sets as finite-product-preserving presheaves on `Stonean`. Since then, Dagur has been moving the material to Mathlib and developing it further. This month landed
+    * [PR #11586](https://github.com/leanprover-community/mathlib4/pull/11586) defining light condensed objects. This is a concept introduced by Clausen and Scholze less than a year ago, and is an improvement over condensed sets in that it removes certain size-issues, as it is a sheaf over an essentially small site.
+    * [PR #12870](https://github.com/leanprover-community/mathlib4/pull/12870) proving the explicit sheaf condition for condensed objects in a very general target category. Previously, we only had this in certain concrete categories.
+
+* Topology
+  * Christopher Hoskin
+    * [PR #11710](https://github.com/leanprover-community/mathlib4/pull/11710) :: feat(Topology/Order/LawsonTopology): Introduce the Lawson Topology to Mathlib
 
 * Metaprogramming.
-  * Miyahara Kō heroically ported the `cc` tactic to Lean 4: [PR #11956](https://github.com/leanprover-community/mathlib4/pull/11956), [PR #11960](https://github.com/leanprover-community/mathlib4/pull/11960) and [PR #5938](https://github.com/leanprover-community/mathlib4/pull/5938) ported `cc` and [PR #13369](https://github.com/leanprover-community/mathlib4/pull/13369) corrected a bug on literal handling.
+  * Miyahara Kō heroically ported the `cc` tactic to Lean 4: [PR #11956](https://github.com/leanprover-community/mathlib4/pull/11956), [PR #11960](https://github.com/leanprover-community/mathlib4/pull/11960) and [PR #5938](https://github.com/leanprover-community/mathlib4/pull/5938).
   * Damiano Testa and Yaël Dillies replaced the `mk_all` shell script hardcoded to Mathlib with a Lean script that dynamically figures out the Lean libraries (sadly, Mathlib still needs some separate handling) in [PR #11853](https://github.com/leanprover-community/mathlib4/pull/11853), and [PR #11874](https://github.com/leanprover-community/mathlib4/pull/11874) made use of it in the "Check all files are imported" CI step. The script can now be used by any project downstream of Mathlib. If you maintain such a project, we encourage you to switch over to the new script and report eventual bugs.
   * Vasily Nesterov implemented a simplex algorithm oracle in [PR #12014](https://github.com/leanprover-community/mathlib4/pull/12014). This is now the default oracle for `linarith` instead of the much slower Fourier-Motzkin oracle.
   * [PR #13190](https://github.com/leanprover-community/mathlib4/pull/13190) and [PR #13293](https://github.com/leanprover-community/mathlib4/pull/13293) by Michael Rothgang and Damiano Testa neuters a very pernicious footgun: Contrary to expectations, `attribute [non_local_attribute] decl in` would **globally** tag `decl` with attribute `non_local_attribute`.
+
 * General library maintainance
+  * As of [PR #13271](https://github.com/leanprover-community/mathlib4/pull/13271), the notations `∏ x ∈ s, f x` and `∑ x ∈ s, f x` are global. `open scoped BigOperators` is now a no-op and downstream projects should stop using it.
   * `refine'` is a tactic that mimics the Lean 3 behavior of `refine`, mostly useful when porting Lean 3 code. It was decided to avoid using it in favor of the more declarative `refine`, or of `apply` in the rare cases where `refine` handles metavariables suboptimally. The following PRs started replacing `refine'` with `refine` or `apply`: [PR #12755](https://github.com/leanprover-community/mathlib4/pull/12755), [PR #12851](https://github.com/leanprover-community/mathlib4/pull/12851), [PR #12997](https://github.com/leanprover-community/mathlib4/pull/12997), [PR #13059](https://github.com/leanprover-community/mathlib4/pull/13059), [PR #13062](https://github.com/leanprover-community/mathlib4/pull/13062), [PR #13166](https://github.com/leanprover-community/mathlib4/pull/13166), [PR #13234](https://github.com/leanprover-community/mathlib4/pull/13234), [PR #13287](https://github.com/leanprover-community/mathlib4/pull/13287), [PR #13357](https://github.com/leanprover-community/mathlib4/pull/13357), [PR #13383](https://github.com/leanprover-community/mathlib4/pull/13383), [PR #13472](https://github.com/leanprover-community/mathlib4/pull/13472), [PR #13474](https://github.com/leanprover-community/mathlib4/pull/13474), [PR #13490](https://github.com/leanprover-community/mathlib4/pull/13490), [PR #13385](https://github.com/leanprover-community/mathlib4/pull/13385). New uses of `refine'`in Mathlib  will soon be linted against and we encourage downstream projects to switch over as well.
+  * Since the `deprecated` attribute now takes an optional `since` field, we are systematising its use so that we can later programmatically remove all deprecations older than N months. The following PRs added dates to existing deprecations: [PR #12407](https://github.com/leanprover-community/mathlib4/pull/12407), [PR #12547](https://github.com/leanprover-community/mathlib4/pull/12547), [PR #12408](https://github.com/leanprover-community/mathlib4/pull/12408), [PR #12597](https://github.com/leanprover-community/mathlib4/pull/12597), [PR #13185](https://github.com/leanprover-community/mathlib4/pull/13185), [PR #13182](https://github.com/leanprover-community/mathlib4/pull/13182), [PR #12598](https://github.com/leanprover-community/mathlib4/pull/12598), [PR #13188](https://github.com/leanprover-community/mathlib4/pull/13188), [PR #13368](https://github.com/leanprover-community/mathlib4/pull/13368). Note that within Mathlib you can use the newly introduced `deprecated alias` code snippet ([PR #13206](https://github.com/leanprover-community/mathlib4/pull/13206)) to generate `@[deprecated (since := "yyyy-mm-dd")] old_name := new_name`.
+  * To help reviewing large PRs, especially refactors, a bot now posts a diff of declaration names. This was introduced as a label called `move-decls` in [PR #12844](https://github.com/leanprover-community/mathlib4/pull/12844).
 
 * [PR #12583](https://github.com/leanprover-community/mathlib4/pull/12583) :: chore: adaptations to lean 4.8.0
 * [PR #12573](https://github.com/leanprover-community/mathlib4/pull/12573) :: chore: Rename `Finset.inter_sdiff` to `Finset.inter_sdiff_assoc`
@@ -66,7 +75,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12492](https://github.com/leanprover-community/mathlib4/pull/12492) :: feat(PNat/Basic): two small sub/le lemmata
 * [PR #12579](https://github.com/leanprover-community/mathlib4/pull/12579) :: perf(RingTheory.Kaehler): avoid mvar non-assignment
 * [PR #12548](https://github.com/leanprover-community/mathlib4/pull/12548) :: chore: move to v4.8.0-rc1
-* [PR #11970](https://github.com/leanprover-community/mathlib4/pull/11970) :: feat: coalgebra isomorphisms
 * [PR #12594](https://github.com/leanprover-community/mathlib4/pull/12594) :: feat (SpecificLimits/Basic) : add geometric lemma
 * [PR #12444](https://github.com/leanprover-community/mathlib4/pull/12444) :: feat(Order/Interval/Finset/Box): add lemma
 * [PR #12580](https://github.com/leanprover-community/mathlib4/pull/12580) :: feat: enable dot notation for `HasEigenvalue` and the spectrum
@@ -83,9 +91,7 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12613](https://github.com/leanprover-community/mathlib4/pull/12613) :: chore(Analysis/SpecialFunctions): `Real.rpow` -> `_ ^ _`
 * [PR #12615](https://github.com/leanprover-community/mathlib4/pull/12615) :: style: capitalizes file names in `Counterexamples`
 * [PR #12646](https://github.com/leanprover-community/mathlib4/pull/12646) :: replay: #3604 for MonoidAlgebra
-* [PR #12407](https://github.com/leanprover-community/mathlib4/pull/12407) :: chore(LinearAlgebra): format/add dates to remaining deprecations
 * [PR #11363](https://github.com/leanprover-community/mathlib4/pull/11363) :: refactor: new definition of `eigenvectorUnitary`
-* [PR #11710](https://github.com/leanprover-community/mathlib4/pull/11710) :: feat(Topology/Order/LawsonTopology): Introduce the Lawson Topology to Mathlib
 * [PR #11937](https://github.com/leanprover-community/mathlib4/pull/11937) :: feat: integration by parts for line derivatives and Frechet derivatives
 * [PR #12655](https://github.com/leanprover-community/mathlib4/pull/12655) :: feat: Components of `Multiset.prod` over `α × β`
 * [PR #12657](https://github.com/leanprover-community/mathlib4/pull/12657) :: feat: add `NonUnital{Star}AlgHom.restrictScalars`
@@ -101,7 +107,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12376](https://github.com/leanprover-community/mathlib4/pull/12376) :: fix: move convolution to MeasureTheory namespace
 * [PR #12471](https://github.com/leanprover-community/mathlib4/pull/12471) :: chore: replace `Quotient.exists_rep` with `induction`
 * [PR #12284](https://github.com/leanprover-community/mathlib4/pull/12284) :: chore: remove temporary reviewdog fix
-* [PR #12547](https://github.com/leanprover-community/mathlib4/pull/12547) :: chore(LinearAlgebra/BilinearForm): Add missing deprecated dates
 * [PR #12635](https://github.com/leanprover-community/mathlib4/pull/12635) :: feat: add `HasSum f a → HasProd (exp ∘ f) (exp a)`
 * [PR #12423](https://github.com/leanprover-community/mathlib4/pull/12423) :: feat(Analysis/PSeries): simp for summable_nat_pow_inv
 * [PR #12420](https://github.com/leanprover-community/mathlib4/pull/12420) :: refactor(Data/PNat): better `OfNat` instance
@@ -251,7 +256,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12850](https://github.com/leanprover-community/mathlib4/pull/12850) :: chore: remove some stream-of-conciousness syntax for obtain
 * [PR #12732](https://github.com/leanprover-community/mathlib4/pull/12732) :: feat: Positivity extension for `NNRat.num`/`NNRat.den`
 * [PR #9733](https://github.com/leanprover-community/mathlib4/pull/9733) :: feat: add count_heartbeats! command, and tactic mode count_heartbeats
-* [PR #12844](https://github.com/leanprover-community/mathlib4/pull/12844) :: feat: add `move-decls`-driven action and shorter PR diff
 * [PR #12467](https://github.com/leanprover-community/mathlib4/pull/12467) :: feat: add algebra of sets
 * [PR #12859](https://github.com/leanprover-community/mathlib4/pull/12859) :: chore: run lean4checker cron on hoskinson
 * [PR #12758](https://github.com/leanprover-community/mathlib4/pull/12758) :: Define the cotangent function.
@@ -278,7 +282,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12874](https://github.com/leanprover-community/mathlib4/pull/12874) :: chore(EllipticCurve/Affine): add capitalization to Props `equation` and `nonsingular`
 * [PR #12893](https://github.com/leanprover-community/mathlib4/pull/12893) :: chore: bump dependencies
 * [PR #12896](https://github.com/leanprover-community/mathlib4/pull/12896) :: chore: lake build ProofWidgets required for lean4checker
-* [PR #11962](https://github.com/leanprover-community/mathlib4/pull/11962) :: feat: bialgebra homomorphisms
 * [PR #12898](https://github.com/leanprover-community/mathlib4/pull/12898) :: docs(Condensed): add link to youtube playlist where light condensed sets are defined
 * [PR #12900](https://github.com/leanprover-community/mathlib4/pull/12900) :: chore: run lean4checker daily
 * [PR #12891](https://github.com/leanprover-community/mathlib4/pull/12891) :: chore: rename Name.getString -> Name.lastComponentAsString
@@ -323,7 +326,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12908](https://github.com/leanprover-community/mathlib4/pull/12908) :: chore: adapt to multiple goal linter 7
 * [PR #12948](https://github.com/leanprover-community/mathlib4/pull/12948) :: chore: namespace and tidy MonCat/GroupCat adjunctions
 * [PR #12951](https://github.com/leanprover-community/mathlib4/pull/12951) :: chore: generalize Prefunctor lemmas
-* [PR #11971](https://github.com/leanprover-community/mathlib4/pull/11971) :: feat: bialgebra isomorphisms
 * [PR #12761](https://github.com/leanprover-community/mathlib4/pull/12761) :: refactor: Turn Algebra.IsAlgebraic and Algebra.IsIntegral into classes
 * [PR #12911](https://github.com/leanprover-community/mathlib4/pull/12911) :: feat(Data/Matrix/Basic): 0 ≤ 1
 * [PR #12836](https://github.com/leanprover-community/mathlib4/pull/12836) :: chore: Separate algebraic list lemmas
@@ -353,7 +355,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12882](https://github.com/leanprover-community/mathlib4/pull/12882) :: chore: Delete `Data.Nat.Parity`
 * [PR #12971](https://github.com/leanprover-community/mathlib4/pull/12971) :: feat(Pow/Asymptotics): add `IsTheta.rpow` and `Is*.sqrt`
 * [PR #12975](https://github.com/leanprover-community/mathlib4/pull/12975) :: chore: Move `negOnePow`
-* [PR #12408](https://github.com/leanprover-community/mathlib4/pull/12408) :: chore(CategoryTheory,Combinatorics,FieldTheory,Geometry): add a few more deprecation dates
 * [PR #12374](https://github.com/leanprover-community/mathlib4/pull/12374) :: feat(CategoryTheory/Sites): the category of sheaves is a localization of the category of presheaves
 * [PR #12915](https://github.com/leanprover-community/mathlib4/pull/12915) :: feat(Order/RelSeries): add `snoc` construction
 * [PR #12991](https://github.com/leanprover-community/mathlib4/pull/12991) :: style: remove all isolated `where`
@@ -499,7 +500,6 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #13168](https://github.com/leanprover-community/mathlib4/pull/13168) :: doc: removed old TODO note about implementing nlinarith
 * [PR #13180](https://github.com/leanprover-community/mathlib4/pull/13180) :: Chore(Algebra/Module/Torsion): Fix typo
 * [PR #11945](https://github.com/leanprover-community/mathlib4/pull/11945) :: feat(Combinatorics/SimpleGraph): Distance between `u` and `v` is one iff `u` and `v` are adjacent
-* [PR #12597](https://github.com/leanprover-community/mathlib4/pull/12597) :: chore(Algebra/BigOperators): add missing deprecation dates
 * [PR #13014](https://github.com/leanprover-community/mathlib4/pull/13014) :: feat: golf SpectrumRestricts.closedEmbedding_starAlgHom using uniform trickery
 * [PR #13184](https://github.com/leanprover-community/mathlib4/pull/13184) :: chore: remove some minor order dependencies from Algebra.GroupWithZero
 * [PR #13131](https://github.com/leanprover-community/mathlib4/pull/13131) :: chore(Algebra/Lie): rename IsSemisimple to HasTrivialRadical
@@ -516,25 +516,20 @@ There were 920 PRs merged in May 2024, a 35% percent increase compared to the 68
 * [PR #12923](https://github.com/leanprover-community/mathlib4/pull/12923) :: feat (NumberTheory/Harmonic): compute Gamma'(1/2)
 * [PR #13043](https://github.com/leanprover-community/mathlib4/pull/13043) :: feat(AEEqFun): add 3 trivial lemmas
 * [PR #13048](https://github.com/leanprover-community/mathlib4/pull/13048) :: feat(RelClasses): generalize `IsTrans`/`IsRefl` instances
-* [PR #13182](https://github.com/leanprover-community/mathlib4/pull/13182) :: chore(AlgebraicGeometry): add dates to all deprecations
 * [PR #13211](https://github.com/leanprover-community/mathlib4/pull/13211) :: chore(Covering/Differentiation): minor golf
 * [PR #13212](https://github.com/leanprover-community/mathlib4/pull/13212) :: RFC: normalise copyright headers
-* [PR #13185](https://github.com/leanprover-community/mathlib4/pull/13185) :: chore(MeasureTheory): use since syntax for deprecation dates
 * [PR #13216](https://github.com/leanprover-community/mathlib4/pull/13216) :: feat(Order/Filter): add `frequently_inf_principal`
 * [PR #13187](https://github.com/leanprover-community/mathlib4/pull/13187) :: feat: `Finset.prod_Icc_succ_top`
 * [PR #13214](https://github.com/leanprover-community/mathlib4/pull/13214) :: feat: `List.iterate`
-* [PR #12598](https://github.com/leanprover-community/mathlib4/pull/12598) :: chore(Algebra): add missing deprecation dates
 * [PR #13238](https://github.com/leanprover-community/mathlib4/pull/13238) :: feat: add `creator` to `new-contributor`
 * [PR #13231](https://github.com/leanprover-community/mathlib4/pull/13231) :: chore(MeasureTheory): drop `autoImplicit true`
 * [PR #13025](https://github.com/leanprover-community/mathlib4/pull/13025) :: feat(mathlib4/Data/Fintype/Quotient): `Trunc` version of `Quotient.finChoice`
 * [PR #13225](https://github.com/leanprover-community/mathlib4/pull/13225) :: chore(Sheaves/Skyscraper): drop a `Decidable` assumption
 * [PR #12653](https://github.com/leanprover-community/mathlib4/pull/12653) :: feat: More ways of bijecting finsets
 * [PR #13218](https://github.com/leanprover-community/mathlib4/pull/13218) :: fix: align Set.empty_def with mathlib3
-* [PR #13188](https://github.com/leanprover-community/mathlib4/pull/13188) :: chore(Analysis): use since syntax for deprecation dates
 * [PR #13236](https://github.com/leanprover-community/mathlib4/pull/13236) :: chore: typos in doc strings
 * [PR #13061](https://github.com/leanprover-community/mathlib4/pull/13061) :: feat: the largest T2 quotient of a topological space.
 * [PR #12631](https://github.com/leanprover-community/mathlib4/pull/12631) :: feat(CategoryTheory/Localization): left resolutions for localizer morphisms
-* [PR #13206](https://github.com/leanprover-community/mathlib4/pull/13206) :: feat: Code snippet for deprecated aliases
 * [PR #13237](https://github.com/leanprover-community/mathlib4/pull/13237) :: chore: rename `projective_iff_extremallyDisconnnected`
 * [PR #13247](https://github.com/leanprover-community/mathlib4/pull/13247) :: chore: adding missing copyright years
 * [PR #12111](https://github.com/leanprover-community/mathlib4/pull/12111) :: feat: exhibit lower adjoint for smallSets, use it to prove a better comap_smallSets
@@ -561,7 +556,6 @@ cee9bb228f feat: norm structure on `WithLp 1 (Unitization 𝕜* [PR #12582](http
 * [PR #13115](https://github.com/leanprover-community/mathlib4/pull/13115) :: feat(NumberTheory/SmoothNumbers): multiplicativity
 * [PR #13244](https://github.com/leanprover-community/mathlib4/pull/13244) :: chore: Split `Algebra.Function.Support`/`Algebra.Function.Indicator`
 * [PR #13266](https://github.com/leanprover-community/mathlib4/pull/13266) :: doc(Algebra/Star/StarAlgHom): Fix StarAlgHom equivalence relation docstrings
-* [PR #11972](https://github.com/leanprover-community/mathlib4/pull/11972) :: feat: category of coalgebras
 * [PR #13125](https://github.com/leanprover-community/mathlib4/pull/13125) :: feat(Probability): add `indepFun_of_identDistrib_pair `
 * [PR #13264](https://github.com/leanprover-community/mathlib4/pull/13264) :: chore: add `induction_eliminator, cases_eliminator` to `WithTop` etc
 * [PR #13261](https://github.com/leanprover-community/mathlib4/pull/13261) :: feat(Algebra/Lie/*): Add `Zero` and `Neg` instances for weights.
@@ -640,7 +634,6 @@ cee9bb228f feat: norm structure on `WithLp 1 (Unitization 𝕜* [PR #12582](http
 * [PR #13177](https://github.com/leanprover-community/mathlib4/pull/13177) :: feat(Ideal.IsPrincipal): Prove that the equiv between principal ideals and associates is a `MulEquiv`
 * [PR #13348](https://github.com/leanprover-community/mathlib4/pull/13348) :: feat(GroupTheory/OrderOfElement): equivalences preserve orders
 * [PR #13350](https://github.com/leanprover-community/mathlib4/pull/13350) :: feat: add card_divisors theorem
-* [PR #13368](https://github.com/leanprover-community/mathlib4/pull/13368) :: chore: add deprecation dates for `nat_cast` and `int_cast` lemmas
 * [PR #13373](https://github.com/leanprover-community/mathlib4/pull/13373) :: feat(NumberTheory/Zsqrtd/GaussianInt): Function.Injective GaussianInt.toComplex
 * [PR #13376](https://github.com/leanprover-community/mathlib4/pull/13376) :: fix: `move-decls` is aware of protected
 * [PR #13377](https://github.com/leanprover-community/mathlib4/pull/13377) :: chore(NumberTheory/LSeries): namespace Hurwitz zeta
@@ -674,252 +667,3 @@ cee9bb228f feat: norm structure on `WithLp 1 (Unitization 𝕜* [PR #12582](http
 * [PR #13402](https://github.com/leanprover-community/mathlib4/pull/13402) :: chore(test/linarith): remove stray variables from guard_msgs
 * [PR #13273](https://github.com/leanprover-community/mathlib4/pull/13273) :: feat(NumberTheory/LSeries): Riemann zeta as special case of Hurwitz
 * [PR #13286](https://github.com/leanprover-community/mathlib4/pull/13286) :: chore: remove most of the material on BitVec
-* [PR #12970](https://github.com/leanprover-community/mathlib4/pull/12970) :: feat(CategoryTheory/Monoidal/Bimon): definition of bimonoid object in a braided category
-* [PR #13082](https://github.com/leanprover-community/mathlib4/pull/13082) :: chore: move LinearOrder Nat instance to Mathlib.Data.Nat.Defs
-* [PR #13128](https://github.com/leanprover-community/mathlib4/pull/13128) :: chore: deprecate bad lemmas about WithTop/WithBot
-* [PR #13406](https://github.com/leanprover-community/mathlib4/pull/13406) :: chore: golf `lie_eq_self_of_isAtom_of_nonabelian`
-* [PR #13419](https://github.com/leanprover-community/mathlib4/pull/13419) :: style: remove all easy leading `by`s
-* [PR #13426](https://github.com/leanprover-community/mathlib4/pull/13426) :: docs(Algebra/BigOperators): fix typo in docstring 
-* [PR #13423](https://github.com/leanprover-community/mathlib4/pull/13423) :: feat(GroupTheory/SpecificGroups/Cyclic): add material on groups with given generator
-* [PR #10432](https://github.com/leanprover-community/mathlib4/pull/10432) :: refactor(LinearAlgebra/BilinearForm/Properties): Redefine BilinForm.IsRefl, BilinForm.IsAlt and BilinForm.IsSymm in terms of LinearMap equivalents 
-* [PR #13277](https://github.com/leanprover-community/mathlib4/pull/13277) :: chore: Split `Algebra.BigOperators.Basic`
-* [PR #13439](https://github.com/leanprover-community/mathlib4/pull/13439) :: fix(`gitpod.yml`): force elan to self-update in gitpod
-* [PR #13171](https://github.com/leanprover-community/mathlib4/pull/13171) :: refactor: Use `FunLike` on `ProbabilityMeasure`
-* [PR #13343](https://github.com/leanprover-community/mathlib4/pull/13343) :: fix(`nolints.yml`): correct the main step of the `update-nolints` workflow
-* [PR #13395](https://github.com/leanprover-community/mathlib4/pull/13395) :: feat(Cache): add success message to `lake exe cache get`
-* [PR #13339](https://github.com/leanprover-community/mathlib4/pull/13339) :: refactor: tweak and move functionality for getting all modules out of `scripts`
-* [PR #13443](https://github.com/leanprover-community/mathlib4/pull/13443) :: chore: bump dependencies
-* [PR #13436](https://github.com/leanprover-community/mathlib4/pull/13436) :: feat: `t.card ≤ (s / t).card`
-* [PR #13351](https://github.com/leanprover-community/mathlib4/pull/13351) :: chore: clean up `nolints.yml` workflow
-* [PR #13396](https://github.com/leanprover-community/mathlib4/pull/13396) :: feat(CategoryTheory/Sites): epi/mono factorizations in categories of sheaves
-* [PR #13433](https://github.com/leanprover-community/mathlib4/pull/13433) :: style: manually remove some leading `by`
-* [PR #13365](https://github.com/leanprover-community/mathlib4/pull/13365) :: feat: instances of the non-unital continuous functional calculus for C⋆-algebras
-* [PR #13363](https://github.com/leanprover-community/mathlib4/pull/13363) :: feat: uniqueness of the non-unital continuous functional calculus
-* [PR #13356](https://github.com/leanprover-community/mathlib4/pull/13356) :: feat(AlgebraicGeometry/EllipticCurve/Affine): add further map lemmas
-* [PR #13067](https://github.com/leanprover-community/mathlib4/pull/13067) :: chore: remove unnecessary outParam
-* [PR #13462](https://github.com/leanprover-community/mathlib4/pull/13462) :: chore: remove brackets around `Type*`
-* [PR #13453](https://github.com/leanprover-community/mathlib4/pull/13453) :: chore(LapMatrix): golf, use `*ᵥ` notation, docs
-* [PR #13437](https://github.com/leanprover-community/mathlib4/pull/13437) :: chore: Rename `Nat.multinomial_nil` to `Nat.multinomial_empty`
-* [PR #13135](https://github.com/leanprover-community/mathlib4/pull/13135) :: feat(NumberField/CanonicalEmbedding): add normAtPlace
-* [PR #13477](https://github.com/leanprover-community/mathlib4/pull/13477) :: fix docstring in PiL2.lean
-* [PR #13471](https://github.com/leanprover-community/mathlib4/pull/13471) :: chore(*): drop some uses of `some_eq_coe`, `none_eq_bot`
-* [PR #13482](https://github.com/leanprover-community/mathlib4/pull/13482) :: fix: make `update_nolints.sh` executable
-* [PR #13475](https://github.com/leanprover-community/mathlib4/pull/13475) :: feat(Matrix/Determinant): add `submatrix_succAbove_det_eq_negOnePow_submatrix_succAbove_det`
-* [PR #13417](https://github.com/leanprover-community/mathlib4/pull/13417) :: feat(Topology): fiberwise summation
-* [PR #12607](https://github.com/leanprover-community/mathlib4/pull/12607) :: feat(CategoryTheory/Shift): functors from a category to a category with a shift
-* [PR #13476](https://github.com/leanprover-community/mathlib4/pull/13476) :: chore: tidy induction principles for Unitization and TrivSqZeroExt
-* [PR #13413](https://github.com/leanprover-community/mathlib4/pull/13413) :: fix(Tactic/Elementwise): type inference in elementwise
-* [PR #13488](https://github.com/leanprover-community/mathlib4/pull/13488) :: chore: run `lake update` when updating nightly-testing
-* [PR #13400](https://github.com/leanprover-community/mathlib4/pull/13400) :: feat: add `Polynomial.coeff_list_sum_map`
-* [PR #13169](https://github.com/leanprover-community/mathlib4/pull/13169) :: chore: Move `Data.Rat.Order` to `Algebra.Order.Ring.Rat`
-* [PR #13397](https://github.com/leanprover-community/mathlib4/pull/13397) :: feat(SetTheory/Cardinal/Basic): add `Cardinal.lift_mk_le_lift_mk_of_surjective`
-* [PR #13457](https://github.com/leanprover-community/mathlib4/pull/13457) :: doc(mathlib4/Order/Filter/Curry): fix `at_top` to `atTop`
-* [PR #13492](https://github.com/leanprover-community/mathlib4/pull/13492) :: feat: The triple centralizer is equal to the centralizer
-* [PR #13434](https://github.com/leanprover-community/mathlib4/pull/13434) :: feat(NumberTheory/Harmonic): explicit formula for `ζ 1`
-* [PR #12627](https://github.com/leanprover-community/mathlib4/pull/12627) :: feat(CategoryTheory): vertical composition of Guitart exact squares
-* [PR #13447](https://github.com/leanprover-community/mathlib4/pull/13447) :: feat: restriction of scalars for (pre)sheaves of modules
-* [PR #13461](https://github.com/leanprover-community/mathlib4/pull/13461) :: feat: the free (pre)sheaf of modules of rank 1
-* [PR #12196](https://github.com/leanprover-community/mathlib4/pull/12196) :: feat: part-preserving equivalence of an equipartition with `Fin s.card`
-* [PR #12666](https://github.com/leanprover-community/mathlib4/pull/12666) :: feat: the equational criterion for flatness
-* [PR #9705](https://github.com/leanprover-community/mathlib4/pull/9705) :: feat: Context-free languages are closed under reversal
-* [PR #13183](https://github.com/leanprover-community/mathlib4/pull/13183) :: chore(Geometry,GroupTheory): use since syntax for all deprecation dates
-* [PR #13024](https://github.com/leanprover-community/mathlib4/pull/13024) :: feat: Add lemmas about `coeff_single_X_pow`
-* [PR #13425](https://github.com/leanprover-community/mathlib4/pull/13425) :: feat: left-Noetherian rings and commutative rings satisfy `OrzechProperty`
-* [PR #13186](https://github.com/leanprover-community/mathlib4/pull/13186) :: chore: add dates to more deprecations
-* [PR #13379](https://github.com/leanprover-community/mathlib4/pull/13379) :: feat: simp lemma replacing MulEquiv.toMonoidHom with coercion
-* [PR #12904](https://github.com/leanprover-community/mathlib4/pull/12904) :: chore: Delete `Data.Int.Parity`
-* [PR #13098](https://github.com/leanprover-community/mathlib4/pull/13098) :: feat(Algebra/Exact): Equivalent characterizations of split exact sequences.
-* [PR #12978](https://github.com/leanprover-community/mathlib4/pull/12978) :: feat(FiberedCategory/HomLift): definition of IsHomLift
-* [PR #12771](https://github.com/leanprover-community/mathlib4/pull/12771) :: feat(Analysis/SpecificLimits/Normed): add lemma about geom_series
-* [PR #12693](https://github.com/leanprover-community/mathlib4/pull/12693) :: feat: Limits under division by a positive/negative number
-* [PR #13198](https://github.com/leanprover-community/mathlib4/pull/13198) :: style: remove mathport output
-* [PR #13469](https://github.com/leanprover-community/mathlib4/pull/13469) :: chore: fix comments about Pointwise files to point to renamed files
-* [PR #11998](https://github.com/leanprover-community/mathlib4/pull/11998) :: feat: convergent series in the completion of a group
-* [PR #12887](https://github.com/leanprover-community/mathlib4/pull/12887) :: feat(RingTheory/MvPolynomial): add finset of coefficients
-* [PR #13518](https://github.com/leanprover-community/mathlib4/pull/13518) :: chore: Scope some extremely generic notation
-* [PR #12293](https://github.com/leanprover-community/mathlib4/pull/12293) :: feat(Mathlib.RingTheory.TensorProduct.MvPolynomial) :  tensor product of a (multivariate) polynomial ring
-* [PR #13004](https://github.com/leanprover-community/mathlib4/pull/13004) :: feat(CategoryTheory/Sites): characterization of sheaves using 1-hypercovers
-* [PR #13524](https://github.com/leanprover-community/mathlib4/pull/13524) :: chore: bump dependencies
-* [PR #13360](https://github.com/leanprover-community/mathlib4/pull/13360) :: Ring-specific lemmas about regular elements
-* [PR #12765](https://github.com/leanprover-community/mathlib4/pull/12765) :: feat (Mathlib.NumberTheory.Cyclotomic.Three): new file
-* [PR #13510](https://github.com/leanprover-community/mathlib4/pull/13510) :: chore: remove import Mathlib.Algebra.EuclideanDomain.Instances
-* [PR #13418](https://github.com/leanprover-community/mathlib4/pull/13418) :: feat(GroupTheory/Frattini): definition and first theorem
-* [PR #1388](https://github.com/leanprover-community/mathlib4/pull/1388) :: refactor: Redefine `pow` in terms of `iterate`
-* [PR #13525](https://github.com/leanprover-community/mathlib4/pull/13525) :: chore: fix names for String lemmas
-* [PR #11398](https://github.com/leanprover-community/mathlib4/pull/11398) :: feat(AlgebraicTopology): simplicial categories
-* [PR #13527](https://github.com/leanprover-community/mathlib4/pull/13527) :: chore: fix name for isNilpotent_of_finite_tFAE
-* [PR #13438](https://github.com/leanprover-community/mathlib4/pull/13438) :: perf: reduce instance priority of IsDedekindDomain.toIsDomain
-* [PR #13499](https://github.com/leanprover-community/mathlib4/pull/13499) :: feat: left adjoint functors preserve sheafification
-* [PR #13522](https://github.com/leanprover-community/mathlib4/pull/13522) :: chore: remove unneeded imports for mathlib4/Data/ByteArray
-* [PR #12457](https://github.com/leanprover-community/mathlib4/pull/12457) :: chore: move the link between additive morphisms and linear maps earlier
-* [PR #13513](https://github.com/leanprover-community/mathlib4/pull/13513) :: chore: deprecate redundant lattice lemmas
-* [PR #13529](https://github.com/leanprover-community/mathlib4/pull/13529) :: feat: the category of (pre)sheaves of modules over a scheme
-* [PR #12788](https://github.com/leanprover-community/mathlib4/pull/12788) :: feat(CategoryTheory): right derived functors
-* [PR #13516](https://github.com/leanprover-community/mathlib4/pull/13516) :: chore(Deriv/Mul): drop some `DecidableEq` assumptions
-* [PR #13531](https://github.com/leanprover-community/mathlib4/pull/13531) :: chore(LocallyConvex/Bounded): use implicit args
-* [PR #13530](https://github.com/leanprover-community/mathlib4/pull/13530) :: chore: tidy various files
-* [PR #13392](https://github.com/leanprover-community/mathlib4/pull/13392) :: feat: add API for multiplicative characters
-* [PR #13536](https://github.com/leanprover-community/mathlib4/pull/13536) :: chore: mark trigonometric functions as `fun_prop`
-* [PR #13537](https://github.com/leanprover-community/mathlib4/pull/13537) :: chore: protect `Filter.mem_nhds_iff`
-* [PR #13538](https://github.com/leanprover-community/mathlib4/pull/13538) :: chore: mark `IsProperMap` with `fun_prop`
-* [PR #13506](https://github.com/leanprover-community/mathlib4/pull/13506) :: feat(CategoryTheory): transposition of commutative squares across an adjunction
-* [PR #13091](https://github.com/leanprover-community/mathlib4/pull/13091) :: feat(Algebra/Module/Projective): Tensor product of projective modules
-* [PR #11549](https://github.com/leanprover-community/mathlib4/pull/11549) :: feat: Levy-Prokhorov distance pseudometrizes convergence in distribution
-* [PR #13528](https://github.com/leanprover-community/mathlib4/pull/13528) :: test: add tests against regressions in typeclass synthesis performance
-* [PR #13405](https://github.com/leanprover-community/mathlib4/pull/13405) :: feat: add `{Even,Odd}.natCast`
-* [PR #13542](https://github.com/leanprover-community/mathlib4/pull/13542) :: chore: fix type class assumptions for unique CFC instance for `ℝ≥0`
-* [PR #13526](https://github.com/leanprover-community/mathlib4/pull/13526) :: chore: bump toolchain to v4.8.0
-* [PR #13546](https://github.com/leanprover-community/mathlib4/pull/13546) :: chore(Data/List/Lex): golf and generalize
-* [PR #13534](https://github.com/leanprover-community/mathlib4/pull/13534) :: feat: variations on the uniformity of uniform convergence given functions whose ranges cover the space
-* [PR #13541](https://github.com/leanprover-community/mathlib4/pull/13541) :: feat: obtain a non-unital continuous functional calculus from a unital one
-* [PR #13432](https://github.com/leanprover-community/mathlib4/pull/13432) :: Refactor(Algebra/Group/Subgroup/Finite): Replace `Fintype.card` with `Nat.card`
-* [PR #9435](https://github.com/leanprover-community/mathlib4/pull/9435) :: feat(AlgebraicGeometry/EllipticCurve/Jacobian): implement group operations on point representatives for Jacobian coordinates
-* [PR #13551](https://github.com/leanprover-community/mathlib4/pull/13551) :: chore: elaboration help after leanprover/lean4#4352
-* [PR #13552](https://github.com/leanprover-community/mathlib4/pull/13552) :: chore(RingTheory/PowerSeries/WellKnown): simplify proof
-* [PR #13553](https://github.com/leanprover-community/mathlib4/pull/13553) :: chore(UniformSpace/Basic): avoid use of deprecated function
-* [PR #12544](https://github.com/leanprover-community/mathlib4/pull/12544) :: Feat: Add regular sequences
-* [PR #13167](https://github.com/leanprover-community/mathlib4/pull/13167) :: feat: Interaction of `Sum.elim` and order
-* [PR #10818](https://github.com/leanprover-community/mathlib4/pull/10818) :: feat: define `Fin2.rev` analogously to `Fin.rev`
-* [PR #13151](https://github.com/leanprover-community/mathlib4/pull/13151) :: refactor(RingTheory/OreLocalization): Ore localization of modules
-* [PR #12076](https://github.com/leanprover-community/mathlib4/pull/12076) :: refactor: change the proof of `Module.Finite.injective_of_surjective_endomorphism` and `commRing_strongRankCondition`
-* [PR #13445](https://github.com/leanprover-community/mathlib4/pull/13445) :: chore: Make more arguments to `inter_subset_left` implicit
-* [PR #13558](https://github.com/leanprover-community/mathlib4/pull/13558) :: feat: mapComposableArrows is essentially surjective for localization functors when there is a calculus of fractions
-* [PR #8619](https://github.com/leanprover-community/mathlib4/pull/8619) :: feat(Computability/Primrec): recursion on order type omega is primitive recursive
-* [PR #13308](https://github.com/leanprover-community/mathlib4/pull/13308) :: fix: remove Dedekind domain assumption from Ideal.inf_eq_mul_of_coprime
-* [PR #12002](https://github.com/leanprover-community/mathlib4/pull/12002) :: feat(Topology/UniformSpace/Ascoli): Arzela-Ascoli for an equicontinuous family of functions
-* [PR #11342](https://github.com/leanprover-community/mathlib4/pull/11342) :: feat: complements of codimension at least two subspaces are ample
-* [PR #13562](https://github.com/leanprover-community/mathlib4/pull/13562) :: chore: tidy various files
-* [PR #13515](https://github.com/leanprover-community/mathlib4/pull/13515) :: chore(Topology): tweak and factor out "pseudo-metrisable second countable spaces are Lindelöf"
-* [PR #12964](https://github.com/leanprover-community/mathlib4/pull/12964) :: chore: Split `Algebra.GroupPower.Order`
-* [PR #13565](https://github.com/leanprover-community/mathlib4/pull/13565) :: feat(Order/ModularLattice): alternative equality lemma
-* [PR #11555](https://github.com/leanprover-community/mathlib4/pull/11555) :: feat: the associated sheaf of a presheaf of modules
-* [PR #11114](https://github.com/leanprover-community/mathlib4/pull/11114) :: feat: optionEquiv lemmas
-* [PR #11116](https://github.com/leanprover-community/mathlib4/pull/11116) :: feat: Miscellaneous lemmas on quotienting by a polynomial
-* [PR #11671](https://github.com/leanprover-community/mathlib4/pull/11671) :: refactor: `reduceOption_length_le`
-* [PR #11912](https://github.com/leanprover-community/mathlib4/pull/11912) :: feat(GroupTheory/GroupAction/Basic): various orbit / quotient lemmas
-* [PR #12663](https://github.com/leanprover-community/mathlib4/pull/12663) :: chore: add flexible tactics to nonterminal simp linter
-* [PR #13569](https://github.com/leanprover-community/mathlib4/pull/13569) :: refactor: move NumberTheory.LegendreSymbol.MulCharacter to NumberTheory.MulChar.Basic
-* [PR #13463](https://github.com/leanprover-community/mathlib4/pull/13463) :: feat: the pushforward of (pre)sheaves of modules
-* [PR #13556](https://github.com/leanprover-community/mathlib4/pull/13556) :: ci: report changes to the import graph in a spoiler comment
-* [PR #13494](https://github.com/leanprover-community/mathlib4/pull/13494) :: chore(Data/UInt): make instCommRing a def, and explain why
-* [PR #13584](https://github.com/leanprover-community/mathlib4/pull/13584) :: chore: merge bump/v4.9.0
-* [PR #13581](https://github.com/leanprover-community/mathlib4/pull/13581) :: chore: make import_count.yml pull scripts from master
-* [PR #13582](https://github.com/leanprover-community/mathlib4/pull/13582) :: Chore(RingTheory/Regular): Simplify some namespaces in IsSMulRegular
-* [PR #13591](https://github.com/leanprover-community/mathlib4/pull/13591) :: feat(Set,Finset): add lemmas, golf
-* [PR #13588](https://github.com/leanprover-community/mathlib4/pull/13588) :: chore(Data/Buffer/Parser): delete two comment-only files from the port
-* [PR #13593](https://github.com/leanprover-community/mathlib4/pull/13593) :: chore(Topology/../Rat): drop a deprecated lemma
-* [PR #12508](https://github.com/leanprover-community/mathlib4/pull/12508) :: feat(Topology/LocallyConstant): `map` and `const` as algebraic maps
-* [PR #13563](https://github.com/leanprover-community/mathlib4/pull/13563) :: feat(Algebra/Order/GroupWithZero): add `inv_lt_one₀` and `one_lt_inv₀`
-* [PR #13598](https://github.com/leanprover-community/mathlib4/pull/13598) :: chore(CategoryTheory.IsConnected): remove redundant hypothesis in `of_induct`
-* [PR #13309](https://github.com/leanprover-community/mathlib4/pull/13309) :: feat: Add `integrable_add_iff_of_nonneg`
-* [PR #13602](https://github.com/leanprover-community/mathlib4/pull/13602) :: CI: extract update comment and merge import and diff summaries
-* [PR #13608](https://github.com/leanprover-community/mathlib4/pull/13608) :: expected fix: checkout from master for PR summary
-* [PR #13440](https://github.com/leanprover-community/mathlib4/pull/13440) :: feat(Order/Interval): conversion Icc <-> range
-* [PR #13193](https://github.com/leanprover-community/mathlib4/pull/13193) :: feat: `oangle_sign_eq_zero_iff_collinear`
-* [PR #13444](https://github.com/leanprover-community/mathlib4/pull/13444) :: chore: Make `Subgroup.coe_set_mk`/`Subsemigroup.coe_set_mk` a `norm_cast` lemma
-* [PR #13587](https://github.com/leanprover-community/mathlib4/pull/13587) :: chore: deprecate unused Array/List function
-* [PR #12415](https://github.com/leanprover-community/mathlib4/pull/12415) :: feat(Data/Matroid/Constructions): simple constructions of matroids
-* [PR #13615](https://github.com/leanprover-community/mathlib4/pull/13615) :: chore: move dependencies off nightly-testing
-* [PR #12745](https://github.com/leanprover-community/mathlib4/pull/12745) :: feat: `refold_let` tactic
-* [PR #13612](https://github.com/leanprover-community/mathlib4/pull/13612) :: chore: add deprecated aliases missing from #13356
-* [PR #13614](https://github.com/leanprover-community/mathlib4/pull/13614) :: rename: Declarations diff
-* [PR #10565](https://github.com/leanprover-community/mathlib4/pull/10565) :: feat: Topological properties of order-connected sets in ℝⁿ
-* [PR #13493](https://github.com/leanprover-community/mathlib4/pull/13493) :: chore(Order/Interval): use `WithBot` API
-* [PR #13597](https://github.com/leanprover-community/mathlib4/pull/13597) :: ci: post a weekly report to zulip with some technical debt stats
-* [PR #13622](https://github.com/leanprover-community/mathlib4/pull/13622) :: feat(CategoryTheory): a conservative functor preserving epis and monos reflects the property of being balanced
-* [PR #13616](https://github.com/leanprover-community/mathlib4/pull/13616) :: feat: basic `Vector.inductionOn` API
-* [PR #13431](https://github.com/leanprover-community/mathlib4/pull/13431) :: refactor(GroupTheory/Coset): Replace `Fintype.card` with `Nat.card`
-* [PR #13571](https://github.com/leanprover-community/mathlib4/pull/13571) :: feat: shifted morphisms in categories with a shift
-* [PR #11517](https://github.com/leanprover-community/mathlib4/pull/11517) :: feat(Algebra/Homology): commutation up to signs of the compatibility isomorphisms of the total complex with shifts in both variables
-* [PR #12633](https://github.com/leanprover-community/mathlib4/pull/12633) :: feat(CategoryTheory): right derivability structures
-* [PR #13628](https://github.com/leanprover-community/mathlib4/pull/13628) :: fix: remove unused arguments in `norm_mkPiAlgebraFin`
-* [PR #13606](https://github.com/leanprover-community/mathlib4/pull/13606) :: chore: desimp `compl_sdiff`
-* [PR #13263](https://github.com/leanprover-community/mathlib4/pull/13263) :: feat(Topology/List): If `α` is discrete then so is `List α`
-* [PR #13566](https://github.com/leanprover-community/mathlib4/pull/13566) :: chore: move LinearMap.eqLocus to its own file
-* [PR #13576](https://github.com/leanprover-community/mathlib4/pull/13576) :: chore(AddChar): Rename `map_zero_one` to `map_zero_eq_one`
-* [PR #13596](https://github.com/leanprover-community/mathlib4/pull/13596) :: chore: avoid instance names for DMatrix
-* [PR #12753](https://github.com/leanprover-community/mathlib4/pull/12753) :: chore: Rename `Prod_map`
-* [PR #12700](https://github.com/leanprover-community/mathlib4/pull/12700) :: doc: clean up some `add_decl_doc`s
-* [PR #13605](https://github.com/leanprover-community/mathlib4/pull/13605) :: chore(Data/List): cleanup redundant type arguments
-* [PR #13624](https://github.com/leanprover-community/mathlib4/pull/13624) :: chore(FieldTheory/Finiteness): delete a deprecated alias
-* [PR #13250](https://github.com/leanprover-community/mathlib4/pull/13250) :: feat: topology on `ℕ+`(`PNat`)
-* [PR #13625](https://github.com/leanprover-community/mathlib4/pull/13625) :: feat: make `Vector.inductionOn` the default `induction_eliminator`
-* [PR #12816](https://github.com/leanprover-community/mathlib4/pull/12816) :: chore: Move `CharP` lemmas about order of elements
-* [PR #12843](https://github.com/leanprover-community/mathlib4/pull/12843) :: feat(CategoryTheory/Galois): fundamental group is limit of automorphism groups
-* [PR #13586](https://github.com/leanprover-community/mathlib4/pull/13586) :: chore: rename UInt8.isLower to isASCIILower, etc
-* [PR #13604](https://github.com/leanprover-community/mathlib4/pull/13604) :: chore(Order/Basic): cleanup redundant type arguments
-* [PR #10856](https://github.com/leanprover-community/mathlib4/pull/10856) :: feat(MeasureTheory): generalize NullMeasurable to measurability mod a sigma filter. 
-* [PR #13626](https://github.com/leanprover-community/mathlib4/pull/13626) :: chore(*): fix formatting of some deprecation dates
-* [PR #13485](https://github.com/leanprover-community/mathlib4/pull/13485) :: feat(Topology/Category): category of finite topological spaces
-* [PR #13600](https://github.com/leanprover-community/mathlib4/pull/13600) :: feat: the single functors from the homotopy category
-* [PR #13613](https://github.com/leanprover-community/mathlib4/pull/13613) :: Chore(Algebra/Polynomial/Module/Basic): Refactor out Module.AEval 
-* [PR #13618](https://github.com/leanprover-community/mathlib4/pull/13618) :: style: fix last easy isolated `by`s
-* [PR #13629](https://github.com/leanprover-community/mathlib4/pull/13629) :: chore(Data/Tree): split file
-* [PR #13042](https://github.com/leanprover-community/mathlib4/pull/13042) :: refactor(LinearAlgebra/BilinearMap): Left composition, bilinear over different rings
-* [PR #13621](https://github.com/leanprover-community/mathlib4/pull/13621) :: feat(CategoryTheory/Sites): reflecting and preserving local injectivity and surjectivity
-* [PR #13547](https://github.com/leanprover-community/mathlib4/pull/13547) :: feat: order lemmas for NNRat
-* [PR #13643](https://github.com/leanprover-community/mathlib4/pull/13643) :: chore(Order/Atoms): Rename instances according to convention
-* [PR #13645](https://github.com/leanprover-community/mathlib4/pull/13645) :: chore: Add floor_ofNat and ceil_ofNat
-* [PR #13654](https://github.com/leanprover-community/mathlib4/pull/13654) :: chore: Move the inheritance `StrictOrderedSemiring α → CharZero α` instance to a less obscure file
-* [PR #13657](https://github.com/leanprover-community/mathlib4/pull/13657) :: chore: Run `lake exe shake --update`
-* [PR #13644](https://github.com/leanprover-community/mathlib4/pull/13644) :: chore(Data/Rat/Cast/Order): Use `p`, `q` as variable names
-* [PR #13636](https://github.com/leanprover-community/mathlib4/pull/13636) :: feat(Algebra, Order): simple submodules in a semisimple module
-* [PR #13619](https://github.com/leanprover-community/mathlib4/pull/13619) :: chore(*): drop some long-deprecated theorems
-* [PR #13257](https://github.com/leanprover-community/mathlib4/pull/13257) :: feat: add `List.iterate_add`
-* [PR #13655](https://github.com/leanprover-community/mathlib4/pull/13655) :: chore: remove some `set_option ... in` which are not necessary any more
-* [PR #12555](https://github.com/leanprover-community/mathlib4/pull/12555) :: feat(Data/Set/Function): lemmas about inj/bij/surjectivity
-* [PR #13668](https://github.com/leanprover-community/mathlib4/pull/13668) :: chore(Algebra/Group/Hom/Instances): remove obsolete adaptation note
-* [PR #13662](https://github.com/leanprover-community/mathlib4/pull/13662) :: chore: move basic linear equivalences to Mathlib.Algebra.Module.Equiv
-* [PR #6703](https://github.com/leanprover-community/mathlib4/pull/6703) :: feat(AlgebraicGeometry/EllipticCurve/DivisionPolynomial/Basic): define division polynomials
-* [PR #12364](https://github.com/leanprover-community/mathlib4/pull/12364) :: chore: move NormalizedGCDMonoid ℤ to reduce imports
-* [PR #13441](https://github.com/leanprover-community/mathlib4/pull/13441) :: feat: the sheafification functor for presheaves of modules
-* [PR #13574](https://github.com/leanprover-community/mathlib4/pull/13574) :: chore: Rename `Finset.piAntidiagonal` to `Finset.finsuppAntidiag`
-* [PR #13632](https://github.com/leanprover-community/mathlib4/pull/13632) :: feat(CategoryTheory/Sites): transfer WEqualsLocallyBijective
-* [PR #13664](https://github.com/leanprover-community/mathlib4/pull/13664) :: feat: the homology sequence of a distinguished triangle in the derived category
-* [PR #11687](https://github.com/leanprover-community/mathlib4/pull/11687) :: feat(CategoryTheory/GradedObject): the triangle equality
-* [PR #13540](https://github.com/leanprover-community/mathlib4/pull/13540) :: refactor: move GaussSum directly under NumberTheory
-* [PR #13454](https://github.com/leanprover-community/mathlib4/pull/13454) :: perf(VectorBundle/FiberwiseLinear): speed up
-* [PR #13674](https://github.com/leanprover-community/mathlib4/pull/13674) :: chore(*): fix more deprecated dates
-* [PR #13665](https://github.com/leanprover-community/mathlib4/pull/13665) :: chore: use #adaptation_note for the remaining cases
-* [PR #13679](https://github.com/leanprover-community/mathlib4/pull/13679) :: chore(*): drop some bit0/bit1 lemmas
-* [PR #13660](https://github.com/leanprover-community/mathlib4/pull/13660) :: feat(lint-style): lint on the plain string 'Adaptation note:'
-* [PR #13681](https://github.com/leanprover-community/mathlib4/pull/13681) :: chore: reduce import in NumberTheory.Divisors
-* [PR #13631](https://github.com/leanprover-community/mathlib4/pull/13631) :: chore: move totallyBounded_Ixx lemmas up a bit
-* [PR #13680](https://github.com/leanprover-community/mathlib4/pull/13680) :: chore: fix "unnecessary have" lint errors
-* [PR #13669](https://github.com/leanprover-community/mathlib4/pull/13669) :: chore: remove or lower `maxHeartbeats` to match the current state
-* [PR #13677](https://github.com/leanprover-community/mathlib4/pull/13677) :: chore(Bicategory/Functor): split into two files
-* [PR #12966](https://github.com/leanprover-community/mathlib4/pull/12966) :: refactor(Topology/Category): derive `Preregular` instances for `Profinite` and `Stonean` from the one on `CompHaus`
-* [PR #9436](https://github.com/leanprover-community/mathlib4/pull/9436) :: feat(AlgebraicGeometry/EllipticCurve/Jacobian): implement group operations on nonsingular rational points for Jacobian coordinates
-* [PR #13412](https://github.com/leanprover-community/mathlib4/pull/13412) :: feat(AlgebraicGeometry/GammaSpecAdjunction): a missing lemma
-* [PR #13659](https://github.com/leanprover-community/mathlib4/pull/13659) :: chore: move ProperSpace instances to ProperSpace.lean
-* [PR #12518](https://github.com/leanprover-community/mathlib4/pull/12518) :: feat(RingTheory/Presentation): Develop API for presentations of algebras.
-* [PR #12450](https://github.com/leanprover-community/mathlib4/pull/12450) :: feat(FieldTheory): add results about minpoly
-* [PR #10088](https://github.com/leanprover-community/mathlib4/pull/10088) :: chore: move and generalize card_fiber_eq_of_mem_range
-* [PR #13695](https://github.com/leanprover-community/mathlib4/pull/13695) :: feat(Bicategory/LocallyDiscrete): add eqToHom lemmas
-* [PR #9405](https://github.com/leanprover-community/mathlib4/pull/9405) :: feat(AlgebraicGeometry/EllipticCurve/Jacobian): implement group law for Jacobian coordinates
-* [PR #13455](https://github.com/leanprover-community/mathlib4/pull/13455) :: feat: the category of sheaves of modules is abelian
-* [PR #13559](https://github.com/leanprover-community/mathlib4/pull/13559) :: chore(RingTheory/OreLocalization/Basic): Split file and to-additivise
-* [PR #13693](https://github.com/leanprover-community/mathlib4/pull/13693) :: fix: add deprecation alias
-* [PR #11973](https://github.com/leanprover-community/mathlib4/pull/11973) :: feat: category of bialgebras 
-* [PR #13687](https://github.com/leanprover-community/mathlib4/pull/13687) :: chore(*): fix more deprecated dates
-* [PR #12875](https://github.com/leanprover-community/mathlib4/pull/12875) :: feat(Data/Set/Basic): Lemmas about pairs
-* [PR #13711](https://github.com/leanprover-community/mathlib4/pull/13711) :: chore: install elan when updating nightly-testing
-* [PR #13589](https://github.com/leanprover-community/mathlib4/pull/13589) :: chore(Data/Bool/Basic): deprecate duplicate definitions
-* [PR #13698](https://github.com/leanprover-community/mathlib4/pull/13698) :: feat(AlgebraicGeometry): definition of separated morphisms
-* [PR #13689](https://github.com/leanprover-community/mathlib4/pull/13689) :: feat(AlgebraicGeometry/ProjectiveSpectrum/Scheme): morphism of locally ringed space $\mathrm{Proj}|_{D(f)} -> \mathrm{Spec} A^0_f$
-* [PR #13701](https://github.com/leanprover-community/mathlib4/pull/13701) :: feat(AlgebraicGeometry): expand api on topological scheme morphism properties
-* [PR #13714](https://github.com/leanprover-community/mathlib4/pull/13714) :: fix: do not remove `:=` or `where` in `move-decls`
-* [PR #13702](https://github.com/leanprover-community/mathlib4/pull/13702) :: chore: split application of the layer cake formula into its own file
-* [PR #13172](https://github.com/leanprover-community/mathlib4/pull/13172) :: feat(MeasureTheory/Integral/Lebesgue): setLintegral_pos_iff
-* [PR #13700](https://github.com/leanprover-community/mathlib4/pull/13700) :: chore: move cpow_mul_ofReal_nonneg earlier
-* [PR #13715](https://github.com/leanprover-community/mathlib4/pull/13715) :: chore: fix diamond for WithTop subtraction
-* [PR #13699](https://github.com/leanprover-community/mathlib4/pull/13699) :: perf: speed up integrable_rpow_neg_one_add_norm_sq
-* [PR #13707](https://github.com/leanprover-community/mathlib4/pull/13707) :: chore(yoneda): remove unneeded universe annotations which break after leanprover/lean4#4408
-* [PR #13716](https://github.com/leanprover-community/mathlib4/pull/13716) :: feat: include commit hash in PR summary
-* [PR #13708](https://github.com/leanprover-community/mathlib4/pull/13708) :: chore(*): add more `since :=` fields to `deprecated`
-* [PR #13319](https://github.com/leanprover-community/mathlib4/pull/13319) :: refactor(LightProfinite): redefine light profinite spaces as second countable profinite spaces
-* [PR #13470](https://github.com/leanprover-community/mathlib4/pull/13470) :: feat(Analysis/Matrix): lemmas about norms of matrix, preparation for Siegel's lemma
-* [PR #13610](https://github.com/leanprover-community/mathlib4/pull/13610) :: feat(GroupTheory/Congruence/*): add some missing lemma and constructions of group congruence
-* [PR #13215](https://github.com/leanprover-community/mathlib4/pull/13215) :: feat: generalize `one_div_mul_add_mul_one_div_eq_one_div_add_one_div`
-* [PR #12543](https://github.com/leanprover-community/mathlib4/pull/12543) :: feat(RingTheory/AdicCompletion): functoriality
-* [PR #13535](https://github.com/leanprover-community/mathlib4/pull/13535) :: refactor(Tactic/Linarith): introduce `UsableInSimplexAlgorithm` class to allow the use of sparse matrix types in the oracle
