@@ -20,11 +20,7 @@ There were 667 PRs merged in May 2024.
 * Algebra
   * In Lie theory, [PR #12297](https://github.com/leanprover-community/mathlib4/pull/12297) proves that any finite-dimensional Lie algebra over an infinite field contains a Cartan subalgebra (in fact many). [PR #12937](https://github.com/leanprover-community/mathlib4/pull/12937) proves that the root spaces of a semisimple Lie algebra relative to a splitting Cartan subalgebra are 1-dimensional, and [PR #13307](https://github.com/leanprover-community/mathlib4/pull/13307) proves that the roots of a semisimple Lie algebra are actually an abstract (reduced, crystallographic) root system.
   * [PR #12721](https://github.com/leanprover-community/mathlib4/pull/12721) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules is abelian
-  * Amelia Livingstone
-    * [PR #11962](https://github.com/leanprover-community/mathlib4/pull/11962) :: feat: bialgebra homomorphisms
-    * [PR #11971](https://github.com/leanprover-community/mathlib4/pull/11971) :: feat: bialgebra isomorphisms
-    * [PR #11970](https://github.com/leanprover-community/mathlib4/pull/11970) :: feat: coalgebra isomorphisms
-    * [PR #11972](https://github.com/leanprover-community/mathlib4/pull/11972) :: feat: category of coalgebras
+  * Amelia Livingston added some boilerplate defining coalgebra isomorphisms in [PR #11970](https://github.com/leanprover-community/mathlib4/pull/11970), the category of coalgebras in [PR #11972](https://github.com/leanprover-community/mathlib4/pull/11972), and homomorphisms and isomorphisms of bialgebras in [PR #11962](https://github.com/leanprover-community/mathlib4/pull/11962) and [PR #11971](https://github.com/leanprover-community/mathlib4/pull/11971). This API will be used to define the monoidal category structure on co/bi/Hopf algebras. It will also be linked to Kim Morrison's work on co/bi/Hopf monoids, as well as the material about group objects formalised at [Formalisation of Mathematics: Workshop for Women and Mathematicians of Minority Gender](https://www.icms.org.uk/Formalisation) with Rebecca Bellovin and Sophie Morel.
   * Joël Riou
     * [PR #12713](https://github.com/leanprover-community/mathlib4/pull/12713) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules has colimits
   * Mitchell Lee
