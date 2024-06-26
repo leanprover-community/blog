@@ -78,11 +78,12 @@ There were 667 PRs merged in May 2024.
 
 * Category Theory.
   * After an important effort by Joël Riou, derived categories of abelian categories and their triangulated structure are now in Mathlib since [PR #11806](https://github.com/leanprover-community/mathlib4/pull/11806). Using the triangulated structure on the homotopy category of an abelian categories (which was already obtained during the [Liquid Tensor Experiment](https://leanprover-community.github.io/blog/posts/lte-final/)), this essentially follows from the localization theorem for triangulated categories [PR #11786](https://github.com/leanprover-community/mathlib4/pull/11786). Derived categories shall soon have more applications inside mathlib, thanks to the formalization of total derived functors [PR #12788](https://github.com/leanprover-community/mathlib4/pull/12788) and t-structures [PR #12619](https://github.com/leanprover-community/mathlib4/pull/12619).
-  * Kim Morrison
-    * [PR #10091](https://github.com/leanprover-community/mathlib4/pull/10091) :: feat: basic definition of comonoid objects
-    * [PR #12858](https://github.com/leanprover-community/mathlib4/pull/12858) :: feat: oplax monoidal functors take comonoids to comonoids
-    * [PR #10098](https://github.com/leanprover-community/mathlib4/pull/10098) :: feat: comonoid objects in a braided category form a monoidal category
-    * [PR #10103](https://github.com/leanprover-community/mathlib4/pull/10103) :: feat: no interesting comonoid objects in cartesian monoidal categories
+  * We set up some of the basic theory of comonoid objects in monoidal categories, laying the foundation for work on bimonoids and Hopf monoids (and eventually group schemes, etc).
+    The definition was in [PR #10091](https://github.com/leanprover-community/mathlib4/pull/10091), and the fact that oplax monoidal functors (newly defined in [PR #12856](https://github.com/leanprover-community/mathlib4/pull/12856))
+    take comonoids to comonoids in
+    [PR #12858](https://github.com/leanprover-community/mathlib4/pull/12858). In a braided category, the comonoid objects themselves have a monoidal category structure,
+    developed in [PR #10098](https://github.com/leanprover-community/mathlib4/pull/10098). Finally, in a cartesion monoidal category, comonoids are not interesting:
+    every object is a comonoid object in a unique way, using the diagonal map as the comultiplication. This is proved in [PR #10103](https://github.com/leanprover-community/mathlib4/pull/10103).
   * Misc
     * [PR #12206](https://github.com/leanprover-community/mathlib4/pull/12206) :: feat(CategoryTheory): more functoriality for Comma categories
     * [PR #12797](https://github.com/leanprover-community/mathlib4/pull/12797) :: chore(CategoryTheory): fix hasFiniteLimits_of_hasLimitsOfSize
@@ -112,7 +113,6 @@ There were 667 PRs merged in May 2024.
     * [PR #13386](https://github.com/leanprover-community/mathlib4/pull/13386) :: feat(CategoryTheory): surjective-injective factorizations in concrete categories
     * [PR #13324](https://github.com/leanprover-community/mathlib4/pull/13324) :: feat(CategoryTheory/Sites): locally bijective morphisms of presheaves
     * [PR #13411](https://github.com/leanprover-community/mathlib4/pull/13411) :: feat(CategoryTheory): surjective/injective factorizations in concrete categories
-    * [PR #12856](https://github.com/leanprover-community/mathlib4/pull/12856) :: feat: oplax monoidal functors
     * [PR #12857](https://github.com/leanprover-community/mathlib4/pull/12857) :: feat: the forgetful functor from `Mon_ C` to `C` is monoidal when `C` is braided
     * [PR #11719](https://github.com/leanprover-community/mathlib4/pull/11719) :: feat: morphisms of presheaves that are locally injective for a Grothendieck topology
     * [PR #11489](https://github.com/leanprover-community/mathlib4/pull/11489) :: feat: the cohomology of a presheaf of groups in degree 1
