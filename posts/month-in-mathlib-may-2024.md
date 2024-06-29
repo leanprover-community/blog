@@ -21,46 +21,20 @@ There were 667 PRs merged in May 2024.
   * In Lie theory, Johan Commelin established several important structural properties of Lie algebras. This included [PR #12297](https://github.com/leanprover-community/mathlib4/pull/12297) which establishes the existence of Cartan subalgebras, [PR #13391](https://github.com/leanprover-community/mathlib4/pull/13391) which proves that semisimplicity follows from the existence of a non-degenerate invariant form, [PR #13265](https://github.com/leanprover-community/mathlib4/pull/13265) which specialises this result to the case of the Killing form, and [PR #13217](https://github.com/leanprover-community/mathlib4/pull/13217) which proves that semisimple Lie algebras have trivial (solvable) radical. Care was taken to ensure that none of these results make any assumptions on the characteristic of the coefficients. Separately, the theory of root spaces was further developed. Firstly [PR #12712](https://github.com/leanprover-community/mathlib4/pull/12712) added a proof that elements of a Cartan subalgebra are semisimple, and [PR #13076](https://github.com/leanprover-community/mathlib4/pull/13076) added the definition and basic properties of `sl₂` triples. Using these [PR #12937](https://github.com/leanprover-community/mathlib4/pull/12937) added the proof that root spaces of a semisimple Lie algebra relative to a splitting Cartan subalgebra are 1-dimensional. Andrew Yang then took up the reins and authored a series of PRs culminating in the wonderful [PR #13307](https://github.com/leanprover-community/mathlib4/pull/13307) which proved that the roots of a semisimple Lie algebra are an abstract (reduced, crystallographic) root system.
   * [PR #12721](https://github.com/leanprover-community/mathlib4/pull/12721) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules is abelian
   * Amelia Livingston added some boilerplate defining coalgebra isomorphisms in [PR #11970](https://github.com/leanprover-community/mathlib4/pull/11970), the category of coalgebras in [PR #11972](https://github.com/leanprover-community/mathlib4/pull/11972), and homomorphisms and isomorphisms of bialgebras in [PR #11962](https://github.com/leanprover-community/mathlib4/pull/11962) and [PR #11971](https://github.com/leanprover-community/mathlib4/pull/11971). This API will be used to define the monoidal category structure on co/bi/Hopf algebras. It will also be linked to Kim Morrison's work on co/bi/Hopf monoids, as well as the material about group objects formalised at [Formalisation of Mathematics: Workshop for Women and Mathematicians of Minority Gender](https://www.icms.org.uk/Formalisation) with Rebecca Bellovin and Sophie Morel.
-  * Joël Riou
-    * [PR #12713](https://github.com/leanprover-community/mathlib4/pull/12713) :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules has colimits
-* Mitchell Lee laid the groundwork for future material on Coxeter groups. [PR #11465] defines the length function on a Coxeter group and proves its basic properties. [PR #11466] defines reflections and inversions in a Coxeter group and proves that the inversion sequence of a reduced word consists of distinct reflections.
-* In [PR #12647], Mitchell Lee formalized a proof of the equational criterion for vanishing, a necessary and sufficient criterion for a sum of pure tensors in the tensor product of two modules to vanish.
-  * Jz Pan
-    * [PR #13322](https://github.com/leanprover-community/mathlib4/pull/13322) :: feat: add the definition of `OrzechProperty`
-  * Scott Carnahan
-    * [PR #11797](https://github.com/leanprover-community/mathlib4/pull/11797) :: feat (Algebra/Vertex) Heterogeneous vertex operators
-  * Misc
-    * [PR #7778](https://github.com/leanprover-community/mathlib4/pull/7778) :: feat(RingTheory.DedekindDomain.Factorization): add factorization of fractional ideals
-    * [PR #11899](https://github.com/leanprover-community/mathlib4/pull/11899) :: feat(Algebra/Homology): embeddings of complex shapes
-    * [PR #13100](https://github.com/leanprover-community/mathlib4/pull/13100) :: Feat(RingTheory/Ideal/AssociatedPrime): Union of associated primes is the set of zero divisors
-    * [PR #13119](https://github.com/leanprover-community/mathlib4/pull/13119) :: Feat(LinearAlgebra/TensorProduct/Basic): Image of bilinear map in terms of tensor product
-    * [PR #13120](https://github.com/leanprover-community/mathlib4/pull/13120) :: Feat(RingTheory/Ideal/LocalRing): Maximal ideal of local ring is contained in the jacobson radical of any ideal
-    * [PR #13118](https://github.com/leanprover-community/mathlib4/pull/13118) :: Feat(LinearAlgebra/TensorProduct/Basic): Tensoring with the action of a scalar gives the action of that scalar
-    * [PR #13126](https://github.com/leanprover-community/mathlib4/pull/13126) :: Feat(Algebra/Exact): Transport of exact sequences & the behavior under quotienting
-    * [PR #13127](https://github.com/leanprover-community/mathlib4/pull/13127) :: Feat(LinearAlgebra/TensorProduct/RightExactness): Tensoring with a quotient of the ring
-    * [PR #13290](https://github.com/leanprover-community/mathlib4/pull/13290) :: feat(RingTheory/RootsOfUnity): product representation of the order of a primitive root of unity
-    * [PR #12624](https://github.com/leanprover-community/mathlib4/pull/12624) :: feat(Algebra/Homology): morphisms of cochain complexes that are degreewise epi with an injective kernel
-    * [PR #12638](https://github.com/leanprover-community/mathlib4/pull/12638) :: feat(Algebra/Homology): consequences of the homology sequence
+  * Mitchell Lee laid the groundwork for future material on Coxeter groups. [PR #11465] defines the length function on a Coxeter group and proves its basic properties. [PR #11466] defines reflections and inversions in a Coxeter group and proves that the inversion sequence of a reduced word consists of distinct reflections.
+  * In [PR #12647], Mitchell Lee formalized a proof of the equational criterion for vanishing, a necessary and sufficient criterion for a sum of pure tensors in the tensor product of two modules to vanish.
+  * Scott Carnahan is working on defining vertex algebras: [PR #11797](https://github.com/leanprover-community/mathlib4/pull/11797) defines heterogeneous vertex operators.
 
 * Algebraic Geometry.
   * [PR #12917](https://github.com/leanprover-community/mathlib4/pull/12917) by Jonas van der Schaaf, Amelia Livingston and later Christian Merten defines closed immersions.
-  * [PR #9433](https://github.com/leanprover-community/mathlib4/pull/9433) :: feat(AlgebraicGeometry/EllipticCurve/Jacobian): implement group operation polynomials for Jacobian coordinates
 
 * Analysis.
-  * Sébastien Gouëzel completed the proof that the Fourier transform is well defined on the Schwartz space of a Euclidean space. [PR #12769](https://github.com/leanprover-community/mathlib4/pull/12769) shows how one can bound derivatives of the Fourier transform of a function (multiplied by a power function) in terms of derivatives of the initial function (multiplied by a power function). [PR #12144](https://github.com/leanprover-community/mathlib4/pull/12144) uses this to define the Fourier transform as a continuous linear equivalence on Schwartz space (taking advantage of the Fourier inversion formula to get the inverse direction from the forward direction). Note that the Schwartz space is a Fréchet space but not a normed space, so this builds on a lot of analysis on Fréchet spaces in terms of families of seminorms.
-  * Chris Birkbeck proved that Eisenstein series converge uniformly in [PR #10377](https://github.com/leanprover-community/mathlib4/pull/10377) and that they are holomorphic in [PR #11013](https://github.com/leanprover-community/mathlib4/pull/11013). This will soon to used to show that they are modular forms.
-  * Sébastien Gouëzel
-    * [PR #11937](https://github.com/leanprover-community/mathlib4/pull/11937) :: feat: integration by parts for line derivatives and Frechet derivatives
-  * Chris Birkbeck
-    * [PR #12758](https://github.com/leanprover-community/mathlib4/pull/12758) :: Define the cotangent function.
-  * Xavier Généreux
-    * [PR #7919](https://github.com/leanprover-community/mathlib4/pull/7919) :: feat: Hadamard three-lines theorem
   * Jireh Loreaux and Anatole Dedecker completed the development of the non-unital continuous functional calculus. Although the generic API has been in place for a few months, the relevant instances for C⋆-algebras were missing. Work progressed in a piecemeal fashion, but [PR #13326](https://github.com/leanprover-community/mathlib4/pull/13326) provides a version of the Stone-Weiertrass theorem for continuous functions vanishing at zero, namely that the non-unital star subalgebra generated by the identity function is dense. This is essential for [PR #13363](https://github.com/leanprover-community/mathlib4/pull/13363) which provides uniqueness instances for the non-unital continuous functional calculus. Then [PR #13327](https://github.com/leanprover-community/mathlib4/pull/13327) and [PR #13365](https://github.com/leanprover-community/mathlib4/pull/13365) provide instances of the non-unital continuous functional calculus for non-unital C⋆-algebras and generic restriction lemmas for scalar subrings. These are obtained by first considering the unitization of the algebra, obtaining a unital functional calculus there, and then realizing a non-unital functional calculus by appropriately restricting the unital one to functions vanishing at zero. Finally, [PR #13541](https://github.com/leanprover-community/mathlib4/pull/13541) obtains a non-unital continuous functional calculus from a unital one, which will be necessary to get a non-unital instance on matrices, for example.
+  * Sébastien Gouëzel completed the proof that the Fourier transform is well defined on the Schwartz space of a Euclidean space. [PR #12769](https://github.com/leanprover-community/mathlib4/pull/12769) shows how one can bound derivatives of the Fourier transform of a function (multiplied by a power function) in terms of derivatives of the initial function (multiplied by a power function) and [PR #11937](https://github.com/leanprover-community/mathlib4/pull/11937) proves a version of integration by parts for line/Fréchet derivatives. [PR #12144](https://github.com/leanprover-community/mathlib4/pull/12144) puts these results together to define the Fourier transform as a continuous linear equivalence on Schwartz space (taking advantage of the Fourier inversion formula to get the inverse direction from the forward direction). Note that the Schwartz space is a Fréchet space but not a normed space, so this builds on a lot of analysis on Fréchet spaces in terms of families of seminorms.
+  * Chris Birkbeck proved that Eisenstein series converge uniformly in [PR #10377](https://github.com/leanprover-community/mathlib4/pull/10377) and that they are holomorphic in [PR #11013](https://github.com/leanprover-community/mathlib4/pull/11013). This will soon to used to show that they are modular forms.
+  * Xavier Généreux proved the Hadamard three-lines theorem in the special case of the unit vertical strip in [PR #7919](https://github.com/leanprover-community/mathlib4/pull/7919). This will be used to interpolate norms.
   * In [PR #12669], Mitchell Lee proved that the completion of a nonarchimedean group is again nonarchimedean.
-  * Jeremy Toh
-    * [PR #8806](https://github.com/leanprover-community/mathlib4/pull/8806) :: feat(Analysis/PSeries): add Schlömilch's generalization of the Cauchy condensation test
-  * María Inés de Frutos-Fernández
-    * [PR #12432](https://github.com/leanprover-community/mathlib4/pull/12432) :: feat(Topology/Algebra/NormedValued): add correspondence
+  * In [PR #12432](https://github.com/leanprover-community/mathlib4/pull/12432), it is shown that non-trivial non-archimedean norms correspond to rank 1 valuations.
 
 * Category Theory.
   * After an important effort by Joël Riou, derived categories of abelian categories and their triangulated structure are now in Mathlib since [PR #11806](https://github.com/leanprover-community/mathlib4/pull/11806). Using the triangulated structure on the homotopy category of an abelian categories (which was already obtained during the [Liquid Tensor Experiment](https://leanprover-community.github.io/blog/posts/lte-final/)), this essentially follows from the localization theorem for triangulated categories [PR #11786](https://github.com/leanprover-community/mathlib4/pull/11786). Derived categories shall soon have more applications inside mathlib, thanks to the formalization of total derived functors [PR #12788](https://github.com/leanprover-community/mathlib4/pull/12788) and t-structures [PR #12619](https://github.com/leanprover-community/mathlib4/pull/12619).
@@ -70,38 +44,6 @@ There were 667 PRs merged in May 2024.
     [PR #12858](https://github.com/leanprover-community/mathlib4/pull/12858). In a braided category, the comonoid objects themselves have a monoidal category structure,
     developed in [PR #10098](https://github.com/leanprover-community/mathlib4/pull/10098). Finally, in a cartesion monoidal category, comonoids are not interesting:
     every object is a comonoid object in a unique way, using the diagonal map as the comultiplication. This is proved in [PR #10103](https://github.com/leanprover-community/mathlib4/pull/10103).
-  * Misc
-    * [PR #12206](https://github.com/leanprover-community/mathlib4/pull/12206) :: feat(CategoryTheory): more functoriality for Comma categories
-    * [PR #12797](https://github.com/leanprover-community/mathlib4/pull/12797) :: chore(CategoryTheory): fix hasFiniteLimits_of_hasLimitsOfSize
-    * [PR #10094](https://github.com/leanprover-community/mathlib4/pull/10094) :: feat: comonoid objects are monoid objects in the opposite category
-    * [PR #12649](https://github.com/leanprover-community/mathlib4/pull/12649) :: feat(CategoryTheory/Abelian): "three" lemmas
-    * [PR #12625](https://github.com/leanprover-community/mathlib4/pull/12625) :: refactor(CategoryTheory/Adjunction): make uniqueness of adjoints independent of opposites
-    * [PR #12801](https://github.com/leanprover-community/mathlib4/pull/12801) :: chore(CategoryTheory/Sites): generalise universes for extensive sheaves
-    * [PR #12839](https://github.com/leanprover-community/mathlib4/pull/12839) :: feat(CategoryTheory/Galois): prorepresentability of fiber functors
-    * [PR #11701](https://github.com/leanprover-community/mathlib4/pull/11701) :: feat(CategoryTheory/Monoidal): the curried associator isomorphism
-    * [PR #12909](https://github.com/leanprover-community/mathlib4/pull/12909) :: feat(CategoryTheory/Limits): add classes `ReflectsFiniteLimits` and friends
-    * [PR #12803](https://github.com/leanprover-community/mathlib4/pull/12803) :: feat(CategoryTheory/Sites): 1-hypercovers
-    * [PR #12927](https://github.com/leanprover-community/mathlib4/pull/12927) :: feat(CategoryTheory): the adjunction between Over.map and Over.baseChange
-    * [PR #12374](https://github.com/leanprover-community/mathlib4/pull/12374) :: feat(CategoryTheory/Sites): the category of sheaves is a localization of the category of presheaves
-    * [PR #12980](https://github.com/leanprover-community/mathlib4/pull/12980) :: feat: moving some adjunctions of over categories to `CategoryTheory.Adjunction.Over`
-    * [PR #12841](https://github.com/leanprover-community/mathlib4/pull/12841) :: feat(CategoryTheory/Limits): pro-coyoneda lemma
-    * [PR #12332](https://github.com/leanprover-community/mathlib4/pull/12332) :: feat(CategoryTheory/Sites): functors which preserves sheafification
-    * [PR #12785](https://github.com/leanprover-community/mathlib4/pull/12785) :: feat(CategoryTheory): transport Kan extensions via equivalences
-    * [PR #13189](https://github.com/leanprover-community/mathlib4/pull/13189) :: feat(CategoryTheory/Sites): a sieve containing a covering presieve is covering for the associated Grothendieck topology
-    * [PR #13006](https://github.com/leanprover-community/mathlib4/pull/13006) :: feat(CategoryTheory/Action): category of continuous actions
-    * [PR #12631](https://github.com/leanprover-community/mathlib4/pull/12631) :: feat(CategoryTheory/Localization): left resolutions for localizer morphisms
-    * [PR #13320](https://github.com/leanprover-community/mathlib4/pull/13320) :: feat(CategoryTheory/Sites/LeftExact): weaken universe assumptions
-    * [PR #13318](https://github.com/leanprover-community/mathlib4/pull/13318) :: feat(CategoryTheory/Sites): more properties of locally surjective morphisms of presheaves
-    * [PR #13371](https://github.com/leanprover-community/mathlib4/pull/13371) :: feat(CategoryTheory/Sites): extensive topology is subcanonical
-    * [PR #13331](https://github.com/leanprover-community/mathlib4/pull/13331) :: feat(CategoryTheory/MorphismProperty): the factorization axiom
-    * [PR #13223](https://github.com/leanprover-community/mathlib4/pull/13223) :: feat(CategoryTheory): constructor for functors from the category `ℕ`
-    * [PR #12929](https://github.com/leanprover-community/mathlib4/pull/12929) :: refactor(CategoryTheory): the structure Functor.FullyFaithful
-    * [PR #13386](https://github.com/leanprover-community/mathlib4/pull/13386) :: feat(CategoryTheory): surjective-injective factorizations in concrete categories
-    * [PR #13324](https://github.com/leanprover-community/mathlib4/pull/13324) :: feat(CategoryTheory/Sites): locally bijective morphisms of presheaves
-    * [PR #13411](https://github.com/leanprover-community/mathlib4/pull/13411) :: feat(CategoryTheory): surjective/injective factorizations in concrete categories
-    * [PR #12857](https://github.com/leanprover-community/mathlib4/pull/12857) :: feat: the forgetful functor from `Mon_ C` to `C` is monoidal when `C` is braided
-    * [PR #11719](https://github.com/leanprover-community/mathlib4/pull/11719) :: feat: morphisms of presheaves that are locally injective for a Grothendieck topology
-    * [PR #11489](https://github.com/leanprover-community/mathlib4/pull/11489) :: feat: the cohomology of a presheaf of groups in degree 1
 
 * Combinatorics
   * Thanks to the reviews by Thomas Bloom, a long sequence of three years old material by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:
@@ -109,7 +51,7 @@ There were 667 PRs merged in May 2024.
     * [PR #12701](https://github.com/leanprover-community/mathlib4/pull/12701) redefines sets without arithmetic progressions of length 3 (aka 3AP-free sets) so that they behave correctly in characteristic two. [PR #12546](https://github.com/leanprover-community/mathlib4/pull/12546) refactors Freiman homomorphisms and isomorphisms from a bundled design to unbundled predicates. This makes them much easier to use. [PR #12551](https://github.com/leanprover-community/mathlib4/pull/12551) then proves the no wrap-around principle stating that additive structure in sets is independent of the ambient group so long as torsion is much bigger than the diameter of the sets.
     * Building up on thoses two series of PRs, [PR #13074](https://github.com/leanprover-community/mathlib4/pull/13074) defines corners and corner-free set and [PR #9000](https://github.com/leanprover-community/mathlib4/pull/9000) finally proves the Corners theorem and Roth's theorem. They respectively state that a corner-free set in `[N] × [N]` and a 3AP-free set in `[N]` have vanishingly small density as `N` goes to infinity.
 
-    [APAP](https://github.com/YaelDillies/LeanAPAP) already contains the stronger result that the density goes to zero as `1/log log N`, and will soon prove the state of the art result of `exp(-(log N)^1/9)`.
+    [APAP](https://github.com/YaelDillies/LeanAPAP) already contains the stronger result that the density goes to zero as `1/log log N`, and will soon prove the state of the art bound of `exp(-(log N)^1/9)`.
   * [PR #10555](https://github.com/leanprover-community/mathlib4/pull/10555) defines dissociation of sets, a sort of "local" version of linear independence obtained by restricting the scalars to `{-1, 0, 1}`. This will soon be used to prove important results in additive combinatorics.
   * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in [PR #7102](https://github.com/leanprover-community/mathlib4/pull/7102).
 
@@ -117,40 +59,14 @@ There were 667 PRs merged in May 2024.
   * The work towards getting the basics of condensed mathematics into Mathlib started about a year ago at a workshop in Copenhagen organized by Dagur Asgeirsson. The participants made great progress and proved results like the characterization of condensed sets as finite-product-preserving presheaves on `Stonean`. Since then, Dagur has been moving the material to Mathlib and developing it further. This month landed
     * [PR #11586](https://github.com/leanprover-community/mathlib4/pull/11586) defining light condensed objects. This is a concept introduced by Clausen and Scholze less than a year ago, and is an improvement over condensed sets in that it removes certain size-issues, as it is a sheaf over an essentially small site.
     * [PR #12870](https://github.com/leanprover-community/mathlib4/pull/12870) proving the explicit sheaf condition for condensed objects in a very general target category. Previously, we only had this in certain concrete categories.
-  * Dagur Asgeirsson
-    * [PR #9513](https://github.com/leanprover-community/mathlib4/pull/9513) :: feat(LightProfinite): (co)limits
-    * [PR #11585](https://github.com/leanprover-community/mathlib4/pull/11585) :: feat(LightProfinite): `LightProfinite` is precoherent
-
-* Measure Theory.
-  * Rémy Degenne
-    * [PR #12759](https://github.com/leanprover-community/mathlib4/pull/12759) :: feat: every s-finite measure is absolutely continuous w.r.t. some finite measure
-    * [PR #12467](https://github.com/leanprover-community/mathlib4/pull/12467) :: feat: add algebra of sets
-  * Kalle Kytölä
-    * [PR #11815](https://github.com/leanprover-community/mathlib4/pull/11815) :: feat: Embed a space into probability measures on it.
-
+    * [PR #9513](https://github.com/leanprover-community/mathlib4/pull/9513) constructing colimits of light profinite objects.
+    * [PR #11585](https://github.com/leanprover-community/mathlib4/pull/11585) proving that the category of light profinite objects is precoherent.
 * Number Theory.
-  * David Loeffler
-    * [PR #12897](https://github.com/leanprover-community/mathlib4/pull/12897) defines the **Hurwitz zeta function**, and proves its key properties (analytic continuation + functional equation). This is a generalisation of the Riemann zeta function, and is an important step towards Dirichlet L-functions in the near future. (Subsidiary PR's include [PR #12779](https://github.com/leanprover-community/mathlib4/pull/12779), [PR #12265](https://github.com/leanprover-community/mathlib4/pull/12265), [PR #13347](https://github.com/leanprover-community/mathlib4/pull/13347), [PR #13273](https://github.com/leanprover-community/mathlib4/pull/13273).)
-    * [PR #12923](https://github.com/leanprover-community/mathlib4/pull/12923) :: feat (NumberTheory/Harmonic): compute Gamma'(1/2)
-  * Riccardo Brasca
-    * [PR #12977](https://github.com/leanprover-community/mathlib4/pull/12977) :: feat(NumberTheory.FLT.Three): basic properties of a solution to flt3
-    * [PR #12767](https://github.com/leanprover-community/mathlib4/pull/12767) :: feat(Mathlib.NumberTheory.FLT.Three): add `FermatLastTheoremForThree_of_FermatLastTheoremThreeGen`
-    <!-- @Kevin. Mention the start of the FLT project here! -->
-  * David Ang
-    * [PR #10814](https://github.com/leanprover-community/mathlib4/pull/10814) :: feat(NumberTheory/EllipticDivisibilitySequence): expose the auxiliary sequence
-    * [PR #10843](https://github.com/leanprover-community/mathlib4/pull/10843) :: feat(NumberTheory/EllipticDivisibilitySequence): define recursion principle for normalised EDS
+  * [PR #12897](https://github.com/leanprover-community/mathlib4/pull/12897) defines the **Hurwitz zeta function**, and proves its key properties (analytic continuation + functional equation). This is a generalisation of the Riemann zeta function, and is an important step towards Dirichlet L-functions in the near future. (Subsidiary PR's include [PR #12779](https://github.com/leanprover-community/mathlib4/pull/12779), [PR #12265](https://github.com/leanprover-community/mathlib4/pull/12265), [PR #13347](https://github.com/leanprover-community/mathlib4/pull/13347), [PR #13273](https://github.com/leanprover-community/mathlib4/pull/13273).)
 
 * Order Theory.
-  * Sam van G
-    * [PR #12705](https://github.com/leanprover-community/mathlib4/pull/12705) :: feat(mathlib4/Order/PrimeSeparator): prime ideal separator in a bounded distributive lattice
-
-* Topology.
-  * Christopher Hoskin
-    * [PR #11710](https://github.com/leanprover-community/mathlib4/pull/11710) :: feat(Topology/Order/LawsonTopology): Introduce the Lawson Topology to Mathlib
-  * Steven Clontz
-    * [PR #12458](https://github.com/leanprover-community/mathlib4/pull/12458) :: feat: add competely normal (non-Hausdorff) property
-  * Patrick Massot
-    * [PR #13061](https://github.com/leanprover-community/mathlib4/pull/13061) :: feat: the largest T2 quotient of a topological space.
+  * Stone duality between the categories of Boolean algebras and of profinite spaces is slowly moving from the [StoneDualityInLean project](https://github.com/samvang/StoneDualityInLean/): [PR #12705](https://github.com/leanprover-community/mathlib4/pull/12705) proves that a disjoint filter and ideal in a bounded distributive lattice can always be separated by a prime ideal.
+  * Christopher Hoskin continues introducing topologies relevant to order theory: [PR #11710](https://github.com/leanprover-community/mathlib4/pull/11710) defines the Lawson Topology.
 
 * Metaprogramming.
   * Miyahara Kō heroically ported the `cc` tactic to Lean 4: [PR #11956](https://github.com/leanprover-community/mathlib4/pull/11956), [PR #11960](https://github.com/leanprover-community/mathlib4/pull/11960) and [PR #5938](https://github.com/leanprover-community/mathlib4/pull/5938).
