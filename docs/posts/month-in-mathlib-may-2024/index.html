@@ -27,7 +27,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <meta property="og:description" content="The last Month in Mathlib posts date from before the port started, in November 2022. We apologise for the momentary disappearance. We aim to keep it a monthly occurrence from now on.
 There were 667 PR">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2024-06-11T22:00:56Z">
+<meta property="article:published_time" content="2024-07-01T12:00:00Z">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -56,7 +56,7 @@ There were 667 PR">
             </span></p>
             <p class="dateline">
             <a href="." rel="bookmark">
-            <time class="published dt-published" datetime="2024-06-11T22:00:56Z" itemprop="datePublished" title="2024-06-11 22:00">2024-06-11 22:00</time></a>
+            <time class="published dt-published" datetime="2024-07-01T12:00:00Z" itemprop="datePublished" title="2024-07-01 12:00">2024-07-01 12:00</time></a>
             </p>
                     <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/month-in-mathlib-may-2024/index.md" class="sourcelink">Source</a></p>
 
@@ -69,51 +69,50 @@ There were 667 PR">
 <!-- TEASER_END -->
 
 <ul>
-<li>Algebra</li>
+<li>
+<p>Algebra</p>
+<ul>
 <li>In Lie theory, Johan Commelin established several important structural properties of Lie algebras. This included <a href="https://github.com/leanprover-community/mathlib4/pull/12297">PR #12297</a> which establishes the existence of Cartan subalgebras, <a href="https://github.com/leanprover-community/mathlib4/pull/13391">PR #13391</a> which proves that semisimplicity follows from the existence of a non-degenerate invariant form, <a href="https://github.com/leanprover-community/mathlib4/pull/13265">PR #13265</a> which specialises this result to the case of the Killing form, and <a href="https://github.com/leanprover-community/mathlib4/pull/13217">PR #13217</a> which proves that semisimple Lie algebras have trivial (solvable) radical. Care was taken to ensure that none of these results make any assumptions on the characteristic of the coefficients. Separately, the theory of root spaces was further developed. Firstly <a href="https://github.com/leanprover-community/mathlib4/pull/12712">PR #12712</a> added a proof that elements of a Cartan subalgebra are semisimple, and <a href="https://github.com/leanprover-community/mathlib4/pull/13076">PR #13076</a> added the definition and basic properties of <code>sl₂</code> triples. Using these <a href="https://github.com/leanprover-community/mathlib4/pull/12937">PR #12937</a> added the proof that root spaces of a semisimple Lie algebra relative to a splitting Cartan subalgebra are 1-dimensional. Andrew Yang then took up the reins and authored a series of PRs culminating in the wonderful <a href="https://github.com/leanprover-community/mathlib4/pull/13307">PR #13307</a> which proved that the roots of a semisimple Lie algebra are an abstract (reduced, crystallographic) root system.</li>
-<li>
-<a href="https://github.com/leanprover-community/mathlib4/pull/12721">PR #12721</a> :: feat(Algebra/Category/ModuleCat): the category of presheaves of modules is abelian</li>
 <li>Amelia Livingston added some boilerplate defining coalgebra isomorphisms in <a href="https://github.com/leanprover-community/mathlib4/pull/11970">PR #11970</a>, the category of coalgebras in <a href="https://github.com/leanprover-community/mathlib4/pull/11972">PR #11972</a>, and homomorphisms and isomorphisms of bialgebras in <a href="https://github.com/leanprover-community/mathlib4/pull/11962">PR #11962</a> and <a href="https://github.com/leanprover-community/mathlib4/pull/11971">PR #11971</a>. This API will be used to define the monoidal category structure on co/bi/Hopf algebras. It will also be linked to Kim Morrison's work on co/bi/Hopf monoids, as well as the material about group objects formalised at <a href="https://www.icms.org.uk/Formalisation">Formalisation of Mathematics: Workshop for Women and Mathematicians of Minority Gender</a> with Rebecca Bellovin and Sophie Morel.</li>
-<li>Mitchell Lee laid the groundwork for future material on Coxeter groups. [PR #11465] defines the length function on a Coxeter group and proves its basic properties. [PR #11466] defines reflections and inversions in a Coxeter group and proves that the inversion sequence of a reduced word consists of distinct reflections.</li>
-<li>In [PR #12647], Mitchell Lee formalized a proof of the equational criterion for vanishing, a necessary and sufficient criterion for a sum of pure tensors in the tensor product of two modules to vanish.</li>
-<li>
-<p>Scott Carnahan is working on defining vertex algebras: <a href="https://github.com/leanprover-community/mathlib4/pull/11797">PR #11797</a> defines heterogeneous vertex operators.</p>
+<li>Mitchell Lee laid the groundwork for future material on Coxeter groups. <a href="https://github.com/leanprover-community/mathlib4/pull/11465">PR #11465</a> defines the length function on a Coxeter group and proves its basic properties. <a href="https://github.com/leanprover-community/mathlib4/pull/11466">PR #11466</a> defines reflections and inversions in a Coxeter group and proves that the inversion sequence of a reduced word consists of distinct reflections.</li>
+<li>In <a href="https://github.com/leanprover-community/mathlib4/pull/12647">PR #12647</a>, Mitchell Lee formalized a proof of the equational criterion for vanishing, a necessary and sufficient criterion for a sum of pure tensors in the tensor product of two modules to vanish.</li>
+<li>Scott Carnahan is working on defining vertex algebras: <a href="https://github.com/leanprover-community/mathlib4/pull/11797">PR #11797</a> defines heterogeneous vertex operators.</li>
+</ul>
 </li>
 <li>
 <p>Algebraic Geometry.</p>
-</li>
+<ul>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib4/pull/12917">PR #12917</a> by Jonas van der Schaaf, Amelia Livingston and later Christian Merten defines closed immersions.</p>
+<a href="https://github.com/leanprover-community/mathlib4/pull/12917">PR #12917</a> by Jonas van der Schaaf, Amelia Livingston and later Christian Merten defines closed immersions.</li>
+</ul>
 </li>
 <li>
 <p>Analysis.</p>
-</li>
+<ul>
 <li>Jireh Loreaux and Anatole Dedecker completed the development of the non-unital continuous functional calculus. Although the generic API has been in place for a few months, the relevant instances for C⋆-algebras were missing. Work progressed in a piecemeal fashion, but <a href="https://github.com/leanprover-community/mathlib4/pull/13326">PR #13326</a> provides a version of the Stone-Weiertrass theorem for continuous functions vanishing at zero, namely that the non-unital star subalgebra generated by the identity function is dense. This is essential for <a href="https://github.com/leanprover-community/mathlib4/pull/13363">PR #13363</a> which provides uniqueness instances for the non-unital continuous functional calculus. Then <a href="https://github.com/leanprover-community/mathlib4/pull/13327">PR #13327</a> and <a href="https://github.com/leanprover-community/mathlib4/pull/13365">PR #13365</a> provide instances of the non-unital continuous functional calculus for non-unital C⋆-algebras and generic restriction lemmas for scalar subrings. These are obtained by first considering the unitization of the algebra, obtaining a unital functional calculus there, and then realizing a non-unital functional calculus by appropriately restricting the unital one to functions vanishing at zero. Finally, <a href="https://github.com/leanprover-community/mathlib4/pull/13541">PR #13541</a> obtains a non-unital continuous functional calculus from a unital one, which will be necessary to get a non-unital instance on matrices, for example.</li>
 <li>Sébastien Gouëzel completed the proof that the Fourier transform is well defined on the Schwartz space of a Euclidean space. <a href="https://github.com/leanprover-community/mathlib4/pull/12769">PR #12769</a> shows how one can bound derivatives of the Fourier transform of a function (multiplied by a power function) in terms of derivatives of the initial function (multiplied by a power function) and <a href="https://github.com/leanprover-community/mathlib4/pull/11937">PR #11937</a> proves a version of integration by parts for line/Fréchet derivatives. <a href="https://github.com/leanprover-community/mathlib4/pull/12144">PR #12144</a> puts these results together to define the Fourier transform as a continuous linear equivalence on Schwartz space (taking advantage of the Fourier inversion formula to get the inverse direction from the forward direction). Note that the Schwartz space is a Fréchet space but not a normed space, so this builds on a lot of analysis on Fréchet spaces in terms of families of seminorms.</li>
 <li>Chris Birkbeck proved that Eisenstein series converge uniformly in <a href="https://github.com/leanprover-community/mathlib4/pull/10377">PR #10377</a> and that they are holomorphic in <a href="https://github.com/leanprover-community/mathlib4/pull/11013">PR #11013</a>. This will soon be used to show that they are modular forms.</li>
 <li>Xavier Généreux proved the Hadamard three-lines theorem in the special case of the unit vertical strip in <a href="https://github.com/leanprover-community/mathlib4/pull/7919">PR #7919</a>. This will be used to interpolate norms.</li>
-<li>In [PR #12669], Mitchell Lee proved that the completion of a nonarchimedean group is again nonarchimedean.</li>
-<li>
-<p>In <a href="https://github.com/leanprover-community/mathlib4/pull/12432">PR #12432</a>, it is shown that non-trivial non-archimedean norms correspond to rank 1 valuations.</p>
+<li>In <a href="https://github.com/leanprover-community/mathlib4/pull/12669">PR #12669</a>, Mitchell Lee proved that the completion of a nonarchimedean group is again nonarchimedean.</li>
+<li>In <a href="https://github.com/leanprover-community/mathlib4/pull/12432">PR #12432</a>, it is shown that non-trivial non-archimedean norms correspond to rank 1 valuations.</li>
+</ul>
 </li>
 <li>
 <p>Category Theory.</p>
-</li>
-<li>After an important effort by Joël Riou, derived categories of abelian categories and their triangulated structure are now in Mathlib since <a href="https://github.com/leanprover-community/mathlib4/pull/11806">PR #11806</a>. Using the triangulated structure on the homotopy category of an abelian categories (which was already obtained during the <a href="https://leanprover-community.github.io/blog/posts/lte-final/">Liquid Tensor Experiment</a>), this essentially follows from the localization theorem for triangulated categories <a href="https://github.com/leanprover-community/mathlib4/pull/11786">PR #11786</a>. Derived categories shall soon have more applications inside mathlib, thanks to the formalization of total derived functors <a href="https://github.com/leanprover-community/mathlib4/pull/12788">PR #12788</a> and t-structures <a href="https://github.com/leanprover-community/mathlib4/pull/12619">PR #12619</a>.</li>
-<li>
-<p>We set up some of the basic theory of comonoid objects in monoidal categories, laying the foundation for work on bimonoids and Hopf monoids (and eventually group schemes, etc).
-    The definition was in <a href="https://github.com/leanprover-community/mathlib4/pull/10091">PR #10091</a>, and the fact that oplax monoidal functors (newly defined in <a href="https://github.com/leanprover-community/mathlib4/pull/12856">PR #12856</a>)
-    take comonoids to comonoids in
-    <a href="https://github.com/leanprover-community/mathlib4/pull/12858">PR #12858</a>. In a braided category, the comonoid objects themselves have a monoidal category structure,
-    developed in <a href="https://github.com/leanprover-community/mathlib4/pull/10098">PR #10098</a>. Finally, in a cartesion monoidal category, comonoids are not interesting:
-    every object is a comonoid object in a unique way, using the diagonal map as the comultiplication. This is proved in <a href="https://github.com/leanprover-community/mathlib4/pull/10103">PR #10103</a>.</p>
-</li>
-<li>
-<p>Combinatorics</p>
-</li>
-<li>
-<p>Thanks to the reviews by Thomas Bloom, a long sequence of three years old material by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:</p>
 <ul>
+<li>After an important effort by Joël Riou, derived categories of abelian categories and their triangulated structure are now in Mathlib since <a href="https://github.com/leanprover-community/mathlib4/pull/11806">PR #11806</a>. Using the triangulated structure on the homotopy category of an abelian categories (which was already obtained during the <a href="https://leanprover-community.github.io/blog/posts/lte-final/">Liquid Tensor Experiment</a>), this essentially follows from the localization theorem for triangulated categories <a href="https://github.com/leanprover-community/mathlib4/pull/11786">PR #11786</a>. Derived categories shall soon have more applications inside mathlib, thanks to the formalization of total derived functors <a href="https://github.com/leanprover-community/mathlib4/pull/12788">PR #12788</a> and t-structures <a href="https://github.com/leanprover-community/mathlib4/pull/12619">PR #12619</a>.</li>
+<li>We set up some of the basic theory of comonoid objects in monoidal categories, laying the foundation for work on bimonoids and Hopf monoids (and eventually group schemes, etc).
+  The definition was in <a href="https://github.com/leanprover-community/mathlib4/pull/10091">PR #10091</a>, and the fact that oplax monoidal functors (newly defined in <a href="https://github.com/leanprover-community/mathlib4/pull/12856">PR #12856</a>)
+  take comonoids to comonoids in
+  <a href="https://github.com/leanprover-community/mathlib4/pull/12858">PR #12858</a>. In a braided category, the comonoid objects themselves have a monoidal category structure,
+  developed in <a href="https://github.com/leanprover-community/mathlib4/pull/10098">PR #10098</a>. Finally, in a cartesion monoidal category, comonoids are not interesting:
+  every object is a comonoid object in a unique way, using the diagonal map as the comultiplication. This is proved in <a href="https://github.com/leanprover-community/mathlib4/pull/10103">PR #10103</a>.</li>
+</ul>
+</li>
+<li>
+<p>Combinatorics.</p>
+<ul>
+<li>Thanks to the reviews by Thomas Bloom, a long sequence of three years old material by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:</li>
 <li>
 <a href="https://github.com/leanprover-community/mathlib4/pull/12526">PR #12526</a> defines locally linear graphs, <a href="https://github.com/leanprover-community/mathlib4/pull/12570">PR #12570</a> constructs such graphs from a set of specified triangles respecting some conditions, <a href="https://github.com/leanprover-community/mathlib4/pull/12523">PR #12523</a> uses that construction to deduce the Triangle removal lemma from the Regularity lemma.</li>
 <li>
@@ -121,13 +120,13 @@ There were 667 PR">
 <li>Building up on thoses two series of PRs, <a href="https://github.com/leanprover-community/mathlib4/pull/13074">PR #13074</a> defines corners and corner-free set and <a href="https://github.com/leanprover-community/mathlib4/pull/9000">PR #9000</a> finally proves the Corners theorem and Roth's theorem. They respectively state that a corner-free set in <code>[N] × [N]</code> and a 3AP-free set in <code>[N]</code> have vanishingly small density as <code>N</code> goes to infinity.</li>
 </ul>
 <p><a href="https://github.com/YaelDillies/LeanAPAP">APAP</a> already contains the stronger result that the density goes to zero as <code>1/log log N</code>, and will soon prove the state of the art bound of <code>exp(-(log N)^1/9)</code>.
-  * <a href="https://github.com/leanprover-community/mathlib4/pull/10555">PR #10555</a> defines dissociation of sets, a sort of "local" version of linear independence obtained by restricting the scalars to <code>{-1, 0, 1}</code>. This will soon be used to prove important results in additive combinatorics.
-  * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in <a href="https://github.com/leanprover-community/mathlib4/pull/7102">PR #7102</a>.</p>
+* <a href="https://github.com/leanprover-community/mathlib4/pull/10555">PR #10555</a> defines dissociation of sets, a sort of "local" version of linear independence obtained by restricting the scalars to <code>{-1, 0, 1}</code>. This will soon be used to prove important results in additive combinatorics.
+* Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in <a href="https://github.com/leanprover-community/mathlib4/pull/7102">PR #7102</a>.</p>
 </li>
 <li>
 <p>Condensed mathematics.</p>
-</li>
-<li>The work towards getting the basics of condensed mathematics into Mathlib started about a year ago at a workshop in Copenhagen organized by Dagur Asgeirsson. The participants made great progress and proved results like the characterization of condensed sets as finite-product-preserving presheaves on <code>Stonean</code>. Since then, Dagur has been moving the material to Mathlib and developing it further. This month landed<ul>
+<ul>
+<li>The work towards getting the basics of condensed mathematics into Mathlib started about a year ago at a workshop in Copenhagen organized by Dagur Asgeirsson. The participants made great progress and proved results like the characterization of condensed sets as finite-product-preserving presheaves on <code>Stonean</code>. Since then, Dagur has been moving the material to Mathlib and developing it further. This month landed</li>
 <li>
 <a href="https://github.com/leanprover-community/mathlib4/pull/11586">PR #11586</a> defining light condensed objects. This is a concept introduced by Clausen and Scholze less than a year ago, and is an improvement over condensed sets in that it removes certain size-issues, as it is a sheaf over an essentially small site.</li>
 <li>
@@ -138,44 +137,44 @@ There were 667 PR">
 <a href="https://github.com/leanprover-community/mathlib4/pull/11585">PR #11585</a> proving that the category of light profinite objects is precoherent.</li>
 </ul>
 </li>
-<li>Number Theory.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib4/pull/12897">PR #12897</a> defines the <strong>Hurwitz zeta function</strong>, and proves its key properties (analytic continuation + functional equation). This is a generalisation of the Riemann zeta function, and is an important step towards Dirichlet L-functions in the near future. (Subsidiary PR's include <a href="https://github.com/leanprover-community/mathlib4/pull/12779">PR #12779</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12265">PR #12265</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13347">PR #13347</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13273">PR #13273</a>.)</p>
+<p>Number Theory.</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib4/pull/12897">PR #12897</a> defines the <strong>Hurwitz zeta function</strong>, and proves its key properties (analytic continuation + functional equation). This is a generalisation of the Riemann zeta function, and is an important step towards Dirichlet L-functions in the near future. (Subsidiary PR's include <a href="https://github.com/leanprover-community/mathlib4/pull/12779">PR #12779</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12265">PR #12265</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13347">PR #13347</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13273">PR #13273</a>.)</li>
+</ul>
 </li>
 <li>
 <p>Order Theory.</p>
-</li>
+<ul>
 <li>Stone duality between the categories of Boolean algebras and of profinite spaces is slowly moving from the <a href="https://github.com/samvang/StoneDualityInLean/">StoneDualityInLean project</a>: <a href="https://github.com/leanprover-community/mathlib4/pull/12705">PR #12705</a> proves that a disjoint filter and ideal in a bounded distributive lattice can always be separated by a prime ideal.</li>
-<li>
-<p>Christopher Hoskin continues introducing topologies relevant to order theory: <a href="https://github.com/leanprover-community/mathlib4/pull/11710">PR #11710</a> defines the Lawson Topology.</p>
+<li>Christopher Hoskin continues introducing topologies relevant to order theory: <a href="https://github.com/leanprover-community/mathlib4/pull/11710">PR #11710</a> defines the Lawson Topology.</li>
+</ul>
 </li>
 <li>
 <p>Metaprogramming.</p>
-</li>
+<ul>
 <li>Miyahara Kō heroically ported the <code>cc</code> tactic to Lean 4: <a href="https://github.com/leanprover-community/mathlib4/pull/11956">PR #11956</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/11960">PR #11960</a> and <a href="https://github.com/leanprover-community/mathlib4/pull/5938">PR #5938</a>.</li>
 <li>Damiano Testa and Yaël Dillies replaced the <code>mk_all</code> shell script hardcoded to Mathlib with a Lean script that dynamically figures out the Lean libraries (sadly, Mathlib still needs some separate handling) in <a href="https://github.com/leanprover-community/mathlib4/pull/11853">PR #11853</a>, and <a href="https://github.com/leanprover-community/mathlib4/pull/11874">PR #11874</a> made use of it in the "Check all files are imported" CI step. The script can now be used by any project downstream of Mathlib. If you maintain such a project, we encourage you to switch over to the new script and report eventual bugs.</li>
 <li>Vasily Nesterov implemented a simplex algorithm oracle in <a href="https://github.com/leanprover-community/mathlib4/pull/12014">PR #12014</a>. This is now the default oracle for <code>linarith</code> instead of the much slower Fourier-Motzkin oracle.</li>
 <li>
-<p><a href="https://github.com/leanprover-community/mathlib4/pull/13190">PR #13190</a> and <a href="https://github.com/leanprover-community/mathlib4/pull/13293">PR #13293</a> by Michael Rothgang and Damiano Testa neuters a very pernicious footgun: Contrary to expectations, <code>attribute [non_local_attribute] decl in</code> would <strong>globally</strong> tag <code>decl</code> with attribute <code>non_local_attribute</code>.</p>
+<a href="https://github.com/leanprover-community/mathlib4/pull/13190">PR #13190</a> and <a href="https://github.com/leanprover-community/mathlib4/pull/13293">PR #13293</a> by Michael Rothgang and Damiano Testa neuters a very pernicious footgun: Contrary to expectations, <code>attribute [non_local_attribute] decl in</code> would <strong>globally</strong> tag <code>decl</code> with attribute <code>non_local_attribute</code>.</li>
+</ul>
 </li>
 <li>
 <p>General library maintainance.</p>
-</li>
-<li>We are slowly getting rid of Lean 3-inspired syntax in Mathlib. New uses will soon be linted against in Mathlib and we encourage downstream projects to follow suit and adopt the new syntax.<ul>
+<ul>
+<li>We are slowly getting rid of Lean 3-inspired syntax in Mathlib. New uses will soon be linted against in Mathlib and we encourage downstream projects to follow suit and adopt the new syntax.</li>
 <li>
 <code>refine'</code> is a tactic that mimics the Lean 3 behavior of <code>refine</code>, mostly useful when porting Lean 3 code. It was decided to avoid using it in favor of the more declarative <code>refine</code>, or of <code>apply</code> in the rare cases where <code>refine</code> handles metavariables suboptimally. The following PRs started replacing <code>refine'</code> with <code>refine</code> or <code>apply</code>: <a href="https://github.com/leanprover-community/mathlib4/pull/12755">PR #12755</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12851">PR #12851</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12997">PR #12997</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13059">PR #13059</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13062">PR #13062</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13166">PR #13166</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13234">PR #13234</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13287">PR #13287</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13357">PR #13357</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13383">PR #13383</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13472">PR #13472</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13474">PR #13474</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13490">PR #13490</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13385">PR #13385</a>.</li>
 <li>"Stream-of-consciousness <code>obtain</code>" is now deprecated. <a href="https://github.com/leanprover-community/mathlib4/pull/12850">PR #12850</a> and <a href="https://github.com/leanprover-community/mathlib4/pull/13219">PR #13219</a> removed all occurrences of this syntax in Mathlib.</li>
-</ul>
-</li>
 <li>As of <a href="https://github.com/leanprover-community/mathlib4/pull/13271">PR #13271</a>, the notations <code>∏ x ∈ s, f x</code> and <code>∑ x ∈ s, f x</code> are global. <code>open scoped BigOperators</code> is now a no-op and downstream projects should stop using it.</li>
 <li>Since the <code>deprecated</code> attribute now takes an optional <code>since</code> field, we are systematising its use so that we can later programmatically remove all deprecations older than N months. The following PRs added dates to existing deprecations: <a href="https://github.com/leanprover-community/mathlib4/pull/12407">PR #12407</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12547">PR #12547</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12947">PR #12947</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12408">PR #12408</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12597">PR #12597</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13185">PR #13185</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13182">PR #13182</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12598">PR #12598</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13188">PR #13188</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13368">PR #13368</a>. Note that within Mathlib you can use the newly introduced <code>deprecated alias</code> code snippet (<a href="https://github.com/leanprover-community/mathlib4/pull/13206">PR #13206</a>) to generate <code>@[deprecated (since := "yyyy-mm-dd")] old_name := new_name</code>.</li>
 <li>To help reviewing large PRs, especially refactors, a bot now posts a diff of declaration names. This was introduced as a CI step in <a href="https://github.com/leanprover-community/mathlib4/pull/12515">PR #12515</a> whose output is available as a comment when tagging a PR with the new <code>move-decls</code> label (see <a href="https://github.com/leanprover-community/mathlib4/pull/12844">PR #12844</a>).</li>
-<li>Several performance improvements were made. Here are two that deserve to be known more widely:<ul>
+<li>Several performance improvements were made. Here are two that deserve to be known more widely:</li>
 <li>It was discovered that defining concrete types as subobjects can be a cause of poor performance. For example, <a href="https://github.com/leanprover-community/mathlib4/pull/12386">PR #12386</a> turns <code>ringOfIntegers K : Subalgebra ℤ K</code> into <code>RingOfIntegers K : Type _</code>, with the consequence that all typeclass searches on <code>RingOfIntegers K</code> are efficiently indexed on the head (<code>RingOfIntegers</code>) whereas before the head was the very generic <code>CoeSort.coe</code>.</li>
 <li>In a similar fashion, some simp lemmas accidentally had a lambda on their LHS, meaning that their key in simp's discrimination tree was maximally general and that simp would try rewriting with them in every location. Some such lemmas were unsimped in <a href="https://github.com/leanprover-community/mathlib4/pull/13164">PR #13164</a>.</li>
-</ul>
-</li>
-<li>A sustained effort has started to reduce spurious dependencies between files. There are two lines of work:<ul>
+<li>A sustained effort has started to reduce spurious dependencies between files. There are two lines of work:</li>
 <li>Reducing the long pole: Assuming Mathlib is built on an infinitely parallelizing machine, there is some sequence of files, each importing the previous, that takes the longest to build. We call this sequence the "long pole". As it is a cap on performance, it is natural to try shortening it. After <a href="https://github.com/leanprover-community/mathlib4/pull/12777">PR #12777</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12401">PR #12401</a>, the long pole has left the <code>RingTheory</code> folder entirely.</li>
 <li>Reducing imports to basic files: The theory of basic algebra, order theory and data structures feed into each other at various points. For example, we need to know some order properties of addition and multiplication on <code>Nat</code> and <code>Int</code> to talk about powers in a group, and we need finite sets to define finite sums and finite suprema/infima. It is overwhelmingly easy to create an almost-circular import graph ricocheting between those three areas. The <code>Nat</code>- and <code>Int</code>-specific lemmas in Core and Batteries are an opportunity to cut the knot: These lemmas do not depend on Mathlib's algebraic order hierarchy, hence can be used in basic algebra and data structures without over-importing. The following PRs are steps towards that: <a href="https://github.com/leanprover-community/mathlib4/pull/11986">PR #11986</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12710">PR #12710</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12828">PR #12828</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12736">PR #12736</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12825">PR #12825</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12817">PR #12817</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12823">PR #12823</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12872">PR #12872</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12829">PR #12829</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12862">PR #12862</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12835">PR #12835</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12821">PR #12821</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12818">PR #12818</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12836">PR #12836</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12832">PR #12832</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12882">PR #12882</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12975">PR #12975</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/11855">PR #11855</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13029">PR #13029</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12985">PR #12985</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13008">PR #13008</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13033">PR #13033</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12845">PR #12845</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12974">PR #12974</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/11863">PR #11863</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12959">PR #12959</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13030">PR #13030</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13031">PR #13031</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13005">PR #13005</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13140">PR #13140</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13139">PR #13139</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12990">PR #12990</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13184">PR #13184</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13197">PR #13197</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13138">PR #13138</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/12957">PR #12957</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13222">PR #13222</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13224">PR #13224</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13242">PR #13242</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13288">PR #13288</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13003">PR #13003</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13205">PR #13205</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13289">PR #13289</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13244">PR #13244</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13305">PR #13305</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13274">PR #13274</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13253">PR #13253</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13268">PR #13268</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13147">PR #13147</a>, <a href="https://github.com/leanprover-community/mathlib4/pull/13243">PR #13243</a>.</li>
 </ul>
