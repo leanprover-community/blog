@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This month in mathlib (May 2022) | Lean community blog</title>
+<link href="../../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/month-in-mathlib/2022/month-in-mathlib-may-2022/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="This month in mathlib (May 2022) | Lean community blog">
+<meta name="author" content="Mathlib community">
+<link rel="prev" href="../month-in-mathlib-apr-2022/" title="This month in mathlib (Apr 2022)" type="text/html">
+<link rel="next" href="../../../the-ring-of-integers-of-a-cyclotomic-field/" title="The ring of integers of a cyclotomic field" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="This month in mathlib (May 2022)">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/month-in-mathlib/2022/month-in-mathlib-may-2022/">
+<meta property="og:description" content="In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.
+
+
+
+
+Model theory
+
+PR #13980 proves that any theory with infinite models has arbitrarily large models
+PR #13723">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-06-14T15:35:21Z">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../../../archive.html">Archive</a></li>
+                <li><a href="../../../../categories/">Tags</a></li>
+                <li><a href="../../../../about/">About</a></li>
+                <li><a href="../../../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">This month in mathlib (May 2022)</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../../../authors/mathlib-community/">Mathlib community</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-06-14T15:35:21Z" itemprop="datePublished" title="2022-06-14 15:35">2022-06-14 15:35</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/month-in-mathlib/2022/month-in-mathlib-may-2022/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>In May 2022 there were 606 PRs merged into mathlib. We list some of the highlights below.</p>
+<!-- TEASER_END -->
+
+<ul>
+<li>
+<p>Model theory</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13980">PR #13980</a> proves that any theory with infinite models has arbitrarily large models</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13723">PR #13723</a> and <a href="https://github.com/leanprover-community/mathlib/pull/13982">PR #13982</a> prove the Löwenheim–Skolem theorem</li>
+</ul>
+</li>
+<li>
+<p>Category theory and homological algebra</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13882">PR #13882</a> proves that simple objects are indecomposable</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13707">PR #13707</a> proves that a left rigid category is monoidal closed and that functors from a groupoid to a rigid category is again a rigid category.</li>
+<li>Homology is still making progress, both in concrete setups such as <a href="https://github.com/leanprover-community/mathlib/pull/12622">PR #12622</a> which develops the API for complexes of modules, and in abelian categories with <a href="https://github.com/leanprover-community/mathlib/pull/14009">PR #14009</a> bringing short exact sequences from the Liquid Tensor Experiment.</li>
+<li>In algebraic topology, <a href="https://github.com/leanprover-community/mathlib/pull/14304">PR #14304</a> defines the nerve of a category as a simplicial set. </li>
+</ul>
+</li>
+<li>
+<p>Algebra</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13414">PR #13414</a> starts the study of torsion ideals. This is a step towards the long awaited classification of finite type modules over principal ideal domains, stay tuned!</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13784">PR #13784</a> starts the formalization of Laurent Polynomials. Many more PRs followed or are on their way.</li>
+<li>The work to remove unneeded commutativity assumptions continued, in particular in <a href="https://github.com/leanprover-community/mathlib/pull/13966">PR #13966</a> and <a href="https://github.com/leanprover-community/mathlib/pull/13865">PR #13865</a>.</li>
+<li>Matrices also got some work, both on the algebraic side with <a href="https://github.com/leanprover-community/mathlib/pull/13845">PR #13845</a> proving that invertible matrices over a ring with invariant basis number are square, and the analytical side with <a href="https://github.com/leanprover-community/mathlib/pull/13520">PR #13520</a> defining the matrix exponential. In order to make this easier to work with, mathlib now has two different normed algebra structures on matrices, the $L^\infty$ operator norm from <a href="https://github.com/leanprover-community/mathlib/pull/13518">PR #13518</a> and the frobenius norm from <a href="https://github.com/leanprover-community/mathlib/pull/13497">PR #13497</a>.</li>
+<li>In representation theory, <a href="https://github.com/leanprover-community/mathlib/pull/13685">PR #13685</a> proves the category of <code>Rep k G</code> of representations of a group <code>G</code> on <code>k</code>-vector spaces is symmetric monoidal, and <a href="https://github.com/leanprover-community/mathlib/pull/13782">PR #13782</a> proves it is linear. <a href="https://github.com/leanprover-community/mathlib/pull/13740">PR #13740</a> introduces the category of finite dimensional representations. </li>
+</ul>
+</li>
+<li>
+<p>Number theory</p>
+<ul>
+<li>The general theory of Dedekind domains progressed with <a href="https://github.com/leanprover-community/mathlib/pull/13067">PR #13067</a> about the Chinese remainder theorem and
+   <a href="https://github.com/leanprover-community/mathlib/pull/13462">PR #13462</a> which extends the v-adic valuation on a Dedekind domain to its field of fractions K and defines the completion of K with respect to this valuation, as well as its ring of integers, and provides some topological instances.</li>
+<li>On the concrete examples side, <a href="https://github.com/leanprover-community/mathlib/pull/13585">PR #13585</a> computes the ring of integers of a $p^ n$-th cyclotomic extension of $ℚ$. </li>
+</ul>
+</li>
+<li>
+<p>Functional analysis and geometry:</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/9862">PR #9862</a> finished the Banach-Alaoglu theorem.</li>
+<li>A long series of PRs culminated in <a href="https://github.com/leanprover-community/mathlib/pull/7288">PR #7288</a> proving several versions of the geometric Hahn Banach theorem.</li>
+<li>Also related to convexity, there had been progress on locally convex topological vector spaces, including <a href="https://github.com/leanprover-community/mathlib/pull/13547">PR #13547</a> characterizing the topology induced by seminorms in terms of neighborhoods of zero, and the introduction of uniformly convex normed spaces in 
+   <a href="https://github.com/leanprover-community/mathlib/pull/13480">PR #13480</a>.</li>
+<li>The theory of vector bundles over topological spaces progressed with <a href="https://github.com/leanprover-community/mathlib/pull/14361">PR #14361</a> and
+   <a href="https://github.com/leanprover-community/mathlib/pull/8545">PR #8545</a> building the pullback of a vector bundle under a continuous map.</li>
+</ul>
+</li>
+<li>
+<p>Integration theory and calculus</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13540">PR #13540</a> defines the convolution of two functions. It proves that when one of the functions has compact support and is $C^n$ and the other function is locally integrable, the convolution is $C^n$ and its total derivative can be expressed as a convolution (this requires to generalize the usual notion of convolution which would be enough only for partial derivatives). This PR also proves that when taking the convolution with functions that "tend to the Dirac delta function", the convolution tends to the original function. This all comes from the sphere eversion project.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13179">PR #13179</a> proves comparison lemmas between finite sums and integrals.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/14129">PR #14129</a> ensure that the asymptotic relations <code>is_o</code>/<code>is_O</code> work in <code>calc</code> blocks.</li>
+</ul>
+</li>
+<li>
+<p>Complex analysis</p>
+<ul>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13178">PR #13178</a> proves the <a href="https://en.wikipedia.org/wiki/Phragm%C3%A9n%E2%80%93Lindel%C3%B6f_principle">Phragmen-Lindelöf principle</a> for some shapes in the complex plane.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13000">PR #13000</a> continues the study of the $\Gamma$ function, proving it is complex analytic (away from its poles at non-positive integrers of course).</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/12892">PR #12892</a> introduces torus integrals, paving the way towards the higher-dimensional Cauchy formula.</li>
+</ul>
+</li>
+<li>
+<p>Probability theory</p>
+<ul>
+<li>In elementary probabilities, <a href="https://github.com/leanprover-community/mathlib/pull/13484">PR #13484</a> use the counting measure to reformulate earliers contributions.</li>
+<li>
+<a href="https://github.com/leanprover-community/mathlib/pull/13630">PR #13630</a> proves the optional stopping theorem from martingale theory.</li>
+<li>After a long series of PRs including <a href="https://github.com/leanprover-community/mathlib/pull/13912">PR #13912</a> which defines the variance of a random variable, and proves its basic properties, 
+   and <a href="https://github.com/leanprover-community/mathlib/pull/14024">PR #14024</a> which defines identically distributed random variables, we finally got
+   <a href="https://github.com/leanprover-community/mathlib/pull/13690">PR #13690</a> which proves the strong law of large numbers!</li>
+</ul>
+</li>
+</ul>
+<p>Note also that, with <a href="https://github.com/leanprover-community/mathlib/pull/14237">PR #14237</a> we finally completed the long quest to provide module docstring for all math files in mathlib.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../month-in-mathlib-apr-2022/" rel="prev" title="This month in mathlib (Apr 2022)">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../../../the-ring-of-integers-of-a-cyclotomic-field/" rel="next" title="The ring of integers of a cyclotomic field">Next post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2024         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
