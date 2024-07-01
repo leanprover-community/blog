@@ -1,14 +1,14 @@
 #!/bin/bash
 
 usage () {
-echo "Usage: monthly-blog.sh YYYY M path/to/mathlib"
+echo "Usage: month-in-mathlib.sh YYYY M path/to/mathlib4"
 echo ""
-echo "Where YYYY is a 4-digit year, and M is the number of the month."
-echo "Example: monthly-blog.sh 2021 8 ~/mathlib"
+echo "where YYYY is a 4-digit year, and M is the number of the month."
+echo "Example: month-in-mathlib.sh 2021 8 ~/mathlib4"
 echo "It is important that M is a natural number between 1 and 12."
 echo "The formats '02' and '2' are both allowed."
 echo ""
-echo "Important: make sure that the mathlib clone is clean,"
+echo "Important: make sure that the mathlib4 clone is clean,"
 echo "and points to an up-to-date copy of master."
 exit 1
 }
@@ -37,7 +37,7 @@ echo "has_math: true"
 echo "link: ''"
 echo "slug: month-in-mathlib-${month_lc}-$year"
 echo "tags: ''"
-echo "title: This month in mathlib (${month_uc} $year)"
+echo "title: This month in Mathlib (${month_uc} $year)"
 echo "type: text"
 echo "---"
 
