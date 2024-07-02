@@ -121,10 +121,12 @@ There were 667 PR">
 <a href="https://github.com/leanprover-community/mathlib4/pull/12701">PR #12701</a> redefines sets without arithmetic progressions of length 3 (aka 3AP-free sets) so that they behave correctly in characteristic two. <a href="https://github.com/leanprover-community/mathlib4/pull/12546">PR #12546</a> refactors Freiman homomorphisms and isomorphisms from a bundled design to unbundled predicates. This makes them much easier to use. <a href="https://github.com/leanprover-community/mathlib4/pull/12551">PR #12551</a> then proves the no wrap-around principle stating that additive structure in sets is independent of the ambient group so long as torsion is much bigger than the diameter of the sets.</li>
 <li>Building up on thoses two series of PRs, <a href="https://github.com/leanprover-community/mathlib4/pull/13074">PR #13074</a> defines corners and corner-free set and <a href="https://github.com/leanprover-community/mathlib4/pull/9000">PR #9000</a> finally proves the Corners theorem and Roth's theorem. They respectively state that a corner-free set in <code>[N] × [N]</code> and a 3AP-free set in <code>[N]</code> have vanishingly small density as <code>N</code> goes to infinity.</li>
 </ul>
-<p><a href="https://github.com/YaelDillies/LeanAPAP">APAP</a> already contains the stronger result that the density goes to zero as <code>1/log log N</code>, and will soon prove the state of the art bound of <code>exp(-(log N)^1/9)</code>.
-    * <a href="https://github.com/leanprover-community/mathlib4/pull/10555">PR #10555</a> defines dissociation of sets, a sort of "local" version of linear independence obtained by restricting the scalars to <code>{-1, 0, 1}</code>. This will soon be used to prove important results in additive combinatorics.
-    * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in <a href="https://github.com/leanprover-community/mathlib4/pull/7102">PR #7102</a>.</p>
+<p><a href="https://github.com/YaelDillies/LeanAPAP">APAP</a> already contains the stronger result that the density goes to zero as <code>1/log log N</code>, and will soon prove the state of the art bound of <code>exp(-(log N)^1/9)</code>.</p>
 </li>
+<li>
+<p><a href="https://github.com/leanprover-community/mathlib4/pull/10555">PR #10555</a> defines dissociation of sets, a sort of "local" version of linear independence obtained by restricting the scalars to <code>{-1, 0, 1}</code>. This will soon be used to prove important results in additive combinatorics.</p>
+</li>
+<li>Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in <a href="https://github.com/leanprover-community/mathlib4/pull/7102">PR #7102</a>.</li>
 </ul>
 </li>
 <li>
