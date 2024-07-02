@@ -46,11 +46,13 @@ There were 667 PRs merged in May 2024.
 
 * Combinatorics.
     * Thanks to the reviews by Thomas Bloom, a long sequence of three years old material by Yaël Dillies and Bhavik Mehta culminating in Roth's theorem on arithmetic progressions was finally merged:
+
         * [PR #12526](https://github.com/leanprover-community/mathlib4/pull/12526) defines locally linear graphs, [PR #12570](https://github.com/leanprover-community/mathlib4/pull/12570) constructs such graphs from a set of specified triangles respecting some conditions, [PR #12523](https://github.com/leanprover-community/mathlib4/pull/12523) uses that construction to deduce the Triangle removal lemma from the Regularity lemma.
         * [PR #12701](https://github.com/leanprover-community/mathlib4/pull/12701) redefines sets without arithmetic progressions of length 3 (aka 3AP-free sets) so that they behave correctly in characteristic two. [PR #12546](https://github.com/leanprover-community/mathlib4/pull/12546) refactors Freiman homomorphisms and isomorphisms from a bundled design to unbundled predicates. This makes them much easier to use. [PR #12551](https://github.com/leanprover-community/mathlib4/pull/12551) then proves the no wrap-around principle stating that additive structure in sets is independent of the ambient group so long as torsion is much bigger than the diameter of the sets.
         * Building up on thoses two series of PRs, [PR #13074](https://github.com/leanprover-community/mathlib4/pull/13074) defines corners and corner-free set and [PR #9000](https://github.com/leanprover-community/mathlib4/pull/9000) finally proves the Corners theorem and Roth's theorem. They respectively state that a corner-free set in `[N] × [N]` and a 3AP-free set in `[N]` have vanishingly small density as `N` goes to infinity.
 
         [APAP](https://github.com/YaelDillies/LeanAPAP) already contains the stronger result that the density goes to zero as `1/log log N`, and will soon prove the state of the art bound of `exp(-(log N)^1/9)`.
+
     * [PR #10555](https://github.com/leanprover-community/mathlib4/pull/10555) defines dissociation of sets, a sort of "local" version of linear independence obtained by restricting the scalars to `{-1, 0, 1}`. This will soon be used to prove important results in additive combinatorics.
     * Mathlib finally knows about Hamiltonian paths and cycles thanks to a team effort started at Lean for the Curious Mathematician 2023 in Düsseldorf by Rishi Mehta and Linus Sommer under the supervision of Bhavik Mehta, and recently continued by Lode Vermeulen in [PR #7102](https://github.com/leanprover-community/mathlib4/pull/7102).
 
