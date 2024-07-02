@@ -41,7 +41,7 @@ There were 667 PRs merged in May 2024.
       The definition was in [PR #10091](https://github.com/leanprover-community/mathlib4/pull/10091), and the fact that oplax monoidal functors (newly defined in [PR #12856](https://github.com/leanprover-community/mathlib4/pull/12856))
       take comonoids to comonoids in
       [PR #12858](https://github.com/leanprover-community/mathlib4/pull/12858). In a braided category, the comonoid objects themselves have a monoidal category structure,
-      developed in [PR #10098](https://github.com/leanprover-community/mathlib4/pull/10098). Finally, in a cartesion monoidal category, comonoids are not interesting:
+      developed in [PR #10098](https://github.com/leanprover-community/mathlib4/pull/10098). Finally, in a cartesian monoidal category, comonoids are not interesting:
       every object is a comonoid object in a unique way, using the diagonal map as the comultiplication. This is proved in [PR #10103](https://github.com/leanprover-community/mathlib4/pull/10103).
 
 * Combinatorics.
