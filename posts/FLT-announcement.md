@@ -65,7 +65,7 @@ But who is "we"?
 # Crowd-sourcing mathematics
 
 I cannot formalise FLT alone.
-Indeed there are several parts of the arguments where I understand the basic principles but have never checked the details carefully, and on top of this there are some nontrivial inputs due to Langlands (cyclic base change for GL_2, and Jacquet-Langlands) which I have only the most superficial understanding of.
+Indeed there are several parts of the arguments where I understand the basic principles but have never checked the details carefully, and on top of this there are some nontrivial inputs due to Langlands (cyclic base change for $GL_2$, and Jacquet-Langlands) which I have only the most superficial understanding of.
 However this is where one begins to see the benefits of a formalisation project.
 I will be able to explicitly *state* the results I need in Lean, and pass them on to others.
 The beauty of the system: you do not have to understand the whole proof of FLT in order to contribute.
