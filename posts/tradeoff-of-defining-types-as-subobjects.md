@@ -93,7 +93,7 @@ deriving TopologicalSpace
 instance : MetricSpace Circle := Subtype.metricSpace
 ```
 
-In the Custom Structure design, these instances must be either copied over manually or transferred some kind of isomorphism.
+In the Custom Structure design, these instances must be either copied over manually or transferred using some kind of isomorphism.
 
 The Subobject design, by definition, lets all generic instances apply.
 
