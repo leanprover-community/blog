@@ -11,7 +11,7 @@ title: Tradeoffs of defining types as subobjects
 type: text
 ---
 
-It often happens in formalisation that a type of interest is a subobject of another type of interest. For example, the unit circle in the complex plane is naturally a submonoid (nevermind that it is actually a subgroup, we currently can't talk about subgroups of fields).
+It often happens in formalisation that a type of interest is a subobject of another type of interest. For example, the unit circle in the complex plane is naturally a submonoid[^1].
 
 What is the best way of defining this unit circle in terms of `Complex`? This blog post examines the pros and cons of the available designs.
 
@@ -116,4 +116,7 @@ Subobjects are not the only ones having a coercion to `Type`: Concrete categorie
 
 For example, [`AlgebraicGeometry.Scheme`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=AlgebraicGeometry.Scheme#doc) sees widespread use in algebraic geometry and [`AlgebraicGeometry.Proj`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=AlgebraicGeometry.Proj#doc) is a term of type `Scheme` that is also used as a type.
 
-This raises issues of its own, as `Proj 𝒜` is (mathematically) also a smooth manifold for some graded algebras `𝒜`. Since terms only have one type, we can't hope to have both `Proj 𝒜 : Scheme` and `Proj 𝒜 : SmoothMnfld` (this last category does not exist yet in Mathlib). One option would be to have a separate `DifferentialGeometry.Proj 𝒜` of type `SmoothMnfld`. Another one would be to provide the instances saying that `AlgebraicGeometry.Proj 𝒜` is a smooth manifold.
+This raises issues of its own, as `Proj 𝒜` is (mathematically) also a smooth manifold for some graded algebras `𝒜`. Since terms only have one type, we can't hope to have both `Proj 𝒜 : Scheme` and `Proj 𝒜 : SmoothMnfld`[^2]. One option would be to have a separate `DifferentialGeometry.Proj 𝒜` of type `SmoothMnfld`. Another one would be to provide the instances saying that `AlgebraicGeometry.Proj 𝒜` is a smooth manifold.
+
+[^1]: Nevermind that it is actually a subgroup. Mathlib currently can't talk about subgroups of fields.
+[^2]: The `SmoothMnfld` category does not exist yet in Mathlib
