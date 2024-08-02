@@ -9,10 +9,6 @@ jobs:
     if: github.event.pull_request.draft == false
     name: Blog draft
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      repository-projects: write
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,10 +34,9 @@ jobs:
         run: |
           yrMth=2024-07
           mth="$(date -d "${yrMth}-01" '+%B')"
-          PR="${{ github.event.pull_request.number }}"
+          #PR="${{ github.event.pull_request.number }}"
           title="### ${mth} in Mathlib summary"
 
-          #git checkout origin/adomani/yd_find_label monthly_summary.sh
           mim1="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
           echo "${mim}"
           baseUrl="https://github.com/${MATHLIB}/pull/"
