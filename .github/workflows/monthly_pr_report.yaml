@@ -96,5 +96,5 @@ jobs:
           fi
 
           echo "running script"
-          ./scripts/update_PR_comment.sh "${message}" "${title}" "${PR}" &&
+          ./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}" &&
             echo "after script"
