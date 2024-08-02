@@ -129,4 +129,4 @@ rm -rf found_by_gh.txt found_by_git.txt
     s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
     s=\n---[\n]*$=\n\n</details>\n&=
   '
-fi }
+fi ; }
