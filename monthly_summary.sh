@@ -16,9 +16,6 @@ repository=leanprover-community/mathlib4
 startDate="${1}"
 endDate="${2}"
 
-echo "startDate: ${startDate}"
-echo "endDate: ${endDate}"
-
 # find how many commits to master there have been in the last month
 #commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
 
@@ -54,6 +51,9 @@ commits_in_range="$(git log --since="${start_date}" --until="${end_date}" --pret
 printf $'\n\nBetween %s and %s there were\n' "${yr_mth_day}" "${end_date/%T*}"
 
 printf $'* %s commits to `master` and\n' "${commits_in_range}"
+
+echo "First run:  ${start_date} ${yr_mth}-15T23:59:59"
+echo "Second run: ${yr_mth}-16T00:00:00 ${end_date}"
 
 (
 findInRange "${1}" "${start_date}" "${yr_mth}-15T23:59:59" | sed -z 's=]\n*$=,\n='
