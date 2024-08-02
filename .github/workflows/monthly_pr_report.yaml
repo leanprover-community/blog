@@ -38,10 +38,10 @@ jobs:
           title="### ${mth} in Mathlib summary"
 
           #git checkout origin/adomani/yd_find_label monthly_summary.sh
-          message="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
-          #echo "${message}"
+          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
+          #echo "${mim}"
           baseUrl="https://github.com/${MATHLIB}/pull"
-          message="$(echo "${message}" |
+          mim="$(echo "${mim}" |
             sed '
               / [0-9]* PRs$/{
                 s=^=</details><details><summary>\n=
@@ -53,7 +53,7 @@ jobs:
               s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
               s=\n---[\n]*$=\n\n</details>\n&=
             ')"
-          echo "${message}"
+          echo "${mim}"
           echo "pwd"
           pwd
           echo "ls"
@@ -68,7 +68,7 @@ jobs:
           printf './mathlib/scripts/update_PR_comment.sh %s %s %s\n' "message" "${title}" "${PR}"
 
           # the text of the message that will replace the current one
-          message="${message}"
+          message="${mim}"
           # the start of the message to locate it among all messages in the PR
           comment_init="${title}"
           # the PR number
