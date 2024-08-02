@@ -93,4 +93,4 @@ jobs:
           fi
 
 
-          #./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}"
+          #./mathlib/scripts/update_PR_comment.sh "${title} message" "${title}" "${PR}"
