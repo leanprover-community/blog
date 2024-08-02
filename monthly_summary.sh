@@ -110,7 +110,7 @@ fi
 printf -- $'---\n'
 
 rm -rf found_by_gh.txt found_by_git.txt
-} | if [ -n "${raw}" ]; then cat; else  # extra .md formatting
+} | if [ "${raw}" == "raw" ]; then cat; else  # extra .md formatting
   sed '
     / [0-9]* PRs$/{
       s=^=</details><details><summary>\n=
