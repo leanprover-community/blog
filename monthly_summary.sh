@@ -10,7 +10,7 @@ rm -rf found_by_gh.txt found_by_git.txt
 
 findInRange () {
 
-repository=leanprover-community/mathlib4
+repository='leanprover-community/mathlib4'
 
 # Get the start and end dates
 startDate="${1}"
