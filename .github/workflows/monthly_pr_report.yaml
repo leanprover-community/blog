@@ -75,7 +75,7 @@ jobs:
           baseURL="https://api.github.com/repos/leanprover-community/blog/issues"
           printf 'Base url: %s\n' "${baseURL}"
           method="POST"
-          printf '###  Summary\n\n' > "${GITHUB_STEP_SUMMARY}"
+          printf '%s\n' "${mim}" > "${GITHUB_STEP_SUMMARY}"
           #./scripts/no_lost_declarations.sh >> "${GITHUB_STEP_SUMMARY}"
           if [[ -n "$message" ]]; then
               url="${baseURL}/${PR}/comments"
