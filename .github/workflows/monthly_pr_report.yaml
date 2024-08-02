@@ -90,8 +90,10 @@ jobs:
               echo "Comment id: '${comment_id}'"
               if [[ -n "$comment_id" ]]; then
                   url="${baseURL}/comments/${comment_id}"
+                  echo "are we here?"
                   method="PATCH"
               fi
+              echo "or are we there?"
               curl -s -S -H "Content-Type: application/json" -H "$headers" -X "$method" -d "$data" "$url"
           fi
 
