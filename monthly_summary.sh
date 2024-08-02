@@ -2,7 +2,8 @@
 
 : <<'BASH_DOC_MODULE'
 
-This command
+Running `monthly_summary.sh 2024-07` produces an md-formatted summary of all the PRs that were
+merged into mathlib master in the month 2024-07
 
 BASH_DOC_MODULE
 
@@ -27,7 +28,7 @@ if [ "$#" -gt 2 ]; then
 fi
 
 raw="${2}"
-
+echo "raw is ${raw}"
 rm -rf found_by_gh.txt found_by_git.txt
 
 findInRange () {
