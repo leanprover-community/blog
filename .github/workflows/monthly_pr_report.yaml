@@ -37,10 +37,10 @@ jobs:
           #PR="${{ github.event.pull_request.number }}"
           title="### ${mth} in Mathlib summary"
 
-          mim1="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
+          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
           echo "${mim}"
           baseUrl="https://github.com/${MATHLIB}/pull/"
-          echo "${mim1}" |
+          echo "${mim}" |
             sed '
               / [0-9]* PRs$/{
                 s=^=</details><details><summary>\n=
