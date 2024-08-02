@@ -12,7 +12,6 @@ jobs:
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      MATHLIB: leanprover-community/mathlib4
 
     steps:
       - name: cleanup
@@ -37,9 +36,9 @@ jobs:
           #PR="${{ github.event.pull_request.number }}"
           title="### ${mth} in Mathlib summary"
 
-          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
+          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")")"
           echo "${mim}"
-          baseUrl="https://github.com/${MATHLIB}/pull/"
+          baseUrl="https://github.com/leanprover-community/mathlib4/pull/"
           echo "${mim}" |
             sed '
               / [0-9]* PRs$/{

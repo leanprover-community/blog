@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if required arguments are provided
-if [ "$#" -ne 2 ]; then
-    printf $'Usage: %s <repo_owner/repo_name> <YYYY-MM>\n\nFor instance `%s leanprover-community/mathlib4`\n\n' "${0}" "${0}"
+if [ "$#" -ne 1 ]; then
+    printf $'Usage: %s <YYYY-MM>\n\nFor instance `%s 2024-07`\n\n' "${0}" "${0}"
     exit 1
 fi
 
@@ -10,11 +10,11 @@ rm -rf found_by_gh.txt found_by_git.txt
 
 findInRange () {
 
-repository="${1}"
+repository=leanprover-community/mathlib4
 
 # Get the start and end dates
-startDate="${2}"
-endDate="${3}"
+startDate="${1}"
+endDate="${2}"
 
 # find how many commits to master there have been in the last month
 commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
