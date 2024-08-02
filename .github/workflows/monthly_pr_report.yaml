@@ -53,5 +53,12 @@ jobs:
               s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
               s=\n---[\n]*$=\n\n</details>\n&=
             ')"
+          echo "pwd"
           pwd
-          ./scripts/update_PR_comment.sh "${message}" "${title}" "${PR}"
+          echo "ls"
+          ls
+          cd ..
+          echo ".. ls"
+          pwd
+          ls
+          ./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}"
