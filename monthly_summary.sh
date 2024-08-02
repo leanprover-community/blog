@@ -20,10 +20,10 @@ echo "startDate: ${startDate}"
 echo "endDate: ${endDate}"
 
 # find how many commits to master there have been in the last month
-commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
+#commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
 
 # Retrieve merged PRs from the given range
-prs=$(gh pr list --repo "$repository" --state closed --base master --search "closed:${startDate}..${endDate}" --json number,labels,title,author --limit "$((commits_in_range * 2))")
+prs=$(gh pr list --repo "$repository" --state closed --base master --search "closed:${startDate}..${endDate}" --json number,labels,title,author --limit 1000) #"$((commits_in_range * 2))")
 
 ## Print PR numbers, their labels and their title
 #echo "$prs" | jq -r '.[] | select(.title | startswith("[Merged by Bors]")) | "PR #\(.number) - Labels: \((.labels | map(.name) | join(", ")) // "No labels") - Title: \(.title)"'
