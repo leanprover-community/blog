@@ -30,8 +30,6 @@ if [ "$#" -gt 2 ]; then
     exit 1
 fi
 
-raw="${2}"
-echo "raw is ${raw}"
 rm -rf found_by_gh.txt found_by_git.txt
 
 findInRange () {
@@ -118,7 +116,7 @@ printf -- $'---\n'
 
 rm -rf found_by_gh.txt found_by_git.txt
 } | {
-  if [ "${raw}" == "raw" ]
+  if (( $2 == "raw" ))
   then
     cat -
   else  # extra .md formatting
