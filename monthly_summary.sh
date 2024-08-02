@@ -3,7 +3,10 @@
 : <<'BASH_DOC_MODULE'
 
 Running `monthly_summary.sh 2024-07` produces an md-formatted summary of all the PRs that were
-merged into mathlib master in the month 2024-07
+merged into mathlib master in the month 2024-07.
+A "raw" format can be obtain running `monthly_summary.sh 2024-07 raw`.
+
+There is a slight discrepancy
 
 BASH_DOC_MODULE
 
@@ -114,7 +117,7 @@ fi
 printf -- $'---\n'
 
 rm -rf found_by_gh.txt found_by_git.txt
-} | if [ "${raw}" == "raw" ]; then cat; else  # extra .md formatting
+} | { if [ "${raw}" == "raw" ]; then cat; else  # extra .md formatting
   sed '
     / [0-9]* PRs$/{
       s=^=</details><details><summary>\n=
@@ -126,4 +129,4 @@ rm -rf found_by_gh.txt found_by_git.txt
     s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
     s=\n---[\n]*$=\n\n</details>\n&=
   '
-fi
+fi }
