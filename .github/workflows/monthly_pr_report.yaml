@@ -45,7 +45,7 @@ jobs:
           mim1="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
           echo "${mim}"
           baseUrl="https://github.com/${MATHLIB}/pull/"
-          mim="$(echo "${mim1}" |
+          echo "${mim1}" |
             sed '
               / [0-9]* PRs$/{
                 s=^=</details><details><summary>\n=
@@ -56,5 +56,4 @@ jobs:
               s=</details><details><summary>=<details><summary>=
               s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
               s=\n---[\n]*$=\n\n</details>\n&=
-            ')"
-          printf '%s\n' "${mim}" > "${GITHUB_STEP_SUMMARY}"
+            ' > "${GITHUB_STEP_SUMMARY}"
