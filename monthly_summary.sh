@@ -3,6 +3,15 @@
 repository='leanprover-community/mathlib4'
 baseUrl="https://github.com/${repository}/pull/"
 
+# the year and month being processed
+yr_mth="${1}" #"$(date +%Y-%m)"
+yr_mth_day=${yr_mth}-01
+
+mth="$(date -d "${yrMth}-01" '+%B')"
+title="### ${mth} in Mathlib summary"
+
+printf '%s\n\n' "${title}"
+
 {
 # Check if required argument is provided
 if [ "$#" -gt 2 ]; then
@@ -39,10 +48,6 @@ git log --pretty=oneline --since="${startDate}" --until="${endDate}" |
 
 echo "$prs"
 }
-
-# the year and month being processed
-yr_mth="${1}" #"$(date +%Y-%m)"
-yr_mth_day=${yr_mth}-01
 
 start_date="${yr_mth_day}T00:00:00"
 end_date="$(date -d "${yr_mth_day} + 1 month - 1 day" +%Y-%m-%d)T23:59:59"

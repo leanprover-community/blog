@@ -32,8 +32,5 @@ jobs:
       - name: blog report
         run: |
           yrMth=2024-07
-          mth="$(date -d "${yrMth}-01" '+%B')"
-          title="### ${mth} in Mathlib summary"
-
-          printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}" raw)"
-          printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")" > "${GITHUB_STEP_SUMMARY}"
+          printf '%s\n' "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}" raw)"
+          printf '%s\n' "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")" > "${GITHUB_STEP_SUMMARY}"
