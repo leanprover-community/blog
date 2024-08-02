@@ -42,8 +42,8 @@ jobs:
           title="### ${mth} in Mathlib summary"
 
           #git checkout origin/adomani/yd_find_label monthly_summary.sh
-          #mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
-          mim1="${title} and something else"
+          mim1="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
+          #mim1="${title} and something else"
           #echo "${mim}"
           baseUrl="https://github.com/${MATHLIB}/pull"
           mim="$(echo "${mim1}" |
