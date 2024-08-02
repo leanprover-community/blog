@@ -7,7 +7,7 @@ baseUrl="https://github.com/${repository}/pull/"
 yr_mth="${1}" #"$(date +%Y-%m)"
 yr_mth_day=${yr_mth}-01
 
-mth="$(date -d "${yrMth}-01" '+%B')"
+mth="$(date -d "${yr_mth_day}" '+%B')"
 title="### ${mth} in Mathlib summary"
 
 printf '%s\n\n' "${title}"

@@ -32,5 +32,6 @@ jobs:
       - name: blog report
         run: |
           yrMth=2024-07
-          printf '%s\n' "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}" raw)"
-          printf '%s\n' "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")" > "${GITHUB_STEP_SUMMARY}"
+          cd mathlib;
+          ./../blog/monthly_summary.sh "${yrMth}" raw
+          ./../blog/monthly_summary.sh "${yrMth}" > "${GITHUB_STEP_SUMMARY}"
