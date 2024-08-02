@@ -17,10 +17,10 @@ startDate="${1}"
 endDate="${2}"
 
 # find how many commits to master there have been in the last month
-#commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
+commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
 
 # Retrieve merged PRs from the given range
-prs=$(gh pr list --repo "$repository" --state closed --base master --search "closed:${startDate}..${endDate}" --json number,labels,title,author --limit 500) #"$((commits_in_range * 2))")
+prs=$(gh pr list --repo "$repository" --state closed --base master --search "closed:${startDate}..${endDate}" --json number,labels,title,author --limit "$((commits_in_range * 2))")
 
 ## Print PR numbers, their labels and their title
 #echo "$prs" | jq -r '.[] | select(.title | startswith("[Merged by Bors]")) | "PR #\(.number) - Labels: \((.labels | map(.name) | join(", ")) // "No labels") - Title: \(.title)"'
@@ -52,8 +52,8 @@ printf $'\n\nBetween %s and %s there were\n' "${yr_mth_day}" "${end_date/%T*}"
 
 printf $'* %s commits to `master` and\n' "${commits_in_range}"
 
-echo "First run:  ${start_date} ${yr_mth}-15T23:59:59"
-echo "Second run: ${yr_mth}-16T00:00:00 ${end_date}"
+#echo "First run:  ${start_date} ${yr_mth}-15T23:59:59"
+#echo "Second run: ${yr_mth}-16T00:00:00 ${end_date}"
 
 (
 findInRange "${start_date}" "${yr_mth}-15T23:59:59" | sed -z 's=]\n*$=,\n='
