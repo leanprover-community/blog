@@ -61,5 +61,6 @@ jobs:
           #echo ".. ls"
           #pwd
           ls
+          sed -i 's=${GITHUB_REPOSITORY}=leanprover-community/blog=' mathlib/scripts/update_PR_comment.sh
           cat mathlib/scripts/update_PR_comment.sh
           ./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}"
