@@ -56,8 +56,8 @@ echo "First run:  ${start_date} ${yr_mth}-15T23:59:59"
 echo "Second run: ${yr_mth}-16T00:00:00 ${end_date}"
 
 (
-findInRange "${1}" "${start_date}" "${yr_mth}-15T23:59:59" | sed -z 's=]\n*$=,\n='
-findInRange "${1}" "${yr_mth}-16T00:00:00" "${end_date}"   | sed -z 's=^\[=='
+findInRange "${start_date}" "${yr_mth}-15T23:59:59" | sed -z 's=]\n*$=,\n='
+findInRange "${yr_mth}-16T00:00:00" "${end_date}"   | sed -z 's=^\[=='
 ) | jq -S -r '.[] |
   select(.title | startswith("[Merged by Bors]")) |
   "\(.labels | map(.name | select(startswith("t-"))) ) PR #\(.number) \(if .author.name == "" then .author.login else .author.name end): \(.title)"' |
