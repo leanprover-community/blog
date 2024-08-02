@@ -78,8 +78,8 @@ findInRange "${1}" "${yr_mth}-16T00:00:00" "${end_date}"   | sed -z 's=^\[=='
     }
   '
 
-only_gh="$( comm -23 <(sort found_by_gh.txt) <(sort found_by_git.txt) | sed 's=^=  =' | tr -d '()')"
-only_git="$(comm -13 <(sort found_by_gh.txt) <(sort found_by_git.txt) | sed 's=^=  =' | tr -d '()')"
+only_gh="$( comm -23 <(sort found_by_gh.txt) <(sort found_by_git.txt) | sed 's=^=* PR =' | tr -d '()')"
+only_git="$(comm -13 <(sort found_by_gh.txt) <(sort found_by_git.txt) | sed 's=^=* PR =' | tr -d '()')"
 
 printf $'\n---\nReports\n\n'
 
