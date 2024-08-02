@@ -1,0 +1,56 @@
+on:
+  pull_request
+
+name: Blog report
+
+jobs:
+
+  Monthly_PRs:
+    if: github.event.pull_request.draft == false
+    name: Blog draft
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MATHLIB: leanprover-community/mathlib4
+
+    steps:
+      - name: cleanup
+        run: |
+          find . -name . -o -prune -exec rm -rf -- {} +
+
+      - uses: actions/checkout@v4
+        with:
+          path: blog
+
+      - uses: actions/checkout@v4
+        with:
+          repository: "${MATHLIB}"
+          fetch-depth: 0
+          ref: master
+          path: mathlib
+
+      - name: blog report
+        run: |
+          yrMth=2024-07
+          mth="$(date -d "${yrMth}-01" '+%B')"
+          PR="${{ github.event.pull_request.number }}"
+          title="### ${mth} in Mathlib summary"
+
+          #git checkout origin/adomani/yd_find_label monthly_summary.sh
+          message="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
+          echo "${message}"
+          baseUrl="https://github.com/${MATHLIB}/pull"
+          message="$(echo "${message}" |
+            sed '
+              / [0-9]* PRs$/{
+                s=^=</details><details><summary>\n=
+                s=$=\n</summary>\n=
+              }
+              s=^PR #\([0-9]*\)=* PR [#\1]('"${baseUrl}"'\1)=' |
+            sed -z '
+              s=</details><details><summary>=<details><summary>=
+              s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
+              s=\n---[\n]*$=\n\n</details>\n&=
+            ')"
+          ./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}"
