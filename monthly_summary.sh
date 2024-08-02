@@ -36,7 +36,7 @@ echo "$prs"
 }
 
 # the current year and month
-yr_mth="${2}" #"$(date +%Y-%m)"
+yr_mth="${1}" #"$(date +%Y-%m)"
 yr_mth_day=${yr_mth}-01
 
 start_date="${yr_mth_day}T00:00:00"
