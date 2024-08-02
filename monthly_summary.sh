@@ -1,5 +1,12 @@
 #!/bin/bash
 
+: <<'BASH_DOC_MODULE'
+
+This command
+
+BASH_DOC_MODULE
+
+
 repository='leanprover-community/mathlib4'
 baseUrl="https://github.com/${repository}/pull/"
 
@@ -19,11 +26,7 @@ if [ "$#" -gt 2 ]; then
     exit 1
 fi
 
-raw=""
-if [ "${2}" == "raw" ]
-then
-  raw=raw
-fi
+raw="${2}"
 
 rm -rf found_by_gh.txt found_by_git.txt
 
