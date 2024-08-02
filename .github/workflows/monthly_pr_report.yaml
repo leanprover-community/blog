@@ -77,7 +77,7 @@ jobs:
           # the start of the message to locate it among all messages in the PR
           comment_init="${title}"
           # the PR number
-          PR="${PR}"
+          #PR="${PR}"
           echo "using: '${title}' '${PR}'"
           data=$(jq -n --arg msg "hello" '{"body": $msg}') # "$message" '{"body": $msg}')
           echo "data: ${data}"
