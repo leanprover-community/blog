@@ -1,9 +1,16 @@
 #!/bin/bash
 
+{
 # Check if required argument is provided
-if [ "$#" -ne 1 ]; then
-    printf $'Usage: %s <YYYY-MM>\n\nFor instance `%s 2024-07`\n\n' "${0}" "${0}"
+if [ "$#" -gt 2 ]; then
+    printf $'Usages:\n%s <YYYY-MM>\n%s <YYYY-MM> raw\n\nFor instance `%s 2024-07`\n\nThe `raw` input skips .md formatting\n' "${0}" "${0}" "${0}"
     exit 1
+fi
+
+raw=""
+if [ "${2}" == "raw" ]
+then
+  raw=raw
 fi
 
 rm -rf found_by_gh.txt found_by_git.txt
@@ -50,8 +57,8 @@ printf $'\n\nBetween %s and %s there were\n' "${yr_mth_day}" "${end_date/%T*}"
 printf $'* %s commits to `master` and\n' "${commits_in_range}"
 
 (
-findInRange "${start_date}" "${yr_mth}-15T23:59:59" | sed -z 's=]\n*$=,\n='
-findInRange "${yr_mth}-16T00:00:00" "${end_date}"   | sed -z 's=^\[=='
+  findInRange "${start_date}" "${yr_mth}-15T23:59:59" | sed -z 's=]\n*$=,\n='
+  findInRange "${yr_mth}-16T00:00:00" "${end_date}"   | sed -z 's=^\[=='
 ) | jq -S -r '.[] |
   select(.title | startswith("[Merged by Bors]")) |
   "\(.labels | map(.name | select(startswith("t-"))) ) PR #\(.number) \(if .author.name == "" then .author.login else .author.name end): \(.title)"' |
@@ -96,4 +103,19 @@ fi
 
 printf -- $'---\n'
 
+baseUrl="https://github.com/${repository}/pull/"
+
 rm -rf found_by_gh.txt found_by_git.txt
+} | if [ -n "${raw}" ]; then cat; else  # extra .md formatting
+  sed '
+    / [0-9]* PRs$/{
+      s=^=</details><details><summary>\n=
+      s=$=\n</summary>\n=
+    }
+    s=^PR #\([0-9]*\)=* PR [#\1]('"${baseUrl}"'\1)=' |
+  sed -z '
+    s=</details><details><summary>=<details><summary>=
+    s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
+    s=\n---[\n]*$=\n\n</details>\n&=
+  '
+fi

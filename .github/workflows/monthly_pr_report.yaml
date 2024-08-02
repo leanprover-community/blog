@@ -35,18 +35,6 @@ jobs:
           mth="$(date -d "${yrMth}-01" '+%B')"
           title="### ${mth} in Mathlib summary"
 
-          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")")"
+          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}" raw)")"
           echo "${mim}"
-          baseUrl="https://github.com/leanprover-community/mathlib4/pull/"
-          echo "${mim}" |
-            sed '
-              / [0-9]* PRs$/{
-                s=^=</details><details><summary>\n=
-                s=$=\n</summary>\n=
-              }
-              s=^PR #\([0-9]*\)=* PR [#\1]('"${baseUrl}"'\1)=' |
-            sed -z '
-              s=</details><details><summary>=<details><summary>=
-              s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
-              s=\n---[\n]*$=\n\n</details>\n&=
-            ' > "${GITHUB_STEP_SUMMARY}"
+          printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")" > "${GITHUB_STEP_SUMMARY}"
