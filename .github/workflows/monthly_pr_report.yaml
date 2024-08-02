@@ -39,7 +39,7 @@ jobs:
 
           #git checkout origin/adomani/yd_find_label monthly_summary.sh
           message="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
-          echo "${message}"
+          #echo "${message}"
           baseUrl="https://github.com/${MATHLIB}/pull"
           message="$(echo "${message}" |
             sed '
@@ -53,6 +53,7 @@ jobs:
               s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
               s=\n---[\n]*$=\n\n</details>\n&=
             ')"
+          echo "${message}"
           echo "pwd"
           pwd
           echo "ls"
