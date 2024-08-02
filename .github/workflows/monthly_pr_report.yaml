@@ -95,5 +95,6 @@ jobs:
               curl -s -S -H "Content-Type: application/json" -H "$headers" -X "$method" -d "$data" "$url"
           fi
 
-
-          ./mathlib/scripts/update_PR_comment.sh "${title} message" "${title}" "${PR}"
+          echo "running script"
+          ./scripts/update_PR_comment.sh "${message}" "${title}" "${PR}" &&
+            echo "after script"
