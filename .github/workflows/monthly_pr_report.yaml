@@ -45,7 +45,7 @@ jobs:
           mim1="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${MATHLIB}" "${yrMth}")")"
           #mim1="${title} and something else"
           #echo "${mim}"
-          baseUrl="https://github.com/${MATHLIB}/pull"
+          baseUrl="https://github.com/${MATHLIB}/pull/"
           mim="$(echo "${mim1}" |
             sed '
               / [0-9]* PRs$/{
@@ -93,9 +93,9 @@ jobs:
               curl -s -S -H "Content-Type: application/json" -H "$headers" -X "$method" -d "$data" "$url"
           fi
 
-          echo "running script"
-          ./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}" &&
-            echo "after script"
+          #echo "running script"
+          #./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}" &&
+          #  echo "after script"
           #name: print_lost_declarations
           #run: |
           ## back and forth to settle a "detached head" (maybe?)
