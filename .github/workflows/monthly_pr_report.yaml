@@ -57,8 +57,9 @@ jobs:
           pwd
           echo "ls"
           ls
-          cd ..
-          echo ".. ls"
-          pwd
+          #cd ..
+          #echo ".. ls"
+          #pwd
           ls
+          cat mathlib/scripts/update_PR_comment.sh
           ./mathlib/scripts/update_PR_comment.sh "${message}" "${title}" "${PR}"
