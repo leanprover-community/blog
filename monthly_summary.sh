@@ -16,6 +16,9 @@ repository=leanprover-community/mathlib4
 startDate="${1}"
 endDate="${2}"
 
+echo "startDate: ${startDate}"
+echo "endDate: ${endDate}"
+
 # find how many commits to master there have been in the last month
 commits_in_range="$(git log --since="${startDate}" --until="${endDate}" --pretty=oneline | wc -l)"
 
