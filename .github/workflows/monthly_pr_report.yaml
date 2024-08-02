@@ -9,7 +9,10 @@ jobs:
     if: github.event.pull_request.draft == false
     name: Blog draft
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
