@@ -68,7 +68,7 @@ jobs:
               s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
               s=\n---[\n]*$=\n\n</details>\n&=
             ')"
-          sed -i 's=$'"{GITHUB_REPOSITORY}"''=leanprover-community/blog=' mathlib/scripts/update_PR_comment.sh
+          sed -i "s=\${GITHUB_REPOSITORY}=leanprover-community/blog=" mathlib/scripts/update_PR_comment.sh
           chmod u+rx mathlib/scripts/update_PR_comment.sh
           cat mathlib/scripts/update_PR_comment.sh
 
