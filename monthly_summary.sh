@@ -117,16 +117,21 @@ fi
 printf -- $'---\n'
 
 rm -rf found_by_gh.txt found_by_git.txt
-} | { if [ "${raw}" == "raw" ]; then cat; else  # extra .md formatting
-  sed '
-    / [0-9]* PRs$/{
-      s=^=</details><details><summary>\n=
-      s=$=\n</summary>\n=
-    }
-    s=^PR #\([0-9]*\)=* PR [#\1]('"${baseUrl}"'\1)=' |
-  sed -z '
-    s=</details><details><summary>=<details><summary>=
-    s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
-    s=\n---[\n]*$=\n\n</details>\n&=
-  '
-fi ; }
+} | {
+  if [ "${raw}" == "raw" ]
+  then
+    cat -
+  else  # extra .md formatting
+    sed '
+      / [0-9]* PRs$/{
+        s=^=</details><details><summary>\n=
+        s=$=\n</summary>\n=
+      }
+      s=^PR #\([0-9]*\)=* PR [#\1]('"${baseUrl}"'\1)=' |
+    sed -z '
+      s=</details><details><summary>=<details><summary>=
+      s=\n---\nReports\n\n=\n</details>\n\n---\n\n<details><summary>Reports</summary>\n\n=
+      s=\n---[\n]*$=\n\n</details>\n&=
+    '
+  fi
+  }
