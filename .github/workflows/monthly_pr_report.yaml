@@ -75,6 +75,7 @@ jobs:
           PR="${PR}"
           echo "using: '${title}' '${PR}'"
           data=$(jq -n --arg msg "$message" '{"body": $msg}')
+          echo "$data"
           baseURL="https://api.github.com/repos/leanprover-community/blog/issues"
           printf 'Base url: %s\n' "${baseURL}"
           method="POST"
