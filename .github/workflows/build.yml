@@ -12,18 +12,18 @@ jobs:
     name: Build HTML
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: install Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: 3.12
 
       - name: install Python dependencies
         run: python -m pip install -r requirements.txt
 
       - name: build site
-        run: ./deploy.sh 
+        run: ./deploy.sh
         env:
           git_hash: ${{ github.sha }}
           DEPLOY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
