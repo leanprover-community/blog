@@ -4,12 +4,16 @@
 
 Running `monthly_summary.sh 2024-07` produces an md-formatted summary of all the PRs that were
 merged into mathlib master in the month 2024-07.
-A "raw" format can be obtain running `monthly_summary.sh 2024-07 raw`.
+A "raw" format can be obtained running `monthly_summary.sh 2024-07 raw`.
 
-There is a slight discrepancy
+There is a slight discrepancy between the time when a PR is merged and when it passes CI.
+The script looks at the time when CI was successful on the PR, not at the time when the
+successful CI cycle started.
+However, in the final `Reports` section, the script mentions the PRs at either end:
+* the ones that starts CI in the previous month and finished it in the current month;
+* the ones that starts CI in the current month and finished it in the following month.
 
 BASH_DOC_MODULE
-
 
 repository='leanprover-community/mathlib4'
 baseUrl="https://github.com/${repository}/pull/"
