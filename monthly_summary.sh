@@ -1,5 +1,8 @@
 #!/bin/bash
 
+repository='leanprover-community/mathlib4'
+baseUrl="https://github.com/${repository}/pull/"
+
 {
 # Check if required argument is provided
 if [ "$#" -gt 2 ]; then
@@ -16,8 +19,6 @@ fi
 rm -rf found_by_gh.txt found_by_git.txt
 
 findInRange () {
-
-repository='leanprover-community/mathlib4'
 
 # Get the start and end dates
 startDate="${1}"
@@ -102,8 +103,6 @@ else
 fi
 
 printf -- $'---\n'
-
-baseUrl="https://github.com/${repository}/pull/"
 
 rm -rf found_by_gh.txt found_by_git.txt
 } | if [ -n "${raw}" ]; then cat; else  # extra .md formatting

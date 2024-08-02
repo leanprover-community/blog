@@ -35,6 +35,5 @@ jobs:
           mth="$(date -d "${yrMth}-01" '+%B')"
           title="### ${mth} in Mathlib summary"
 
-          mim="$(printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}" raw)")"
-          echo "${mim}"
+          printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}" raw)"
           printf '%s\n\n%s\n' "${title}" "$(cd mathlib; ./../blog/monthly_summary.sh "${yrMth}")" > "${GITHUB_STEP_SUMMARY}"
