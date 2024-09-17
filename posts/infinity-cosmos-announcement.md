@@ -29,7 +29,7 @@ The initial aims of this project are relatively modest, though with sufficient i
 
 # Team behind ∞-Cosmos
 
-This project is being co-lead by [Dominic Verity](https://github.com/dom-verity) and [Mario Carneiro](https://github.com/digama0).
+This project is being co-led by [Mario Carneiro](https://github.com/digama0), [Emily Riehl](https://github.com/emilyriehl), and [Dominic Verity](https://github.com/dom-verity).
 
 # Contributing
 
