@@ -43,12 +43,33 @@ The probability library of Mathlib defines a notation `TODO P` for that measure.
 ```lean
 variable {Ω : Type*} [MeasureSpace Ω] [IsProbabilityMeasure (TODO P : Measure Ω)]
 ```
-Note: in the code above we can't write only `[IsProbabilityMeasure TODO P]` because Lean would then not know on which space the default measure `TODO P` should be defined.
+Note: in the code above we can't write only `[IsProbabilityMeasure TODO P]` because Lean would then not know to which space the default measure `TODO P` refers to.
 That will not be necessary when we use `TODO P` in proofs because the context will be enough to infer `Ω`.
 
 # Probability of events
 
+A `Measure` can be applied to a set like a function, and returns a value in `ENNReal` (denoted by the notation `ℝ≥0∞`, available after `open scoped ENNReal`).
+```lean
+import Mathlib
+open scoped ENNReal
 
+example (P : Measure ℝ) (s : Set ℝ) : ℝ≥0∞ := P s
+```
+The type `ℝ≥0∞` represents the nonnegative reals and infinity: the measure of a set is a nonnegative real number which in general may be infinite.
+
+TODO: `MeasurableSet`
+
+TODO: `.of_discrete`, `[DiscreteMeasurableSpace]`
+
+TODO: `simp` knows `measure_ne_top`
+
+# Random variables
+
+A random variable is a measurable function from a measurable space to another.
+```lean
+variable {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ} (hX : Measurable X)
+```
+In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations TODO.
 
 # Additional typeclasses on measurable spaces
 
