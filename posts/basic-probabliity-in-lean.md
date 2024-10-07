@@ -15,6 +15,7 @@ How do I define a probability space and two independent random variables in Lean
 How do I condition on an event?
 
 This post answers these and other simple questions about how to express probability concepts using Mathlib.
+We will mostly not discuss theorems, but focus on definitions. The goal is to have enough knowledge about the definitions in Mathlib related to probability to state probability theory lemmas.
 
 <!-- TEASER_END -->
 
@@ -95,11 +96,43 @@ variable {Ω : Type*} [MeasurableSpace Ω] [TopologicalSpace Ω] [BorelSpace Ω]
 
 For properties related to conditional distributions and the existence of posterior probability distributions, it is often convenient or necessary to work in a standard Borel space (a measurable space arising as the Borel sets of some Polish topology). See the `StandardBorelSpace` typeclass.
 
-# Other probability notions
+# Other probability topics
+
+The goal of this section is to give pointers to the Mathlib definitions for various probability notions.
+That list might be out of date when you read this! Look around in the documentation.
+
+## Known probability distributions
+
+See the Probability/Distributions folder.
+
+Exponential
+Gamma
+Gaussian (only in 1D)
+Geometric
+Pareto
+Poisson
+Uniform
+
+## CDF, pdf, Variance, moments
+
+TODO:
+
+`MeasureTheory.pdf X P Q`
+`cdf P`
+`variance X P`
+`moment X p P`
+`centralMoment X p P`
+`mgf X P t`
+`cgf X P t`
+
 
 ## Conditioning
 
 TODO: two meanings of conditioning. `cond` vs `condexp` and friends.
+
+## Identically distributed
+
+`IdentDistrib X Y P Q` (or `IdentDistrib X Y` in `MeasureSpace`).
 
 ## Independence
 
@@ -130,6 +163,8 @@ TODO: that's ugly. Do we need the explicit measurable spaces in iIndepFun?
 ### Conditional independence
 
 TODO
+
+## Martingales, filtrations
 
 ## Transition kernels
 
