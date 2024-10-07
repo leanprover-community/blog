@@ -105,26 +105,26 @@ That list might be out of date when you read this! Look around in the documentat
 
 See the Probability/Distributions folder.
 
-Exponential
-Gamma
-Gaussian (only in 1D)
-Geometric
-Pareto
-Poisson
-Uniform
+- Exponential
+- Gamma
+- Gaussian (only in 1D)
+- Geometric
+- Pareto
+- Poisson
+- Uniform
 
 ## CDF, pdf, Variance, moments
 
 TODO:
 
-`MeasureTheory.pdf X P Q`
-`cdf P`
-`variance X P`
-`moment X p P`
-`centralMoment X p P`
-`mgf X P t`
-`cgf X P t`
-
+- Probability density function: `MeasureTheory.pdf X P Q`
+- Cumulative distribution function: `cdf P`
+- Expectation: `P[X]`
+- Variance: `variance X P`
+- Moment of order `p`: `moment X p P`
+- Central moment of order `p`: `centralMoment X p P`
+- Moment generating function: `mgf X P t`
+- Cumulant generating function: `cgf X P t`
 
 ## Conditioning
 
