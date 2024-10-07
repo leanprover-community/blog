@@ -29,7 +29,7 @@ We can define a probability measure on such a space as follows.
 variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
 ```
 The class `MeasurableSpace Ω` defines a sigma-algebra on `Ω`. We then introduced a measure `P` and specified that it should be a probability measure.
-If we want to work on `ℝ` the typeclass inference system will find `[MeasurableSpace ℝ]` on its own. We can write simply
+If we want to work on `ℝ` or another well known type the typeclass inference system will find `[MeasurableSpace ℝ]` on its own. We can write simply
 ```lean
 variable {P : Measure ℝ} [IsProbabilityMeasure P]
 ```
@@ -38,7 +38,7 @@ With the code above, we can introduce several probability measures on the same s
 ```lean
 TODO example
 ```
-But perhaps we just want a space with a canonical probability measure, which would ideally be the one used without us having to tell Lean.
+But perhaps we just want a space with a canonical probability measure, which would ideally be the one used without us having to tell Lean explicitly.
 That can be done with the `MeasureSpace` class. A `MeasureSpace` is a `MeasurableSpace` with a canonical measure, called `volume`.
 The probability library of Mathlib defines a notation `ℙ` for that measure. We still need to tell that we want it to be a probability measure though.
 ```lean
@@ -49,7 +49,7 @@ That will not be necessary when we use `ℙ` in proofs because the context will 
 
 ## `IsProbabilityMeasure` vs `ProbabilityMeasure`
 
-The examples above used `{P : Measure Ω} [IsProbabilityMeasure P]` to define a probability measure. That's is the standard way to do it.
+The examples above used `{P : Measure Ω} [IsProbabilityMeasure P]` to define a probability measure. That's the standard way to do it.
 Mathlib also contains a type `ProbabilityMeasure Ω`. The goal of that type is to work on the set of probability measures on `Ω`.
 In particular, that type comes with a topology, the topology of convergence in distribution (weak convergence of measures).
 If we don't need to work with that topology, `{P : Measure Ω} [IsProbabilityMeasure P]` should be preferred.
@@ -79,6 +79,12 @@ variable {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ} (hX : Measurable X)
 In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations.
 
 TODO
+
+## Expectation of a random variable
+
+TODO
+
+TODO: Lebesgue and Bochner integrals
 
 ## Discrete probability
 
@@ -165,6 +171,14 @@ TODO: that's ugly. Do we need the explicit measurable spaces in iIndepFun?
 TODO
 
 ## Martingales, filtrations
+
+`ℱ : MeasureTheory.Filtration ι m0`
+
+`MeasureTheory.Martingale X ℱ P`
+
+adapted
+
+stopping time
 
 ## Transition kernels
 
