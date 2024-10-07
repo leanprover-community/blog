@@ -39,12 +39,19 @@ TODO example
 ```
 But perhaps we just want a space with a canonical probability measure, which would ideally be the one used without us having to tell Lean.
 That can be done with the `MeasureSpace` class. A `MeasureSpace` is a `MeasurableSpace` with a canonical measure, called `volume`.
-The probability library of Mathlib defines a notation `TODO P` for that measure. We still need to tell that we want it to be a probability measure though.
+The probability library of Mathlib defines a notation `ℙ` for that measure. We still need to tell that we want it to be a probability measure though.
 ```lean
-variable {Ω : Type*} [MeasureSpace Ω] [IsProbabilityMeasure (TODO P : Measure Ω)]
+variable {Ω : Type*} [MeasureSpace Ω] [IsProbabilityMeasure (ℙ : Measure Ω)]
 ```
-Note: in the code above we can't write only `[IsProbabilityMeasure TODO P]` because Lean would then not know to which space the default measure `TODO P` refers to.
-That will not be necessary when we use `TODO P` in proofs because the context will be enough to infer `Ω`.
+Note: in the code above we can't write only `[IsProbabilityMeasure ℙ]` because Lean would then not know to which space the default measure `ℙ` refers to.
+That will not be necessary when we use `ℙ` in proofs because the context will be enough to infer `Ω`.
+
+### `IsProbabilityMeasure` vs `ProbabilityMeasure`
+
+The examples above used `{P : Measure Ω} [IsProbabilityMeasure P]` to define a probability measure. That's is the standard way to do it.
+Mathlib also contains a type `ProbabilityMeasure Ω`. The goal of that type is to work on the set of probability measures on `Ω`.
+In particular, that type comes with a topology, the topology of convergence in distribution (weak convergence of measures).
+If we don't need to work with that topology, `{P : Measure Ω} [IsProbabilityMeasure P]` should be preferred.
 
 # Probability of events
 
@@ -56,12 +63,11 @@ open scoped ENNReal
 example (P : Measure ℝ) (s : Set ℝ) : ℝ≥0∞ := P s
 ```
 The type `ℝ≥0∞` represents the nonnegative reals and infinity: the measure of a set is a nonnegative real number which in general may be infinite.
+Measures can in general take infinite values, but since our `ℙ` is a probabilty measure, it actually takes only values up to 1.
+`simp` knows that a probability measure is finite and will use the lemmas `measure_ne_top` or `measure_lt_top` to prove that `ℙ A ≠ ∞` or `ℙ A < ∞`.
+The operations on `ℝ≥0∞` are not as nicely behaved as on `ℝ`: `ℝ≥0∞` is not a ring and subtraction truncates to zero for example. If one finds that lemma `lemma_name` used to transform an equation does not apply to `ℝ≥0∞`, a good thing to try is to find a lemma named like `ENNReal.lemma_name_of_something` and use that instead (it will typically require that one variable is not infinite).
 
-TODO: `MeasurableSet`
-
-TODO: `.of_discrete`, `[DiscreteMeasurableSpace]`
-
-TODO: `simp` knows `measure_ne_top`
+For many lemmas to apply, the set will need to be a measurable set. The way to expressed that a set `s` is measurable is `MeasurableSet s`.
 
 # Random variables
 
@@ -69,7 +75,13 @@ A random variable is a measurable function from a measurable space to another.
 ```lean
 variable {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ} (hX : Measurable X)
 ```
-In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations TODO.
+In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations.
+
+TODO
+
+# Discrete probability
+
+TODO: `.of_discrete`, `[DiscreteMeasurableSpace]`
 
 # Additional typeclasses on measurable spaces
 
