@@ -112,7 +112,7 @@ variable {Ω : Type*} [MeasurableSpace Ω] [TopologicalSpace Ω] [BorelSpace Ω]
 ```
 
 For properties related to conditional distributions and the existence of posterior probability distributions, it is often convenient or necessary to work in a standard Borel space (a measurable space arising as the Borel sets of some Polish topology). See the `StandardBorelSpace` typeclass.
-Note that a discrete measurable space is a standard Borel space, so there is no need to worry about that typeclass when doing discrete probability.
+Note that a countable discrete measurable space is a standard Borel space, so there is no need to worry about that typeclass when doing discrete probability.
 
 
 # Other probability topics
