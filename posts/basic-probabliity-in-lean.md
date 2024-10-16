@@ -15,7 +15,7 @@ How do I define a probability space and two independent random variables in Lean
 How do I condition on an event?
 
 This post answers these and other simple questions about how to express probability concepts using Mathlib.
-We will mostly not discuss theorems, but focus on definitions. The goal is to have enough knowledge about the definitions in Mathlib related to probability to state probability theory lemmas.
+We will not discuss theorems, but focus on definitions. The goal is to have enough knowledge about the definitions in Mathlib to state probability theory lemmas.
 
 <!-- TEASER_END -->
 
