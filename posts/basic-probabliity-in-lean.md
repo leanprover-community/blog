@@ -115,13 +115,13 @@ For properties related to conditional distributions and the existence of posteri
 Note that a countable discrete measurable space is a standard Borel space, so there is no need to worry about that typeclass when doing discrete probability.
 
 
-# Other probability topics
+## Various probability definitions
 
-The goal of this section is to give pointers to the Mathlib definitions for various probability notions.
-That list might be out of date when you read this! Look around in the documentation.
+The goal of this section is to give pointers to the Mathlib definitions for probability concepts.
+That list might be out of date when you read this! Look around in the documentation. (TODO add link)
 
 
-## Known probability distributions
+### Known probability distributions
 
 See the Probability/Distributions folder.
 
@@ -136,7 +136,7 @@ See the Probability/Distributions folder.
 TODO: detail an example?
 
 
-## CDF, pdf, Variance, moments
+### CDF, pdf, Variance, moments
 
 TODO:
 
@@ -150,21 +150,21 @@ TODO:
 - Cumulant generating function: `cgf X P t`
 
 
-## Conditioning
+### Conditioning
 
 TODO: two meanings of conditioning. `cond` vs `condexp` and friends.
 
 
-## Identically distributed
+### Identically distributed
 
-`IdentDistrib X Y P Q` (or `IdentDistrib X Y` in `MeasureSpace`).
+`IdentDistrib X Y P Q` (or `IdentDistrib X Y` in `MeasureSpace`) states that `X` and `Y` are identically distributed.
 
 
-## Independence
+### Independence
 
 TODO: independence of sigma-algebras, sets, functions (random variables).
 
-### Unconditional independence
+#### Unconditional independence
 
 Two independent random variables:
 ```lean
