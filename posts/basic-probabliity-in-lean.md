@@ -124,10 +124,10 @@ That list might be out of date when you read this! Look around in the [documenta
 
 ### CDF, pdf, Variance, moments
 
-Here is a list of common concepts related to real probability distributions.
+Here is a list of common concepts about real probability distributions.
 
 - Probability density function of a random variable `X : Ω → E` in a space with measure `P : Measure Ω`, with respect to measure `Q : Measure E`: `pdf X P Q`
-- Cumulative distribution function of a measure `P`: `cdf P`
+- Cumulative distribution function of `P : Measure ℝ`: `cdf P`. This is a `StieltjesFunction`, a monotone right continuous real function
 - Expectation of `X` under `P`: `P[X]`
 - Variance: `variance X P`
 - Moment of order `p`: `moment X p P`
@@ -159,7 +159,9 @@ TODO: two meanings of conditioning. `cond` vs `condexp` and friends.
 
 ### Independence
 
-TODO: independence of sigma-algebras, sets, functions (random variables).
+Mathlib has several definitions for independence. We can talk about independence of random variables, of sets, of sigma-algebras.
+The definitions also differ depending on whether we consider only two random variables of an indexed family.
+Finally, there are also conditional variants of all those definitions.
 
 #### Unconditional independence
 
@@ -173,10 +175,13 @@ On a measure space, we can write `IndepFun X Y` without the measure argument.
 
 For family `X : ι → Ω → ℝ` of independent random variables, use `iIndepFun`.
 
+For sets, use `IndepSet` (two sets) and `iIndepSet` (family of sets). For sigma-algebras, `Indep` and `iIndep`.
+
 #### Conditional independence
 
 TODO
 
+For sets, use `CondIndepSet` (two sets) and `iCondIndepSet` (family of sets). For sigma-algebras, `CondIndep` and `iCondIndep`.
 
 ### Martingales, filtrations
 
@@ -194,9 +199,4 @@ Remark: there is an issue with the current definition of stopping times, which i
 That can cause friction with informal stopping times which are often understood to be infinite when they are not well defined.
 
 ### Transition kernels
-
-
-
-# Additional resources
-
 
