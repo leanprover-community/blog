@@ -19,14 +19,14 @@ We will mostly not discuss theorems, but focus on definitions. The goal is to ha
 
 <!-- TEASER_END -->
 
-The code examples will not mention imports: use `import Mathlib` in a project that depends on Mathlib (and then prune the imports with `#min_imports` if you like).
+The code examples will not mention imports and will assume that we `import Mathlib` in a project that depends on Mathlib.
 Many probability related notations are defined in the file Probability/Notation.
 Including the following two lines at the beginning of a file after the imports is generally a good idea to work with probability:
 ```lean
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal
 ```
-The first line opens namespaces, which means that we will be able to omit any `MeasureTheory.` prefix from lemma names.
+The first line opens namespaces, which means that we will be able to omit any `MeasureTheory.` prefix from lemma names. We will likewise omit that prefix in this text.
 The second line makes some notations available. We'll talk about that further down.
 
 
@@ -38,16 +38,16 @@ We can define a probability measure on such a space as follows.
 ```lean
 variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
 ```
-The class `MeasurableSpace Ω` defines a sigma-algebra on `Ω`. We then introduced a measure `P` and specified that it should be a probability measure.
+The class `MeasurableSpace Ω` defines a sigma-algebra on `Ω`. We then introduced a measure `P` on that sigma-algebra and specified that it should be a probability measure.
 If we want to work on `ℝ` or another well known type the typeclass inference system will find `[MeasurableSpace ℝ]` on its own. We can write simply
 ```lean
 variable {P : Measure ℝ} [IsProbabilityMeasure P]
 ```
 
 With the code above, we can introduce several probability measures on the same space. When using lemmas and definitions about those measures, we will need to specify which measure we are talking about.
-For example, the variance of a random variable `X` with respect to that measure `P` will be `variance X P`.
+For example, the variance of a random variable `X` with respect to the measure `P` will be `variance X P`.
 
-But perhaps we just want a space with a canonical probability measure, which would ideally be the one used without us having to tell Lean explicitly.
+But perhaps we just want a space with a canonical probability measure, which would be the one used without us having to tell Lean explicitly.
 That can be done with the `MeasureSpace` class. A `MeasureSpace` is a `MeasurableSpace` with a canonical measure, called `volume`.
 The probability library of Mathlib defines a notation `ℙ` for that measure. We still need to tell that we want it to be a probability measure though.
 ```lean
@@ -97,15 +97,14 @@ To say that `X` is Gaussian with mean 0 and variance 1, write `P.map X = gaussia
 The expectation of `X` is the integral of that function against the measure `P`, written `∫ ω, X ω ∂P`.
 The notation `P[X]` is shorthand for that expectation. In a `MeasureSpace`, we can further use the notation `𝔼[X]`.
 
-TODO: remark about Lebesgue and Bochner integrals?
-
 
 ## Discrete probability
 
-TODO: `.of_discrete`, `[DiscreteMeasurableSpace]`
+In discrete probability, measurability is not an issue: every set and every function are measurable.
+The typeclass `[DiscreteMeasurableSpace Ω]` signals that every set of `Ω` is measurable and the lemma `MeasurableSet.of_discrete` provides a proof of measurability.
+To obtain measurability of a function from `Ω`, use `Measurable.of_discrete`.
 
-TODO: what about PMF? (I don't know anything about those)
-
+Any countable type with measurable singletons is a `DiscreteMeasurableSpace`. For example `ℕ` or `Fin n`.
 
 ## Additional typeclasses on measurable spaces
 
@@ -115,7 +114,7 @@ For that we first need `Ω` to be a topological space and we then need to add a 
 variable {Ω : Type*} [MeasurableSpace Ω] [TopologicalSpace Ω] [BorelSpace Ω]
 ```
 
-For properties related to conditional distributions and the existence of posterior probability distributions, it is often convenient or necessary to work in a standard Borel space (a measurable space arising as the Borel sets of some Polish topology). See the `StandardBorelSpace` typeclass.
+For properties related to conditional distributions, it is often convenient or necessary to work in a standard Borel space (a measurable space arising as the Borel sets of some Polish topology). See the `StandardBorelSpace` typeclass.
 Note that a countable discrete measurable space is a standard Borel space, so there is no need to worry about that typeclass when doing discrete probability.
 
 
