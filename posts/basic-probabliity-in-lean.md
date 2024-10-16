@@ -128,7 +128,7 @@ Note that a countable discrete measurable space is a standard Borel space, so th
 
 ## Various probability definitions
 
-This section contains pointers to the Mathlib definitions for probability concepts.
+This section contains pointers to the Mathlib definitions for several probability objects.
 That list might be out of date when you read this! Look around in the [documentation](https://leanprover-community.github.io/mathlib4_docs/).
 
 
@@ -136,19 +136,19 @@ That list might be out of date when you read this! Look around in the [documenta
 
 Here is a list of common concepts about real probability distributions.
 
-- Probability density function of a random variable `X : Ω → E` in a space with measure `P : Measure Ω`, with respect to measure `Q : Measure E`: `pdf X P Q`
-- Cumulative distribution function of `P : Measure ℝ`: `cdf P`. This is a `StieltjesFunction`, a monotone right continuous real function
-- Expectation of `X` under `P`: `P[X]`
-- Variance: `variance X P`
-- Moment of order `p`: `moment X p P`
-- Central moment of order `p`: `centralMoment X p P`
-- Moment generating function of `X` under `P` at `t : ℝ`: `mgf X P t`
-- Cumulant generating function: `cgf X P t`
+- Probability density function of a random variable `X : Ω → E` in a space with measure `P : Measure Ω`, with respect to measure `Q : Measure E`: `pdf X P Q`.
+- Cumulative distribution function of `P : Measure ℝ`: `cdf P`. This is a `StieltjesFunction`, a monotone right continuous real function.
+- Expectation of `X` under `P`: `P[X]`.
+- Variance: `variance X P`.
+- Moment of order `p`: `moment X p P`.
+- Central moment of order `p`: `centralMoment X p P`.
+- Moment generating function of `X` under `P` at `t : ℝ`: `mgf X P t`.
+- Cumulant generating function: `cgf X P t`.
 
 
 ### Known probability distributions
 
-The Probability/Distributions folder of Mathlib contains several common probability distributions: Exponential, Gamma, Gaussian (only in `ℝ`), Geometric, Pareto, Poisson, Uniform.
+The Probability/Distributions folder of Mathlib contains several common probability laws: Exponential, Gamma, Gaussian (only in `ℝ`), Geometric, Pareto, Poisson, Uniform.
 
 For example, the Gaussian distribution on the real line with mean `μ` and variance `v` is a `Measure ℝ`:
 ```lean
@@ -165,7 +165,15 @@ As another example, to take the uniform distribution on a finite set `s : Set Ω
 
 ### Conditioning
 
-TODO: two meanings of conditioning. `cond` vs `condexp` and friends.
+The probability of a set `s` conditioned on another set `t` for the measure `P` is `P[s|t]`, which equals `P (s ∩ t) / P t`.
+Conditioning on `t` defines a new measure named `cond P t`, denoted by `P[|t]`. With that notation, `P[s|t] = P[|t] s`.
+
+For `X : Ω → E` and `x : E`, we write `P[|X ← x]` for the probability measure conditioned on `X = x`. It is notation for `P[|X ⁻¹' {x}]`.
+This is meaningful only if `X = x` has non-zero probability.
+
+
+
+TODO: `condexp`, `condDistrib` and friends.
 
 
 ### Independence
@@ -212,3 +220,4 @@ That can cause friction with informal stopping times which are often understood 
 
 ### Transition kernels
 
+TODO
