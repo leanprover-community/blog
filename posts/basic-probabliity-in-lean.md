@@ -70,16 +70,17 @@ If we don't need to work with that topology, `{P : Measure Ω} [IsProbabilityMea
 
 ## Probability of events
 
-A `Measure` can be applied to a set like a function, and returns a value in `ENNReal` (denoted by the notation `ℝ≥0∞`, available after `open scoped ENNReal`).
+A `Measure` can be applied to a set like a function, and returns a value in `ENNReal` (denoted by `ℝ≥0∞`, available after `open scoped ENNReal`).
 ```lean
 example (P : Measure ℝ) (s : Set ℝ) : ℝ≥0∞ := P s
 ```
 The type `ℝ≥0∞` represents the nonnegative reals and infinity: the measure of a set is a nonnegative real number which in general may be infinite.
 Measures can in general take infinite values, but since our `ℙ` is a probabilty measure, it actually takes only values up to 1.
 `simp` knows that a probability measure is finite and will use the lemmas `measure_ne_top` or `measure_lt_top` to prove that `ℙ s ≠ ∞` or `ℙ s < ∞`.
-The operations on `ℝ≥0∞` are not as nicely behaved as on `ℝ`: `ℝ≥0∞` is not a ring and subtraction truncates to zero for example. If one finds that lemma `lemma_name` used to transform an equation does not apply to `ℝ≥0∞`, a good thing to try is to find a lemma named like `ENNReal.lemma_name_of_something` and use that instead (it will typically require that one variable is not infinite).
+The operations on `ℝ≥0∞` are not as nicely behaved as on `ℝ`: `ℝ≥0∞` is not a ring. For example, subtraction truncates to zero.
+If one finds that lemma `lemma_name` used to transform an equation does not apply to `ℝ≥0∞`, a good thing to try is to find a lemma named like `ENNReal.lemma_name_of_something` and use that instead (it will typically require that one variable is not infinite).
 
-For many lemmas to apply, the set `s` will need to be a measurable set. The way to expressed that is `MeasurableSet s`.
+For many lemmas to apply, the set `s` will need to be a measurable set. The way to express that is `MeasurableSet s`.
 
 
 ## Random variables
@@ -90,10 +91,10 @@ variable {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ} (hX : Measurable X)
 ```
 In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations.
 
-The expectation of `X` is the integral of that function against the measure `P`, `∫ ω, X ω ∂P`.
-The notation `P[X]` is shorthand for that expectation. In a measure space, we can further use the notation `𝔼[X]`.
+The expectation of `X` is the integral of that function against the measure `P`, written `∫ ω, X ω ∂P`.
+The notation `P[X]` is shorthand for that expectation. In a `MeasureSpace`, we can further use the notation `𝔼[X]`.
 
-TODO: remark about Lebesgue and Bochner integrals
+TODO: remark about Lebesgue and Bochner integrals?
 
 
 ## Discrete probability
@@ -117,8 +118,8 @@ Note that a countable discrete measurable space is a standard Borel space, so th
 
 ## Various probability definitions
 
-The goal of this section is to give pointers to the Mathlib definitions for probability concepts.
-That list might be out of date when you read this! Look around in the documentation. (TODO add link)
+This section contains pointers to the Mathlib definitions for probability concepts.
+That list might be out of date when you read this! Look around in the [documentation]{https://leanprover-community.github.io/mathlib4_docs/}.
 
 
 ### CDF, pdf, Variance, moments
