@@ -165,15 +165,25 @@ As another example, to take the uniform distribution on a finite set `s : Set Ω
 
 ### Conditioning
 
+#### Conditional probability
+
 The probability of a set `s` conditioned on another set `t` for the measure `P` is `P[s|t]`, which equals `P (s ∩ t) / P t`.
 Conditioning on `t` defines a new measure named `cond P t`, denoted by `P[|t]`. With that notation, `P[s|t] = P[|t] s`.
 
 For `X : Ω → E` and `x : E`, we write `P[|X ← x]` for the probability measure conditioned on `X = x`. It is notation for `P[|X ⁻¹' {x}]`.
-This is meaningful only if `X = x` has non-zero probability.
+This is meaningful only if `X = x` has non-zero probability, so that definition is mostly useful for discrete probability.
 
+#### Conditional expectation
 
+The conditional expectation of a random variable `Y : Ω → F` given a sigma-algebra `m` of `Ω` is `P[Y | m]`. This is a random variable `Ω → F`.
+The conditional expectation of `Y` given `X : Ω → E` is `P[Y | mE.comap X]`, in which `mE : MeasurableSpace E` is the sigma-algebra on `E`.
 
-TODO: `condexp`, `condDistrib` and friends.
+We have special notation for the conditional expectation of the real indicator of a set `s`: `P⟦s | m⟧`.
+
+#### Conditional probability distribution
+
+The regular conditional probability distribution of `Y : Ω → F` given `X : Ω → E`, for `F` standard Borel, is denoted by `condDistrib Y X P` (for a measure `P` on `Ω`).
+This is a Markov kernel from `E` to `F` (see further down) such that for all measurable sets `s` of `F`, for `P`-almost every `ω : Ω `, `condDistrib Y X P (X ω) s` is equal to `P⟦Y ⁻¹' s|mE.comap X⟧` (up to a mismatch in types: `ℝ≥0∞` versus `ℝ`).
 
 
 ### Independence
