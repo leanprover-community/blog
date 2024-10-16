@@ -183,18 +183,19 @@ For sets, use `IndepSet` (two sets) and `iIndepSet` (family of sets). For sigma-
 
 #### Conditional independence
 
-TODO
+The way to write that two random variables `X : Ω → E` and `Y : Ω → F` are independent conditionally on a sub-sigma-algebra `m` with respect to the measure `P` is `CondIndepFun m hm X Y P`, in which `hm : m ≤ mΩ` is a proof that `m` is a sub-sigma-algebra of the sigma-algebra `mΩ` of `Ω`. Omit the measure argument in a `MeasureSpace`.
 
+For families of function, use `iCondIndepFun`.
 For sets, use `CondIndepSet` (two sets) and `iCondIndepSet` (family of sets). For sigma-algebras, `CondIndep` and `iCondIndep`.
 
 ### Martingales, filtrations
 
 A stochastic process with real values (for example) is a function `X : ι → Ω → ℝ` from an index set `ι` to random variables `Ω → ℝ`.
 
-A filtration on the index set can be defined with `ℱ : Filtration ι m`, in which `m` is a sigma-algebra on `Ω`.
+A filtration on the index set can be defined with `ℱ : Filtration ι m`, in which `m` is a sigma-algebra on `Ω`. `ℱ` is a monotone sequence of sub-sigma-algebras of `m`. The sigma-algebra at index `i` is `ℱ i`.
 
 We can state that a process `X` is adapted to the filtration `ℱ` with `adapted ℱ X`.
-We can write that it is a martingale with respect to the filtration `ℱ` and the measure `P : Measure Ω` with `Martingale X ℱ P`.
+We can write that it is a martingale with respect to `ℱ` and the measure `P : Measure Ω` with `Martingale X ℱ P`.
 
 A stopping time with respect to a filtration `ℱ` is a function `τ : Ω → ι` such that for all `i`, the preimage of `{j | j ≤ i}` along `τ` is measurable with respect to `ℱ i`. 
 We can state that `τ` is a stopping time with `IsStoppingTime ℱ τ`.
