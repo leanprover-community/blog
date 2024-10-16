@@ -70,13 +70,15 @@ If we don't need to work with that topology, `{P : Measure Ω} [IsProbabilityMea
 
 ## Probability of events
 
-A `Measure` can be applied to a set like a function, and returns a value in `ENNReal` (denoted by `ℝ≥0∞`, available after `open scoped ENNReal`).
+An event is a measurable set: there is no special event definition in Mathlib.
+The probability of that event is the measure of the set.
+A `Measure` can be applied to a set like a function and returns a value in `ENNReal` (denoted by `ℝ≥0∞`, available after `open scoped ENNReal`).
 ```lean
 example (P : Measure ℝ) (s : Set ℝ) : ℝ≥0∞ := P s
 ```
 The type `ℝ≥0∞` represents the nonnegative reals and infinity: the measure of a set is a nonnegative real number which in general may be infinite.
-Measures can in general take infinite values, but since our `ℙ` is a probabilty measure, it actually takes only values up to 1.
-`simp` knows that a probability measure is finite and will use the lemmas `measure_ne_top` or `measure_lt_top` to prove that `ℙ s ≠ ∞` or `ℙ s < ∞`.
+Measures can in general take infinite values. If `P` is a probabilty measure, it actually takes only values up to 1.
+`simp` knows that a probability measure is finite and will use the lemmas `measure_ne_top` or `measure_lt_top` to prove that `P s ≠ ∞` or `P s < ∞`.
 The operations on `ℝ≥0∞` are not as nicely behaved as on `ℝ`: `ℝ≥0∞` is not a ring. For example, subtraction truncates to zero.
 If one finds that lemma `lemma_name` used to transform an equation does not apply to `ℝ≥0∞`, a good thing to try is to find a lemma named like `ENNReal.lemma_name_of_something` and use that instead (it will typically require that one variable is not infinite).
 
