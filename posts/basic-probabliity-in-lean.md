@@ -119,7 +119,7 @@ Note that a countable discrete measurable space is a standard Borel space, so th
 ## Various probability definitions
 
 This section contains pointers to the Mathlib definitions for probability concepts.
-That list might be out of date when you read this! Look around in the [documentation]{https://leanprover-community.github.io/mathlib4_docs/}.
+That list might be out of date when you read this! Look around in the [documentation](https://leanprover-community.github.io/mathlib4_docs/).
 
 
 ### CDF, pdf, Variance, moments
