@@ -91,6 +91,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ} (hX : Measurable X)
 ```
 In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations.
 
+If we define a measure `P` on `Ω`, we can talk about the law or distribution of `X`. It is by definition the map of the measure `P` by `X`, `P.map X`. There is no specific notation for that law.
+To say that `X` is Gaussian with mean 0 and variance 1, write `P.map X = gaussianReal 0 1`.
+
 The expectation of `X` is the integral of that function against the measure `P`, written `∫ ω, X ω ∂P`.
 The notation `P[X]` is shorthand for that expectation. In a `MeasureSpace`, we can further use the notation `𝔼[X]`.
 
