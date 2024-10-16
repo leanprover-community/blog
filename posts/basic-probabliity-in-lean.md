@@ -146,6 +146,7 @@ def gaussianReal (μ : ℝ) (v : ℝ≥0) : Measure ℝ := -- omitted
 ```
 The file where the Gaussian is defined also contains properties of its p.d.f.
 
+As another example, to take the uniform distribution on a finite set `s : Set Ω`, use `uniformOn s : Measure Ω`.
 
 ### Identically distributed
 
