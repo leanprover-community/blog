@@ -78,8 +78,9 @@ example (P : Measure ℝ) (s : Set ℝ) : ℝ≥0∞ := P s
 ```
 The probability of the event `s` is thus `P s`.
 The type `ℝ≥0∞` represents the nonnegative reals and infinity: the measure of a set is a nonnegative real number which in general may be infinite.
-Measures can in general take infinite values. If `P` is a probabilty measure, it actually takes only values up to 1.
-`simp` knows that a probability measure is finite and will use the lemmas `measure_ne_top` or `measure_lt_top` to prove that `P s ≠ ∞` or `P s < ∞`.
+If `P` is a probability measure, it actually takes only values up to 1.
+The tactic `simp` knows that a probability measure is finite and will use the lemmas `measure_ne_top` or `measure_lt_top` to prove that `P s ≠ ∞` or `P s < ∞`.
+
 The operations on `ℝ≥0∞` are not as nicely behaved as on `ℝ`: `ℝ≥0∞` is not a ring. For example, subtraction truncates to zero.
 If one finds that lemma `lemma_name` used to transform an equation does not apply to `ℝ≥0∞`, a good thing to try is to find a lemma named like `ENNReal.lemma_name_of_something` and use that instead (it will typically require that one variable is not infinite).
 
