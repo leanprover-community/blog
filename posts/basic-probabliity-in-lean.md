@@ -15,7 +15,6 @@ How do I define a probability space and two independent random variables in Lean
 How do I condition on an event?
 
 This post answers these and other simple questions about how to express probability concepts using Mathlib.
-We will not discuss theorems, but focus on definitions. The goal is to have enough knowledge about the definitions in Mathlib to state probability theory lemmas.
 
 <!-- TEASER_END -->
 
@@ -132,7 +131,7 @@ This section contains pointers to the Mathlib definitions for several probabilit
 That list might be out of date when you read this! Look around in the [documentation](https://leanprover-community.github.io/mathlib4_docs/).
 
 
-### CDF, pdf, Variance, moments
+### CDF, pdf, variance, moments
 
 Here is a list of common concepts about real probability distributions.
 
