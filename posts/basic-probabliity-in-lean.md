@@ -149,11 +149,13 @@ Here is a list of common concepts about real probability distributions.
 ### Known probability distributions
 
 The Probability/Distributions folder of Mathlib contains several common probability laws: Exponential, Gamma, Gaussian (only in `ℝ`), Geometric, Pareto, Poisson, Uniform.
+Other measures that can be used to build probability distributions are defined elsewhere, in the MeasureTheory folder: counting measure, Dirac, Lebesgue measure.
 
 For example, the Gaussian distribution on the real line with mean `μ` and variance `v` is a `Measure ℝ`:
 ```lean
 def gaussianReal (μ : ℝ) (v : ℝ≥0) : Measure ℝ := -- omitted
 ```
+The definition is followed by an instance `IsProbabilityMeasure (gaussianReal μ v)` that states that this is a probability measure. It is defined as the Dirac distribution for `v = 0`.
 The file where the Gaussian is defined also contains properties of its p.d.f.
 
 As another example, to take the uniform distribution on a finite set `s : Set Ω`, use `uniformOn s : Measure Ω`.
@@ -184,7 +186,6 @@ We have special notation for the conditional expectation of the real indicator o
 
 The regular conditional probability distribution of `Y : Ω → F` given `X : Ω → E`, for `F` standard Borel, is denoted by `condDistrib Y X P` (for a measure `P` on `Ω`).
 This is a Markov kernel from `E` to `F` (see further down) such that for all measurable sets `s` of `F`, for `P`-almost every `ω : Ω `, `condDistrib Y X P (X ω) s` is equal to `P⟦Y ⁻¹' s|mE.comap X⟧` (up to a mismatch in types: `ℝ≥0∞` for `condDistrib` versus `ℝ` for the conditional expectation of the indicator).
-
 
 ### Independence
 
@@ -217,7 +218,7 @@ As of writing this blog post, there is no shorter spelling of that fact.
 For families of function, use `iCondIndepFun`.
 For sets, use `CondIndepSet` (two sets) and `iCondIndepSet` (family of sets). For sigma-algebras, `CondIndep` and `iCondIndep`.
 
-### Martingales, filtrations
+### Stochastic processes, filtrations, martingales
 
 A stochastic process with real values (for example) is a function `X : ι → Ω → ℝ` from an index set `ι` to random variables `Ω → ℝ`.
 
@@ -234,4 +235,9 @@ That can cause friction with informal stopping times which are often understood 
 
 ### Transition kernels
 
-TODO
+A transition kernel `κ` from a measurable space `E` to a measurable space `F` is a measurable function form `E` to `Measure F`. That is, for every measurable set `s` of `F`, the function `fun x ↦ κ x s` is measurable.
+They are represented in Mathlib by the type `Kernel E F`.
+A kernel such that all measures in its image are probability measures is called a Markov kernel. This is denoted by `IsMarkovKernel κ`.
+There are other typeclasses for kernels that are finite (`IsFiniteKernel`) or s-finite (countable sum of finite, `IsSFiniteKernel`).
+
+Kernels are perhaps more widely used in Mathlib than one would expect. For example independence and conditional independence are both expressed as special cases of a notion of independence with respect to a kernel and a measure.
