@@ -93,7 +93,7 @@ A random variable is a measurable function from a measurable space to another.
 ```lean
 variable {Ω : Type*} [MeasurableSpace Ω] {X : Ω → ℝ} (hX : Measurable X)
 ```
-In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). `hX` states that `X` is measurable, which is necessary for most manipulations.
+In that code we defined a random variable `X` from the measurable space `Ω` to `ℝ` (for which the typeclass inference system finds a measurable space instance). The assumption `hX` states that `X` is measurable, which is necessary for most manipulations.
 
 If we define a measure `P` on `Ω`, we can talk about the law or distribution of `X`. It is by definition the map of the measure `P` by `X`, `P.map X`. There is no specific notation for that law.
 To say that `X` is Gaussian with mean 0 and variance 1, write `P.map X = gaussianReal 0 1`.
@@ -112,7 +112,7 @@ In discrete probability, measurability is not an issue: every set and every func
 The typeclass `[DiscreteMeasurableSpace Ω]` signals that every set of `Ω` is measurable and the lemma `MeasurableSet.of_discrete` provides a proof of measurability.
 To obtain measurability of a function from `Ω`, use `Measurable.of_discrete`.
 
-Any countable type with measurable singletons is a `DiscreteMeasurableSpace`. For example `ℕ` or `Fin n`.
+Any countable type with measurable singletons is a `DiscreteMeasurableSpace`, for example `ℕ` or `Fin n`.
 
 A way to define a probability measure on a discrete space `Ω` is to use the type `PMF Ω`, which stands for probability mass function.
 `PMF Ω` is the subtype of functions `Ω → ℝ≥0∞` that sum to 1.
@@ -159,7 +159,7 @@ For example, the Gaussian distribution on the real line with mean `μ` and varia
 def gaussianReal (μ : ℝ) (v : ℝ≥0) : Measure ℝ := -- omitted
 ```
 The definition is followed by an instance `IsProbabilityMeasure (gaussianReal μ v)` that states that this is a probability measure. It is defined as the Dirac distribution for `v = 0`.
-The file where the Gaussian is defined also contains properties of its p.d.f.
+The file where the Gaussian is defined also contains properties of its probability density function.
 
 As another example, to take the uniform distribution on a finite set `s : Set Ω`, use `uniformOn s : Measure Ω`.
 
@@ -205,9 +205,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω}
 ```
 On a measure space, we can write `IndepFun X Y` without the measure argument.
 
-For family `X : ι → Ω → ℝ` of independent random variables, use `iIndepFun`.
+For a family `X : ι → Ω → ℝ` of independent random variables, use `iIndepFun`.
 
-For sets, use `IndepSet` (two sets) and `iIndepSet` (family of sets). For sigma-algebras, `Indep` and `iIndep`.
+To express independence of sets, use `IndepSet` (two sets) and `iIndepSet` (family of sets). For sigma-algebras, `Indep` and `iIndep`.
 
 #### Conditional independence
 
@@ -217,7 +217,7 @@ To write that `X : Ω → E` and `Y : Ω → F` are independent conditionally on
 That is, for `mG : MeasurableSpace G` the sigma-algebra on `G`, write `CondIndepFun (mG.comap Z) hZ.comap_le X Y P`.
 As of writing this blog post, there is no shorter spelling of that fact.
 
-For families of function, use `iCondIndepFun`.
+For families of functions, use `iCondIndepFun`.
 For sets, use `CondIndepSet` (two sets) and `iCondIndepSet` (family of sets). For sigma-algebras, `CondIndep` and `iCondIndep`.
 
 ### Stochastic processes, filtrations, martingales
