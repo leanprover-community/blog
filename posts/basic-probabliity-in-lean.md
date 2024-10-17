@@ -120,6 +120,7 @@ Any countable type with measurable singletons is a `DiscreteMeasurableSpace`, fo
 A way to define a probability measure on a discrete space `Ω` is to use the type `PMF Ω`, which stands for probability mass function.
 `PMF Ω` is the subtype of functions `Ω → ℝ≥0∞` that sum to 1.
 One can get a `Measure Ω` from `p : PMF Ω` with `p.toMeasure`.
+When writing a theorem about probability on finite spaces, it preferable to write it for a `Measure` in a `DiscreteMeasurableSpace` than for a `PMF` for better integration with the library.
 
 
 ## Additional typeclasses on measurable spaces
