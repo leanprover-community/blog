@@ -97,7 +97,7 @@ In that code we defined a random variable `X` from the measurable space `Ω` to 
 
 If we define a measure `P` on `Ω`, we can talk about the law or distribution of a random variable `X : Ω → E`.
 The law of `X` is a measure on `E`, with value `P (X ⁻¹' s)` on any measurable set `s` of `E`.
-This is the map of the measure `P` by `X`, `Measure.map X P` or more succinctly `P.map X`.
+This is how we define the map of the measure `P` by `X`, `Measure.map X P` or more succinctly `P.map X`.
 There is no specific notation for that law.
 To say that `X` is Gaussian with mean 0 and variance 1, write `P.map X = gaussianReal 0 1`.
 
