@@ -5,9 +5,9 @@ date: 2024-10-17 16:41:48 UTC+02:00
 description: ''
 has_math: true
 link: ''
-slug: basic-probability-in-lean
+slug: basic-probability-in-mathlib
 tags: ''
-title: Basic probability in Lean
+title: Basic probability in Mathlib
 type: text
 ---
 
