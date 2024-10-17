@@ -101,6 +101,10 @@ To say that `X` is Gaussian with mean 0 and variance 1, write `P.map X = gaussia
 The expectation of `X` is the integral of that function against the measure `P`, written `∫ ω, X ω ∂P`.
 The notation `P[X]` is shorthand for that expectation. In a `MeasureSpace`, we can further use the notation `𝔼[X]`.
 
+Remark: there are two types of integrals in Mathlib, Bochner integrals and Lebesgue integrals.
+The expectation notations stand for the Bochner integral, which is defined for `X : Ω → E` with `E` a normed space over `ℝ` (`[NormedAddCommGroup E] [NormedSpace ℝ E]`).
+They don't work for `Y : Ω → ℝ≥0∞` since `ℝ≥0∞` is not a normed space, but those functions can be integrated with the Lebesgue integral: `∫⁻ ω, Y ω ∂P`.
+There is no expectation notation for the Lebesgue integral.
 
 ## Discrete probability
 
