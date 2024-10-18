@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basic probability in Mathlib | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/basic-probability-in-mathlib/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Basic probability in Mathlib | Lean community blog">
+<meta name="author" content="Rémy Degenne">
+<link rel="prev" href="../infinity-cosmos-announcement/" title="Announcing the ∞-Cosmos Project" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Basic probability in Mathlib">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/basic-probability-in-mathlib/">
+<meta property="og:description" content="How do I define a probability space and two independent random variables in Lean? Should I use IsProbabilityMeasure or ProbabilityMeasure?
+How do I condition on an event?
+This post answers these and o">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-10-17T16:41:48+02:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Basic probability in Mathlib</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/remy-degenne/">Rémy Degenne</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-10-17T16:41:48+02:00" itemprop="datePublished" title="2024-10-17 16:41">2024-10-17 16:41</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/basic-probability-in-mathlib/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>How do I define a probability space and two independent random variables in Lean? Should I use <code>IsProbabilityMeasure</code> or <code>ProbabilityMeasure</code>?
+How do I condition on an event?</p>
+<p>This post answers these and other simple questions about how to express probability concepts using Mathlib.</p>
+<!-- TEASER_END -->
+
+<p>The code examples will not mention imports and will assume that we <code>import Mathlib</code> in a project that depends on Mathlib.
+Many probability related notations are defined in the file Probability/Notation.
+Including the following two lines at the beginning of a file after the imports is generally a good idea to work with probability:</p>
+<pre class="code literal-block"><span class="kn">open</span> <span class="n">MeasureTheory</span> <span class="n">ProbabilityTheory</span>
+<span class="kn">open</span> <span class="n">scoped</span> <span class="n">ENNReal</span>
+</pre>
+<p>The first line opens namespaces, which means that we will be able to omit any <code>MeasureTheory.</code> prefix from lemma names. We will likewise omit that prefix in this text.
+The second line makes some notations available. We'll talk about that further down.</p>
+<h2>Probability spaces and probability measures</h2>
+<p>First, in order to work on probability we need a measurable space.
+We can define a probability measure on such a space as follows.</p>
+<pre class="code literal-block"><span class="kd">variable</span> <span class="o">{</span><span class="bp">Ω</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">MeasurableSpace</span> <span class="bp">Ω</span><span class="o">]</span> <span class="o">{</span><span class="n">P</span> <span class="o">:</span> <span class="n">Measure</span> <span class="bp">Ω</span><span class="o">}</span> <span class="o">[</span><span class="n">IsProbabilityMeasure</span> <span class="n">P</span><span class="o">]</span>
+</pre>
+<p>The class <code>MeasurableSpace Ω</code> defines a sigma-algebra on <code>Ω</code>. We then introduced a measure <code>P</code> on that sigma-algebra and specified that it should be a probability measure.
+If we want to work on <code>ℝ</code> or another well known type the typeclass inference system will find <code>[MeasurableSpace ℝ]</code> on its own. We can write simply</p>
+<pre class="code literal-block"><span class="kd">variable</span> <span class="o">{</span><span class="n">P</span> <span class="o">:</span> <span class="n">Measure</span> <span class="n">ℝ</span><span class="o">}</span> <span class="o">[</span><span class="n">IsProbabilityMeasure</span> <span class="n">P</span><span class="o">]</span>
+</pre>
+<p>With the code above, we can introduce several probability measures on the same space. When using lemmas and definitions about those measures, we will need to specify which measure we are talking about.
+For example, the variance of a random variable <code>X</code> with respect to the measure <code>P</code> will be <code>variance X P</code>.</p>
+<p>But perhaps we just want a space with a canonical probability measure, which would be the one used without us having to tell Lean explicitly.
+That can be done with the <code>MeasureSpace</code> class. A <code>MeasureSpace</code> is a <code>MeasurableSpace</code> with a canonical measure called <code>volume</code>.
+The probability library of Mathlib defines a notation <code>ℙ</code> for that measure. We still need to tell that we want it to be a probability measure though.</p>
+<pre class="code literal-block"><span class="kd">variable</span> <span class="o">{</span><span class="bp">Ω</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">MeasureSpace</span> <span class="bp">Ω</span><span class="o">]</span> <span class="o">[</span><span class="n">IsProbabilityMeasure</span> <span class="o">(</span><span class="n">ℙ</span> <span class="o">:</span> <span class="n">Measure</span> <span class="bp">Ω</span><span class="o">)]</span>
+</pre>
+<p>Remark 1: in the code above we can't write only <code>[IsProbabilityMeasure ℙ]</code> because Lean would then not know to which space the default measure <code>ℙ</code> refers to.
+That will not be necessary when we use <code>ℙ</code> in proofs because the context will be enough to infer <code>Ω</code>.</p>
+<p>Remark 2: a lemma written for <code>P : Measure Ω</code> in a <code>MeasurableSpace Ω</code> will apply for the special measure <code>ℙ</code> in a <code>MeasureSpace Ω</code>, but the converse is not true.
+Mathlib focuses on generality, hence uses the <code>MeasurableSpace</code> spelling for its lemmas. In another context, the convenience of <code>MeasureSpace</code> may be preferable.</p>
+<h3>
+<code>IsProbabilityMeasure</code> vs <code>ProbabilityMeasure</code>
+</h3>
+<p>The examples above used <code>{P : Measure Ω} [IsProbabilityMeasure P]</code> to define a probability measure. That's the standard way to do it.
+Mathlib also contains a type <code>ProbabilityMeasure Ω</code>: the subtype of measures that are probability measures.
+The goal of that type is to work on the set of probability measures on <code>Ω</code>.
+In particular, it comes with a topology, the topology of convergence in distribution (weak convergence of measures).
+If we don't need to work with that topology, <code>{P : Measure Ω} [IsProbabilityMeasure P]</code> should be preferred.</p>
+<h3>Probability of events</h3>
+<p>An event is a measurable set: there is no special event definition in Mathlib.
+The probability of that event is the measure of the set.
+A <code>Measure</code> can be applied to a set like a function and returns a value in <code>ENNReal</code> (denoted by <code>ℝ≥0∞</code>, available after <code>open scoped ENNReal</code>).</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">P</span> <span class="o">:</span> <span class="n">Measure</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">Set</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="bp">∞</span> <span class="o">:=</span> <span class="n">P</span> <span class="n">s</span>
+</pre>
+<p>The probability of the event <code>s</code> is thus <code>P s</code>.
+The type <code>ℝ≥0∞</code> represents the nonnegative reals and infinity: the measure of a set is a nonnegative real number which in general may be infinite.
+If <code>P</code> is a probability measure, it actually takes only values up to 1.
+The tactic <code>simp</code> knows that a probability measure is finite and will use the lemmas <code>measure_ne_top</code> or <code>measure_lt_top</code> to prove that <code>P s ≠ ∞</code> or <code>P s &lt; ∞</code>.</p>
+<p>The operations on <code>ℝ≥0∞</code> are not as nicely behaved as on <code>ℝ</code>: <code>ℝ≥0∞</code> is not a ring. For example, subtraction truncates to zero.
+If one finds that lemma <code>lemma_name</code> used to transform an equation does not apply to <code>ℝ≥0∞</code>, a good thing to try is to find a lemma named like <code>ENNReal.lemma_name_of_something</code> and use that instead (it will typically require that one variable is not infinite).</p>
+<p>For many lemmas to apply, the set <code>s</code> will need to be a measurable set. The way to express that is <code>MeasurableSet s</code>.</p>
+<h3>Random variables</h3>
+<p>A random variable is a measurable function from a measurable space to another.</p>
+<pre class="code literal-block"><span class="kd">variable</span> <span class="o">{</span><span class="bp">Ω</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">MeasurableSpace</span> <span class="bp">Ω</span><span class="o">]</span> <span class="o">{</span><span class="n">X</span> <span class="o">:</span> <span class="bp">Ω</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="o">}</span> <span class="o">(</span><span class="n">hX</span> <span class="o">:</span> <span class="n">Measurable</span> <span class="n">X</span><span class="o">)</span>
+</pre>
+<p>In that code we defined a random variable <code>X</code> from the measurable space <code>Ω</code> to <code>ℝ</code> (for which the typeclass inference system finds a measurable space instance). The assumption <code>hX</code> states that <code>X</code> is measurable, which is necessary for most manipulations.</p>
+<p>If we define a measure <code>P</code> on <code>Ω</code>, we can talk about the law or distribution of a random variable <code>X : Ω → E</code>.
+The law of <code>X</code> is a measure on <code>E</code>, with value <code>P (X ⁻¹' s)</code> on any measurable set <code>s</code> of <code>E</code>.
+This is how we define the map of the measure <code>P</code> by <code>X</code>, <code>Measure.map X P</code> or more succinctly <code>P.map X</code>.
+There is no specific notation for that law.
+To say that <code>X</code> is Gaussian with mean 0 and variance 1, write <code>P.map X = gaussianReal 0 1</code>.</p>
+<p>The expectation of <code>X</code> is the integral of that function against the measure <code>P</code>, written <code>∫ ω, X ω ∂P</code>.
+The notation <code>P[X]</code> is shorthand for that expectation. In a <code>MeasureSpace</code>, we can further use the notation <code>𝔼[X]</code>.</p>
+<p>Remark: there are two types of integrals in Mathlib, Bochner integrals and Lebesgue integrals.
+The expectation notations stand for the Bochner integral, which is defined for <code>X : Ω → E</code> with <code>E</code> a normed space over <code>ℝ</code> (<code>[NormedAddCommGroup E] [NormedSpace ℝ E]</code>).
+They don't work for <code>Y : Ω → ℝ≥0∞</code> since <code>ℝ≥0∞</code> is not a normed space, but those functions can be integrated with the Lebesgue integral: <code>∫⁻ ω, Y ω ∂P</code>.
+There is no expectation notation for the Lebesgue integral.</p>
+<h3>Discrete probability</h3>
+<p>In discrete probability, measurability is not an issue: every set and every function are measurable.
+The typeclass <code>[DiscreteMeasurableSpace Ω]</code> signals that every set of <code>Ω</code> is measurable and the lemma <code>MeasurableSet.of_discrete</code> provides a proof of measurability.
+To obtain measurability of a function from <code>Ω</code>, use <code>Measurable.of_discrete</code>.</p>
+<p>Any countable type with measurable singletons is a <code>DiscreteMeasurableSpace</code>, for example <code>ℕ</code> or <code>Fin n</code>.</p>
+<p>A way to define a probability measure on a discrete space <code>Ω</code> is to use the type <code>PMF Ω</code>, which stands for probability mass function.
+<code>PMF Ω</code> is the subtype of functions <code>Ω → ℝ≥0∞</code> that sum to 1.
+One can get a <code>Measure Ω</code> from <code>p : PMF Ω</code> with <code>p.toMeasure</code>.
+When writing a theorem about probability on finite spaces, it preferable to write it for a <code>Measure</code> in a <code>DiscreteMeasurableSpace</code> than for a <code>PMF</code> for better integration with the library.</p>
+<h3>Additional typeclasses on measurable spaces</h3>
+<p>Some results in probability theory require the sigma-algebra to be the Borel sigma-algebra, generated by the open sets. For example, with the Borel sigma-algebra the open sets are measurable and continuous functions are measurable.
+For that we first need <code>Ω</code> to be a topological space and we then need to add a <code>[BorelSpace Ω]</code> variable.</p>
+<pre class="code literal-block"><span class="kd">variable</span> <span class="o">{</span><span class="bp">Ω</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">MeasurableSpace</span> <span class="bp">Ω</span><span class="o">]</span> <span class="o">[</span><span class="n">TopologicalSpace</span> <span class="bp">Ω</span><span class="o">]</span> <span class="o">[</span><span class="n">BorelSpace</span> <span class="bp">Ω</span><span class="o">]</span>
+</pre>
+<p>For properties related to conditional distributions, it is often convenient or necessary to work in a standard Borel space (a measurable space arising as the Borel sets of some Polish topology). See the <code>StandardBorelSpace</code> typeclass.
+Note that a countable discrete measurable space is a standard Borel space, so there is no need to worry about that typeclass when doing discrete probability.</p>
+<h3>Various probability definitions</h3>
+<p>This section contains pointers to the Mathlib definitions for several probability objects.
+That list might be out of date when you read this! Look around in the <a href="https://leanprover-community.github.io/mathlib4_docs/">documentation</a>.</p>
+<h4>CDF, pdf, variance, moments</h4>
+<p>Here is a list of common concepts about real probability distributions.</p>
+<ul>
+<li>Probability density function of a random variable <code>X : Ω → E</code> in a space with measure <code>P : Measure Ω</code>, with respect to measure <code>Q : Measure E</code>: <code>pdf X P Q</code>.</li>
+<li>Cumulative distribution function of <code>P : Measure ℝ</code>: <code>cdf P</code>. This is a <code>StieltjesFunction</code>, a monotone right continuous real function.</li>
+<li>Expectation of <code>X</code> under <code>P</code>: <code>P[X]</code>.</li>
+<li>Variance: <code>variance X P</code>.</li>
+<li>Moment of order <code>p</code>: <code>moment X p P</code>.</li>
+<li>Central moment of order <code>p</code>: <code>centralMoment X p P</code>.</li>
+<li>Moment generating function of <code>X</code> under <code>P</code> at <code>t : ℝ</code>: <code>mgf X P t</code>.</li>
+<li>Cumulant generating function: <code>cgf X P t</code>.</li>
+</ul>
+<h4>Known probability distributions</h4>
+<p>The Probability/Distributions folder of Mathlib contains several common probability laws: Exponential, Gamma, Gaussian (only in <code>ℝ</code>), Geometric, Pareto, Poisson, Uniform.
+Other measures that can be used to build probability distributions are defined elsewhere, in the MeasureTheory folder: counting measure, Dirac, Lebesgue measure.</p>
+<p>For example, the Gaussian distribution on the real line with mean <code>μ</code> and variance <code>v</code> is a <code>Measure ℝ</code>:</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">gaussianReal</span> <span class="o">(</span><span class="n">μ</span> <span class="o">:</span> <span class="n">ℝ</span><span class="o">)</span> <span class="o">(</span><span class="n">v</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">:</span> <span class="n">Measure</span> <span class="n">ℝ</span> <span class="o">:=</span> <span class="c1">-- omitted</span>
+</pre>
+<p>The definition is followed by an instance <code>IsProbabilityMeasure (gaussianReal μ v)</code> that states that this is a probability measure. It is defined as the Dirac distribution for <code>v = 0</code>.
+The file where the Gaussian is defined also contains properties of its probability density function.</p>
+<p>As another example, to take the uniform distribution on a finite set <code>s : Set Ω</code>, use <code>uniformOn s : Measure Ω</code>.</p>
+<h4>Identically distributed</h4>
+<p><code>IdentDistrib X Y P Q</code> (or <code>IdentDistrib X Y</code> in <code>MeasureSpace</code>) states that <code>X</code> and <code>Y</code> are identically distributed.</p>
+<h4>Conditioning</h4>
+<h5>Conditional probability</h5>
+<p>The probability of a set <code>s</code> conditioned on another set <code>t</code> for the measure <code>P</code> is <code>P[s|t]</code>, which equals <code>P (s ∩ t) / P t</code>.
+Conditioning on <code>t</code> defines a new measure named <code>cond P t</code>, denoted by <code>P[|t]</code>. With that notation, <code>P[s|t] = P[|t] s</code>.</p>
+<p>For <code>X : Ω → E</code> and <code>x : E</code>, we write <code>P[|X ← x]</code> for the probability measure conditioned on <code>X = x</code>. It is notation for <code>P[|X ⁻¹' {x}]</code>.
+This is meaningful only if <code>X = x</code> has non-zero probability, so that definition is mostly useful for discrete probability.</p>
+<h5>Conditional expectation</h5>
+<p>The conditional expectation of a random variable <code>Y : Ω → F</code> given a sigma-algebra <code>m</code> of <code>Ω</code> is <code>condexp m P Y</code>, with notation <code>P[Y | m]</code>. This is a random variable <code>Ω → F</code>, and it is <code>m</code>-measurable.
+The conditional expectation of <code>Y</code> given <code>X : Ω → E</code> can be obtained with <code>P[Y | mE.comap X]</code>, in which <code>mE : MeasurableSpace E</code> is the sigma-algebra on <code>E</code>.
+The sigma-algebra <code>mE.comap X</code> (or <code>MeasurableSpace.comap X mE</code>) on <code>Ω</code> is the sigma-algebra generated by <code>X</code>. It is the smallest sigma-algebra for which all the sets <code>X ⁻¹' s</code> are measurable, for <code>s</code> ranging over the measurable sets on <code>E</code>.</p>
+<p>We have special notation for the conditional expectation of the real indicator of a set <code>s : Set Ω</code>: <code>P⟦s | m⟧ : Ω → ℝ</code>.</p>
+<h5>Conditional probability distribution</h5>
+<p>The regular conditional probability distribution of <code>Y : Ω → F</code> given <code>X : Ω → E</code>, for <code>F</code> standard Borel, is denoted by <code>condDistrib Y X P</code> (for a measure <code>P</code> on <code>Ω</code>).
+This is a Markov kernel from <code>E</code> to <code>F</code> (see further down) such that for all measurable sets <code>s</code> of <code>F</code>, for <code>P</code>-almost every <code>ω : Ω</code>, <code>condDistrib Y X P (X ω) s</code> is equal to <code>P⟦Y ⁻¹' s|mE.comap X⟧</code> (up to a mismatch in types: <code>ℝ≥0∞</code> for <code>condDistrib</code> versus <code>ℝ</code> for the conditional expectation of the indicator).</p>
+<h4>Independence</h4>
+<p>Mathlib has several definitions for independence. We can talk about independence of random variables, of sets, of sigma-algebras.
+The definitions also differ depending on whether we consider only two random variables of an indexed family.
+Finally, there are also conditional variants of all those definitions.</p>
+<h5>Unconditional independence</h5>
+<p>Two independent random variables can be defined like this:</p>
+<pre class="code literal-block"><span class="kd">variable</span> <span class="o">{</span><span class="bp">Ω</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">MeasurableSpace</span> <span class="bp">Ω</span><span class="o">]</span> <span class="o">{</span><span class="n">P</span> <span class="o">:</span> <span class="n">Measure</span> <span class="bp">Ω</span><span class="o">}</span>
+  <span class="o">{</span><span class="n">X</span> <span class="o">:</span> <span class="bp">Ω</span> <span class="bp">→</span> <span class="n">ℝ</span><span class="o">}</span> <span class="o">{</span><span class="n">Y</span> <span class="o">:</span> <span class="bp">Ω</span> <span class="bp">→</span> <span class="n">ℕ</span><span class="o">}</span> <span class="o">(</span><span class="n">hX</span> <span class="o">:</span> <span class="n">Measurable</span> <span class="n">X</span><span class="o">)</span> <span class="o">(</span><span class="n">hY</span> <span class="o">:</span> <span class="n">Measurable</span> <span class="n">Y</span><span class="o">)</span>
+  <span class="o">(</span><span class="n">hXY</span> <span class="o">:</span> <span class="n">IndepFun</span> <span class="n">X</span> <span class="n">Y</span> <span class="n">P</span><span class="o">)</span>
+</pre>
+<p>On a measure space, we can write <code>IndepFun X Y</code> without the measure argument.</p>
+<p>For a family <code>X : ι → Ω → ℝ</code> of independent random variables, use <code>iIndepFun</code>.</p>
+<p>To express independence of sets, use <code>IndepSet</code> (two sets) and <code>iIndepSet</code> (family of sets). For sigma-algebras, <code>Indep</code> and <code>iIndep</code>.</p>
+<h5>Conditional independence</h5>
+<p>The way to write that two random variables <code>X : Ω → E</code> and <code>Y : Ω → F</code> are conditionally independent given a sub-sigma-algebra <code>m</code> with respect to the measure <code>P</code> is <code>CondIndepFun m hm X Y P</code>, in which <code>hm : m ≤ mΩ</code> is a proof that <code>m</code> is a sub-sigma-algebra of the sigma-algebra <code>mΩ</code> of <code>Ω</code>.
+We would omit the measure argument in a <code>MeasureSpace</code>.
+That definition requires that <code>Ω</code> be standard Borel space.</p>
+<p>To write that <code>X : Ω → E</code> and <code>Y : Ω → F</code> are conditionally independent given a third random variable <code>Z : Ω → G</code> (with measurability assumption <code>hZ : Measurable Z</code>), write that they are independent given the sigma-algebra generated by <code>Z</code>.
+That is, for <code>mG : MeasurableSpace G</code> the sigma-algebra on <code>G</code>, write <code>CondIndepFun (mG.comap Z) hZ.comap_le X Y P</code>.
+As of writing this blog post, there is no shorter spelling of that fact.</p>
+<p>For families of functions, use <code>iCondIndepFun</code>.
+For sets, use <code>CondIndepSet</code> (two sets) and <code>iCondIndepSet</code> (family of sets). For sigma-algebras, <code>CondIndep</code> and <code>iCondIndep</code>.</p>
+<h4>Stochastic processes, filtrations, martingales</h4>
+<p>A stochastic process with real values (for example) is a function <code>X : ι → Ω → ℝ</code> from an index set <code>ι</code> to random variables <code>Ω → ℝ</code>.</p>
+<p>A filtration on the index set can be defined with <code>ℱ : Filtration ι m</code>, in which <code>m</code> is a sigma-algebra on <code>Ω</code>. <code>ℱ</code> is a monotone sequence of sub-sigma-algebras of <code>m</code>. The sigma-algebra at index <code>i</code> is <code>ℱ i</code>.</p>
+<p>We can state that a process <code>X</code> is adapted to the filtration <code>ℱ</code> with <code>adapted ℱ X</code>.
+We can write that it is a martingale with respect to <code>ℱ</code> and the measure <code>P : Measure Ω</code> with <code>Martingale X ℱ P</code>.</p>
+<p>A stopping time with respect to a filtration <code>ℱ</code> is a function <code>τ : Ω → ι</code> such that for all <code>i</code>, the preimage of <code>{j | j ≤ i}</code> along <code>τ</code> is measurable with respect to <code>ℱ i</code>. 
+<code>IsStoppingTime ℱ τ</code> states that <code>τ</code> is a stopping time.</p>
+<p>Remark: there is an issue with the current definition of stopping times, which is that if the index set of the filtration <code>ι</code> is the set of natural numbers <code>ℕ</code> then <code>τ</code> has to take values in <code>ℕ</code>. In particular it cannot be infinite.
+That can cause friction with informal stopping times which are often understood to be infinite when they are not well defined.</p>
+<h4>Transition kernels</h4>
+<p>A transition kernel <code>κ</code> from a measurable space <code>E</code> to a measurable space <code>F</code> is a measurable function from <code>E</code> to <code>Measure F</code>. That is, for every measurable set <code>s</code> of <code>F</code>, the function <code>fun x ↦ κ x s</code> is measurable.
+Transition kernels are represented in Mathlib by the type <code>Kernel E F</code>.
+A kernel such that all measures in its image are probability measures is called a Markov kernel. This is denoted by <code>IsMarkovKernel κ</code>.
+There are other typeclasses for kernels that are finite (<code>IsFiniteKernel</code>) or s-finite (countable sum of finite, <code>IsSFiniteKernel</code>).</p>
+<p>Kernels are perhaps more widely used in Mathlib than one would expect. For example independence and conditional independence are both expressed as special cases of a notion of independence with respect to a kernel and a measure.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../infinity-cosmos-announcement/" rel="prev" title="Announcing the ∞-Cosmos Project">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2024         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
