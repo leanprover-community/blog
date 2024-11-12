@@ -44,7 +44,7 @@ The downside of Moogle is that semantic search isn't an exact science, so the re
 
 ![Loogle Main Page](/images/loogle-screenshot.png)
 
-[Loogle](https://loogle.lean-lang.org/) is a third search engine for mathlib developed by Joachim Breitner at the [Lean Focused Research Organization](https://lean-fro.org/). It is meant to be a similar tool to [Hoogle](https://hoogle.haskell.org/) from the Haskell community: It allows you to searches for lemmas by their type signature. For example, if I search for [`(?a -> ?b) -> List ?a -> List ?b`](https://loogle.lean-lang.org/?q=(?a%20-%3E%20?b)%20-%3E%20List%20?a%20-%3E%20List%20?b), I get results for `List.map`.
+[Loogle](https://loogle.lean-lang.org/) is a third search engine for mathlib developed by Joachim Breitner at the [Lean Focused Research Organization](https://lean-fro.org/). It is meant to be a similar tool to [Hoogle](https://hoogle.haskell.org/) from the Haskell community: It allows you to search for lemmas by their type signature. For example, if I search for [`(?a -> ?b) -> List ?a -> List ?b`](https://loogle.lean-lang.org/?q=(?a%20-%3E%20?b)%20-%3E%20List%20?a%20-%3E%20List%20?b), I get results for `List.map`.
 
 Loogle is a great tool for finding lemmas that you know the type of, but not the name of. It is a pretty precise tool; a downside is that it will not by default give you responses without you typing out the names of the definitions relevant to your search correctly and in full. To avoid putting in too many restrictions and getting an empty result list, it's recommended that you add search filters one at a time to your query.
 
