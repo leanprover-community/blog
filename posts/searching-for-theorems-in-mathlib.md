@@ -66,7 +66,7 @@ The sidebar of [main page](https://leanprover-community.github.io/index.html) fo
 
 ## Tactics
 
-In addition to the search engines and webpages, there are a few tactics you can use to find theorems in mathlib without leaving your lean development environment.
+In addition to the search engines and webpages, there are a few tactics you can use to find theorems in mathlib without leaving your Lean development environment.
 
 ### `exact?`
 
