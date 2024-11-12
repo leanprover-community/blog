@@ -70,7 +70,7 @@ In addition to the search engines and webpages, there are a few tactics you can 
 
 ### `exact?`
 
-The `exact?` tactic (formerly known as `library_search`) is a great way to find theorems in mathlib that finish off a proof goal. At any point in a tactic proof, you can type `exact?` and lean will search through the lemmas you have imported (as well as the file you are working in itself) for a theorem that proves the current goal using assumption from you context. If it finds one, it will show a helpful message saying `Try this:` which you can click to insert the theorem into your proof.
+The `exact?` tactic (formerly known as `library_search`) is a great way to find theorems in mathlib that finish off a proof goal. At any point in a tactic proof, you can type `exact?` and lean will search through the lemmas you have imported (as well as the file you are working in itself) for a theorem that proves the current goal using assumptions from you context. If it finds one, it will show a helpful message saying `Try this:` which you can click to insert the theorem into your proof.
 
 A good time to use `exact?` is when you have a proof goal that you think is so straightforward that it is likely to be in mathlib already. If `exact?` doesn't find a proof, you can always extract the fact and prove it or `sorry` it as an independent lemma immediately above the theorem you are working on, and `exact?` should start to work. You can then prove the goal yourself and submit the proof to mathlib.
 
