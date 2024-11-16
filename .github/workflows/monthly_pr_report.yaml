@@ -1,0 +1,37 @@
+on:
+  pull_request
+
+name: Blog report
+
+jobs:
+
+  Monthly_PRs:
+    if: github.event.pull_request.draft == false
+    name: Blog draft
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: cleanup
+        run: |
+          find . -name . -o -prune -exec rm -rf -- {} +
+
+      - uses: actions/checkout@v4
+        with:
+          path: blog
+
+      - uses: actions/checkout@v4
+        with:
+          repository: leanprover-community/mathlib4
+          fetch-depth: 0
+          ref: master
+          path: mathlib
+
+      - name: blog report
+        run: |
+          yrMth=2024-07
+          cd mathlib;
+          ./../blog/monthly_summary.sh "${yrMth}" raw
+          ./../blog/monthly_summary.sh "${yrMth}" > "${GITHUB_STEP_SUMMARY}"
