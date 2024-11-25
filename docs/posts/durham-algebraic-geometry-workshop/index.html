@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="A week at the computational algebraic geometry workshop in Durham.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durham Computational Algebraic Geometry Workshop | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/durham-algebraic-geometry-workshop/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Durham Computational Algebraic Geometry Workshop | Lean community blog">
+<meta name="author" content="Harald Carlens">
+<link rel="prev" href="../basic-probability-in-mathlib/" title="Basic probability in Mathlib" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Durham Computational Algebraic Geometry Workshop">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/durham-algebraic-geometry-workshop/">
+<meta property="og:description" content="A week at the computational algebraic geometry workshop in Durham.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-11-25T17:00:00Z">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Durham Computational Algebraic Geometry Workshop</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/harald-carlens/">Harald Carlens</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-11-25T17:00:00Z" itemprop="datePublished" title="2024-11-25 17:00">2024-11-25 17:00</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/durham-algebraic-geometry-workshop/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>A group effort to formalise some algebraic geometry in Lean. </p>
+<!-- TEASER_END -->
+
+<p>I found out about the 2024 <a href="https://sites.google.com/view/durhamcompalggeom/home">Durham Computational Algebraic Geometry workshop</a>
+through the 
+<a href="https://leanprover-community.github.io/events.html">Lean events page</a>. I'd been learning Lean in my spare time, having
+worked through the natural numbers game and some of the textbook resources after first encountering Lean through the
+machine learning theorem proving community, and was interested to see how formalisation happens in practice. </p>
+<h2>Workshop</h2>
+<p>The week-long workshop was broader than formalisation. It also included interesting talks on
+<a href="http://www2.macaulay2.com/Macaulay2/">Macaulay2</a> and <a href="https://oscar.computeralgebra.de/">Oscar</a>, and groups working
+on projects using those languages.</p>
+<p>Of the roughly 20 people at the workshop, our Lean group was made up of 8 people with a wide range of Lean experience
+— including people who had never written a line of Lean before, recovering Mathlib contributors, Lean PhDs, and
+Kevin Buzzard. </p>
+<h2>Project</h2>
+<p>Kevin and his two PhD students, Andrew Yang and Jujian Zhang, had chosen a project that they thought might
+be doable in a week: to use the
+recently-formalised valuative criterion to formalise the proof that Proj of a graded ring is separated and proper. 
+As a fundamental result in algebraic geometry, this would be a small part of the basic machinery needed to make progress
+on the proof of Fermat's Last Theorem. </p>
+<p>Though it is a statement about schemes, Kevin, Andrew and Jujian managed to abstract away much of the scheme theory,
+leaving us to prove a statement about commutative algebra. </p>
+<p>As a bit of an outsider in the group (with a decade-old BA in mathematics), and the only member who was not a PhD
+student or researcher, I went to the workshop expecting to mostly be a passive observer. I was very grateful to the rest
+of the group who were extremely patient in explaining some of the maths to me, and gained a real appreciation for some
+of the difficulties in porting "obvious" blackboard statements from chalk into Lean. </p>
+<p><img alt="A blackboard sketch of the proof" src="../../images/durham-blackboard.png"></p>
+<h2>Formalisation in practice</h2>
+<p>We spent the first two days working together as one group, taking turns screen-sharing and editing our proof attempt
+with help from everyone. </p>
+<p>By Thursday, we'd proved separatedness — and 
+<a href="https://github.com/leanprover-community/mathlib4/pull/19290">the PR containing our proof was merged into Mathlib</a>. </p>
+<p>We'd also formalised the statement for properness, and had a sketch for the proof of properness containing lots of
+<code>sorry</code>s. We split into groups to tackle these in parallel. </p>
+<p>This collaboration was made much easier by the real-time feedback from Lean on our progress, though at times we found
+that we needed to change some of our theorem statements and assumptions, which required larger refactors of the work
+we'd already done. </p>
+<p>The group used the Stacks project as a guide, and in the process of formalisation discovered a small
+algebraic error in the <a href="https://stacks.math.columbia.edu/tag/01MF">Stacks project proof</a>. Details of the error<sup id="fnref:hint"><a class="footnote-ref" href="#fn:hint">1</a></sup>
+are left as an exercise to the reader!</p>
+<p>Some of the things that slowed us down were dealing with edge cases that seem non-material, like dealing with the zero
+ring, or actually formalising something that just looks like the obvious identity map when written informally, and
+choosing the most useful definition of finiteness out of a few options in Mathlib. </p>
+<p>When proving theorems in Lean, one encounters some of the same addictive elements as when playing a game. 
+On Thursday afternoon it seemed unlikely we'd
+finish in time for the end of the workshop, but after some evening pizza in the maths department and several "last
+<code>sorry</code> before we leave"s (as well as lots of overnight work from Kevin and Andrew), we got a completed proof just in
+time to present to the other groups.</p>
+<h2>Conclusion</h2>
+<p>Throughout this week, I felt like I got a great insight into what formalising mathematics looks like in practice. 
+The discussions between the more experienced members of the group were illuminating, especially in terms of
+the design considerations behind even a relatively small project like this. </p>
+<p>Once we had formalised the statements we wanted to prove, we were able to split into groups and attack them in parallel.
+But it was this initial formalisation of the statements that felt in some ways more impactful, and choosing the right
+definitions — both in terms of facilitating the Lean proof for them, and making them useful for
+downstream users — took quite some time and effort.  </p>
+<p>A few of us who met this week are planning to stay in touch and keep learning Lean together. We hope to
+see you on <a href="https://leanprover.zulipchat.com/">Zulip</a>!</p>
+<p><em>Our group was made up of Patience Ablett, Kevin Buzzard, Harald Carlens, Wayne Ng Kwing King, Michael Schlößer,
+Justus Springer, Andrew Yang, and Jujian Zhang. The commit history is in
+<a href="https://github.com/kbuzzard/DurhamAlgGeom2024">this separate repo</a> used throughout the workshop. 
+(commit author doesn't mean code author; work was done in collaboration)</em></p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:hint">
+<p>There is a $d$ in the definition of $\gamma_{i}$ — but where is it in the chain of inequalities? <a class="footnote-backref" href="#fnref:hint" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../basic-probability-in-mathlib/" rel="prev" title="Basic probability in Mathlib">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2024         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>

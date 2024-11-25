@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/basic-probability-in-mathlib/" type="text/html">
+<link rel="prefetch" href="posts/durham-algebraic-geometry-workshop/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,24 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/basic-probability-in-mathlib/" class="u-url">Basic probability in Mathlib</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/durham-algebraic-geometry-workshop/" class="u-url">Durham Computational Algebraic Geometry Workshop</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                            <a href="authors/harald-carlens/">Harald Carlens</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/durham-algebraic-geometry-workshop/" rel="bookmark">
+            <time class="published dt-published" datetime="2024-11-25T17:00:00Z" itemprop="datePublished" title="2024-11-25 17:00">2024-11-25 17:00</time></a>
+            </p>
+		    <p><span class="text-dark">meeting report</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>A group effort to formalise some algebraic geometry in Lean. </p>
+<p class="more"><a href="posts/durham-algebraic-geometry-workshop/">Read more…</a></p>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/basic-probability-in-mathlib/" class="u-url">Basic probability in Mathlib</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                             <a href="authors/remy-degenne/">Rémy Degenne</a>
@@ -357,43 +374,6 @@ The workshop took place in Leiden from July 10th to July 14th 2023, and it was a
 </li>
 </ul>
 <p>During these two months, we got two new versions of Lean. We also started to systematically port mathlib to Lean4, see the <a href="https://github.com/leanprover-community/mathlib4/wiki">wiki</a>.</p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/lte-examples/" class="u-url">Definitions in the liquid tensor experiment</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                            <a href="authors/adam-topaz/">Adam Topaz</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/lte-examples/" rel="bookmark">
-            <time class="published dt-published" datetime="2022-10-14T11:00:00-06:00" itemprop="datePublished" title="2022-10-14 11:00">2022-10-14 11:00</time></a>
-            </p>
-		    <p><span class="text-dark">Community projects</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p>A few weeks ago, we announced the <a href="posts/lte-final/">completion of the liquid tensor experiment</a> (<strong>LTE</strong> for short).
-What this means is that we stated and (completely) proved the following result in Lean:</p>
-<pre class="code literal-block"><span class="kd">variables</span> <span class="o">(</span><span class="n">p'</span> <span class="n">p</span> <span class="o">:</span> <span class="n">ℝ</span><span class="bp">≥</span><span class="mi">0</span><span class="o">)</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">p'</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p'</span> <span class="bp">&lt;</span> <span class="n">p</span><span class="o">)]</span> <span class="o">[</span><span class="n">fact</span> <span class="o">(</span><span class="n">p</span> <span class="bp">≤</span> <span class="mi">1</span><span class="o">)]</span>
-
-<span class="kd">theorem</span> <span class="n">liquid_tensor_experiment</span> 
-  <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite</span><span class="o">)</span> <span class="o">(</span><span class="n">V</span> <span class="o">:</span> <span class="n">pBanach</span> <span class="n">p</span><span class="o">)</span> <span class="o">:</span>
-  <span class="bp">∀</span> <span class="n">i</span> <span class="bp">&gt;</span> <span class="mi">0</span><span class="o">,</span> <span class="n">Ext</span> <span class="n">i</span> <span class="o">(</span><span class="n">ℳ_</span><span class="o">{</span><span class="n">p'</span><span class="o">}</span> <span class="n">S</span><span class="o">)</span> <span class="n">V</span> <span class="bp">≅</span> <span class="mi">0</span> <span class="o">:=</span>
-<span class="c1">-- the proof ...</span>
-</pre>
-<p>The code block above, which is taken directly from the file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/challenge.lean"><code>challenge.lean</code></a> in the main <a href="https://github.com/leanprover-community/lean-liquid">LTE repository</a>, uses some custom notation to make the statement appear as close as possible to the main theorem mentioned in 
-<a href="https://xenaproject.wordpress.com/2020/12/05/liquid-tensor-experiment/">Scholze's original challenge</a>.
-Fortunately, it's relatively straightforward to unravel the notation to see the underlying definitions themselves.
-But there is a bigger issue: How can we convince ourselves (and others) that the <em>definitions</em> we introduced in LTE are actually <em>correct</em>? </p>
-<p>For instance, we could have <em>defined</em> <code>Ext</code> to be $0$ (spoiler: we didn't).
-Or, we could have made some subtle innocent mistake in setting up the definitions that somehow <em>implies</em> that <code>Ext</code> is always $0$, or that all condensed abelian groups are trivial, or one of several other pitfalls that renders the statement above meaningless.</p>
-<p>To answer this question, we built a new <a href="https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples"><code>examples</code> folder</a> in the repository which contains several files corresponding to the main players in the statement above.
-These examples can be considered as centralized "sanity checks" that the definitions we wrote using Lean actually behave as expected.</p>
-<p>We tried to write the files in this folder in a way which should be (approximately) readable by mathematicians who have minimal experience with Lean.
-The goal is to make it easy for non-experts to look through the examples folder, then look through the concise final statement in <code>challenge.lean</code>, and be reasonably confident that the challenge was accomplished.</p>
-<p>This blog post gives a detailed overview of this folder and its contents, and how it relates to the definitions used in the main statement of the <a href="https://github.com/leanprover-community/lean-liquid">liquid tensor experiment</a>.
-It is meant to be read <em>alongside</em> the actual files from the <a href="https://github.com/leanprover-community/lean-liquid/tree/92f188bd17f34dbfefc92a83069577f708851aec/src/examples">examples folder</a>.</p>
-<p class="more"><a href="posts/lte-examples/">Read more…</a></p>
 </div>
                 </div>
             </article>
