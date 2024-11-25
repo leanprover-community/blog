@@ -1,7 +1,7 @@
 ---
 author: 'Harald Carlens'
 category: 'meeting report'
-date: 2024-11-23 13:00:00 UTC+02:00
+date: 2024-11-25 17:00:00 UTC+00:00
 description: 'A week at the computational algebraic geometry workshop in Durham.'
 has_math: true
 link: ''
@@ -33,13 +33,14 @@ Kevin Buzzard.
 
 # Project
 
-Kevin and his two PhD students had chosen a project that they thought might be doable in a week: to use the
+Kevin and his two PhD students, Andrew Yang and Jujian Zhang, had chosen a project that they thought might
+be doable in a week: to use the
 recently-formalised valuative criterion to formalise the proof that Proj of a graded ring is separated and proper. 
 As a fundamental result in algebraic geometry, this would be a small part of the basic machinery needed to make progress
 on the proof of Fermat's Last Theorem. 
 
-Though it is a statement about schemes, Kevin and his PhD students managed to abstract away much of the scheme theory
-and leave us proving a statement about commutative algebra. 
+Though it is a statement about schemes, Kevin, Andrew and Jujian managed to abstract away much of the scheme theory,
+leaving us to prove a statement about commutative algebra. 
 
 As a bit of an outsider in the group (with a decade-old BA in mathematics), and the only member who was not a PhD
 student or researcher, I went to the workshop expecting to mostly be a passive observer. I was very grateful to the rest
@@ -80,9 +81,8 @@ time to present to the other groups.
 # Conclusion
 
 Throughout this week, I felt like I got a great insight into what formalising mathematics looks like in practice. 
-As well as each of our own efforts at contributing to the formal proof, I and others in the group also learnt a lot from
-the interactions between Kevin and his PhD students, especially in terms of the design considerations behind even a
-relatively small project like this. 
+The discussions between the more experienced members of the group were illuminating, especially in terms of
+the design considerations behind even a relatively small project like this. 
 
 Once we had formalised the statements we wanted to prove, we were able to split into groups and attack them in parallel.
 But it was this initial formalisation of the statements that felt in some ways more impactful, and choosing the right
