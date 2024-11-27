@@ -62,7 +62,7 @@ The sidebar of [main page](https://leanprover-community.github.io/index.html) fo
 
 * The [Library overview](https://leanprover-community.github.io/mathlib-overview.html): This page lists the overall most important high-level declarations in mathlib, organized by topic/subfield of mathematics.
 * The [Undergrad list](https://leanprover-community.github.io/undergrad/) is a list of theorems and declarations in mathlib that are considered to be at an undergraduate level. This list comes from a document compiled by the [French Ministry of Education](https://media.devenirenseignant.gouv.fr/file/agreg_externe/59/7/p2020_agreg_ext_maths_1107597.pdf)
-* [Wiedijk's 100 Theorems](https://leanprover-community.github.io/100.html): This page lists 100 important theorems from a variety of fields of mathematics. They were originally compiled by Freek Wiedijk in his [Formalizing 100 Theorems](https://www.cs.ru.nl/~freek/100/) project as a benchmark for proof assistants. The page has links to the mathlib documentation page for each theorem that mathlib has proven, as well as a link to a page with the list of theorems that mathlib has not (yet!) proven.
+* [Wiedijk's 100 Theorems](https://leanprover-community.github.io/100.html): This page lists 100 important theorems from a variety of fields of mathematics. They are tracked by Freek Wiedijk in his [Formalizing 100 Theorems](https://www.cs.ru.nl/~freek/100/) project as a benchmark for proof assistants. The page has links to the mathlib documentation page for each theorem that mathlib has proven, as well as a link to a page with the list of theorems that mathlib has not (yet!) proven.
 
 ## Tactics
 
@@ -70,7 +70,7 @@ In addition to the search engines and webpages, there are a few tactics you can 
 
 ### `exact?`
 
-The `exact?` tactic (formerly known as `library_search`) is a great way to find theorems in mathlib that finish off a proof goal. At any point in a tactic proof, you can type `exact?` and lean will search through the lemmas you have imported (as well as the file you are working in itself) for a theorem that proves the current goal using assumptions from you context. If it finds one, it will show a helpful message saying `Try this:` which you can click to insert the theorem into your proof.
+The `exact?` tactic (formerly known as `library_search`) is a great way to find theorems in mathlib that finish off a proof goal. At any point in a tactic proof, you can type `exact?` and lean will search through the lemmas you have imported (as well as the file you are working in itself) for a theorem that proves the current goal using assumptions from your context. If it finds one, it will show a helpful message saying `Try this:` which you can click to insert the theorem into your proof.
 
 A good time to use `exact?` is when you have a proof goal that you think is so straightforward that it is likely to be in mathlib already. If `exact?` doesn't find a proof, you can always extract the fact and prove it or `sorry` it as an independent lemma immediately above the theorem you are working on, and `exact?` should start to work. You can then prove the goal yourself and submit the proof to mathlib.
 
@@ -88,7 +88,7 @@ In the same vein as `exact?` and `apply?`, `rw?` is a tactic that searches for l
 
 ### Other Automated Theorem Proving Techniques
 
-There are a few other tactics in mathlib and other projects that don't search for theorems per se, but which try to complete proofs automatically, and may in the process identify useful theorems. These include:
+There are a few other tactics in mathlib and other projects that don't search for theorems per se, but which try to complete proofs automatically, and which may identify useful theorems in the process. These include:
 
 * `simp?`: Simplifies the goal using a set of simplification rules.
 * `aesop`: From the [Aesop project](https://github.com/leanprover-community/aesop). A tactic that tries to prove the current goal using a search tree.
