@@ -82,7 +82,7 @@ we may not necessarily get a lifting `B i ⟶ X`, but at least, we obtain a taut
 Then, the idea is to iterate this construction (applying it again to the morphism `Z ⟶ Y`, etc.)
 and pass to the colimit. Iterating over the natural numbers `ℕ` is not always enough:
 we actually need to do transfinite induction over a suitably chosen ordinal.
-The most significant part of the formalization was about such constructions by transfinite induction
+The most significant part of the formalization was about constructions by transfinite induction
 in categories, and in order to phrase certain result the structure
 [TransfiniteCompositionOfShape](https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Limits/Shapes/Preorder/TransfiniteCompositionOfShape.html#CategoryTheory.TransfiniteCompositionOfShape) expressing that a morphism
 is a transfinite composition played an important role.
