@@ -101,7 +101,7 @@ this result was generalized by Grothendieck.
 One of the results in the paper *Sur quelques points d'algèbre homologique* (*Tohoku Math. J.* (2), 9, 1957)
 by Alexander Grothendieck is that any Grothendieck abelian category has enough injectives.
 An abelian category `C` is a Grothendieck abelian category if it satisfies certain axioms introduced
-in the aformentioned paper: we assume that filtered colimits are exact and that there exists a generator `G`
+in this paper: we assume that filtered colimits are exact and that there exists a generator `G`
 (any object in `C` is a quotient of a coproduct of copies of `G`).
 Under these assumptions, we would like to show that `C` has enough injectives, which means
 that any object `X` of `C` embeds into an injective object `I`.
