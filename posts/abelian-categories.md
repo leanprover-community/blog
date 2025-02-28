@@ -126,7 +126,7 @@ of pull requests by Joël Riou.
 The existence of enough injectives in Grothendieck abelian categories is an
 important tool in homological algebra. In particular, this applies to
 categories of abelian sheaves over a Grothendieck site, and in the future,
-it shall be used in order to construct right derived functors and to
+it shall be used in order to construct right derived functors and
 study cohomology theories.
 
 This result is also one of the key ingredients in the proof of the
