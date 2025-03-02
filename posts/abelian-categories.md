@@ -217,7 +217,7 @@ There are several candidates for $D$ which appear in the literature.
 * Freyd's *Abelian Categories* takes $D$ to be the opposite of the category of left-exact functors from $C$ to the category of abelian groups.
 Properties of $D$ are established mostly using ad-hoc arguments. Note that it is not obvious that $D$ is abelian, since $D$ does not contain
 *all* functors from $C$ to $\mathsf{Ab}$.
-* The proof sketched in the stack project takes $D$ to be the opposite of a category of abelian sheaves for a certain Grothendieck topology which is
+* The proof sketched in the Stacks project takes $D$ to be the opposite of a category of abelian sheaves for a certain Grothendieck topology which is
 inspired by Bergman's refinements. Many properties of $D$ are proved by transporting them along the sheafification adjunction.
 * The proof given in Kashiwara and Schapira's *Categories and Sheaves* takes $D$ to be the opposite of the category of ind-objects of $C^{\mathsf{op}}$
 (this is the category of pro-objects of $C$). Here, we infer many properties from properties of the category of types.
