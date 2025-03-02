@@ -249,7 +249,7 @@ prerequisites, so we spent a lot of time adding detailed results about presheave
 Kan extensions, comma categories and commutative group objects in cartesian monoidal categories to mathlib.
 
 While we were busy developing the theory of ind-objects, the development of the category of sheaves, which started in 2020, also continued. Over
-the years, many individuals have contributed to this development, including Bhavik Mehta, Adam Topaz, Jujian Zhang, Dagur Asgeirsson and Joël Riou.
+the years, many individuals have contributed to this development, including Bhavik Mehta, Adam Topaz, Jujian Zhang, Andrew Yang, Dagur Asgeirsson and Joël Riou.
 As of early 2025, this puts mathlib in the comfortable position of having all relevant results available for not one but two choices of $D$, and the
 fact that we are using the category of ind-objects is basically an arbitrary choice. Of course, categories of sheaves and ind-objects are both relevant
 for many reasons completely unrelated to the embedding theorem, so we are very happy to have this material in mathlib.
