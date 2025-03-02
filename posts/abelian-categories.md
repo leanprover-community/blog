@@ -138,14 +138,155 @@ study cohomology theories.
 This result is also one of the key ingredients in the proof of the
 Freyd-Mitchell embedding theorem.
 
-# Freyd-Mitchell
+# The Freyd-Mitchell embedding theorem
 
+Abelian categories are a generalization of the category of abelian groups, so it is natural to ask to what
+extent proofs carried out in the category of abelian groups generalize to arbitrary abelian categories.
+A major obstruction to this seems to be that abelian categories are not concrete, i.e., there is in general
+no such thing as an element of an object of an abelian category. While it is in general possible to rewrite
+proofs that chase elements around to no longer mention elements, this can be annoying and distracting.
 
+## Partial results
 
---[PR #22222](https://github.com/leanprover-community/mathlib4/pull/22222)
+There are several techniques that enable elementwise reasoning in abelian categories.
+The first one is called *pseudoelements*. It appears in Mac Lane's *Categories for the Working Mathematician*
+and in Borceux' *Handbook of Categorical Algebra* and it entered mathlib in August of 2020.
+
+Given an object $X$ of an abelian category $C$, we can consider the collection of morphisms with codomain $X$.
+We say that two morphisms $f_1 : P_1 \to X$ and $f_2 : P_2 \to X$ are equivalent if there is an object $Q$
+and epimorphisms $Q \to P_1$ and $Q \to P_2$ making the diagram
+
+$$\require{AMScd}
+\begin{CD}
+Q @>>> P_1\\\\
+@VVV @VVf_1V\\\\
+P_2 @>>f_2> X
+\end{CD}
+$$
+
+commute. This is an equivalence relation (here we rely on the fact that pullbacks of epimorphisms are epimorphisms, which
+is true in abelian categories but not in general), and the quotient is called the collection of pseudoelements of
+$X$. A morphism $f : X \to Y$ induces a function from pseudoelements of $X$ to pseudoelements of $Y$ by composition.
+There is a zero pseudoelement of $X$ given by all zero morphisms with codomain $X$. All in all, we get a functor from $C$
+to the category of pointed sets. We get some useful properties: a morphism is mono if and only if it is injective
+on pseudoelements, epi if and only if it is surjective on pseudoelements, zero if and only if it maps all pseudoelements
+to zero, and a sequence is exact if and only if it is exact on pseudoelements.
+
+This is enough for some simple elementwise proofs in abelian categories, and in those cases where it works, the resulting
+proofs are just as simple as those in the category of abelian groups. However, there are major limitations:
+the functor is neither full nor faithful, so there is no "funext", and it is not possible to define morphisms based on their
+action on pseudoelements. Furthermore, the quotienting process loses the abelian group structure on morphisms, so it
+is not possible to add or subtract pseudoelements. Finally, the concept does not interact well with limits and colimits[^1].
+
+We can overcome some of the limitations of pseudoelements by not passing to a quotient and manually performing the bookkeeping
+instead. This leads to the idea of arguing "up to refinements" which was first described by George Bergman in 1974 and rediscovered
+by Joël Riou in the context of mathlib in 2023.
+
+This approach does not actually give a meaning to the term "element". Rather, it can be understood as a heuristic for translating
+proofs in the category of abelian groups to proofs in an abelian category, but the resulting proof will look a bit different
+and be a bit more complicated. This is a good fit for mathlib's abelian category and homological algebra sections, where we
+can assume that users are willing to engage with category theory, but the need remains for a tool that can be used when you just want
+your element-chasing proofs to generalize without having to think about it any further.
+
+## A project
+
+The Freyd-Mitchell embedding theorem states that for an abelian category $C$ there is a (not necessarily commutative) ring $R$ and
+a full, faithful and exact functor from $C$ to the category of $R$-modules. It was published in 1964 and provides a much stronger
+notion of pseudoelement than the one described above: our sets of pseudoelements are now modules, so they can be added and subtracted,
+we get function extensionality and we can construct morphisms by constructing $R$-linear maps of pseudoelements.
+
+This provides a satisfactory justification for chasing elements in abelian categories. The only problem is that this theorem is much
+more difficult to prove than the two techniques described above. It seemed very far out of reach when pseudoelements were added
+to mathlib in 2020. It still seemed out of reach in early 2022, but it seemed like a nice long-term goal to work towards, so
+in January 2022 I (Markus Himmel) took stock of what it would take to put a proof of the embedding theorem into mathlib.
+
+### Mathematical background
+
+If $C$ is any preadditive category and $G$ is an object of $C$, we can consider the ring $R := \operatorname{End}(G)^{\mathsf{op}}$
+and we obtain a functor from $C$ to the category of $R$-modules given by $X \mapsto \operatorname{Hom}_C(G, X)$. This is a possible
+candidate for the embedding we seek, and we can try to formulate conditions on $C$ and $G$ so that this functor becomes full, faithful
+and exact. Modulo some size issues, it turns out that a sufficient condition is "$C$ is abelian and has all colimits and $G$ is a projective generator."
+
+Not all abelian categories have all colimits or a projective generator, so the proof proceeds by constructing a category $D$ and a
+nice functor from $C$ to $D$ such that $D$ has the required properties. It can be shown that opposites
+of Grothendieck abelian categories are cocomplete and have a projective generator (the latter claim crucially relies on the existence
+of enough injectives in Grothendieck abelian categories), so our approach will be to embed $C$ into a co-Grothendieck abelian category.
+
+There are several candidates for $D$ which appear in the literature.
+
+* Freyd's *Abelian Categories* takes $D$ to be the opposite of the category of left-exact functors from $C$ to the category of abelian groups.
+Properties of $D$ are established mostly using ad-hoc arguments. Note that it is not obvious that $D$ is abelian, since $D$ does not contain
+*all* functors from $C$ to $\mathsf{Ab}$.
+* The proof sketched in the stack project takes $D$ to be the opposite of a category of abelian sheaves for a certain Grothendieck topology which is
+inspired by Bergman's refinements. Many properties of $D$ are proved by transporting them along the sheafification adjunction.
+* The proof given in Kashiwara and Schapira's *Categories and Sheaves* takes $D$ to be the opposite of the category of ind-objects of $C^{\mathsf{op}}$
+(this is the category of pro-objects of $C$). Here, we infer many properties from properties of the category of types.
+
+It can be shown that all of these choices for $D$ are actually equivalent as categories, but nonetheless the perspective one takes significantly
+changes the flavor of the resulting proof.
+
+### A proof in mathlib
+
+In early 2022, the three main prerequisites for getting a proof of the Freyd-Mitchell embedding into mathlib were as follows.
+
+1. Developing the theory and API for limits and preadditive and abelian categories to a point where writing down the proof is possible;
+2. Choosing one of the candidates for $D$ and proving the required properties; and
+3. Proving that Grothendieck abelian categories have enough injectives.
+
+I set out to work on developing the necessary API and on defining the category of ind-objects (I only learned about the sheaf approach
+much later). The first PR of the project was [mathlib3 PR #11740](https://github.com/leanprover-community/mathlib3/pull/11740) in January 2022,
+defining the functor $\operatorname{Hom}(G, \cdot)$ taking values in $R$-modules. Jakob von Raumer joined the project a few weeks later, and Paul Reichert
+joined in February 2024.
+
+All in all, part (1) consisted of more than 100 PRs to mathlib. Milestones and highlights along the way included a proof of the Special Adjoint
+Functor theorem, [an important refactor of preservation of limits](https://github.com/leanprover-community/mathlib3/pull/15067), the
+definition of a generator of a category, lots and lots of API for limits, large amounts of boring but necessary glue code for dualization (see [here](https://github.com/leanprover-community/mathlib4/blob/39688c3aef0cbc145c18a63cade521e336acbe67/Mathlib/CategoryTheory/Limits/Preserves/Opposites.lean) for an example), and a detailed
+study of how various preservation properties for functors between additive categories are related. Numerous results and conveniences in mathlib's
+category theory library that we take for granted today came out of this part of the project.
+
+Our study of the category of ind-objects for part (2) consisted of more than 150 PRs to mathlib. Getting the theory off the ground requires various
+prerequisites, so we spent a lot of time adding detailed results about presheaves, filtered categories, final functors, the Grothendieck construction,
+Kan extensions, comma categories and commutative group objects in cartesian monoidal categories to mathlib.
+
+While we were busy developing the theory of ind-objects, the development of the category of sheaves, which started in 2020, also continued. Over
+the years, many individuals have contributed to this development, including Bhavik Mehta, Adam Topaz, Jujian Zhang, Dagur Asgeirsson and Joël Riou.
+As of early 2025, this puts mathlib in the comfortable position of having all relevant results available for not one but two choices of $D$, and the
+fact that we are using the category of ind-objects is basically an arbitrary choice. Of course, categories of sheaves and ind-objects are both relevant
+for many reasons completely unrelated to the embedding theorem, so we are very happy to have this material in mathlib.
+
+We never started working on (3) because Joël was faster (see above), and the Freyd-Mitchell embedding theorem entered mathlib in
+[PR #22222](https://github.com/leanprover-community/mathlib4/pull/22222) in February 2025.
+
+I am very happy with how this project turned out. Our approach has been "mathlib-first" from the beginning. There was never an external repository and
+there were never large amounts of code that were not PRed to mathlib. Especially in the early phases, we tried to let improving mathlib by doing refactors
+sooner rather than later take precedence over making faster progress in the project, and I hope that this will be felt by users of mathlib's category
+library beyond the availability of the embedding theorem.
+
+## A small anecdote
+
+In the literature, you will find the Freyd-Mitchell embedding theorem stated for small abelian categories $C$. Indeed, one step of the proof involves taking
+a coproduct in $D$ indexed by all objects in $C$, so this seems to be an essential restriction. The embedding theorem is often accompanied by a
+"meta-theorem" explaining how to apply the embedding theorem when working in a large abelian category: you consider the "abelian closure" of the
+objects you are interested in. If you are only considering a set of objects at a time, this will yield a small abelian category to which the
+embedding theorem can be applied.
+
+If you look at the [statement in mathlib](https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Abelian/FreydMitchell.html#CategoryTheory.Abelian.freyd_mitchell) you will find that there is no smallness restriction. Indeed, because Lean has universes, every category is small if you look at it from
+far enough away, so by passing to [AsSmall C](https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/Category/ULift.html#CategoryTheory.AsSmall)
+at the beginning of a proof, we get an embedding for all abelian categories, with the rings and modules living in the universe `max u v`. If $C$ was already small,
+this step has no effect.
+
+At the beginning of the project, we were thinking about how one would go about providing infrastructure or even automation to construct a small category to apply
+the embedding theorem to, but it looks like something like this will not be needed, which is nice.
 
 # Gabriel-Popescu
 
+# Future work
 
 
+
+[^1]: In fact, when Markus Himmel formalized the development of pseudoelements in Borceux' *Handbook of Categorical Algebra*,
+he was unable to follow one of the results claiming that pseudoelements interact favorably with pullbacks. This result
+later would have been useful in the Liquid Tensor Experiment, leading to a [MathOverflow discussion](https://mathoverflow.net/a/419951/7845)
+and the subsequent [formalization of a counterexample](https://github.com/leanprover-community/mathlib3/pull/13387)
+by Riccardo Brasca.
 
