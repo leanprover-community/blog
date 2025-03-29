@@ -258,6 +258,21 @@ In cases where the evaluating expression is definitionally equal to to the origi
 **Cons**:
 * The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
 * 
+smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
+* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
+
+### The definitional approach
+
+In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
+
+**TODO**
+
+**Pros**:
+* Requires a single
+
+**Cons**:
+* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
+* 
 
 ### The propositional approach
 
