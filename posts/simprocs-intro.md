@@ -22,7 +22,7 @@ The first part of this post is a purely informal description of what simprocs ar
 
 ## How simp works
 
-## Examples of simprocs 
+## Examples of simprocs
 
 ### The `reduceIte` simproc.
 
@@ -118,9 +118,12 @@ Doesn't work with `rw`
 
 ### The `SimpM` monad
 
-`SimpM` is the monad that tracks the current context `simp` is running in and what has been done so far (e.g. number of steps, theorems used). In particular this also captures the `MetaM` context. 
+`SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems, etc) and what has been done so far (i.e. the state, e.g. number of steps, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state. More formally, this is a function
+`Expr → SimpM Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression. However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
 **TODO(Paul): This is how I *think* simp works. Let's check this actually makes sense**
+
+A `simproc` is a term of type `Expr → SimpM Step`. Intuitively, this is a program that takes in an expression, and produces a simplification of it, and along the way might modify the state of `SimpM` (e.g. by adding new goals to be closed by the discharger). 
 
 Roughly speaking, when acting on an expression, `simp` does a combination of the following: 
 - `pre` procedures, which may change the current expression `e`, and then attempt to simplify subexpressions of `e`
@@ -130,12 +133,6 @@ These are chained (recursively) as follows:
 1) First, check if there is a `pre` simproc that is applicable to `e`. If there is one, apply it, and try finding more to apply. 
 2) Apply congruence procedures to create subproblems, and call `simp` on these.
 3) Once this is finished, try to find a `post` simproc that is applicable to `e`. If there is one, apply it and go back to step 1. 
-
-Roughly speaking, `simp` acts on the goal expression (and subexpressions) in two ways: 
-- `pre` procedures, which move from an expression `e` to subexpressions of `e`
-- `post` procedures, which only act on the current expression `e`, after subexpressions have been visited by `pre` 
-
-A `simproc` is a term of type `Expr → SimpM Step`. Intuitively, this is a program that takes in an expression, and produces a simplification of it, and along the way might modify the state of `SimpM` (e.g. by adding new goals to be closed by the discharger). 
 
 ### `Simp.Step`
 
@@ -276,3 +273,12 @@ In cases where the evaluating expression is definitionally equal to to the origi
 
 ### The propositional approach
 
+
+
+```
+dsimproc_decl revRangeCompute (revRange _) := fun e => do 
+  let_expr revRange m ← e | return .continue
+  let some n ← Nat.fromExpr? m | return .continue
+  let l := revRange n
+  return .visit (ToExpr.toExpr l)
+```
