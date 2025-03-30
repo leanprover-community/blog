@@ -103,8 +103,7 @@ builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
 ```
 
 ### Many more applications!
-At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number litteral.
-
+At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number.
 
 ## Analogues
 
@@ -167,7 +166,7 @@ Note two features of `revRange` that we do *not* expect from a general function 
 * It is **recursive**: One can compute `revRange n` by recursion on `n`. Even more precisely, `revRange n` represents its own partial computation.
 * `revRange` is definitionally equal to what we want to unfold it to. This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
-  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
+  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`. Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 ### The simproc-less simproc
 
