@@ -166,11 +166,20 @@ First, we detail the inner workings of `simp` relevant to simprocs. Then we expl
 In this subsection we present some of the inner workings of `simp`.
 
 First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call. Then we explain `Simp.Step`, the Lean representation of a single simplification step.
+### `Simp.Step`
+
+`Simp.Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things: 
+
+1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a `pre` procedure)
+2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a `pre` procedure.
+3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a `pre` procedure). 
+
+Note that the 2 and 3 are the same for `post` procedures.
 
 ### The `SimpM` monad
 
 `SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems, etc) and what has been done so far (i.e. the state, e.g. number of steps, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state. More formally, this is a function
-`Expr → SimpM Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (**TODO(Paul-Lezeau): is this actually true?**). However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
+`Expr → SimpM Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>). However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
 **TODO(Paul): This is how I *think* simp works. Let's check this actually makes sense**
 
@@ -182,18 +191,9 @@ Roughly speaking, when acting on an expression, `simp` does a combination of the
 
 These are chained (recursively) as follows: 
 1) First, check if there is a `pre` simproc that is applicable to `e`. If there is one, apply it, and try finding more to apply. 
-2) Apply congruence procedures to create subproblems, and call `simp` on these.
+2) Apply congruence results to create subproblems, and call `simp` on these.
 3) Once this is finished, try to find a `post` simproc that is applicable to `e`. If there is one, apply it and go back to step 1. 
 
-### `Simp.Step`
-
-`Simp.Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things: 
-
-1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a `pre` procedure)
-2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a `pre` procedure.
-3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a `pre` procedure). 
-
-Note that the 2 and 3 are the same for `post` procedures.
 
 ## Simproc walkthrough
 
@@ -264,9 +264,7 @@ smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuace
 
 ### The definitional approach
 
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
-
-**TODO**
+In cases where the evaluating expression is definitionally equal to to the original expression (or any other case where the expression we're transforming to is defeq), one may write a dsimproc instead of a simproc. Roughly speaking
 
 **Pros**:
 * Requires a single
@@ -294,9 +292,7 @@ smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuace
 
 ### The definitional approach
 
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
-
-**TODO**
+In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc. 
 
 **Pros**:
 * Requires a single
