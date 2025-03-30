@@ -166,6 +166,10 @@ First, we detail the inner workings of `simp` relevant to simprocs. Then we expl
 
 ## How `simp` works
 
+In this subsection we present some of the inner workings of `simp`.
+
+First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call. Then we explain `Simp.Step`, the Lean representation of a single simplification step.
+
 ### The `SimpM` monad
 
 `SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems, etc) and what has been done so far (i.e. the state, e.g. number of steps, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state. More formally, this is a function
