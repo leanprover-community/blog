@@ -11,7 +11,7 @@ title: What is a simproc?
 type: text
 ---
 
-Lean core recently added support for custom simplification procedures, aka *simprocs*. This blog post aims to explain what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them. 
+Lean core recently added support for custom simplification procedures, aka *simprocs*. This blog post aims to explain what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
 
 <!-- TEASER_END -->
 
@@ -42,9 +42,9 @@ In this subsection, we exemplify the following use cases of simprocs:
 
 ### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`. 
+The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`.
 
-```lean 
+```lean
 example : ∃ (a : ℤ), a*a = 25 ∧ a = 5 := by
   simp +arith only [existsAndEq, and_true]
 
@@ -64,15 +64,15 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
 
 ### Performance optimisation: The `reduceIte` simproc
 
-The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call. 
+The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call.
 
 ```lean
-example : ite (1+1=2) 1 2 = 1 := by
-  -- Works since `simp` can simplify `1+1=2` to `True`. 
+example : ite (1 + 1 = 2) 1 2 = 1 := by
+  -- Works since `simp` can simplify `1 + 1 = 2` to `True`.
   simp only [↓reduceIte]
 
 example (T : Type) (P : Prop) (a b : T) : ite (P ∨ ¬ P) a b = a := by
-  -- Works since `simp` can simplify `P ∨ ¬ P` to `True`. 
+  -- Works since `simp` can simplify `P ∨ ¬ P` to `True`.
   simp only [↓reduceIte]
 
 example : ite FermatLastTheorem 1 2 = 1 := by
@@ -80,19 +80,16 @@ example : ite FermatLastTheorem 1 2 = 1 := by
   simp only [↓reduceIte]
 ```
 
-Internally, this simproc is a small metaprogram does the following whenever an expression of the form `ite P a b` is encountered: 
+Internally, this simproc is a small metaprogram does the following whenever an expression of the form `ite P a b` is encountered:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `r` that `P = P'`.
 **TODO Paul** check that the arguments in the proof are alright.
 - If `P' = True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
 - If `P' = False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
 - Otherwise, let `simp` continue the search.
 
-Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the 
-left hand side. In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that 
-`simp` can call. Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps
-in the simplification procedure.
+Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side. In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call. Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure.
 
-Source code is 
+Source code is
 ```lean
 builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
   let_expr f@ite α c i tb eb ← e | return .continue
@@ -108,7 +105,7 @@ builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
 
 ### Computation: The `reduceDvd` simproc
 
-The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number litterals, and simplify them to `True` or `False`.
+The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
 
 ```lean
 example : 3 ∣ 9 := by
@@ -122,11 +119,11 @@ example : a ∣ a * b := by
 ```
 
 Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expression of the form `a ∣ b` (where `a, b` are natural numbers) is encountered:
-- Check that `∣` is the usual natual number division
-- Try to extract explicit (litteral) values for `a` and `b`
-- Compute `b % a`. 
-- If this quantity is 0 then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`
-- If this quantity isn't 0 then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`
+- Check that `∣` is the usual natural number division.
+- Try to extract explicit (literal) values for `a` and `b`.
+- Compute `b % a`.
+- If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
+- If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
 
 ```lean
 builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
@@ -168,11 +165,11 @@ In this subsection we present some of the inner workings of `simp`.
 First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call. Then we explain `Simp.Step`, the Lean representation of a single simplification step.
 ### `Simp.Step`
 
-`Simp.Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things: 
+`Simp.Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things:
 
 1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a `pre` procedure)
 2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a `pre` procedure.
-3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a `pre` procedure). 
+3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a `pre` procedure).
 
 Note that the 2 and 3 are the same for `post` procedures.
 
@@ -192,15 +189,14 @@ At the level of code, `Simp.Step` has three constructors:
 
 <span style="color:red">**(Paul): This is how I *think* simp works. Let's check this actually makes sense**</span>
 
-Roughly speaking, when acting on an expression, `simp` does a combination of the following: 
+Roughly speaking, when acting on an expression, `simp` does a combination of the following:
 - `pre` procedures, which may change the current expression `e`, and then attempt to simplify subexpressions of `e`
 - `post` procedures, which only change the current expression `e`, *after* subexpressions of `e` have been simplified.
 
-These are chained (recursively) as follows: 
+These are chained (recursively) as follows:
 1) First, check if there is a `pre` simproc that is applicable to `e`. If there is one, apply it, and try finding more to apply or move to step 2.
 2) Apply congruence results to create subproblems, and call `simp` on these.
-3) Once this is finished, try to find a `post` simproc that is applicable to `e`. If there is one, apply it and go back to step 1. 
-
+3) Once this is finished, try to find a `post` simproc that is applicable to `e`. If there is one, apply it and go back to step 1.
 
 ## Simproc walkthrough
 
@@ -276,7 +272,7 @@ In cases where the evaluation is definitionally equal to to the original express
 
 
 ```
-dsimproc_decl revRangeCompute (revRange _) := fun e => do 
+dsimproc_decl revRangeCompute (revRange _) := fun e => do
   let_expr revRange m ← e | return .continue
   let some n ← Nat.fromExpr? m | return .continue
   let l := revRange n
@@ -287,12 +283,12 @@ simproc revRangeCompute' (revRange _) := fun e => do
   let ⟨1, ~q(List ℕ), ~q(revRange $n)⟩ ← inferTypeQ e | return .continue
   let mut ls : Q(List ℕ) := q(([] : List ℕ))
   let some nn ← Nat.fromExpr? n | return .continue
-  for i in List.range nn do 
+  for i in List.range nn do
     let i_lit := mkNatLitQ i
     ls := q($i_lit :: $ls)
   return .visit { expr := ls }
 
-def go : ℕ → Q(List ℕ) 
+def go : ℕ → Q(List ℕ)
   | 0 => q([])
   | n + 1 => q($(mkNatLitQ n) :: $(go n))
 
