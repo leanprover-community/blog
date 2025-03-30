@@ -293,6 +293,9 @@ In cases where the evaluation is definitionally equal to to the original express
 
 ### The propositional approach
 
+The most general approach
+
+<span style="color:red">**TODO(Paul)**</span>
 
 
 ```
@@ -322,3 +325,29 @@ simproc revRangeCompute'' (revRange _) := fun e => do
   let some nn ← Nat.fromExpr? n | return .continue
   return .visit { expr := go nn }
 ```
+
+**Pros**:
+* Works regardless of definitional equalities.
+
+**Cons**:
+* Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
+
+## Extras
+
+### How to handle a non-recursive definition
+
+Write a type of partial computations that is recursive.
+
+<span style="color:red">**TODO(Paul)**</span>
+
+### How to discharge subgoals
+
+Leave metavariables behind you for the simp discharger to close.
+
+<span style="color:red">**TODO(Paul)**</span>
+
+### How to match on numerals
+
+Numerals are represented internally with `Ofn`
+
+<span style="color:red">**TODO(Paul)**</span>
