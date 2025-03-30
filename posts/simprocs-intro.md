@@ -180,8 +180,32 @@ structure Result where
   proof?         : Option Expr := none
   cache          : Bool := true
 ```
+This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩`. If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
 
-At the level of code, `Simp.Step` has three constructors:
+The type `Simp.Step` has three constructors, which correspond to the three types of actions outlined above: 
+```
+/--
+  For `pre` procedures, it returns the result without visiting any subexpressions.
+
+  For `post` procedures, it returns the result.
+  -/
+  | done (r : Result)
+  /--
+  For `pre` procedures, the resulting expression is passed to `pre` again.
+
+  For `post` procedures, the resulting expression is passed to `pre` again IF
+  `Simp.Config.singlePass := false` and resulting expression is not equal to initial expression.
+  -/
+  | visit (e : Result)
+  /--
+  For `pre` procedures, continue transformation by visiting subexpressions, and then
+  executing `post` procedures.
+
+  For `post` procedures, this is equivalent to returning `visit`.
+  -/
+  | continue (e? : Option Result := none)
+```
+
 
 ### The `SimpM` monad
 
