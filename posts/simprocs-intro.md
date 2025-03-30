@@ -118,6 +118,27 @@ builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
     return .done { expr := mkConst ``False, proof? := mkApp3 (mkConst ``Nat.dvd_eq_false_of_mod_ne_zero) a b reflBoolTrue}
 ```
 
+### The `existsAndEq` simproc
+
+The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`. 
+
+```lean 
+example : ∃ (a : ℤ), a*a = 25 ∧ a = 5 := by
+  simp +arith only [existsAndEq, and_true]
+
+example : (∃ a, (∃ b, a + b = 5) ∧ a = 3) ↔ ∃ b, 3 + b = 5 := by
+  simp only [existsAndEq, and_true]
+```
+
+Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
+- Recursively traverse the expression of the predicate inside the existential quantifier to try and detect an equality `a = a'` by splitting any `∧` that is found along the way into its components.
+- If an equality is found, construct a proof that `P a` implies `a = a`.
+- Construct a proof that `(∃ a, P a) = P a'` using the following theorem
+```lean
+theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p b → a = b) :
+    (∃ b, p b) = p a
+```
+
 ### Many more applications!
 At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number.
 
@@ -134,7 +155,7 @@ Doesn't work with `rw`
 ### The `SimpM` monad
 
 `SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems, etc) and what has been done so far (i.e. the state, e.g. number of steps, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state. More formally, this is a function
-`Expr → SimpM Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression. However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
+`Expr → SimpM Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (**TODO(Paul-Lezeau): is this actually true?**). However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
 **TODO(Paul): This is how I *think* simp works. Let's check this actually makes sense**
 
