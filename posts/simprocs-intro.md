@@ -42,7 +42,25 @@ In this subsection, we exemplify the following use cases of simprocs:
 
 ### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-TODO(Paul)
+The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`. 
+
+```lean 
+example : ∃ (a : ℤ), a*a = 25 ∧ a = 5 := by
+  simp +arith only [existsAndEq, and_true]
+
+example : (∃ a, (∃ b, a + b = 5) ∧ a = 3) ↔ ∃ b, 3 + b = 5 := by
+  simp only [existsAndEq, and_true]
+```
+
+Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
+- Recursively traverse the expression of the predicate inside the existential quantifier to try and detect an equality `a = a'` by splitting any `∧` that is found along the way into its components.
+- If an equality is found, construct a proof that `P a` implies `a = a`.
+- Construct a proof that `(∃ a, P a) = P a'` using the following theorem
+```lean
+theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p b → a = b) :
+    (∃ b, p b) = p a
+```
+
 
 ### Performance optimisation: The `reduceIte` simproc
 
@@ -122,34 +140,13 @@ builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
     return .done { expr := mkConst ``False, proof? := mkApp3 (mkConst ``Nat.dvd_eq_false_of_mod_ne_zero) a b reflBoolTrue}
 ```
 
-### The `existsAndEq` simproc
-
-The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`. 
-
-```lean 
-example : ∃ (a : ℤ), a*a = 25 ∧ a = 5 := by
-  simp +arith only [existsAndEq, and_true]
-
-example : (∃ a, (∃ b, a + b = 5) ∧ a = 3) ↔ ∃ b, 3 + b = 5 := by
-  simp only [existsAndEq, and_true]
-```
-
-Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
-- Recursively traverse the expression of the predicate inside the existential quantifier to try and detect an equality `a = a'` by splitting any `∧` that is found along the way into its components.
-- If an equality is found, construct a proof that `P a` implies `a = a`.
-- Construct a proof that `(∃ a, P a) = P a'` using the following theorem
-```lean
-theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p b → a = b) :
-    (∃ b, p b) = p a
-```
-
 ### Many more applications!
 
 At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number literal.
 
-## Limitations of the design
+## A few caveats
 
-The current design of simprocs has a few known shortcomings that one should be aware of:
+The current design of simprocs comes with a few restrictions that are worth keeping in mind:
 * By definition, a simproc can only be used in `simp` (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "parametric lemma" could be useful in other rewriting tactics like `rw`.
 * One cannot provide arguments to a simproc to restrict the occurrences it rewrites. In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
 * The syntax for declaring a simproc, and in particular whether it a simproc should be in the standard simp set or not, is inconsistent with the rest of the language: Where we have `lemma` and `@[simp] lemma` to respectively "create a lemma" and "create a lemma and add it to the standard simp set", the analogous constructs for simprocs are `simproc_decl` and `simproc`, instead of `simproc` and `@[simp] simproc`.
@@ -217,9 +214,7 @@ Note two features of `revRange` that we do *not* expect from a general function 
 
 ### The simproc-less simproc
 
-Our first approach to writing a simproc for `revRange` will be to not use a simproc at all.
-
-Instead, we write two simple lemmas that unfold `revRange`:
+Before writing a simproc, let us first see how one could approach the computation of `revRange` using only lemmas.
 
 ```lean
 lemma revRange_zero : revRange 0 = [] := rfl
