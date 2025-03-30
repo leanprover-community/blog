@@ -182,9 +182,10 @@ structure Result where
 ```
 This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩`. If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
 
-The type `Simp.Step` has three constructors, which correspond to the three types of actions outlined above: 
+The type `Simp.Step` has three constructors, which correspond to the three types of actions outlined above:
 ```
-/--
+inductive Step where
+  /--
   For `pre` procedures, it returns the result without visiting any subexpressions.
 
   For `post` procedures, it returns the result.
