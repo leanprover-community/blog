@@ -250,72 +250,19 @@ Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be 
 
 ### The definitional approach
 
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
+In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
 
 **TODO**
 
 **Pros**:
-* Requires a single
+* Requires writing a single simproc.
+* Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression in the meta world.
 
 **Cons**:
 * The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
+* The produced `rfl` proof could be heavy.
 * `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression (or any other case where the expression we're transforming to is defeq), one may write a dsimproc instead of a simproc. Roughly speaking
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
-
-**TODO**
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc. 
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
-
-**TODO**
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
+* Only works when the evaluation is definitionally equal to to the original expression.
 
 ### The propositional approach
 
