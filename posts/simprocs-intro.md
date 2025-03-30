@@ -160,6 +160,10 @@ Dsimprocs fill roughly the same niche as proofs by reflection in Rocq.
 
 # How to write a simproc
 
+In this section we explain how to write a simproc.
+
+First, we detail the inner workings of `simp` relevant to simprocs. Then we explain the syntax and general structure of a simproc. Finally, we walk through an explicit example of a simproc for a simple custom function.
+
 ## How `simp` works
 
 ### The `SimpM` monad
