@@ -33,14 +33,18 @@ TODO
 
 In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
 
-In the following subsection, we exemplify the following use cases of simprocs:
+## Examples of simprocs
+
+In this subsection, we exemplify the following use cases of simprocs:
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 * Computation
 
-## Examples of simprocs
+### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-### The `reduceIte` simproc.
+TODO(Paul)
+
+### Performance optimisation: The `reduceIte` simproc
 
 The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call. 
 
@@ -84,7 +88,7 @@ builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
   return .continue
 ```
 
-### The `reduceDvd` simproc
+### Computation: The `reduceDvd` simproc
 
 The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number litterals, and simplify them to `True` or `False`.
 
