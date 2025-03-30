@@ -176,21 +176,28 @@ First we introduce the `SimpM` monad, which is the metaprogramming monad holding
 
 Note that the 2 and 3 are the same for `post` procedures.
 
+Let's now look at this more formally. To begin, `simp` has a custom structure to describe the result of a procedure called `Result`:
+```
+structure Result where
+  expr           : Expr
+  proof?         : Option Expr := none
+  cache          : Bool := true
+```
+
+At the level of code, `Simp.Step` has three constructors:
+
 ### The `SimpM` monad
 
-`SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems, etc) and what has been done so far (i.e. the state, e.g. number of steps, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state. More formally, this is a function
-`Expr → SimpM Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>). However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
+`SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state (e.g. by adding new goals to be closed by the discharger). More formally, this is a function `Expr → SimpM Simp.Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>). However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
-**TODO(Paul): This is how I *think* simp works. Let's check this actually makes sense**
-
-A `simproc` is a term of type `Expr → SimpM Step`. Intuitively, this is a program that takes in an expression, and produces a simplification of it, and along the way might modify the state of `SimpM` (e.g. by adding new goals to be closed by the discharger). 
+<span style="color:red">**(Paul): This is how I *think* simp works. Let's check this actually makes sense**</span>
 
 Roughly speaking, when acting on an expression, `simp` does a combination of the following: 
 - `pre` procedures, which may change the current expression `e`, and then attempt to simplify subexpressions of `e`
-- `post` procedures, which only change the current expression. 
+- `post` procedures, which only change the current expression `e`, *after* subexpressions of `e` have been simplified.
 
 These are chained (recursively) as follows: 
-1) First, check if there is a `pre` simproc that is applicable to `e`. If there is one, apply it, and try finding more to apply. 
+1) First, check if there is a `pre` simproc that is applicable to `e`. If there is one, apply it, and try finding more to apply or move to step 2.
 2) Apply congruence results to create subproblems, and call `simp` on these.
 3) Once this is finished, try to find a `post` simproc that is applicable to `e`. If there is one, apply it and go back to step 1. 
 
