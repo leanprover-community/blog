@@ -91,7 +91,6 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
     (∃ b, p b) = p a
 ```
 
-
 ### Performance optimisation: The `reduceIte` simproc
 
 The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call.
@@ -191,10 +190,13 @@ First, we detail the inner workings of `simp` relevant to simprocs. Then we expl
 
 In this subsection we present some of the inner workings of `simp`.
 
-First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call. Then we explain `Simp.Step`, the Lean representation of a single simplification step.
-### `Simp.Step`
+First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call. Then we explain `Step`/`DStep`, the Lean representation of a single (definitional) simplification step, and finally `Simproc`/`DSimproc`, the type of (definitional) simprocs.
 
-`Simp.Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things:
+All the `simp`-specific declarations introduced in this subsection are in the `Lean.Meta.Simp` namespace.
+
+### `Step` & `DStep`
+
+`Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things:
 
 1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a `pre` procedure)
 2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a `pre` procedure.
@@ -203,16 +205,17 @@ First we introduce the `SimpM` monad, which is the metaprogramming monad holding
 Note that the 2 and 3 are the same for `post` procedures.
 
 Let's now look at this more formally. To begin, `simp` has a custom structure to describe the result of a procedure called `Result`:
-```
+```lean
 structure Result where
   expr           : Expr
   proof?         : Option Expr := none
   cache          : Bool := true
 ```
+
 This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩`. If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
 
-The type `Simp.Step` has three constructors, which correspond to the three types of actions outlined above:
-```
+The type `Step` has three constructors, which correspond to the three types of actions outlined above:
+```lean
 inductive Step where
   /--
   For `pre` procedures, it returns the result without visiting any subexpressions.
@@ -236,6 +239,28 @@ inductive Step where
   | continue (e? : Option Result := none)
 ```
 
+For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`). Therefore, one may replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
+```lean
+inductive DStep where
+  /-- Return expression without visiting any subexpressions. -/
+  | done (e : Expr)
+  /--
+  Visit expression (which should be different from current expression) instead.
+  The new expression `e` is passed to `pre` again.
+  -/
+  | visit (e : Expr)
+  /--
+  Continue transformation with the given expression (defaults to current expression).
+  For `pre`, this means visiting the children of the expression.
+
+  For `post`, this is equivalent to returning `done`. -/
+  | continue (e? : Option Expr := none)
+  deriving Inhabited, Repr
+```
+
+Note: The above snippet is a simplification and the constructors shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
+
+<span style="color:red">**(Yaël): Why is there a mismatch in docstrings between `Step.continue` and `DStep.continue`? [Zulip](https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/Simp.2EStep.2Econtinue.20vs.20Simp.2EDStep.2Econtinue/with/509056271)**</span>
 
 ### The `SimpM` monad
 
