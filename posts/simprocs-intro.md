@@ -31,11 +31,11 @@ Here is an example of a series of rewrites performed by `simp`:
 TODO
 ```
 
-In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
+In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side. In this sense, they are *parametric simp lemmas*.
 
 ## Examples of simprocs
 
-In this subsection, we exemplify the following use cases of simprocs:
+In this subsection, we exemplify three simprocs through the following use cases:
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 * Computation
@@ -241,7 +241,7 @@ example : revRange 2 = [1, 0] := by simp [???]
 example : revRange 5 = [4, 3, 2, 1, 0] := by simp [???]
 ```
 
-Note two features of `revRange` that we do *not* expect from a general function to be simplified:
+Note two features of `revRange` that one should *not* expect from all functions that one might want to evaluate on explicit inputs:
 * It is **recursive**: One can compute `revRange n` by recursion on `n`. Even more precisely, `revRange n` represents its own partial computation.
 * `revRange` is definitionally equal to what we want to unfold it to. This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
