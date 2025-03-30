@@ -227,10 +227,11 @@ Note two features of `revRange` that we do *not* expect from a general function 
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
   * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`. Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
-### The simproc-less simproc
+### The simproc-less approach
 
 Before writing a simproc, let us first see how one could approach the computation of `revRange` using only lemmas.
 
+`revRange` is a recursive function. Therefore it can be evaluated on numerals simply by writing out the recurrence relations we wish to reduce along:
 ```lean
 lemma revRange_zero : revRange 0 = [] := rfl
 lemma revRange_succ (n : Nat) : revRange (n + 1) = n :: revRange n := rfl
@@ -247,81 +248,28 @@ Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be 
 
 **Pros**:
 * Doesn't require writing any meta code.
+* Doesn't require the recursion relations to be definitional (although they are in the case of `revRange`).
 
 **Cons**:
 * Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).
 * Simplifying `revRange n` for a big input numeral `n` might involve a lot of simplification steps. In this specific case, the number of simplification steps is linear in `n`. Simplification steps matter because each of them increases the size of the proof term.
-.eht fo ez simplification step.is The ``produced rfl proof could be heavy. smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
 * `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
 
 ### The definitional approach
 
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
+In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
 
 **TODO**
 
 **Pros**:
-* Requires a single
+* Requires writing a single simproc.
+* Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression in the meta world.
 
 **Cons**:
 * The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
+* The produced `rfl` proof could be heavy.
 * `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression (or any other case where the expression we're transforming to is defeq), one may write a dsimproc instead of a simproc. Roughly speaking
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
-
-**TODO**
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc. 
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
-smeht fo hcaeo esaercnimreremt foorp eht ni pu dnetnopserroc tahw ra yeht esuacebw rettam sppsppsets snoita
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
-
-### The definitional approach
-
-In cases where the evaluating expression is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
-
-**TODO**
-
-**Pros**:
-* Requires a single
-
-**Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
-* 
+* Only works when the evaluation is definitionally equal to to the original expression.
 
 ### The propositional approach
 
