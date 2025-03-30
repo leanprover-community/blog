@@ -123,9 +123,8 @@ builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
 ```
 
 ### Many more applications!
-At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number.
 
-## Analogues
+At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number literal.
 
 ## Limitations of the design
 
@@ -133,6 +132,10 @@ The current design of simprocs has a few known shortcomings that one should be a
 * By definition, a simproc can only be used in `simp` (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "parametric lemma" could be useful in other rewriting tactics like `rw`.
 * One cannot provide arguments to a simproc to restrict the occurrences it rewrites. In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
 * The syntax for declaring a simproc, and in particular whether it a simproc should be in the standard simp set or not, is inconsistent with the rest of the language: Where we have `lemma` and `@[simp] lemma` to respectively "create a lemma" and "create a lemma and add it to the standard simp set", the analogous constructs for simprocs are `simproc_decl` and `simproc`, instead of `simproc` and `@[simp] simproc`.
+
+## Analogues in other languages
+
+Dsimprocs fill roughly the same niche as proofs by reflection in Rocq.
 
 # How to write a simproc
 
