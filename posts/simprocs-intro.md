@@ -33,14 +33,18 @@ TODO
 
 In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
 
-In the following subsection, we exemplify the following use cases of simprocs:
+## Examples of simprocs
+
+In this subsection, we exemplify the following use cases of simprocs:
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 * Computation
 
-## Examples of simprocs
+### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-### The `reduceIte` simproc.
+TODO(Paul)
+
+### Performance optimisation: The `reduceIte` simproc
 
 The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call. 
 
@@ -84,7 +88,7 @@ builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
   return .continue
 ```
 
-### The `reduceDvd` simproc
+### Computation: The `reduceDvd` simproc
 
 The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number litterals, and simplify them to `True` or `False`.
 
@@ -140,13 +144,19 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
 ```
 
 ### Many more applications!
-At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number.
 
-## Analogues
+At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number literal.
 
 ## Limitations of the design
 
-Doesn't work with `rw`
+The current design of simprocs has a few known shortcomings that one should be aware of:
+* By definition, a simproc can only be used in `simp` (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "parametric lemma" could be useful in other rewriting tactics like `rw`.
+* One cannot provide arguments to a simproc to restrict the occurrences it rewrites. In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
+* The syntax for declaring a simproc, and in particular whether it a simproc should be in the standard simp set or not, is inconsistent with the rest of the language: Where we have `lemma` and `@[simp] lemma` to respectively "create a lemma" and "create a lemma and add it to the standard simp set", the analogous constructs for simprocs are `simproc_decl` and `simproc`, instead of `simproc` and `@[simp] simproc`.
+
+## Analogues in other languages
+
+Dsimprocs fill roughly the same niche as proofs by reflection in Rocq.
 
 # How to write a simproc
 
