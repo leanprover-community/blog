@@ -128,7 +128,6 @@ Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expre
 ```lean
 builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
   let_expr Dvd.dvd _ i a b ← e | return .continue
-  unless ← matchesInstance i (mkConst ``instDvd) do return .continue
   let some va ← fromExpr? a | return .continue
   let some vb ← fromExpr? b | return .continue
   if vb % va == 0 then
@@ -278,9 +277,19 @@ Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be 
 
 ### The definitional approach
 
-In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
+In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc. The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a `Simp.DStep` instead of a `Simp.Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
-**TODO**
+To compute `revRange` using the dsimproc approach, we can do the following:
+```lean
+dsimproc_decl revRangeCompute (revRange _) := fun e => do
+  --Extract the natural number from the expression
+  let_expr revRange m ← e | return .continue
+  --Recover the natural number as a term of type `Nat`
+  let some n ← Nat.fromExpr? m | return .continue
+  let l := revRange n
+  --Convert the list to an `Expr`
+  return .visit <| ToExpr.toExpr l
+```
 
 **Pros**:
 * Requires writing a single simproc.
@@ -289,42 +298,32 @@ In cases where the evaluation is definitionally equal to to the original express
 **Cons**:
 * The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
 * The produced `rfl` proof could be heavy.
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
 * Only works when the evaluation is definitionally equal to to the original expression.
 
 ### The propositional approach
 
-The most general approach
-
-<span style="color:red">**TODO(Paul)**</span>
-
-
+A more general approach would be to manually construct the proof term we need to provide. In our case, we can do this in a recursive manner.
 ```
-dsimproc_decl revRangeCompute (revRange _) := fun e => do
+open Qq
+
+private theorem revRangeInduct {n : ℕ} {l : List ℕ}
+    (hl : revRange n = l) : revRange (n+1) = n :: l := by
+  induction n with
+  | zero => aesop
+  | succ n h => rw [←hl] ; rfl
+
+open Qq in
+simproc_decl revRangeComputeProp (revRange _) := fun e => do
   let_expr revRange m ← e | return .continue
   let some n ← Nat.fromExpr? m | return .continue
-  let l := revRange n
-  return .visit (ToExpr.toExpr l)
-
-open Qq in
-simproc revRangeCompute' (revRange _) := fun e => do
-  let ⟨1, ~q(List ℕ), ~q(revRange $n)⟩ ← inferTypeQ e | return .continue
-  let mut ls : Q(List ℕ) := q(([] : List ℕ))
-  let some nn ← Nat.fromExpr? n | return .continue
-  for i in List.range nn do
-    let i_lit := mkNatLitQ i
-    ls := q($i_lit :: $ls)
-  return .visit { expr := ls }
-
-def go : ℕ → Q(List ℕ)
-  | 0 => q([])
-  | n + 1 => q($(mkNatLitQ n) :: $(go n))
-
-open Qq in
-simproc revRangeCompute'' (revRange _) := fun e => do
-  let ⟨1, ~q(List ℕ), ~q(revRange $n)⟩ ← inferTypeQ e | return .continue
-  let some nn ← Nat.fromExpr? n | return .continue
-  return .visit { expr := go nn }
+  let rec go (n : ℕ) : (l : Q(List ℕ)) × Q(revRange $n = $l) :=
+    match n with
+    | 0 => ⟨q(([] : List ℕ)), q(rfl)⟩
+    | n + 1 =>
+      let ⟨l, pf⟩ := go n
+      ⟨q($n :: $l), q(revRangeInduct $pf)⟩
+  let ⟨l, pf⟩ := go n
+  return .visit { expr := l, proof? := pf }
 ```
 
 **Pros**:
