@@ -25,10 +25,40 @@ To understand what a simproc is and how it works, we will first explain how `sim
 
 On an informal level, `simp` can be seen as recursively traversing the expression `e` to be simplified from the outside-in, each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replace `LHS` by `RHS` in the expression if it does match.
 
-Here is an example of a series of rewrites performed by `simp`:
+To see what steps `simp` performs, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
+
+Here is an example of a series of rewrites performed by `simp` on a simple goal:
+```lean
+set_option trace.Meta.Tactic.simp true in
+example : 37 * (Nat.fib 0 + 0) = 0 := by
+  simp
+```
+which yields
+```
+[Meta.Tactic.simp.rewrite] Nat.fib_zero:1000:
+      Nat.fib 0
+    ==>
+      0
+[Meta.Tactic.simp.rewrite] add_zero:1000:
+      0 + 0
+    ==>
+      0
+[Meta.Tactic.simp.rewrite] mul_zero:1000:
+      37 * 0
+    ==>
+      0
+[Meta.Tactic.simp.rewrite] eq_self:1000:
+      0 = 0
+    ==>
+      True
+```
+i.e. the steps are:
 ```lean
 ⊢ 37 * (Nat.fib 0 + 0) = 0
-TODO
+⊢ 37 * (0 + 0) = 0
+⊢ 37 * 0 = 0
+⊢ 0 = 0
+⊢ True
 ```
 
 In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side. In this sense, they are *parametric simp lemmas*.
