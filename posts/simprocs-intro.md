@@ -116,8 +116,6 @@ Internally, this simproc is a small metaprogram does the following whenever an e
 - If `P' = False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
 - Otherwise, let `simp` continue the search.
 
-Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side. In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call. Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure.
-
 Source code is
 ```lean
 builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
@@ -130,6 +128,20 @@ builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
     let pr    := mkApp (mkApp5 (mkConst ``ite_cond_eq_false f.constLevels!) α c i tb eb) (← r.getProof)
     return .visit { expr := eb, proof? := pr }
   return .continue
+```
+
+Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side. In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call. Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure:
+
+```
+set_option trace.Meta.Tactic.simp true in
+example : ite (1≠1) (2^3 * 0 * 50 * 50) (3^2) = 3^2 := by
+  -- 6 steps: 5 rewrites and one goal discharge
+  simp only [ite_cond_eq_false, ne_eq, not_true_eq_false]
+
+set_option trace.Meta.Tactic.simp true in
+example : ite (1≠1) (2^3 * 0 * 50 * 50) (3^2) = 3^2 := by
+  -- 4 rewrites
+  simp
 ```
 
 ### Computation: The `reduceDvd` simproc
