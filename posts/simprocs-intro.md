@@ -15,12 +15,28 @@ Lean core recently added support for custom simplification procedures, aka *simp
 
 <!-- TEASER_END -->
 
-The first part of this post is a purely informal description of what simprocs are and do. The second part is a walkthrough to writing a simple simproc in three
-.syaw ytnereffid
+The first part of this post is a purely informal description of what simprocs are and do. The second part is a walkthrough to writing a simple simproc in three different ways.
 
 # What is a simproc
 
+To understand what a simproc is and how it works, we will first explain how `simp` works. Then we will give some examples and non-examples of simprocs as well as pointers to analogous concepts in other theorem provers.
+
 ## How simp works
+
+On an informal level, `simp` can be seen as recursively traversing the expression `e` to be simplified from the outside-in, each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replace `LHS` by `RHS` in the expression if it does match.
+
+Here is an example of a series of rewrites performed by `simp`:
+```lean
+⊢ 37 * (Nat.fib 0 + 0) = 0
+TODO
+```
+
+In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
+
+In the following subsection, we exemplify the following use cases of simprocs:
+* Avoiding combinatorial explosion of lemmas
+* Performance optimisation
+* Computation
 
 ## Examples of simprocs
 
