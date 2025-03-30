@@ -281,4 +281,24 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
   let some n ← Nat.fromExpr? m | return .continue
   let l := revRange n
   return .visit (ToExpr.toExpr l)
+
+open Qq in
+simproc revRangeCompute' (revRange _) := fun e => do
+  let ⟨1, ~q(List ℕ), ~q(revRange $n)⟩ ← inferTypeQ e | return .continue
+  let mut ls : Q(List ℕ) := q(([] : List ℕ))
+  let some nn ← Nat.fromExpr? n | return .continue
+  for i in List.range nn do 
+    let i_lit := mkNatLitQ i
+    ls := q($i_lit :: $ls)
+  return .visit { expr := ls }
+
+def go : ℕ → Q(List ℕ) 
+  | 0 => q([])
+  | n + 1 => q($(mkNatLitQ n) :: $(go n))
+
+open Qq in
+simproc revRangeCompute'' (revRange _) := fun e => do
+  let ⟨1, ~q(List ℕ), ~q(revRange $n)⟩ ← inferTypeQ e | return .continue
+  let some nn ← Nat.fromExpr? n | return .continue
+  return .visit { expr := go nn }
 ```
