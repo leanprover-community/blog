@@ -11,15 +11,18 @@ title: What is a simproc?
 type: text
 ---
 
-Lean core recently added support for custom simplification procedures, aka *simprocs*. This blog post aims to explain what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
+Lean core recently added support for custom simplification procedures, aka *simprocs*.
+This blog post aims to explain what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
 
 <!-- TEASER_END -->
 
-The first part of this post is a purely informal description of what simprocs are and do. The second part is a walkthrough to writing a simple simproc in three different ways.
+The first part of this post is a purely informal description of what simprocs are and do.
+The second part is a walkthrough to writing a simple simproc in three different ways.
 
 # What is a simproc
 
-To understand what a simproc is and how it works, we will first explain how `simp` works. Then we will give some examples and non-examples of simprocs as well as pointers to analogous concepts in other theorem provers.
+To understand what a simproc is and how it works, we will first explain how `simp` works.
+Then we will give some examples and non-examples of simprocs as well as pointers to analogous concepts in other theorem provers.
 
 ## How simp works
 
@@ -61,7 +64,9 @@ i.e. the steps are:
 ⊢ True
 ```
 
-In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side. In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side. In this sense, they are *parametric simp lemmas*.
+In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side.
+In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
+In this sense, they are *parametric simp lemmas*.
 
 ## Examples of simprocs
 
@@ -130,7 +135,9 @@ builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
   return .continue
 ```
 
-Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side. In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call. Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure:
+Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side.
+In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call.
+Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure:
 
 ```
 set_option trace.Meta.Tactic.simp true in
@@ -185,7 +192,8 @@ At the end of this blog post, we will see how to build step by step a simproc fo
 
 The current design of simprocs comes with a few restrictions that are worth keeping in mind:
 * By definition, **a simproc can only be used in `simp`** (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "parametric lemma" could be useful in other rewriting tactics like `rw`.
-* **One cannot provide arguments to a simproc to restrict the occurrences it rewrites**. In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
+* **One cannot provide arguments to a simproc to restrict the occurrences it rewrites**.
+  In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
 * **The syntax for declaring a simproc**, and in particular whether it a simproc should be in the standard simp set or not, **is inconsistent with the rest of the language**: Where we have `lemma` and `@[simp] lemma` to respectively "create a lemma" and "create a lemma and add it to the standard simp set", the analogous constructs for simprocs are `simproc_decl` and `simproc`, instead of `simproc` and `@[simp] simproc`.
 
 ## Analogues in other languages
@@ -196,13 +204,16 @@ Dsimprocs fill roughly the same niche as proofs by reflection in Rocq.
 
 In this section we explain how to write a simproc.
 
-First, we detail the inner workings of `simp` relevant to simprocs. Then we explain the syntax and general structure of a simproc. Finally, we walk through an explicit example of a simproc for a simple custom function.
+First, we detail the inner workings of `simp` relevant to simprocs.
+Then we explain the syntax and general structure of a simproc.
+Finally, we walk through an explicit example of a simproc for a simple custom function.
 
 ## How `simp` works
 
 In this subsection we present some of the inner workings of `simp`.
 
-First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call. Then we explain `Step`/`DStep`, the Lean representation of a single (definitional) simplification step, and finally `Simproc`/`DSimproc`, the type of (definitional) simprocs.
+First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call.
+Then we explain `Step`/`DStep`, the Lean representation of a single (definitional) simplification step, and finally `Simproc`/`DSimproc`, the type of (definitional) simprocs.
 
 All the `simp`-specific declarations introduced in this subsection are in the `Lean.Meta.Simp` namespace.
 
@@ -224,7 +235,8 @@ structure Result where
   cache          : Bool := true
 ```
 
-This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩`. If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
+This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩ : Result`.
+If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
 
 The type `Step` has three constructors, which correspond to the three types of actions outlined above:
 ```lean
@@ -251,7 +263,8 @@ inductive Step where
   | continue (e? : Option Result := none)
 ```
 
-For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`). Therefore, one may replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
+For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`).
+Therefore, one may replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
 ```lean
 inductive DStep where
   /-- Return expression without visiting any subexpressions. -/
@@ -276,7 +289,12 @@ Note: The above snippet is a simplification and the constructors shown actually 
 
 ### The `SimpM` monad
 
-`SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used). In particular this also captures the `MetaM` context. A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state (e.g. by adding new goals to be closed by the discharger). More formally, this is a function `Expr → SimpM Simp.Step`. Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>). However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
+`SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
+In particular this also captures the `MetaM` context.
+A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state (e.g. by adding new goals to be closed by the discharger).
+More formally, this is a function `Expr → SimpM Simp.Step`.
+Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>).
+However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
 <span style="color:red">**(Paul): This is how I *think* simp works. Let's check this actually makes sense**</span>
 
@@ -291,7 +309,8 @@ These are chained (recursively) as follows:
 
 ## Simproc walkthrough
 
-Let's write a simproc for a simple recursive function. We choose a custom function `revRange`, which to a natural number `n` returns the list of the first `n` natural numbers in decreasing order:
+Let's write a simproc for a simple recursive function.
+We choose a custom function `revRange`, which to a natural number `n` returns the list of the first `n` natural numbers in decreasing order:
 
 ```lean
 def revRange : Nat → List Nat
@@ -331,7 +350,8 @@ example : revRange 2 = [1, 0] := by simp [revRange_zero, revRange_succ]
 example : revRange 5 = [4, 3, 2, 1, 0] := by simp [revRange_zero, revRange_succ]
 ```
 
-Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be a valid proof here. But we are trying not to rely on the definition of `revRange`.
+Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be a valid proof here.
+But we are trying not to rely on the definition of `revRange`.
 
 **Pros**:
 * Doesn't require writing any meta code.
@@ -339,12 +359,17 @@ Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be 
 
 **Cons**:
 * Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).
-* Simplifying `revRange n` for a big input numeral `n` might involve a lot of simplification steps. In this specific case, the number of simplification steps is linear in `n`. Simplification steps matter because each of them increases the size of the proof term.
-* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral. Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`. This is in general highly undesirable.
+* Simplifying `revRange n` for a big input numeral `n` might involve a lot of simplification steps.
+  In this specific case, the number of simplification steps is linear in `n`.
+  Simplification steps matter because each of them increases the size of the proof term.
+* `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral.
+  Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`.
+  This is in general highly undesirable.
 
 ### The definitional approach
 
-In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc. The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a `Simp.DStep` instead of a `Simp.Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
+In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
+The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a `Simp.DStep` instead of a `Simp.Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
 To compute `revRange` using the dsimproc approach, we can do the following:
 ```lean
@@ -369,7 +394,8 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 
 ### The propositional approach
 
-A more general approach would be to manually construct the proof term we need to provide. In our case, we can do this in a recursive manner.
+A more general approach would be to manually construct the proof term we need to provide.
+In our case, we can do this in a recursive manner.
 ```
 open Qq
 
