@@ -378,6 +378,11 @@ Note two features of `revRange` that one should *not* expect from all functions 
   * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
     Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
+Let's now present three approaches to evaluating `revRange` on numerals:
+* The baseline **simproc-less approach** which only uses lemmas and no simproc.
+* The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl`.
+* The **simproc approach**, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.
+
 ### The simproc-less approach
 
 Before writing a simproc, let us first see how one could approach the computation of `revRange` using only lemmas.
