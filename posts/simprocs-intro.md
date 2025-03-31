@@ -329,22 +329,26 @@ Note: The above snippet is a simplification and the constructors shown actually 
 
 `SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
 In particular this also captures the `MetaM` context.
-A `simproc` is program that takes in an expression and outputs a step in the simplification procedure, possibly after modifying the current state (e.g. by adding new goals to be closed by the discharger).
-More formally, this is a function `Expr → SimpM Simp.Step`.
-Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>).
-However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
-<span style="color:red">**(Paul): This is how I *think* simp works.
-Let's check this actually makes sense**</span>
+### `Simproc` & `DSimproc`
 
-Roughly speaking, when acting on an expression, `simp` does a combination of the following:
-- `pre` procedures, which may change the current expression `e`, and then attempt to simplify subexpressions of `e`
-- `post` procedures, which only change the current expression `e`, *after* subexpressions of `e` have been simplified.
+A (d)simproc takes in an expression and outputs a (definitional) simplification step, possibly after modifying the current simp state (e.g. by adding new goals to be closed by the discharger).
+This behavior is formally encapsulated by the following pair of types:
+```lean
+abbrev Simproc  := Expr → SimpM  Step
+abbrev DSimproc := Expr → SimpM DStep
+```
 
-These are chained (recursively) as follows:
-1) First, check if there is a `pre` simproc that is applicable to `e`. If there is one, apply it, and try finding more to apply or move to step 2.
-2) Apply congruence results to create subproblems, and call `simp` on these.
-3) Once this is finished, try to find a `post` simproc that is applicable to `e`. If there is one, apply it and go back to step 1.
+`simp` does not consume bare elements of type `Simproc`/`DSimproc`.
+Instead, a (d)simproc is an element of type `Simproc`/`DSimproc` annotated with tbe extra data mentioned in the overview subsection, like whether the simproc is `pre` or `post`.
+
+See the syntax section for how to declare a simproc.
+
+## The simproc syntax
+
+Let's see how to declare a simproc.
+
+TODO
 
 ## Simproc walkthrough
 
