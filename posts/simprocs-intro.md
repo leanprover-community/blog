@@ -257,20 +257,19 @@ See the `continue` and `visit` constructors of the `Step` and `DStep` inductive 
 
 ### `Step` & `DStep`
 
-`Step` is the type that represents a single step in the simplification process performed by `simp`. At any given point, we can do three things:
-
-1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a `pre` procedure)
-2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a `pre` procedure.
-3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a `pre` procedure).
+`Step` is the type that represents a single step in the simplification loop. At any given point, we can do three things:
+1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
+2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
+3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
 
 Note that the 2 and 3 are the same for `post` procedures.
 
 Let's now look at this more formally. To begin, `simp` has a custom structure to describe the result of a procedure called `Result`:
 ```lean
 structure Result where
-  expr           : Expr
-  proof?         : Option Expr := none
-  cache          : Bool := true
+  expr   : Expr
+  proof? : Option Expr := none
+  cache  : Bool := true
 ```
 
 This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩ : Result`.
@@ -302,7 +301,7 @@ inductive Step where
 ```
 
 For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`).
-Therefore, one may replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
+One may therefore replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
 ```lean
 inductive DStep where
   /-- Return expression without visiting any subexpressions. -/
@@ -321,7 +320,7 @@ inductive DStep where
   deriving Inhabited, Repr
 ```
 
-Note: The above snippet is a simplification and the constructors shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
+Note: The above snippet is a simplification and the constructors as shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
 
 <span style="color:red">**(Yaël): Why is there a mismatch in docstrings between `Step.continue` and `DStep.continue`? [Zulip](https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/Simp.2EStep.2Econtinue.20vs.20Simp.2EDStep.2Econtinue/with/509056271)**</span>
 
