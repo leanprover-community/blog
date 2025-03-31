@@ -296,7 +296,8 @@ More formally, this is a function `Expr → SimpM Simp.Step`.
 Notably, internally every `simp` theorem is turned into `simproc` corresponding to using this theorem to simplify the current expression (<span style="color:red">**(Paul): is this actually true?**</span>).
 However a simproc aims to be more general: while a theorem will be used to simplify e.g. the left hand side and an expression to a fixed right hand side (whose type will of course depend on the parameters of the theorem), a simproc allows the user to *vary* the right hand side dynamically, depending on what left hand side has been provided as an input.
 
-<span style="color:red">**(Paul): This is how I *think* simp works. Let's check this actually makes sense**</span>
+<span style="color:red">**(Paul): This is how I *think* simp works.
+Let's check this actually makes sense**</span>
 
 Roughly speaking, when acting on an expression, `simp` does a combination of the following:
 - `pre` procedures, which may change the current expression `e`, and then attempt to simplify subexpressions of `e`
@@ -328,16 +329,20 @@ example : revRange 5 = [4, 3, 2, 1, 0] := by simp [???]
 ```
 
 Note two features of `revRange` that one should *not* expect from all functions that one might want to evaluate on explicit inputs:
-* It is **recursive**: One can compute `revRange n` by recursion on `n`. Even more precisely, `revRange n` represents its own partial computation.
-* `revRange` is definitionally equal to what we want to unfold it to. This has two consequences:
+* It is **recursive**: One can compute `revRange n` by recursion on `n`.
+  Even more precisely, `revRange n` represents its own partial computation.
+* `revRange` is definitionally equal to what we want to unfold it to.
+  This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
-  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`. Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
+  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
+    Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 ### The simproc-less approach
 
 Before writing a simproc, let us first see how one could approach the computation of `revRange` using only lemmas.
 
-`revRange` is a recursive function. Therefore it can be evaluated on numerals simply by writing out the recurrence relations we wish to reduce along:
+`revRange` is a recursive function.
+Therefore it can be evaluated on numerals simply by writing out the recurrence relations we wish to reduce along:
 ```lean
 lemma revRange_zero : revRange 0 = [] := rfl
 lemma revRange_succ (n : Nat) : revRange (n + 1) = n :: revRange n := rfl
