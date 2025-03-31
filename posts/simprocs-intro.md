@@ -70,7 +70,7 @@ In this sense, they are *parametric simp lemmas*.
 
 ## Examples of simprocs
 
-In this subsection, we exemplify three simprocs through the following use cases:
+In this section, we exemplify three simprocs through the following use cases:
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 * Computation
@@ -202,7 +202,7 @@ Dsimprocs fill roughly the same niche as proofs by reflection in Rocq.
 
 # How to write a simproc
 
-In this section we explain how to write a simproc.
+In this part, we explain how to write a simproc.
 
 First, we detail the inner workings of `simp` relevant to simprocs.
 Then we explain the syntax and general structure of a simproc.
@@ -210,7 +210,7 @@ Finally, we walk through an explicit example of a simproc for a simple custom fu
 
 ## How `simp` works
 
-In this subsection we present some of the inner workings of `simp`.
+In this section we present some of the inner workings of `simp`.
 
 First we introduce the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call.
 Then we explain `Step`/`DStep`, the Lean representation of a single (definitional) simplification step, and finally `Simproc`/`DSimproc`, the type of (definitional) simprocs.
