@@ -347,7 +347,29 @@ See the syntax section for how to declare a simproc.
 
 Let's see how to declare a simproc.
 
-TODO
+The basic syntax for declaring a simproc is
+```lean
+simproc_decl mySimproc (theExprToMatch _ _) := fun e ↦ do
+  write_simproc_here
+```
+and for a dsimproc it is
+```lean
+dsimproc_decl myDSimproc (theExprToMatch _ _) := fun e ↦ do
+  write_dsimproc_here
+```
+
+To add `mySimproc`/`myDSimproc` to the standard simp set, replace `simproc_decl`/`dsimproc_decl` by `simproc`/`dsimproc`.
+
+To turn `mySimproc`/`myDSimproc` into a preprocedure (recall that postprocedure is the default), do
+```lean
+simproc_decl ↓ mySimproc (theExprToMatch _ _) := fun e ↦ do
+  write_simproc_here
+
+dsimproc_decl ↓ myDSimproc (theExprToMatch _ _) := fun e ↦ do
+  write_dsimproc_here
+```
+
+See the next section for how to actually replace `write_simproc_here`/`write_dsimproc_here` by the correct meta code.
 
 ## Simproc walkthrough
 
