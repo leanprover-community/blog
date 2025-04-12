@@ -509,7 +509,7 @@ Write a type of partial computations that is recursive.
 ### How to discharge subgoals
 
 Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be access by the user via the type `Simp.Methods` (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Simp.Methods` implements a function `discharge? : Expr → Option (Expr)` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Simp.Methods`, one can use `Simp.getMethods`.
+`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be access by the user via `Simp.Methods` (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Simp.Methods` implements a function `discharge? : Expr → Option (Expr)` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Simp.Methods`, one can use `Simp.getMethods`.
 
 In the following example, we implement a simproc that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
 
@@ -520,7 +520,7 @@ simproc_decl factorizationMul (Nat.factorization (_ * _)) := fun e => do
   let ⟨1, ~q(ℕ →₀ ℕ), ~q(Nat.factorization ($a * $b))⟩ ← inferTypeQ e | return .continue
   -- Try to discharge the goal `a ≠ 0`
   let some ha ← ((← getMethods).discharge? q($a ≠ 0)) | return .continue
-  --Convert the resulting proof to a `Qq` expression for convenience
+  --Convert the resulting proof to a `Qq` expression for convenience (see #23510)
   let ⟨0, ~q($a ≠ 0), ~q($ha)⟩ ← inferTypeQ ha | return .continue
   -- Try to discharge the goal `b ≠ 0`
   let some hb ← ((← getMethods).discharge? q($b ≠ 0)) | return .continue
@@ -545,6 +545,7 @@ example : Nat.factorization (2 * 3) = Nat.factorization 2 + Nat.factorization 3 
 
 ### How to match on numerals
 
-Numerals are represented internally with `Ofn`
+Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. The easiest case is perhaps that of `Nat` litterals. Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
+-
 
 <span style="color:red">**TODO(Paul)**</span>
