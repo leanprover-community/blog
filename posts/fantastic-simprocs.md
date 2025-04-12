@@ -39,8 +39,8 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 
 >! To see what proof steps `simp` used, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
 
-In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side.
-In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
+In this picture, simp lemmas are *fixed* rules to turn a left hand side of a *specific* shape into a right hand side of a *specific* shape.
+In contrast, simprocs are *flexible* rules to turn a left hand side of a *specific* shape into a right hand side of a shape *computed* from the left hand side.
 In this sense, they are *parametric simp lemmas*.
 
 ## Examples of simprocs
