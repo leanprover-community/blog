@@ -37,7 +37,7 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 ⊢ True
 ```
 
->! To see what proof steps `simp` used, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
+> To see what proof steps `simp` used, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
 
 In this picture, simp lemmas are *fixed* rules to turn a left hand side of a *specific* shape into a right hand side of a *specific* shape.
 In contrast, simprocs are *flexible* rules to turn a left hand side of a *specific* shape into a right hand side of a shape *computed* from the left hand side.
@@ -52,9 +52,9 @@ In this section, we exemplify three simprocs through the following use cases:
 
 ### Computation:
 
-#### The `Finset.Icc_ofNat_ofNAt` simproc
+#### The `Finset.Icc_ofNat_ofNat` simproc
 
-The `Finset.Icc_ofNat_ofNAt` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
+The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
 
 ```lean
 example : Finset.Icc 1 0 = ∅ := by
@@ -66,8 +66,8 @@ example : Finset.Icc 1 1 = {1} := by
 example : Finset.Icc 1 4 = {1, 2, 3, 4} := by
   simp only [Icc_ofNat_ofNat]
 
-example : Finset.Icc a (a+2) = {a, a+1, a+2} := by
-  --fails: the bounds of the interval aren't numerals!
+example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
+  -- fails: the bounds of the interval aren't numerals!
   simp only [Icc_ofNat_ofNat]
 ```
 
@@ -94,7 +94,6 @@ Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expre
 - Compute `b % a`.
 - If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
 - If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
-
 
 ### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 

@@ -141,7 +141,7 @@ The basic syntax for declaring a simproc is
 simproc_decl mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
-See the next section for how to actually replace `write_simproc_here` by the correct meta code.
+> See the next section for how to actually replace `write_simproc_here` by the correct meta code.
 
 To add `mySimproc` to the standard simp set, replace `simproc_decl` by `simproc`:
 ```lean
