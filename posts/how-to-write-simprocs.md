@@ -26,7 +26,7 @@ Finally, we walk through an explicit example of a simproc for a simple custom fu
 
 In this section we present some of the inner workings of `simp`.
 
-First we give an overview of the way `simp`, then we delve into the specifics by introducing:
+First we give an overview of the way `simp` works, then we delve into the specifics by introducing:
 * The `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call.
 * `Step`, the Lean representation of a single simplification step.
 * `Simproc`, the Lean representation of simprocs.
@@ -141,7 +141,7 @@ The basic syntax for declaring a simproc is
 simproc_decl mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
-See the next section for how to actually replace `write_simproc_here` by the correct meta code.
+> See the next section for how to actually replace `write_simproc_here` by the correct meta code.
 
 To add `mySimproc` to the standard simp set, replace `simproc_decl` by `simproc`:
 ```lean
