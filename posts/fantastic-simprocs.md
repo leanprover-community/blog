@@ -100,14 +100,16 @@ Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expre
 
 ### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`.
+The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
 
 ```lean
-example : ∃ (a : ℤ), a*a = 25 ∧ a = 5 := by
-  simp +arith only [existsAndEq, and_true]
+example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
+  simp only [existsAndEq]
+  -- p 5
 
-example : (∃ a, (∃ b, a + b = 5) ∧ a = 3) ↔ ∃ b, 3 + b = 5 := by
-  simp only [existsAndEq, and_true]
+example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
+  simp only [existsAndEq]
+  -- p 5 ∧ q 5
 ```
 
 Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
