@@ -162,7 +162,7 @@ Internally, this simproc is a small metaprogram that does the following whenever
 
 ### Many more applications!
 
-At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number literal.
+In the second blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a numeral.
 
 ## A few caveats
 
