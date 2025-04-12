@@ -5,7 +5,7 @@ date: 2025-03-29 12:33:00 UTC+00:00
 description: 'Brief introduction to simprocs and what they are useful for'
 has_math: true
 link: ''
-slug: what-is-a-simproc
+slug: fantastic-simprocs
 tags: 'simp, simproc, meta'
 title: Fantastic Simprocs and Where to Find Them.
 type: text
