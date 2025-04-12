@@ -101,22 +101,24 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
 The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call.
 
 ```lean
-example : ite (1 + 1 = 2) 1 2 = 1 := by
+example : (if 1 + 1 = 2 then 1 else 2) = 1 := by
   -- Works since `simp` can simplify `1 + 1 = 2` to `True`.
-  simp only [↓reduceIte]
+  simp only [reduceIte]
 
-example (X : Type) (P : Prop) (a b : X) : ite (P ∨ ¬ P) a b = a := by
+example (X : Type) (P : Prop) (a b : X) : (if P ∨ ¬ P then a else b) = a := by
   -- Works since `simp` can simplify `P ∨ ¬ P` to `True`.
-  simp only [↓reduceIte]
+  simp only [reduceIte]
 
-example : ite FermatLastTheorem 1 2 = 1 := by
+open Classical
+
+example : (if FermatLastTheorem then 1 else 2) = 1 := by
   --This fails because `simp` can't reduce `FermatLastTheorem` to `True`
-  simp only [↓reduceIte]
+  simp only [reduceIte]
+  --Goal remains `⊢ (if FermatLastTheorem then 1 else 2) = 1`
 ```
 
 Internally, this simproc is a small metaprogram that does the following whenever an expression of the form `ite P a b` is encountered:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
-**TODO Paul** check that the arguments in the proof are alright.
 - If `P' = True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
 - If `P' = False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
 - Otherwise, let `simp` continue the search.
