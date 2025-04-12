@@ -71,9 +71,32 @@ In this sense, they are *parametric simp lemmas*.
 ## Examples of simprocs
 
 In this section, we exemplify three simprocs through the following use cases:
+* Computation
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
-* Computation
+
+### Computation: The `reduceDvd` simproc
+
+The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
+
+```lean
+example : 3 ∣ 9 := by
+  simp only [Nat.reduceDvd]
+
+example : ¬ 2 ∣ 49 := by
+  simp only [Nat.reduceDvd, not_false_iff]
+
+example : a ∣ a * b := by
+  simp only [Nat.reduceDvd] --fails
+```
+
+Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expression of the form `a ∣ b` (where `a, b` are natural numbers) is encountered:
+- Check that `∣` is the usual natural number division.
+- Try to extract explicit (literal) values for `a` and `b`.
+- Compute `b % a`.
+- If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
+- If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
+
 
 ### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
@@ -123,20 +146,6 @@ Internally, this simproc is a small metaprogram that does the following whenever
 - If `P' = False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
 - Otherwise, let `simp` continue the search.
 
-Source code is
-```lean
-builtin_simproc ↓ [simp, seval] reduceIte (ite _ _ _) := fun e => do
-  let_expr f@ite α c i tb eb ← e | return .continue
-  let r ← simp c
-  if r.expr.isTrue then
-    let pr    := mkApp (mkApp5 (mkConst ``ite_cond_eq_true f.constLevels!) α c i tb eb) (← r.getProof)
-    return .visit { expr := tb, proof? := pr }
-  if r.expr.isFalse then
-    let pr    := mkApp (mkApp5 (mkConst ``ite_cond_eq_false f.constLevels!) α c i tb eb) (← r.getProof)
-    return .visit { expr := eb, proof? := pr }
-  return .continue
-```
-
 Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side.
 In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call.
 Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure:
@@ -153,39 +162,6 @@ example : ite (1≠1) (2^3 * 0 * 50 * 50) (3^2) = 3^2 := by
   simp
 ```
 
-### Computation: The `reduceDvd` simproc
-
-The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
-
-```lean
-example : 3 ∣ 9 := by
-  simp only [Nat.reduceDvd]
-
-example : ¬ 2 ∣ 49 := by
-  simp only [Nat.reduceDvd, not_false_iff]
-
-example : a ∣ a * b := by
-  simp only [Nat.reduceDvd] --fails
-```
-
-Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expression of the form `a ∣ b` (where `a, b` are natural numbers) is encountered:
-- Check that `∣` is the usual natural number division.
-- Try to extract explicit (literal) values for `a` and `b`.
-- Compute `b % a`.
-- If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
-- If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
-
-```lean
-builtin_simproc [simp, seval] reduceDvd ((_ : Nat) ∣ _) := fun e => do
-  let_expr Dvd.dvd _ i a b ← e | return .continue
-  let some va ← fromExpr? a | return .continue
-  let some vb ← fromExpr? b | return .continue
-  if vb % va == 0 then
-    return .done { expr := mkConst ``True, proof? := mkApp3 (mkConst ``Nat.dvd_eq_true_of_mod_eq_zero) a b reflBoolTrue}
-  else
-    return .done { expr := mkConst ``False, proof? := mkApp3 (mkConst ``Nat.dvd_eq_false_of_mod_ne_zero) a b reflBoolTrue}
-```
-
 ### Many more applications!
 
 At the end of this blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a natural number literal.
@@ -196,4 +172,3 @@ The current design of simprocs comes with a few restrictions that are worth keep
 * By definition, **a simproc can only be used in `simp`** (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "parametric lemma" could be useful in other rewriting tactics like `rw`.
 * **One cannot provide arguments to a simproc to restrict the occurrences it rewrites**.
   In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
-* **The syntax for declaring a simproc**, and in particular whether it a simproc should be in the standard simp set or not, **is inconsistent with the rest of the language**: Where we have `lemma` and `@[simp] lemma` to respectively "create a lemma" and "create a lemma and add it to the standard simp set", the analogous constructs for simprocs are `simproc_decl` and `simproc`, instead of `simproc` and `@[simp] simproc`.
