@@ -11,13 +11,13 @@ title: Fantastic Simprocs and Where to Find Them.
 type: text
 ---
 
-Lean core recently added support for custom simplification procedures, aka *simprocs*.
-This blog post aims to explain what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
+Lean core added support for custom simplification procedures, aka *simprocs*.
+This blog post is the first in a series of two aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
 
 <!-- TEASER_END -->
 
-The first part of this post is a purely informal description of what simprocs are and do.
-The second part is a walkthrough to writing a simple simproc in three different ways.
+This post describes purely informally what simprocs are and do.
+The second post will be a walkthrough to writing a simple simproc in three different ways.
 
 # What is a simproc
 
