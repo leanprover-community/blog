@@ -28,34 +28,7 @@ Then we will give some examples and non-examples of simprocs as well as pointers
 
 On an informal level, `simp` can be seen as recursively traversing the expression `e` to be simplified from the outside-in, each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replacing `LHS` by `RHS` in the expression if it does match.
 
-To see what steps `simp` performs, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
-
-Here is an example of a series of rewrites performed by `simp` on a simple goal:
-```lean
-set_option trace.Meta.Tactic.simp true in
-example : 37 * (Nat.fib 0 + 0) = 0 := by
-  simp
-```
-which yields
-```
-[Meta.Tactic.simp.rewrite] Nat.fib_zero:1000:
-      Nat.fib 0
-    ==>
-      0
-[Meta.Tactic.simp.rewrite] add_zero:1000:
-      0 + 0
-    ==>
-      0
-[Meta.Tactic.simp.rewrite] mul_zero:1000:
-      37 * 0
-    ==>
-      0
-[Meta.Tactic.simp.rewrite] eq_self:1000:
-      0 = 0
-    ==>
-      True
-```
-i.e. the steps are:
+For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.fib 0 + 0) = 0`
 ```lean
 ⊢ 37 * (Nat.fib 0 + 0) = 0
 ⊢ 37 * (0 + 0) = 0
@@ -63,6 +36,8 @@ i.e. the steps are:
 ⊢ 0 = 0
 ⊢ True
 ```
+
+>! To see what proof steps `simp` used, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
 
 In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side.
 In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
@@ -75,9 +50,30 @@ In this section, we exemplify three simprocs through the following use cases:
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 
-### Computation: The `reduceDvd` simproc
+### Computation:
 
-The `reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
+#### The `Finset.Icc_ofNat_ofNAt` simproc
+
+The `Finset.Icc_ofNat_ofNAt` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
+
+```lean
+example : Finset.Icc 1 0 = ∅ := by
+  simp only [Icc_ofNat_ofNat]
+
+example : Finset.Icc 1 1 = {1} := by
+  simp only [Icc_ofNat_ofNat]
+
+example : Finset.Icc 1 4 = {1, 2, 3, 4} := by
+  simp only [Icc_ofNat_ofNat]
+
+example : Finset.Icc a (a+2) = {a, a+1, a+2} := by
+  --fails: the bounds of the interval aren't numerals!
+  simp only [Icc_ofNat_ofNat]
+```
+
+#### The `Nat.reduceDvd` simproc
+
+The `Nat.reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
 
 ```lean
 example : 3 ∣ 9 := by
@@ -148,19 +144,8 @@ Internally, this simproc is a small metaprogram that does the following whenever
 
 Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side.
 In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call.
-Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `↓reduceIte`, at the cost of introducing more steps in the simplification procedure:
+Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `reduceIte`.
 
-```
-set_option trace.Meta.Tactic.simp true in
-example : ite (1≠1) (2^3 * 0 * 50 * 50) (3^2) = 3^2 := by
-  -- 6 steps: 5 rewrites and one goal discharge
-  simp only [ite_cond_eq_false, ne_eq, not_true_eq_false]
-
-set_option trace.Meta.Tactic.simp true in
-example : ite (1≠1) (2^3 * 0 * 50 * 50) (3^2) = 3^2 := by
-  -- 4 rewrites
-  simp
-```
 
 ### Many more applications!
 
