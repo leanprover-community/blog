@@ -80,7 +80,9 @@ example : 3 ∣ 9 := by
   simp only [Nat.reduceDvd]
 
 example : ¬ 2 ∣ 49 := by
-  simp only [Nat.reduceDvd, not_false_iff]
+  simp only [Nat.reduceDvd]
+  -- Remaining goal: `¬ False`
+  simp
 
 example : a ∣ a * b := by
   simp only [Nat.reduceDvd] --fails
@@ -101,11 +103,11 @@ The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x
 ```lean
 example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
   simp only [existsAndEq]
-  -- p 5
+  -- Remaining goal: `⊢ p 5`
 
 example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
   simp only [existsAndEq]
-  -- p 5 ∧ q 5
+  -- Remaining goal: `⊢ p 5 ∧ q 5`
 ```
 
 Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
@@ -136,7 +138,8 @@ open Classical
 example : (if FermatLastTheorem then 1 else 2) = 1 := by
   --This fails because `simp` can't reduce `FermatLastTheorem` to `True`
   simp only [reduceIte]
-  --Goal remains `⊢ (if FermatLastTheorem then 1 else 2) = 1`
+  -- Remaining goal: `⊢ (if FermatLastTheorem then 1 else 2) = 1`
+  sorry -- See https://imperialcollegelondon.github.io/FLT for how to solve this `sorry` ;)
 ```
 
 Internally, this simproc is a small metaprogram that does the following whenever an expression of the form `ite P a b` is encountered:
