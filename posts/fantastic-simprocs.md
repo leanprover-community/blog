@@ -126,8 +126,9 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
 The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call.
 
 ```lean
-example : (if 1 + 1 = 2 then 1 else 2) = 1 := by
-  -- Works since `simp` can simplify `1 + 1 = 2` to `True`.
+example : (if 37 * 0 then 1 else 2) = 1 := by
+  -- Works since `simp` can simplify `37 * 0` to `True`
+  -- because it knows the lemma `mul_zero a : a * 0 = 0`.
   simp only [reduceIte]
 
 example (X : Type) (P : Prop) (a b : X) : (if P ∨ ¬ P then a else b) = a := by
