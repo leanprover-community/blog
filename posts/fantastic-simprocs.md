@@ -110,6 +110,8 @@ example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
   -- Remaining goal: `⊢ p 5 ∧ q 5`
 ```
 
+Intuitively, one can think of `existsAndEq` as a "parametric" lemma whose right hand side is allowed to vary shape depending on the left hand side.
+
 Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
 - Recursively traverse the expression of the predicate inside the existential quantifier to try and detect an equality `a = a'` by splitting any `∧` that is found along the way into its components.
 - If an equality is found, construct a proof that `P a` implies `a = a'`.
@@ -121,37 +123,43 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
 
 ### Performance optimisation: The `reduceIte` simproc
 
-The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call.
+The `reduceIte` simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplify to `True` or `False`.
 
 ```lean
 example : (if 37 * 0 then 1 else 2) = 1 := by
   -- Works since `simp` can simplify `37 * 0` to `True`
   -- because it knows the lemma `mul_zero a : a * 0 = 0`.
-  simp only [reduceIte]
+  simp only [↓reduceIte]
 
 example (X : Type) (P : Prop) (a b : X) : (if P ∨ ¬ P then a else b) = a := by
   -- Works since `simp` can simplify `P ∨ ¬ P` to `True`.
-  simp only [reduceIte]
+  simp only [↓reduceIte]
 
 open Classical
 
 example : (if FermatLastTheorem then 1 else 2) = 1 := by
-  --This fails because `simp` can't reduce `FermatLastTheorem` to `True`
-  simp only [reduceIte]
+  --This fails because `simp` can't simplify `FermatLastTheorem` to `True` or `False`
+  simp only [↓reduceIte]
   -- Remaining goal: `⊢ (if FermatLastTheorem then 1 else 2) = 1`
   sorry -- See https://imperialcollegelondon.github.io/FLT for how to solve this `sorry` ;)
 ```
 
+The down arrow `↓` in `simp only [↓reduceIte]` indicates that `reduceIte` is being called as a *preprocedure*.
+This means that `reduceIte` is run *before* the expressions `a` and `b` are simplified.
+Concretely, `simp` needs only simplify one of the expressions `a` and `b`, as the other one is discarded upfront.
+For example, `↓reduceIte` allows `simp` to avoid touching `bigComplicatedExpression` at all in the following:
+```
+example : (if 37 * 0 = 0 then 0 else bigComplicatedExpression) = 0 := by
+  simp only [↓reduceIte]
+```
+
+Notice that one could always replace `simp [↓reduceIte]` with `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter would simplify both branches of the `ite`, instead of merely the one that is actually relevant.
+
 Internally, this simproc is a small metaprogram that does the following whenever an expression of the form `ite P a b` is encountered:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
-- If `P' = True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
-- If `P' = False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
+- If `P'` is `True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
+- If `P'` is `False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
 - Otherwise, let `simp` continue the search.
-
-Intuitively, one can think of this as a "parametric" lemma that allows one to vary the right hand side depending on the value of the left hand side.
-In the case of `reduceIte`, this allows us to combine `ite_cond_eq_true` and `ite_cond_eq_false` into a single procedure that `simp` can call.
-Notice that on can use `ite_cond_eq_true` (resp `ite_cond_eq_false`) instead of `reduceIte`.
-
 
 ### Many more applications!
 
