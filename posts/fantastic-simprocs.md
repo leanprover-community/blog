@@ -26,7 +26,10 @@ Then we will give some examples and non-examples of simprocs as well as pointers
 
 ## How simp works
 
-On an informal level, `simp` can be seen as recursively traversing the expression `e` to be simplified from the outside-in, each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replacing `LHS` by `RHS` in the expression if it does match.
+On an rough level, `simp` can be seen as recursively traversing the expression `e` (and its subexpressions), each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replacing `LHS` by `RHS` in the expression if it does match.
+
+> The order in which `simp` traverses an expression is relatively intricate: when run on an expression `e`, will first try to simplify `e`, then visit subxpressions, and then try to simplify `e` again.
+> In particular, by default `simp` only attempts to use lemmas on `e` *on the way out*.
 
 For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.fib 0 + 0) = 0`
 ```lean
@@ -42,6 +45,7 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 In this picture, simp lemmas are *fixed* rules to turn a *specific* left hand side into a *specific* right hand side.
 In contrast, simprocs are *flexible* rules to turn a *specific* left hand side into a right hand side *computed* from the left hand side.
 In this sense, they are *parametric simp lemmas*.
+To make the previous description a little more precise, the way `simp` works is by recursively traversing an expression `e` (and its subexpressions), and trying to match these with the "left hand side" of a simproc.
 
 ## Examples of simprocs
 
