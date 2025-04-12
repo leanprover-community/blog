@@ -90,7 +90,7 @@ example : a ∣ a * b := by
 
 Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expression of the form `a ∣ b` (where `a, b` are natural numbers) is encountered:
 - Check that `∣` is the usual natural number division.
-- Try to extract explicit (literal) values for `a` and `b`.
+- Check that `a` and `b` are numerals.
 - Compute `b % a`.
 - If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
 - If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
