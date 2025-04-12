@@ -141,17 +141,22 @@ The basic syntax for declaring a simproc is
 simproc_decl mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
+See the next section for how to actually replace `write_simproc_here` by the correct meta code.
 
-To add `mySimproc` to the standard simp set, replace `simproc_decl` by `simproc`.
-
-To turn `mySimproc`/`myDSimproc` into a preprocedure (recall that postprocedure is the default), do
+To add `mySimproc` to the standard simp set, replace `simproc_decl` by `simproc`:
 ```lean
-simproc_decl ↓ mySimproc (theExprToMatch _ _) := fun e ↦ do
+simproc mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
-When calling a simproc in `simp`, one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]`.
 
-See the next section for how to actually replace `write_simproc_here` by the correct meta code.
+When calling a simproc in `simp` (if it is not in the standard simp set), one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]`.
+
+To add `mySimproc` to the standard simp set as a preprocedure (recall that postprocedure is the default), do
+```lean
+simproc ↓ mySimproc (theExprToMatch _ _) := fun e ↦ do
+  write_simproc_here
+```
+Note that being a pre/postprocedure is a property of simprocs *in a simp set*, not of bare simprocs. Therefore, there is no corresponding `simproc_decl ↓` syntax.
 
 ## Simproc walkthrough
 

@@ -11,13 +11,13 @@ title: Fantastic Simprocs and Where to Find Them.
 type: text
 ---
 
-Lean core recently added support for custom simplification procedures, aka *simprocs*.
-This blog post aims to explain what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
+Lean core added support for custom simplification procedures, aka *simprocs*.
+This blog post is the first in a series of two aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
 
 <!-- TEASER_END -->
 
-The first part of this post is a purely informal description of what simprocs are and do.
-The second part is a walkthrough to writing a simple simproc in three different ways.
+This post describes purely informally what simprocs are and do.
+The second post will be a walkthrough to writing a simple simproc in three different ways.
 
 # What is a simproc
 
@@ -96,14 +96,16 @@ Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expre
 
 ### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-The `existsAndEq` simproc is designed to simplify expressions of the form `∃ a, ... ∧ a = a' ∧ ...` where `a'` is some quantity independent of `a'` by removing the existential quantifier and replacing all occurences of `a` by `a'`.
+The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
 
 ```lean
-example : ∃ (a : ℤ), a*a = 25 ∧ a = 5 := by
-  simp +arith only [existsAndEq, and_true]
+example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
+  simp only [existsAndEq]
+  -- p 5
 
-example : (∃ a, (∃ b, a + b = 5) ∧ a = 3) ↔ ∃ b, 3 + b = 5 := by
-  simp only [existsAndEq, and_true]
+example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
+  simp only [existsAndEq]
+  -- p 5 ∧ q 5
 ```
 
 Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
@@ -120,8 +122,9 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
 The `reduceIte` simproc is designed to take expressions of the form `ite P a b` and replace them with `a` or `b`, depending on whether `P` can be simplified to `True` or `False` by a `simp` call.
 
 ```lean
-example : (if 1 + 1 = 2 then 1 else 2) = 1 := by
-  -- Works since `simp` can simplify `1 + 1 = 2` to `True`.
+example : (if 37 * 0 then 1 else 2) = 1 := by
+  -- Works since `simp` can simplify `37 * 0` to `True`
+  -- because it knows the lemma `mul_zero a : a * 0 = 0`.
   simp only [reduceIte]
 
 example (X : Type) (P : Prop) (a b : X) : (if P ∨ ¬ P then a else b) = a := by
