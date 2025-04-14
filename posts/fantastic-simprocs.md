@@ -20,7 +20,7 @@ This post describes purely informally what simprocs are and do.
 The second post will be a walkthrough to writing a simple simproc in three different ways.
 
 To understand what a simproc is and how it works, we will first explain how `simp` works.
-Then we will give some examples and non-examples of simprocs as well as pointers to analogous concepts in other theorem provers.
+Then we will give some examples and non-examples of simprocs.
 
 # How simp works
 
