@@ -19,12 +19,10 @@ This blog post is the first in a series of two aimed at explaining what a simpro
 This post describes purely informally what simprocs are and do.
 The second post will be a walkthrough to writing a simple simproc in three different ways.
 
-# What is a simproc
-
 To understand what a simproc is and how it works, we will first explain how `simp` works.
 Then we will give some examples and non-examples of simprocs as well as pointers to analogous concepts in other theorem provers.
 
-## How simp works
+# How simp works
 
 On an rough level, `simp` can be seen as recursively traversing the expression `e` (and its subexpressions), each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replacing `LHS` by `RHS` in the expression if it does match.
 
@@ -47,16 +45,16 @@ In contrast, simprocs are *flexible* rules to turn a left hand side of a *specif
 In this sense, they are *parametric simp lemmas*.
 To make the previous description a little more precise, the way `simp` works is by recursively traversing an expression `e` (and its subexpressions), and trying to match these with the "left hand side" of a simproc.
 
-## Examples of simprocs
+# Examples of simprocs
 
 In this section, we exemplify four simprocs through the following use cases:
 * Computation
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 
-### Computation:
+## Computation:
 
-#### The `Finset.Icc_ofNat_ofNat` simproc
+### The `Finset.Icc_ofNat_ofNat` simproc
 
 The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
 
@@ -75,7 +73,7 @@ example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
   simp only [Icc_ofNat_ofNat]
 ```
 
-#### The `Nat.reduceDvd` simproc
+### The `Nat.reduceDvd` simproc
 
 The `Nat.reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
 
@@ -99,7 +97,7 @@ Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expre
 - If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
 - If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
 
-### Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
+## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
 The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
 
@@ -124,7 +122,7 @@ theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p 
     (∃ b, p b) = p a
 ```
 
-### Performance optimisation: The `reduceIte` simproc
+## Performance optimisation: The `reduceIte` simproc
 
 The `reduceIte` simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplify to `True` or `False`.
 
@@ -163,11 +161,11 @@ Internally, this simproc is a small metaprogram that does the following whenever
 - If `P'` is `True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
 - If `P'` is `False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
 
-### Many more applications!
+## Many more applications!
 
 In the second blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a numeral.
 
-## A few caveats
+# A few caveats
 
 The current design of simprocs comes with a few restrictions that are worth keeping in mind:
 * By definition, **a simproc can only be used in `simp`** (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "parametric lemma" could be useful in other rewriting tactics like `rw`.

@@ -16,13 +16,11 @@ The goal of this sequel to (TODO: insert link to first part once we have it), is
 
 <!-- TEASER_END -->
 
-# How to write a simproc
-
 First, we detail the inner workings of `simp` relevant to simprocs.
 Then we explain the syntax and general structure of a simproc.
 Finally, we walk through an explicit example of a simproc for a simple custom function.
 
-## How `simp` works
+# How `simp` works
 
 In this section we present some of the inner workings of `simp`.
 
@@ -33,7 +31,7 @@ First we give an overview of the way `simp` works, then we delve into the specif
 
 All the `simp`-specific declarations introduced in this section are in the `Lean.Meta` or `Lean.Meta.Simp` namespace.
 
-### Overview
+## Overview
 
 When calling `simp` in a proof, we give it a *simp context*.
 This is made of a few different things, but for our purposes think of it as the set of lemmas/simprocs `simp` is allowed to rewrite with, namely the default simp lemmas/simprocs plus the lemmas/simprocs added explicitly minus the lemmas/simprocs removed explicitly.
@@ -64,7 +62,7 @@ The above loop is merely an approximation of the true simplification loop:
 Each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered.
 See the `continue` and `visit` constructors of the `Step` inductive type as described in the next section for full details.
 
-### `Step`
+## `Step`
 
 `Step` is the type that represents a single step in the simplification loop. At any given point, we can do three things:
 1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
@@ -109,12 +107,12 @@ inductive Step where
   | continue (e? : Option Result := none)
 ```
 
-### The `SimpM` monad
+## The `SimpM` monad
 
 `SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
 In particular this also captures the `MetaM` context.
 
-### `Simproc`s
+## `Simproc`s
 
 A simproc takes in an expression and outputs a simplification step, possibly after modifying the current simp state (e.g. by adding new goals to be closed by the discharger).
 This behavior is formally encapsulated by the following type:
@@ -127,7 +125,7 @@ Instead, a simproc is an element of type `Simproc` annotated with tbe extra data
 
 See the syntax section for how to declare a simproc.
 
-## The simproc syntax
+# The simproc syntax
 
 Let's see how to declare a simproc.
 
@@ -153,7 +151,7 @@ simproc ↓ mySimproc (theExprToMatch _ _) := fun e ↦ do
 ```
 Note that being a pre/postprocedure is a property of simprocs *in a simp set*, not of bare simprocs. Therefore, there is no corresponding `simproc_decl ↓` syntax.
 
-## Simproc walkthrough
+# Simproc walkthrough
 
 Let's write a simproc for a simple recursive function.
 We choose a custom function `revRange`, which to a natural number `n` returns the list of the first `n` natural numbers in decreasing order:
@@ -187,7 +185,7 @@ Let's now present three approaches to evaluating `revRange` on numerals:
 * The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl`.
 * The **simproc approach**, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.
 
-### The simproc-less approach
+## The simproc-less approach
 
 Before writing a simproc, let us first see how one could approach the computation of `revRange` using only lemmas.
 
@@ -221,7 +219,7 @@ But we are trying not to rely on the definition of `revRange`.
   Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`.
   This is in general highly undesirable.
 
-### The definitional approach
+## The definitional approach
 
 In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
 The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a `Simp.DStep` instead of a `Simp.Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
@@ -247,7 +245,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 * The produced `rfl` proof could be heavy.
 * Only works when the evaluation is definitionally equal to to the original expression.
 
-### The propositional approach
+## The propositional approach
 
 A more general approach would be to manually construct the proof term we need to provide.
 In our case, we can do this in a recursive manner.
@@ -280,9 +278,9 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 **Cons**:
 * Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
 
-## Extras
+# Extras
 
-### dsimprocs
+## dsimprocs
 
 
 For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`).
@@ -321,13 +319,13 @@ dsimproc_decl myDSimproc (theExprToMatch _ _) := fun e ↦ do
 ```
 
 
-### How to handle a non-recursive definition
+## How to handle a non-recursive definition
 
 Write a type of partial computations that is recursive.
 
 <span style="color:red">**TODO(Paul)**</span>
 
-### How to discharge subgoals
+## How to discharge subgoals
 
 Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
 `simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be access by the user via `Simp.Methods` (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Simp.Methods` implements a function `discharge? : Expr → Option (Expr)` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Simp.Methods`, one can use `Simp.getMethods`.
@@ -364,7 +362,7 @@ example : Nat.factorization (2 * 3) = Nat.factorization 2 + Nat.factorization 3 
 
 <span style="color:red">**TODO(Paul)**</span>
 
-### How to match on numerals
+## How to match on numerals
 
 Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. The easiest case is perhaps that of `Nat` litterals. Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
 -
