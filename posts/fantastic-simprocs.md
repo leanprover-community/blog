@@ -156,7 +156,7 @@ example : (if 37 * 0 = 0 then 0 else bigComplicatedExpression) = 0 := by
   simp only [↓reduceIte]
 ```
 
-Notice that one could always replace `simp [↓reduceIte]` with `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter would simplify both branches of the `ite`, instead of merely the one that is actually relevant.
+Notice that `simp [↓reduceIte]` is equivalent to `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter simplifies inside both branches of the `ite`, instead of simplifying away the irrelevant one before passing to subexpressions.
 
 Internally, this simproc is a small metaprogram that does the following whenever an expression of the form `ite P a b` is encountered:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
