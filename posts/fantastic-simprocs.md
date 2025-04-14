@@ -162,7 +162,6 @@ Internally, this simproc is a small metaprogram that does the following whenever
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
 - If `P'` is `True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
 - If `P'` is `False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
-- Otherwise, let `simp` continue the search.
 
 ### Many more applications!
 
