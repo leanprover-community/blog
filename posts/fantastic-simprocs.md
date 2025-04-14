@@ -44,6 +44,7 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 ```
 
 > The order in which `simp` traverses an expression is relatively intricate.
+> As a simple approximation, simplification is performed from the inside-out.
 > See the next blog post for full details on the algorithm.
 
 > If you write `set_option trace.Meta.Tactic.simp true in example : MyGoal := by simp`, you will see the list of simplification steps `simp` performs on `Goal`.
