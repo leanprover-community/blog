@@ -53,21 +53,16 @@ The only such piece of data we explain in depth is the stage at which the proced
 
 The general rule of thumb is that postprocedures simplify from the inside-out, while preprocedures simplify from the outside-in.
 
-Roughly speaking, when acting on an expression `e`, `simp` does a combination of the following:
-- Run preprocedures, which may change `e`, then attempt to simplify subexpressions of `e`.
-- Run postprocedures *after* subexpressions of `e` have been simplified.
+Roughly speaking, when traversing an expression `e`, `simp` does the following in order:
+1. Run preprocedures on `e`;
+2. Traverse subexpressions of `e` (note that the preprocedures might have changed `e` by this point);
+3. Run postprocedures on `e`.
 
-These are recursively chained in a *simplification loop* as follows:
-1) First, check if there is a preprocedure that is applicable to `e`. If there is one, apply it and go back to step 1. Else go to step 2.
-2) Apply congruence results to create subproblems, and call `simp` on these.
-3) Once this is finished, check if there is a postprocedure that is applicable to `e`. If there is one, apply it and go back to step 1.
+This is called the *simplification loop*.
 
-<span style="color:red">**(Paul): This is how I *think* simp works.
-We should check it actually makes sense.**</span>
-
-Note that the above loop is merely an approximation of the actual simplification loop:
+The above loop is merely an approximation of the true simplification loop:
 Each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered.
-See the `continue` and `visit` constructors of the `Step` inductive type as described in the next section.
+See the `continue` and `visit` constructors of the `Step` inductive type as described in the next section for full details.
 
 ### `Step`
 
