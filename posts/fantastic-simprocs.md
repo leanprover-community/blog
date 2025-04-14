@@ -24,10 +24,15 @@ Then we will give some examples and non-examples of simprocs.
 
 # How simp works
 
-On an rough level, `simp` can be seen as recursively traversing the expression `e` (and its subexpressions), each time checking whether the expression matches the left hand side `LHS` of some simp lemma of the form `LHS = RHS`, and replacing `LHS` by `RHS` in the expression if it does match.
+`simp` is made of two components.
 
-> The order in which `simp` traverses an expression is relatively intricate: when run on an expression `e`, will first try to simplify `e`, then visit subxpressions, and then try to simplify `e` again.
-> In particular, by default `simp` only attempts to use lemmas on `e` *on the way out*.
+The first component is **rewriting rules**, aka **simplification procedures** or **simprocs**.
+Almost all the rewriting rules are lemmas that prove an equality and are tagged with `@[simp]` in eg Lean or Mathlib.
+A rewriting rule is characterised by its *left hand side* and *right hand side*.
+Eg for a lemma of the form `LHS = RHS`, this is `LHS` and `RHS` respectively.
+
+The second one is the **`simp` tactic**, which we will refer to simply as `simp`.
+When run on a goal `⊢ e`, `simp` iteratively looks for a subexpression of `e` that matches the left hand side of some rewriting rule, and replaces that subexpression with the right hand side of that rule.
 
 For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.fib 0 + 0) = 0`
 ```lean
@@ -38,7 +43,10 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 ⊢ True
 ```
 
-> To see what proof steps `simp` used, one can use `set_option trace.Meta.Tactic.simp true`, which prints some of this information in the infoview.
+> The order in which `simp` traverses an expression is relatively intricate.
+> See the next blog post for full details on the algorithm.
+
+> If you write `set_option trace.Meta.Tactic.simp true in example : MyGoal := by simp`, you will see the list of simplification steps `simp` performs on `Goal`.
 
 In this picture, simp lemmas are *fixed* rules to turn a left hand side of a *specific* shape into a right hand side of a *specific* shape.
 In contrast, simprocs are *flexible* rules to turn a left hand side of a *specific* shape into a right hand side of a shape *computed* from the left hand side.
