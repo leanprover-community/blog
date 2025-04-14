@@ -26,8 +26,8 @@ Then we will give some examples and non-examples of simprocs.
 
 `simp` is made of two components.
 
-The first component is **rewriting rules**, aka **simplification procedures** or **simprocs**.
-Almost all the rewriting rules are lemmas that prove an equality and are tagged with `@[simp]` in eg Lean or Mathlib.
+The first component is **rewriting rules**.
+Almost all rewriting rules are lemmas that prove an equality and are tagged with `@[simp]` in eg Lean or Mathlib.
 A rewriting rule is characterised by its *left hand side* and *right hand side*.
 Eg for a lemma of the form `LHS = RHS`, this is `LHS` and `RHS` respectively.
 
@@ -49,10 +49,26 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 
 > If you write `set_option trace.Meta.Tactic.simp true in example : MyGoal := by simp`, you will see the list of simplification steps `simp` performs on `Goal`.
 
-In this picture, simp lemmas are *fixed* rules to turn a left hand side of a *specific* shape into a right hand side of a *specific* shape.
-In contrast, simprocs are *flexible* rules to turn a left hand side of a *specific* shape into a right hand side of a shape *computed* from the left hand side.
-In this sense, they are *parametric simp lemmas*.
-To make the previous description a little more precise, the way `simp` works is by recursively traversing an expression `e` (and its subexpressions), and trying to match these with the "left hand side" of a simproc.
+# What is a simproc?
+
+Earlier, we said "almost all rewriting rules are lemmas".
+What about rewriting rules that are not lemmas?
+This is where simprocs enter the picture.
+
+A simproc is a program which, given an expression `LHS`, computes a new expression `RHS` and finds a proof of `LHS = RHS` on the fly.
+
+The concept of a simproc is genuinely more powerful than that of a simp lemma.
+Even though the right hand side of a lemma changes depending on its left hand side, it only does so via *syntactic substitution*.
+
+For example, the lemma `Nat.mul_add (a b c : Nat) : a * (b + c) = a * b + a * c` can be specialized to have right hand side `0 * b + 0 * c`, `a * b + a * (c + d)`, etc...
+But all these have *shape* `_ * _ + _ * _` and eg no value of `a`, `b`, `c` will make it have shape `_ * _ + _ * _ + _ * _`.
+
+With this in mind, simprocs are *parametric simp lemmas*.
+
+## Everything is a simproc
+
+As a very neat unification of concepts, it turns out that `simp` only ever handles simprocs.
+Every simp lemma is turned into a simproc before being fed to `simp`.
 
 # Examples of simprocs
 
