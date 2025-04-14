@@ -49,7 +49,7 @@ To make the previous description a little more precise, the way `simp` works is 
 
 ## Examples of simprocs
 
-In this section, we exemplify three simprocs through the following use cases:
+In this section, we exemplify four simprocs through the following use cases:
 * Computation
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
