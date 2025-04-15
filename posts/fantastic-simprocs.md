@@ -2,7 +2,7 @@
 author: 'Yaël Dillies, Paul Lezeau'
 category: 'Metaprogramming'
 date: 2025-03-29 12:33:00 UTC+00:00
-description: 'Brief introduction to simprocs and what they are useful for'
+description: 'Informal introduction to simprocs and what they are useful for'
 has_math: true
 link: ''
 slug: fantastic-simprocs
