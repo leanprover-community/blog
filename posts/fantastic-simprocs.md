@@ -172,6 +172,10 @@ example : (if FermatLastTheorem then 1 else 2) = 1 := by
 
 The down arrow `↓` in `simp only [↓reduceIte]` indicates that `reduceIte` is being called as a *preprocedure*.
 This means that `reduceIte` is run *before* the expressions `a` and `b` are simplified.
+
+> Recall that we said that, as a simple approximation, simplification is performed from the inside-out.
+> This is a concrete example where simplification happens outside-in.
+
 Concretely, `simp` needs only simplify one of the expressions `a` and `b`, as the other one is discarded upfront.
 For example, `↓reduceIte` allows `simp` to avoid touching `bigComplicatedExpression` at all in the following:
 ```
