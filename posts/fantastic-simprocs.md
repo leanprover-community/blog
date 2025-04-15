@@ -171,8 +171,8 @@ When presented with a left hand side of the form `Finset.Icc a b` where `a` and 
 The `reduceIte` simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplify to `True` or `False`.
 
 ```lean
-example : (if 37 * 0 then 1 else 2) = 1 := by
-  -- Works since `simp` can simplify `37 * 0` to `True`
+example : (if 37 * 0 = 0 then 1 else 2) = 1 := by
+  -- Works since `simp` can simplify `37 * 0 = 0` to `True`
   -- because it knows the lemma `mul_zero a : a * 0 = 0`.
   simp only [↓reduceIte]
 
@@ -202,7 +202,7 @@ example : (if 37 * 0 = 0 then 0 else bigComplicatedExpression) = 0 := by
   simp only [↓reduceIte]
 ```
 
-Notice that `simp [↓reduceIte]` is equivalent to `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter simplifies inside both branches of the `ite`, instead of simplifying away the irrelevant one before passing to subexpressions.
+Notice that `simp [↓reduceIte]` is ultimately equivalent to `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter simplifies inside both branches of the `ite`, instead of simplifying away the irrelevant one before passing to subexpressions.
 
 When presented with a left hand side of the form `ite P a b`, `reduceIte` does the following:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
