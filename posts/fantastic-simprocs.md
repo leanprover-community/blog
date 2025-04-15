@@ -207,7 +207,7 @@ Notice that `simp [↓reduceIte]` is equivalent to `simp [ite_cond_eq_true, ite_
 When presented with a left hand side of the form `ite P a b`, `reduceIte` does the following:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
 - If `P'` is `True` then return the right hand side `a` together with the proof `ite_cond_eq_true r` that `ite P a b = a`.
-- If `P'` is `False` then return the the right hand side `b` togethr with the proof `ite_cond_eq_false r` that `ite P a b = b`.
+- If `P'` is `False` then return the right hand side `b` together with the proof `ite_cond_eq_false r` that `ite P a b = b`.
 
 ## Many more applications!
 
