@@ -67,7 +67,7 @@ With this in mind, simprocs are *parametric simp lemmas*.
 
 ## Everything is a simproc
 
-As a very neat unification of concepts, it turns out that `simp` only ever handles simprocs.
+As a very neat unification of concepts, it turns out that `simp`'s implementation only ever handles simprocs.
 Every simp lemma is turned into a simproc before being fed to `simp`.
 
 # Examples of simprocs
