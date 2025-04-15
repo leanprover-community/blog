@@ -58,7 +58,7 @@ This is where simprocs enter the picture.
 A simproc is a program which, given an expression `LHS`, computes a new expression `RHS` and finds a proof of `LHS = RHS` on the fly.
 
 The concept of a simproc is genuinely more powerful than that of a simp lemma.
-Even though the right hand side of a lemma changes depending on its left hand side, it only does so via *syntactic substitution*.
+This is because the right hand side of a lemma changes only via *syntactic substitution*.
 
 For example, the lemma `Nat.mul_add (a b c : Nat) : a * (b + c) = a * b + a * c` can be specialized to have right hand side `0 * b + 0 * c`, `a * b + a * (c + d)`, etc...
 But all these have *shape* `_ * _ + _ * _` and eg no value of `a`, `b`, `c` will make it have shape `_ * _ + _ * _ + _ * _`.
