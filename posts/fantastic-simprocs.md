@@ -11,7 +11,7 @@ title: Fantastic Simprocs and Where to Find Them.
 type: text
 ---
 
-Lean core added support for custom simplification procedures, aka *simprocs*.
+Lean v4.6.0 (back in February 2024!) added support for custom simplification procedures, aka *simprocs*.
 This blog post is the first in a series of two aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
 
 <!-- TEASER_END -->
