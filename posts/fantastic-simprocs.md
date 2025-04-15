@@ -102,6 +102,18 @@ lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x 
 
 ## Computation
 
+Computations are an integral part of theorem proving, and as such there are many ways to perform them.
+For example, you will find that the `decide` tactic closes all the examples in this subsection.
+There are a few reasons why simprocs are interesting for computation regardless:
+* **`decide` relies on decidability instances**.
+  Not everything one may want to compute is decidable, and not every decidability instance is efficient.
+  In fact, most `Decidable` instances in Lean and Mathlib are very generic, and therefore unspecific and inefficient.
+  Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely the decidability machinery.
+* **`decide` cannot compute the right hand side**, given the left hand side only.
+  `decide` only works on goals that do not contain any metavariable.
+  This rules out using `decide` to discover out what a left hand side is equal to.
+  One would need to write down the right hand side we are looking for in order for `decide` to show that it's equal to the left hand side.
+
 ### The `Nat.reduceDvd` simproc
 
 The `Nat.reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
