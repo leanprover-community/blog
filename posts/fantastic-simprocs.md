@@ -111,7 +111,7 @@ There are a few reasons why simprocs are interesting for computation regardless:
 * **`decide` relies on decidability instances**.
   Not everything one may want to compute is decidable, and not every decidability instance is efficient.
   In fact, most `Decidable` instances in Lean and Mathlib are very generic, and therefore unspecific and inefficient.
-  Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely the decidability machinery.
+  Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely on the decidability machinery.
 * **`decide` cannot compute the right hand side**, given the left hand side only.
   `decide` only works on goals that do not contain any metavariable.
   This rules out using `decide` to discover out what a left hand side is equal to.
