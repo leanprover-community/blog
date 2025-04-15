@@ -227,12 +227,12 @@ The syntax to declare a dsimproc is rather to simprocs, with a small difference:
 To compute `revRange` using the dsimproc approach, we can do the following:
 ```lean
 dsimproc_decl revRangeCompute (revRange _) := fun e => do
-  --Extract the natural number from the expression
+  -- Extract the natural number from the expression
   let_expr revRange m ← e | return .continue
-  --Recover the natural number as a term of type `Nat`
+  -- Recover the natural number as a term of type `Nat`
   let some n ← Nat.fromExpr? m | return .continue
   let l := revRange n
-  --Convert the list to an `Expr`
+  -- Convert the list to an `Expr`
   return .visit <| Lean.toExpr l
 ```
 
@@ -256,7 +256,7 @@ private theorem revRangeInduct {n : ℕ} {l : List ℕ}
     (hl : revRange n = l) : revRange (n+1) = n :: l := by
   induction n with
   | zero => aesop
-  | succ n h => rw [←hl] ; rfl
+  | succ n h => rw [←hl]; rfl
 
 open Qq in
 simproc_decl revRangeComputeProp (revRange _) := fun e => do
@@ -277,7 +277,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 
 **Cons**:
 * Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
-
+* Simplifying `revRange n` for a big input numeral `n` might produce a large proof term. In this specific case, the size of the produced proof term will be linear in `n`.
 # Extras
 
 ## dsimprocs
