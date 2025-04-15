@@ -27,7 +27,7 @@ Then we will give some examples and non-examples of simprocs.
 `simp` is made of two components.
 
 The first component is **rewriting rules**.
-Almost all rewriting rules are lemmas that prove an equality and are tagged with `@[simp]` in eg Lean or Mathlib.
+Almost all rewriting rules are lemmas that prove an equality `=` or iff `↔ ` and are tagged with `@[simp]` in eg Lean or Mathlib.
 A rewriting rule is characterised by its *left hand side* and *right hand side*.
 Eg for a lemma of the form `LHS = RHS` or `LHS ↔ RHS`, this is `LHS` and `RHS` respectively.
 If a lemma proves `P` that is not of the form `_ = _` or `_ ↔ _`, it is turned into `P = True`.
