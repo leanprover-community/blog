@@ -73,9 +73,32 @@ Every simp lemma is turned into a simproc before being fed to `simp`.
 # Examples of simprocs
 
 In this section, we exemplify four simprocs through the following use cases:
-* Computation
 * Avoiding combinatorial explosion of lemmas
+* Computation
 * Performance optimisation
+
+## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
+
+The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
+
+```lean
+example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
+  simp only [existsAndEq]
+  -- Remaining goal: `⊢ p 5`
+
+example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
+  simp only [existsAndEq]
+  -- Remaining goal: `⊢ p 5 ∧ q 5`
+```
+
+When presented with a left hand side of the form `∃ x, P x, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
+- Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
+- If an equality is found, construct a proof that `∀ x, p x → x = a`.
+- Return the right hand side `P a` together with the proof obtained from the following lemma:
+```lean
+lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
+    (∃ x, p x) = p a
+```
 
 ## Computation
 
@@ -124,29 +147,6 @@ example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
 When presented with a left hand side of the form `Finset.Icc a b` where `a` and `b` are natural numbers, `Finset.Icc_ofNat_ofNat` does the following:
 * Check that `a` and `b` are numerals.
 * compute the expression `{a, ..., b}` recursively on `b`, along with the proof that it equals `Finset.Icc a b`.
-
-## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
-
-The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
-
-```lean
-example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
-  simp only [existsAndEq]
-  -- Remaining goal: `⊢ p 5`
-
-example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
-  simp only [existsAndEq]
-  -- Remaining goal: `⊢ p 5 ∧ q 5`
-```
-
-When presented with a left hand side of the form `∃ x, P x, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
-- Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
-- If an equality is found, construct a proof that `∀ x, p x → x = a`.
-- Return the right hand side `P a` together with the proof obtained from the following theorem:
-```lean
-theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
-    (∃ x, p x) = p a
-```
 
 ## Performance optimisation: The `reduceIte` simproc
 
