@@ -100,6 +100,9 @@ lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x 
     (∃ x, p x) = p a
 ```
 
+> Warning: The `existsAndEq` simproc is under active development and the underlying algorithm might change in the future.
+> The above description is only accurate at the time of writing (April 2025).
+
 ## Computation
 
 Computations are an integral part of theorem proving, and as such there are many ways to perform them.
