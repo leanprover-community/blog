@@ -233,7 +233,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
   let some n ← Nat.fromExpr? m | return .continue
   let l := revRange n
   --Convert the list to an `Expr`
-  return .visit <| ToExpr.toExpr l
+  return .visit <| Lean.toExpr l
 ```
 
 **Pros**:
