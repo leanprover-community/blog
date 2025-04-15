@@ -77,26 +77,7 @@ In this section, we exemplify four simprocs through the following use cases:
 * Avoiding combinatorial explosion of lemmas
 * Performance optimisation
 
-## Computation:
-
-### The `Finset.Icc_ofNat_ofNat` simproc
-
-The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
-
-```lean
-example : Finset.Icc 1 0 = ∅ := by
-  simp only [Icc_ofNat_ofNat]
-
-example : Finset.Icc 1 1 = {1} := by
-  simp only [Icc_ofNat_ofNat]
-
-example : Finset.Icc 1 4 = {1, 2, 3, 4} := by
-  simp only [Icc_ofNat_ofNat]
-
-example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
-  -- fails: the bounds of the interval aren't numerals!
-  simp only [Icc_ofNat_ofNat]
-```
+## Computation
 
 ### The `Nat.reduceDvd` simproc
 
@@ -121,6 +102,25 @@ Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expre
 - Compute `b % a`.
 - If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
 - If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
+
+### The `Finset.Icc_ofNat_ofNat` simproc
+
+The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
+
+```lean
+example : Finset.Icc 1 0 = ∅ := by
+  simp only [Icc_ofNat_ofNat]
+
+example : Finset.Icc 1 1 = {1} := by
+  simp only [Icc_ofNat_ofNat]
+
+example : Finset.Icc 1 4 = {1, 2, 3, 4} := by
+  simp only [Icc_ofNat_ofNat]
+
+example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
+  -- fails: the bounds of the interval aren't numerals!
+  simp only [Icc_ofNat_ofNat]
+```
 
 ## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
