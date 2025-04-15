@@ -95,10 +95,10 @@ When presented with a left hand side of the form `∃ x, P x, where `P x` is of 
 - Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
 - If an equality is found, construct a proof that `∀ x, p x → x = a`.
 - Return the right hand side `P a` together with the proof obtained from the following lemma:
-```lean
-lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
-    (∃ x, p x) = p a
-```
+  ```lean
+  lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
+      (∃ x, p x) = p a
+  ```
 
 > Warning: The `existsAndEq` simproc is under active development and the underlying algorithm might change in the future.
 > The above description is only accurate at the time of writing (April 2025).
