@@ -143,7 +143,9 @@ When presented with a left hand side of the form `a ∣ b` where `a` and `b` are
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
-The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form `Finset.Icc a b` where `a` and `b` are numerals, and simplify them to an explicit set.
+`Finset.Icc a b` for `a` and `b` in a partial order is the finite set of elements lying between `a` and `b`.
+
+The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/search.html?q=Finset.Icc) where `a` and `b` are numerals, and simplify them to an explicit set.
 
 ```lean
 example : Finset.Icc 1 0 = ∅ := by
