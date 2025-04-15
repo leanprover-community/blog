@@ -91,7 +91,7 @@ example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
   -- Remaining goal: `⊢ p 5 ∧ q 5`
 ```
 
-When presented with a left hand side of the form `∃ x, P x, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
+When presented with a left hand side of the form `∃ x, P x`, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
 - Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
 - If an equality is found, construct a proof that `∀ x, p x → x = a`.
 - Return the right hand side `P a` together with the proof obtained from the following lemma:
