@@ -115,7 +115,7 @@ There are a few reasons why simprocs are interesting for computation regardless:
   Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely on the decidability machinery.
 * **`decide` cannot compute the right hand side**, given the left hand side only.
   `decide` only works on goals that do not contain any metavariable.
-  This rules out using `decide` to discover out what a left hand side is equal to.
+  This rules out using `decide` to find out what a left hand side is equal to.
   One would need to write down the right hand side we are looking for in order for `decide` to show that it's equal to the left hand side.
 
 ### The `Nat.reduceDvd` simproc
