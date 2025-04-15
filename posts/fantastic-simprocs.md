@@ -29,7 +29,8 @@ Then we will give some examples and non-examples of simprocs.
 The first component is **rewriting rules**.
 Almost all rewriting rules are lemmas that prove an equality and are tagged with `@[simp]` in eg Lean or Mathlib.
 A rewriting rule is characterised by its *left hand side* and *right hand side*.
-Eg for a lemma of the form `LHS = RHS`, this is `LHS` and `RHS` respectively.
+Eg for a lemma of the form `LHS = RHS` or `LHS ↔ RHS`, this is `LHS` and `RHS` respectively.
+If a lemma proves `P` that is not of the form `_ = _` or `_ ↔ _`, it is turned into `P = True`.
 
 The second one is the **`simp` tactic**, which we will refer to simply as `simp`.
 When run on a goal `⊢ e`, `simp` iteratively looks for a subexpression of `e` that matches the left hand side of some rewriting rule, and replaces that subexpression with the right hand side of that rule.
