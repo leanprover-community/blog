@@ -27,7 +27,7 @@ Then we will give some examples and non-examples of simprocs.
 `simp` is made of two components.
 
 The first component is **rewriting rules**.
-Almost all rewriting rules are lemmas that prove an equality `=` or iff `↔ ` and are tagged with `@[simp]` in eg Lean or Mathlib.
+Almost all rewriting rules are lemmas that prove an equality `=` or iff `↔ ` and are tagged with `@[simp]` in e.g. Lean or Mathlib.
 A rewriting rule is characterised by its *left hand side* and *right hand side*.
 Eg for a lemma of the form `LHS = RHS` or `LHS ↔ RHS`, this is `LHS` and `RHS` respectively.
 If a lemma proves `P` that is not of the form `_ = _` or `_ ↔ _`, it is turned into `P = True`.
@@ -62,7 +62,7 @@ The concept of a simproc is genuinely more powerful than that of a simp lemma.
 This is because the right hand side of a lemma changes only via *syntactic substitution*.
 
 For example, the lemma `Nat.mul_add (a b c : Nat) : a * (b + c) = a * b + a * c` can be specialized to have right hand side `0 * b + 0 * c`, `a * b + a * (c + d)`, etc...
-But all these have *shape* `_ * _ + _ * _` and eg no value of `a`, `b`, `c` will make it have shape `_ * _ + _ * _ + _ * _`.
+But all these have *shape* `_ * _ + _ * _` and e.g. no value of `a`, `b`, `c` will make it have shape `_ * _ + _ * _ + _ * _`.
 
 With this in mind, simprocs are *modular simp lemmas*.
 
@@ -218,4 +218,4 @@ In the second blog post, we will see how to build step by step a simproc for com
 The current design of simprocs comes with a few restrictions that are worth keeping in mind:
 * By definition, **a simproc can only be used in `simp`** (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "modular lemma" could be useful in other rewriting tactics like `rw`.
 * **One cannot provide arguments to a simproc to restrict the occurrences it rewrites**.
-  In contrast, this is possible for lemmas in all rewriting tactics: eg `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
+  In contrast, this is possible for lemmas in all rewriting tactics: e.g. `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
