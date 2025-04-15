@@ -11,8 +11,10 @@ title: What is a simproc?
 type: text
 ---
 
-The goal of this sequel to (TODO: insert link to first part once we have it), is to show how one can go about writing a simproc.
-[Add here: target audience, ie. people who already have some exposure to metaprograms and link references/tutorials for this stuff]
+In *Fantastic Simprocs and Where to Find Them* (TODO: insert link to first part once we have it), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma. In this sequel, we give a more detailed exposition of the inner workings of the simp tactic and how one can go about creating new simprocs.
+> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad. Some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
+> <span style="color:red">**TODO(Paul)**</span>: add link to some ressources.
+
 
 <!-- TEASER_END -->
 
@@ -37,7 +39,7 @@ When calling `simp` in a proof, we give it a *simp context*.
 This is made of a few different things, but for our purposes think of it as the set of lemmas/simprocs `simp` is allowed to rewrite with, namely the default simp lemmas/simprocs plus the lemmas/simprocs added explicitly minus the lemmas/simprocs removed explicitly.
 For example, `simp [foo, -bar]` means "Simplify using the standard simp lemmas/simprocs except `bar`, with `foo` added".
 
-A perhaps surprising fact is that every simp lemma is internally turned into a simproc for `simp`'s consumption. <span style="color:red">**(Paul): is this actually true?**</span>.
+A perhaps surprising fact is that every simp lemma is internally turned into a simproc for `simp`'s consumption.
 From then on, we will refer to simp lemmas/simprocs as *procedures*.
 
 Each procedure in a simp context comes annotated with extra data, such as priority.
@@ -142,7 +144,7 @@ simproc mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
 
-When calling a simproc in `simp` (if it is not in the standard simp set), one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]`.
+When calling a simproc in `simp` (if it is not in the standard simp set), one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]` (note that this also works when passing lemmas to `simp`!)
 
 To add `mySimproc` to the standard simp set as a preprocedure (recall that postprocedure is the default), do
 ```lean
@@ -182,7 +184,7 @@ Note two features of `revRange` that one should *not* expect from all functions 
 
 Let's now present three approaches to evaluating `revRange` on numerals:
 * The baseline **simproc-less approach** which only uses lemmas and no simproc.
-* The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl`.
+* The **(d)simproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl` (here the "d" stands for "definitional equality").
 * The **simproc approach**, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.
 
 ## The simproc-less approach
@@ -282,6 +284,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 
 ## dsimprocs
 
+<span style="color:red">**TODO(Paul)** add the prose to this section </span>
 
 For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`).
 One may therefore replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
