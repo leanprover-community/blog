@@ -96,12 +96,11 @@ example : a ∣ a * b := by
   simp only [Nat.reduceDvd] --fails
 ```
 
-Here the metaprogram run by `Nat.reduceDvd` does the following whenever an expression of the form `a ∣ b` (where `a, b` are natural numbers) is encountered:
-- Check that `∣` is the usual natural number division.
+When presented with a left hand side of the form `a ∣ b` where `a` and `b` are natural numbers, `Nat.reduceDvd` does the following:
 - Check that `a` and `b` are numerals.
 - Compute `b % a`.
-- If this quantity is zero, then return `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
-- If this quantity isn't zero, then return `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
+- If `b % a` is zero, then return the right hand side `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl`.
+- If `b % a` isn't zero, then return the right hand side `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl`.
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
@@ -122,6 +121,10 @@ example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
   simp only [Icc_ofNat_ofNat]
 ```
 
+When presented with a left hand side of the form `Finset.Icc a b` where `a` and `b` are natural numbers, `Finset.Icc_ofNat_ofNat` does the following:
+* Check that `a` and `b` are numerals.
+* compute the expression `{a, ..., b}` recursively on `b`, along with the proof that it equals `Finset.Icc a b`.
+
 ## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
 The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
@@ -136,13 +139,13 @@ example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
   -- Remaining goal: `⊢ p 5 ∧ q 5`
 ```
 
-Roughly speaking, the way this metaprogram operates is a follows: whenever an expression of the form `∃ a, P a` with `P a = Q ∧ R`  is encountered:
-- Recursively traverse the expression of the predicate inside the existential quantifier to try and detect an equality `a = a'` by splitting any `∧` that is found along the way into its components.
-- If an equality is found, construct a proof that `P a` implies `a = a'`.
-- Construct a proof that `(∃ a, P a) = P a'` using the following theorem
+When presented with a left hand side of the form `∃ x, P x, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
+- Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
+- If an equality is found, construct a proof that `∀ x, p x → x = a`.
+- Return the right hand side `P a` together with the proof obtained from the following theorem:
 ```lean
-theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ b, p b → a = b) :
-    (∃ b, p b) = p a
+theorem exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
+    (∃ x, p x) = p a
 ```
 
 ## Performance optimisation: The `reduceIte` simproc
@@ -183,10 +186,10 @@ example : (if 37 * 0 = 0 then 0 else bigComplicatedExpression) = 0 := by
 
 Notice that `simp [↓reduceIte]` is equivalent to `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter simplifies inside both branches of the `ite`, instead of simplifying away the irrelevant one before passing to subexpressions.
 
-Internally, this simproc is a small metaprogram that does the following whenever an expression of the form `ite P a b` is encountered:
+When presented with a left hand side of the form `ite P a b`, `reduceIte` does the following:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
-- If `P'` is `True` then return the simplified expression `a` and the proof `ite_cond_eq_true r` that `ite P a b = a`
-- If `P'` is `False` then return the simplified expression `b` and the proof `ite_cond_eq_false r` that `ite P a b = b`
+- If `P'` is `True` then return the right hand side `a` together with the proof `ite_cond_eq_true r` that `ite P a b = a`.
+- If `P'` is `False` then return the the right hand side `b` togethr with the proof `ite_cond_eq_false r` that `ite P a b = b`.
 
 ## Many more applications!
 
