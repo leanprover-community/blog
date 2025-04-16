@@ -266,7 +266,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
   let some n ← Nat.fromExpr? m | return .continue
   let rec go (n : ℕ) : (l : Q(List ℕ)) × Q(revRange $n = $l) :=
     match n with
-    | 0 => ⟨q(([] : List ℕ)), q(rfl)⟩
+    | 0 => ⟨q(([] : List ℕ)), q(revRange_zero)⟩
     | n + 1 =>
       let ⟨l, pf⟩ := go n
       ⟨q($n :: $l), q(revRange_succ_eq_of_revRange_eq $pf)⟩
