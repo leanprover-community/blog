@@ -254,7 +254,7 @@ In our case, we can do this in a recursive manner.
 ```
 open Qq
 
-private theorem revRangeInduct {n : ℕ} {l : List ℕ}
+private theorem revRange_succ_eq_of_revRange_eq {n : ℕ} {l : List ℕ}
     (hl : revRange n = l) : revRange (n+1) = n :: l := by
   induction n with
   | zero => aesop
@@ -269,7 +269,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
     | 0 => ⟨q(([] : List ℕ)), q(rfl)⟩
     | n + 1 =>
       let ⟨l, pf⟩ := go n
-      ⟨q($n :: $l), q(revRangeInduct $pf)⟩
+      ⟨q($n :: $l), q(revRange_succ_eq_of_revRange_eq $pf)⟩
   let ⟨l, pf⟩ := go n
   return .visit { expr := l, proof? := pf }
 ```
