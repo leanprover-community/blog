@@ -338,19 +338,21 @@ In the following example, we implement a simproc that simplifies expressions of 
 ```lean
 open Qq
 
-simproc_decl factorizationMul (Nat.factorization (_ * _)) := fun e => do
-  let ⟨1, ~q(ℕ →₀ ℕ), ~q(Nat.factorization ($a * $b))⟩ ← inferTypeQ e | return .continue
-  -- Try to discharge the goal `a ≠ 0`
-  let some ha ← ((← getMethods).discharge? q($a ≠ 0)) | return .continue
-  --Convert the resulting proof to a `Qq` expression for convenience (see #23510)
-  let ⟨0, ~q($a ≠ 0), ~q($ha)⟩ ← inferTypeQ ha | return .continue
-  -- Try to discharge the goal `b ≠ 0`
-  let some hb ← ((← getMethods).discharge? q($b ≠ 0)) | return .continue
-  --Convert the resulting proof to a `Qq` expression for convenience
-  let ⟨0, ~q($b ≠ 0), ~q($hb)⟩ ← inferTypeQ hb | return .continue
-  let e' := q((Nat.factorization $a) + (Nat.factorization $b))
-  let pf := q(Nat.factorization_mul $ha $hb)
-  return .visit { expr := e', proof? := pf }
+simproc_decl factorizationMul (Nat.factorization (_ * _)) := .ofQ fun u α e => do
+  match u, α, e with
+  | 1, ~q(ℕ →₀ ℕ), ~q(Nat.factorization ($a * $b)) =>
+    -- Try to discharge the goal `a ≠ 0`
+    let some ha ← ((← getMethods).discharge? q($a ≠ 0)) | return .continue
+    --Convert the resulting proof to a `Qq` expression for convenience (see #23510)
+    let ⟨0, ~q($a ≠ 0), ~q($ha)⟩ ← inferTypeQ ha | return .continue
+    -- Try to discharge the goal `b ≠ 0`
+    let some hb ← ((← getMethods).discharge? q($b ≠ 0)) | return .continue
+    --Convert the resulting proof to a `Qq` expression for convenience
+    let ⟨0, ~q($b ≠ 0), ~q($hb)⟩ ← inferTypeQ hb | return .continue
+    let e' := q((Nat.factorization $a) + (Nat.factorization $b))
+    let pf := q(Nat.factorization_mul $ha $hb)
+    return .visit { expr := e', proof? := pf }
+  | _, _, _ => return .continue
 
 set_option trace.Meta.Tactic.simp true in
 example : Nat.factorization (2 * 3) = Nat.factorization 2 + Nat.factorization 3 := by
