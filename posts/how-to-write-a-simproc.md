@@ -336,7 +336,9 @@ Often, when applying a theorem, we may need to provide additional proof terms fo
 In the following example, we implement a simproc that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
 
 ```lean
-open Qq
+import Mathlib
+
+open Qq Lean.Meta.Simp
 
 simproc_decl factorizationMul (Nat.factorization (_ * _)) := .ofQ fun u α e => do
   match u, α, e with
