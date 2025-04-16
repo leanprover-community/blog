@@ -355,14 +355,10 @@ simproc_decl factorizationMul (Nat.factorization (_ * _)) := .ofQ fun u α e => 
   | _, _, _ => return .continue
 
 set_option trace.Meta.Tactic.simp true in
-example : Nat.factorization (2 * 3) = Nat.factorization 2 + Nat.factorization 3 := by
-  /-
-  [Meta.Tactic.simp.rewrite] eq_self:1000:
-      Nat.factorization 2 + Nat.factorization 3 = Nat.factorization 2 + Nat.factorization 3
-    ==>
-      True
-  -/
+example : Nat.factorization (2 * 3) = fun₀ | 2 => 1 | 3 => 1 := by
   simp (disch := decide) only [factorizationMul]
+  guard_target = Nat.factorization 2 + Nat.factorization 3 = fun₀ | 2 => 1 | 3 => 1
+  sorry
 ```
 
 <span style="color:red">**TODO(Paul)**</span>
