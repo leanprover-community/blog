@@ -245,7 +245,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 **Cons**:
 * The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
 * The produced `rfl` proof could be heavy.
-* Only works when the evaluation is definitionally equal to to the original expression.
+* Only works when the evaluation and conversion back to an expression is definitionally equal to to the original expression.
 
 ## The propositional approach
 
