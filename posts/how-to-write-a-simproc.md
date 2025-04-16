@@ -223,7 +223,7 @@ But we are trying not to rely on the definition of `revRange`.
 
 ## The definitional approach
 
-In cases where the evaluation is definitionally equal to to the original expression, one may write a dsimproc instead of a simproc.
+In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
 The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a `Simp.DStep` instead of a `Simp.Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
 To compute `revRange` using the dsimproc approach, we can do the following:
@@ -245,7 +245,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 **Cons**:
 * The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
 * The produced `rfl` proof could be heavy.
-* Only works when the evaluation and conversion back to an expression is definitionally equal to to the original expression.
+* Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.
 
 ## The propositional approach
 
