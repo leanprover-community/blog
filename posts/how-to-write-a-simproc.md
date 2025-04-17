@@ -14,9 +14,8 @@ type: text
 This is the second blog post in a series of two.
 In [the first blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
 In this sequel, we give a more detailed exposition of the inner workings of the simp tactic and how one can go about creating new simprocs.
-> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad.
+> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad (for those that don't, the book [Metaprogramming in Lean 4](https://leanprover-community.github.io/lean4-metaprogramming-book/) is a great introduction to the topic)
 > Some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
-> <span style="color:red">**TODO(Paul)**</span>: add link to some ressources.
 
 <!-- TEASER_END -->
 
@@ -184,7 +183,7 @@ Note two features of `revRange` that one should *not* expect from all functions 
 * `revRange` is definitionally equal to what we want to unfold it to.
   This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
-  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
+  * We could actually write a *(d)simproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
     Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 Let's now present three approaches to evaluating `revRange` on numerals:
@@ -245,6 +244,8 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
   return .visit <| Lean.toExpr l
 ```
 
+For a bit more on dsimprocs, see the extras below.
+
 **Pros**:
 * Requires writing a single simproc.
 * Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression manually in the meta world.
@@ -295,10 +296,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 
 ## Dsimprocs
 
-<span style="color:red">**TODO(Paul)** add the prose to this section </span>
-
-For simplification steps which are definitional, there is no need to provide a proof (it is always `rfl`).
-One may therefore replace each occurrence of `Result` in the definition of `Step` by `Expr` to obtain `DStep`:
+As promised earlier, we now give a bit more detail on dsimprocs. These are extremely similar to simprocs; the only real difference being that one is more constrained on the expression that is ouptuted, since it has to be defeq to the original one. In particular, there is no need to provide a proof, since it is always `rfl`! This means we can also simplify the structures we're using. For example, `Step` becomes `DStep`, which corresponds to replacing each occurrence of `Result` in the definition of `Step` by `Expr`:
 ```lean
 inductive DStep where
   /-- Return expression without visiting any subexpressions. -/
@@ -316,28 +314,14 @@ inductive DStep where
   | continue (e? : Option Expr := none)
   deriving Inhabited, Repr
 ```
+Note: The above snippet is a simplification and the constructors as shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
 
-The type of a dsimproc is
+Thus, the type of a dsimproc is
 ```lean
 abbrev DSimproc := Expr → SimpM DStep
 ```
 
-Note: The above snippet is a simplification and the constructors as shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
-
 <span style="color:red">**(Yaël): Why is there a mismatch in docstrings between `Step.continue` and `DStep.continue`? [Zulip](https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/Simp.2EStep.2Econtinue.20vs.20Simp.2EDStep.2Econtinue/with/509056271)**</span>
-
-To declare a `dsimproc`
-```lean
-dsimproc_decl myDSimproc (theExprToMatch _ _) := fun e ↦ do
-  write_dsimproc_here
-```
-
-
-## How to handle a non-recursive definition
-
-Write a type of partial computations that is recursive.
-
-<span style="color:red">**TODO(Paul)**</span>
 
 ## How to discharge subgoals
 
@@ -374,11 +358,18 @@ example : Nat.factorization (2 * 3) = fun₀ | 2 => 1 | 3 => 1 := by
   sorry
 ```
 
-<span style="color:red">**TODO(Paul)**</span>
-
 ## How to match on numerals
 
 Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. The easiest case is perhaps that of `Nat` litterals. Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
--
+- [`Lean.Expr.rawNatLit?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc).
+- [`Lean.Expr.natLit!`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc)
+- [`Lean.Expr.nat?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc)
+- [`Nat.fromExpr?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc)
+
+<span style="color:red">**TODO(Paul)**: Let's explain the differences, and show some examples of where behaviour differs. </span>
+
+## How to handle a non-recursive definition
+
+Write a type of partial computations that is recursive.
 
 <span style="color:red">**TODO(Paul)**</span>
