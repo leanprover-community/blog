@@ -232,7 +232,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
   -- Extract the natural number from the expression
   let_expr revRange m ← e | return .continue
   -- Recover the natural number as a term of type `Nat`
-  let some n ← Nat.fromExpr? m | return .continue
+  let some n := m.nat? | return .continue
   let l := revRange n
   -- Convert the list to an `Expr`
   return .visit <| Lean.toExpr l
