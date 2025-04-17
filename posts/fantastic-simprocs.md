@@ -80,7 +80,7 @@ In this section, we exemplify four simprocs through the following use cases:
 
 ## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-The `existsAndEq` simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
+The [`existsAndEq`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=existsAndEq#doc) simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
 
 ```lean
 example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
@@ -120,7 +120,7 @@ There are a few reasons why simprocs are interesting for computation regardless:
 
 ### The `Nat.reduceDvd` simproc
 
-The `Nat.reduceDvd` simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
+The [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
 
 ```lean
 example : 3 ∣ 9 := by
@@ -145,7 +145,7 @@ When presented with a left hand side of the form `a ∣ b` where `a` and `b` are
 
 `Finset.Icc a b` for `a` and `b` in a partial order is the finite set of elements lying between `a` and `b`.
 
-The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/search.html?q=Finset.Icc) where `a` and `b` are numerals, and simplify them to an explicit set.
+The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc) where `a` and `b` are numerals, and simplify them to an explicit set.
 
 ```lean
 example : Finset.Icc 1 0 = ∅ := by
@@ -168,7 +168,7 @@ When presented with a left hand side of the form `Finset.Icc a b` where `a` and 
 
 ## Performance optimisation: The `reduceIte` simproc
 
-The `reduceIte` simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplify to `True` or `False`.
+The [`reduceIte`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=reduceIte#doc) simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplify to `True` or `False`.
 
 ```lean
 example : (if 37 * 0 = 0 then 1 else 2) = 1 := by
@@ -211,7 +211,7 @@ When presented with a left hand side of the form `ite P a b`, `reduceIte` does t
 
 ## Many more applications!
 
-In the second blog post, we will see how to build step by step a simproc for computing a variant of `List.range` when the parameter is a numeral.
+In the second blog post, we will see how to build step by step a simproc for computing a variant of [`List.range`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=List.range#doc) when the parameter is a numeral.
 
 # A few caveats
 
