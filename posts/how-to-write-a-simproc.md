@@ -228,6 +228,8 @@ But we are trying not to rely on the definition of `revRange`.
 In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
 The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a [`DStep`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DStep#doc) instead of a `Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
+<span style="color:red">**TODO**: We were explaining `DStep` before, but now it comes after.</span>
+
 To compute `revRange` using the dsimproc approach, we can do the following:
 ```lean
 dsimproc_decl revRangeCompute (revRange _) := fun e => do
