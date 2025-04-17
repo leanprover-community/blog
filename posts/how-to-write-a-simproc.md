@@ -14,9 +14,9 @@ type: text
 This is the second blog post in a series of two.
 In [the first blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
 In this sequel, we give a more detailed exposition of the inner workings of the simp tactic and how one can go about creating new simprocs.
-> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad. Some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
+> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad.
+> Some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
 > <span style="color:red">**TODO(Paul)**</span>: add link to some ressources.
-
 
 <!-- TEASER_END -->
 
@@ -68,14 +68,16 @@ See the `continue` and `visit` constructors of the `Step` inductive type as desc
 
 ## `Step`
 
-[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop. At any given point, we can do three things:
+[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop.
+At any given point, we can do three things:
 1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
 2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
 3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
 
 Note that the 2 and 3 are the same for `post` procedures.
 
-Let's now look at this more formally. To begin, `simp` has a custom structure to describe the result of a procedure called [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc):
+Let's now look at this more formally.
+To begin, `simp` has a custom structure to describe the result of a procedure called [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc):
 ```lean
 structure Result where
   expr   : Expr
@@ -153,7 +155,8 @@ To add `mySimproc` to the standard simp set as a preprocedure (recall that postp
 simproc ↓ mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
-Note that being a pre/postprocedure is a property of simprocs *in a simp set*, not of bare simprocs. Therefore, there is no corresponding `simproc_decl ↓` syntax.
+Note that being a pre/postprocedure is a property of simprocs *in a simp set*, not of bare simprocs.
+Therefore, there is no corresponding `simproc_decl ↓` syntax.
 
 # Simproc walkthrough
 
@@ -247,7 +250,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 * Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression in the meta world.
 
 **Cons**:
-* The expression to be evaluated is traversed twice: Once to create its evaluation, then once more in the typechecking of the proof by `rfl`.
+* The function needs to be computable to be evaluated in the meta world.
 * The produced `rfl` proof could be heavy.
 * Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.
 
@@ -283,10 +286,12 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 
 **Cons**:
 * Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
-* Simplifying `revRange n` for a big input numeral `n` might produce a large proof term. In this specific case, the size of the produced proof term will be linear in `n`.
+* Simplifying `revRange n` for a big input numeral `n` might produce a large proof term.
+  In this specific case, the size of the produced proof term will be linear in `n`.
+
 # Extras
 
-## dsimprocs
+## Dsimprocs
 
 <span style="color:red">**TODO(Paul)** add the prose to this section </span>
 
