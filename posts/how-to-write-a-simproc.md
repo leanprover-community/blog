@@ -283,6 +283,8 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 
 **Pros**:
 * Works regardless of definitional equalities.
+  See [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) introduced in [the previous blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/) for another compelling example:
+  `a ∣ b` is *not* defined as `a % b = 0`, yet the `Nat.reduceDvd` simproc can decide `a ∣ b` by computing `a % b = 0`.
 
 **Cons**:
 * Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
