@@ -66,14 +66,14 @@ See the `continue` and `visit` constructors of the `Step` inductive type as desc
 
 ## `Step`
 
-`Step` is the type that represents a single step in the simplification loop. At any given point, we can do three things:
+[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop. At any given point, we can do three things:
 1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
 2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
 3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
 
 Note that the 2 and 3 are the same for `post` procedures.
 
-Let's now look at this more formally. To begin, `simp` has a custom structure to describe the result of a procedure called `Result`:
+Let's now look at this more formally. To begin, `simp` has a custom structure to describe the result of a procedure called [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc):
 ```lean
 structure Result where
   expr   : Expr
@@ -111,13 +111,13 @@ inductive Step where
 
 ## The `SimpM` monad
 
-`SimpM` is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
+[`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
 In particular this also captures the `MetaM` context.
 
 ## `Simproc`s
 
 A simproc takes in an expression and outputs a simplification step, possibly after modifying the current simp state (e.g. by adding new goals to be closed by the discharger).
-This behavior is formally encapsulated by the following type:
+This behavior is formally encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
 ```lean
 abbrev Simproc  := Expr → SimpM  Step
 ```
@@ -224,7 +224,7 @@ But we are trying not to rely on the definition of `revRange`.
 ## The definitional approach
 
 In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
-The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a `Simp.DStep` instead of a `Simp.Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
+The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a [`DStep`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DStep#doc) instead of a `Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
 To compute `revRange` using the dsimproc approach, we can do the following:
 ```lean
@@ -331,9 +331,9 @@ Write a type of partial computations that is recursive.
 ## How to discharge subgoals
 
 Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be access by the user via `Simp.Methods` (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Simp.Methods` implements a function `discharge? : Expr → Option (Expr)` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Simp.Methods`, one can use `Simp.getMethods`.
+`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be access by the user via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc) (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
 
-In the following example, we implement a simproc that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
+In the following example, we implement a simproc for [`Nat.factorization`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc) that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
 
 ```lean
 import Mathlib
