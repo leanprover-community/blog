@@ -247,10 +247,10 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 
 **Pros**:
 * Requires writing a single simproc.
-* Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression in the meta world.
+* Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression manually in the meta world.
 
 **Cons**:
-* The function needs to be computable to be evaluated in the meta world.
+* The function needs to be computable to be evaluated automatically in the meta world.
 * The produced `rfl` proof could be heavy.
 * Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.
 
