@@ -27,7 +27,7 @@ Then we will give some examples and non-examples of simprocs.
 `simp` is made of two components.
 
 The first component is **rewriting rules**.
-Almost all rewriting rules are lemmas that prove an equality `=` or iff `↔ ` and are tagged with `@[simp]` in e.g. Lean or Mathlib.
+Almost all rewriting rules are lemmas that prove an equality `=` or iff `↔` and are tagged with `@[simp]` in e.g. Lean or Mathlib.
 A rewriting rule is characterised by its *left hand side* and *right hand side*.
 Eg for a lemma of the form `LHS = RHS` or `LHS ↔ RHS`, this is `LHS` and `RHS` respectively.
 If a lemma proves `P` that is not of the form `_ = _` or `_ ↔ _`, it is turned into `P = True`.
@@ -138,8 +138,8 @@ example : a ∣ a * b := by
 When presented with a left hand side of the form `a ∣ b` where `a` and `b` are natural numbers, `Nat.reduceDvd` does the following:
 - Check that `a` and `b` are numerals.
 - Compute `b % a`.
-- If `b % a` is zero, then return the right hand side `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl` that `b % a = 0 = True`.
-- If `b % a` isn't zero, then return the right hand side `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl` that `b % a = 0 = False`.
+- If `b % a` is zero, then return the right hand side `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl` that `(b % a = 0) = True`.
+- If `b % a` isn't zero, then return the right hand side `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl` that `(b % a = 0) = False`.
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
@@ -168,7 +168,7 @@ When presented with a left hand side of the form `Finset.Icc a b` where `a` and 
 
 ## Performance optimisation: The `reduceIte` simproc
 
-The [`reduceIte`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=reduceIte#doc) simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplify to `True` or `False`.
+The [`reduceIte`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=reduceIte#doc) simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplifies to `True` or `False`.
 
 ```lean
 example : (if 37 * 0 = 0 then 1 else 2) = 1 := by
