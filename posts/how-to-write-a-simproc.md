@@ -183,12 +183,12 @@ Note two features of `revRange` that one should *not* expect from all functions 
 * `revRange` is definitionally equal to what we want to unfold it to.
   This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
-  * We could actually write a *(d)simproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
+  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
     Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 Let's now present three approaches to evaluating `revRange` on numerals:
 * The baseline **simproc-less approach** which only uses lemmas and no simproc.
-* The **(d)simproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl` (here the "d" stands for "definitional equality").
+* The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl` (here the "d" stands for "definitional equality").
 * The **simproc approach**, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.
 
 ## The simproc-less approach
