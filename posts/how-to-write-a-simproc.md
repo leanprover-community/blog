@@ -11,7 +11,9 @@ title: What is a simproc?
 type: text
 ---
 
-In *Fantastic Simprocs and Where to Find Them* (TODO: insert link to first part once we have it), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma. In this sequel, we give a more detailed exposition of the inner workings of the simp tactic and how one can go about creating new simprocs.
+This is the second blog post in a series of two.
+In [the first blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
+In this sequel, we give a more detailed exposition of the inner workings of the simp tactic and how one can go about creating new simprocs.
 > Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad. Some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
 > <span style="color:red">**TODO(Paul)**</span>: add link to some ressources.
 
