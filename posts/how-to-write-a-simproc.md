@@ -2,10 +2,10 @@
 author: 'Yaël Dillies, Paul Lezeau'
 category: 'Metaprogramming'
 date: 2025-03-29 12:33:00 UTC+00:00
-description: 'Introduction to writing simprocs.'
+description: 'An exploration of the simp tactic'
 has_math: true
 link: ''
-slug: how-to-write-a-simproc
+slug: how-simp-works
 tags: 'simp, simproc, meta'
 title: Simp, made simple.
 type: text
@@ -109,6 +109,28 @@ inductive Step where
   | continue (e? : Option Result := none)
 ```
 
+In the case where the two expressions `e` and `e'` are definitionally equal, one can actually describe a simplification step using a simple structure, namely `DStep` (where the "d" stands for "definitional"). This is obtained by replacing each occurrence of `Result` in the definition of `Step` by `Expr` (intuitively, we no longer need to specify a proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
+```lean
+inductive DStep where
+  /-- Return expression without visiting any subexpressions. -/
+  | done (e : Expr)
+  /--
+  Visit expression (which should be different from current expression) instead.
+  The new expression `e` is passed to `pre` again.
+  -/
+  | visit (e : Expr)
+  /--
+  Continue transformation with the given expression (defaults to current expression).
+  For `pre`, this means visiting the children of the expression.
+
+  For `post`, this is equivalent to returning `done`. -/
+  | continue (e? : Option Expr := none)
+  deriving Inhabited, Repr
+```
+Note: The above snippet is a simplification and the constructors as shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
+
+<span style="color:red">**(Yaël): Why is there a mismatch in docstrings between `Step.continue` and `DStep.continue`? [Zulip](https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/Simp.2EStep.2Econtinue.20vs.20Simp.2EDStep.2Econtinue/with/509056271)**</span>
+
 ## The `SimpM` monad
 
 [`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
@@ -125,4 +147,7 @@ abbrev Simproc  := Expr → SimpM  Step
 `simp` does not consume bare elements of type `Simproc`.
 Instead, a simproc is an element of type `Simproc` annotated with tbe extra data mentioned in the overview subsection, like whether the simproc is `pre` or `post`.
 
-See the syntax section for how to declare a simproc.
+Similarly, there is a [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type:
+```lean
+abbrev DSimproc := Expr → SimpM DStep
+```
