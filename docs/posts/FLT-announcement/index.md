@@ -51,10 +51,9 @@ Work like this can be used to help computers understand what we are doing in mod
 # The FLT project
 
 The Fermat's Last Theorem formalisation project is [now open](https://github.com/ImperialCollegeLondon/FLT).
-Perhaps more interesting than a link to a github repository is the [blueprint graph](https://imperialcollegelondon.github.io/FLT/blueprint/dep_graph_document.html) giving an indication of the current progress of the proof.
-If you are a mathematician you might also be interested in the [blueprint](https://imperialcollegelondon.github.io/FLT/blueprint/index.html) itself, which contains an in-progress LaTeX write-up of the route we shall be taking, essentially due to Richard Taylor and developed in discussion with me.
+Perhaps more interesting than a link to a github repository is the [blueprint](https://imperialcollegelondon.github.io/FLT/blueprint/index.html), which contains an in-progress LaTeX write-up of the route we shall be taking, essentially due to Richard Taylor and developed in discussion with me. In the pane at the bottom of the left hand side of the blueprint you can see links to various blueprint graphs which give a graphical overview of how each chapter is progressing.
 The blueprint software, written by Patrick Massot, is a crucial ingredient in the project, enabling large-scale real-time collaboration in formalisation projects.
-Experts interested in the precise details of the route we shall be taking can refer to Chapter 4 of the blueprint for more details, or my April 2024 VaNTAGE seminar (which will appear [here](https://www.youtube.com/c/VaNTAGeSeminar) in early May).
+Experts interested in the precise details of the route we shall be taking can refer to Chapter 4 of the blueprint for more details, or my April 2024 VaNTAGE seminar (which you can view [here](https://youtu.be/1EINmWKQP6Q?feature=shared)).
 
 
 I am being funded for the first five years of the project by the EPSRC.
