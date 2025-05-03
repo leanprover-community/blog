@@ -128,7 +128,7 @@ example : ¬ 2 ∣ 49 := by
   -- Remaining goal: `¬ False`
   simp
 
-example : a ∣ a * b := by
+example (a b : Nat) : a ∣ a * b := by
   simp only [Nat.reduceDvd] --fails
 ```
 
