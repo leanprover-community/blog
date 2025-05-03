@@ -59,12 +59,7 @@ This is where simprocs enter the picture.
 A simproc is a program which, given an expression `LHS` of a certain form, computes a simpler expression `RHS` and constructs a proof of `LHS = RHS` on the fly.
 
 The concept of a simproc is genuinely more powerful than that of a simp lemma.
-This is because the right hand side of a lemma changes only via *syntactic substitution*.
-
-For example, the lemma `Nat.mul_add (a b c : Nat) : a * (b + c) = a * b + a * c` can be specialized to have right hand side `0 * b + 0 * c`, `a * b + a * (c + d)`, etc...
-But all these have *shape* `_ * _ + _ * _` and e.g. no value of `a`, `b`, `c` will make it have shape `_ * _ + _ * _ + _ * _`.
-
-With this in mind, simprocs are *modular simp lemmas*.
+Indeed, we will soon see an example of a simproc taking the place of infinitely many simp lemmas.
 
 # Examples of simprocs
 
