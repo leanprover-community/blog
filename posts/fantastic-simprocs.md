@@ -216,6 +216,6 @@ In the second blog post, we will see how to build step by step a simproc for com
 # A few caveats
 
 The current design of simprocs comes with a few restrictions that are worth keeping in mind:
-* By definition, **a simproc can only be used in `simp`** (and `simp`-like tactics like `simp_rw`, `simpa`, `aesop`), even though the notion of a "modular lemma" could be useful in other rewriting tactics like `rw`.
+* By definition, **a simproc can only be used in `simp`** (and tactics that call `simp` under the hood, such as `simp_rw`, `simpa`, `aesop`, `norm_num`, etc...), even though the notion of a "modular lemma" could be useful in other rewriting tactics like `rw`.
 * **One cannot provide arguments to a simproc to restrict the occurrences it rewrites**.
   In contrast, this is possible for lemmas in all rewriting tactics: e.g. `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
