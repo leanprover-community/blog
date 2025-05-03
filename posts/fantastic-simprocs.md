@@ -197,8 +197,7 @@ example (P : Prop) (a b : Nat) : (if P ∨ ¬ P then a else b) = a := by
   -- Works since `simp` can simplify `P ∨ ¬ P` to `True`.
   simp only [↓reduceIte]
 
-open Classical
-
+open scoped Classical in -- Can be removed once Kevin Buzzard is done with the FLT project ;)
 example : (if FermatLastTheorem then 1 else 2) = 1 := by
   --This fails because `simp` can't simplify `FermatLastTheorem` to `True` or `False`
   simp only [↓reduceIte]
