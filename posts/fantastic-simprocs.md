@@ -174,6 +174,19 @@ When presented with a left hand side of the form `Finset.Icc a b` where `a` and 
 
 The [`reduceIte`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=reduceIte#doc) simproc is designed to take expressions of the form `if P then a else b` (aka `ite P a b`) and replace them with `a` or `b`, depending on whether `P` simplifies to `True` or `False`.
 
+This can be achieved with simp lemmas too, but it would be less efficient:
+When encountering `ite P a b`, simp lemmas would first simplify `b`, then `a`, then `P`, and finally `ite P a b`.
+Assuming `P` was simplified to `True`, `ite P a b` would be simplified to `a` and all the work spent on simplifying `b` would be lost.
+If `P` was simplified to `False`, then the work spent on simplifying `a` would be lost instead.
+
+The point of `reduceIte` is that it can be made to simplify `P`, then `ite P a b`, *without simplifying `a` and `b` first*.
+For this to happen, one needs to call `reduceIte` as a **preprocedure**, which is done by adding `↓` in front of its name, ie `simp only [↓reduceIte]`.
+
+> Recall that, as a simple approximation, simplification is performed from the inside-out.
+> What we just explained is a concrete example of simplification happening from the outside-in.
+
+Let's see a few examples:
+
 ```lean
 example : (if 37 * 0 = 0 then 1 else 2) = 1 := by
   -- Works since `simp` can simplify `37 * 0 = 0` to `True`
@@ -192,21 +205,6 @@ example : (if FermatLastTheorem then 1 else 2) = 1 := by
   -- Remaining goal: `⊢ (if FermatLastTheorem then 1 else 2) = 1`
   sorry -- See https://imperialcollegelondon.github.io/FLT for how to solve this `sorry` ;)
 ```
-
-The down arrow `↓` in `simp only [↓reduceIte]` indicates that `reduceIte` is being called as a *preprocedure*.
-This means that `reduceIte` is run *before* the expressions `a` and `b` are simplified.
-
-> Recall that we said that, as a simple approximation, simplification is performed from the inside-out.
-> This is a concrete example where simplification happens outside-in.
-
-Concretely, `simp` needs only simplify one of the expressions `a` and `b`, as the other one is discarded upfront.
-For example, `↓reduceIte` allows `simp` to avoid touching `bigComplicatedExpression` at all in the following:
-```
-example : (if 37 * 0 = 0 then 0 else bigComplicatedExpression) = 0 := by
-  simp only [↓reduceIte]
-```
-
-Notice that `simp [↓reduceIte]` is ultimately equivalent to `simp [ite_cond_eq_true, ite_cond_eq_false]`, but the latter simplifies inside both branches of the `ite`, instead of simplifying away the irrelevant one before passing to subexpressions.
 
 When presented with a left hand side of the form `ite P a b`, `reduceIte` does the following:
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
