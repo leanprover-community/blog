@@ -117,7 +117,7 @@ There are a few reasons why simprocs are interesting for computation regardless:
 
 ### The `Nat.reduceDvd` simproc
 
-The [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) simproc is designed to take expressions of the form `a | b` where `a, b` are natural number literals, and simplify them to `True` or `False`.
+The [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) simproc is designed to take expressions of the form `a | b` where `a, b` are numerals, and simplify them to `True` or `False`.
 
 ```lean
 example : 3 ∣ 9 := by
