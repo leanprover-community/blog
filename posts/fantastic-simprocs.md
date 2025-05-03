@@ -56,7 +56,7 @@ Earlier, we said "almost all rewriting rules are lemmas".
 What about rewriting rules that are not lemmas?
 This is where simprocs enter the picture.
 
-A simproc is a program which, given an expression `LHS`, computes a new expression `RHS` and finds a proof of `LHS = RHS` on the fly.
+A simproc is a program which, given an expression `LHS` of a certain form, computes a simpler expression `RHS` and constructs a proof of `LHS = RHS` on the fly.
 
 The concept of a simproc is genuinely more powerful than that of a simp lemma.
 This is because the right hand side of a lemma changes only via *syntactic substitution*.
