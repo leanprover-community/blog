@@ -66,11 +66,6 @@ But all these have *shape* `_ * _ + _ * _` and e.g. no value of `a`, `b`, `c` wi
 
 With this in mind, simprocs are *modular simp lemmas*.
 
-## Everything is a simproc
-
-As a very neat unification of concepts, it turns out that `simp`'s implementation only ever handles simprocs.
-Every simp lemma is turned into a simproc before being fed to `simp`.
-
 # Examples of simprocs
 
 In this section, we exemplify four simprocs through the following use cases:
