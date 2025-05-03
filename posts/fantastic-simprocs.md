@@ -161,7 +161,7 @@ example : Finset.Icc 1 1 = {1} := by
 example : Finset.Icc 1 4 = {1, 2, 3, 4} := by
   simp only [Icc_ofNat_ofNat]
 
-example : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
+example (a : Nat) : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
   -- fails: the bounds of the interval aren't numerals!
   simp only [Icc_ofNat_ofNat]
 ```
