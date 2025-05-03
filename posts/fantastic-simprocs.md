@@ -92,6 +92,13 @@ example (p q : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 ∧ q x := by
   -- Remaining goal: `⊢ p 5 ∧ q 5`
 ```
 
+To give `simp` this functionality without a simproc, one would have to write infinitely many simp lemmas.
+Indeed, the equality `x = a` could be hidden arbitrarily deep inside the `∧`.
+
+> Technically, one *could* implement this functionality using finitely many lemmas:
+> `and_assoc` to left-associate all the `∧`, `and_left_comm (b := _ = _)` to move the `=` left-ward, `exists_eq_left` to eliminate the `=` when it reaches the `∃`.
+> This is not useful in practice since it could possibly loop (eg if there are two `=`, they could be commuted forever) and modifies the expression in unwanted ways, such as reassociating all the `∧`, even those outside an `∃`.
+
 When presented with a left hand side of the form `∃ x, P x`, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
 - Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
 - If an equality is found, construct a proof that `∀ x, p x → x = a`.
