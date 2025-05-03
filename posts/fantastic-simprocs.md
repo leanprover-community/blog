@@ -180,7 +180,7 @@ example : (if 37 * 0 = 0 then 1 else 2) = 1 := by
   -- because it knows the lemma `mul_zero a : a * 0 = 0`.
   simp only [↓reduceIte]
 
-example (X : Type) (P : Prop) (a b : X) : (if P ∨ ¬ P then a else b) = a := by
+example (P : Prop) (a b : Nat) : (if P ∨ ¬ P then a else b) = a := by
   -- Works since `simp` can simplify `P ∨ ¬ P` to `True`.
   simp only [↓reduceIte]
 
