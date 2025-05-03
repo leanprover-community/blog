@@ -27,10 +27,8 @@ Then we will give some examples and non-examples of simprocs.
 `simp` is made of two components.
 
 The first component is **rewriting rules**.
-Almost all rewriting rules are lemmas that prove an equality `=` or iff `↔` and are tagged with `@[simp]` in e.g. Lean or Mathlib.
-A rewriting rule is characterised by its *left hand side* and *right hand side*.
-Eg for a lemma of the form `LHS = RHS` or `LHS ↔ RHS`, this is `LHS` and `RHS` respectively.
-If a lemma proves `P` that is not of the form `_ = _` or `_ ↔ _`, it is turned into `P = True`.
+A rewriting rule has a *left hand side* (either an expression or an expression pattern), which `simp` will use to decide when to use the rewriting rule, and a *right hand side*, which will be computed from the left hand side and must be equal to it as a mathematical object.
+Most rewriting rules are lemmas tagged with `@[simp]` that are of the form `LHS = RHS` or `LHS ↔ RHS` (lemmas that prove `P` which is not of the form `_ = _` or `_ ↔ _` are turned into `P = True`), but we will soon see less straightforward examples.
 
 The second one is the **`simp` tactic**, which we will refer to simply as `simp`.
 When run on a goal `⊢ e`, `simp` iteratively looks for a subexpression of `e` that matches the left hand side of some rewriting rule, and replaces that subexpression with the right hand side of that rule.
@@ -52,11 +50,10 @@ For example, here's the proof steps `simp` follows to close the goal `37 * (Nat.
 
 # What is a simproc?
 
-Earlier, we said "almost all rewriting rules are lemmas".
-What about rewriting rules that are not lemmas?
-This is where simprocs enter the picture.
+In the previous section, we explained how `simp` uses rewriting rules of the form `LHS = RHS` or `LHS ↔ RHS` to simplify expressions.
+Let's now talk about the rewriting rules that are *not* of this form, aka simprocs.
 
-A simproc is a program which, given an expression `LHS` of a certain form, computes a simpler expression `RHS` and constructs a proof of `LHS = RHS` on the fly.
+A **simproc** is a rewriting rule which, given an expression `LHS` matching its left hand side, computes a simpler expression `RHS` and constructs a proof of `LHS = RHS` on the fly.
 
 The concept of a simproc is genuinely more powerful than that of a simp lemma.
 Indeed, we will soon see an example of a simproc taking the place of infinitely many simp lemmas.
