@@ -131,6 +131,8 @@ example (a b : Nat) : a ∣ a * b := by
   simp only [Nat.reduceDvd] --fails
 ```
 
+To reiterate one of the points made earlier, this simproc is useful despite doing something that `decide` can already do, as it allows the `simp` tactic to get rid of certain expressions of the form `a ∣ b`, *and then* simplify the resulting goal (or hypothesis) further.
+
 When presented with a left hand side of the form `a ∣ b` where `a` and `b` are natural numbers, `Nat.reduceDvd` does the following:
 - Check that `a` and `b` are numerals.
 - Compute `b % a`.
