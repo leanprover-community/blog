@@ -60,7 +60,7 @@ Indeed, we will soon see an example of a simproc taking the place of infinitely 
 
 # Examples of simprocs
 
-In this section, we exemplify four simprocs through the following use cases:
+In this section, we exemplify four simprocs that cover the following following use cases:
 * Avoiding combinatorial explosion of lemmas
 * Computation
 * Performance optimisation
@@ -84,7 +84,7 @@ Indeed, the equality `x = a` could be hidden arbitrarily deep inside the `∧`.
 
 > Technically, one *could* implement this functionality using finitely many lemmas:
 > `and_assoc` to left-associate all the `∧`, `and_left_comm (b := _ = _)` to move the `=` left-ward, `exists_eq_left` to eliminate the `=` when it reaches the `∃`.
-> This is not useful in practice since it could possibly loop (eg if there are two `=`, they could be commuted forever) and modifies the expression in unwanted ways, such as reassociating all the `∧`, even those outside an `∃`.
+> This is not useful in practice since it could possibly loop (e.g. if there are two `=`, they could be commuted forever) and modifies the expression in unwanted ways, such as reassociating all the `∧`, even those outside an `∃`.
 
 When presented with a left hand side of the form `∃ x, P x`, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
 - Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
@@ -108,10 +108,11 @@ There are a few reasons why simprocs are interesting for computation regardless:
   `decide` only works on goals that do not contain any metavariable.
   This rules out using `decide` to find out what a left hand side is equal to.
   One would need to write down the right hand side we are looking for in order for `decide` to show that it's equal to the left hand side.
+  In particular, using a simproc means we can perform a computation and then continue to simplify the resulting expression *within* a single `simp` call.
 
 ### The `Nat.reduceDvd` simproc
 
-The [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) simproc is designed to take expressions of the form `a | b` where `a, b` are numerals (ie actual numbers, like `0, 1, 37`, as opposed to variables or expressions thereof), and simplify them to `True` or `False`.
+The [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) simproc is designed to take expressions of the form `a | b` where `a, b` are numerals (i.e. actual numbers, like `0, 1, 37`, as opposed to variables or expressions thereof), and simplify them to `True` or `False`.
 
 ```lean
 example : 3 ∣ 9 := by
@@ -134,7 +135,7 @@ When presented with a left hand side of the form `a ∣ b` where `a` and `b` are
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
-`Finset.Icc a b` for `a` and `b` in a partial order is the finite set of elements lying between `a` and `b`.
+If `a` and `b` are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then `Finset.Icc a b` for `a` and `b` is the finite set of elements lying between `a` and `b`.
 
 The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc) where `a` and `b` are numerals, and simplify them to an explicit set.
 
@@ -167,7 +168,7 @@ Assuming `P` was simplified to `True`, `ite P a b` would be simplified to `a` an
 If `P` was simplified to `False`, then the work spent on simplifying `a` would be lost instead.
 
 The point of `reduceIte` is that it can be made to simplify `P`, then `ite P a b`, *without simplifying `a` and `b` first*.
-For this to happen, one needs to call `reduceIte` as a **preprocedure**, which is done by adding `↓` in front of its name, ie `simp only [↓reduceIte]`.
+For this to happen, one needs to call `reduceIte` as a **preprocedure**, which is done by adding `↓` in front of its name, i.e. `simp only [↓reduceIte]`.
 
 > Recall that, as a simple approximation, simplification is performed from the inside-out.
 > What we just explained is a concrete example of simplification happening from the outside-in.
