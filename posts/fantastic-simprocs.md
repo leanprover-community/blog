@@ -98,14 +98,14 @@ When presented with a left hand side of the form `∃ x, P x`, where `P x` is of
 ## Computation
 
 Computations are an integral part of theorem proving, and as such there are many ways to perform them.
-For example, you will find that the `decide` tactic closes all the examples in this subsection.
+For example, you will find that the `decide` tactic closes most of the examples in this subsection.
 There are a few reasons why simprocs are interesting for computation regardless:
 * **`decide` relies on decidability instances**.
   Not everything one may want to compute is decidable, and not every decidability instance is efficient.
   In fact, most `Decidable` instances in Lean and Mathlib are very generic, and therefore unspecific and inefficient.
   Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely on the decidability machinery.
 * **`decide` cannot compute the right hand side**, given the left hand side only.
-  `decide` only works on goals that do not contain any metavariable.
+  `decide` only works on goals that do not contain any metavariables or free variables.
   This rules out using `decide` to find out what a left hand side is equal to.
   One would need to write down the right hand side we are looking for in order for `decide` to show that it's equal to the left hand side.
   In particular, using a simproc means we can perform a computation and then continue to simplify the resulting expression *within* a single `simp` call.
@@ -116,6 +116,10 @@ The [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/
 
 ```lean
 example : 3 ∣ 9 := by
+  simp only [Nat.reduceDvd]
+
+-- `decide` cannot close this goal.
+example (f : Prop → Prop) : f (2 ∣ 4) = f True := by
   simp only [Nat.reduceDvd]
 
 example : ¬ 2 ∣ 49 := by
