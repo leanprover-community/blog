@@ -1,7 +1,7 @@
 ---
 author: 'Bolton Bailey'
 category: 'Overview'
-date: 2024-06-01 13:35:44 UTC-08:00
+date: 2025-05-15 1:26:31 UTC-08:00
 description: ''
 has_math: false
 link: ''
@@ -36,7 +36,7 @@ A downside of the documentation page is that if a lemma is named in a way you do
 
 ![Moogle Main Page](/images/moogle-screenshot.png)
 
-[Moogle](https://www.moogle.ai/) is a semantic search engine for Mathlib developed by [Morph labs](https://morph.so/). One enters searches in natural language and the engine tries to turn up theorems that match the search query. For example, if I search for ["the sum of two odd numbers is even"](https://www.moogle.ai/search/raw?q=the%20sum%20of%20two%20odd%20numbers%20is%20even), I turn up the result `Odd.add_odd` which matches this description pretty well as the fourth result.
+[Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for Mathlib developed by [Morph labs](https://morph.so/). One enters searches in natural language and the engine tries to turn up theorems that match the search query. For example, if I search for ["the sum of two odd numbers is even"](https://www.moogle.ai/search/raw?q=the%20sum%20of%20two%20odd%20numbers%20is%20even), I turn up the result `Odd.add_odd` which matches this description pretty well as the fourth result.
 
 The downside of Moogle is that semantic search isn't an exact science, so the results you are looking for will not always top the result list (as was the case in the example above - a bit of a challenge is that `sum` in mathlib is generally used for indexed sums whereas `add` is more common for the binary operation we were looking for). Moogle can still be a helpful tool, and it doesn't share the weakness of the fuzzy search where it gets confused if the order of the search terms you provide does not exactly match the order of the terms in the lemma name.
 
