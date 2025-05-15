@@ -32,13 +32,20 @@ A downside of the documentation page is that if a lemma is named in a way you do
 
 <!-- Note, it would be nice to credit the main developer of the docs page, if there is one. -->
 
-### Moogle
+### Moogle and other LLM-based Search tools
 
 ![Moogle Main Page](/images/moogle-screenshot.png)
 
 [Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for Mathlib developed by [Morph labs](https://morph.so/). One enters searches in natural language and the engine tries to turn up theorems that match the search query. For example, if I search for ["the sum of two odd numbers is even"](https://www.moogle.ai/search/raw?q=the%20sum%20of%20two%20odd%20numbers%20is%20even), I turn up the result `Odd.add_odd` which matches this description pretty well as the fourth result.
 
 The downside of Moogle is that semantic search isn't an exact science, so the results you are looking for will not always top the result list (as was the case in the example above - a bit of a challenge is that `sum` in mathlib is generally used for indexed sums whereas `add` is more common for the binary operation we were looking for). Moogle can still be a helpful tool, and it doesn't share the weakness of the fuzzy search where it gets confused if the order of the search terms you provide does not exactly match the order of the terms in the lemma name.
+
+Since the release of Moogle, other LLM-based search engines have come out, offering other features:
+
+* [LeanSearch](https://leansearch.net/) from the BICMR AI for Mathematics team at PKU, which offers the ability to augment a previous query.
+* [LeanExplore](https://www.leanexplore.com/) from Justin Asher, which offers the ability to select different other Lean libraries to query.
+
+These can be good alternatives to Moogle, depending on what you prefer in your search experience.
 
 ### Loogle
 
@@ -54,7 +61,7 @@ There are a few other websites that can be helpful for finding theorems in mathl
 
 ### Zulip
 
-The [Zulip chat](https://leanprover.zulipchat.com/) for the Lean community has a channel called ["Is there code for X?"](https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F) where you can ask questions about the presence of particular theorems in mathlib, major and minor. If you are having trouble finding a theorem, you can ask in this channel and someone will likely be able to help you, although it might take longer than the search engine would.
+The [Zulip chat](https://leanprover.zulipchat.com/) for the Lean community has a channel called ["Is there code for X?"](https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F) where you can ask questions about the presence of particular theorems in mathlib, major and minor. If you are having trouble finding a theorem, you can ask in this channel and someone will likely be able to help you, although it might take longer than the search engine would. You can also search the archives to see if someone has asked about the same results before.
 
 ### The Library overview/The Undergrad list/Wiedijk's 100 Theorems
 
@@ -93,6 +100,7 @@ There are a few other tactics in mathlib and other projects that don't search fo
 * `simp?`: Simplifies the goal using a set of simplification rules.
 * `aesop`: From the [Aesop project](https://github.com/leanprover-community/aesop). A tactic that tries to prove the current goal using a search tree.
 * `rw_search`: Attempts to find chains of rewrites that will prove or simplify the current goal.
+* `hint`: A "Kitchen Sink" tactic that attempts to close the goal using a variety of other tactics.
 
 And ones that are not imported by mathlib:
 
