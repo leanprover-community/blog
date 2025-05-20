@@ -65,7 +65,7 @@ The [Zulip chat](https://leanprover.zulipchat.com/) for the Lean community has a
 
 ### The Library overview/The Undergrad list/Wiedijk's 100 Theorems
 
-The sidebar of [main page](https://leanprover-community.github.io/index.html) for the mathlib community lists three additional pages under the "Library Overiviews" heading. These pages have links to the docs for fixed collections of major declarations in mathlib. These are:
+The sidebar of [main page](https://leanprover-community.github.io/index.html) for the mathlib community lists three additional pages under the "Library Overviews" heading. These pages have links to the docs for fixed collections of major declarations in mathlib. These are:
 
 * The [Library overview](https://leanprover-community.github.io/mathlib-overview.html): This page lists the overall most important high-level declarations in mathlib, organized by topic/subfield of mathematics.
 * The [Undergrad list](https://leanprover-community.github.io/undergrad/) is a list of theorems and declarations in mathlib that are considered to be at an undergraduate level. This list comes from a document compiled by the [French Ministry of Education](https://media.devenirenseignant.gouv.fr/file/agreg_externe/59/7/p2020_agreg_ext_maths_1107597.pdf)
