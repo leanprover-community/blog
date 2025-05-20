@@ -81,7 +81,7 @@ The `exact?` tactic (formerly known as `library_search`) is a great way to find 
 
 A good time to use `exact?` is when you have a proof goal that you think is so straightforward that it is likely to be in mathlib already. If `exact?` doesn't find a proof, you can always extract the fact and prove it or `sorry` it as an independent lemma immediately above the theorem you are working on, and `exact?` should start to work. You can then prove the goal yourself and submit the proof to mathlib.
 
-A downside of this approach is that it depnds on the *exact* structure of the goal you are trying to prove being present in the library. If you are hoping to prove the goal `a - b = c` and the library only has a form of the theorem that looks like `a = b + c`, `exact?` will not find it. (Helpful in this process is experience with how mathlib prefers theorems to be structured. For example, a form of a theorem with a subtraction is discouraged in favor of a form with an addition, and `>` is almost entirely absent in favor of `<`.)
+A downside of this approach is that it depends on the *exact* structure of the goal you are trying to prove being present in the library. If you are hoping to prove the goal `a - b = c` and the library only has a form of the theorem that looks like `a = b + c`, `exact?` will not find it. (Helpful in this process is experience with how mathlib prefers theorems to be structured. For example, a form of a theorem with a subtraction is discouraged in favor of a form with an addition, and `>` is almost entirely absent in favor of `<`.)
 
 ### `apply?`
 
