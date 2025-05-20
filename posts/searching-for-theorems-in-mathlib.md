@@ -98,12 +98,14 @@ In the same vein as `exact?` and `apply?`, `rw?` is a tactic that searches for l
 There are a few other tactics in mathlib and other projects that don't search for theorems per se, but which try to complete proofs automatically, and which may identify useful theorems in the process. These include:
 
 * `simp?`: Simplifies the goal using a set of simplification rules.
-* `aesop`: From the [Aesop project](https://github.com/leanprover-community/aesop). A tactic that tries to prove the current goal using a search tree.
 * `rw_search`: Attempts to find chains of rewrites that will prove or simplify the current goal.
 * `hint`: A "Kitchen Sink" tactic that attempts to close the goal using a variety of other tactics.
+* [`aesop`](https://github.com/leanprover-community/aesop): A tactic that tries to prove the current goal using a search tree.
 
 And ones that are not imported by mathlib:
 
 * `auto`: From the [Lean Auto project](https://github.com/leanprover-community/lean-auto). A tactic that tries to prove the current goal using a technique "based on a monomorphization procedure from dependent type theory to higher-order logic and a deep embedding of higher-order logic into dependent type theory".
 * `suggest_tactics`/`search_proof`: From the [LeanCopilot project](https://github.com/lean-dojo/LeanCopilot). A tactic that tries to suggest tactics using an LLM.
 * `llmstep`: From the [Llemma project](https://github.com/wellecks/llmstep). Another tactic that tries to suggest tactics using an LLM.
+* `canonical`: From [Chase Norman](https://github.com/chasenorman/CanonicalLean). An exhaustive search procedure for terms in dependent type theory. 
+
