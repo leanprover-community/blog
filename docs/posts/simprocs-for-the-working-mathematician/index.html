@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Informal introduction to simprocs and what they are useful for">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simprocs for the Working Mathematician | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/simprocs-for-the-working-mathematician/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Simprocs for the Working Mathematician | Lean community blog">
+<meta name="author" content="Yaël Dillies, Paul Lezeau">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Simprocs for the Working Mathematician">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/simprocs-for-the-working-mathematician/">
+<meta property="og:description" content="Informal introduction to simprocs and what they are useful for">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-05-26T14:00:00Z">
+<meta property="article:tag" content="meta">
+<meta property="article:tag" content="simp">
+<meta property="article:tag" content="simproc">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Simprocs for the Working Mathematician</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/yael-dillies/">Yaël Dillies</a>
+                        <a class="u-url" href="../../authors/paul-lezeau/">Paul Lezeau</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-05-26T14:00:00Z" itemprop="datePublished" title="2025-05-26 14:00">2025-05-26 14:00</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/simprocs-for-the-working-mathematician/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Lean v4.6.0 (back in February 2024!) added support for custom simplification procedures, aka <em>simprocs</em>.
+This blog post is the first in a series of two aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.</p>
+<!-- TEASER_END -->
+
+<p>This post describes purely informally what simprocs are and do.
+The second post will be a walkthrough to writing a simple simproc in three different ways.</p>
+<p>To understand what a simproc is and how it works, we will first explain how <code>simp</code> works.
+Then we will give some examples and non-examples of simprocs.</p>
+<h2>How <code>simp</code> works</h2>
+<p><code>simp</code> is made of two components.</p>
+<p>The first component is <strong>rewriting rules</strong>.
+A rewriting rule has a <em>left hand side</em> (either an expression or an expression pattern), which <code>simp</code> will use to decide when to use the rewriting rule, and a <em>right hand side</em>, which will be computed from the left hand side and must be equal to it as a mathematical object.
+Most rewriting rules are lemmas tagged with <code>@[simp]</code> that are of the form <code>LHS = RHS</code> or <code>LHS ↔ RHS</code> (lemmas that prove <code>P</code> which is not of the form <code>_ = _</code> or <code>_ ↔ _</code> are turned into <code>P = True</code>), but we will soon see less straightforward examples.</p>
+<p>The second one is the <strong><code>simp</code> tactic</strong>, which we will refer to simply as <code>simp</code>.
+When run on a goal <code>⊢ e</code>, <code>simp</code> iteratively looks for a subexpression of <code>e</code> that matches the left hand side of some rewriting rule, and replaces that subexpression with the right hand side of that rule.</p>
+<p>For example, here's the proof steps <code>simp</code> follows to close the goal <code>37 * (Nat.fib 0 + 0) = 0</code></p>
+<pre class="code literal-block"><span class="bp">⊢</span> <span class="mi">37</span> <span class="bp">*</span> <span class="o">(</span><span class="n">Nat.fib</span> <span class="mi">0</span> <span class="bp">+</span> <span class="mi">0</span><span class="o">)</span> <span class="bp">=</span> <span class="mi">0</span>
+<span class="bp">⊢</span> <span class="mi">37</span> <span class="bp">*</span> <span class="o">(</span><span class="mi">0</span> <span class="bp">+</span> <span class="mi">0</span><span class="o">)</span> <span class="bp">=</span> <span class="mi">0</span>
+<span class="bp">⊢</span> <span class="mi">37</span> <span class="bp">*</span> <span class="mi">0</span> <span class="bp">=</span> <span class="mi">0</span>
+<span class="bp">⊢</span> <span class="mi">0</span> <span class="bp">=</span> <span class="mi">0</span>
+<span class="bp">⊢</span> <span class="n">True</span>
+</pre>
+<blockquote>
+<p>The order in which <code>simp</code> traverses an expression is relatively intricate.
+As a simple approximation, simplification is performed from the inside-out.
+See the next blog post for more details on the algorithm.</p>
+<p>If you write <code>set_option trace.Meta.Tactic.simp true in example : MyGoal := by simp</code>, you will see the list of simplification steps <code>simp</code> performs on <code>MyGoal</code>.</p>
+</blockquote>
+<h2>What is a simproc?</h2>
+<p>In the previous section, we explained how <code>simp</code> uses rewriting rules of the form <code>LHS = RHS</code> or <code>LHS ↔ RHS</code> to simplify expressions.
+Let's now talk about the rewriting rules that are <em>not</em> of this form, aka simprocs.</p>
+<p>A <strong>simproc</strong> is a rewriting rule which, given an expression <code>LHS</code> matching its left hand side, computes a simpler expression <code>RHS</code> and constructs a proof of <code>LHS = RHS</code> on the fly.</p>
+<p>The concept of a simproc is genuinely more powerful than that of a simp lemma.
+Indeed, we will soon see an example of a simproc taking the place of infinitely many simp lemmas.</p>
+<h2>Examples of simprocs</h2>
+<p>In this section, we exemplify four simprocs that cover the following use cases:
+* Avoiding combinatorial explosion of lemmas
+* Computation
+* Performance optimisation</p>
+<h3>Avoiding combinatorial explosion of lemmas: The <code>existsAndEq</code> simproc</h3>
+<p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=existsAndEq#doc"><code>existsAndEq</code></a> simproc is designed to simplify expressions of the form <code>∃ x, ... ∧ x = a ∧ ...</code> where <code>a</code> is some quantity independent of <code>x</code> by removing the existential quantifier and replacing all occurences of <code>x</code> by <code>a</code>.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">Nat</span> <span class="bp">→</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">:</span> <span class="bp">∃</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">,</span> <span class="n">p</span> <span class="n">x</span> <span class="bp">∧</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">5</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">existsAndEq</span><span class="o">]</span>
+  <span class="c1">-- Remaining goal: `⊢ p 5`</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">p</span> <span class="n">q</span> <span class="o">:</span> <span class="n">Nat</span> <span class="bp">→</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">:</span> <span class="bp">∃</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">,</span> <span class="n">p</span> <span class="n">x</span> <span class="bp">∧</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">5</span> <span class="bp">∧</span> <span class="n">q</span> <span class="n">x</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">existsAndEq</span><span class="o">]</span>
+  <span class="c1">-- Remaining goal: `⊢ p 5 ∧ q 5`</span>
+</pre>
+<p>To give <code>simp</code> this functionality without a simproc, one would have to write infinitely many simp lemmas.
+Indeed, the equality <code>x = a</code> could be hidden arbitrarily deep inside the <code>∧</code>.</p>
+<blockquote>
+<p>Technically, one <em>could</em> implement this functionality using finitely many lemmas:
+<code>and_assoc</code> to left-associate all the <code>∧</code>, <code>and_left_comm (b := _ = _)</code> to move the <code>=</code> left-ward, <code>exists_eq_left</code> to eliminate the <code>=</code> when it reaches the <code>∃</code>.
+This is not useful in practice since it could possibly loop (e.g. if there are two <code>=</code>, they could be commuted forever) and modifies the expression in unwanted ways, such as reassociating all the <code>∧</code>, even those outside an <code>∃</code>.</p>
+</blockquote>
+<p>When presented with a left hand side of the form <code>∃ x, P x</code>, where <code>P x</code> is of the form <code>_ ∧ ... ∧ _</code>, <code>existsAndEq</code> does the following:
+- Recursively traverse <code>P x</code> inside the existential quantifier looking for an equality <code>x = a</code> for some <code>a</code>.
+- If an equality is found, construct a proof that <code>∀ x, p x → x = a</code>.
+- Return the right hand side <code>P a</code> together with the proof obtained from the following lemma:
+  <code>lean
+  lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
+      (∃ x, p x) = p a</code></p>
+<h3>Computation</h3>
+<p>Computations are an integral part of theorem proving, and as such there are many ways to perform them.
+For example, you will find that the <code>decide</code> tactic closes most of the examples in this subsection.
+There are a few reasons why simprocs are interesting for computation regardless:
+* <strong><code>decide</code> relies on decidability instances</strong>.
+  Not everything one may want to compute is decidable, and not every decidability instance is efficient.
+  In fact, most <code>Decidable</code> instances in Lean and Mathlib are very generic, and therefore unspecific and inefficient.
+  Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely on the decidability machinery.
+* <strong><code>decide</code> cannot compute the right hand side</strong>, given the left hand side only.
+  <code>decide</code> only works on goals that do not contain any metavariables or free variables.
+  This rules out using <code>decide</code> to find out what a left hand side is equal to.
+  One would need to write down the right hand side we are looking for in order for <code>decide</code> to show that it's equal to the left hand side.
+  In particular, using a simproc means we can perform a computation and then continue to simplify the resulting expression <em>within</em> a single <code>simp</code> call.</p>
+<h4>The <code>Nat.reduceDvd</code> simproc</h4>
+<p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc"><code>Nat.reduceDvd</code></a> simproc is designed to take expressions of the form <code>a | b</code> where <code>a, b</code> are numerals (i.e. actual numbers, like <code>0, 1, 37</code>, as opposed to variables or expressions thereof), and simplify them to <code>True</code> or <code>False</code>.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="mi">3</span> <span class="bp">∣</span> <span class="mi">9</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Nat.reduceDvd</span><span class="o">]</span>
+
+<span class="c1">-- `decide` cannot close this goal.</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="bp">→</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">:</span> <span class="n">f</span> <span class="o">(</span><span class="mi">2</span> <span class="bp">∣</span> <span class="mi">4</span><span class="o">)</span> <span class="bp">=</span> <span class="n">f</span> <span class="n">True</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Nat.reduceDvd</span><span class="o">]</span>
+
+<span class="kd">example</span> <span class="o">:</span> <span class="bp">¬</span> <span class="mi">2</span> <span class="bp">∣</span> <span class="mi">49</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Nat.reduceDvd</span><span class="o">]</span>
+  <span class="c1">-- Remaining goal: `¬ False`</span>
+  <span class="n">simp</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">∣</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Nat.reduceDvd</span><span class="o">]</span> <span class="c1">--fails</span>
+</pre>
+<p>To reiterate one of the points made earlier, this simproc is useful despite doing something that <code>decide</code> can already do, as it allows the <code>simp</code> tactic to get rid of certain expressions of the form <code>a ∣ b</code>, <em>and then</em> simplify the resulting goal (or hypothesis) further.</p>
+<p>When presented with a left hand side of the form <code>a ∣ b</code> where <code>a</code> and <code>b</code> are natural numbers, <code>Nat.reduceDvd</code> does the following:
+- Check that <code>a</code> and <code>b</code> are numerals.
+- Compute <code>b % a</code>.
+- If <code>b % a</code> is zero, then return the right hand side <code>True</code> together with the proof <code>Nat.dvd_eq_true_of_mod_eq_zero a b rfl</code> that <code>(b % a = 0) = True</code>.
+- If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(b % a = 0) = False</code>.</p>
+<h4>The <code>Finset.Icc_ofNat_ofNat</code> simproc</h4>
+<p>If <code>a</code> and <code>b</code> are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then <code>Finset.Icc a b</code> for <code>a</code> and <code>b</code> is the finite set of elements lying between <code>a</code> and <code>b</code>.</p>
+<p>The <code>Finset.Icc_ofNat_ofNat</code> simproc is designed to take expressions of the form <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc"><code>Finset.Icc a b</code></a> where <code>a</code> and <code>b</code> are numerals, and simplify them to an explicit set.</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">Finset.Icc</span> <span class="mi">1</span> <span class="mi">0</span> <span class="bp">=</span> <span class="bp">∅</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Icc_ofNat_ofNat</span><span class="o">]</span>
+
+<span class="kd">example</span> <span class="o">:</span> <span class="n">Finset.Icc</span> <span class="mi">1</span> <span class="mi">1</span> <span class="bp">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">}</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Icc_ofNat_ofNat</span><span class="o">]</span>
+
+<span class="kd">example</span> <span class="o">:</span> <span class="n">Finset.Icc</span> <span class="mi">1</span> <span class="mi">4</span> <span class="bp">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">}</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Icc_ofNat_ofNat</span><span class="o">]</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">)</span> <span class="o">:</span> <span class="n">Finset.Icc</span> <span class="n">a</span> <span class="o">(</span><span class="n">a</span> <span class="bp">+</span> <span class="mi">2</span><span class="o">)</span> <span class="bp">=</span> <span class="o">{</span><span class="n">a</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="mi">2</span><span class="o">}</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="c1">-- fails: the bounds of the interval aren't numerals!</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Icc_ofNat_ofNat</span><span class="o">]</span>
+</pre>
+<p>When presented with a left hand side of the form <code>Finset.Icc a b</code> where <code>a</code> and <code>b</code> are natural numbers, <code>Finset.Icc_ofNat_ofNat</code> does the following:
+* Check that <code>a</code> and <code>b</code> are numerals.
+* compute the expression <code>{a, ..., b}</code> recursively on <code>b</code>, along with the proof that it equals <code>Finset.Icc a b</code>.</p>
+<h3>Performance optimisation: The <code>reduceIte</code> simproc</h3>
+<p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=reduceIte#doc"><code>reduceIte</code></a> simproc is designed to take expressions of the form <code>if P then a else b</code> (aka <code>ite P a b</code>) and replace them with <code>a</code> or <code>b</code>, depending on whether <code>P</code> simplifies to <code>True</code> or <code>False</code>.</p>
+<p>This can be achieved with simp lemmas too, but it would be less efficient:
+When encountering <code>ite P a b</code>, simp lemmas would first simplify <code>b</code>, then <code>a</code>, then <code>P</code>, and finally <code>ite P a b</code>.
+Assuming <code>P</code> was simplified to <code>True</code>, <code>ite P a b</code> would be simplified to <code>a</code> and all the work spent on simplifying <code>b</code> would be lost.
+If <code>P</code> was simplified to <code>False</code>, then the work spent on simplifying <code>a</code> would be lost instead.</p>
+<p>The point of <code>reduceIte</code> is that it can be made to simplify <code>P</code>, then <code>ite P a b</code>, <em>without simplifying <code>a</code> and <code>b</code> first</em>.
+For this to happen, one needs to call <code>reduceIte</code> as a <strong>preprocedure</strong>, which is done by adding <code>↓</code> in front of its name, i.e. <code>simp only [↓reduceIte]</code>.</p>
+<blockquote>
+<p>Recall that, as a simple approximation, simplification is performed from the inside-out.
+What we just explained is a concrete example of simplification happening from the outside-in.</p>
+</blockquote>
+<p>Let's see a few examples:</p>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="o">(</span><span class="k">if</span> <span class="mi">37</span> <span class="bp">*</span> <span class="mi">0</span> <span class="bp">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">2</span><span class="o">)</span> <span class="bp">=</span> <span class="mi">1</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="c1">-- Works since `simp` can simplify `37 * 0 = 0` to `True`</span>
+  <span class="c1">-- because it knows the lemma `mul_zero a : a * 0 = 0`.</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="bp">↓</span><span class="n">reduceIte</span><span class="o">]</span>
+
+<span class="kd">example</span> <span class="o">(</span><span class="n">P</span> <span class="o">:</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">)</span> <span class="o">:</span> <span class="o">(</span><span class="k">if</span> <span class="n">P</span> <span class="bp">∨</span> <span class="bp">¬</span> <span class="n">P</span> <span class="k">then</span> <span class="n">a</span> <span class="k">else</span> <span class="n">b</span><span class="o">)</span> <span class="bp">=</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="c1">-- Works since `simp` can simplify `P ∨ ¬ P` to `True`.</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="bp">↓</span><span class="n">reduceIte</span><span class="o">]</span>
+
+<span class="kn">open</span> <span class="n">scoped</span> <span class="n">Classical</span> <span class="k">in</span> <span class="c1">-- Can be removed once Kevin Buzzard is done with the FLT project ;)</span>
+<span class="kd">example</span> <span class="o">:</span> <span class="o">(</span><span class="k">if</span> <span class="n">FermatLastTheorem</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">2</span><span class="o">)</span> <span class="bp">=</span> <span class="mi">1</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="c1">--This fails because `simp` can't simplify `FermatLastTheorem` to `True` or `False`</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="bp">↓</span><span class="n">reduceIte</span><span class="o">]</span>
+  <span class="c1">-- Remaining goal: `⊢ (if FermatLastTheorem then 1 else 2) = 1`</span>
+  <span class="gr">sorry</span> <span class="c1">-- See https://imperialcollegelondon.github.io/FLT for how to solve this `sorry` ;)</span>
+</pre>
+<p>When presented with a left hand side of the form <code>ite P a b</code>, <code>reduceIte</code> does the following:
+- Call <code>simp</code> on <code>P</code> to get a simplified expression <code>P'</code> and a proof <code>h</code> that <code>P = P'</code>.
+- If <code>P'</code> is <code>True</code> then return the right hand side <code>a</code> together with the proof <code>ite_cond_eq_true r</code> that <code>ite P a b = a</code>.
+- If <code>P'</code> is <code>False</code> then return the right hand side <code>b</code> together with the proof <code>ite_cond_eq_false r</code> that <code>ite P a b = b</code>.</p>
+<h3>Many more applications!</h3>
+<p>In the second blog post, we will see how to build step by step a simproc for computing a variant of <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=List.range#doc"><code>List.range</code></a> when the parameter is a numeral.</p>
+<h2>A few caveats</h2>
+<p>The current design of simprocs comes with a few restrictions that are worth keeping in mind:
+* By definition, <strong>a simproc can only be used in <code>simp</code></strong> (and tactics that call <code>simp</code> under the hood, such as <code>simp_rw</code>, <code>simpa</code>, <code>aesop</code>, <code>norm_num</code>, etc...), even though the notion of a "modular lemma" could be useful in other rewriting tactics like <code>rw</code>.
+* <strong>One cannot provide arguments to a simproc to restrict the occurrences it rewrites</strong>.
+  In contrast, this is possible for lemmas in all rewriting tactics: e.g. <code>rw [add_comm c]</code> turns <code>⊢ a + b = c + d</code> into <code>⊢ a + b = d + c</code> where <code>rw [add_comm]</code> would instead have turned it into <code>⊢ b + a = c + d</code>.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/meta/" rel="tag">meta</a></li>
+            <li><a class="tag p-category" href="../../categories/simp/" rel="tag">simp</a></li>
+            <li><a class="tag p-category" href="../../categories/simproc/" rel="tag">simproc</a></li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2025         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
