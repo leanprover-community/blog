@@ -1,11 +1,11 @@
 ---
 author: 'Yaël Dillies, Paul Lezeau'
 category: 'Metaprogramming'
-date: 2025-04-16 12:00:00 UTC+01:00
+date: 2025-05-26 14:00:00 UTC+00:00
 description: 'Informal introduction to simprocs and what they are useful for'
 has_math: true
 link: ''
-slug: fantastic-simprocs
+slug: simprocs-for-the-working-mathematician
 tags: 'simp, simproc, meta'
 title: Simprocs for the Working Mathematician
 type: text
