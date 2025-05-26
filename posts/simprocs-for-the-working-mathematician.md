@@ -90,7 +90,7 @@ Indeed, the equality `x = a` could be hidden arbitrarily deep inside the `∧`.
 When presented with a left hand side of the form `∃ x, P x`, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
 
 - Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
-- If an equality is found, construct a proof that `∀ x, p x → x = a`.
+- If an equality is found, construct a proof that `∀ x, P x → x = a`.
 - Return the right hand side `P a` together with the proof obtained from the following lemma:
   ```lean
   lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
