@@ -103,10 +103,12 @@ Let's now talk about the rewriting rules that are <em>not</em> of this form, aka
 <p>The concept of a simproc is genuinely more powerful than that of a simp lemma.
 Indeed, we will soon see an example of a simproc taking the place of infinitely many simp lemmas.</p>
 <h2>Examples of simprocs</h2>
-<p>In this section, we exemplify four simprocs that cover the following use cases:
-* Avoiding combinatorial explosion of lemmas
-* Computation
-* Performance optimisation</p>
+<p>In this section, we exemplify four simprocs that cover the following use cases:</p>
+<ul>
+<li>Avoiding combinatorial explosion of lemmas</li>
+<li>Computation</li>
+<li>Performance optimisation</li>
+</ul>
 <h3>Avoiding combinatorial explosion of lemmas: The <code>existsAndEq</code> simproc</h3>
 <p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=existsAndEq#doc"><code>existsAndEq</code></a> simproc is designed to simplify expressions of the form <code>∃ x, ... ∧ x = a ∧ ...</code> where <code>a</code> is some quantity independent of <code>x</code> by removing the existential quantifier and replacing all occurences of <code>x</code> by <code>a</code>.</p>
 <pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">p</span> <span class="o">:</span> <span class="n">Nat</span> <span class="bp">→</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">:</span> <span class="bp">∃</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">,</span> <span class="n">p</span> <span class="n">x</span> <span class="bp">∧</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">5</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -124,26 +126,33 @@ Indeed, the equality <code>x = a</code> could be hidden arbitrarily deep inside 
 <code>and_assoc</code> to left-associate all the <code>∧</code>, <code>and_left_comm (b := _ = _)</code> to move the <code>=</code> left-ward, <code>exists_eq_left</code> to eliminate the <code>=</code> when it reaches the <code>∃</code>.
 This is not useful in practice since it could possibly loop (e.g. if there are two <code>=</code>, they could be commuted forever) and modifies the expression in unwanted ways, such as reassociating all the <code>∧</code>, even those outside an <code>∃</code>.</p>
 </blockquote>
-<p>When presented with a left hand side of the form <code>∃ x, P x</code>, where <code>P x</code> is of the form <code>_ ∧ ... ∧ _</code>, <code>existsAndEq</code> does the following:
-- Recursively traverse <code>P x</code> inside the existential quantifier looking for an equality <code>x = a</code> for some <code>a</code>.
-- If an equality is found, construct a proof that <code>∀ x, p x → x = a</code>.
-- Return the right hand side <code>P a</code> together with the proof obtained from the following lemma:
+<p>When presented with a left hand side of the form <code>∃ x, P x</code>, where <code>P x</code> is of the form <code>_ ∧ ... ∧ _</code>, <code>existsAndEq</code> does the following:</p>
+<ul>
+<li>Recursively traverse <code>P x</code> inside the existential quantifier looking for an equality <code>x = a</code> for some <code>a</code>.</li>
+<li>If an equality is found, construct a proof that <code>∀ x, P x → x = a</code>.</li>
+<li>Return the right hand side <code>P a</code> together with the proof obtained from the following lemma:
   <code>lean
   lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
-      (∃ x, p x) = p a</code></p>
+      (∃ x, p x) = p a</code>
+</li>
+</ul>
 <h3>Computation</h3>
 <p>Computations are an integral part of theorem proving, and as such there are many ways to perform them.
 For example, you will find that the <code>decide</code> tactic closes most of the examples in this subsection.
-There are a few reasons why simprocs are interesting for computation regardless:
-* <strong><code>decide</code> relies on decidability instances</strong>.
+There are a few reasons why simprocs are interesting for computation regardless:</p>
+<ul>
+<li>
+<strong><code>decide</code> relies on decidability instances</strong>.
   Not everything one may want to compute is decidable, and not every decidability instance is efficient.
   In fact, most <code>Decidable</code> instances in Lean and Mathlib are very generic, and therefore unspecific and inefficient.
-  Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely on the decidability machinery.
-* <strong><code>decide</code> cannot compute the right hand side</strong>, given the left hand side only.
+  Using a simproc gives the opportunity to use a domain-specific algorithm, which is more likely to be efficient and does not rely on the decidability machinery.</li>
+<li>
+<strong><code>decide</code> cannot compute the right hand side</strong>, given the left hand side only.
   <code>decide</code> only works on goals that do not contain any metavariables or free variables.
   This rules out using <code>decide</code> to find out what a left hand side is equal to.
   One would need to write down the right hand side we are looking for in order for <code>decide</code> to show that it's equal to the left hand side.
-  In particular, using a simproc means we can perform a computation and then continue to simplify the resulting expression <em>within</em> a single <code>simp</code> call.</p>
+  In particular, using a simproc means we can perform a computation and then continue to simplify the resulting expression <em>within</em> a single <code>simp</code> call.</li>
+</ul>
 <h4>The <code>Nat.reduceDvd</code> simproc</h4>
 <p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc"><code>Nat.reduceDvd</code></a> simproc is designed to take expressions of the form <code>a | b</code> where <code>a, b</code> are numerals (i.e. actual numbers, like <code>0, 1, 37</code>, as opposed to variables or expressions thereof), and simplify them to <code>True</code> or <code>False</code>.</p>
 <pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="mi">3</span> <span class="bp">∣</span> <span class="mi">9</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -162,11 +171,13 @@ There are a few reasons why simprocs are interesting for computation regardless:
   <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Nat.reduceDvd</span><span class="o">]</span> <span class="c1">--fails</span>
 </pre>
 <p>To reiterate one of the points made earlier, this simproc is useful despite doing something that <code>decide</code> can already do, as it allows the <code>simp</code> tactic to get rid of certain expressions of the form <code>a ∣ b</code>, <em>and then</em> simplify the resulting goal (or hypothesis) further.</p>
-<p>When presented with a left hand side of the form <code>a ∣ b</code> where <code>a</code> and <code>b</code> are natural numbers, <code>Nat.reduceDvd</code> does the following:
-- Check that <code>a</code> and <code>b</code> are numerals.
-- Compute <code>b % a</code>.
-- If <code>b % a</code> is zero, then return the right hand side <code>True</code> together with the proof <code>Nat.dvd_eq_true_of_mod_eq_zero a b rfl</code> that <code>(b % a = 0) = True</code>.
-- If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(b % a = 0) = False</code>.</p>
+<p>When presented with a left hand side of the form <code>a ∣ b</code> where <code>a</code> and <code>b</code> are natural numbers, <code>Nat.reduceDvd</code> does the following:</p>
+<ul>
+<li>Check that <code>a</code> and <code>b</code> are numerals.</li>
+<li>Compute <code>b % a</code>.</li>
+<li>If <code>b % a</code> is zero, then return the right hand side <code>True</code> together with the proof <code>Nat.dvd_eq_true_of_mod_eq_zero a b rfl</code> that <code>(b % a = 0) = True</code>.</li>
+<li>If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(b % a = 0) = False</code>.</li>
+</ul>
 <h4>The <code>Finset.Icc_ofNat_ofNat</code> simproc</h4>
 <p>If <code>a</code> and <code>b</code> are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then <code>Finset.Icc a b</code> for <code>a</code> and <code>b</code> is the finite set of elements lying between <code>a</code> and <code>b</code>.</p>
 <p>The <code>Finset.Icc_ofNat_ofNat</code> simproc is designed to take expressions of the form <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc"><code>Finset.Icc a b</code></a> where <code>a</code> and <code>b</code> are numerals, and simplify them to an explicit set.</p>
@@ -183,9 +194,11 @@ There are a few reasons why simprocs are interesting for computation regardless:
   <span class="c1">-- fails: the bounds of the interval aren't numerals!</span>
   <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Icc_ofNat_ofNat</span><span class="o">]</span>
 </pre>
-<p>When presented with a left hand side of the form <code>Finset.Icc a b</code> where <code>a</code> and <code>b</code> are natural numbers, <code>Finset.Icc_ofNat_ofNat</code> does the following:
-* Check that <code>a</code> and <code>b</code> are numerals.
-* compute the expression <code>{a, ..., b}</code> recursively on <code>b</code>, along with the proof that it equals <code>Finset.Icc a b</code>.</p>
+<p>When presented with a left hand side of the form <code>Finset.Icc a b</code> where <code>a</code> and <code>b</code> are natural numbers, <code>Finset.Icc_ofNat_ofNat</code> does the following:</p>
+<ul>
+<li>Check that <code>a</code> and <code>b</code> are numerals.</li>
+<li>compute the expression <code>{a, ..., b}</code> recursively on <code>b</code>, along with the proof that it equals <code>Finset.Icc a b</code>.</li>
+</ul>
 <h3>Performance optimisation: The <code>reduceIte</code> simproc</h3>
 <p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=reduceIte#doc"><code>reduceIte</code></a> simproc is designed to take expressions of the form <code>if P then a else b</code> (aka <code>ite P a b</code>) and replace them with <code>a</code> or <code>b</code>, depending on whether <code>P</code> simplifies to <code>True</code> or <code>False</code>.</p>
 <p>This can be achieved with simp lemmas too, but it would be less efficient:
@@ -215,17 +228,22 @@ What we just explained is a concrete example of simplification happening from th
   <span class="c1">-- Remaining goal: `⊢ (if FermatLastTheorem then 1 else 2) = 1`</span>
   <span class="gr">sorry</span> <span class="c1">-- See https://imperialcollegelondon.github.io/FLT for how to solve this `sorry` ;)</span>
 </pre>
-<p>When presented with a left hand side of the form <code>ite P a b</code>, <code>reduceIte</code> does the following:
-- Call <code>simp</code> on <code>P</code> to get a simplified expression <code>P'</code> and a proof <code>h</code> that <code>P = P'</code>.
-- If <code>P'</code> is <code>True</code> then return the right hand side <code>a</code> together with the proof <code>ite_cond_eq_true r</code> that <code>ite P a b = a</code>.
-- If <code>P'</code> is <code>False</code> then return the right hand side <code>b</code> together with the proof <code>ite_cond_eq_false r</code> that <code>ite P a b = b</code>.</p>
+<p>When presented with a left hand side of the form <code>ite P a b</code>, <code>reduceIte</code> does the following:</p>
+<ul>
+<li>Call <code>simp</code> on <code>P</code> to get a simplified expression <code>P'</code> and a proof <code>h</code> that <code>P = P'</code>.</li>
+<li>If <code>P'</code> is <code>True</code> then return the right hand side <code>a</code> together with the proof <code>ite_cond_eq_true r</code> that <code>ite P a b = a</code>.</li>
+<li>If <code>P'</code> is <code>False</code> then return the right hand side <code>b</code> together with the proof <code>ite_cond_eq_false r</code> that <code>ite P a b = b</code>.</li>
+</ul>
 <h3>Many more applications!</h3>
 <p>In the second blog post, we will see how to build step by step a simproc for computing a variant of <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=List.range#doc"><code>List.range</code></a> when the parameter is a numeral.</p>
 <h2>A few caveats</h2>
-<p>The current design of simprocs comes with a few restrictions that are worth keeping in mind:
-* By definition, <strong>a simproc can only be used in <code>simp</code></strong> (and tactics that call <code>simp</code> under the hood, such as <code>simp_rw</code>, <code>simpa</code>, <code>aesop</code>, <code>norm_num</code>, etc...), even though the notion of a "modular lemma" could be useful in other rewriting tactics like <code>rw</code>.
-* <strong>One cannot provide arguments to a simproc to restrict the occurrences it rewrites</strong>.
-  In contrast, this is possible for lemmas in all rewriting tactics: e.g. <code>rw [add_comm c]</code> turns <code>⊢ a + b = c + d</code> into <code>⊢ a + b = d + c</code> where <code>rw [add_comm]</code> would instead have turned it into <code>⊢ b + a = c + d</code>.</p>
+<p>The current design of simprocs comes with a few restrictions that are worth keeping in mind:</p>
+<ul>
+<li>By definition, <strong>a simproc can only be used in <code>simp</code></strong> (and tactics that call <code>simp</code> under the hood, such as <code>simp_rw</code>, <code>simpa</code>, <code>aesop</code>, <code>norm_num</code>, etc...), even though the notion of a "modular lemma" could be useful in other rewriting tactics like <code>rw</code>.</li>
+<li>
+<strong>One cannot provide arguments to a simproc to restrict the occurrences it rewrites</strong>.
+  In contrast, this is possible for lemmas in all rewriting tactics: e.g. <code>rw [add_comm c]</code> turns <code>⊢ a + b = c + d</code> into <code>⊢ a + b = d + c</code> where <code>rw [add_comm]</code> would instead have turned it into <code>⊢ b + a = c + d</code>.</li>
+</ul>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">

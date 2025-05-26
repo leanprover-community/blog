@@ -61,6 +61,7 @@ Indeed, we will soon see an example of a simproc taking the place of infinitely 
 # Examples of simprocs
 
 In this section, we exemplify four simprocs that cover the following use cases:
+
 * Avoiding combinatorial explosion of lemmas
 * Computation
 * Performance optimisation
@@ -87,8 +88,9 @@ Indeed, the equality `x = a` could be hidden arbitrarily deep inside the `∧`.
 > This is not useful in practice since it could possibly loop (e.g. if there are two `=`, they could be commuted forever) and modifies the expression in unwanted ways, such as reassociating all the `∧`, even those outside an `∃`.
 
 When presented with a left hand side of the form `∃ x, P x`, where `P x` is of the form `_ ∧ ... ∧ _`, `existsAndEq` does the following:
+
 - Recursively traverse `P x` inside the existential quantifier looking for an equality `x = a` for some `a`.
-- If an equality is found, construct a proof that `∀ x, p x → x = a`.
+- If an equality is found, construct a proof that `∀ x, P x → x = a`.
 - Return the right hand side `P a` together with the proof obtained from the following lemma:
   ```lean
   lemma exists_of_imp_eq {α : Sort u} {p : α → Prop} (a : α) (h : ∀ x, p x → x = a) :
@@ -100,6 +102,7 @@ When presented with a left hand side of the form `∃ x, P x`, where `P x` is of
 Computations are an integral part of theorem proving, and as such there are many ways to perform them.
 For example, you will find that the `decide` tactic closes most of the examples in this subsection.
 There are a few reasons why simprocs are interesting for computation regardless:
+
 * **`decide` relies on decidability instances**.
   Not everything one may want to compute is decidable, and not every decidability instance is efficient.
   In fact, most `Decidable` instances in Lean and Mathlib are very generic, and therefore unspecific and inefficient.
@@ -134,6 +137,7 @@ example (a b : Nat) : a ∣ a * b := by
 To reiterate one of the points made earlier, this simproc is useful despite doing something that `decide` can already do, as it allows the `simp` tactic to get rid of certain expressions of the form `a ∣ b`, *and then* simplify the resulting goal (or hypothesis) further.
 
 When presented with a left hand side of the form `a ∣ b` where `a` and `b` are natural numbers, `Nat.reduceDvd` does the following:
+
 - Check that `a` and `b` are numerals.
 - Compute `b % a`.
 - If `b % a` is zero, then return the right hand side `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl` that `(b % a = 0) = True`.
@@ -161,6 +165,7 @@ example (a : Nat) : Finset.Icc a (a + 2) = {a, a + 1, a + 2} := by
 ```
 
 When presented with a left hand side of the form `Finset.Icc a b` where `a` and `b` are natural numbers, `Finset.Icc_ofNat_ofNat` does the following:
+
 * Check that `a` and `b` are numerals.
 * compute the expression `{a, ..., b}` recursively on `b`, along with the proof that it equals `Finset.Icc a b`.
 
@@ -200,6 +205,7 @@ example : (if FermatLastTheorem then 1 else 2) = 1 := by
 ```
 
 When presented with a left hand side of the form `ite P a b`, `reduceIte` does the following:
+
 - Call `simp` on `P` to get a simplified expression `P'` and a proof `h` that `P = P'`.
 - If `P'` is `True` then return the right hand side `a` together with the proof `ite_cond_eq_true r` that `ite P a b = a`.
 - If `P'` is `False` then return the right hand side `b` together with the proof `ite_cond_eq_false r` that `ite P a b = b`.
@@ -211,6 +217,7 @@ In the second blog post, we will see how to build step by step a simproc for com
 # A few caveats
 
 The current design of simprocs comes with a few restrictions that are worth keeping in mind:
+
 * By definition, **a simproc can only be used in `simp`** (and tactics that call `simp` under the hood, such as `simp_rw`, `simpa`, `aesop`, `norm_num`, etc...), even though the notion of a "modular lemma" could be useful in other rewriting tactics like `rw`.
 * **One cannot provide arguments to a simproc to restrict the occurrences it rewrites**.
   In contrast, this is possible for lemmas in all rewriting tactics: e.g. `rw [add_comm c]` turns `⊢ a + b = c + d` into `⊢ a + b = d + c` where `rw [add_comm]` would instead have turned it into `⊢ b + a = c + d`.
