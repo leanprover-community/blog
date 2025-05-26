@@ -7,7 +7,7 @@ has_math: true
 link: ''
 slug: fantastic-simprocs
 tags: 'simp, simproc, meta'
-title: Simprocs for the Working (Formal) Mathematician
+title: Simprocs for the Working Mathematician
 type: text
 ---
 
