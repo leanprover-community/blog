@@ -60,7 +60,7 @@ Indeed, we will soon see an example of a simproc taking the place of infinitely 
 
 # Examples of simprocs
 
-In this section, we exemplify four simprocs that cover the following following use cases:
+In this section, we exemplify four simprocs that cover the following use cases:
 * Avoiding combinatorial explosion of lemmas
 * Computation
 * Performance optimisation
