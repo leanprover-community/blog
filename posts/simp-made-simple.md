@@ -5,14 +5,14 @@ date: 2025-03-29 12:33:00 UTC+00:00
 description: 'An exploration of the simp tactic'
 has_math: true
 link: ''
-slug: how-simp-works
+slug: simp-made-simple
 tags: 'simp, simproc, meta'
 title: Simp, made simple.
 type: text
 ---
 
 This is the second blog post in a series of three.
-In [the first blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
+In [the first blog post](https://leanprover-community.github.io/blog/posts/simprocs-for-the-working-mathematician/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
 In this sequel, we give a more detailed exposition of the inner workings of the simp tactic in preparation of our third post, where we will see how one can go about creating new simprocs.
 > Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad (for those that don't, the book [Metaprogramming in Lean 4](https://leanprover-community.github.io/lean4-metaprogramming-book/) is a great introduction to the topic)
 
