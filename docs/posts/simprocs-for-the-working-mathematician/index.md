@@ -12,7 +12,7 @@ type: text
 ---
 
 Lean v4.6.0 (back in February 2024!) added support for custom simplification procedures, aka *simprocs*.
-This blog post is the first in a series of two aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
+This blog post is the first in a series of three aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
 
 <!-- TEASER_END -->
 
@@ -145,6 +145,8 @@ When presented with a left hand side of the form `a ∣ b` where `a` and `b` are
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
+> Note: this `simproc` is not in Mathlib yet (see [#22039](https://github.com/leanprover-community/mathlib4/pull/22039)).
+
 If `a` and `b` are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then `Finset.Icc a b` for `a` and `b` is the finite set of elements lying between `a` and `b`.
 
 The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc) where `a` and `b` are numerals, and simplify them to an explicit set.
@@ -193,8 +195,8 @@ example : (if 37 * 0 = 0 then 1 else 2) = 1 := by
   simp only [↓reduceIte]
 
 example (P : Prop) (a b : Nat) : (if P ∨ ¬ P then a else b) = a := by
-  -- Works since `simp` can simplify `P ∨ ¬ P` to `True`.
-  simp only [↓reduceIte]
+  -- Works since `simp` can simplify `P ∨ ¬ P` to `True` using `Decidable.em`.
+  simp only [↓reduceIte, Decidable.em]
 
 open scoped Classical in -- Can be removed once Kevin Buzzard is done with the FLT project ;)
 example : (if FermatLastTheorem then 1 else 2) = 1 := by

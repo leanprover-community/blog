@@ -69,7 +69,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>Lean v4.6.0 (back in February 2024!) added support for custom simplification procedures, aka <em>simprocs</em>.
-This blog post is the first in a series of two aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.</p>
+This blog post is the first in a series of three aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.</p>
 <!-- TEASER_END -->
 
 <p>This post describes purely informally what simprocs are and do.
@@ -179,6 +179,9 @@ There are a few reasons why simprocs are interesting for computation regardless:
 <li>If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(b % a = 0) = False</code>.</li>
 </ul>
 <h4>The <code>Finset.Icc_ofNat_ofNat</code> simproc</h4>
+<blockquote>
+<p>Note: this <code>simproc</code> is not in Mathlib yet (see <a href="https://github.com/leanprover-community/mathlib4/pull/22039">#22039</a>).</p>
+</blockquote>
 <p>If <code>a</code> and <code>b</code> are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then <code>Finset.Icc a b</code> for <code>a</code> and <code>b</code> is the finite set of elements lying between <code>a</code> and <code>b</code>.</p>
 <p>The <code>Finset.Icc_ofNat_ofNat</code> simproc is designed to take expressions of the form <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc"><code>Finset.Icc a b</code></a> where <code>a</code> and <code>b</code> are numerals, and simplify them to an explicit set.</p>
 <pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">Finset.Icc</span> <span class="mi">1</span> <span class="mi">0</span> <span class="bp">=</span> <span class="bp">∅</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -218,8 +221,8 @@ What we just explained is a concrete example of simplification happening from th
   <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="bp">↓</span><span class="n">reduceIte</span><span class="o">]</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">P</span> <span class="o">:</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">Nat</span><span class="o">)</span> <span class="o">:</span> <span class="o">(</span><span class="k">if</span> <span class="n">P</span> <span class="bp">∨</span> <span class="bp">¬</span> <span class="n">P</span> <span class="k">then</span> <span class="n">a</span> <span class="k">else</span> <span class="n">b</span><span class="o">)</span> <span class="bp">=</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span>
-  <span class="c1">-- Works since `simp` can simplify `P ∨ ¬ P` to `True`.</span>
-  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="bp">↓</span><span class="n">reduceIte</span><span class="o">]</span>
+  <span class="c1">-- Works since `simp` can simplify `P ∨ ¬ P` to `True` using `Decidable.em`.</span>
+  <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="bp">↓</span><span class="n">reduceIte</span><span class="o">,</span> <span class="n">Decidable.em</span><span class="o">]</span>
 
 <span class="kn">open</span> <span class="n">scoped</span> <span class="n">Classical</span> <span class="k">in</span> <span class="c1">-- Can be removed once Kevin Buzzard is done with the FLT project ;)</span>
 <span class="kd">example</span> <span class="o">:</span> <span class="o">(</span><span class="k">if</span> <span class="n">FermatLastTheorem</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">2</span><span class="o">)</span> <span class="bp">=</span> <span class="mi">1</span> <span class="o">:=</span> <span class="kd">by</span>
