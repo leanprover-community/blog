@@ -118,12 +118,39 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 2. The counit $\varepsilon: \mathbb{C}[t,t^{-1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
 3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes \mathbb{C}[t,t^{-1}]$ given by $\Delta(t) = t \otimes t$.
 4. The antipode $S: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}]$ given by $S(t) = t^{-1}$.
+We write $\mathbb{G}_m$ for the 1-dimensional algebraic torus.
 
-# Tori
+The correspondence between algebraic groups and Hopf algebras is now fully formalized. We have proven that there is an equivalence of categories between commutative Hopf algebras and affine group schemes (see docs link).
 
+# Application: Pairing
 
-# Application: 
+For a group scheme $G$ we can define two important notions:
+1. A *character* of $G$ is a group homomorphism $G\to\mathbb{G}_m$. We write $X(G)$ for the group of characters.
+2. A *cocharacter* or *one-parameter subgroup* of $G$ is a group homomorphism $\mathbb{G}_m\to G$. We write $X^{*}(G)$ for the group of cocharacters.
 
+When $G$ is commutative composition defines a bilinear pairing
+$$
+    X(G) \times X^{*}(G) \to \operatorname{Hom}(\mathbb{G}_m,\mathbb{G}_m).
+$$
+To test our API we decided to show that this is a perfect pairing, we will now explain what this means.
+
+Given an $m_1,\dots,m_n \in \mathbb{Z}$ we can define a character of $\mathbb{G}_m^n$ via
+$$
+    (t_1,\dots,t_n) \longmapsto t_1^{m_1}\cdots t_n^{m_n}.
+$$
+We have proven that all characters of $\mathbb{G}_m^n$ arise this way, so $X(\mathbb{G}_m^n) \cong \mathbb{Z}^n$ (see docs link); in particular, $\operatorname{Hom}(\mathbb{G}_m,\mathbb{G}_m) \cong \mathbb{Z}$.
+
+Similarly, given $m_1,\dots,m_n \in \mathbb{Z}$ we can define a cocharacter of $\mathbb{G}_m^n$ via
+$$
+    t \longmapsto (t^{m_1},\dots, t^{m_n}).
+$$
+We have also proven that all cocharacters of $\mathbb{G}_m^n$ arise this way (docs link). 
+
+Hence the character-cocharacter pairing corresponds to a bilinear pairing
+$$
+    \mathbb{Z}^n \times \mathbb{Z}^n \longrightarrow \mathbb{Z}.
+$$
+We have shown that this pairing is perfect (docs link).
 
 # How to contribute
 
