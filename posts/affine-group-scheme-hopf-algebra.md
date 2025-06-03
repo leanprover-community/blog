@@ -29,7 +29,11 @@ A companion article describes the technical difficulties we encountered in more 
 
 # Introduction
 
-
+Plan:
+1. Explain toric variety
+2. Explain model of torus $\mathbb{C}^*$
+3. Explain Laurent polynomials
+4. Explain that we need this to be an algebraic group
 
 # Group schemes
 
