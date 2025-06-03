@@ -39,6 +39,33 @@ as the second phase will require very different mathematics to the first.
 All explanations in this blog post are mathematical.
 Technical talk is relegated to the companion article on arXiv.
 
+# Varieties
+
+Varieties are the basic objects of study in algebraic geometry.
+A variety should be understood as a *geometric space* which one can understand through *algebra*.
+In a vague sense, varieties are an algebraic analogue to manifolds.
+
+Classical examples of varieties include the complex numbers $\mathbb C$
+and the non-zero complex numbers $\mathbb C^\times$.
+They are in this context referred to as the **additive group** and **multiplicative group**.
+Their products $\mathbb C^n$ and $(\mathbb C^\times)^n$ are called
+**affine space** and **algebraic torus** respectively.
+
+A special class of varieties, namely *affine varieties*,
+can be constructed more readily using the *Spec functor*,
+taking a commutative ring to a variety its *prime spectrum*.
+The previous sentence is a bit scary,
+but all we need to know is that if $R$ and $S$ are commutative rings,
+then morphisms $\mathrm{Spec}\ R \to \mathrm{Spec}\ S$
+exactly correspond to ring homomorphisms $S \to R$.
+
+We can reinterpret our variety $\mathbb C^n$ as $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
+the spectrum of the polynomial ring in $n$ variables.
+Similarly, $(\mathbb C^\times)^n$ is the same variety as $\mathrm{Spec}\ \mathbb C[X_1^\pm, \dots, X_n^\pm]$,
+the spectrum of multivariate Laurent series in $n$ variables.
+The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^\pm, \dots, X_n^\pm]$
+corresponds to the natural inclusion $(\mathbb C^\times)^n \hookrightarrow \mathbb C^n$.
+
 # Group schemes
 
 Recall the definition of a group. We start with:
