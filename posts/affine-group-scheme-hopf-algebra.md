@@ -96,6 +96,13 @@ A group object in the category of varieties is called an *algebraic group*.
 In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
 group objects recover the notions of a group/topological group/Lie group.
 
+Following this, an $n$-dimensional algebraic torus is defined as the algebraic group via:
+
+1. The variety $(\mathbb{C}^\times)^n$.
+2. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
+3. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$ given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
+4. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$ given by $\iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1})$.
+
 # Hopf algebras
 
 Since complex affine varieties correspond to commutative $\mathbb{C}$-algebras, some $\mathbb{C}$-algebras with extra structure should correspond to algebraic groups. Recall that maps of affine varieties are in bijection with maps of their corresponding rings in the opposite direction. We need the additional fact that $(\operatorname{Spec} R) \otimes (\operatorname{Spec} S)$ is isomorphic to $\operatorname{Spec} (R \otimes S)$. Thus the structure we are looking for is:
@@ -106,8 +113,16 @@ Since complex affine varieties correspond to commutative $\mathbb{C}$-algebras, 
 
 And we ask that these satisfy the corresponding diagrams with arrows reversed (diagrams here). Algebras with this structure are called *Hopf algebras*. There is a notion of Hopf algebra homomorphisms, which are in one-to-one correspondence with algebraic group homomorphisms.
 
+The 1-dimensional torus corresponds to the Hopf algebra defined as:
+1. The $\mathbb{C}$-algebra $\mathbb{C}[t,t^{-1}]$.
+2. The counit $\varepsilon: \mathbb{C}[t,t^{-1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
+3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes \mathbb{C}[t,t^{-1}]$ given by $\Delta(t) = t \otimes t$.
+4. The antipode $S: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}]$ given by $S(t) = t^{-1}$.
+
 # Tori
 
+
+# Application: 
 
 
 # How to contribute
