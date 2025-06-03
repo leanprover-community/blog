@@ -66,33 +66,35 @@ the spectrum of multivariate Laurent series in $n$ variables.
 The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^\pm, \dots, X_n^\pm]$
 corresponds to the natural inclusion $(\mathbb C^\times)^n \hookrightarrow \mathbb C^n$.
 
-# Group schemes
+# Algebraic groups
 
-Recall the definition of a group. We start with:
+Recall the definition of a group. A *group structure* on a set $G$ consists of:
+1. An **identity** $e \in G$.
+2. A **multiplication** $(\cdot * \cdot) : G \times G \to G$.
+3. An **inverse** $(\cdot^{-1}) : G \to G$.
 
-1. A set $G$.
-2. A distinguished element $e \in G$.
-3. A binary operation $\cdot * \cdot$.
-4. A unary operation $(\cdot)^{-1}$.
-
-These can be abstracted into any category $\mathsf{C}$, which has the notion of a binary product $\cdot \otimes \cdot$ and unit object $\mathbf{1}_C$, as:
-
-1. An object $G$ of $\mathsf{C}$.
-2. A (unit) morphism $\mathbf{1}_C \to G$.
-3. A (multiplication) morphism $m : G \otimes G \to G$.
-4. An (inverse) morphism $\iota : G \to G$.
-
-Of course group operations also satisfy the group axioms:
-
+respecting the following *group axioms*:
 1. For all $g \in G$, $e * g = g$ (and $g * e = g$).
 2. For all $g, h, k \in G$, $(g * h) * k = g * (h * k)$.
 3. For all $g \in G$, $g^{-1} * g = e$ (and $g * g^{-1} = e$).
 
-These can also be abstracted (with appropriate coherence conditions) as the following commutative diagrams: (ADD DIAGRAMS).
+A group structure can be described purely in terms of maps between
+$G, G \times G$ and the one element set $\{*\}$,
+meaning that we can reinterpret groups in any category $\mathsf{C}$
+where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
+ie with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
+(and appropriate coherence conditions).
+A *group object* $G \in \mathsf{C}$ then consists of:
+1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
+2. A **multiplication morphism** $\mu : G \otimes G \to G$.
+3. An **inverse morphism** $\iota : G \to G$.
 
-This defines a *group object* in $\mathsf{C}$ and was already in Mathlib before we started working on the project (see docs link). Applying this definition to the categories of sets/smooth manifolds/varieties we recover the notions of a group/Lie group/algebraic group. Since Mathlib uses schemes rather than varieties, we will be interested in group objects in the category of schemes aka *group schemes*.
+making the following diagrams commute: (ADD DIAGRAMS)
 
-We can similarly abstract the definition of group homomorphisms to define homomorphisms of group objects.
+A group object in the category of varieties is called an *algebraic group*.
+
+In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
+group objects recover the notions of a group/topological group/Lie group.
 
 # Hopf algebras
 
