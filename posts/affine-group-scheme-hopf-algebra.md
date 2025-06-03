@@ -18,22 +18,26 @@ following the famous textbook by Cox, Little and Schenck.
 An early discovery of the project was that "toric variety" contains "torus"
 and that Mathlib didn't (contain a torus).
 
-This blog post is an announcement that this unexpected prerequisite was recently cleared.
-It explains what tori and toric varieties are and what exactly we needed to know about them.
-
-A companion article describes the technical difficulties we encountered in more depth.
+This blog post is a double announcement:
+* The unexpected prerequisite of algebraic tori was recently cleared;
+* We are for contributors to help with the second phase of the project,
+  ie toric geometry and its relation to convex geometry.
 
 <!-- TEASER_END -->
 
+We first explain what a *variety* is.
+This motivates *algebraic groups* and *Hopf algebras*,
+where the latter are a way to approach the former algebraically,
+using the *correspondence* between *affine* algebraic groups and Hopf algebras.
+Finally, we apply this newly gained understanding to the construction
+of the *perfect pairing* between *characters* and *cocharacters* of a torus.
 
+In the last section, we describe how to contribute to the second phase of the project.
+We encourage readers to skip straight to that section if ever they get lost reading the previous,
+as the second phase will require very different mathematics to the first.
 
-# Introduction
-
-Plan:
-1. Explain toric variety
-2. Explain model of torus $\mathbb{C}^*$
-3. Explain Laurent polynomials
-4. Explain that we need this to be an algebraic group
+All explanations in this blog post are mathematical.
+Technical talk is relegated to the companion article on arXiv.
 
 # Group schemes
 
