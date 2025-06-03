@@ -47,7 +47,7 @@ Recall the definition of a group. We start with:
 These can be abstracted into any category $\mathsf{C}$, which has the notion of a binary product $\cdot \otimes \cdot$ and unit object $\mathbf{1}_C$, as:
 
 1. An object $G$ of $\mathsf{C}$.
-2. A morphism $\mathbf{1}_C \to G$.
+2. A (unit) morphism $\mathbf{1}_C \to G$.
 3. A (multiplication) morphism $m : G \otimes G \to G$.
 4. An (inverse) morphism $\iota : G \to G$.
 
@@ -57,13 +57,21 @@ Of course group operations also satisfy the group axioms:
 2. For all $g, h, k \in G$, $(g * h) * k = g * (h * k)$.
 3. For all $g \in G$, $g^{-1} * g = e$ (and $g * g^{-1} = e$).
 
-These can also be abstracted (with appropriate coherence conditions) as the following commutative diagrams: (ADD DIAGRAMS)
+These can also be abstracted (with appropriate coherence conditions) as the following commutative diagrams: (ADD DIAGRAMS).
 
-This defines a *group object* in $\mathsf{C}$. This was already present as (docs link) in Mathlib before we started working on the project. Applying this definition to the categories of sets/smooth manifolds/varieties we recover the notions of a group/Lie group/algebraic group. Since Mathlib uses schemes rather than varieties, we will be interested in group objects in the category of schemes aka *group schemes*.
+This defines a *group object* in $\mathsf{C}$ and was already in Mathlib before we started working on the project (see docs link). Applying this definition to the categories of sets/smooth manifolds/varieties we recover the notions of a group/Lie group/algebraic group. Since Mathlib uses schemes rather than varieties, we will be interested in group objects in the category of schemes aka *group schemes*.
+
+We can similarly abstract the definition of group homomorphisms to define homomorphisms of group objects.
 
 # Hopf algebras
 
+Since complex affine varieties correspond to commutative $\mathbb{C}$-algebras, some $\mathbb{C}$-algebras with extra structure should correspond to algebraic groups. Recall that maps of affine varieties are in bijection with maps of their corresponding rings in the opposite direction. We need the additional fact that $(\operatorname{Spec} R) \otimes (\operatorname{Spec} S)$ is isomorphic to $\operatorname{Spec} (R \otimes S)$. Thus the structure we are looking for is:
+1. A $\mathbb{C}$-algebra $R$.
+2. A (counit) homomorphism $\varepsilon: R\to\mathbb{C}$.
+3. A (comultiplication) homomorphism $\Delta: R \to R \otimes R$.
+4. An (antipode) homomorphism $S: R \to R$.
 
+And we ask that these satisfy the corresponding diagrams with arrows reversed (diagrams here). Algebras with this structure are called *Hopf algebras*. There is a notion of Hopf algebra homomorphisms, which are in one-to-one correspondence with algebraic group homomorphisms.
 
 # Tori
 
