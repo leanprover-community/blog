@@ -20,8 +20,8 @@ and that Mathlib didn't (contain a torus).
 
 This blog post is a double announcement:
 * The unexpected prerequisite of algebraic tori was recently cleared;
-* We are for contributors to help with the second phase of the project,
-  ie toric geometry and its relation to convex geometry.
+* We are looking for contributors to help with the second phase of the project,
+  i.e. toric geometry and its relation to convex geometry.
 
 <!-- TEASER_END -->
 
@@ -82,7 +82,7 @@ A group structure can be described purely in terms of maps between
 $G, G \times G$ and the one element set $\{*\}$,
 meaning that we can reinterpret groups in any category $\mathsf{C}$
 where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
-ie with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
+i.e. with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
 (and appropriate coherence conditions). A **group object** $G \in \mathsf{C}$ then consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
 2. A **multiplication morphism** $\mu : G \otimes G \to G$.
@@ -219,13 +219,12 @@ This is what it means for the pairing to be **perfect**.
   [`isPerfPair_charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.isPerfPair_charPairing#doc)
   and the computation is <span style="color:red">**TODO: Do the computation**</span>.
 
-This perfect pairing is very important,
-as it allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X^*(\mathbb G_m^n)$,
-ie we have unlocked convex geometry on characters and cocharacters.
+This perfect pairing is very important:
+It allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X^*(\mathbb G_m^n)$,
+i.e. it unlocks convex geometry on characters and cocharacters.
 
 Cones in $\mathbb Z^n$ turn out to be in exact correspondence with *affine toric varieties*,
 which are the subject of the first chapter of Cox-Little-Schenck.
-
 
 # How to contribute
 
