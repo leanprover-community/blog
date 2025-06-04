@@ -11,7 +11,7 @@ title: The correspondence between affine group schemes and Hopf algebras
 type: text
 ---
 
-This February saw the birth of the [Toric](https://github.com/YaelDillies/Toric) project,
+This February saw the birth of the [**Toric**](https://github.com/YaelDillies/Toric) project,
 whose aim is to build the theory of toric varieties
 following the famous textbook by Cox, Little and Schenck.
 
@@ -111,7 +111,10 @@ The usual notation for the standard $n$-dimensional algebraic torus is $\mathbb 
 or $\mathbb G_m$ in the special case where $n = 1$.
 
 > In Toric, we defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
-<span style="color:red">**TODO: Link to docs**</span>
+  The torus is
+  [`SplitTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.SplitTorus#doc)
+  and its group structure is given by
+  [`Diag.grp_ClassAsOver`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.Diag.grp_ClassAsOver#doc).
 
 # Hopf algebras
 
@@ -150,7 +153,10 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 > The correspondence between algebraic groups and Hopf algebras is now fully formalized in Toric.
   We have proven that there is an equivalence of categories
   between commutative Hopf algebras and affine group schemes.
-  <span style="color:red">**TODO: Link to docs**</span>
+  $\Spec$ as a functor from Hopf algebras to affine group schemes is
+  [`hopfSpec`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec#doc)
+  and the fact that' it's fully faithful is
+  [`hopfSpec.fullyFaithful`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec.fullyFaithful#doc).
 
 # Application: Pairing
 
@@ -176,9 +182,8 @@ $$
 $$
 
 > In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in these ways.
-  <span style="color:red">**TODO: Link to docs**</span>
-
-In particular, $X(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly).
+  In particular we have $X(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly) as
+  [`charTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charTorus#doc).
 
 Similarly, given $(m_1, \dots, m_n) \in \mathbb Z^n$,
 we can define a cocharacter of $\mathbb G_m^n$ via
@@ -208,7 +213,11 @@ This is what it means for the pairing to be **perfect**.
 
 > In Toric, we have shown that this pairing is perfect and computed it to be the usual inner product
   after a suitable identification of $X(\mathbb G_m^n)$ with $\mathbb Z^n$.
-  <span style="color:red">**TODO: Link to docs**</span>
+  The pairing is
+  [`charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charPairing#doc),
+  the fact that it is perfect for $\mathbb G_m^n$ is
+  [`isPerfPair_charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.isPerfPair_charPairing#doc)
+  and the computation is <span style="color:red">**TODO: Do the computation**</span>.
 
 This perfect pairing is very important,
 as it allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X^*(\mathbb G_m^n)$,
