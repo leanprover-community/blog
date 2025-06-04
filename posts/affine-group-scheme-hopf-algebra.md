@@ -154,33 +154,69 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 
 # Application: Pairing
 
-For a group scheme $G$ we can define two important notions:
-1. A *character* of $G$ is a group homomorphism $G\to\mathbb{G}_m$. We write $X(G)$ for the group of characters.
-2. A *cocharacter* or *one-parameter subgroup* of $G$ is a group homomorphism $\mathbb{G}_m\to G$. We write $X^{*}(G)$ for the group of cocharacters.
+For a commutative algebraic group $G$, there are two important notions:
+1. A **character** of $G$ is a group homomorphism $G\to\mathbb G_m$.
+  We write $X(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the group of characters.
+2. A **cocharacter**, aka **one-parameter subgroup**, of $G$
+  is a group homomorphism $\mathbb G_m\to G$.
+  We write $X^*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the group of cocharacters.
 
-When $G$ is commutative composition defines a bilinear pairing
+When $G$ is commutative, composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
-    X(G) \times X^{*}(G) \to \operatorname{Hom}(\mathbb{G}_m,\mathbb{G}_m).
+    X(G) \times X^{*}(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
 $$
-To test our API we decided to show that this is a perfect pairing, we will now explain what this means.
+This pairing is *perfect* when $G := \mathbb G_m^n$,.
 
-Given an $m_1,\dots,m_n \in \mathbb{Z}$ we can define a character of $\mathbb{G}_m^n$ via
+We will now explain what this means and how to prove it.
+
+Given a tuple $(m_1, \dots, m_n) \in \mathbb Z^n$,g
+we can define a character of $\mathbb G_m^n$ via
 $$
     (t_1,\dots,t_n) \longmapsto t_1^{m_1}\cdots t_n^{m_n}.
 $$
-We have proven that all characters of $\mathbb{G}_m^n$ arise this way, so $X(\mathbb{G}_m^n) \cong \mathbb{Z}^n$ (see docs link); in particular, $\operatorname{Hom}(\mathbb{G}_m,\mathbb{G}_m) \cong \mathbb{Z}$.
 
-Similarly, given $m_1,\dots,m_n \in \mathbb{Z}$ we can define a cocharacter of $\mathbb{G}_m^n$ via
+> In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in these ways.
+  <span style="color:red">**TODO: Link to docs**</span>
+
+In particular, $X(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly).
+
+Similarly, given $(m_1, \dots, m_n) \in \mathbb Z^n$,
+we can define a cocharacter of $\mathbb G_m^n$ via
 $$
     t \longmapsto (t^{m_1},\dots, t^{m_n}).
 $$
-We have also proven that all cocharacters of $\mathbb{G}_m^n$ arise this way (docs link). 
+and again all cocharacters of $\mathbb G_m^n$ arise in this way,
+so $X^*(\mathbb G_m^n) \cong \mathbb Z^n$.
 
 Hence the character-cocharacter pairing corresponds to a bilinear pairing
 $$
-    \mathbb{Z}^n \times \mathbb{Z}^n \longrightarrow \mathbb{Z}.
+    \mathbb Z^n \times \mathbb Z^n \longrightarrow \mathbb Z.
 $$
-We have shown that this pairing is perfect (docs link).
+which turns out to nothing else than the usual inner product on $\mathbb Z^n$:
+$$
+    \langle\cdot, \cdot\rangle := (\mathbf{a}, \mathbf{b}) \mapsto \sum_i a_i b_i
+$$
+
+In particular, the two maps
+$$
+    \mathbb Z^n \longrightarrow \operatorname{Hom}(\mathbb Z^n, \mathbb Z) \\
+    \mathbf{a} \mapsto \langle\mathbf{a}, \cdot\rangle \\
+    \mathbf{b} \mapsto \langle\cdot, \mathbf{b}\rangle
+$$
+are both bijective.
+This is what it means for the pairing to be **perfect**.
+
+> In Toric, we have shown that this pairing is perfect and computed it to be the usual inner product
+  after a suitable identification of $X(\mathbb G_m^n)$ with $\mathbb Z^n$.
+  <span style="color:red">**TODO: Link to docs**</span>
+
+This perfect pairing is very important,
+as it allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X^*(\mathbb G_m^n)$,
+ie we have unlocked convex geometry on characters and cocharacters.
+
+Cones in $\mathbb Z^n$ turn out to be in exact correspondence with *affine toric varieties*,
+which are the subject of the first chapter of Cox-Little-Schenck.
+
 
 # How to contribute
 
