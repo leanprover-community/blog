@@ -83,25 +83,35 @@ $G, G \times G$ and the one element set $\{*\}$,
 meaning that we can reinterpret groups in any category $\mathsf{C}$
 where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
 ie with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
-(and appropriate coherence conditions).
-A *group object* $G \in \mathsf{C}$ then consists of:
+(and appropriate coherence conditions). A **group object** $G \in \mathsf{C}$ then consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
 2. A **multiplication morphism** $\mu : G \otimes G \to G$.
 3. An **inverse morphism** $\iota : G \to G$.
 
-making the following diagrams commute: (ADD DIAGRAMS)
+making the following diagrams commute:
+<span style="color:red">**TODO: Add diagrams**</span>
+
+If the following further diagram commutes, then we have a **commutative group object**:
+<span style="color:red">**TODO: Add diagram**</span>
 
 A group object in the category of varieties is called an *algebraic group*.
 
 In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
 group objects recover the notions of a group/topological group/Lie group.
 
-Following this, an $n$-dimensional algebraic torus is defined as the algebraic group via:
+Following this, the **standard $n$-dimensional algebraic torus** is defined as
+the variety $(\mathbb{C}^\times)^n$ along with:
+1. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
+2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
+  given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
+3. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$
+  given by $\iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1})$.
 
-1. The variety $(\mathbb{C}^\times)^n$.
-2. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
-3. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$ given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
-4. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$ given by $\iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1})$.
+The usual notation for the standard $n$-dimensional algebraic torus is $\mathbb G_m^n$,
+or $\mathbb G_m$ in the special case where $n = 1$.
+
+> In Toric, we defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
+<span style="color:red">**TODO: Link to docs**</span>
 
 # Hopf algebras
 
