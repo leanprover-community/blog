@@ -220,3 +220,28 @@ which are the subject of the first chapter of Cox-Little-Schenck.
 
 # How to contribute
 
+Now that the theory of tori is off the ground, work on toric varieties can truly start.
+The next milestone is that the functor $M \mapsto \operatorname{Spec} \mathbb C[M]$
+from the category of affine monoids (submonoids of $\mathbb Z^n$ for some $n$)
+to the category of affine toric varieties is essentially surjective.
+
+Simultaneously, the perfect pairing between characters and cocharacters is begging
+for the theory of convex cones to be developed.
+The end result here is that affine monoids in $\mathbb Z^n$ are equivalent
+to convex polyhedral cones in $\mathbb R^n$.
+
+The second phase of the project will therefore run on two tableaux simultaneously:
+* The **algebraic geometry** side involving Hopf algebras, group schemes, Yoneda,
+  representation theory...
+* The **convex geometry** side involving convex cones, Fourier-Motzkin reduction, Gordan's lemma...
+
+Both sides now have a blueprint, which are
+[**Section 1.1**](https://yaeldillies.github.io/Toric/blueprint/sect0002.html) and
+[**Section 1.2**](https://yaeldillies.github.io/Toric/blueprint/sect0002.html#a0000000087)
+respectively, and the
+[**dependency graph**](https://yaeldillies.github.io/Toric/blueprint/dep_graph_document.html)
+shows how all the items fit together.
+
+If you want to contribute, please go to
+[**#toric>Current tasks**](https://leanprover.zulipchat.com/#narrow/channel/487278-toric/topic/Current.20tasks/with/510984744)
+on Zulip and claim a task!
