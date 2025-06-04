@@ -115,22 +115,42 @@ or $\mathbb G_m$ in the special case where $n = 1$.
 
 # Hopf algebras
 
-Since complex affine varieties correspond to commutative $\mathbb{C}$-algebras, some $\mathbb{C}$-algebras with extra structure should correspond to algebraic groups. Recall that maps of affine varieties are in bijection with maps of their corresponding rings in the opposite direction. We need the additional fact that $(\operatorname{Spec} R) \otimes (\operatorname{Spec} S)$ is isomorphic to $\operatorname{Spec} (R \otimes S)$. Thus the structure we are looking for is:
-1. A $\mathbb{C}$-algebra $R$.
-2. A (counit) homomorphism $\varepsilon: R\to\mathbb{C}$.
-3. A (comultiplication) homomorphism $\Delta: R \to R \otimes R$.
-4. An (antipode) homomorphism $S: R \to R$.
+Since complex affine varieties correspond to commutative $\mathbb{C}$-algebras,
+some $\mathbb{C}$-algebras with extra structure should correspond to algebraic groups.
 
-And we ask that these satisfy the corresponding diagrams with arrows reversed (diagrams here). Algebras with this structure are called *Hopf algebras*. There is a notion of Hopf algebra homomorphisms, which are in one-to-one correspondence with algebraic group homomorphisms.
+What are they? Let's figure it out.
+
+Recall that maps $\operatorname{Spec} R \to \operatorname{Spec} S$ of affine varieties
+are in bijection with maps $S \to R$ of their corresponding rings in the opposite direction.
+Also note that we can interpret the product of affine varieties
+in terms of the tensor product of rings:
+$\operatorname{Spec} R \otimes \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes S)$.
+
+Thus the structure we are looking for is:
+1. A commutative $\mathbb{C}$-algebra $R$.
+2. A **counit homomorphism** $\varepsilon: R\to\mathbb{C}$.
+3. A **comultiplication homomorphism** $\Delta: R \to R \otimes R$.
+4. An **antipode homomorphism** $S: R \to R$.
+
+And we ask that these satisfy the same diagrams as for a group object,
+except that the arrows are reversed:
+<span style="color:red">**TODO: Add diagrams**</span>
+
+Algebras with this structure are called *Hopf algebras*.
+There is a notion of Hopf algebra homomorphisms,
+which are in one-to-one correspondence with algebraic group homomorphisms.
 
 The 1-dimensional torus corresponds to the Hopf algebra defined as:
 1. The $\mathbb{C}$-algebra $\mathbb{C}[t,t^{-1}]$.
 2. The counit $\varepsilon: \mathbb{C}[t,t^{-1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
-3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes \mathbb{C}[t,t^{-1}]$ given by $\Delta(t) = t \otimes t$.
+3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes \mathbb{C}[t,t^{-1}]$
+  given by $\Delta(t) = t \otimes t$.
 4. The antipode $S: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}]$ given by $S(t) = t^{-1}$.
-We write $\mathbb{G}_m$ for the 1-dimensional algebraic torus.
 
-The correspondence between algebraic groups and Hopf algebras is now fully formalized. We have proven that there is an equivalence of categories between commutative Hopf algebras and affine group schemes (see docs link).
+> The correspondence between algebraic groups and Hopf algebras is now fully formalized in Toric.
+  We have proven that there is an equivalence of categories
+  between commutative Hopf algebras and affine group schemes.
+  <span style="color:red">**TODO: Link to docs**</span>
 
 # Application: Pairing
 
