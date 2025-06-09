@@ -1,12 +1,12 @@
 ---
-author: 'Markus Himmel and Joël Riou'
-category: 'New in mathlib'
+author: "Markus Himmel and Joël Riou"
+category: "New in mathlib"
 date: 2025-02-28 11:36:00 UTC+01:00
-description: ''
+description: ""
 has_math: true
-link: ''
+link: ""
 slug: abelian-categories
-tags: ''
+tags: ""
 title: Theorems about abelian categories
 type: text
 ---
@@ -29,12 +29,14 @@ that a morphism $i : A \to B$ has the left lifting property with
 respect to $p : X \to Y$ if for any commutative square as below
 there exists a morphism $B \to X$ which makes both triangles commute.
 
-$$\require{AMScd}
+$$
+\require{AMScd}
 \begin{CD}
 A @>>> X\\\\
 @VV{i}V @VV{p}V \\\\
 B @>>> Y
-\end{CD}$$
+\end{CD}
+$$
 
 If this holds, we would also say that $p$ has the right lifting property
 with respect to $i$.
@@ -64,23 +66,27 @@ The basic construction for the small object argument is as follows. If $X \to Y$
 is a morphism, and $I$ is a family of morphisms $f_i : A_i \to B_i$, we consider all
 commutative squares:
 
-$$\require{AMScd}
+$$
+\require{AMScd}
 \begin{CD}
 A_i @>>> X\\\\
 @VV{f_i}V @VV{p}V \\\\
 B_i @>>> Y
-\end{CD}$$
+\end{CD}
+$$
 
 We may define $SA$ to be the coproduct (indexed by all these squares) of the objects $A_i$
 and $SB$ to be the coproduct of the objects $B_i$.
 We may form the following pushout square:
 
-$$\require{AMScd}
+$$
+\require{AMScd}
 \begin{CD}
 SA @>>> X\\\\
 @VVV @VVV \\\\
 SB @>>> Z
-\end{CD}$$
+\end{CD}
+$$
 
 Thus, we get a factorization $X \to Z \to Y$ such that for any commutative square as above,
 we may not necessarily get a lifting $B_i \to X$, but at least, we obtain a tautological morphism
@@ -104,7 +110,7 @@ this result was generalized by Grothendieck.
 
 # Grothendieck abelian categories have enough injectives
 
-One of the results in the paper *Sur quelques points d'algèbre homologique* (*Tohoku Math. J.* (2), 9, 1957)
+One of the results in the paper _Sur quelques points d'algèbre homologique_ (_Tohoku Math. J._ (2), 9, 1957)
 by Alexander Grothendieck is that any Grothendieck abelian category has enough injectives.
 An abelian category $C$ is a Grothendieck abelian category if it satisfies certain axioms introduced
 in this paper: we assume that filtered colimits are exact and that there exists a generator $G$
@@ -149,14 +155,15 @@ proofs that chase elements around to no longer mention elements, this can be ann
 ## Partial results
 
 There are several techniques that enable elementwise reasoning in abelian categories.
-The first one is called *pseudoelements*. It appears in Mac Lane's *Categories for the Working Mathematician*
-and in Borceux' *Handbook of Categorical Algebra* and it entered mathlib in August of 2020.
+The first one is called _pseudoelements_. It appears in Mac Lane's _Categories for the Working Mathematician_
+and in Borceux' _Handbook of Categorical Algebra_ and it entered mathlib in August of 2020.
 
 Given an object $X$ of an abelian category $C$, we can consider the collection of morphisms with codomain $X$.
 We say that two morphisms $f_1 : P_1 \to X$ and $f_2 : P_2 \to X$ are equivalent if there is an object $Q$
 and epimorphisms $Q \to P_1$ and $Q \to P_2$ making the diagram
 
-$$\require{AMScd}
+$$
+\require{AMScd}
 \begin{CD}
 Q @>>> P_1\\\\
 @VVV @VVf_1V\\\\
@@ -214,13 +221,13 @@ of enough injectives in Grothendieck abelian categories), so our approach will b
 
 There are several candidates for $D$ which appear in the literature.
 
-* Freyd's *Abelian Categories* takes $D$ to be the opposite of the category of left-exact functors from $C$ to the category of abelian groups.
-Properties of $D$ are established mostly using ad-hoc arguments. Note that it is not obvious that $D$ is abelian, since $D$ does not contain
-*all* functors from $C$ to $\mathsf{Ab}$.
-* The proof sketched in the Stacks project takes $D$ to be the opposite of a category of abelian sheaves for a certain Grothendieck topology which is
-inspired by Bergman's refinements. Many properties of $D$ are proved by transporting them along the sheafification adjunction.
-* The proof given in Kashiwara and Schapira's *Categories and Sheaves* takes $D$ to be the opposite of the category of ind-objects of $C^{\mathsf{op}}$
-(this is the category of pro-objects of $C$). Here, we infer many properties from properties of the category of types.
+- Freyd's _Abelian Categories_ takes $D$ to be the opposite of the category of left-exact functors from $C$ to the category of abelian groups.
+  Properties of $D$ are established mostly using ad-hoc arguments. Note that it is not obvious that $D$ is abelian, since $D$ does not contain
+  _all_ functors from $C$ to $\mathsf{Ab}$.
+- The proof sketched in the Stacks project takes $D$ to be the opposite of a category of abelian sheaves for a certain Grothendieck topology which is
+  inspired by Bergman's refinements. Many properties of $D$ are proved by transporting them along the sheafification adjunction.
+- The proof given in Kashiwara and Schapira's _Categories and Sheaves_ takes $D$ to be the opposite of the category of ind-objects of $C^{\mathsf{op}}$
+  (this is the category of pro-objects of $C$). Here, we infer many properties from properties of the category of types.
 
 It can be shown that all of these choices for $D$ are actually equivalent as categories, but nonetheless the perspective one takes significantly
 changes the flavor of the resulting proof.
@@ -278,15 +285,27 @@ this step has no effect.
 At the beginning of the project, we were thinking about how one would go about providing infrastructure or even automation to construct a small category to apply
 the embedding theorem to, but it looks like something like this will not be needed, which is nice.
 
-# Gabriel-Popescu
+# The Gabriel-Popescu theorem
 
-# Future work
+The Gabriel-Popescu theorem states that if $C$ is a Grothendieck abelian category and $G$ is a generator of $C$, then the hom-functor
+$\operatorname{Hom}(G, {-})$ taking values in $\operatorname{End}(G)^{\mathsf{op}}$-modules is fully faithful and has an exact left-adjoint.
+This looks similar to the embedding theorem for co-Grothendieck abelian categories discussed above as part of the Freyd-Michell embedding
+theorem.
 
+However, the two results are quite different in nature. The Freyd-Mitchell embedding theorem, while useful, does not _really_ tell you anything
+about $C$ on a structural level. In other words, the Freyd-Mitchell embedding theorem does not tell you which of the properties of the
+category of $R$-modules are inherited by $C$. On the other hand, the Gabriel-Popescu theorem exhibits $C$ as an exact reflective subcategory of a category
+of modules, and this means that Grothendieck abelian categories inherit many interesting properties of the category of $R$-modules.
 
+Following a simple proof given by Barry Mitchell in 1981, Markus Himmel has added the Gabriel-Popescu theorem stated in terms of adjoint functors
+to mathlib in [PR 22733](https://github.com/leanprover-community/mathlib4/pull/22733) in March 2025. Meanwhile, Joël Riou has been working on
+giving the relevant definitions of Serre quotients necessary to restate the result in terms of localization functors. This in turn will
+pave the way for a deeper study of the structure of Grothendieck abelian categories which will be useful when dealing with size issues in the
+general setup of homological algebra in abelian categories.
 
-[^1]: In fact, when Markus Himmel formalized the development of pseudoelements in Borceux' *Handbook of Categorical Algebra*,
-he was unable to follow one of the results claiming that pseudoelements interact favorably with pullbacks. This result
-later would have been useful in the Liquid Tensor Experiment, leading to a [MathOverflow discussion](https://mathoverflow.net/a/419951/7845)
-and the subsequent [formalization of a counterexample](https://github.com/leanprover-community/mathlib3/pull/13387)
-by Riccardo Brasca.
-
+[^1]:
+    In fact, when Markus Himmel formalized the development of pseudoelements in Borceux' _Handbook of Categorical Algebra_,
+    he was unable to follow one of the results claiming that pseudoelements interact favorably with pullbacks. This result
+    later would have been useful in the Liquid Tensor Experiment, leading to a [MathOverflow discussion](https://mathoverflow.net/a/419951/7845)
+    and the subsequent [formalization of a counterexample](https://github.com/leanprover-community/mathlib3/pull/13387)
+    by Riccardo Brasca.
