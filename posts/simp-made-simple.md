@@ -145,7 +145,7 @@ abbrev Simproc  := Expr → SimpM  Step
 `simp` does not consume bare elements of type `Simproc`.
 Instead, a simproc is an element of type `Simproc` annotated with tbe extra data mentioned in the overview subsection, like whether the simproc is `pre` or `post`.
 
-Similarly, there is a [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type:
+Similarly, there is a [`DSimproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type:
 ```lean
 abbrev DSimproc := Expr → SimpM DStep
 ```
