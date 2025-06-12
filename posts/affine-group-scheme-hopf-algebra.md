@@ -197,7 +197,7 @@ Hence the character-cocharacter pairing corresponds to a bilinear pairing
 $$
     \mathbb Z^n \times \mathbb Z^n \longrightarrow \mathbb Z.
 $$
-which turns out to nothing else than the usual inner product on $\mathbb Z^n$:
+which turns out to be nothing other than the usual inner product on $\mathbb Z^n$:
 $$
     \langle\cdot, \cdot\rangle := (\mathbf{a}, \mathbf{b}) \mapsto \sum_i a_i b_i
 $$
