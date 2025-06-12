@@ -82,7 +82,7 @@ A group structure can be described purely in terms of maps between
 $G, G \times G$ and the one element set $\{*\}$,
 meaning that we can reinterpret groups in any category $\mathsf{C}$
 where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
-i.e. with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
+i.e. in any category with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
 (and appropriate coherence conditions). A **group object** $G \in \mathsf{C}$ then consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
 2. A **multiplication morphism** $\mu : G \otimes G \to G$.
