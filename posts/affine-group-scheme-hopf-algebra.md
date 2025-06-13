@@ -166,6 +166,9 @@ For a commutative algebraic group $G$, there are two important notions:
   is a group homomorphism $\mathbb G_m\to G$.
   We write $X^*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the group of cocharacters.
 
+Note that characters and cocharacters form genuine honest-to-god groups,
+not merely group objects in some category.
+
 When $G$ is commutative, composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
     X(G) \times X^{*}(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
