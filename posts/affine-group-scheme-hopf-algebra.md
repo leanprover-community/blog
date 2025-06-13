@@ -13,10 +13,9 @@ type: text
 
 This February saw the birth of the [**Toric**](https://github.com/YaelDillies/Toric) project,
 whose aim is to build the theory of toric varieties
-following the famous textbook by Cox, Little and Schenck.
+following the textbook by Cox, Little and Schenck.
 
-An early discovery of the project was that "toric variety" contains "torus"
-and that Mathlib didn't (contain a torus).
+We soon discovered that toric varieties contained tori, and that Mathlib didn't.
 
 This blog post is a double announcement:
 * The unexpected prerequisite of algebraic tori was recently cleared;
@@ -155,7 +154,7 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
   between commutative Hopf algebras and affine group schemes.
   $\Spec$ as a functor from Hopf algebras to affine group schemes is
   [`hopfSpec`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec#doc)
-  and the fact that' it's fully faithful is
+  and the fact that it's fully faithful is
   [`hopfSpec.fullyFaithful`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec.fullyFaithful#doc).
 
 # Application: Pairing
