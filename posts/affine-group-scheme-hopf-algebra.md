@@ -53,9 +53,9 @@ Schemes are therefore the algebraic analogue of manifolds.
 The polynomial equations appearing in the definition of schemes can be over any commutative ring,
 but for simplicity we will assume that they are over $\mathbb C$.
 
-The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ can both be realized as a scheme.
-They are in this context referred to as the **affine line** $\mathbb A$  and **multiplicative group** $\mathbb G_m$.
-Their products $\mathbb G_a^n$ and $\mathbb G_m^n$ are called
+The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ can both be realized as schemes.
+They are in this context referred to as the **affine line** $\mathbb A$ and **multiplicative group** $\mathbb G_m$.
+Their products $\mathbb A^n$ and $\mathbb G_m^n$ are called
 **affine space** and **algebraic torus** respectively.
 
 A special class of schemes, namely *affine schemes*,
@@ -67,12 +67,12 @@ but all we need to know is that if $R$ and $S$ are commutative rings,
 then morphisms $\mathrm{Spec}\ R \to \mathrm{Spec}\ S$
 exactly correspond to ring homomorphisms $S \to R$.
 
-$\mathbb G_a^n$ is in fact $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
+$\mathbb A^n$ is in fact $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
 the spectrum of the polynomial ring in $n$ variables.
 Similarly, $\mathbb G_m^n$ is $\mathrm{Spec}\ \mathbb C[X_1^\pm, \dots, X_n^\pm]$,
 the spectrum of multivariate Laurent series in $n$ variables.
 The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^\pm, \dots, X_n^\pm]$
-corresponds to the dense embedding $\mathbb G_m^n \hookrightarrow \mathbb G_a^n$
+corresponds to the dense embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$
 (think about how $(\mathbb C^\times)^n$ sits in $\mathbb C^n$.
 
 # Group schemes
