@@ -156,11 +156,11 @@ There is a notion of Hopf algebra homomorphisms,
 which are in one-to-one correspondence with algebraic group homomorphisms.
 
 The 1-dimensional torus corresponds to the Hopf algebra defined as:
-1. The $\mathbb{C}$-algebra $\mathbb{C}[t,t^{-1}]$.
-2. The counit $\varepsilon: \mathbb{C}[t,t^{-1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
-3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes_{\mathbb C} \mathbb{C}[t,t^{-1}]$
+1. The $\mathbb{C}$-algebra $\mathbb C[t^{\pm 1}]$.
+2. The counit $\varepsilon: \mathbb C[t^{\pm 1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
+3. The comultiplication $\Delta: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}] \otimes_{\mathbb C} \mathbb C[t^{\pm 1}]$
   given by $\Delta(t) = t \otimes t$.
-4. The antipode $S: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}]$ given by $S(t) = t^{-1}$.
+4. The antipode $S: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}]$ given by $S(t) = t^{-1}$.
 
 > In Toric, we have proven that $\mathrm{Spec}$ is a fully faithful functor
   from commutative Hopf algebras to group schemes,
