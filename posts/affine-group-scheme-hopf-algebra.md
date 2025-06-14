@@ -112,14 +112,6 @@ A group object in the category of schemes is called a *group scheme*.
 In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
 group objects recover the notions of a group/topological group/Lie group.
 
-Beware that those examples are misleading in that topological groups and Lie groups are
-honest-to-god groups with extra structure.
-This elementwise interpretation of a group object completely breaks down in categories
-such as the category of schemes where there is no notion of "elements".
-To differentiate clearly,
-we stick to "group" and "group homomorphism" for the plain notions,
-and "group object"/"algebraic group" and "group morphism" for the categorical ones.
-
 Following this, the **standard $n$-dimensional algebraic torus** is defined as
 the scheme $\mathbb G_m^n$ along with:
 1. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
