@@ -152,7 +152,7 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 > The correspondence between algebraic groups and Hopf algebras is now fully formalized in Toric.
   We have proven that there is an equivalence of categories
   between commutative Hopf algebras and affine group schemes.
-  $\Spec$ as a functor from Hopf algebras to affine group schemes is
+  Spec as a functor from Hopf algebras to affine group schemes is
   [`hopfSpec`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec#doc)
   and the fact that it's fully faithful is
   [`hopfSpec.fullyFaithful`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec.fullyFaithful#doc).
