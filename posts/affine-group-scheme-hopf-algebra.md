@@ -176,17 +176,18 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 
 For a commutative algebraic group $G$, there are two important notions:
 1. A **character** of $G$ is a group morphism $G\to\mathbb G_m$.
-  We write $X(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the group of characters.
+  We write $X(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
 2. A **cocharacter**, aka **one-parameter subgroup**, of $G$ is a group morphism $\mathbb G_m\to G$.
-  We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the group of cocharacters.
+  We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the set of cocharacters.
 
-Note that characters and cocharacters are genuine groups, not group schemes.
+Characters and cocharacters are both (genuine) commutative groups
+under pointwise (categorical) multiplication.
 
 Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
     X(G) \times X^{*}(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
 $$
-This pairing is *perfect* when $G := \mathbb G_m^n$,.
+This pairing is *perfect* when $G := \mathbb G_m^n$.
 
 We will now explain what this means and how to prove it.
 
