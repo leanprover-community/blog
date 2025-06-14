@@ -178,7 +178,7 @@ For a commutative algebraic group $G$, there are two important notions:
 
 Note that characters and cocharacters are genuine groups, not algebraic groups.
 
-When $G$ is commutative, composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
+Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
     X(G) \times X^{*}(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
 $$
