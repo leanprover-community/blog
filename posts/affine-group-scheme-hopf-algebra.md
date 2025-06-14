@@ -241,7 +241,7 @@ which are the subject of the first chapter of Cox-Little-Schenck.
 
 Now that the theory of tori is off the ground, work on toric varieties can truly start.
 The next milestone is that the functor $M \mapsto \operatorname{Spec} \mathbb C[M]$
-from the category of affine monoids (submonoids of $\mathbb Z^n$ for some $n$)
+from the category of affine monoids (finitely generated cancellative commutative monoids)
 to the category of affine toric varieties is essentially surjective.
 
 Simultaneously, the perfect pairing between characters and cocharacters is begging
