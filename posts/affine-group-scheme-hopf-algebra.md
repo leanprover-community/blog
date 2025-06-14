@@ -176,7 +176,7 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 
 For a commutative algebraic group $G$, there are two important notions:
 1. A **character** of $G$ is a group morphism $G\to\mathbb G_m$.
-  We write $X(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
+  We write $X^*(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
 2. A **cocharacter**, aka **one-parameter subgroup**, of $G$ is a group morphism $\mathbb G_m\to G$.
   We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the set of cocharacters.
 
@@ -185,7 +185,7 @@ under pointwise (categorical) multiplication.
 
 Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
-    X(G) \times X^{*}(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
+    X^*(G) \times X_*(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
 $$
 This pairing is *perfect* when $G := \mathbb G_m^n$.
 
@@ -198,7 +198,7 @@ $$
 $$
 
 > In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in these ways.
-  In particular we have $X(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly) as
+  In particular we have $X^*(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly) as
   [`charTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charTorus#doc).
 
 Similarly, given $(m_1, \dots, m_n) \in \mathbb Z^n$,
@@ -228,7 +228,7 @@ are both bijective.
 This is what it means for the pairing to be **perfect**.
 
 > In Toric, we have shown that this pairing is perfect and computed it.
-  Concretely, if we identify both of $X(\mathbb G_m^n)$ and $X_*(\mathbb G_m^n)$ with $\mathbb Z^n$,
+  Concretely, if we identify both of $X^*(\mathbb G_m^n)$ and $X_*(\mathbb G_m^n)$ with $\mathbb Z^n$,
   then the pairing is simply the standard inner product of $\mathbb Z^n$.
   The pairing is
   [`charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charPairing#doc),
@@ -237,7 +237,7 @@ This is what it means for the pairing to be **perfect**.
   and the computation is <span style="color:red">**TODO: Do the computation**</span>.
 
 This perfect pairing is very important:
-It allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X_*(\mathbb G_m^n)$,
+It allows us to talk about cones in $X^*(\mathbb G_m^n)$ and their duals in $X_*(\mathbb G_m^n)$,
 i.e. it unlocks convex geometry on characters and cocharacters.
 
 Cones in $\mathbb Z^n$ turn out to be in exact correspondence with *affine toric varieties*,
