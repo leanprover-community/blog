@@ -93,10 +93,21 @@ making the following diagrams commute:
 If the following further diagram commutes, then we have a **commutative group object**:
 <span style="color:red">**TODO: Add diagram**</span>
 
-A group object in the category of varieties is called an *algebraic group*.
+Analogously to group homomorphisms, if $G$ and $H$ are group objects,
+then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
+<span style="color:red">**TODO: Add diagrams**</span>
 
+A group object in the category of varieties is called an *algebraic group*.
 In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
 group objects recover the notions of a group/topological group/Lie group.
+
+Beware that those examples are misleading in that topological groups and Lie groups are
+honest-to-god groups with extra structure.
+This elementwise interpretation of a group object completely breaks down in categories
+such as the category of schemes where there is no notion of "elements".
+To differentiate clearly,
+we stick to "group" and "group homomorphism" for the plain notions,
+and "group object"/"algebraic group" and "group morphism" for the categorical ones.
 
 Following this, the **standard $n$-dimensional algebraic torus** is defined as
 the variety $(\mathbb{C}^\times)^n$ along with:
@@ -160,14 +171,12 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 # Application: Pairing
 
 For a commutative algebraic group $G$, there are two important notions:
-1. A **character** of $G$ is a group homomorphism $G\to\mathbb G_m$.
+1. A **character** of $G$ is a group morphism $G\to\mathbb G_m$.
   We write $X(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the group of characters.
-2. A **cocharacter**, aka **one-parameter subgroup**, of $G$
-  is a group homomorphism $\mathbb G_m\to G$.
+2. A **cocharacter**, aka **one-parameter subgroup**, of $G$ is a group morphism $\mathbb G_m\to G$.
   We write $X^*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the group of cocharacters.
 
-Note that characters and cocharacters form genuine honest-to-god groups,
-not merely group objects in some category.
+Note that characters and cocharacters are genuine groups, not algebraic groups.
 
 When $G$ is commutative, composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
