@@ -256,7 +256,7 @@ The end result here is that affine monoids in $\mathbb Z^n$ are equivalent
 to convex polyhedral cones in $\mathbb R^n$.
 
 The second phase of the project will therefore run on two tableaux simultaneously:
-* The **algebraic geometry** side involving Hopf algebras, group schemes, Yoneda,
+* The **algebraic geometry** side involving Hopf algebras, group schemes, 
   representation theory...
 * The **convex geometry** side involving convex cones, Fourier-Motzkin reduction, Gordan's lemma...
 
