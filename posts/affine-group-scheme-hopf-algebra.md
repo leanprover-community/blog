@@ -53,9 +53,8 @@ Schemes are therefore the algebraic analogue of manifolds.
 The polynomial equations appearing in the definition of schemes can be over any commutative ring,
 but for simplicity we will assume that they are over $\mathbb C$.
 
-From the complex numbers $\mathbb C$ and the non-zero complex numbers $\mathbb C^\times$,
-one can make the classical examples of the schemes $\mathbb G_a$ and $\mathbb G_m$.
-They are in this context referred to as the **additive group** and **multiplicative group**.
+The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ can both be realized as a scheme.
+They are in this context referred to as the **affine line** $\mathbb A$  and **multiplicative group** $\mathbb G_m$.
 Their products $\mathbb G_a^n$ and $\mathbb G_m^n$ are called
 **affine space** and **algebraic torus** respectively.
 
