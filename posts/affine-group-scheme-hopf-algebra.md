@@ -191,7 +191,7 @@ This pairing is *perfect* when $G := \mathbb G_m^n$.
 
 We will now explain what this means and how to prove it.
 
-Given a tuple $(m_1, \dots, m_n) \in \mathbb Z^n$,g
+Given a tuple $(m_1, \dots, m_n) \in \mathbb Z^n$,
 we can define a character of $\mathbb G_m^n$ via
 $$
     (t_1,\dots,t_n) \longmapsto t_1^{m_1}\cdots t_n^{m_n}.
