@@ -24,10 +24,15 @@ This blog post is a double announcement:
 
 <!-- TEASER_END -->
 
-We first explain what a *variety* is.
-This motivates *algebraic groups* and *Hopf algebras*,
+Toric varieties rely on the theory of varieties.
+We will not explain what varieties are, since there is no consensus on their precise definition,
+and they do not appear in our formalisation anyway.
+Indeed, we work with *schemes* throughout, which are strictly more general.
+
+We first explain what a *scheme* is.
+This motivates *group schemes* and *Hopf algebras*,
 where the latter are a way to approach the former algebraically,
-using the *correspondence* between *affine* algebraic groups and Hopf algebras.
+using the *correspondence* between *affine* group schemes and Hopf algebras.
 Finally, we apply this newly gained understanding to the construction
 of the *perfect pairing* between *characters* and *cocharacters* of a torus.
 
@@ -38,34 +43,40 @@ as the second phase will require very different mathematics to the first.
 All explanations in this blog post are mathematical.
 Technical talk is relegated to the companion article on arXiv.
 
-# Varieties
+# Schemes
 
-Varieties are the basic objects of study in algebraic geometry.
-A variety should be understood as a *geometric space* which one can understand through *algebra*.
-In a vague sense, varieties are an algebraic analogue to manifolds.
+Schemes are the basic objects of study in algebraic geometry.
+A scheme is a space that locally looks like some polynomial equation,
+just like a manifold is a space that locally looks like some euclidean space.
+Schemes are therefore the algebraic analogue of manifolds.
 
-Classical examples of varieties include the complex numbers $\mathbb C$
-and the non-zero complex numbers $\mathbb C^\times$.
+The polynomial equations appearing in the definition of schemes can be over any commutative ring,
+but for simplicity we will assume that they are over $\mathbb C$.
+
+From the complex numbers $\mathbb C$ and the non-zero complex numbers $\mathbb C^\times$,
+one can make the classical examples of the schemes $\mathbb G_a$ and $\mathbb G_m$.
 They are in this context referred to as the **additive group** and **multiplicative group**.
-Their products $\mathbb C^n$ and $(\mathbb C^\times)^n$ are called
+Their products $\mathbb G_a^n$ and $\mathbb G_m^n$ are called
 **affine space** and **algebraic torus** respectively.
 
-A special class of varieties, namely *affine varieties*,
+A special class of schemes, namely *affine schemes*,
 can be constructed more readily using the *Spec functor*,
-taking a commutative ring to a variety its *prime spectrum*.
+taking a commutative ring $R$ to its *prime spectrum* $\mathrm{Spec} R$,
+which is an affine scheme.
 The previous sentence is a bit scary,
 but all we need to know is that if $R$ and $S$ are commutative rings,
 then morphisms $\mathrm{Spec}\ R \to \mathrm{Spec}\ S$
 exactly correspond to ring homomorphisms $S \to R$.
 
-We can reinterpret our variety $\mathbb C^n$ as $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
+$\mathbb G_a^n$ is in fact $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
 the spectrum of the polynomial ring in $n$ variables.
-Similarly, $(\mathbb C^\times)^n$ is the same variety as $\mathrm{Spec}\ \mathbb C[X_1^\pm, \dots, X_n^\pm]$,
+Similarly, $\mathbb G_m^n$ is $\mathrm{Spec}\ \mathbb C[X_1^\pm, \dots, X_n^\pm]$,
 the spectrum of multivariate Laurent series in $n$ variables.
 The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^\pm, \dots, X_n^\pm]$
-corresponds to the natural inclusion $(\mathbb C^\times)^n \hookrightarrow \mathbb C^n$.
+corresponds to the dense embedding $\mathbb G_m^n \hookrightarrow \mathbb G_a^n$
+(think about how $(\mathbb C^\times)^n$ sits in $\mathbb C^n$.
 
-# Algebraic groups
+# Group schemes
 
 Recall the definition of a group. A *group structure* on a set $G$ consists of:
 1. An **identity** $e \in G$.
@@ -81,7 +92,7 @@ A group structure can be described purely in terms of maps between
 $G, G \times G$ and the one element set $\{*\}$,
 meaning that we can reinterpret groups in any category $\mathsf{C}$
 where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
-i.e. in any category with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$
+i.e. in any category with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$.
 A **group object** $G \in \mathsf{C}$ then consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
 2. A **multiplication morphism** $\mu : G \otimes G \to G$.
@@ -97,7 +108,7 @@ Analogously to group homomorphisms, if $G$ and $H$ are group objects,
 then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
 <span style="color:red">**TODO: Add diagrams**</span>
 
-A group object in the category of varieties is called an *algebraic group*.
+A group object in the category of schemes is called a *group scheme*.
 In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
 group objects recover the notions of a group/topological group/Lie group.
 
@@ -110,7 +121,7 @@ we stick to "group" and "group homomorphism" for the plain notions,
 and "group object"/"algebraic group" and "group morphism" for the categorical ones.
 
 Following this, the **standard $n$-dimensional algebraic torus** is defined as
-the variety $(\mathbb{C}^\times)^n$ along with:
+the scheme $\mathbb G_m^n$ along with:
 1. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
 2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
   given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
@@ -120,7 +131,7 @@ the variety $(\mathbb{C}^\times)^n$ along with:
 The usual notation for the standard $n$-dimensional algebraic torus is $\mathbb G_m^n$,
 or $\mathbb G_m$ in the special case where $n = 1$.
 
-> In Toric, we defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
+> In Toric, we have defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
   The torus is
   [`SplitTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.SplitTorus#doc)
   and its group structure is given by
@@ -128,16 +139,16 @@ or $\mathbb G_m$ in the special case where $n = 1$.
 
 # Hopf algebras
 
-Since complex affine varieties correspond to commutative $\mathbb{C}$-algebras,
-some $\mathbb{C}$-algebras with extra structure should correspond to algebraic groups.
+Since complex affine schemes correspond to commutative $\mathbb{C}$-algebras,
+some $\mathbb{C}$-algebras with extra structure should correspond to group schemes.
 
 What are they? Let's figure it out.
 
-Recall that maps $\operatorname{Spec} R \to \operatorname{Spec} S$ of affine varieties
+Recall that maps $\operatorname{Spec} R \to \operatorname{Spec} S$ of affine schemes
 are in bijection with maps $S \to R$ of their corresponding rings in the opposite direction.
-Also note that we can interpret the product of affine varieties
-in terms of the tensor product of rings:
-$\operatorname{Spec} R \otimes \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes S)$.
+Also note that we can interpret the product of affine schemes
+in terms of the tensor product of commutative $\mathbb C$-algebras:
+$\operatorname{Spec} R \times_{\mathbb C} \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes_{\mathbb C} S)$.
 
 Thus the structure we are looking for is:
 1. A commutative $\mathbb{C}$-algebra $R$.
@@ -156,13 +167,15 @@ which are in one-to-one correspondence with algebraic group homomorphisms.
 The 1-dimensional torus corresponds to the Hopf algebra defined as:
 1. The $\mathbb{C}$-algebra $\mathbb{C}[t,t^{-1}]$.
 2. The counit $\varepsilon: \mathbb{C}[t,t^{-1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
-3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes \mathbb{C}[t,t^{-1}]$
+3. The comultiplication $\Delta: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}] \otimes_{\mathbb C} \mathbb{C}[t,t^{-1}]$
   given by $\Delta(t) = t \otimes t$.
 4. The antipode $S: \mathbb{C}[t,t^{-1}] \to \mathbb{C}[t,t^{-1}]$ given by $S(t) = t^{-1}$.
 
-> The correspondence between algebraic groups and Hopf algebras is now fully formalized in Toric.
-  We have proven that there is an equivalence of categories
-  between commutative Hopf algebras and affine group schemes.
+> In Toric, we have proven that $\mathrm{Spec}$ is a fully faithful functor
+  from commutative Hopf algebras to group schemes,
+  and that its essential image is the affine group schemes.
+  In other words,
+  the categories of commutative Hopf algebras and affine group schemes are equivalent.
   Spec as a functor from Hopf algebras to affine group schemes is
   [`hopfSpec`](https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec#doc)
   and the fact that it's fully faithful is
@@ -174,9 +187,9 @@ For a commutative algebraic group $G$, there are two important notions:
 1. A **character** of $G$ is a group morphism $G\to\mathbb G_m$.
   We write $X(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the group of characters.
 2. A **cocharacter**, aka **one-parameter subgroup**, of $G$ is a group morphism $\mathbb G_m\to G$.
-  We write $X^*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the group of cocharacters.
+  We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the group of cocharacters.
 
-Note that characters and cocharacters are genuine groups, not algebraic groups.
+Note that characters and cocharacters are genuine groups, not group schemes.
 
 Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
@@ -202,7 +215,7 @@ $$
     t \longmapsto (t^{m_1},\dots, t^{m_n}).
 $$
 and again all cocharacters of $\mathbb G_m^n$ arise in this way,
-so $X^*(\mathbb G_m^n) \cong \mathbb Z^n$.
+so $X_*(\mathbb G_m^n) \cong \mathbb Z^n$.
 
 Hence the character-cocharacter pairing corresponds to a bilinear pairing
 $$
@@ -222,8 +235,9 @@ $$
 are both bijective.
 This is what it means for the pairing to be **perfect**.
 
-> In Toric, we have shown that this pairing is perfect and computed it to be the usual inner product
-  after a suitable identification of $X(\mathbb G_m^n)$ with $\mathbb Z^n$.
+> In Toric, we have shown that this pairing is perfect and computed it.
+  Concretely, if we identify both of $X(\mathbb G_m^n)$ and $X_*(\mathbb G_m^n)$ with $\mathbb Z^n$,
+  then the pairing is simply the standard inner product of $\mathbb Z^n$.
   The pairing is
   [`charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charPairing#doc),
   the fact that it is perfect for $\mathbb G_m^n$ is
@@ -231,7 +245,7 @@ This is what it means for the pairing to be **perfect**.
   and the computation is <span style="color:red">**TODO: Do the computation**</span>.
 
 This perfect pairing is very important:
-It allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X^*(\mathbb G_m^n)$,
+It allows us to talk about cones in $X(\mathbb G_m^n)$ and their duals in $X_*(\mathbb G_m^n)$,
 i.e. it unlocks convex geometry on characters and cocharacters.
 
 Cones in $\mathbb Z^n$ turn out to be in exact correspondence with *affine toric varieties*,
