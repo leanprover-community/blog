@@ -102,7 +102,7 @@ making the following diagrams commute:
 As an exercise try to come up with the diagrams that define a *commutative* group object.
 
 Analogously to group homomorphisms, if $G$ and $H$ are group objects,
-then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
+then a morphism $f : G \to H$ is a **group homomorphism** if the following two diagrams commute:
 <span style="color:red">**TODO: Add diagrams**</span>
 
 A group object in the category of schemes is called a *group scheme*.
@@ -173,9 +173,9 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 # Application: Pairing
 
 For a commutative group scheme $G$, there are two important notions:
-1. A **character** of $G$ is a group homomorphism $G\to\mathbb G_m$.
+1. A **character** of $G$ is a group scheme homomorphism $G\to\mathbb G_m$.
   We write $X^*(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
-2. A **cocharacter**, aka a **one-parameter subgroup**, of $G$ is a group homomorphism $\mathbb G_m\to G$.
+2. A **cocharacter**, aka a **one-parameter subgroup**, of $G$ is a group scheme homomorphism $\mathbb G_m\to G$.
   We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the set of cocharacters.
 
 Characters and cocharacters are both (genuine) commutative groups
