@@ -13,7 +13,7 @@ type: text
 
 This February saw the birth of the [**Toric**](https://github.com/YaelDillies/Toric) project,
 whose aim is to build the theory of toric varieties
-following the textbook by Cox, Little and Schenck.
+following *Toric Varieties* by Cox, Little and Schenck.
 
 We soon discovered that toric varieties contained tori, and that Mathlib didn't.
 
@@ -29,7 +29,7 @@ We will not explain what varieties are, since there is no consensus on their pre
 and they do not appear in our formalisation anyway.
 Indeed, we work with *schemes* throughout, which are strictly more general.
 
-We first explain what a *scheme* is.
+We first give an idea of what a *scheme* is.
 This motivates *group schemes* and *Hopf algebras*,
 where the latter are a way to approach the former algebraically,
 using the *correspondence* between *affine* group schemes and Hopf algebras.
@@ -37,29 +37,28 @@ Finally, we apply this newly gained understanding to the construction
 of the *perfect pairing* between *characters* and *cocharacters* of a torus.
 
 In the last section, we describe how to contribute to the second phase of the project.
-We encourage readers to skip straight to that section if ever they get lost reading the previous,
+We encourage readers to skip straight to that section if ever they get lost reading the previous ones,
 as the second phase will require very different mathematics to the first.
 
 All explanations in this blog post are mathematical.
-Technical talk is relegated to the companion article on arXiv.
+Technical talk is relegated to a companion article that will be published on arXiv.
 
 # Schemes
 
 Schemes are the basic objects of study in algebraic geometry.
-A scheme is a space that locally looks like some polynomial equation,
-just like a manifold is a space that locally looks like some euclidean space.
+A scheme is a space that locally looks like the zero locus of a polynomial equation,
+just like a manifold is a space that locally looks like a euclidean space.
 Schemes are therefore the algebraic analogue of manifolds.
 
 The polynomial equations appearing in the definition of schemes can be over any commutative ring,
 but for simplicity we will assume that they are over $\mathbb C$.
 
-The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ can both be realized as schemes.
-They are in this context referred to as the **affine line** $\mathbb A$ and **multiplicative group** $\mathbb G_m$.
-Their products $\mathbb A^n$ and $\mathbb G_m^n$ are called
-**affine space** and **algebraic torus** respectively.
+The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ both have analogues as schemes.
+They are in this context referred to as the **affine line** $\mathbb A^1$ and **multiplicative group** $\mathbb G_m$.
+Their products $\mathbb A^n$ and $\mathbb G_m^n$ are called the **$n$-dimensional affine space** and **$n$-dimensional algebraic torus** respectively.
 
 A special class of schemes, namely *affine schemes*,
-can be constructed more readily using the *Spec functor*,
+can be constructed using the *Spec functor*,
 taking a commutative ring $R$ to its *prime spectrum* $\mathrm{Spec} R$,
 which is an affine scheme.
 The previous sentence is a bit scary,
@@ -67,13 +66,13 @@ but all we need to know is that if $R$ and $S$ are commutative rings,
 then morphisms $\mathrm{Spec}\ R \to \mathrm{Spec}\ S$
 exactly correspond to ring homomorphisms $S \to R$.
 
-$\mathbb A^n$ is in fact $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
+$\mathbb A^n$ is in fact isomorphic to $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
 the spectrum of the polynomial ring in $n$ variables.
-Similarly, $\mathbb G_m^n$ is $\mathrm{Spec}\ \mathbb C[X_1^\pm, \dots, X_n^\pm]$,
+Similarly, $\mathbb G_m^n$ is isomorphic to $\mathrm{Spec}\ \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]$,
 the spectrum of multivariate Laurent series in $n$ variables.
-The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^\pm, \dots, X_n^\pm]$
-corresponds to the dense embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$
-(think about how $(\mathbb C^\times)^n$ sits in $\mathbb C^n$.
+The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]$
+corresponds to an embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$ with dense image
+(picture this as $(\mathbb C^\times)^n$ sitting in $\mathbb C^n$).
 
 # Group schemes
 
@@ -100,8 +99,7 @@ A **group object** $G \in \mathsf{C}$ then consists of:
 making the following diagrams commute:
 <span style="color:red">**TODO: Add diagrams**</span>
 
-If the following further diagram commutes, then we have a **commutative group object**:
-<span style="color:red">**TODO: Add diagram**</span>
+As an exercise try to come up with the diagrams that define a *commutative* group object.
 
 Analogously to group homomorphisms, if $G$ and $H$ are group objects,
 then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
@@ -112,7 +110,7 @@ In other categories of interest, such as the categories of sets/topological spac
 group objects recover the notions of a group/topological group/Lie group.
 
 Following this, the **standard $n$-dimensional algebraic torus** is defined as
-the scheme $\mathbb G_m^n$ along with:
+the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
 1. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
 2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
   given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
@@ -131,7 +129,7 @@ or $\mathbb G_m$ in the special case where $n = 1$.
 # Hopf algebras
 
 Since complex affine schemes correspond to commutative $\mathbb{C}$-algebras,
-some $\mathbb{C}$-algebras with extra structure should correspond to group schemes.
+some $\mathbb{C}$-algebras with extra structure should correspond to affine group schemes.
 
 What are they? Let's figure it out.
 
@@ -153,7 +151,7 @@ except that the arrows are reversed:
 
 Algebras with this structure are called *Hopf algebras*.
 There is a notion of Hopf algebra homomorphisms,
-which are in one-to-one correspondence with algebraic group homomorphisms.
+which are in one-to-one correspondence with group scheme homomorphisms.
 
 The 1-dimensional torus corresponds to the Hopf algebra defined as:
 1. The $\mathbb{C}$-algebra $\mathbb C[t^{\pm 1}]$.
@@ -164,7 +162,7 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 
 > In Toric, we have proven that $\mathrm{Spec}$ is a fully faithful functor
   from commutative Hopf algebras to group schemes,
-  and that its essential image is the affine group schemes.
+  and that its essential image are the affine group schemes.
   In other words,
   the categories of commutative Hopf algebras and affine group schemes are equivalent.
   Spec as a functor from Hopf algebras to affine group schemes is
@@ -174,10 +172,10 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 
 # Application: Pairing
 
-For a commutative algebraic group $G$, there are two important notions:
-1. A **character** of $G$ is a group morphism $G\to\mathbb G_m$.
+For a commutative group scheme $G$, there are two important notions:
+1. A **character** of $G$ is a group homomorphism $G\to\mathbb G_m$.
   We write $X^*(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
-2. A **cocharacter**, aka **one-parameter subgroup**, of $G$ is a group morphism $\mathbb G_m\to G$.
+2. A **cocharacter**, aka a **one-parameter subgroup**, of $G$ is a group homomorphism $\mathbb G_m\to G$.
   We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the set of cocharacters.
 
 Characters and cocharacters are both (genuine) commutative groups
@@ -197,7 +195,7 @@ $$
     (t_1,\dots,t_n) \longmapsto t_1^{m_1}\cdots t_n^{m_n}.
 $$
 
-> In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in these ways.
+> In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in this way.
   In particular we have $X^*(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly) as
   [`charTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charTorus#doc).
 
@@ -237,8 +235,7 @@ This is what it means for the pairing to be **perfect**.
   and the computation is <span style="color:red">**TODO: Do the computation**</span>.
 
 This perfect pairing is very important:
-It allows us to talk about cones in $X^*(\mathbb G_m^n)$ and their duals in $X_*(\mathbb G_m^n)$,
-i.e. it unlocks convex geometry on characters and cocharacters.
+It allows us to talk about cones in $X^*(\mathbb G_m^n)$ and their duals in $X_*(\mathbb G_m^n)$. It unlocks convex geometry on characters and cocharacters!
 
 Cones in $\mathbb Z^n$ turn out to be in exact correspondence with *affine toric varieties*,
 which are the subject of the first chapter of Cox-Little-Schenck.
@@ -269,4 +266,4 @@ shows how all the items fit together.
 
 If you want to contribute, please go to
 [**#toric>Current tasks**](https://leanprover.zulipchat.com/#narrow/channel/487278-toric/topic/Current.20tasks/with/510984744)
-on Zulip and claim a task!
+on Zulip and claim a task! If you're interested in the project but don't know where to start don't hesitate to contact us!
