@@ -46,25 +46,26 @@ Technical talk is relegated to a companion article that will be published on arX
 # Schemes
 
 Schemes are the basic objects of study in algebraic geometry.
-A scheme is a space that locally looks like the zero locus of a polynomial equation,
+A **scheme** is a space that locally looks like the zero locus of a polynomial equation,
 just like a manifold is a space that locally looks like a euclidean space.
 Schemes are therefore the algebraic analogue of manifolds.
 
 The polynomial equations appearing in the definition of schemes can be over any commutative ring,
 but for simplicity we will assume that they are over $\mathbb C$.
+Such schemes are called **$\mathbb C$-schemes**.
 
-The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ both have analogues as schemes.
+The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ both have analogues as $\mathbb C$-schemes.
 They are in this context referred to as the **affine line** $\mathbb A^1$ and **multiplicative group** $\mathbb G_m$.
 Their products $\mathbb A^n$ and $\mathbb G_m^n$ are called the **$n$-dimensional affine space** and **$n$-dimensional algebraic torus** respectively.
 
-A special class of schemes, namely *affine schemes*,
-can be constructed using the *Spec functor*,
-taking a commutative ring $R$ to its *prime spectrum* $\mathrm{Spec} R$,
-which is an affine scheme.
+A special class of $\mathbb C$-schemes, namely **affine $\mathbb C$-schemes**,
+can be constructed using the **Spec functor**,
+taking a commutative $\mathbb C$-algebra $R$ to its **prime spectrum** $\mathrm{Spec} R$,
+which is (by definition) an affine $\mathbb C$-scheme.
 The previous sentence is a bit scary,
-but all we need to know is that if $R$ and $S$ are commutative rings,
+but all we need to know is that if $R$ and $S$ are commutative $\mathbb C$-algebras,
 then morphisms $\mathrm{Spec}\ R \to \mathrm{Spec}\ S$
-exactly correspond to ring homomorphisms $S \to R$.
+exactly correspond to $\mathbb C$-algebra homomorphisms $S \to R$.
 
 $\mathbb A^n$ is in fact isomorphic to $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
 the spectrum of the polynomial ring in $n$ variables.
@@ -86,39 +87,42 @@ respecting the following *group axioms*:
 2. For all $g, h, k \in G$, $(g * h) * k = g * (h * k)$.
 3. For all $g \in G$, $g^{-1} * g = e$ (and $g * g^{-1} = e$).
 
-A group structure can be described purely in terms of maps between
-$G, G \times G$ and the one element set $\{*\}$,
-meaning that we can reinterpret groups in any category $\mathsf{C}$
-where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
-i.e. in any category with a binary product $(\cdot \otimes \cdot)$ and terminal object $\mathbf{1}_C$.
+Groups show up in almost all areas of mathematics, and come in different flavours. For example:
+When doing topology, one might ask for the group operations to be continuous,
+obtaining the concept of a *topological group*.
+In Lie theory, one might want to talk about a group with a manifold structure on it
+making the group operations $C^n$-differentiable, i.e a *Lie group*.
+
+These examples share commonalities: Each time, the group comes with some structure,
+and the group operations are required to respect that structure.
+This observation can be realised categorically:
+In any category $\mathsf C$ where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
+i.e. with a binary product $(\cdot \times \cdot)$ and terminal object $\mathbf 1_C$,
+a \emph{group object} $G \in \mathsf C$ consists of:
 A **group object** $G \in \mathsf{C}$ then consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
-2. A **multiplication morphism** $\mu : G \otimes G \to G$.
+2. A **multiplication morphism** $\mu : G \times G \to G$.
 3. An **inverse morphism** $\iota : G \to G$.
 
 making the following diagrams commute:
 <span style="color:red">**TODO: Add diagrams**</span>
 
-As an exercise try to come up with the diagrams that define a *commutative* group object.
+As an exercise, try writing down the extra diagram that defines a *commutative* group object.
+You will need the *braiding* $\beta : G \times G \to G \times G$ which "swaps" the factors.
 
 Analogously to group homomorphisms, if $G$ and $H$ are group objects,
-then a morphism $f : G \to H$ is a **group homomorphism** if the following two diagrams commute:
+then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
 <span style="color:red">**TODO: Add diagrams**</span>
 
-A group object in the category of schemes is called a *group scheme*.
-In other categories of interest, such as the categories of sets/topological spaces/smooth manifolds,
-group objects recover the notions of a group/topological group/Lie group.
+A group object in the category of $\mathbb C$-schemes is called a *group $\mathbb C$-scheme*.
 
-Following this, the **standard $n$-dimensional algebraic torus** is defined as
-the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
+The prototypical example of a group $\mathbb C$-scheme is the **standard $n$-dimensional algebraic torus**,
+defined as the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
 1. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
 2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
   given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
 3. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$
   given by $\iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1})$.
-
-The usual notation for the standard $n$-dimensional algebraic torus is $\mathbb G_m^n$,
-or $\mathbb G_m$ in the special case where $n = 1$.
 
 > In Toric, we have defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
   The torus is
@@ -128,14 +132,15 @@ or $\mathbb G_m$ in the special case where $n = 1$.
 
 # Hopf algebras
 
-Since complex affine schemes correspond to commutative $\mathbb{C}$-algebras,
-some $\mathbb{C}$-algebras with extra structure should correspond to affine group schemes.
+Since affine $\mathbb C$-schemes correspond to commutative $\mathbb{C}$-algebras,
+some $\mathbb{C}$-algebras with extra structure should correspond to affine group $\mathbb C$-schemes.
 
 What are they? Let's figure it out.
 
-Recall that maps $\operatorname{Spec} R \to \operatorname{Spec} S$ of affine schemes
-are in bijection with maps $S \to R$ of their corresponding rings in the opposite direction.
-Also note that we can interpret the product of affine schemes
+Recall that maps $\operatorname{Spec} R \to \operatorname{Spec} S$ of affine $\mathbb C$-schemes
+are in bijection with maps $S \to R$ of their corresponding $\mathbb C$-algebras
+in the opposite direction.
+Also note that we can interpret the product of affine $\mathbb C$-schemes
 in terms of the tensor product of commutative $\mathbb C$-algebras:
 $\operatorname{Spec} R \times_{\mathbb C} \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes_{\mathbb C} S)$.
 
@@ -149,9 +154,9 @@ And we ask that these satisfy the same diagrams as for a group object,
 except that the arrows are reversed:
 <span style="color:red">**TODO: Add diagrams**</span>
 
-Algebras with this structure are called *Hopf algebras*.
-There is a notion of Hopf algebra homomorphisms,
-which are in one-to-one correspondence with group scheme homomorphisms.
+$\mathbb C$-algebras with this structure are called *$\mathbb C$-Hopf algebras*.
+There is a notion of $\mathbb C$-Hopf algebra homomorphisms,
+which are in one-to-one correspondence with group morphisms of $\mathbb C$-schemes.
 
 The 1-dimensional torus corresponds to the Hopf algebra defined as:
 1. The $\mathbb{C}$-algebra $\mathbb C[t^{\pm 1}]$.
@@ -161,8 +166,8 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 4. The antipode $S: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}]$ given by $S(t) = t^{-1}$.
 
 > In Toric, we have proven that $\mathrm{Spec}$ is a fully faithful functor
-  from commutative Hopf algebras to group schemes,
-  and that its essential image are the affine group schemes.
+  from commutative $\mathbb C$-Hopf algebras to group $\mathbb C$-schemes,
+  and that its essential image are the affine group $\mathbb C$-schemes.
   In other words,
   the categories of commutative Hopf algebras and affine group schemes are equivalent.
   Spec as a functor from Hopf algebras to affine group schemes is
@@ -173,9 +178,9 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 # Application: Pairing
 
 For a commutative group scheme $G$, there are two important notions:
-1. A **character** of $G$ is a group scheme homomorphism $G\to\mathbb G_m$.
+1. A **character** of $G$ is a group scheme morphism $G\to\mathbb G_m$.
   We write $X^*(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
-2. A **cocharacter**, aka a **one-parameter subgroup**, of $G$ is a group scheme homomorphism $\mathbb G_m\to G$.
+2. A **cocharacter**, aka a **one-parameter subgroup**, of $G$ is a group scheme morphism $\mathbb G_m\to G$.
   We write $X_*(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the set of cocharacters.
 
 Characters and cocharacters are both (genuine) commutative groups
@@ -253,7 +258,7 @@ The end result here is that affine monoids in $\mathbb Z^n$ are equivalent
 to convex polyhedral cones in $\mathbb R^n$.
 
 The second phase of the project will therefore run on two fronts simultaneously:
-* The **algebraic geometry** side involving Hopf algebras, group schemes, 
+* The **algebraic geometry** side involving Hopf algebras, group schemes,
   representation theory...
 * The **convex geometry** side involving convex cones, Fourier-Motzkin reduction, Gordan's lemma...
 
