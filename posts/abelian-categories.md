@@ -1,7 +1,7 @@
 ---
 author: "Markus Himmel and Joël Riou"
 category: "New in mathlib"
-date: 2025-02-28 11:36:00 UTC+01:00
+date: 2025-06-17 11:15:00 UTC+02:00
 description: ""
 has_math: true
 link: ""
