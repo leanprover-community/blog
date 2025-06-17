@@ -55,12 +55,11 @@ i.e. when any morphism $A \to X$ can be extended to a morphism $B \to X$.
 
 The small object argument involves a "set" of morphisms $I$ in the category $C$.
 Under certain technical assumptions, which are packaged in a type class [`HasSmallObjectArgument I`](https://leanprover-community.github.io/mathlib4_docs/Mathlib/CategoryTheory/SmallObject/Basic.html#CategoryTheory.MorphismProperty.HasSmallObjectArgument),
-any morphism $X \to Y$ in $C$ can be factored as $X \to Z \to Y$ where $Z \to Y$ has
-the right lifting property with respect to all the morphisms in $I$ and
-$X \to Z$ is a transfinite composition of morphisms that are built up from $I$
-in a certain way (technically, these morphisms are pushouts of coproducts
-of morphisms in $I$). Moreover, this factorization is functorial in the morphism
-$X \to Y$.
+any morphism $X \to Y$ in $C$ can be factored as $X \to Z \to Y$ where
+* $X \to Z$ is a transfinite composition of morphisms that are built up from $I$ (using coproducts and pushouts);
+* $Z \to Y$ has the right lifting property with respect to all the morphisms in $I$.
+
+Moreover, this factorization is functorial in the morphism $X \to Y$.
 
 The basic construction for the small object argument is as follows. If $X \to Y$
 is a morphism, and $I$ is a family of morphisms $f_i : A_i \to B_i$, we consider all
