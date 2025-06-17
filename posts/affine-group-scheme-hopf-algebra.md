@@ -199,7 +199,7 @@ R \otimes R \otimes R @<\mathrm{id} \otimes \Delta<< R \otimes R \\
 R \otimes R @<\Delta<< R
 \end{CD}
 $$
-2. **Conitality:**
+2. **Counitality:**
 $$
 \begin{CD}
 \mathbb{C}\otimes R @<\varepsilon \otimes \mathrm{id}<< R \otimes R @>\mathrm{id} \otimes \varepsilon>> R \otimes \mathbb{C}\\
