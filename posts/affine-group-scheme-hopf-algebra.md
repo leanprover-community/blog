@@ -105,14 +105,53 @@ A **group object** $G \in \mathsf{C}$ then consists of:
 3. An **inverse morphism** $\iota : G \to G$.
 
 making the following diagrams commute:
-<span style="color:red">**TODO: Add diagrams**</span>
+1. **Associativity:**
+$$
+\begin{CD}
+G \times G \times G @>\mathrm{id} \times \mu>> G \times G \\
+@V\mu \times \mathrm{id}VV @V\mu VV \\
+G \times G @>\mu>> G
+\end{CD}
+$$
+2. **Unitality:**
+$$
+\begin{CD}
+\mathbf{1}_C \times G @>\eta \times \mathrm{id}>> G \times G @<\mathrm{id} \times \eta<< G \times \mathbf{1}_C \\
+@V\cong VV @V\mu VV @VV\cong V \\
+G @= G @= G
+\end{CD}
+$$
+3. **Invertibility:** 
+$$
+\begin{CD}
+G \times G @<(\mathrm{id},\iota)<< G @>(\iota,\mathrm{id})>> G \times G \\
+@V\mu VV @V\nu VV @VV\mu V \\
+G @= G @= G
+\end{CD}
+$$
+where $\nu$ is the composition $G \xrightarrow{} \mathbf{1}_C \xrightarrow{\eta}G$. [^1]
 
 As an exercise, try writing down the extra diagram that defines a *commutative* group object.
-You will need the *braiding* $\beta : G \times G \to G \times G$ which "swaps" the factors.
+(To make the diagrams precise you will need the *braiding* $\beta : G \times G \to G \times G$ which "swaps" the factors.)
 
 Analogously to group homomorphisms, if $G$ and $H$ are group objects,
 then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
-<span style="color:red">**TODO: Add diagrams**</span>
+1. **Commutes with multiplication:**
+$$
+\begin{CD}
+G \times G @>f\times f>> H \times H \\
+@V\mu_G VV @V\mu_H VV \\
+G @>f>> H
+\end{CD}
+$$
+2. **Preserves the unit:**
+$$
+\begin{CD}
+\mathbf{1}_C @>\mathrm{id}>> \mathbf{1}_C \\
+@V\eta_G VV @V\eta_H VV \\
+G @>f>> H
+\end{CD}
+$$
 
 A group object in the category of $\mathbb C$-schemes is called a *group $\mathbb C$-scheme*.
 
@@ -142,7 +181,7 @@ are in bijection with maps $S \to R$ of their corresponding $\mathbb C$-algebras
 in the opposite direction.
 Also note that we can interpret the product of affine $\mathbb C$-schemes
 in terms of the tensor product of commutative $\mathbb C$-algebras:
-$\operatorname{Spec} R \times_{\mathbb C} \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes_{\mathbb C} S)$.
+$\operatorname{Spec} R \times_{\mathbb C} \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes_{\mathbb C} S)$. (All tensor product from now on are taken over $\mathbb{C}$ and we will write $\otimes$ in place of $\otimes_\mathbb{C}$.)
 
 Thus the structure we are looking for is:
 1. A commutative $\mathbb{C}$-algebra $R$.
@@ -152,7 +191,31 @@ Thus the structure we are looking for is:
 
 And we ask that these satisfy the same diagrams as for a group object,
 except that the arrows are reversed:
-<span style="color:red">**TODO: Add diagrams**</span>
+1. **Coassociativity:**
+$$
+\begin{CD}
+R \otimes R \otimes R @<\mathrm{id} \otimes \Delta<< R \otimes R \\
+@A\Delta \otimes \mathrm{id}AA @A\Delta AA \\
+R \otimes R @<\Delta<< R
+\end{CD}
+$$
+2. **Conitality:**
+$$
+\begin{CD}
+\mathbb{C}\otimes R @<\varepsilon \otimes \mathrm{id}<< R \otimes R @>\mathrm{id} \otimes \varepsilon>> R \otimes \mathbb{C}\\
+@A\cong AA @A\Delta AA @AA\cong A \\
+R @= R @= R
+\end{CD}
+$$
+3. **Coinvertibility:** 
+$$
+\begin{CD}
+R \otimes R @>m\circ(\mathrm{id}\otimes S) >> R @<m\circ(S\otimes\mathrm{id}) << R \otimes R \\
+@A\Delta AA @A\nu' AA @AA\Delta A \\
+R @= R @= R
+\end{CD}
+$$
+where $\nu'$ is the composition $R \xrightarrow{\varepsilon} \mathbb{C} \xrightarrow{}R$ and $m:R\otimes R \to R$ is the multiplication map.
 
 $\mathbb C$-algebras with this structure are called *$\mathbb C$-Hopf algebras*.
 There is a notion of $\mathbb C$-Hopf algebra homomorphisms,
@@ -272,3 +335,5 @@ shows how all the items fit together.
 If you want to contribute, please go to
 [**#toric>Current tasks**](https://leanprover.zulipchat.com/#narrow/channel/487278-toric/topic/Current.20tasks/with/510984744)
 on Zulip and claim a task! If you're interested in the project but don't know where to start don't hesitate to contact us!
+
+[^1] We have not specified or left implicit some coherence morphisms, such as the associator which is an isomorphism $\alpha_{(G,G,G)}:(G\times G) \times G \to G \times (G \times G)$. They were omitted since their inclusion makes the diagrams messier without aiding motivation.
