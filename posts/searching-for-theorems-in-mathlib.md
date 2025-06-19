@@ -24,28 +24,27 @@ There are three main search engines which allow you to search for theorems in ma
 
 ![Docs Main Page](/images/documentation-screenshot.png)
 
-The most comprehensive listing of mathlib theorems is the [documentation page on the community website](https://leanprover-community.github.io/mathlib4_docs/). This page was developed for Lean 3 by Rob Lewis and for Lean 4 by Henrik Böving and others, see the [docGen source for a list of contributors](https://github.com/leanprover/doc-gen4). It's a documentation page just as you might find for any other software project: On the left it has nested dropdown menus for the directory structure of mathlib and several of its dependencies. In the upper right, it has a search bar. The search bar provides a "fuzzy" search which searches for theorem names that contain the search term as a substring. For example, if I search for ["**foobar**"](https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&q=foobar), the current top result is [**F**GM**o**duleCat.**ob**j_c**ar**rier](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Category/FGModuleCat/Basic.html#FGModuleCat.obj_carrier).
+The most comprehensive listing of mathlib theorems is the [documentation page on the community website](https://leanprover-community.github.io/mathlib4_docs/). This page was developed for Lean 3 by Rob Lewis and for Lean 4 by Henrik Böving and others, see the [docGen source for a list of contributors](https://github.com/leanprover/doc-gen4). It's a documentation page just as you might find for any other software project: On the left, it has nested dropdown menus for the directory structure of mathlib and several of its dependencies. In the upper right, it has a search bar. The search bar provides a "fuzzy" search which searches for theorem names that contain the search term as a substring. For example, if I search for ["**foobar**"](https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&q=foobar), the current top result is [**F**GM**o**duleCat.**ob**j_c**ar**rier](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Category/FGModuleCat/Basic.html#FGModuleCat.obj_carrier).
 
-The docs are most useful for users who have some experience in guessing the name of the lemma they are looking for. Helpful in learning how to do this is the [naming conventions page](https://leanprover-community.github.io/contribute/naming.html) which explains how lemmas in mathlib are named (TL;DR theorems are typically named for the declarations they pertain to, with the declaration names appearing in the lemma name in the order they appear in the syntax tree).
+The docs are most useful for users who have some experience in guessing the name of the lemma they are looking for. Helpful in learning how to do this is the [naming conventions page](https://leanprover-community.github.io/contribute/naming.html) which explains how lemmas in mathlib are named (in short, theorems are typically named for the declarations they pertain to, with the declaration names appearing in the lemma name in the order they appear in the syntax tree).
 
 A downside of the documentation page is that if a lemma is named in a way you don't expect, it can be hard to find.
 
 <!-- Note, it would be nice to credit the main developer of the docs page, if there is one. -->
 
-### Moogle and other LLM-based Search tools
+### Natural language search tools
 
 ![Moogle Main Page](/images/moogle-screenshot.png)
 
-[Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for Mathlib developed by [Morph labs](https://morph.so/). One enters searches in natural language and the engine tries to turn up theorems that match the search query. For example, if I search for ["the sum of two odd numbers is even"](https://www.moogle.ai/search/raw?q=the%20sum%20of%20two%20odd%20numbers%20is%20even), I turn up the result `Odd.add_odd` which matches this description pretty well as the fourth result.
+There are a few websites that allow one to search for mathlib content using natural language. One enters a description and the engine tries to turn up theorems that match the search query. For example, if I search for "the sum of two odd numbers is even", I might turn up the result `Odd.add_odd`.
 
-The downside of Moogle is that semantic search isn't an exact science, so the results you are looking for will not always top the result list (as was the case in the example above - a bit of a challenge is that `sum` in mathlib is generally used for indexed sums whereas `add` is more common for the binary operation we were looking for). Moogle can still be a helpful tool, and it doesn't share the weakness of the fuzzy search where it gets confused if the order of the search terms you provide does not exactly match the order of the terms in the lemma name.
+The downside of this approach is that semantic search isn't an exact science, so the results you are looking for will not always top the result list (in case of the example above - a bit of a challenge is that `sum` in mathlib is generally used for indexed sums whereas `add` is more common for the binary operation we were looking for). These can still be helpful tools, as they don't share the weakness of the fuzzy search where it gets confused if the order of the search terms you provide does not exactly match the order of the terms in the lemma name.
 
-Since the release of Moogle, other LLM-based search engines have come out, offering other features:
+A number of NLP-based search engines have come out, offering different features:
 
+* [Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for Mathlib developed by [Morph labs](https://morph.so/). This was one of the first search engines of this type, though at this point it's somewhat outdated.
 * [LeanSearch](https://leansearch.net/) from the BICMR AI for Mathematics team at PKU, which offers the ability to augment a previous query.
 * [LeanExplore](https://www.leanexplore.com/) from Justin Asher, which offers the ability to select different other Lean libraries to query.
-
-These can be good alternatives to Moogle, depending on what you prefer in your search experience.
 
 ### Loogle
 
