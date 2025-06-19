@@ -10,7 +10,7 @@ tags: ''
 title: Searching for Theorems in Mathlib
 type: text
 ---
-A post for beginners on the different ways to search for theorems in mathlib, inspired by [this talk](https://www.youtube.com/watch?v=UJrYKR01QwU).
+A post for beginners on the different ways to search for theorems in mathlib, inspired by [this talk](https://www.youtube.com/watch?v=UJrYKR01QwU)  from Jireh Loreaux.
 
 <!-- TEASER_END -->
 
@@ -24,11 +24,11 @@ There are three main search engines which allow you to search for theorems in ma
 
 ![Docs Main Page](/images/documentation-screenshot.png)
 
-The most comprehensive listing of mathlib theorems is the [documentation page on the community website](https://leanprover-community.github.io/mathlib4_docs/). It's a documentation page just as you might find for any other software project: On the left it has nested dropdown menus for the directory structure of mathlib and several of its dependencies. In the upper right, it has a search bar. The search bar provides a "fuzzy" search which searches for theorem names that contain the search term as a substring. For example, if I search for ["**foobar**"](https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&q=foobar), the current top result is [**F**l**o**at.**o**f**B**in**ar**yScientific](https://leanprover-community.github.io/mathlib4_docs/Init/Data/OfScientific.html#Float.ofBinaryScientific).
+The most comprehensive listing of mathlib theorems is the [documentation page on the community website](https://leanprover-community.github.io/mathlib4_docs/). This page was developed for Lean 3 by Rob Lewis and for Lean 4 by Henrik Böving and others, see the [docGen source for a list of contributors](https://github.com/leanprover/doc-gen4). It's a documentation page just as you might find for any other software project: On the left it has nested dropdown menus for the directory structure of mathlib and several of its dependencies. In the upper right, it has a search bar. The search bar provides a "fuzzy" search which searches for theorem names that contain the search term as a substring. For example, if I search for ["**foobar**"](https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&q=foobar), the current top result is [**F**l**o**at.**o**f**B**in**ar**yScientific](https://leanprover-community.github.io/mathlib4_docs/Init/Data/OfScientific.html#Float.ofBinaryScientific).
 
 The docs are most useful for users who have some experience in guessing the name of the lemma they are looking for. Helpful in learning how to do this is the [naming conventions page](https://leanprover-community.github.io/contribute/naming.html) which explains how lemmas in mathlib are named (TL;DR theorems are typically named for the declarations they pertain to, with the declaration names appearing in the lemma name in the order they appear in the syntax tree).
 
-A downside of the documentation page is that if a lemma is named in a way you don't expect, it can be hard to find. Also, searching over terms with only a few letters in them can cause the search procedure to hang.
+A downside of the documentation page is that if a lemma is named in a way you don't expect, it can be hard to find.
 
 <!-- Note, it would be nice to credit the main developer of the docs page, if there is one. -->
 
