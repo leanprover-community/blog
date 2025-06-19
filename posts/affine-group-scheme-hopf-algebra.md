@@ -98,8 +98,7 @@ and the group operations are required to respect that structure.
 This observation can be realised categorically:
 In any category $\mathsf C$ where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
 i.e. with a binary product $(\cdot \times \cdot)$ and terminal object $\mathbf 1_C$,
-a \emph{group object} $G \in \mathsf C$ consists of:
-A **group object** $G \in \mathsf{C}$ then consists of:
+a **group object** $G \in \mathsf C$ consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
 2. A **multiplication morphism** $\mu : G \times G \to G$.
 3. An **inverse morphism** $\iota : G \to G$.
