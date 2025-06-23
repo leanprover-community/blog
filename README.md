@@ -1,5 +1,6 @@
 # Lean community blog
 
+
 ## Setup
 
 ```bash
