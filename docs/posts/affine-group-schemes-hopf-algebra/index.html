@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Announcement of the completion of the correspondence between affine group schemes and Hopf algebras in the Toric project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The correspondence between affine group schemes and Hopf algebras | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/affine-group-schemes-hopf-algebra/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="The correspondence between affine group schemes and Hopf algebras | Lean community blog">
+<meta name="author" content="Yaël Dillies, Michał Mrugała, Andrew Yang">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="The correspondence between affine group schemes and Hopf algebras">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/affine-group-schemes-hopf-algebra/">
+<meta property="og:description" content="Announcement of the completion of the correspondence between affine group schemes and Hopf algebras in the Toric project">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-06-24T16:40:00Z">
+<meta property="article:tag" content="algebraic geometry">
+<meta property="article:tag" content="Toric">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">The correspondence between affine group schemes and Hopf algebras</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/yael-dillies/">Yaël Dillies</a>
+                        <a class="u-url" href="../../authors/michal-mrugala/">Michał Mrugała</a>
+                        <a class="u-url" href="../../authors/andrew-yang/">Andrew Yang</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-06-24T16:40:00Z" itemprop="datePublished" title="2025-06-24 16:40">2025-06-24 16:40</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/affine-group-schemes-hopf-algebra/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>This February saw the birth of the <a href="https://github.com/YaelDillies/Toric"><strong>Toric</strong></a> project,
+whose aim is to build the theory of toric varieties
+following <em>Toric Varieties</em> by Cox, Little and Schenck.</p>
+<p>We soon discovered that toric varieties contained tori, and that Mathlib didn't.</p>
+<p>This blog post is a double announcement:
+* The unexpected prerequisite of algebraic tori was recently cleared;
+* We are looking for contributors to help with the second phase of the project,
+  i.e. toric geometry and its relation to convex geometry.</p>
+<!-- TEASER_END -->
+
+<p>Toric varieties rely on the theory of varieties.
+We will not explain what varieties are, since there is no consensus on their precise definition,
+and they do not appear in our formalisation anyway.
+Indeed, we work with <em>schemes</em> throughout, which are strictly more general.</p>
+<p>We first give an idea of what a <em>scheme</em> is.
+This motivates <em>group schemes</em> and <em>Hopf algebras</em>,
+where the latter are a way to approach the former algebraically,
+using the <em>correspondence</em> between <em>affine</em> group schemes and Hopf algebras.
+Finally, we apply this newly gained understanding to the construction
+of the <em>perfect pairing</em> between <em>characters</em> and <em>cocharacters</em> of a torus.</p>
+<p>In the last section, we describe how to contribute to the second phase of the project.
+We encourage readers to skip straight to that section if ever they get lost reading the previous ones,
+as the second phase will require very different mathematics to the first.</p>
+<p>All explanations in this blog post are mathematical.
+Technical talk is relegated to a companion article that will be published on arXiv.</p>
+<h2>Schemes</h2>
+<p>Schemes are the basic objects of study in algebraic geometry.
+A <strong>scheme</strong> is a space that locally looks like the zero locus of a polynomial equation,
+just like a manifold is a space that locally looks like a euclidean space.
+Schemes are therefore the algebraic analogue of manifolds.</p>
+<p>The polynomial equations appearing in the definition of schemes can be over any commutative ring,
+but for simplicity we will assume that they are over $\mathbb C$.
+Such schemes are called <strong>$\mathbb C$-schemes</strong>.</p>
+<p>The complex numbers $\mathbb C$ and its unit group $\mathbb C^\times$ both have analogues as $\mathbb C$-schemes.
+They are in this context referred to as the <strong>affine line</strong> $\mathbb A^1$ and <strong>multiplicative group</strong> $\mathbb G_m$.
+Their products $\mathbb A^n$ and $\mathbb G_m^n$ are called the <strong>$n$-dimensional affine space</strong> and <strong>$n$-dimensional algebraic torus</strong> respectively.</p>
+<p>A special class of $\mathbb C$-schemes, namely <strong>affine $\mathbb C$-schemes</strong>,
+can be constructed using the <strong>Spec functor</strong>,
+taking a commutative $\mathbb C$-algebra $R$ to its <strong>prime spectrum</strong> $\mathrm{Spec} R$,
+which is (by definition) an affine $\mathbb C$-scheme.
+The previous sentence is a bit scary,
+but all we need to know is that if $R$ and $S$ are commutative $\mathbb C$-algebras,
+then morphisms $\mathrm{Spec}\ R \to \mathrm{Spec}\ S$
+exactly correspond to $\mathbb C$-algebra homomorphisms $S \to R$.</p>
+<p>$\mathbb A^n$ is in fact isomorphic to $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n]$,
+the spectrum of the polynomial ring in $n$ variables.
+Similarly, $\mathbb G_m^n$ is isomorphic to $\mathrm{Spec}\ \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]$,
+the spectrum of multivariate Laurent series in $n$ variables.
+The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]$
+corresponds to an embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$ with dense image
+(picture this as $(\mathbb C^\times)^n$ sitting in $\mathbb C^n$).</p>
+<h2>Group schemes</h2>
+<p>Recall the definition of a group. A <em>group structure</em> on a set $G$ consists of:
+1. An <strong>identity</strong> $e \in G$.
+2. A <strong>multiplication</strong> $(\cdot * \cdot) : G \times G \to G$.
+3. An <strong>inverse</strong> $(\cdot^{-1}) : G \to G$.</p>
+<p>respecting the following <em>group axioms</em>:
+1. For all $g \in G$, $e * g = g$ (and $g * e = g$).
+2. For all $g, h, k \in G$, $(g * h) * k = g * (h * k)$.
+3. For all $g \in G$, $g^{-1} * g = e$ (and $g * g^{-1} = e$).</p>
+<p>Groups show up in almost all areas of mathematics, and come in different flavours. For example:
+When doing topology, one might ask for the group operations to be continuous,
+obtaining the concept of a <em>topological group</em>.
+In Lie theory, one might want to talk about a group with a manifold structure on it
+making the group operations $C^n$-differentiable, i.e a <em>Lie group</em>.</p>
+<p>These examples share commonalities: Each time, the group comes with some structure,
+and the group operations are required to respect that structure.
+This observation can be realised categorically:
+In any category $\mathsf C$ where $(\cdot \times \cdot)$ and ${<em>}$ make sense,
+i.e. with a binary product $(\cdot \times \cdot)$ and terminal object $\mathbf 1_C$,
+a </em><em>group object</em><em> $G \in \mathsf C$ consists of:
+1. A </em><em>unit morphism</em><em> $\eta : \mathbf{1}_C \to G$.
+2. A </em><em>multiplication morphism</em><em> $\mu : G \times G \to G$.
+3. An </em><em>inverse morphism</em>* $\iota : G \to G$.</p>
+<p>making the following diagrams commute:
+1. <strong>Associativity:</strong>
+$$
+\begin{CD}
+G \times G \times G @&gt;\mathrm{id} \times \mu&gt;&gt; G \times G \
+@V\mu \times \mathrm{id}VV @V\mu VV \
+G \times G @&gt;\mu&gt;&gt; G
+\end{CD}
+$$
+2. <strong>Unitality:</strong>
+$$
+\begin{CD}
+\mathbf{1}_C \times G @&gt;\eta \times \mathrm{id}&gt;&gt; G \times G @&lt;\mathrm{id} \times \eta&lt;&lt; G \times \mathbf{1}_C \
+@V\cong VV @V\mu VV @VV\cong V \
+G @= G @= G
+\end{CD}
+$$
+3. <strong>Invertibility:</strong> 
+$$
+\begin{CD}
+G \times G @&lt;(\mathrm{id},\iota)&lt;&lt; G @&gt;(\iota,\mathrm{id})&gt;&gt; G \times G \
+@V\mu VV @V\nu VV @VV\mu V \
+G @= G @= G
+\end{CD}
+$$
+where $\nu$ is the composition $G \xrightarrow{} \mathbf{1}_C \xrightarrow{\eta}G$. [^1]</p>
+<p>As an exercise, try writing down the extra diagram that defines a <em>commutative</em> group object.
+(To make the diagrams precise you will need the <em>braiding</em> $\beta : G \times G \to G \times G$ which "swaps" the factors.)</p>
+<p>Analogously to group homomorphisms, if $G$ and $H$ are group objects,
+then a morphism $f : G \to H$ is a <strong>group morphism</strong> if the following two diagrams commute:
+1. <strong>Commutes with multiplication:</strong>
+$$
+\begin{CD}
+G \times G @&gt;f\times f&gt;&gt; H \times H \
+@V\mu_G VV @V\mu_H VV \
+G @&gt;f&gt;&gt; H
+\end{CD}
+$$
+2. <strong>Preserves the unit:</strong>
+$$
+\begin{CD}
+\mathbf{1}_C @&gt;\mathrm{id}&gt;&gt; \mathbf{1}_C \
+@V\eta_G VV @V\eta_H VV \
+G @&gt;f&gt;&gt; H
+\end{CD}
+$$</p>
+<p>A group object in the category of $\mathbb C$-schemes is called a <em>group $\mathbb C$-scheme</em>.</p>
+<p>The prototypical example of a group $\mathbb C$-scheme is the <strong>standard $n$-dimensional algebraic torus</strong>,
+defined as the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
+1. The unit morphism $\eta: {<em>} \to (\mathbb{C}^\times)^n$ taking $</em> \mapsto (1,\dots,1)$.
+2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
+  given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
+3. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$
+  given by $\iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1})$.</p>
+<blockquote>
+<p>In Toric, we have defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
+  The torus is
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.SplitTorus#doc"><code>SplitTorus</code></a>
+  and its group structure is given by
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.Diag.grp_ClassAsOver#doc"><code>Diag.grp_ClassAsOver</code></a>.</p>
+</blockquote>
+<h2>Hopf algebras</h2>
+<p>Since affine $\mathbb C$-schemes correspond to commutative $\mathbb{C}$-algebras,
+some $\mathbb{C}$-algebras with extra structure should correspond to affine group $\mathbb C$-schemes.</p>
+<p>What are they? Let's figure it out.</p>
+<p>Recall that maps $\operatorname{Spec} R \to \operatorname{Spec} S$ of affine $\mathbb C$-schemes
+are in bijection with maps $S \to R$ of their corresponding $\mathbb C$-algebras
+in the opposite direction.
+Also note that we can interpret the product of affine $\mathbb C$-schemes
+in terms of the tensor product of commutative $\mathbb C$-algebras:
+$\operatorname{Spec} R \times_{\mathbb C} \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes_{\mathbb C} S)$. (All tensor product from now on are taken over $\mathbb{C}$ and we will write $\otimes$ in place of $\otimes_\mathbb{C}$.)</p>
+<p>Thus the structure we are looking for is:
+1. A commutative $\mathbb{C}$-algebra $R$.
+2. A <strong>counit homomorphism</strong> $\varepsilon: R\to\mathbb{C}$.
+3. A <strong>comultiplication homomorphism</strong> $\Delta: R \to R \otimes R$.
+4. An <strong>antipode homomorphism</strong> $S: R \to R$.</p>
+<p>And we ask that these satisfy the same diagrams as for a group object,
+except that the arrows are reversed:
+1. <strong>Coassociativity:</strong>
+$$
+\begin{CD}
+R \otimes R \otimes R @&lt;\mathrm{id} \otimes \Delta&lt;&lt; R \otimes R \
+@A\Delta \otimes \mathrm{id}AA @A\Delta AA \
+R \otimes R @&lt;\Delta&lt;&lt; R
+\end{CD}
+$$
+2. <strong>Counitality:</strong>
+$$
+\begin{CD}
+\mathbb{C}\otimes R @&lt;\varepsilon \otimes \mathrm{id}&lt;&lt; R \otimes R @&gt;\mathrm{id} \otimes \varepsilon&gt;&gt; R \otimes \mathbb{C}\
+@A\cong AA @A\Delta AA @AA\cong A \
+R @= R @= R
+\end{CD}
+$$
+3. <strong>Coinvertibility:</strong> 
+$$
+\begin{CD}
+R \otimes R @&gt;m\circ(\mathrm{id}\otimes S) &gt;&gt; R @&lt;m\circ(S\otimes\mathrm{id}) &lt;&lt; R \otimes R \
+@A\Delta AA @A\nu' AA @AA\Delta A \
+R @= R @= R
+\end{CD}
+$$
+where $\nu'$ is the composition $R \xrightarrow{\varepsilon} \mathbb{C} \xrightarrow{}R$ and $m:R\otimes R \to R$ is the multiplication map.</p>
+<p>$\mathbb C$-algebras with this structure are called <em>$\mathbb C$-Hopf algebras</em>.
+There is a notion of $\mathbb C$-Hopf algebra homomorphisms,
+which are in one-to-one correspondence with group morphisms of $\mathbb C$-schemes.</p>
+<p>The 1-dimensional torus corresponds to the Hopf algebra defined as:
+1. The $\mathbb{C}$-algebra $\mathbb C[t^{\pm 1}]$.
+2. The counit $\varepsilon: \mathbb C[t^{\pm 1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
+3. The comultiplication $\Delta: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}] \otimes_{\mathbb C} \mathbb C[t^{\pm 1}]$
+  given by $\Delta(t) = t \otimes t$.
+4. The antipode $S: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}]$ given by $S(t) = t^{-1}$.</p>
+<blockquote>
+<p>In Toric, we have proven that $\mathrm{Spec}$ is a fully faithful functor
+  from commutative $\mathbb C$-Hopf algebras to group $\mathbb C$-schemes,
+  and that its essential image are the affine group $\mathbb C$-schemes.
+  In other words,
+  the categories of commutative Hopf algebras and affine group schemes are equivalent.
+  Spec as a functor from Hopf algebras to affine group schemes is
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec#doc"><code>hopfSpec</code></a>
+  and the fact that it's fully faithful is
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=hopfSpec.fullyFaithful#doc"><code>hopfSpec.fullyFaithful</code></a>.</p>
+</blockquote>
+<h2>Application: Pairing</h2>
+<p>For a commutative group scheme $G$, there are two important notions:
+1. A <strong>character</strong> of $G$ is a group scheme morphism $G\to\mathbb G_m$.
+  We write $X^<em>(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
+2. A </em><em>cocharacter</em><em>, aka a </em><em>one-parameter subgroup</em><em>, of $G$ is a group scheme morphism $\mathbb G_m\to G$.
+  We write $X_</em>(G) := \operatorname{Hom}(\mathbb G_m, G)$ for the set of cocharacters.</p>
+<p>Characters and cocharacters are both (genuine) commutative groups
+under pointwise (categorical) multiplication.</p>
+<p>Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
+$$
+    X^<em>(G) \times X_</em>(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
+$$
+This pairing is <em>perfect</em> when $G := \mathbb G_m^n$.</p>
+<p>We will now explain what this means and how to prove it.</p>
+<p>Given a tuple $(m_1, \dots, m_n) \in \mathbb Z^n$,
+we can define a character of $\mathbb G_m^n$ via
+$$
+    (t_1,\dots,t_n) \longmapsto t_1^{m_1}\cdots t_n^{m_n}.
+$$</p>
+<blockquote>
+<p>In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in this way.
+  In particular we have $X^*(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly) as
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charTorus#doc"><code>charTorus</code></a>.</p>
+</blockquote>
+<p>Similarly, given $(m_1, \dots, m_n) \in \mathbb Z^n$,
+we can define a cocharacter of $\mathbb G_m^n$ via
+$$
+    t \longmapsto (t^{m_1},\dots, t^{m_n}).
+$$
+and again all cocharacters of $\mathbb G_m^n$ arise in this way,
+so $X_*(\mathbb G_m^n) \cong \mathbb Z^n$.</p>
+<p>Hence the character-cocharacter pairing corresponds to a bilinear pairing
+$$
+    \mathbb Z^n \times \mathbb Z^n \longrightarrow \mathbb Z.
+$$
+which turns out to be nothing other than the usual inner product on $\mathbb Z^n$:
+$$
+    \langle\cdot, \cdot\rangle := (\mathbf{a}, \mathbf{b}) \mapsto \sum_i a_i b_i
+$$</p>
+<p>In particular, the two maps
+$$
+    \mathbb Z^n \longrightarrow \operatorname{Hom}(\mathbb Z^n, \mathbb Z) \
+    \mathbf{a} \mapsto \langle\mathbf{a}, \cdot\rangle \
+    \mathbf{b} \mapsto \langle\cdot, \mathbf{b}\rangle
+$$
+are both bijective.
+This is what it means for the pairing to be <strong>perfect</strong>.</p>
+<blockquote>
+<p>In Toric, we have shown that this pairing is perfect and computed it.
+  Concretely, if we identify both of $X^<em>(\mathbb G_m^n)$ and $X_</em>(\mathbb G_m^n)$ with $\mathbb Z^n$,
+  then the pairing is simply the standard inner product of $\mathbb Z^n$.
+  The pairing is
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charPairing#doc"><code>charPairing</code></a>,
+  the fact that it is perfect for $\mathbb G_m^n$ is
+  <a href="https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.isPerfPair_charPairing#doc"><code>isPerfPair_charPairing</code></a>
+  and the computation is <span style="color:red"><strong>TODO: Do the computation</strong></span>.</p>
+</blockquote>
+<p>This perfect pairing is very important:
+It allows us to talk about cones in $X^<em>(\mathbb G_m^n)$ and their duals in $X_</em>(\mathbb G_m^n)$. It unlocks convex geometry on characters and cocharacters!</p>
+<p>Cones in $\mathbb Z^n$ turn out to be in exact correspondence with <em>affine toric varieties</em>,
+which are the subject of the first chapter of Cox-Little-Schenck.</p>
+<h2>How to contribute</h2>
+<p>Now that the theory of tori is off the ground, work on toric varieties can truly start.
+The next milestone is that the functor $M \mapsto \operatorname{Spec} \mathbb C[M]$
+from the category of affine monoids (finitely generated cancellative commutative monoids)
+to the category of affine toric varieties is essentially surjective.</p>
+<p>Simultaneously, the perfect pairing between characters and cocharacters is begging
+for the theory of convex cones to be developed.
+The end result here is that affine monoids in $\mathbb Z^n$ are equivalent
+to convex polyhedral cones in $\mathbb R^n$.</p>
+<p>The second phase of the project will therefore run on two fronts simultaneously:
+* The <strong>algebraic geometry</strong> side involving Hopf algebras, group schemes,
+  representation theory...
+* The <strong>convex geometry</strong> side involving convex cones, Fourier-Motzkin reduction, Gordan's lemma...</p>
+<p>Both sides now have a blueprint, which are
+<a href="https://yaeldillies.github.io/Toric/blueprint/sect0002.html"><strong>Section 1.1</strong></a> and
+<a href="https://yaeldillies.github.io/Toric/blueprint/sect0002.html#a0000000087"><strong>Section 1.2</strong></a>
+respectively, and the
+<a href="https://yaeldillies.github.io/Toric/blueprint/dep_graph_document.html"><strong>dependency graph</strong></a>
+shows how all the items fit together.</p>
+<p>If you want to contribute, please go to
+<a href="https://leanprover.zulipchat.com/#narrow/channel/487278-toric/topic/Current.20tasks/with/510984744"><strong>#toric&gt;Current tasks</strong></a>
+on Zulip and claim a task! If you're interested in the project but don't know where to start don't hesitate to contact us!</p>
+<p>[^1] We have not specified or left implicit some coherence morphisms, such as the associator which is an isomorphism $\alpha_{(G,G,G)}:(G\times G) \times G \to G \times (G \times G)$. They were omitted since their inclusion makes the diagrams messier without aiding motivation.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/algebraic-geometry/" rel="tag">algebraic geometry</a></li>
+            <li><a class="tag p-category" href="../../categories/toric/" rel="tag">Toric</a></li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2025         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
