@@ -18,8 +18,9 @@ following *Toric Varieties* by Cox, Little and Schenck.
 We soon discovered that toric varieties contained tori, and that Mathlib didn't.
 
 This blog post is a double announcement:
-* The unexpected prerequisite of algebraic tori was recently cleared;
-* We are looking for contributors to help with the second phase of the project,
+
+- The unexpected prerequisite of algebraic tori was recently cleared;
+- We are looking for contributors to help with the second phase of the project,
   i.e. toric geometry and its relation to convex geometry.
 
 <!-- TEASER_END -->
@@ -96,7 +97,7 @@ making the group operations $C^n$-differentiable, i.e a *Lie group*.
 These examples share commonalities: Each time, the group comes with some structure,
 and the group operations are required to respect that structure.
 This observation can be realised categorically:
-In any category $\mathsf C$ where $(\cdot \times \cdot)$ and $\{*\}$ make sense,
+In any category $\mathsf C$ where $(\cdot \times \cdot)$ and $\{\bullet\}$ make sense,
 i.e. with a binary product $(\cdot \times \cdot)$ and terminal object $\mathbf 1_C$,
 a **group object** $G \in \mathsf C$ consists of:
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
@@ -108,8 +109,8 @@ making the following diagrams commute:
 $$
 \require{AMScd}
 \begin{CD}
-G \times G \times G @>\mathrm{id} \times \mu>> G \times G \\
-@V\mu \times \mathrm{id}VV @V\mu VV \\
+G \times G \times G @>\mathrm{id} \times \mu>> G \times G \\\\
+@V\mu \times \mathrm{id}VV @V\mu VV \\\\
 G \times G @>\mu>> G
 \end{CD}
 $$
@@ -117,8 +118,8 @@ $$
 $$
 \require{AMScd}
 \begin{CD}
-\mathbf{1}_C \times G @>\eta \times \mathrm{id}>> G \times G @<\mathrm{id} \times \eta<< G \times \mathbf{1}_C \\
-@V\cong VV @V\mu VV @VV\cong V \\
+\mathbf{1}_C \times G @>\eta \times \mathrm{id}>> G \times G @<\mathrm{id} \times \eta<< G \times \mathbf{1}_C \\\\
+@V\cong VV @V\mu VV @VV\cong V \\\\
 G @= G @= G
 \end{CD}
 $$
@@ -126,8 +127,8 @@ $$
 $$
 \require{AMScd}
 \begin{CD}
-G \times G @<(\mathrm{id},\iota)<< G @>(\iota,\mathrm{id})>> G \times G \\
-@V\mu VV @V\nu VV @VV\mu V \\
+G \times G @<(\mathrm{id},\iota)<< G @>(\iota,\mathrm{id})>> G \times G \\\\
+@V\mu VV @V\nu VV @VV\mu V \\\\
 G @= G @= G
 \end{CD}
 $$
@@ -142,8 +143,8 @@ then a morphism $f : G \to H$ is a **group morphism** if the following two diagr
 $$
 \require{AMScd}
 \begin{CD}
-G \times G @>f\times f>> H \times H \\
-@V\mu_G VV @V\mu_H VV \\
+G \times G @>f\times f>> H \times H \\\\
+@V\mu_G VV @V\mu_H VV \\\\
 G @>f>> H
 \end{CD}
 $$
@@ -151,8 +152,8 @@ $$
 $$
 \require{AMScd}
 \begin{CD}
-\mathbf{1}_C @>\mathrm{id}>> \mathbf{1}_C \\
-@V\eta_G VV @V\eta_H VV \\
+\mathbf{1}_C @>\mathrm{id}>> \mathbf{1}_C \\\\
+@V\eta_G VV @V\eta_H VV \\\\
 G @>f>> H
 \end{CD}
 $$
@@ -161,7 +162,7 @@ A group object in the category of $\mathbb C$-schemes is called a *group $\mathb
 
 The prototypical example of a group $\mathbb C$-scheme is the **standard $n$-dimensional algebraic torus**,
 defined as the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
-1. The unit morphism $\eta: \{*\} \to (\mathbb{C}^\times)^n$ taking $* \mapsto (1,\dots,1)$.
+1. The unit morphism $\eta: \{\bullet\} \to (\mathbb{C}^\times)^n$ taking $\bullet \mapsto (1,\dots,1)$.
 2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
   given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
 3. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$
@@ -199,8 +200,8 @@ except that the arrows are reversed:
 $$
 \require{AMScd}
 \begin{CD}
-R \otimes R \otimes R @<\mathrm{id} \otimes \Delta<< R \otimes R \\
-@A\Delta \otimes \mathrm{id}AA @A\Delta AA \\
+R \otimes R \otimes R @<\mathrm{id} \otimes \Delta<< R \otimes R \\\\
+@A\Delta \otimes \mathrm{id}AA @A\Delta AA \\\\
 R \otimes R @<\Delta<< R
 \end{CD}
 $$
@@ -208,8 +209,8 @@ $$
 $$
 \require{AMScd}
 \begin{CD}
-\mathbb{C}\otimes R @<\varepsilon \otimes \mathrm{id}<< R \otimes R @>\mathrm{id} \otimes \varepsilon>> R \otimes \mathbb{C}\\
-@A\cong AA @A\Delta AA @AA\cong A \\
+\mathbb{C}\otimes R @<\varepsilon \otimes \mathrm{id}<< R \otimes R @>\mathrm{id} \otimes \varepsilon>> R \otimes \mathbb{C}\\\\
+@A\cong AA @A\Delta AA @AA\cong A \\\\
 R @= R @= R
 \end{CD}
 $$
@@ -217,8 +218,8 @@ $$
 $$
 \require{AMScd}
 \begin{CD}
-R \otimes R @>m\circ(\mathrm{id}\otimes S) >> R @<m\circ(S\otimes\mathrm{id}) << R \otimes R \\
-@A\Delta AA @A\nu' AA @AA\Delta A \\
+R \otimes R @>m\circ(\mathrm{id}\otimes S) >> R @<m\circ(S\otimes\mathrm{id}) << R \otimes R \\\\
+@A\Delta AA @A\nu' AA @AA\Delta A \\\\
 R @= R @= R
 \end{CD}
 $$
@@ -293,8 +294,8 @@ $$
 
 In particular, the two maps
 $$
-    \mathbb Z^n \longrightarrow \operatorname{Hom}(\mathbb Z^n, \mathbb Z) \\
-    \mathbf{a} \mapsto \langle\mathbf{a}, \cdot\rangle \\
+    \mathbb Z^n \longrightarrow \operatorname{Hom}(\mathbb Z^n, \mathbb Z) \\\\
+    \mathbf{a} \mapsto \langle\mathbf{a}, \cdot\rangle \\\\
     \mathbf{b} \mapsto \langle\cdot, \mathbf{b}\rangle
 $$
 are both bijective.
