@@ -106,6 +106,7 @@ a **group object** $G \in \mathsf C$ consists of:
 making the following diagrams commute:
 1. **Associativity:**
 $$
+\require{AMScd}
 \begin{CD}
 G \times G \times G @>\mathrm{id} \times \mu>> G \times G \\
 @V\mu \times \mathrm{id}VV @V\mu VV \\
@@ -114,6 +115,7 @@ G \times G @>\mu>> G
 $$
 2. **Unitality:**
 $$
+\require{AMScd}
 \begin{CD}
 \mathbf{1}_C \times G @>\eta \times \mathrm{id}>> G \times G @<\mathrm{id} \times \eta<< G \times \mathbf{1}_C \\
 @V\cong VV @V\mu VV @VV\cong V \\
@@ -122,6 +124,7 @@ G @= G @= G
 $$
 3. **Invertibility:** 
 $$
+\require{AMScd}
 \begin{CD}
 G \times G @<(\mathrm{id},\iota)<< G @>(\iota,\mathrm{id})>> G \times G \\
 @V\mu VV @V\nu VV @VV\mu V \\
@@ -137,6 +140,7 @@ Analogously to group homomorphisms, if $G$ and $H$ are group objects,
 then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
 1. **Commutes with multiplication:**
 $$
+\require{AMScd}
 \begin{CD}
 G \times G @>f\times f>> H \times H \\
 @V\mu_G VV @V\mu_H VV \\
@@ -145,6 +149,7 @@ G @>f>> H
 $$
 2. **Preserves the unit:**
 $$
+\require{AMScd}
 \begin{CD}
 \mathbf{1}_C @>\mathrm{id}>> \mathbf{1}_C \\
 @V\eta_G VV @V\eta_H VV \\
@@ -192,6 +197,7 @@ And we ask that these satisfy the same diagrams as for a group object,
 except that the arrows are reversed:
 1. **Coassociativity:**
 $$
+\require{AMScd}
 \begin{CD}
 R \otimes R \otimes R @<\mathrm{id} \otimes \Delta<< R \otimes R \\
 @A\Delta \otimes \mathrm{id}AA @A\Delta AA \\
@@ -200,6 +206,7 @@ R \otimes R @<\Delta<< R
 $$
 2. **Counitality:**
 $$
+\require{AMScd}
 \begin{CD}
 \mathbb{C}\otimes R @<\varepsilon \otimes \mathrm{id}<< R \otimes R @>\mathrm{id} \otimes \varepsilon>> R \otimes \mathbb{C}\\
 @A\cong AA @A\Delta AA @AA\cong A \\
@@ -208,6 +215,7 @@ R @= R @= R
 $$
 3. **Coinvertibility:** 
 $$
+\require{AMScd}
 \begin{CD}
 R \otimes R @>m\circ(\mathrm{id}\otimes S) >> R @<m\circ(S\otimes\mathrm{id}) << R \otimes R \\
 @A\Delta AA @A\nu' AA @AA\Delta A \\
