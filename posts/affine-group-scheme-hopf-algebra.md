@@ -72,8 +72,13 @@ $\mathbb A^n$ is in fact isomorphic to $\mathrm{Spec}\ \mathbb C[X_1, \dots, X_n
 the spectrum of the polynomial ring in $n$ variables.
 Similarly, $\mathbb G_m^n$ is isomorphic to $\mathrm{Spec}\ \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]$,
 the spectrum of multivariate Laurent series in $n$ variables.
-The natural inclusion $\mathbb C[X_1, \dots, X_n] \hookrightarrow \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]$
-corresponds to an embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$ with dense image
+The natural inclusion
+<p style="margin-top:1em; margin-bottom:1em;">
+$$
+  \mathbb C[X_1, \dots, X_n] \to \mathbb C[X_1^{\pm 1}, \dots, X_n^{\pm 1}]
+$$
+</p>
+corresponds to an embedding $\mathbb G_m^n \to \mathbb A^n$ with dense image
 (picture this as $(\mathbb C^\times)^n$ sitting in $\mathbb C^n$).
 
 # Group schemes
@@ -81,8 +86,8 @@ corresponds to an embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$ with den
 Recall the definition of a group. A *group structure* on a set $G$ consists of:
 
 1. An **identity** $e \in G$.
-2. A **multiplication** $(\cdot * \cdot) : G \times G \to G$.
-3. An **inverse** $(\cdot^{-1}) : G \to G$.
+2. A **multiplication** $(\bullet * \bullet) : G \times G \to G$.
+3. An **inverse** $(\bullet^{-1}) : G \to G$.
 
 respecting the following *group axioms*:
 
@@ -99,8 +104,8 @@ making the group operations $C^n$-differentiable, i.e a *Lie group*.
 These examples share commonalities: Each time, the group comes with some structure,
 and the group operations are required to respect that structure.
 This observation can be realised categorically:
-In any category $\mathsf C$ where $(\cdot \times \cdot)$ and $\{\bullet\}$ make sense,
-i.e. with a binary product $(\cdot \times \cdot)$ and terminal object $\mathbf 1_C$,
+In any category $\mathsf C$ where $(\bullet \times \bullet)$ and $\\{\bullet\\}$ make sense,
+i.e. with a binary product $(\bullet \times \bullet)$ and terminal object $\mathbf 1_C$,
 a **group object** $G \in \mathsf C$ consists of:
 
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
@@ -168,13 +173,23 @@ A group object in the category of $\mathbb C$-schemes is called a *group $\mathb
 The prototypical example of a group $\mathbb C$-scheme is the **standard $n$-dimensional algebraic torus**,
 defined as the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
 
-1. The unit morphism $\eta: \{\bullet\} \to (\mathbb{C}^\times)^n$ taking $\bullet \mapsto (1,\dots,1)$.
+1. The unit morphism $\eta: \\{\bullet\\} \to (\mathbb{C}^\times)^n$ taking $\bullet \mapsto (1,\dots,1)$.
 2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
-  given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
+  given by
+  <p style="margin-top:1em; margin-bottom:1em;">
+  $$
+    \mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n).
+  $$
+  </p>
 3. The inverse morphism $\iota: (\mathbb{C}^\times)^n \to (\mathbb{C}^\times)^n$
-  given by $\iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1})$.
+  given by 
+  <p style="margin-top:1em; margin-bottom:1em;">
+  $$
+    \iota(t_1,\dots,t_n) = (t_1^{-1},\dots,t_n^{-1}).
+  $$
+  </p>
 
-> In Toric, we have defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
+> In Toric, we defined the group structure on $\mathbb G_m^n$ using the Yoneda embedding.
   The torus is
   [`SplitTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.SplitTorus#doc)
   and its group structure is given by
@@ -245,7 +260,7 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
   given by $\Delta(t) = t \otimes t$.
 4. The antipode $S: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}]$ given by $S(t) = t^{-1}$.
 
-> In Toric, we have proven that $\mathrm{Spec}$ is a fully faithful functor
+> In Toric, we proved that $\mathrm{Spec}$ is a fully faithful functor
   from commutative $\mathbb C$-Hopf algebras to group $\mathbb C$-schemes,
   and that its essential image are the affine group $\mathbb C$-schemes.
   In other words,
@@ -268,50 +283,62 @@ Characters and cocharacters are both (genuine) commutative groups
 under pointwise (categorical) multiplication.
 
 Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
+<p style="margin-top:1em; margin-bottom:1em;">
 $$
-    X^\*(G) \times X_\*(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
+    X^*(G) \times X_*(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
 $$
+</p>
 This pairing is *perfect* when $G := \mathbb G_m^n$.
 
 We will now explain what this means and how to prove it.
 
 Given a tuple $(m_1, \dots, m_n) \in \mathbb Z^n$,
 we can define a character of $\mathbb G_m^n$ via
+<p style="margin-top:1em; margin-bottom:1em;">
 $$
     (t_1,\dots,t_n) \longmapsto t_1^{m_1}\cdots t_n^{m_n}.
 $$
+</p>
 
-> In Toric, we have formalised that all characters of $\mathbb G_m^n$ arise in this way.
+> In Toric, we formalised that all characters of $\mathbb G_m^n$ arise in this way.
   In particular we have $X^*(\mathbb G_m^n) \cong \mathbb Z^n$ (contravariantly) as
   [`charTorus`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charTorus#doc).
 
 Similarly, given $(m_1, \dots, m_n) \in \mathbb Z^n$,
 we can define a cocharacter of $\mathbb G_m^n$ via
+<p style="margin-top:1em; margin-bottom:1em;">
 $$
     t \longmapsto (t^{m_1},\dots, t^{m_n}).
 $$
+</p>
 and again all cocharacters of $\mathbb G_m^n$ arise in this way,
 so $X_*(\mathbb G_m^n) \cong \mathbb Z^n$.
 
 Hence the character-cocharacter pairing corresponds to a bilinear pairing
+<p style="margin-top:1em; margin-bottom:1em;">
 $$
     \mathbb Z^n \times \mathbb Z^n \longrightarrow \mathbb Z.
 $$
+</p>
 which turns out to be nothing other than the usual inner product on $\mathbb Z^n$:
+<p style="margin-top:1em; margin-bottom:1em;">
 $$
-    \langle\cdot, \cdot\rangle := (\mathbf{a}, \mathbf{b}) \mapsto \sum_i a_i b_i
+    \langle\bullet, \bullet\rangle := (\mathbf{a}, \mathbf{b}) \mapsto \sum_i a_i b_i
 $$
+</p>
 
 In particular, the two maps
+<p style="margin-top:1em; margin-bottom:1em;">
 $$
     \mathbb Z^n \longrightarrow \operatorname{Hom}(\mathbb Z^n, \mathbb Z) \\\\
-    \mathbf{a} \mapsto \langle\mathbf{a}, \cdot\rangle \\\\
-    \mathbf{b} \mapsto \langle\cdot, \mathbf{b}\rangle
+    \mathbf{a} \mapsto \langle\mathbf{a}, \bullet\rangle \\\\
+    \mathbf{b} \mapsto \langle\bullet, \mathbf{b}\rangle
 $$
+</p>
 are both bijective.
 This is what it means for the pairing to be **perfect**.
 
-> In Toric, we have shown that this pairing is perfect.
+> In Toric, we showed that this pairing is perfect.
   Concretely, if we identify both of $X^\*(\mathbb G_m^n)$ and $X_\*(\mathbb G_m^n)$ with $\mathbb Z^n$,
   then the pairing is simply the standard inner product of $\mathbb Z^n$.
   The pairing is
@@ -338,6 +365,7 @@ The end result here is that affine monoids in $\mathbb Z^n$ are equivalent
 to convex polyhedral cones in $\mathbb R^n$.
 
 The second phase of the project will therefore run on two fronts simultaneously:
+
 * The **algebraic geometry** side involving Hopf algebras, group schemes,
   representation theory...
 * The **convex geometry** side involving convex cones, Fourier-Motzkin reduction, Gordan's lemma...
@@ -353,4 +381,5 @@ If you want to contribute, please go to
 [**#toric>Current tasks**](https://leanprover.zulipchat.com/#narrow/channel/487278-toric/topic/Current.20tasks/with/510984744)
 on Zulip and claim a task! If you're interested in the project but don't know where to start don't hesitate to contact us!
 
-[^1] We have not specified or left implicit some coherence morphisms, such as the associator which is an isomorphism $\alpha_{(G,G,G)}:(G\times G) \times G \to G \times (G \times G)$. They were omitted since their inclusion makes the diagrams messier without aiding motivation.
+[^1]: 
+    We have not specified or left implicit some coherence morphisms, such as the associator which is an isomorphism $\alpha_{(G,G,G)}:(G\times G) \times G \to G \times (G \times G)$. They were omitted since their inclusion makes the diagrams messier without aiding motivation.
