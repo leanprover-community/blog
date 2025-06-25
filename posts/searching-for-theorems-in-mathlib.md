@@ -34,7 +34,9 @@ In the upper right, it has a search bar.
 The search bar provides a "fuzzy" search 
 which searches for theorem names that contain the search term as a substring. 
 For example, if I search for ["**foobar**"](https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&q=foobar), 
-the current top result is [**F**GM**o**duleCat.**ob**j_c**ar**rier](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Category/FGModuleCat/Basic.html#FGModuleCat.obj_carrier).
+the current top result is [**F**GM**o**duleCat.**ob**j_c**ar**rier](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Category/FGModuleCat/Basic.html#FGModuleCat.obj_carrier). 
+This is therefore a similar process to searching for a declaration using an in-editor code completion tool such as [IntelliSense](https://code.visualstudio.com/docs/editing/intellisense)
+(which is itself a useful way to search for lemmas while coding in Lean).
 
 The docs are most useful for users who have some experience in guessing the name of the lemma they are looking for. 
 Helpful in learning how to do this is the [naming conventions page](https://leanprover-community.github.io/contribute/naming.html) 
@@ -65,7 +67,7 @@ as they don't share the weakness of the fuzzy search where it gets confused if t
 
 A number of NLP-based search engines have come out, offering different features:
 
-* [Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for mathlib developed by [Morph labs](https://morph.so/). This was one of the first search engines of this type, though at this point it's somewhat outdated.
+* [Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for mathlib developed by [Morph labs](https://morph.so/). This was one of the first search engines of this type, though at this point it's somewhat outdated. Moogle is available in the Lean4 VSCode extension, via the "Lean4: Moogle: Search" command.
 * [LeanSearch](https://leansearch.net/) from the BICMR AI for Mathematics team at PKU, which offers the ability to augment a previous query.
 * [LeanExplore](https://www.leanexplore.com/) from Justin Asher, which offers the ability to select different Lean libraries to query.
 
@@ -87,6 +89,8 @@ It is a pretty precise tool; a downside is that it will not by default give you 
 (though you can revert to substring-based search using quotes, see the page for a list of search techniques you can use). 
 To avoid putting in too many restrictions and getting an empty result list, 
 it's recommended that you add search filters one at a time to your query.
+This search engine is also available in the Lean4 VSCode extension,
+via the "Lean4: Loogle: Search" command.
 
 ## Other websites
 
