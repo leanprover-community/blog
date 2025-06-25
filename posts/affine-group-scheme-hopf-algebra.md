@@ -79,11 +79,13 @@ corresponds to an embedding $\mathbb G_m^n \hookrightarrow \mathbb A^n$ with den
 # Group schemes
 
 Recall the definition of a group. A *group structure* on a set $G$ consists of:
+
 1. An **identity** $e \in G$.
 2. A **multiplication** $(\cdot * \cdot) : G \times G \to G$.
 3. An **inverse** $(\cdot^{-1}) : G \to G$.
 
 respecting the following *group axioms*:
+
 1. For all $g \in G$, $e * g = g$ (and $g * e = g$).
 2. For all $g, h, k \in G$, $(g * h) * k = g * (h * k)$.
 3. For all $g \in G$, $g^{-1} * g = e$ (and $g * g^{-1} = e$).
@@ -100,11 +102,13 @@ This observation can be realised categorically:
 In any category $\mathsf C$ where $(\cdot \times \cdot)$ and $\{\bullet\}$ make sense,
 i.e. with a binary product $(\cdot \times \cdot)$ and terminal object $\mathbf 1_C$,
 a **group object** $G \in \mathsf C$ consists of:
+
 1. A **unit morphism** $\eta : \mathbf{1}_C \to G$.
 2. A **multiplication morphism** $\mu : G \times G \to G$.
 3. An **inverse morphism** $\iota : G \to G$.
 
 making the following diagrams commute:
+
 1. **Associativity:**
 $$
 \require{AMScd}
@@ -139,6 +143,7 @@ As an exercise, try writing down the extra diagram that defines a *commutative* 
 
 Analogously to group homomorphisms, if $G$ and $H$ are group objects,
 then a morphism $f : G \to H$ is a **group morphism** if the following two diagrams commute:
+
 1. **Commutes with multiplication:**
 $$
 \require{AMScd}
@@ -162,6 +167,7 @@ A group object in the category of $\mathbb C$-schemes is called a *group $\mathb
 
 The prototypical example of a group $\mathbb C$-scheme is the **standard $n$-dimensional algebraic torus**,
 defined as the scheme $\mathbb G_m^n$ along with (the scheme morphisms corresponding to):
+
 1. The unit morphism $\eta: \{\bullet\} \to (\mathbb{C}^\times)^n$ taking $\bullet \mapsto (1,\dots,1)$.
 2. The multiplication morphism $\mu: (\mathbb{C}^\times)^{n} \times (\mathbb{C}^\times)^{n} \to (\mathbb{C}^\times)^n$
   given by $\mu((t_1,\dots,t_n),(s_1,\dots,s_n)) = (t_1s_1,\dots,t_n s_n)$.
@@ -189,6 +195,7 @@ in terms of the tensor product of commutative $\mathbb C$-algebras:
 $\operatorname{Spec} R \times_{\mathbb C} \operatorname{Spec} S$ is isomorphic to $\operatorname{Spec} (R \otimes_{\mathbb C} S)$. (All tensor product from now on are taken over $\mathbb{C}$ and we will write $\otimes$ in place of $\otimes_\mathbb{C}$.)
 
 Thus the structure we are looking for is:
+
 1. A commutative $\mathbb{C}$-algebra $R$.
 2. A **counit homomorphism** $\varepsilon: R\to\mathbb{C}$.
 3. A **comultiplication homomorphism** $\Delta: R \to R \otimes R$.
@@ -196,6 +203,7 @@ Thus the structure we are looking for is:
 
 And we ask that these satisfy the same diagrams as for a group object,
 except that the arrows are reversed:
+
 1. **Coassociativity:**
 $$
 \require{AMScd}
@@ -230,6 +238,7 @@ There is a notion of $\mathbb C$-Hopf algebra homomorphisms,
 which are in one-to-one correspondence with group morphisms of $\mathbb C$-schemes.
 
 The 1-dimensional torus corresponds to the Hopf algebra defined as:
+
 1. The $\mathbb{C}$-algebra $\mathbb C[t^{\pm 1}]$.
 2. The counit $\varepsilon: \mathbb C[t^{\pm 1}] \to \mathbb{C}$ given by $\varepsilon(t) = 1$.
 3. The comultiplication $\Delta: \mathbb C[t^{\pm 1}] \to \mathbb C[t^{\pm 1}] \otimes_{\mathbb C} \mathbb C[t^{\pm 1}]$
@@ -249,6 +258,7 @@ The 1-dimensional torus corresponds to the Hopf algebra defined as:
 # Application: Pairing
 
 For a commutative group scheme $G$, there are two important notions:
+
 1. A **character** of $G$ is a group scheme morphism $G\to\mathbb G_m$.
   We write $X^*(G) := \operatorname{Hom}(G, \mathbb G_m)$ for the set of characters.
 2. A **cocharacter**, aka a **one-parameter subgroup**, of $G$ is a group scheme morphism $\mathbb G_m\to G$.
