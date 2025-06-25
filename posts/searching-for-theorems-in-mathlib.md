@@ -42,7 +42,7 @@ The downside of this approach is that semantic search isn't an exact science, so
 
 A number of NLP-based search engines have come out, offering different features:
 
-* [Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for Mathlib developed by [Morph labs](https://morph.so/). This was one of the first search engines of this type, though at this point it's somewhat outdated.
+* [Moogle](https://www.moogle.ai/) is an LLM-based semantic search engine for mathlib developed by [Morph labs](https://morph.so/). This was one of the first search engines of this type, though at this point it's somewhat outdated.
 * [LeanSearch](https://leansearch.net/) from the BICMR AI for Mathematics team at PKU, which offers the ability to augment a previous query.
 * [LeanExplore](https://www.leanexplore.com/) from Justin Asher, which offers the ability to select different Lean libraries to query.
 
