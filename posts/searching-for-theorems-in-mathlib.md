@@ -10,7 +10,7 @@ tags: ''
 title: Searching for Theorems in Mathlib
 type: text
 ---
-A post for beginners on the different ways to search for theorems in mathlib, inspired by [this talk](https://www.youtube.com/watch?v=UJrYKR01QwU)  from Jireh Loreaux.
+A post for beginners on the different ways to search for theorems in mathlib, inspired by [this talk](https://www.youtube.com/watch?v=UJrYKR01QwU) from Jireh Loreaux.
 
 <!-- TEASER_END -->
 
