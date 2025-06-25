@@ -165,7 +165,7 @@ but which try to complete proofs automatically,
 and which may identify useful theorems in the process. 
 These include:
 
-* `simp`: Simplifies the goal using a set of simplification rules. Using `simp?` allows you to replace `simp` with an equivalent tactic that specifies the simplification rules it uses.
+* `simp`: Simplifies the goal using a set of simplification rules. Using `simp?` allows you to replace `simp` with an equivalent tactic that specifies the simplification rules it uses. This can also be helpful for directly creating a working specific tactic, as well as for finding lemmas which can be used in other tactics like `rw` or in proof terms.
 * `rw_search`: Attempts to find chains of rewrites that will prove or simplify the current goal.
 * `hint`: A "Kitchen Sink" tactic that attempts to close the goal using a variety of other tactics.
 * [`aesop`](https://github.com/leanprover-community/aesop): A tactic that tries to prove the current goal using a search tree. As with many other tactics, it can be used as `aesop?` to allow you to replace the call by a sequence of tactics that specific to the goal you are working on.
