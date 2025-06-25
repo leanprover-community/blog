@@ -269,7 +269,7 @@ under pointwise (categorical) multiplication.
 
 Composition $\mathbb G_m \to G \to \mathbb G_m$ defines a bilinear pairing
 $$
-    X^*(G) \times X_*(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
+    X^\*(G) \times X_\*(G) \longrightarrow \operatorname{Hom}(\mathbb G_m,\mathbb G_m).
 $$
 This pairing is *perfect* when $G := \mathbb G_m^n$.
 
@@ -312,7 +312,7 @@ are both bijective.
 This is what it means for the pairing to be **perfect**.
 
 > In Toric, we have shown that this pairing is perfect.
-  Concretely, if we identify both of $X^*(\mathbb G_m^n)$ and $X_*(\mathbb G_m^n)$ with $\mathbb Z^n$,
+  Concretely, if we identify both of $X^\*(\mathbb G_m^n)$ and $X_\*(\mathbb G_m^n)$ with $\mathbb Z^n$,
   then the pairing is simply the standard inner product of $\mathbb Z^n$.
   The pairing is
   [`charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.charPairing#doc),
@@ -320,7 +320,7 @@ This is what it means for the pairing to be **perfect**.
   [`isPerfPair_charPairing`](https://yaeldillies.github.io/Toric/docs/find/?pattern=AlgebraicGeometry.Scheme.isPerfPair_charPairing#doc).
 
 This perfect pairing is very important:
-It allows us to talk about cones in $X^*(\mathbb G_m^n)$ and their duals in $X_*(\mathbb G_m^n)$. It unlocks convex geometry on characters and cocharacters!
+It allows us to talk about cones in $X^\*(\mathbb G_m^n)$ and their duals in $X_\*(\mathbb G_m^n)$. It unlocks convex geometry on characters and cocharacters!
 
 Cones in $\mathbb Z^n$ turn out to be in exact correspondence with *affine toric varieties*,
 which are the subject of the first chapter of Cox-Little-Schenck.
