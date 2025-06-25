@@ -18,7 +18,7 @@ Mathlib has a lot of theorems, and it can be hard to find the one you're looking
 
 ## Search engines
 
-There are three main search engines which allow you to search for theorems in mathlib and its dependencies.
+There are three types of search engine which allow you to search for theorems in mathlib and its dependencies.
 
 ### The mathlib4 docs page
 
