@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Searching for Theorems in Mathlib | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/searching-for-theorems-in-mathlib/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Searching for Theorems in Mathlib | Lean community blog">
+<meta name="author" content="Bolton Bailey">
+<link rel="prev" href="../affine-group-schemes-hopf-algebra/" title="The correspondence between affine group schemes and Hopf algebras" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Searching for Theorems in Mathlib">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/searching-for-theorems-in-mathlib/">
+<meta property="og:description" content="A post for beginners on the different ways to search for theorems in mathlib, inspired by this talk from Jireh Loreaux.
+
+
+Mathlib has a lot of theorems, and it can be hard to find the one you're looki">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-06-25T01:26:31-08:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Searching for Theorems in Mathlib</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/bolton-bailey/">Bolton Bailey</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-06-25T01:26:31-08:00" itemprop="datePublished" title="2025-06-25 01:26">2025-06-25 01:26</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/searching-for-theorems-in-mathlib/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>A post for beginners on the different ways to search for theorems in mathlib, inspired by <a href="https://www.youtube.com/watch?v=UJrYKR01QwU">this talk</a> from Jireh Loreaux.</p>
+<!-- TEASER_END -->
+
+<p>Mathlib has a lot of theorems, and it can be hard to find the one you're looking for. 
+This post goes over various search engines, webpages and tactics you can use to find theorems in mathlib. 
+For each of them, I'll give a brief description of how they work and what their strengths and weaknesses are.</p>
+<h2>Search engines</h2>
+<p>There are three types of search engine which allow you to search for theorems in mathlib and its dependencies.</p>
+<h3>The mathlib4 docs page</h3>
+<p><img alt="Docs Main Page" src="../../images/documentation-screenshot.png"></p>
+<p>The most comprehensive listing of mathlib theorems is the <a href="https://leanprover-community.github.io/mathlib4_docs/">documentation page on the community website</a>. 
+This page was developed for Lean 3 by Rob Lewis and for Lean 4 by Henrik Böving and others, see the <a href="https://github.com/leanprover/doc-gen4">docGen source</a> for a list of contributors. 
+It's a documentation page just as you might find for any other software project: 
+on the left, it has nested dropdown menus for the directory structure of mathlib and several of its dependencies. 
+In the upper right, it has a search bar. 
+The search bar provides a "fuzzy" search 
+which searches for theorem names that contain the search term as a substring. 
+For example, if I search for <a href="https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&amp;q=foobar">"<strong>foobar</strong>"</a>, 
+the current top result is <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Category/FGModuleCat/Basic.html#FGModuleCat.obj_carrier"><strong>F</strong>GM<strong>o</strong>duleCat.<strong>ob</strong>j_c<strong>ar</strong>rier</a>. 
+This is therefore a similar process to searching for a declaration using an in-editor code completion tool such as <a href="https://code.visualstudio.com/docs/editing/intellisense">IntelliSense</a>
+(which is itself a useful way to search for lemmas while coding in Lean).</p>
+<p>The docs are most useful for users who have some experience in guessing the name of the lemma they are looking for. 
+Helpful in learning how to do this is the <a href="https://leanprover-community.github.io/contribute/naming.html">naming conventions page</a> 
+which explains how lemmas in mathlib are named 
+(in short, theorems are typically named for the declarations they pertain to, 
+with the declaration names appearing in the lemma name in the order they appear in the syntax tree).</p>
+<p>A downside of the documentation page is that if a lemma is named in a way you don't expect, 
+it can be hard to find.</p>
+<!-- Note, it would be nice to credit the main developer of the docs page, if there is one. -->
+
+<h3>Natural language search tools</h3>
+<p><img alt="Moogle Main Page" src="../../images/moogle-screenshot.png"></p>
+<p>There are a few websites that allow one to search for mathlib content using natural language. 
+One enters a description and the engine tries to turn up theorems that match the search query. 
+For example, if I search for "the sum of two odd numbers is even", 
+I might turn up the result <code>Odd.add_odd</code>.</p>
+<p>The downside of this approach is that semantic search isn't an exact science, 
+so the results you are looking for will not always top the result list 
+(in case of the example above - a bit of a challenge is that <code>sum</code> in mathlib is generally used for indexed sums 
+whereas <code>add</code> is more common for the binary operation we were looking for).
+These can still be helpful tools, 
+as they don't share the weakness of the fuzzy search where it gets confused if the order of the search terms you provide does not exactly match the order of the terms in the lemma name.</p>
+<p>A number of NLP-based search engines have come out, offering different features:</p>
+<ul>
+<li>
+<a href="https://www.moogle.ai/">Moogle</a> is an LLM-based semantic search engine for mathlib developed by <a href="https://morph.so/">Morph labs</a>. This was one of the first search engines of this type, though at this point it's somewhat outdated. Moogle is available in the Lean4 VSCode extension, via the "Lean4: Moogle: Search" command.</li>
+<li>
+<a href="https://leansearch.net/">LeanSearch</a> from the BICMR AI for Mathematics team at PKU, which offers the ability to augment a previous query.</li>
+<li>
+<a href="https://www.leanexplore.com/">LeanExplore</a> from Justin Asher, which offers the ability to select different Lean libraries to query.</li>
+</ul>
+<h3>Loogle</h3>
+<p><img alt="Loogle Main Page" src="../../images/loogle-screenshot.png"></p>
+<p><a href="https://loogle.lean-lang.org/">Loogle</a> is a third search engine for mathlib 
+developed by Joachim Breitner at the <a href="https://lean-fro.org/">Lean Focused Research Organization</a>. 
+It is meant to be a similar tool to <a href="https://hoogle.haskell.org/">Hoogle</a> from the Haskell community: 
+it allows you to search for lemmas by their type signature, or by listing types or subexpressions that should occur in the lemma. 
+For example, if I search for <a href="https://loogle.lean-lang.org/?q=(?a%20-%3E%20?b)%20-%3E%20List%20?a%20-%3E%20List%20?b"><code>(?a -&gt; ?b) -&gt; List ?a -&gt; List ?b</code></a>, 
+I get results for <code>List.map</code>. 
+If I search for <a href="https://loogle.lean-lang.org/?q=Real.sin%2C+Real.cos%2C+Real.tan"><code>Real.sin, Real.cos, Real.tan</code></a>, 
+I get results for the theorem that <code>Real.tan x = Real.sin x / Real.cos x</code>.</p>
+<p>Loogle is a great tool for finding lemmas when you know the types used, but not the name of the lemma itself. 
+It is a pretty precise tool; a downside is that it will not by default give you specific responses without you typing out the names of at least 2 definitions relevant to your search correctly and in full 
+(though you can revert to substring-based search using quotes, see the page for a list of search techniques you can use). 
+To avoid putting in too many restrictions and getting an empty result list, 
+it's recommended that you add search filters one at a time to your query.
+This search engine is also available in the Lean4 VSCode extension,
+via the "Lean4: Loogle: Search" command.</p>
+<h2>Other websites</h2>
+<p>There are a few other websites that can be helpful for finding theorems in mathlib, 
+although they are not conventional search engines like the ones above.</p>
+<h3>Zulip</h3>
+<p>The <a href="https://leanprover.zulipchat.com/">Zulip chat</a> for the Lean community has a channel called <a href="https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F">"Is there code for X?"</a> 
+where you can ask questions about the presence of particular theorems in mathlib, major and minor.
+If you are having trouble finding a theorem, 
+you can ask in this channel and someone will likely be able to help you, 
+although it might take longer than the search engine would. 
+You can also search the archives to see if someone has asked about the same results before.</p>
+<h3>Lists of specific theorems</h3>
+<p>The sidebar of <a href="https://leanprover-community.github.io/index.html">main page</a> for the mathlib community lists four additional pages under the "Library Overviews" heading. 
+These pages have links to the docs for fixed collections of declarations in mathlib. 
+These are:</p>
+<ul>
+<li>The <a href="https://leanprover-community.github.io/mathlib-overview.html">Library overview</a>: This page lists the overall most important high-level declarations in mathlib, organized by topic/subfield of mathematics.</li>
+<li>The <a href="https://leanprover-community.github.io/undergrad/">Undergrad list</a> is a list of theorems and declarations in mathlib that are considered to be at an undergraduate level. This list comes from a document compiled by the <a href="https://media.devenirenseignant.gouv.fr/file/agreg_externe/59/7/p2020_agreg_ext_maths_1107597.pdf">French Ministry of Education</a>
+</li>
+<li>
+<a href="https://leanprover-community.github.io/100.html">Wiedijk's 100 Theorems</a>: This page lists 100 classic theorems from a variety of fields of mathematics. They are tracked by Freek Wiedijk in his <a href="https://www.cs.ru.nl/~freek/100/">Formalizing 100 Theorems</a> project as a benchmark for proof assistants. The page has links to the mathlib documentation page for each theorem that mathlib has proven, as well as a link to a page with the list of theorems that mathlib has not (yet!) proven.</li>
+<li>
+<a href="https://leanprover-community.github.io/1000.html">1000+ Theorems</a>: <a href="https://1000-plus.github.io/">Another project</a> started by Freek Wiedijk, expands on the 100 Theorems tracker to track many more named theorems from a variety of fields of mathematics. Theorems in this list come with a wikidata identifier, (e.g. <a href="https://www.wikidata.org/wiki/Q11518">Q11518 for the Pythagorean Theorem</a>).</li>
+</ul>
+<h2>Tactics</h2>
+<p>In addition to the search engines and webpages, 
+there are a few tactics you can use to find theorems in mathlib without leaving your Lean development environment.</p>
+<h3><code>exact?</code></h3>
+<p>The <code>exact?</code> tactic is a great way to find theorems in mathlib that finish off a proof goal. 
+At any point in a tactic proof, you can type <code>exact?</code> and lean will search through the lemmas you have imported 
+(as well as the file you are working in itself) 
+for a theorem that proves the current goal using assumptions from your context. 
+If it finds one, it will show a helpful message saying <code>Try this:</code> 
+which you can click to insert the theorem into your proof.</p>
+<p>A good time to use <code>exact?</code> is when you have a proof goal that you think is so straightforward that it is likely to be in mathlib already. 
+If <code>exact?</code> doesn't find a proof, you can always extract the fact and prove it or <code>sorry</code> it as an independent lemma immediately above the theorem you are working on, 
+and <code>exact?</code> should start to work. 
+You can then prove the goal yourself and submit the proof to mathlib.</p>
+<p>A downside of this approach is that it depends on the <em>exact</em> structure of the goal you are trying to prove being present in the library. 
+If you are hoping to prove the goal <code>a - b = c</code> and the library only has a form of the theorem that looks like <code>a = b + c</code>, 
+<code>exact?</code> will not find it. 
+(Helpful in this process is experience with how mathlib prefers theorems to be structured. 
+For example, a form of a theorem with a subtraction is discouraged in favor of a form with an addition, 
+and <code>&gt;</code> is almost entirely absent in favor of <code>&lt;</code>.)</p>
+<h3><code>apply?</code></h3>
+<p>The <code>apply?</code> tactic is similar to <code>exact?</code>. 
+It searches for theorems that can be applied to the current goal, 
+without necessarily requiring that they close the goal 
+(although if they do close the goal, <code>apply?</code> will show you that).</p>
+<p><code>apply?</code> is useful when the structure of your goal is such that there seems to be an obvious fact to apply,
+but you don't know the name of the fact. 
+It's pretty much strictly more powerful than <code>exact?</code>, 
+but it can be slower to run.</p>
+<h3><code>rw?</code></h3>
+<p>In the same vein as <code>exact?</code> and <code>apply?</code>, <code>rw?</code> is a tactic that searches for lemmas that can be used to rewrite the current goal. 
+It's useful when you have a subterm of your goal that you know can be rewritten into another form, 
+but you don't know the name of the lemma that does the rewriting. 
+You can also use this to rewrite hypotheses with <code>rw? at ...</code>.</p>
+<h3>Other Automated Theorem Proving Techniques</h3>
+<p>There are a few other tactics in mathlib and other projects that don't search for theorems per se, 
+but which try to complete proofs automatically, 
+and which may identify useful theorems in the process. 
+These include:</p>
+<ul>
+<li>
+<code>simp</code>: Simplifies the goal using a set of simplification rules. Using <code>simp?</code> allows you to replace <code>simp</code> with an equivalent tactic that specifies the simplification rules it uses. This can also be helpful for directly creating a working specific tactic, as well as for finding lemmas which can be used in other tactics like <code>rw</code> or in proof terms.</li>
+<li>
+<code>rw_search</code>: Attempts to find chains of rewrites that will prove or simplify the current goal.</li>
+<li>
+<code>hint</code>: A "Kitchen Sink" tactic that attempts to close the goal using a variety of other tactics.</li>
+<li>
+<a href="https://github.com/leanprover-community/aesop"><code>aesop</code></a>: A tactic that tries to prove the current goal using a search tree. As with many other tactics, it can be used as <code>aesop?</code> to allow you to replace the call by a sequence of tactics that specific to the goal you are working on.</li>
+</ul>
+<p>And ones that are not imported by mathlib:</p>
+<ul>
+<li>
+<code>auto</code>: From the <a href="https://github.com/leanprover-community/lean-auto">Lean Auto project</a>. A tactic that tries to prove the current goal using a technique "based on a monomorphization procedure from dependent type theory to higher-order logic and a deep embedding of higher-order logic into dependent type theory".</li>
+<li>
+<code>suggest_tactics</code>/<code>search_proof</code>: From the <a href="https://github.com/lean-dojo/LeanCopilot">LeanCopilot project</a>. A tactic that tries to suggest tactics using an LLM.</li>
+<li>
+<code>llmstep</code>: From the <a href="https://github.com/wellecks/llmstep">Llemma project</a>. Another tactic that tries to suggest tactics using an LLM.</li>
+<li>
+<code>canonical</code>: From <a href="https://github.com/chasenorman/CanonicalLean">Chase Norman</a>. An exhaustive search procedure for terms in dependent type theory. </li>
+<li>
+<code>hammer</code>: From <a href="https://github.com/JOSHCLUNE/LeanHammer">researchers at CMU</a>. "Hammers" are tactics that try to prove the current goal by searching for lemmas that are relevant ("premise selection"), and then supplying these lemmas to an external solver that will search for a proof.</li>
+</ul>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../affine-group-schemes-hopf-algebra/" rel="prev" title="The correspondence between affine group schemes and Hopf algebras">Previous post</a>
+            </li>
+        </ul></nav></aside></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2025         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
