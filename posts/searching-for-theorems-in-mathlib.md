@@ -1,7 +1,7 @@
 ---
 author: 'Bolton Bailey'
-category: 'Overview'
-date: 2025-05-15 1:26:31 UTC-08:00
+category: 'Tutorial'
+date: 2025-06-25 1:26:31 UTC-08:00
 description: ''
 has_math: false
 link: ''
@@ -18,11 +18,11 @@ Mathlib has a lot of theorems, and it can be hard to find the one you're looking
 This post goes over various search engines, webpages and tactics you can use to find theorems in mathlib. 
 For each of them, I'll give a brief description of how they work and what their strengths and weaknesses are.
 
-## Search engines
+# Search engines
 
 There are three types of search engine which allow you to search for theorems in mathlib and its dependencies.
 
-### The mathlib4 docs page
+## The mathlib4 docs page
 
 ![Docs Main Page](/images/documentation-screenshot.png)
 
@@ -49,7 +49,7 @@ it can be hard to find.
 
 <!-- Note, it would be nice to credit the main developer of the docs page, if there is one. -->
 
-### Natural language search tools
+## Natural language search tools
 
 ![Moogle Main Page](/images/moogle-screenshot.png)
 
@@ -71,7 +71,7 @@ A number of NLP-based search engines have come out, offering different features:
 * [LeanSearch](https://leansearch.net/) from the BICMR AI for Mathematics team at PKU, which offers the ability to augment a previous query.
 * [LeanExplore](https://www.leanexplore.com/) from Justin Asher, which offers the ability to select different Lean libraries to query.
 
-### Loogle
+## Loogle
 
 ![Loogle Main Page](/images/loogle-screenshot.png)
 
@@ -92,12 +92,12 @@ it's recommended that you add search filters one at a time to your query.
 This search engine is also available in the Lean4 VSCode extension,
 via the "Lean4: Loogle: Search" command.
 
-## Other websites
+# Other websites
 
 There are a few other websites that can be helpful for finding theorems in mathlib, 
 although they are not conventional search engines like the ones above.
 
-### Zulip
+## Zulip
 
 The [Zulip chat](https://leanprover.zulipchat.com/) for the Lean community has a channel called ["Is there code for X?"](https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F) 
 where you can ask questions about the presence of particular theorems in mathlib, major and minor.
@@ -106,7 +106,7 @@ you can ask in this channel and someone will likely be able to help you,
 although it might take longer than the search engine would. 
 You can also search the archives to see if someone has asked about the same results before.
 
-### Lists of specific theorems
+## Lists of specific theorems
 
 The sidebar of [main page](https://leanprover-community.github.io/index.html) for the mathlib community lists four additional pages under the "Library Overviews" heading. 
 These pages have links to the docs for fixed collections of declarations in mathlib. 
@@ -117,12 +117,12 @@ These are:
 * [Wiedijk's 100 Theorems](https://leanprover-community.github.io/100.html): This page lists 100 classic theorems from a variety of fields of mathematics. They are tracked by Freek Wiedijk in his [Formalizing 100 Theorems](https://www.cs.ru.nl/~freek/100/) project as a benchmark for proof assistants. The page has links to the mathlib documentation page for each theorem that mathlib has proven, as well as a link to a page with the list of theorems that mathlib has not (yet!) proven.
 * [1000+ Theorems](https://leanprover-community.github.io/1000.html): [Another project](https://1000-plus.github.io/) started by Freek Wiedijk, expands on the 100 Theorems tracker to track many more named theorems from a variety of fields of mathematics. Theorems in this list come with a wikidata identifier, (e.g. [Q11518 for the Pythagorean Theorem](https://www.wikidata.org/wiki/Q11518)).
 
-## Tactics
+# Tactics
 
 In addition to the search engines and webpages, 
 there are a few tactics you can use to find theorems in mathlib without leaving your Lean development environment.
 
-### `exact?`
+## `exact?`
 
 The `exact?` tactic is a great way to find theorems in mathlib that finish off a proof goal. 
 At any point in a tactic proof, you can type `exact?` and lean will search through the lemmas you have imported 
@@ -143,7 +143,7 @@ If you are hoping to prove the goal `a - b = c` and the library only has a form 
 For example, a form of a theorem with a subtraction is discouraged in favor of a form with an addition, 
 and `>` is almost entirely absent in favor of `<`.)
 
-### `apply?`
+## `apply?`
 
 The `apply?` tactic is similar to `exact?`. 
 It searches for theorems that can be applied to the current goal, 
@@ -155,14 +155,14 @@ but you don't know the name of the fact.
 It's pretty much strictly more powerful than `exact?`, 
 but it can be slower to run.
 
-### `rw?`
+## `rw?`
 
 In the same vein as `exact?` and `apply?`, `rw?` is a tactic that searches for lemmas that can be used to rewrite the current goal. 
 It's useful when you have a subterm of your goal that you know can be rewritten into another form, 
 but you don't know the name of the lemma that does the rewriting. 
 You can also use this to rewrite hypotheses with `rw? at ...`.
 
-### Other Automated Theorem Proving Techniques
+## Other Automated Theorem Proving Techniques
 
 There are a few other tactics in mathlib and other projects that don't search for theorems per se, 
 but which try to complete proofs automatically, 
