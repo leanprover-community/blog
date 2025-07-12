@@ -134,18 +134,57 @@ Note: The above snippet is a simplification and the constructors as shown actual
 [`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
 In particular this also captures the `MetaM` context.
 
+Let's go through this in more detail. The monad `SimpM` is defined using monad transformers as follows:
+```lean
+abbrev SimpM := ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM
+```
+
+TODO(Paul): maybe add a small recap about monads and how on should think about them?
+
+Let's go through these steps one by one, starting from `MetaM`.
+
+1) The monad `MetaM` is the core component of Lean's metaprogramming infrastructure. It captures information about the environment in which a (meta)program is called, contextual information (e.g. variables and declarations that have been declared locally, metavariables, etc). In particular, all tactics have access to the context provided by `MetaM`.
+
+2) The first monad transformer application: `StateRefT Simp.State MetaM`. The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. Specifially, we want a monad that can track the state of what's happening via the following structure: 
+```
+structure Simp.State where
+  cache        : Cache
+  congrCache   : CongrCache
+  dsimpCache   : ExprStructMap Expr
+  usedTheorems : UsedSimps
+  numSteps     : Nat
+  diag         : Diagnostics
+```
+This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that has can read _and write_ this state. In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) at term of type `Simp.State`.
+
+3) The second monad transformer application: `ReaderT Simp.Context $ StateRefT Simp.State MetaM`. Depending on where/how the `simp` tactic is called, the amount of "information" it has access to might vary. For example, the adding new imports will give `simp` access to more `simp` theorems, or the user may choose to provide additional theorems or fact to `simp` to make it more powerful (in effect, these are treated as extra `simp` theorems). This is also something we need to capture in the monad we're building: we now want to give the monad access to an extra "context" variable, which will be a term of type `Simp.Context`. The astute reader will have noticed that the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, the context should always be the same. In programmer lingo, one might say that the context should be _immutable_. Thus, we should use a different monad transformer called `ReaderT`, which takes as input a "context" type `c` and a monad `m`, and outputs a new monad that has reading access to the context `c`, but _cannot change it_. 
+
+4) The final monad transformer application: `ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM`. This outputs a monad that has access to `Simp.Method` (passed via a ref). This capture the "pre" and "post" procedures that `simp` can use, as well as the discharger that `simp` can use, etc.
+
+TODO(Paul): maybe clarify the main differences between the two last "contexts" that are being given to `simp`?
+
 ## `Simproc`s
 
-A simproc takes in an expression and outputs a simplification step, possibly after modifying the current simp state (e.g. by adding new goals to be closed by the discharger).
+We can finally define what a `simproc` is formally. Recall that intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
 This behavior is formally encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
 ```lean
 abbrev Simproc  := Expr → SimpM  Step
 ```
 
-`simp` does not consume bare elements of type `Simproc`.
-Instead, a simproc is an element of type `Simproc` annotated with tbe extra data mentioned in the overview subsection, like whether the simproc is `pre` or `post`.
+Concretely, it is helpful to think of a simproc as a function (or rather metaprogram) of the form
+```lean
+def mySimproc (e : Expr) : SimpM Step := do
+  -- Various manipulations involving the expression `e`
+  ...
+  let step : Step := ... 
+  ...
+  return step
+```
 
-Similarly, there is a [`DSimproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type:
+The picture above is however a slight oversimplification, as `simp` does not consume bare elements of type `Simproc`. Instead, a simproc is an element of type `Simproc` annotated with the extra data mentioned in the overview subsection, like whether the simproc is `pre` or `post`, and what kind of expression it matches on. As we shall see in the next blog post, when defining a simproc, one always provides a pattern that the simproc will activate on. For example, a simproc involving addition might match on the pattern `_ + _`.
+
+On a final note, there is a [`DSimproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type:
 ```lean
 abbrev DSimproc := Expr → SimpM DStep
 ```
+All the discussion above carries on to these.
