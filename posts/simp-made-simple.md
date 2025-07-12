@@ -188,3 +188,36 @@ On a final note, there is a [`DSimproc`](https://leanprover-community.github.io/
 abbrev DSimproc := Expr → SimpM DStep
 ```
 All the discussion above carries on to these.
+
+## Exploring the `SimpM` monad via simprocs
+
+In the next blog post, we will cover in detail how to implement simprocs that are useful for proving theorems in Lean. In the meantime, to whet the reader's appetite, let's have a go at exploring the `SimpM` monad's internals using simprocs.
+
+-- TODO(Paul): add more to this section and explain what we're trying to do!
+
+```
+import Mathlib
+
+open Lean Elab Meta Simp
+
+def printExpressions (e : Expr) : SimpM Step := do
+  Lean.logInfo m!"{e}"
+  return .continue
+
+def printUsedTheorems (e : Expr) : SimpM Step := do
+  let simpState ← getThe Simp.State
+  let simps := simpState.usedTheorems.map.toList.map Prod.fst
+  let names := simps.map Origin.key
+  unless names.isEmpty do Lean.logInfo m!"{names}"
+  return .continue
+
+simproc_decl printExpr (_) := printExpressions
+
+simproc_decl printThms (_) := printUsedTheorems
+
+example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
+  simp [printThms]
+
+example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
+  simp [printExpr]
+```
