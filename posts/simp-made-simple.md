@@ -131,6 +131,43 @@ Note: The above snippet is a simplification and the constructors as shown actual
 
 ## The `SimpM` monad
 
+In this section, we take a look at another key component of the internals of simp, namely the `SimpM` 
+monad. While we give a brief recap of monads and how to think about them in this context, readers
+less confortable with this framework may wish to take a look at [insert resource].
+
+### Monads
+
+_Monads_ are a fundamental concept in Lean's approach to functional programing and thus to 
+metaprogramming in Lean. Roughly speaking, a monad is an abstraction that allows one to
+capture the state of a program and the context in which it is running. 
+
+When looking at a 
+function/program, one can see which monad (if any) this function is using from the type of the output:
+if function `foo` is using monad `m` and produces terms of type `T` then the type of the output of
+`foo` will be `m T`. 
+
+> Terminology: When we say we are "in" the monad `m`, we mean to say that we are writing/considering
+> a function that is using the monad `m`.
+
+One way of thinking about a function that has output of type `m T`is the following: if we have 
+`foo (inputs ...) : m T` then the function `foo` will take `inputs` _and_ the current state of 
+`m` _at the time when `foo` is being called_ and output a term of type `T` and a (possibly 
+modified) state of `m`.
+
+In our case, the monads of interest are `MetaM` and other monads built on top. 
+
+> The `MetaM` monad: this is one of the most fundamental monads for metaprogramming in Lean. The state of `MetaM` allows one to access things like:
+> - Information about the file we're running in (e.g. name, imports, etc)
+> - Information about what definitions/theorems we're allowed to use
+> - What local variables/declarations we have access to
+> - etc.
+
+-- TODO(Paul): here it could be nice to add a bit of runnable code using `run_meta` to give readers not
+too familiar with this a chance to play around with it.
+
+
+### `SimpM`
+
 [`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
 In particular this also captures the `MetaM` context.
 
@@ -139,11 +176,9 @@ Let's go through this in more detail. The monad `SimpM` is defined using monad t
 abbrev SimpM := ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM
 ```
 
-TODO(Paul): maybe add a small recap about monads and how on should think about them?
+Let's go through these steps one by one.
 
-Let's go through these steps one by one, starting from `MetaM`.
-
-1) The monad `MetaM` is the core component of Lean's metaprogramming infrastructure. It captures information about the environment in which a (meta)program is called, contextual information (e.g. variables and declarations that have been declared locally, metavariables, etc). In particular, all tactics have access to the context provided by `MetaM`.
+1) The monad `MetaM`: we've seen what this is above! 
 
 2) The first monad transformer application: `StateRefT Simp.State MetaM`. The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. Specifially, we want a monad that can track the state of what's happening via the following structure: 
 ```
@@ -193,31 +228,52 @@ All the discussion above carries on to these.
 
 In the next blog post, we will cover in detail how to implement simprocs that are useful for proving theorems in Lean. In the meantime, to whet the reader's appetite, let's have a go at exploring the `SimpM` monad's internals using simprocs.
 
--- TODO(Paul): add more to this section and explain what we're trying to do!
+> Throughout this section, all code will be assumed to have `open Lean Elab Meta Simp`.
 
-```
-import Mathlib
+More specifically, let's try to use simprocs to output information about the state of `SimpM` during a given simp call.
 
-open Lean Elab Meta Simp
+The first thing we may want to print out is the expression that is currently being traversed. As a simproc, this would correspond to
 
+```lean 
 def printExpressions (e : Expr) : SimpM Step := do
   Lean.logInfo m!"{e}"
   return .continue
 
+-- declare the simproc
+simproc_decl printExpr (_) := printExpressions
+```
+The last line is needed to "declare" the simproc officially - this is where we specify information like whether this is a pre/post procedure, and what expression we're matching on (here, we match on the pattern `_`, i.e. on everything!). More on this in the next post.
+
+Next, we could try an print out theorems that have used by `simp` "so far". 
+
+
+```lean
 def printUsedTheorems (e : Expr) : SimpM Step := do
+  -- Read the current `Simp.State` from `SimpM`
   let simpState ← getThe Simp.State
+  -- Read the current results simp has used. These are stored in a datatype
+  -- called `Simp.Origin`, which includes simp theorems, but also other
+  -- terms that have been given by the user to `simp`. 
   let simps := simpState.usedTheorems.map.toList.map Prod.fst
+  -- Get all the names
   let names := simps.map Origin.key
+  -- Only print if at least one result has been used so far.
   unless names.isEmpty do Lean.logInfo m!"{names}"
   return .continue
 
-simproc_decl printExpr (_) := printExpressions
-
 simproc_decl printThms (_) := printUsedTheorems
-
-example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
-  simp [printThms]
-
-example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
-  simp [printExpr]
 ```
+
+The reader can then call add these simprocs to simp calls to see what's happening within.
+
+```
+example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
+  simp [printThms, ↓printThms]
+
+example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
+  simp [printExpr, ↓printExpr]
+```
+
+> Exercise: try accessing more information about the current `SimpM` state, e.g.
+> 1. The number of simp theorems that are currently available to the tactic (and try varying the imports of the file to see what happens!)
+> 2. The name of the discharger tactic that the current simp call is using.
