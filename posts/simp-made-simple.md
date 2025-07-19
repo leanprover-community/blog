@@ -38,7 +38,7 @@ This is made of a few different things, but for our purposes think of it as the 
 For example, `simp [foo, -bar]` means "Simplify using the standard simp lemmas/simprocs except `bar`, with `foo` added".
 
 A perhaps surprising fact is that every simp lemma is internally turned into a simproc for `simp`'s consumption.
-From then on, we will refer to simp lemmas/simprocs as *procedures*.
+From now on, we will refer to simp lemmas/simprocs as *procedures*.
 
 Each procedure in a simp context comes annotated with extra data, such as priority.
 
