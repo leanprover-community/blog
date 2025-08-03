@@ -1,7 +1,7 @@
 ---
 author: 'Antoine Chambert-Loir, Alex Kontorovich, and Heather MacBeth'
 category: 'meeting report'
-date: 2025-11-25 17:00:00 UTC+00:00
+date: 2025-08-03 17:00:00 UTC+00:00
 description: 'Simons Foundation Lean Workshop.'
 has_math: true
 link: 'https://www.simonsfoundation.org/event/2025-mps-workshop-on-lean/'
@@ -11,13 +11,13 @@ title: Simons Foundation Lean Workshop
 type: text
 ---
 
-This is a report on the Simons Foundation's 2025 MPS (Mathematics and Physical Sciences) Workshop on Lean, held in NYC on June 16 - 25, 2025.
+This is a report on the Simons Foundation's 2025 MPS (Mathematics and Physical Sciences) [Workshop on Lean](https://www.simonsfoundation.org/event/2025-mps-workshop-on-lean/), held in New York City on June 16 - 25, 2025.
 
-# Workshop
+# The Workshop
 
 **Week 1 (June 16-20th)** was devoted to training PhD students and postdocs on formalization via three courses teaching mathematics in a fashion that is bilingual with Lean:
 
-- one in Analysis (sequences and series, limits of real-valued functions, continuity, etc),
+- one in Analysis (sequences, limits, filters, etc),
 - one in Geometry/Topology (group actions on affine space, Euclidean space, etc), and
 - one in Algebra/Number Theory (rings, unique factorization domains, congruence, finite fields, quadratic reciprocity, etc).
 
@@ -36,73 +36,114 @@ Lectures were recorded and posted to YouTube (see below), where they can potenti
 Here was the list of lectures, with links to YouTube videos where available:
 
 **Monday June 16**
-9:30-10:30: [Analysis Lecture 1](/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf), @**Alex Kontorovich** 
+
+9:30-10:30: [Analysis Lecture 1](/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf), @**Alex Kontorovich**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VY0WEUJMaXE?si=W6f81S2V0yA0u_8K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 11-12: Analysis group work
+
 1-2: [Algebra Lecture 1](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf), @**Antoine Chambert-Loir** 
+
 2:30-3:30: Algebra group work
+
 4-5: Short presentations of solutions
+
 5 pm: Reception
 
 **Tuesday June 17**
+
 9:30-10:30: Geometry Lecture 1, @**Heather Macbeth** 
+
 11-12: Geometry group work
+
 1-2: [Analysis Lecture 2 (Filters)](/user_uploads/3121/Bf5QtIKn-umIT7rlahDxEsAv/SimonsLeanWorkshopAnalysis2.pdf), @**Alex Kontorovich** 
+
 2:30-3:30: Analysis group work
+
 4-5: Short presentations of solutions
 
 **Wednesday June 18**
+
 9:30-10:30: [Algebra Lecture 2](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf), @**Antoine Chambert-Loir** 
+
 11-12: Algebra group work
+
 1-2: Geometry Lecture 2, @**Heather Macbeth** 
+
 2:30-3:30: Geometry group work
+
 4-5: Group work
 
 **Thursday June 19**: Federal holiday, Foundation closed
 
 **Friday June 20**
+
 9:30-10:30: [Crash Course in Dependent Type Theory](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/accitt.pdf), @**Antoine Chambert-Loir** 
+
 11-12: Group work
+
 1-2: [Classes/Structures: Theory](/user_uploads/3121/Es1R_Skb1PkHTlIKbsBXAWaM/simons_filippo.pdf), @**Filippo A. E. Nuccio** 
+
 2:30-3:30: Classes/Structures: Practice, @**Thomas Browning** 
+
 4-5: Group work
 
 **Monday June 23**
+
 9:30-10:30: [PNT+ Project and Lean Blueprint](/user_uploads/3121/SW0TlictlcVTEeaKZqMoq2FS/SimonsLeanWorkshopPNT.pdf), @**Alex Kontorovich** 
+
 11-12: [Simple Groups](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/sg.pdf), @**Antoine Chambert-Loir** 
+
 1-2: Metaprogramming Lecture 1, @**Heather Macbeth** 
 2:30-5: Group work
 
 **Tuesday June 24**
+
 9:30-10:30: Github Basics, @**Filippo A. E. Nuccio**
+
 11-12: Group work
+
 1-2: Metaprogramming Lecture 2, @**Heather Macbeth** 
+
 2:30-5: Group work
 
 **Wednesday June 25**
-9:30-10:30: ??? @**Riccardo Brasca** (??) Github merge maybe?
+
+9:30-10:30: Github Merging @**Riccardo Brasca**
+
 11-12: Group work
+
 1-2: Metaprogramming Lecture 3, @**Heather Macbeth** 
+
 2:30-5: Group work
 
 **Thursday June 26** (at NYU)
+
 9:30-10:30: ???
+
 11-12: Group work
+
 1-2: Group work
+
 2:30-5: Group work
 
 **Friday June 27** (at NYU)
+
 9:30-11:30: Presentations of group progress
+
 1-2:30: Group work
+
 2:30pm: Final presentations
 
 
-# Outcomes
+# Projects
 
 The following projects were pursued during the workshop.
 
 1. @**Erin Griffin**, @**Asaf Kapota**, @**Bjørn Kjos-Hanssen**, and @**Janani Lakshmanan** worked on [the multi-dimensional second derivative test](https://github.com/bjoernkjoshanssen/secondpartial), getting a version of the result, see #26803. A suggestion was made that it could perhaps be refactored using abstract vector spaces instead of `EuclideanSpace (Fin n) → ℝ ` (which amounts to choosing a basis). There was also discussion about Taylor's theorem (in terms of Frechet derivatives) not being complete in Mathlib, and a suggestion that perhaps a setup similar to the one used in, e.g., docs#VectorFourier.hasFDerivAt_fourierIntegral may be useful.
 2. @**Elif Uskuplu** [showed](https://github.com/ElifUskuplu/mathlib4/tree/elif_mathlib4) that a field can have multiple inequivalent linear orders; the example given was $$\mathbb Q(\sqrt 2)$$ with (1) the order induced from $$\mathbb R$$, and (2) the ordering induced from the Galois-conjugate embedding, which she showed to (a) be an order, and (b) be distinct from the standard one.
-3. @**Steven Creech** and @**Omar Aceval Garcia**  [formalized](https://github.com/stevenecreech/Furstenbergs_Proof_of_Infinite_Primes) Furstenberg's proof of the infinitude of the primes, by defining a topology on $$\Z$$ generated by arithmetic progressions. There was some discussion about whether it might be more efficient to speak of arithmetic progressions as preimages of the $$\mod a$$ map.
+3. @**Steven Creech** and @**Omar Aceval Garcia**  [formalized](https://github.com/stevenecreech/Furstenbergs_Proof_of_Infinite_Primes) Furstenberg's proof of the infinitude of the primes, by defining a topology on $$\mathbb Z$$ generated by arithmetic progressions. There was some discussion about whether it might be more efficient to speak of arithmetic progressions as preimages of the $$\mod a$$ map.
 4. @**Shuli Chen**, @**Rob Lewis**, @**Heather Macbeth**, @**Siqing Zhang** and @**Daniel Zhou** worked on a [project](https://github.com/szqzs/mathlib4/tree/maximize/Mathlib/Tactic/Maximize) to write a new `maximize _ with H` tactic, which automatically determines what upper bound can be derived from the hypotheses and allows the user to click in the infoview and replace the tactic text by: `have H : _ ≤ _ := by linarith`. It was particularly noteworthy to have such a useful tactic developed in *one week* (!), and it is expected to find many uses once it arrives in Mathlib.
 5. @**Fabrizio Barroero**, @**Martin Bishop**, @**Riccardo Brasca**, and @**Dana Zilberberg** worked to [formalize](https://github.com/riccardobrasca/constructible) the notion of "constructible" numbers, defined as those obtained from $$\mathbb Q$$ via field operations and taking square-roots. They showed that any such generates an extension of $$\mathbb Q$$ of degree $$2^n$$. They then showed that $$\sqrt[3]2$$ and $$\cos(\pi/9)$$ give degree $$3$$ extensions, and hence the cube cannot be doubled, and the general angle cannot be trisected (since in particular, the angle $$\pi/3$$ can't). It would require another rather large project to show the correspondence between this notion of constructibility and geometric moves by straightedge and compass.
 6. @**Colby Brown**, @**Thomas Browning**, @**Antoine Chambert-Loir**, @**Hikari Iwasaki**, @**Adam Marks|429695**, @**GaYee Park**, @**Raghuram**, and @**Yuting Samanda Zhang** worked on a [project](https://github.com/AntoineChambert-Loir/Representations) involving representations of dihedral and quaternionic groups, specifically, constructing “lift” maps that give morphisms from docs#DihedralGroup or docs#QuaternionicGroup to groups/monoids.
