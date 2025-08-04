@@ -27,7 +27,7 @@ In **Week 2 (June 23-27th)**, participants from week 1 were joined by senior res
 
 - Learning basics of metaprogramming and tactic writing,
 - Working with git and “blueprint” technology,
-- Concerted efforts to make progress on ongoing large collaborative projects in Lean, such as the FLT or PNT+ projects, among other more traditional projects.
+- Concerted efforts to make progress on ongoing large collaborative projects in Lean, such as the [FLT](https://imperialcollegelondon.github.io/FLT/) or [PNT+](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) projects, among other more traditional projects.
 
 Lectures were recorded and posted to YouTube (see below), where they can potentially be useful to a much larger audience.
 
