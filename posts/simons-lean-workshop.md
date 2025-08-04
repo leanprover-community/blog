@@ -93,7 +93,7 @@ Here was the list of lectures, with links to YouTube videos where available:
 |--------------|---------|-------------|-------|
 | 9:30-10:30: | @**Filippo A. E. Nuccio** | Github Basics | <a href="https://youtu.be/KrZx1QeGVSs" target="_blank"> <img src="https://img.youtube.com/vi/KrZx1QeGVSs/maxresdefault.jpg" width="300"> |
 | 11-12: | Group work | | |
-| 1-2: | @**Heather Macbeth** | Metaprogramming Lecture 2 | <a href="https://youtu.be/5er4yLRd" target="_blank"> <img src="https://img.youtube.com/vi/5er4yLRd/maxresdefault.jpg" width="300"> |
+| 1-2: | @**Heather Macbeth** | Metaprogramming Lecture 2 | <a href="https://youtu.be/5er4yLRd-ps" target="_blank"> <img src="https://img.youtube.com/vi/5er4yLRd-ps/maxresdefault.jpg" width="300"> |
 | 2:30-5: | Group work | | |
 
 **Wednesday June 25**
