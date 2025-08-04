@@ -39,15 +39,12 @@ Here was the list of lectures, with links to YouTube videos where available:
 
 | Time | Speaker | Title/Notes | Video |
 |--------------|---------|-------------|-------|
-| 9:30-10:30: | @**Alex Kontorovich** | [Analysis Lecture 1](https://leanprover.zulipchat.com/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf)|  <a href="https://youtu.be/VY0WEUJMaXE" target="_blank"> <img src="https://img.youtube.com/vi/VY0WEUJMaXE/maxresdefault.jpg" width="300">|
+| 9:30-10:30: | @**Alex Kontorovich** | [Analysis Lecture 1](https://leanprover.zulipchat.com/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf) |  <a href="https://youtu.be/VY0WEUJMaXE" target="_blank"> <img src="https://img.youtube.com/vi/VY0WEUJMaXE/maxresdefault.jpg" width="300">|
 | 11-12: | Analysis group work | | |
-| 1-2: | @**Antoine Chambert-Loir**  |  [Algebra Lecture 1](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf)| |
-
-2:30-3:30: Algebra group work
-
-4-5: Short presentations of solutions
-
-5 pm: Reception
+| 1-2: | @**Antoine Chambert-Loir**  |  [Algebra Lecture 1](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf)| <a href="https://youtu.be/sB7TDlK5SxQ" target="_blank"> <img src="https://img.youtube.com/vi/sB7TDlK5SxQ/maxresdefault.jpg" width="300"> |
+| 2:30-3:30: | Algebra group work | | | 
+| 4-5:|  Short presentations of solutions | |    |
+| 5 pm: | Reception | | | 
 
 **Tuesday June 17**
 
