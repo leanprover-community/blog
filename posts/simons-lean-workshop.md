@@ -31,19 +31,17 @@ In **Week 2 (June 23-27th)**, participants from week 1 were joined by senior res
 
 Lectures were recorded and posted to YouTube (see below), where they can potentially be useful to a much larger audience.
 
-# Lectures
+# Schedule and Lectures
 
 Here was the list of lectures, with links to YouTube videos where available:
 
 **Monday June 16**
 
-9:30-10:30: [Analysis Lecture 1](/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf), @**Alex Kontorovich**
-
-<a href="https://youtu.be/VY0WEUJMaXE" target="_blank"> <img src="https://img.youtube.com/vi/VY0WEUJMaXE/maxresdefault.jpg" width="300">
-
-11-12: Analysis group work
-
-1-2: [Algebra Lecture 1](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf), @**Antoine Chambert-Loir** 
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Alex Kontorovich** | [Analysis Lecture 1](/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf)|  <a href="https://youtu.be/VY0WEUJMaXE" target="_blank"> <img src="https://img.youtube.com/vi/VY0WEUJMaXE/maxresdefault.jpg" width="300">|
+| 11-12: | Analysis group work | | |
+| 1-2: | @**Antoine Chambert-Loir**  |  [Algebra Lecture 1](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf)| |
 
 2:30-3:30: Algebra group work
 
