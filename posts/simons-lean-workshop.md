@@ -58,77 +58,69 @@ Here was the list of lectures, with links to YouTube videos where available:
 
 **Wednesday June 18**
 
-9:30-10:30: [Algebra Lecture 2](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf), @**Antoine Chambert-Loir** 
-
-11-12: Algebra group work
-
-1-2: Geometry Lecture 2, @**Heather Macbeth** 
-
-2:30-3:30: Geometry group work
-
-4-5: Group work
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Antoine Chambert-Loir** | [Algebra Lecture 2](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf) | <a href="https://youtu.be/2w-PX3GhYXg" target="_blank"> <img src="https://img.youtube.com/vi/2w-PX3GhYXg/maxresdefault.jpg" width="300"> |
+| 11-12: | Algebra group work | |  |
+| 1-2: | @**Heather Macbeth** | Geometry Lecture 2 | <a href="https://youtu.be/vWeM8vKWpvk" target="_blank"> <img src="https://img.youtube.com/vi/vWeM8vKWpvk/maxresdefault.jpg" width="300"> |
+| 2:30-3:30: | Geometry group work | | |
+| 4-5: | Short presentations of solutions | | <a href="https://youtu.be/vqm0UydMIkA" target="_blank"> <img src="https://img.youtube.com/vi/vqm0UydMIkA/maxresdefault.jpg" width="300"> |
 
 **Thursday June 19**: Federal holiday, Foundation closed
 
 **Friday June 20**
 
-9:30-10:30: [Crash Course in Dependent Type Theory](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/accitt.pdf), @**Antoine Chambert-Loir** 
-
-11-12: Group work
-
-1-2: [Classes/Structures: Theory](/user_uploads/3121/Es1R_Skb1PkHTlIKbsBXAWaM/simons_filippo.pdf), @**Filippo A. E. Nuccio** 
-
-2:30-3:30: Classes/Structures: Practice, @**Thomas Browning** 
-
-4-5: Group work
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Antoine Chambert-Loir** | [Crash Course in Dependent Type Theory](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/accitt.pdf) | <a href="https://youtu.be/7Uux3Vuwnhg" target="_blank"> <img src="https://img.youtube.com/vi/7Uux3Vuwnhg/maxresdefault.jpg" width="300"> |
+| 11-12: | Group work | | |
+| 1-2: | @**Filippo A. E. Nuccio** | [Classes/Structures: Theory](https://leanprover.zulipchat.com/user_uploads/3121/Es1R_Skb1PkHTlIKbsBXAWaM/simons_filippo.pdf) | <a href="https://youtu.be/HnFExsrdnHQ" target="_blank"> <img src="https://img.YouTube.com/vi/HnFExsrdnHQ/maxresdefault.jpg" width="300"> |
+| 2:30-3:30: | @**Thomas Browning** | Classes/Structures: Practice | <a href="https://youtu.be/cJrZXanWMk0" target="_blank"> <img src="https://img.youtube.com/vi/cJrZXanWMk0/maxresdefault.jpg" width="300"> |
+| 4-5: | Group work | | |
 
 **Monday June 23**
 
-9:30-10:30: [PNT+ Project and Lean Blueprint](/user_uploads/3121/SW0TlictlcVTEeaKZqMoq2FS/SimonsLeanWorkshopPNT.pdf), @**Alex Kontorovich** 
-
-11-12: [Simple Groups](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/sg.pdf), @**Antoine Chambert-Loir** 
-
-1-2: Metaprogramming Lecture 1, @**Heather Macbeth** 
-2:30-5: Group work
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Alex Kontorovich** | [PNT+ Project and Lean Blueprint](https://leanprover.zulipchat.com/user_uploads/3121/SW0TlictlcVTEeaKZqMoq2FS/SimonsLeanWorkshopPNT.pdf) | <a href="https://youtu.be/c4BWq891OEc" target="_blank"> <img src="https://img.youtube.com/vi/c4BWq891OEc/maxresdefault.jpg" width="300"> |
+| 11-12: | @**Antoine Chambert-Loir** | [Simple Groups](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/sg.pdf) | <a href="https://youtu.be/yy66Dgod2gE" target="_blank"> <img src="https://img.youtube.com/vi/yy66Dgod2gE/maxresdefault.jpg" width="300"> |
+| 1-2: | @**Heather Macbeth** | Metaprogramming Lecture 1 | <a href="https://youtu.be/cKvgMjuLiuQ" target="_blank"> <img src="https://img.youtube.com/vi/cKvgMjuLiuQ/maxresdefault.jpg" width="300"> |
+| 2:30-5: | Group work | | |
 
 **Tuesday June 24**
 
-9:30-10:30: Github Basics, @**Filippo A. E. Nuccio**
-
-11-12: Group work
-
-1-2: Metaprogramming Lecture 2, @**Heather Macbeth** 
-
-2:30-5: Group work
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Filippo A. E. Nuccio** | Github Basics | <a href="https://youtu.be/KrZx1QeGVSs" target="_blank"> <img src="https://img.youtube.com/vi/KrZx1QeGVSs/maxresdefault.jpg" width="300"> |
+| 11-12: | Group work | | |
+| 1-2: | @**Heather Macbeth** | Metaprogramming Lecture 2 | <a href="https://youtu.be/5er4yLRd" target="_blank"> <img src="https://img.youtube.com/vi/5er4yLRd/maxresdefault.jpg" width="300"> |
+| 2:30-5: | Group work | | |
 
 **Wednesday June 25**
 
-9:30-10:30: Github Merging @**Riccardo Brasca**
-
-11-12: Group work
-
-1-2: Metaprogramming Lecture 3, @**Heather Macbeth** 
-
-2:30-5: Group work
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Riccardo Brasca** | Github Merging | <a href="https://youtu.be/hzSOrcU-eZY" target="_blank"> <img src="https://img.youtube.com/vi/hzSOrcU-eZY/maxresdefault.jpg" width="300"> |
+| 11-12: | Group work | | |
+| 1-2: | @**Heather Macbeth** | Metaprogramming Lecture 3 | <a href="https://youtu.be/TJ8Tqv6A0Nc" target="_blank"> <img src="https://img.youtube.com/vi/TJ8Tqv6A0Nc/maxresdefault.jpg" width="300"> |
+| 2:30-5: | Group work | | |
 
 **Thursday June 26** (at NYU)
 
-9:30-10:30: ???
-
-11-12: Group work
-
-1-2: Group work
-
-2:30-5: Group work
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | Group work | | |
+| 11-12: | Group work | | |
+| 1-2: | Group work | | |
+| 2:30-5: | Group work | | |
 
 **Friday June 27** (at NYU)
 
-9:30-11:30: Presentations of group progress
-
-1-2:30: Group work
-
-2:30pm: Final presentations
-
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-11:30: | Presentations of group progress | | |
+| 1-2:30: | Group work | | |
+| 2:30pm: | Final presentations | | |
 
 # Projects
 
