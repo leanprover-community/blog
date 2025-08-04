@@ -43,20 +43,18 @@ Here was the list of lectures, with links to YouTube videos where available:
 | 11-12: | Analysis group work | | |
 | 1-2: | @**Antoine Chambert-Loir**  |  [Algebra Lecture 1](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/dentil.pdf)| <a href="https://youtu.be/sB7TDlK5SxQ" target="_blank"> <img src="https://img.youtube.com/vi/sB7TDlK5SxQ/maxresdefault.jpg" width="300"> |
 | 2:30-3:30: | Algebra group work | | | 
-| 4-5:|  Short presentations of solutions | |    |
+| 4-5:|  Short presentations of solutions | |  <a href="https://youtu.be/ENjGIBUZVwA" target="_blank"> <img src="https://img.youtube.com/vi/ENjGIBUZVwA/maxresdefault.jpg" width="300">  |
 | 5 pm: | Reception | | | 
 
 **Tuesday June 17**
 
-9:30-10:30: Geometry Lecture 1, @**Heather Macbeth** 
-
-11-12: Geometry group work
-
-1-2: [Analysis Lecture 2 (Filters)](/user_uploads/3121/Bf5QtIKn-umIT7rlahDxEsAv/SimonsLeanWorkshopAnalysis2.pdf), @**Alex Kontorovich** 
-
-2:30-3:30: Analysis group work
-
-4-5: Short presentations of solutions
+| Time | Speaker | Title/Notes | Video |
+|--------------|---------|-------------|-------|
+| 9:30-10:30: | @**Heather Macbeth** | Geometry Lecture 1 |  <a href="https://youtu.be/LjhVJffwdus" target="_blank"> <img src="https://img.youtube.com/vi/LjhVJffwdus/maxresdefault.jpg" width="300">|
+| 11-12: | Geometry group work | | |
+| 1-2: | @**Alex Kontorovich**   |  [Analysis Lecture 2 (Filters)](https://leanprover.zulipchat.com/user_uploads/3121/Bf5QtIKn-umIT7rlahDxEsAv/SimonsLeanWorkshopAnalysis2.pdf) | <a href="https://youtu.be/KUJUalCyoZI" target="_blank"> <img src="https://img.youtube.com/vi/KUJUalCyoZI/maxresdefault.jpg" width="300"> |
+| 2:30-3:30: | Analysis group work | | | 
+| 4-5:|  Short presentations of solutions | |  <a href="https://youtu.be/7FHXbdl9RBU" target="_blank"> <img src="https://img.youtube.com/vi/7FHXbdl9RBU/maxresdefault.jpg" width="300">  |
 
 **Wednesday June 18**
 
