@@ -39,7 +39,7 @@ Here was the list of lectures, with links to YouTube videos where available:
 
 9:30-10:30: [Analysis Lecture 1](/user_uploads/3121/OCvcWjVWj4jp9oAo8eu0OETe/SimonsLeanWorkshopAnalysis1.pdf), @**Alex Kontorovich**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VY0WEUJMaXE?si=W6f81S2V0yA0u_8K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<a href="https://youtu.be/VY0WEUJMaXE" target="_blank"> <img src="https://img.youtube.com/vi/VY0WEUJMaXE/maxresdefault.jpg" width="300">
 
 11-12: Analysis group work
 
