@@ -13,6 +13,8 @@ type: text
 
 This is a report on the Simons Foundation's 2025 MPS (Mathematics and Physical Sciences) [Workshop on Lean](https://www.simonsfoundation.org/event/2025-mps-workshop-on-lean/), held in New York City on June 16 - 25, 2025.
 
+<!-- TEASER_END -->
+
 # The Workshop
 
 **Week 1 (June 16-20th)** was devoted to training PhD students and postdocs on formalization via three courses teaching mathematics in a fashion that is bilingual with Lean:
