@@ -52,7 +52,7 @@ Here was the list of lectures, with links to YouTube videos where available:
 |--------------|---------|-------------|-------|
 | 9:30-10:30: | @**Heather Macbeth** | Geometry Lecture 1 |  <a href="https://youtu.be/LjhVJffwdus" target="_blank"> <img src="https://img.youtube.com/vi/LjhVJffwdus/maxresdefault.jpg" width="300">|
 | 11-12: | Geometry group work | | |
-| 1-2: | @**Alex Kontorovich**   |  [Analysis Lecture 2 (Filters)](https://leanprover.zulipchat.com/user_uploads/3121/Bf5QtIKn-umIT7rlahDxEsAv/SimonsLeanWorkshopAnalysis2.pdf) | <a href="https://youtu.be/KUJUalCyoZI" target="_blank"> <img src="https://img.youtube.com/vi/KUJUalCyoZI/maxresdefault.jpg" width="300"> |
+| 1-2: | @**Alex Kontorovich**   |  [Analysis Lecture 2 (Filters)](https://alexkontorovich.github.io/2025SimonsFoundationWorkshop/SimonsLeanWorkshopAnalysis2.pdf) | <a href="https://youtu.be/KUJUalCyoZI" target="_blank"> <img src="https://img.youtube.com/vi/KUJUalCyoZI/maxresdefault.jpg" width="300"> |
 | 2:30-3:30: | Analysis group work | | | 
 | 4-5:|  Short presentations of solutions | |  <a href="https://youtu.be/7FHXbdl9RBU" target="_blank"> <img src="https://img.youtube.com/vi/7FHXbdl9RBU/maxresdefault.jpg" width="300">  |
 
@@ -74,7 +74,7 @@ Here was the list of lectures, with links to YouTube videos where available:
 |--------------|---------|-------------|-------|
 | 9:30-10:30: | @**Antoine Chambert-Loir** | [Crash Course in Dependent Type Theory](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/accitt.pdf) | <a href="https://youtu.be/7Uux3Vuwnhg" target="_blank"> <img src="https://img.youtube.com/vi/7Uux3Vuwnhg/maxresdefault.jpg" width="300"> |
 | 11-12: | Group work | | |
-| 1-2: | @**Filippo A. E. Nuccio** | [Classes/Structures: Theory](https://leanprover.zulipchat.com/user_uploads/3121/Es1R_Skb1PkHTlIKbsBXAWaM/simons_filippo.pdf) | <a href="https://youtu.be/HnFExsrdnHQ" target="_blank"> <img src="https://img.YouTube.com/vi/HnFExsrdnHQ/maxresdefault.jpg" width="300"> |
+| 1-2: | @**Filippo A. E. Nuccio** | [Classes/Structures: Theory](https://alexkontorovich.github.io/2025SimonsFoundationWorkshop/simons_filippo.pdf) | <a href="https://youtu.be/HnFExsrdnHQ" target="_blank"> <img src="https://img.YouTube.com/vi/HnFExsrdnHQ/maxresdefault.jpg" width="300"> |
 | 2:30-3:30: | @**Thomas Browning** | Classes/Structures: Practice | <a href="https://youtu.be/cJrZXanWMk0" target="_blank"> <img src="https://img.youtube.com/vi/cJrZXanWMk0/maxresdefault.jpg" width="300"> |
 | 4-5: | Group work | | |
 
@@ -82,7 +82,7 @@ Here was the list of lectures, with links to YouTube videos where available:
 
 | Time | Speaker | Title/Notes | Video |
 |--------------|---------|-------------|-------|
-| 9:30-10:30: | @**Alex Kontorovich** | [PNT+ Project and Lean Blueprint](https://leanprover.zulipchat.com/user_uploads/3121/SW0TlictlcVTEeaKZqMoq2FS/SimonsLeanWorkshopPNT.pdf) | <a href="https://youtu.be/c4BWq891OEc" target="_blank"> <img src="https://img.youtube.com/vi/c4BWq891OEc/maxresdefault.jpg" width="300"> |
+| 9:30-10:30: | @**Alex Kontorovich** | [PNT+ Project and Lean Blueprint](https://alexkontorovich.github.io/2025SimonsFoundationWorkshop/SimonsLeanWorkshopPNT.pdf) | <a href="https://youtu.be/c4BWq891OEc" target="_blank"> <img src="https://img.youtube.com/vi/c4BWq891OEc/maxresdefault.jpg" width="300"> |
 | 11-12: | @**Antoine Chambert-Loir** | [Simple Groups](https://webusers.imj-prg.fr/~antoine.chambert-loir/exposes/sg.pdf) | <a href="https://youtu.be/yy66Dgod2gE" target="_blank"> <img src="https://img.youtube.com/vi/yy66Dgod2gE/maxresdefault.jpg" width="300"> |
 | 1-2: | @**Heather Macbeth** | Metaprogramming Lecture 1 | <a href="https://youtu.be/cKvgMjuLiuQ" target="_blank"> <img src="https://img.youtube.com/vi/cKvgMjuLiuQ/maxresdefault.jpg" width="300"> |
 | 2:30-5: | Group work | | |
