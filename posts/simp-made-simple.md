@@ -13,7 +13,7 @@ type: text
 
 This is the second blog post in a series of three.
 In [the first blog post](https://leanprover-community.github.io/blog/posts/simprocs-for-the-working-mathematician/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
-In this sequel, we give a more detailed exposition of the inner workings of the simp tactic in preparation of our third post, where we will see how one can go about creating new simprocs.
+In this sequel, we give a more detailed exposition of the inner workings of the simp tactic in preparation of our third post, where we will see how to write new simprocs.
 > Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad (for those that don't, the book [Metaprogramming in Lean 4](https://leanprover-community.github.io/lean4-metaprogramming-book/) is a great introduction to the topic)
 
 <!-- TEASER_END -->
@@ -109,6 +109,14 @@ inductive Step where
   | continue (e? : Option Result := none)
 ```
 
+Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. One important point worth remembering is that since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. For example, a given simproc may in some cases use `visit` and in others use `continue`.
+
+To make this more concrete, let's take a look at of each of these use cases in action. 
+
+- `done`. Recall from the first post the simproc `Nat.reduceDvd`. This takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. Either way, the output is in simp normal form, so there is no need to attempt to simplify it further. Thus, this simproc uses `done` to output the result of this simplification.
+- `visit`. Let's consider the simproc `reduceIte` (also in the first post!). This takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, so this simproc uses `visit` to output the result of this simplification.
+- `continue`. It turns out that both `Nat.reduceDvd` and `reduceIte` also use the `continue` constructor. Indeed, both these simprocs rely on the fact that some part of the expression considered is simplifiable (e.g. the condition in the `if` statement). If that is not the case we need a way to signal to `simp` that it should *not* attempt to simplify the expression again using the same simproc to prevent the simplification procedure from endlessly looping around. This is precisely what the `continue` constructor allows us to do. More generally, `continue` is used in most simprocs as the "default" output produced when the simproc in question was not able to make any simplification.
+
 In the case where the two expressions `e` and `e'` are definitionally equal, one can actually describe a simplification step using a simple structure, namely `DStep` (where the "d" stands for "definitional"). This is obtained by replacing each occurrence of `Result` in the definition of `Step` by `Expr` (intuitively, we no longer need to specify a proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
 ```lean
 inductive DStep where
@@ -133,7 +141,7 @@ Note: The above snippet is a simplification and the constructors as shown actual
 
 In this section, we take a look at another key component of the internals of simp, namely the `SimpM` 
 monad. While we give a brief recap of monads and how to think about them in this context, readers
-less confortable with this framework may wish to take a look at [insert resource].
+less comfortable with this framework may wish to take a look at [insert resource].
 
 ### Monads
 
