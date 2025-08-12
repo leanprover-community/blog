@@ -25,7 +25,7 @@ Afternoons were set aside for roughly four hours of group work, with participant
 Often, number theorists and Lean experts in a team worked together, helping each other perform the translation from English to Lean.
 
 Each team worked on formalizing a project from an ever-growing list.
-Many projects involved conquering `sorry`s about group cohomology where they appeared in the skeleton code (prepared by Richard, along with a detailed blueprint for the proof of local class field theory), others involved stating and proving theorems we needed from number theory, and still others were about designing new classes with an "API" and implementing them in Lean.
+Many projects involved conquering `sorry`s about group cohomology where they appeared in the skeleton code (prepared by Richard, along with a detailed blueprint for local class field theory), others involved stating and proving theorems we needed from number theory, and still others were about designing new classes with an "API" and implementing them in Lean.
 The projects were (usually) structured so that they could be completed largely independently of each other, so much of the formalization could be done in parallel.
 
 # Recollections
@@ -45,7 +45,7 @@ While it was frustrating initially, I grew to appreciate this—it's easy to abs
 
 **Georgia:**
 As a number theorist new to Lean, I found the formalization process challenging but highly rewarding—Lean’s rigor forced me to confront subtle details that would have been easy to overlook in traditional mathematical writing.
-I started the week working in a group of four—formalizing some aspects of Lubin-Tate theory—but this project came to an end as the focus shifted toward needing to build an API for basic properties of local fields.
+I started the week working in a group of four—formalizing some aspects of Lubin-Tate theory—but this project came to a pause as the focus shifted toward needing to build an API for basic properties of local fields.
 
 As the focus shifted, I switched into a larger group and paired up with someone more experienced in Lean.
 It was especially rewarding to collaborate closely with someone from the formalization side and see how our different perspectives complemented each other while working toward a shared goal.
