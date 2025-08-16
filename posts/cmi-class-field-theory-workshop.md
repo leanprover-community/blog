@@ -35,12 +35,12 @@ Mohit Hulse and Georgia Harbor-Collins briefly discuss their experiences of the 
 **Mohit:**
 I spent the first few days working in a group on formalizing the statements of local class field theory and seeing if we could prove basic results using them.
 After we settled on a version of the statements (in English), we began typing them up (in Lean).
-This was my first time using Lean—I’d worked with other proof assistants before, but didn’t have much experience formalizing mathematics—and I learned a lot by taking Lean-dictation from my team.
+This was my first time using Lean—I’d worked with other proof assistants before, but didn’t have much experience formalizing mathematics—and I learned a lot by taking Lean-dictation from Andrew Yang and Kenny Lau on my team (thanks!).
 
 As the week progressed, it became increasingly clear across many projects that we needed to settle on a Lean-friendly definition of a nonarchimedean local field.
 I spent the rest of my time on this, trying to use our new definition to formalize basic facts about local fields.
-This time, I paired up with a Lean expert to prove that any extension of local fields is automatically finite.
-I supplied the mathematical argument and as we typed it in, Lean would often uncover a subtlety which necessitated a new argument, which would naturally contain new subtleties, and so on.
+This time, I paired up with Anand Rao Tadipatri to prove that any extension of local fields is automatically finite.
+Anand supplied the Lean expertise and I the mathematical argument. As we typed in our proof, Lean would often uncover a subtlety which necessitated a new argument, which would naturally contain new subtleties, and so on.
 While it was frustrating initially, I grew to appreciate this—it's easy to abstract away and lose sight of the many moving pieces in a long proof, but Lean forces them to surface.
 
 **Georgia:**
