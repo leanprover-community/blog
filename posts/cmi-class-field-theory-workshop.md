@@ -18,7 +18,7 @@ This is a brief report on the [CMI HIMR Summer School on Formalizing Class Field
 # The Workshop
 
 The workshop brought together a small group of mathematicians and Lean users—some experts in number theory, others in formalization—for a week of collaborative work on local class field theory and group cohomology.
-The aim was to lay the groundwork for formalizing key definitions and theorems in class field theory using Lean, and to begin developing shared infrastructure that could support further work in this area.
+The aim was to formalize key definitions and theorems in class field theory using Lean, laying the groundwork for a longer lasting formalisation projec.
 
 Each morning featured two 75-minute lectures—one by Richard Hill and one by Kevin Buzzard—covering the mathematics needed to get started on the afternoon projects.
 Afternoons were set aside for roughly four hours of group work, with participants splitting into teams depending on their interests and experience.
