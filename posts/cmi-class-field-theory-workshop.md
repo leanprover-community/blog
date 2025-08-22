@@ -1,7 +1,7 @@
 ---
 author: 'Georgia Harbor-Collins and Mohit Hulse'
 category: 'meeting report'
-date: 2025-08-03 17:00:00 UTC+00:00
+date: 2025-08-22 17:00:00 UTC+00:00
 description: 'CMI HIMR Summer School on Formalizing Class Field Theory'
 has_math: true
 link: 'https://www.claymath.org/events/formalizing-class-field-theory/'
