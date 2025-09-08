@@ -1,7 +1,7 @@
 ---
 author: 'Yaël Dillies, Paul Lezeau'
 category: 'Metaprogramming'
-date: 2025-03-29 12:33:00 UTC+00:00
+date: 2025-09-10 19:17:00 UTC+01:00
 description: 'An exploration of the simp tactic'
 has_math: true
 link: ''
@@ -14,19 +14,19 @@ type: text
 This is the second blog post in a series of three.
 In [the first blog post](https://leanprover-community.github.io/blog/posts/simprocs-for-the-working-mathematician/), we introduced the notion of a *simproc*, which can be thought of as a form of "modular" simp lemma.
 In this sequel, we give a more detailed exposition of the inner workings of the simp tactic in preparation of our third post, where we will see how to write new simprocs.
-> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad (for those that don't, the book [Metaprogramming in Lean 4](https://leanprover-community.github.io/lean4-metaprogramming-book/) is a great introduction to the topic)
 
 <!-- TEASER_END -->
 
-First, we detail the inner workings of `simp` relevant to simprocs.
+> Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. `Expr` and the `MetaM` monad.
+> For those that don't, the book [Metaprogramming in Lean 4](https://leanprover-community.github.io/lean4-metaprogramming-book/) is a great introduction to the topic.
 
 # How `simp` works
 
 In this section we present some of the inner workings of `simp`.
 
 First we give an overview of the way `simp` works, then we delve into the specifics by introducing:
-* The `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call.
-* `Step`, the Lean representation of a single simplification step.
+* the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call;
+* `Step`, the Lean representation of a single simplification step;
 * `Simproc`, the Lean representation of simprocs.
 
 All the `simp`-specific declarations introduced in this section are in the `Lean.Meta` or `Lean.Meta.Simp` namespace.
@@ -34,33 +34,35 @@ All the `simp`-specific declarations introduced in this section are in the `Lean
 ## Overview
 
 When calling `simp` in a proof, we give it a *simp context*.
-This is made of a few different things, but for our purposes think of it as the set of lemmas/simprocs `simp` is allowed to rewrite with, namely the default simp lemmas/simprocs plus the lemmas/simprocs added explicitly minus the lemmas/simprocs removed explicitly.
+This is made of a few different things, but for our purposes think of it as *the set of lemmas/simprocs `simp` is allowed to rewrite with*, i.e
+$$\text{default lemmas/simprocs} + \text{explicitly added ones} - \text{explicitly removed ones}.$$
 For example, `simp [foo, -bar]` means "Simplify using the standard simp lemmas/simprocs except `bar`, with `foo` added".
 
 A perhaps surprising fact is that every simp lemma is internally turned into a simproc for `simp`'s consumption.
 From now on, we will refer to simp lemmas/simprocs as *procedures*.
 
-Each procedure in a simp context comes annotated with extra data, such as priority.
+Each procedure in a simp context comes annotated with extra data, such as *priority*,
+as well as the *stage* at which the procedure should be called.
 
-The only such piece of data we explain in depth is the stage at which the procedure should be called:
+Procedures have two possible stages:
 * *Postprocedures* are called on an expression `e` after subexpressions of `e` are simplified.
   Procedures are by default postprocedures as oftentimes a procedure can only trigger after the inner expressions have been simplified.
 * *Preprocedures* are called on an expression `e` before subexpressions of `e` are simplified.
   Preprocedures are mostly used when the simplification order induced by a postprocedure would otherwise be inefficient by visiting irrelevant subexpressions first.
   Preprocedures are associated with the `↓` symbol in several syntaxes throughout the simp codebase.
 
-The general rule of thumb is that postprocedures simplify from the inside-out, while preprocedures simplify from the outside-in.
+The general rule of thumb is that postprocedures simplify *from the inside-out*, while preprocedures simplify *from the outside-in*.
 
 Roughly speaking, when traversing an expression `e`, `simp` does the following in order:
 1. Run preprocedures on `e`;
 2. Traverse subexpressions of `e` (note that the preprocedures might have changed `e` by this point);
 3. Run postprocedures on `e`.
 
-This is called the *simplification loop*.
+We call it the *simplification loop*.
 
 The above loop is merely an approximation of the true simplification loop:
-Each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered.
-See the `continue` and `visit` constructors of the `Step` inductive type as described in the next section for full details.
+Each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered,
+as we shall see in the coming subsection.
 
 ## `Step`
 
