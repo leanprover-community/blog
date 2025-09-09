@@ -66,18 +66,30 @@ as we shall see in the coming subsection.
 
 ## `Step`
 
-[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop. In `simp`'s algorithm, a step intuitively corresponds to two pieces of information: 
-1) The simplication of an expression `e` (a subexpression of what we're currently simplifying) to a new expression `e'`
-2) What should be simplified next: one of the nice features of the `simp` algorithm is that it *dynamically* chooses what will happen next. In particular, simprocs get some amount of control over this.
+[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop. In `simp`'s algorithm, a step intuitively corresponds to two pieces of information:
+1) The **result** of simplifying an expression `e`,
+2) The **location** of what should be simplified next, and in which **direction** (pre or post).
 
-Let's now look at this more formally.
-To begin, `simp` has a custom structure to describe the result of a procedure called [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc):
+The result of simplifying `e` is encoded as an expression `e'` and a proof that `e = e'`.
+This is encapsulated by the [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc)
+structure:
 ```lean
 structure Result where
-  expr   : Expr
-  proof? : Option Expr := none
-  cache  : Bool := true
+  expr   : Expr -- The new expression `e'`
+  proof? : Option Expr := none -- The proof that `e = e'`
+  -- Note, `Result` currently has an extra `cache` field that is both deprecated
+  -- and irrelevant to our current discussion.
 ```
+Note that the proof is optional:
+If `proof?` is set to its default `none` value, the equality is assumed to be definitional.
+Also note that the proof is given as an arbitrary `Expr`.
+Nothing ensures that it actually is a proof that `e = e'`.
+
+The location to be simplified next has only three options:
+1. Simplify again the same expression is very limited given as a choice
+1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
+2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
+3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
 
 This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩ : Result`.
 If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
@@ -116,7 +128,7 @@ Note that the 2 and 3 are the same for `post` procedures.
 
 Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. One important point worth remembering is that since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. For example, a given simproc may in some cases use `visit` and in others use `continue`.
 
-To make this more concrete, let's take a look at of each of these use cases in action. 
+To make this more concrete, let's take a look at of each of these use cases in action.
 
 - `done`. Recall from the first post the simproc `Nat.reduceDvd`. This takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. Either way, the output is in simp normal form, so there is no need to attempt to simplify it further. Thus, this simproc uses `done` to output the result of this simplification.
 - `visit`. Let's consider the simproc `reduceIte` (also in the first post!). This takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, so this simproc uses `visit` to output the result of this simplification.
@@ -144,30 +156,30 @@ Note: The above snippet is a simplification and the constructors as shown actual
 
 ## The `SimpM` monad
 
-In this section, we take a look at another key component of the internals of simp, namely the `SimpM` 
+In this section, we take a look at another key component of the internals of simp, namely the `SimpM`
 monad. While we give a brief recap of monads and how to think about them in this context, readers
 less comfortable with this framework may wish to take a look at [insert resource].
 
 ### Monads
 
-_Monads_ are a fundamental concept in Lean's approach to functional programing and thus to 
+_Monads_ are a fundamental concept in Lean's approach to functional programing and thus to
 metaprogramming in Lean. Roughly speaking, a monad is an abstraction that allows one to
-capture the state of a program and the context in which it is running. 
+capture the state of a program and the context in which it is running.
 
-When looking at a 
+When looking at a
 function/program, one can see which monad (if any) this function is using from the type of the output:
 if function `foo` is using monad `m` and produces terms of type `T` then the type of the output of
-`foo` will be `m T`. 
+`foo` will be `m T`.
 
 > Terminology: When we say we are "in" the monad `m`, we mean to say that we are writing/considering
 > a function that is using the monad `m`.
 
-One way of thinking about a function that has output of type `m T`is the following: if we have 
-`foo (inputs ...) : m T` then the function `foo` will take `inputs` _and_ the current state of 
-`m` _at the time when `foo` is being called_ and output a term of type `T` and a (possibly 
+One way of thinking about a function that has output of type `m T`is the following: if we have
+`foo (inputs ...) : m T` then the function `foo` will take `inputs` _and_ the current state of
+`m` _at the time when `foo` is being called_ and output a term of type `T` and a (possibly
 modified) state of `m`.
 
-In our case, the monads of interest are `MetaM` and other monads built on top. 
+In our case, the monads of interest are `MetaM` and other monads built on top.
 
 > The `MetaM` monad: this is one of the most fundamental monads for metaprogramming in Lean. The state of `MetaM` allows one to access things like:
 > - Information about the file we're running in (e.g. name, imports, etc)
@@ -191,9 +203,9 @@ abbrev SimpM := ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.
 
 Let's go through these steps one by one.
 
-1) The monad `MetaM`: we've seen what this is above! 
+1) The monad `MetaM`: we've seen what this is above!
 
-2) The first monad transformer application: `StateRefT Simp.State MetaM`. The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. Specifially, we want a monad that can track the state of what's happening via the following structure: 
+2) The first monad transformer application: `StateRefT Simp.State MetaM`. The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. Specifially, we want a monad that can track the state of what's happening via the following structure:
 ```
 structure Simp.State where
   cache        : Cache
@@ -205,7 +217,7 @@ structure Simp.State where
 ```
 This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state. In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) at term of type `Simp.State`.
 
-3) The second monad transformer application: `ReaderT Simp.Context $ StateRefT Simp.State MetaM`. Depending on where/how the `simp` tactic is called, the amount of "information" it has access to might vary. For example, the adding new imports will give `simp` access to more `simp` theorems, or the user may choose to provide additional theorems or fact to `simp` to make it more powerful (in effect, these are treated as extra `simp` theorems). This is also something we need to capture in the monad we're building: we now want to give the monad access to an extra "context" variable, which will be a term of type `Simp.Context`. The astute reader will have noticed that the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, the context should always be the same. In programmer lingo, one might say that the context should be _immutable_. Thus, we should use a different monad transformer called `ReaderT`, which takes as input a "context" type `c` and a monad `m`, and outputs a new monad that has reading access to the context `c`, but _cannot change it_. 
+3) The second monad transformer application: `ReaderT Simp.Context $ StateRefT Simp.State MetaM`. Depending on where/how the `simp` tactic is called, the amount of "information" it has access to might vary. For example, the adding new imports will give `simp` access to more `simp` theorems, or the user may choose to provide additional theorems or fact to `simp` to make it more powerful (in effect, these are treated as extra `simp` theorems). This is also something we need to capture in the monad we're building: we now want to give the monad access to an extra "context" variable, which will be a term of type `Simp.Context`. The astute reader will have noticed that the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, the context should always be the same. In programmer lingo, one might say that the context should be _immutable_. Thus, we should use a different monad transformer called `ReaderT`, which takes as input a "context" type `c` and a monad `m`, and outputs a new monad that has reading access to the context `c`, but _cannot change it_.
 
 4) The final monad transformer application: `ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM`. This outputs a monad that has access to `Simp.Method` (passed via a ref). This capture the "pre" and "post" procedures that `simp` can use, as well as the discharger that `simp` can use, etc.
 
@@ -224,7 +236,7 @@ Concretely, it is helpful to think of a simproc as a function (or rather metapro
 def mySimproc (e : Expr) : SimpM Step := do
   -- Various manipulations involving the expression `e`
   ...
-  let step : Step := ... 
+  let step : Step := ...
   ...
   return step
 ```
@@ -247,7 +259,7 @@ More specifically, let's try to use simprocs to output information about the sta
 
 The first thing we may want to print out is the expression that is currently being traversed. As a simproc, this would correspond to
 
-```lean 
+```lean
 def printExpressions (e : Expr) : SimpM Step := do
   Lean.logInfo m!"{e}"
   return .continue
@@ -257,7 +269,7 @@ simproc_decl printExpr (_) := printExpressions
 ```
 The last line is needed to "declare" the simproc officially - this is where we specify information like whether this is a pre/post procedure, and what expression we're matching on (here, we match on the pattern `_`, i.e. on everything!). More on this in the next post.
 
-Next, we could try an print out theorems that have used by `simp` "so far". 
+Next, we could try an print out theorems that have used by `simp` "so far".
 
 
 ```lean
@@ -266,7 +278,7 @@ def printUsedTheorems (e : Expr) : SimpM Step := do
   let simpState ← getThe Simp.State
   -- Read the current results simp has used. These are stored in a datatype
   -- called `Simp.Origin`, which includes simp theorems, but also other
-  -- terms that have been given by the user to `simp`. 
+  -- terms that have been given by the user to `simp`.
   let simps := simpState.usedTheorems.map.toList.map Prod.fst
   -- Get all the names
   let names := simps.map Origin.key
