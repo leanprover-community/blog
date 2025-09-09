@@ -66,13 +66,9 @@ as we shall see in the coming subsection.
 
 ## `Step`
 
-[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop.
-At any given point, we can do three things:
-1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
-2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
-3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
-
-Note that the 2 and 3 are the same for `post` procedures.
+[`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop. In `simp`'s algorithm, a step intuitively corresponds to two pieces of information: 
+1) The simplication of an expression `e` (a subexpression of what we're currently simplifying) to a new expression `e'`
+2) What should be simplified next: one of the nice features of the `simp` algorithm is that it *dynamically* chooses what will happen next. In particular, simprocs get some amount of control over this.
 
 Let's now look at this more formally.
 To begin, `simp` has a custom structure to describe the result of a procedure called [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc):
@@ -86,7 +82,7 @@ structure Result where
 This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩ : Result`.
 If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
 
-The type `Step` has three constructors, which correspond to the three types of actions outlined above:
+The type `Step` has three constructors, which correspond to the three types of actions:
 ```lean
 inductive Step where
   /--
@@ -110,6 +106,13 @@ inductive Step where
   -/
   | continue (e? : Option Result := none)
 ```
+
+At any given point, we can do three things:
+1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
+2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
+3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
+
+Note that the 2 and 3 are the same for `post` procedures.
 
 Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. One important point worth remembering is that since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. For example, a given simproc may in some cases use `visit` and in others use `continue`.
 
