@@ -171,7 +171,8 @@ abbrev SimpM := ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.
 
 Let's go through these steps one by one.
 
-1) The monad `MetaM`: we've seen what this is above! This is one of the most fundamental monads for metaprogramming in Lean. The state of `MetaM` allows one to access things like:
+1) The monad `MetaM`. This is one of the fundamental monads for metaprogramming in Lean. 
+  The state of `MetaM` allows one to access things like:
     - Information about the file we're running in (e.g. name, imports, etc)
     - Information about what definitions/theorems we're allowed to use
     - What local variables/declarations we have access to
@@ -196,7 +197,7 @@ Let's go through these steps one by one.
   This is also something we need to capture in the monad we're building: we now want to give the monad access to an extra "context" variable, which will be a term of type `Simp.Context`. 
   The astute reader will have noticed that the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, the context should always be the same. 
   In programmer lingo, one might say that the context should be _immutable_. 
-  Thus, we should use a different monad transformer called `ReaderT`, which takes as input a "context" type `C` and a monad `m`, and outputs a new monad that has reading access to the context `C`, but _cannot change it_.
+  Thus, we should use a different monad transformer called `ReaderT`, which takes as input a "context" type and a monad, and outputs a new monad that has reading access to the context, but _cannot change it_.
 
 4) The final monad transformer application: `ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM`. 
   This outputs a monad that has access to `Simp.Method` (passed via a ref). 
@@ -204,7 +205,8 @@ Let's go through these steps one by one.
 
 ## `Simproc`s
 
-We can finally define what a `simproc` is formally. Recall that intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
+We can finally define what a `simproc` is formally. 
+Recall that intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
 This behavior is formally encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
 ```lean
 abbrev Simproc  := Expr → SimpM  Step
