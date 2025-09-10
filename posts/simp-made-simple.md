@@ -82,8 +82,7 @@ structure Result where
 ```
 Note that the proof is optional:
 If `proof?` is set to its default `none` value, the equality is assumed to be definitional.
-Also note that the proof is given as an arbitrary `Expr`.
-Nothing ensures that it actually is a proof that `e = e'`.
+Also note that the proof is allowed to be an arbitrary `Expr`, i.e. nothing ensures that it actually is a proof that `e = e'`.
 
 The location to be simplified next has only three options:
 1. Simplify again the same expression is very limited given as a choice
