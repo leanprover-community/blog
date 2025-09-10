@@ -125,15 +125,27 @@ At any given point, we can do three things:
 
 Note that the 2 and 3 are the same for `post` procedures.
 
-Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. One important point worth remembering is that since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. For example, a given simproc may in some cases use `visit` and in others use `continue`.
+Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. 
+One important point worth remembering is that since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. 
+For example, a given simproc may in some cases use `visit` and in others use `continue`.
 
 To make this more concrete, let's take a look at of each of these use cases in action.
 
-- `done`. Recall from the first post the simproc `Nat.reduceDvd`. This takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. Either way, the output is in simp normal form, so there is no need to attempt to simplify it further. Thus, this simproc uses `done` to output the result of this simplification.
-- `visit`. Let's consider the simproc `reduceIte` (also in the first post!). This takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, so this simproc uses `visit` to output the result of this simplification.
-- `continue`. It turns out that both `Nat.reduceDvd` and `reduceIte` also use the `continue` constructor. Indeed, both these simprocs rely on the fact that some part of the expression considered is simplifiable (e.g. the condition in the `if` statement). If that is not the case we need a way to signal to `simp` that it should *not* attempt to simplify the expression again using the same simproc to prevent the simplification procedure from endlessly looping around. This is precisely what the `continue` constructor allows us to do. More generally, `continue` is used in most simprocs as the "default" output produced when the simproc in question was not able to make any simplification.
+- `done`. Recall from the first post the simproc `Nat.reduceDvd`. 
+  This takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. 
+  Either way, the output is in simp normal form, so there is no need to attempt to simplify it further. 
+  Thus, this simproc uses `done` to output the result of this simplification.
+- `visit`. Let's consider the simproc `reduceIte` (also in the first post!). 
+  This takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, so this simproc uses `visit` to output the result of this simplification.
+- `continue`. 
+  It turns out that both `Nat.reduceDvd` and `reduceIte` also use the `continue` constructor. 
+  Indeed, both these simprocs rely on the fact that some part of the expression considered is simplifiable (e.g. the condition in the `if` statement). 
+  If that is not the case we need a way to signal to `simp` that it should *not* attempt to simplify the expression again using the same simproc to prevent the simplification procedure from endlessly looping around. 
+  This is precisely what the `continue` constructor allows us to do. 
+  More generally, `continue` is used in most simprocs as the "default" output produced when the simproc was not able to make any simplification.
 
-In the case where the two expressions `e` and `e'` are definitionally equal, one can actually describe a simplification step using a simple structure, namely `DStep` (where the "d" stands for "definitional"). This is obtained by replacing each occurrence of `Result` in the definition of `Step` by `Expr` (intuitively, we no longer need to specify a proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
+In the case where the two expressions `e` and `e'` are definitionally equal, one can actually describe a simplification step using a simple structure, namely `DStep` (where the "d" stands for "definitional"). 
+This is obtained by replacing each occurrence of `Result` in the definition of `Step` by `Expr` (intuitively, we no longer need to specify a proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
 ```lean
 inductive DStep where
   /-- Return expression without visiting any subexpressions. -/
@@ -155,8 +167,7 @@ Note: The above snippet is a simplification and the constructors as shown actual
 
 ## The `SimpM` monad
 
-In this section, we take a look at another key component of the internals of simp, namely the `SimpM` 
-monad. 
+In this section, we take a look at another key component of the internals of simp, namely the `SimpM` monad. 
 
 ### `SimpM`
 
