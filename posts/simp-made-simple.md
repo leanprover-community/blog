@@ -9,6 +9,8 @@ slug: simp-made-simple
 tags: 'simp, simproc, meta'
 title: Simp, made simple.
 type: text
+header-includes: 
+  - \usepackage{tikz}
 ---
 
 This is the second blog post in a series of three.
@@ -60,8 +62,32 @@ Roughly speaking, when traversing an expression `e`, `simp` does the following i
 
 We call it the *simplification loop*.
 
+```mermaid
+graph TD
+    %% Define nodes with explicit positioning
+    e["e"]
+    e1["e₁"]
+    e2["e₂"]
+    
+    %% Downward arrows with "pre" labels
+    e -->|pre| e1
+    e -->|pre| e2
+    
+    %% Upward arrows with "post" labels
+    e1 -->|post| e
+    e2 -->|post| e
+```
+
+In the figure above, the simplification loop does the following: 
+1. Preprocedures on `e`
+2. Preprocedures on `e₁`
+3. Postprocedures on `e₁` (as it has no children)
+4. Preprocedures on `e₂` 
+5. Postprocedures on `e₂` (as it has no children)
+6. Postprocedures on `e` (as it has no further children)
+
 The above loop is merely an approximation of the true simplification loop:
-Each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered,
+each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered,
 as we shall see in the coming subsection.
 
 ## `Step`
@@ -75,39 +101,35 @@ This is encapsulated by the [`Result`](https://leanprover-community.github.io/ma
 structure:
 ```lean
 structure Result where
-  expr   : Expr -- The new expression `e'`
-  proof? : Option Expr := none -- The proof that `e = e'`
+  /-- The new expression `e'` -/
+  expr   : Expr
+  /-- The proof that `e = e'` -/
+  proof? : Option Expr := none
   -- Note, `Result` currently has an extra `cache` field that is both deprecated
   -- and irrelevant to our current discussion.
 ```
-Note that the proof is optional:
-If `proof?` is set to its default `none` value, the equality is assumed to be definitional.
-Also note that the proof is allowed to be an arbitrary `Expr`, i.e. nothing ensures that it actually is a proof that `e = e'`.
+> The proof is optional:
+> If `proof?` is set to its default `none` value, the equality is assumed to be definitional.
 
-The location to be simplified next has only three options:
-1. Simplify again the same expression is very limited given as a choice
-1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
-2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
-3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
+> The proof is allowed to be an arbitrary `Expr`,
+> i.e. nothing ensures that it actually is a proof that `e = e'`.
+> It is up to the author of the procedure to make sure that the generated proof terms are valid.
 
-This is used as follows: if a procedure simplified an expression `e` to a new expression `e'` and `p` is a proof that `e = e'` then we capture this by `⟨e', p⟩ : Result`.
-If `e` and `e'` are definitionally equal, one can in fact omit the `proof?` term.
+After simplifying the current expression `e` to a new expression `e'`,
+there are a few possible options for the next location:
+1. Simplify `e'` further.
+  Preprocedures are tried on `e'`.
+2. Simplify subexpressions of `e'`.
+  Preprocedures are tried on each child expression of `e'` in turn.
+  If `e'` has no child, then we run postprocedures on `e'`.
+3. Don't simplify further.
+  Preprocedures are tried on the next child of the parent expression.
+  If there is no such child, then postprocedures are tried on the parent expression.
 
-The type `Step` has three constructors, which correspond to the three types of actions:
+The three possibilities above correspond to the three constructors of `Step`:
 ```lean
 inductive Step where
-  /--
-  For `pre` procedures, it returns the result without visiting any subexpressions.
-
-  For `post` procedures, it returns the result.
-  -/
-  | done (r : Result)
-  /--
-  For `pre` procedures, the resulting expression is passed to `pre` again.
-
-  For `post` procedures, the resulting expression is passed to `pre` again IF
-  `Simp.Config.singlePass := false` and resulting expression is not equal to initial expression.
-  -/
+  /-- Try preprocedures on the simplified expression. -/
   | visit (e : Result)
   /--
   For `pre` procedures, continue transformation by visiting subexpressions, and then
@@ -116,36 +138,47 @@ inductive Step where
   For `post` procedures, this is equivalent to returning `visit`.
   -/
   | continue (e? : Option Result := none)
+  /-- Returns the result without visiting any subexpressions. -/
+  | done (r : Result)
 ```
+> If a procedure fails to simplify an expression, it should return `continue none`.
+  Both `visit` and `done` signify success.
+  
 
-At any given point, we can do three things:
-1. Simplify an expression `e` to a new expression `e'` and stop there (i.e.  don't visit any subexpressions in the case of a preprocedure)
-2. Simplify an expression `e` to a new expression `e'` and continuing the process *at* `e'` (i.e. `e'` may be simplified further), before moving to subexpressions if this is a preprocedure.
-3. Simplify an expression `e` to a new expression `e'` and continue the process *on subexpressions* of `e'` (if this is a preprocedure).
-
-Note that the 2 and 3 are the same for `post` procedures.
 
 Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. 
-One important point worth remembering is that since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. 
+Since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. 
 For example, a given simproc may in some cases use `visit` and in others use `continue`.
 
 To make this more concrete, let's take a look at of each of these use cases in action.
 
-- `done`. Recall from the first post the simproc `Nat.reduceDvd`. 
+- `done`. 
+  Recall from the first post the simproc `Nat.reduceDvd`. 
   This takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. 
   Either way, the output is in simp normal form, so there is no need to attempt to simplify it further. 
-  Thus, this simproc uses `done` to output the result of this simplification.
-- `visit`. Let's consider the simproc `reduceIte` (also in the first post!). 
-  This takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, so this simproc uses `visit` to output the result of this simplification.
+  Thus, the simproc uses `done` to this result.
+- `visit`. 
+  Let's consider the simproc `reduceIte` (also in the first post!). 
+  This takes expressions of the form `if h then a else b` and outputs `a` 
+  (resp. `b`) if `h` can be simplified to `True` (resp. `False`). 
+  Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, 
+  so this simproc uses `visit` to output the result of this simplification.
 - `continue`. 
   It turns out that both `Nat.reduceDvd` and `reduceIte` also use the `continue` constructor. 
-  Indeed, both these simprocs rely on the fact that some part of the expression considered is simplifiable (e.g. the condition in the `if` statement). 
-  If that is not the case we need a way to signal to `simp` that it should *not* attempt to simplify the expression again using the same simproc to prevent the simplification procedure from endlessly looping around. 
-  This is precisely what the `continue` constructor allows us to do. 
-  More generally, `continue` is used in most simprocs as the "default" output produced when the simproc was not able to make any simplification.
+  Indeed, both these simprocs rely on the fact that some part of the expression 
+  considered is simplifiable (e.g. the condition in the `if` statement). 
+  When this is not the case, the `continue` constructor signals to `simp` that it should 
+  *not* attempt to simplify the expression again using the same simproc to prevent 
+  the simplification procedure from looping around.
+  More generally, `continue` is used in most simprocs as the "default" output
+  produced when the simproc was not able to make any simplification.
 
-In the case where the two expressions `e` and `e'` are definitionally equal, one can actually describe a simplification step using a simple structure, namely `DStep` (where the "d" stands for "definitional"). 
-This is obtained by replacing each occurrence of `Result` in the definition of `Step` by `Expr` (intuitively, we no longer need to specify a proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
+In the case where the two expressions `e` and `e'` are definitionally equal,
+one can actually describe a simplification step using a simple structure,
+namely `DStep` (where the "d" stands for "definitional"). 
+This is obtained by replacing each occurrence of `Result` in the
+definition of `Step` by `Expr` (intuitively, we no longer need to specify a
+proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
 ```lean
 inductive DStep where
   /-- Return expression without visiting any subexpressions. -/
@@ -188,7 +221,8 @@ Let's go through these steps one by one.
     - What local variables/declarations we have access to
 
 2) The first monad transformer application: `StateRefT Simp.State MetaM`. 
-  The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. 
+  The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call
+  (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. 
   Specifially, we want a monad that can track the state of what's happening via the following structure: 
   ```lean
   structure Simp.State where
@@ -202,12 +236,9 @@ Let's go through these steps one by one.
   This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state. In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) at term of type `Simp.State`.
 
 3) The second monad transformer application: `ReaderT Simp.Context $ StateRefT Simp.State MetaM`. 
-  Depending on where/how the `simp` tactic is called, the amount of "information" it has access to might vary. 
-  For example, the adding new imports will give `simp` access to more `simp` theorems, or the user may choose to provide additional theorems or fact to `simp` to make it more powerful (in effect, these are treated as extra `simp` theorems). 
-  This is also something we need to capture in the monad we're building: we now want to give the monad access to an extra "context" variable, which will be a term of type `Simp.Context`. 
-  The astute reader will have noticed that the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, the context should always be the same. 
-  In programmer lingo, one might say that the context should be _immutable_. 
-  Thus, we should use a different monad transformer called `ReaderT`, which takes as input a "context" type and a monad, and outputs a new monad that has reading access to the context, but _cannot change it_.
+  The `SimpM` monad should also be able to access the "context" that `simp` is running in, e.g. which simp theorems it has access to and so on. This is captured by the type `Simp.Context`.
+  Here, the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, the context should always be the same (in programmer lingo: _immutable_)
+  Thus, we use a different monad transformer called `ReaderT`, which is almost identical to `StateT`, but outputs a new monad that can only read the type passed as parameter.
 
 4) The final monad transformer application: `ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM`. 
   This outputs a monad that has access to `Simp.Method` (passed via a ref). 
