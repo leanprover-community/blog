@@ -153,8 +153,8 @@ To make this more concrete, let's take a look at how these are used in the simpr
 previous blog post. 
 
 > As a reminder
-> - `Nat.reduceDvd`: takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. 
-> - `reduceIte` (also in the first post!). This takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). 
+> - `Nat.reduceDvd` takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. 
+> - `reduceIte` takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). 
 
 The constructors do the following: 
 - `continue` indicates that the simproc is done with this expression.
@@ -164,7 +164,7 @@ The constructors do the following:
   - `Nat.reduceDvd` uses this when the expression is *not* of the form a | b` where `a`, `b` are explicit natural numbers. 
   - `reduceIte` use this when the expression is *not* of the form `if h then a else b` where `h` is an expression that can be simplified to `True` or `False` 
     (note that the simplification of `h` is handled by a different `simp` call).
-  Note that this only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
+  This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
   For example, when calling `simp` on `if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0`, the simproc `reduceIte` runs twice: once on the outer `if ... then ... else`, where it uses `continue`, and once on the inner `if ... then ... else`, which gets simplified to `0`.
 - `done` indicates that `simp` is done with a given expression.
   Recall from the first post the simproc `Nat.reduceDvd`. 
