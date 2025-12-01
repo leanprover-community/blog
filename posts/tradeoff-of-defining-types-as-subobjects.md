@@ -63,7 +63,7 @@ See [#15021](https://github.com/leanprover-community/mathlib4/pull/15021) for an
 
 ## Custom named projections
 
-In the Subobject and Coerced Subobject designs, the fields of `↥circle`/`Circle` are `val` and `property`, as coming from `Subtype`. This leads to potentially uninforming code of the form
+In the Subobject and Coerced Subobject designs, the fields of `↥circle`/`Circle` are `val` and `property`, as coming from `Subtype`. This leads to potentially uninformative code of the form
 ```lean
 -- Subobject design
 def foo : circle where
