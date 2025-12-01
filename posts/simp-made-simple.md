@@ -167,16 +167,13 @@ The constructors do the following:
   This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
   For example, when calling `simp` on `if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0`, the simproc `reduceIte` runs twice: once on the outer `if ... then ... else`, where it uses `continue`, and once on the inner `if ... then ... else`, which gets simplified to `0`.
 - `done` indicates that `simp` is done with a given expression.
-  Recall from the first post the simproc `Nat.reduceDvd`. 
-  This takes expressions of the form `a | b` where `a`, `b` are explicit natural numbers, and returns `True` or `False`. 
-  Either way, the output is in simp normal form, so there is no need to attempt to simplify it further. 
-  Thus, the simproc uses `done` to this result.
+  When `Nat.reduceDvd` is called on an expression of the form `a | b` where `a`, `b` are explicit natural numbers, it simplifies it to `True` or `False`. 
+  Either way, the output is in simp normal form and there is no need to simplify it further.
+  Thus `Nat.reducedDvd` uses `done` in such a case.
 - `visit` indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
-  Let's consider the simproc `reduceIte` (also in the first post!). 
-  This takes expressions of the form `if h then a else b` and outputs `a` 
-  (resp. `b`) if `h` can be simplified to `True` (resp. `False`). 
-  Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further, 
-  so this simproc uses `visit` to output the result of this simplification.
+  When `reduceIte` is called on a expressions of the form `if p then a else b` where `p` can simplified to `True` (resp. `False`, it outputs `a` (resp. `b`). 
+  Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
+  Thus `reduceIte` uses `visit` in such a case.
 
 ## The `SimpM` monad
 
@@ -184,12 +181,12 @@ In this section, we take a look at another key component of the internals of sim
 
 ### `SimpM`
 
-[`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps so far, theorems used).
-In particular this also captures the `MetaM` context.
+[`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps taken, theorems used).
+In particular it also captures the `MetaM` context.
 
 Let's go through this in more detail. The monad `SimpM` is defined using monad transformers as follows:
 ```lean
-abbrev SimpM := ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM
+abbrev SimpM := ReaderT Simp.MethodsRef <| ReaderT Simp.Context <| StateRefT Simp.State MetaM
 ```
 
 Let's go through these steps one by one.
