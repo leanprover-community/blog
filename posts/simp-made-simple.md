@@ -158,7 +158,7 @@ previous blog post.
 
 The constructors do the following: 
 - `continue` indicates that the simproc is done with this expression.
-  As a result, simp will not not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping around.
+  As a result, simp will not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping.
   This is often used as the "default" output if a simproc was unable to find a simplification in a given expression.
   For example:
   - `Nat.reduceDvd` uses this when the expression is *not* of the form a | b` where `a`, `b` are explicit natural numbers. 
