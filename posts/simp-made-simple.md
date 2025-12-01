@@ -234,10 +234,10 @@ Let's go through these steps one by one.
 ## `Simproc`s
 
 Let's now formally define what a `simproc` is.
-Recall that intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
+Recall that, intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
 This behavior is formally encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
 ```lean
-abbrev Simproc  := Expr → SimpM  Step
+abbrev Simproc := Expr → SimpM Step
 ```
 
 Concretely, it is helpful to think of a simproc as a function (or rather metaprogram) of the form
@@ -255,16 +255,13 @@ Instead, a simproc is an element of type `Simproc` annotated with the extra data
 As we shall see in the next blog post, when defining a simproc, one always provides a pattern that the simproc will activate on. 
 For example, a simproc involving addition might match on the pattern `_ + _`.
 
-On a final note, there is a [`DSimproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type:
+On a final note, there is a [`DSimproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc) type to encode simprocs that only simplify along definitional equalities:
 ```lean
 abbrev DSimproc := Expr → SimpM DStep
 ```
-All the discussion above carries on to these. 
-For example, there is an an "definitional" version of `Step` called `DStep`, 
-which describes a simplification step where the simplied expression is *definitionally equal* to the original one.
-This is obtained by replacing each occurrence of `Result` in the
-definition of `Step` by `Expr` (intuitively, we no longer need to specify a
-proof that `e` and `e'` are equal since this is just `rfl`, so we only need to return the simplified expression `e'`):
+Just like `Simproc`, `DSimproc` is built by combining the `SimpM` monad with a type of steps (`DStep`).
+`DStep` is exactly analogous to `Step`, except that each occurrence of `Result` has been replaced by `Expr`.
+Indeed, if an equality `e = e'` really is definitional, then you don't need to remember its proof as it is `rfl`.
 ```lean
 inductive DStep where
   /-- Return expression without visiting any subexpressions. -/
@@ -284,15 +281,15 @@ inductive DStep where
 ```
 Note: The above snippet is a simplification and the constructors as shown actually belong to `Lean.TransformStep`, which `Lean.Meta.Simp.DStep` is an `abbrev` of.
 
-> The reader should note that `DStep` cannot be used for writing simprocs, even though it might be the case that a
-> given simplification step happens to produce an expression that is definitionally equal to the original one.
+> The reader should note that `DStep` can only be used for writing dsimprocs, even though it might be the case that a
+> given simplification step in a (non d)simproc happens to produce an expression that is definitionally equal to the original one.
 
 ## Exploring the `SimpM` monad via simprocs
 
 In the next blog post, we will cover in detail how to implement simprocs that are useful for proving theorems in Lean. 
-In the meantime, to whet the reader's appetite, let's have a go at exploring the `SimpM` monad's internals using simprocs.
+In the meantime, to whet the reader's appetite, let's explore the internals of the `SimpM` monad using fake simprocs that print info instead of simplifying.
 
-> Throughout this section, all code will be assumed to have `open Lean Elab Meta Simp`.
+> Throughout this section, all code is assumed to be prefaced with `open Lean Elab Meta Simp`.
 
 More specifically, let's try to use simprocs to output information about the state of `SimpM` during a given simp call.
 
@@ -306,10 +303,10 @@ def printExpressions (e : Expr) : SimpM Step := do
 -- declare the simproc
 simproc_decl printExpr (_) := printExpressions
 ```
-The last line is needed to "declare" the simproc officially - this is where we specify information like whether this is a pre/post procedure, and what expression we're matching on (here, we match on the pattern `_`, i.e. on everything!). 
+The last line is needed to "declare" the simproc officially - this is where we can specify priority, whether this is a pre/post procedure and what expression we're matching on (here, we match on the pattern `_`, i.e. on everything!). 
 More on this in the next post.
 
-Next, we could try an print out theorems that have used by `simp` "so far".
+Next, let's print out all the theorems that have been used by `simp` "so far".
 
 ```lean
 def printUsedTheorems (e : Expr) : SimpM Step := do
@@ -328,7 +325,7 @@ def printUsedTheorems (e : Expr) : SimpM Step := do
 simproc_decl printThms (_) := printUsedTheorems
 ```
 
-The reader can then call add these simprocs to simp calls to see what's happening within.
+We encourage the reader to add these simprocs to their simp calls to see what's happening within.
 
 ```
 example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
