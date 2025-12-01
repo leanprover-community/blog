@@ -146,7 +146,7 @@ inductive Step where
   Both `visit` and `done` signify success.
 
 Whenever a simproc is called on a given expression, it outputs a `Step`, which determines what will happen next during the `simp` call. 
-Since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up used may vary according to the input. 
+Since every simproc call is running a metaprogram to produce the output `Step`, the constructor that ends up being used may vary according to the input.
 For example, a given simproc may in some cases use `visit` and in others use `continue`.
 
 To make this more concrete, let's take a look at how these are used in the simprocs `Nat.reduceDvd` and `reduceIte` that we looked at in the
