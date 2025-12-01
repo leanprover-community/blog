@@ -214,7 +214,7 @@ Let's go through these steps one by one.
   The `SimpM` monad should also be able to access the "context" that `simp` is running in, e.g. which simp theorems it has access to and so on.
   This is captured by the type `Simp.Context`.
   Here, the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`:
-  while we will often want to change the state during the `simp` call, we will never need to change the context.
+  while we will often want to change the state during the `simp` call, we will rarely need to change the context.
   In programmer lingo, the context should be _immutable_.
   Thus, we use a different monad transformer called `ReaderT`, which is almost identical to `StateT`, but outputs a new monad where one can only read the type passed as parameter. 
     > For completness: when working with `ReaderT`, one can still locally override the
