@@ -60,7 +60,7 @@ Roughly speaking, when traversing an expression `e`, `simp` does the following i
 2. Traverse subexpressions of `e` (note that the preprocedures might have changed `e` by this point);
 3. Run postprocedures on `e`.
 
-We call it the *simplification loop*.
+We call this the *simplification loop*.
 
 ```mermaid
 graph TD
