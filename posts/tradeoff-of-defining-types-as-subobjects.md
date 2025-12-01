@@ -1,6 +1,6 @@
 ---
 author: 'Yaël Dillies'
-category: 'Papers'
+category: 'Design patterns'
 date: 2024-07-25 14:00:00 UTC+03:00
 description: ''
 has_math: true
