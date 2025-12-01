@@ -171,7 +171,7 @@ The constructors do the following:
   Either way, the output is in simp normal form and there is no need to simplify it further.
   Thus `Nat.reducedDvd` uses `done` in such a case.
 - `visit` indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
-  When `reduceIte` is called on a expressions of the form `if p then a else b` where `p` can simplified to `True` (resp. `False`, it outputs `a` (resp. `b`). 
+  When `reduceIte` is called on a expressions of the form `if p then a else b` where `p` can simplified to `True` (resp. `False`), it outputs `a` (resp. `b`). 
   Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
   Thus `reduceIte` uses `visit` in such a case.
 
@@ -235,7 +235,7 @@ Let's go through these steps one by one.
 
 Let's now formally define what a `simproc` is.
 Recall that, intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
-This behavior is formally encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
+This behavior is partially encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
 ```lean
 abbrev Simproc := Expr → SimpM Step
 ```
