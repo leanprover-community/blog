@@ -64,16 +64,13 @@ We call this the *simplification loop*.
 
 ```mermaid
 graph TD
-    %% Define nodes with explicit positioning
     e["e"]
     e1["e₁"]
     e2["e₂"]
     
-    %% Downward arrows with "pre" labels
     e -->|pre| e1
     e -->|pre| e2
     
-    %% Upward arrows with "post" labels
     e1 -->|post| e
     e2 -->|post| e
 ```
