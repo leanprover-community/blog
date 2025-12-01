@@ -200,7 +200,7 @@ Let's go through these steps one by one.
 2) The first monad transformer application: `StateRefT Simp.State MetaM`. 
   The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call
   (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. 
-  Specifially, we want a monad that can track the state of what's happening via the following structure: 
+  Specifically, we want a monad that can track what's happening via the following structure: 
     ```lean
     structure Simp.State where
       cache        : Cache
@@ -210,27 +210,30 @@ Let's go through these steps one by one.
       numSteps     : Nat
       diag         : Diagnostics
     ```
-  This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state. In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) at term of type `Simp.State`.
+  This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state.
+  In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) a term of type `Simp.State`.
 
-3) The second monad transformer application: `ReaderT Simp.Context $ StateRefT Simp.State MetaM`. 
-  The `SimpM` monad should also be able to access the "context" that `simp` is running in, e.g. which simp theorems it has access to and so on. This is captured by the type `Simp.Context`.
-  Here, the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`: while we will often want to change the state during the `simp` call, we don't expect the context to need to change. In programmer lingo, the context should be _immutable_.
+3) The second monad transformer application: `ReaderT Simp.Context <| StateRefT Simp.State MetaM`. 
+  The `SimpM` monad should also be able to access the "context" that `simp` is running in, e.g. which simp theorems it has access to and so on.
+  This is captured by the type `Simp.Context`.
+  Here, the situation is not quite the same as when we were adding a `Simp.State` state to `MetaM`:
+  while we will often want to change the state during the `simp` call, we will never need to change the context.
+  In programmer lingo, the context should be _immutable_.
   Thus, we use a different monad transformer called `ReaderT`, which is almost identical to `StateT`, but outputs a new monad where one can only read the type passed as parameter. 
-    > For completness: when working with `ReaderT`, one can still locally overide the
+    > For completness: when working with `ReaderT`, one can still locally override the
     > value of the variable that the monad keeps track of by using `withReader`. Intuitively, 
     > the difference between `State(Ref)T` and `ReaderT` is the following: 
-    > - In `State(Ref)T`, one has access to a global variable that can be modified at 
-    >   will, 
-    > - In `ReaderT`, given a program `x : ReaderT a m`, one can only chose to *execute* `x` with
+    > - In `State(Ref)T`, one has access to a global variable that can be modified at will,
+    > - In `ReaderT`, given a program `x : ReaderT a m`, one can only choose to *execute* `x` with
     >   a different context. In particular, the context before and after the execution of `x` stays the same.
 
 4) The final monad transformer application: `ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM`. 
   This outputs a monad that has access to `Simp.Method` (passed via a ref). 
-  This capture the "pre" and "post" procedures that `simp` can use, as well as the discharger that `simp` can use, etc.
+  This capture the "pre" and "post" procedures that a given `simp` call can use, as well as the discharger that a given `simp` call can use, etc.
 
 ## `Simproc`s
 
-We can finally define what a `simproc` is formally. 
+Let's now formally define what a `simproc` is.
 Recall that intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
 This behavior is formally encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
 ```lean
