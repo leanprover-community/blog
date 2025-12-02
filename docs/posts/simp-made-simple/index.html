@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="An exploration of the simp tactic">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simp, made simple. | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/simp-made-simple/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="Simp, made simple. | Lean community blog">
+<meta name="author" content="Yaël Dillies, Paul Lezeau">
+<link rel="prev" href="../cmi-class-field-theory-workshop/" title="Formalizing Class Field Theory" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="Simp, made simple.">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/simp-made-simple/">
+<meta property="og:description" content="An exploration of the simp tactic">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-09-10T19:17:00+01:00">
+<meta property="article:tag" content="meta">
+<meta property="article:tag" content="simp">
+<meta property="article:tag" content="simproc">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Simp, made simple.</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/yael-dillies/">Yaël Dillies</a>
+                        <a class="u-url" href="../../authors/paul-lezeau/">Paul Lezeau</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-09-10T19:17:00+01:00" itemprop="datePublished" title="2025-09-10 19:17">2025-09-10 19:17</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/simp-made-simple/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>This is the second blog post in a series of three.
+In <a href="https://leanprover-community.github.io/blog/posts/simprocs-for-the-working-mathematician/">the first blog post</a>, we introduced the notion of a <em>simproc</em>, which can be thought of as a form of "modular" simp lemma.
+In this sequel, we give a more detailed exposition of the inner workings of the simp tactic in preparation of our third post, where we will see how to write new simprocs.</p>
+<!-- TEASER_END -->
+
+<blockquote>
+<p>Throughout this post, we will assume that the reader has at least a little exposure to some of the core concepts that underpin metaprogramming in Lean, e.g. <code>Expr</code> and the <code>MetaM</code> monad.
+For those that don't, the book <a href="https://leanprover-community.github.io/lean4-metaprogramming-book/">Metaprogramming in Lean 4</a> is a great introduction to the topic.</p>
+</blockquote>
+<h2>How <code>simp</code> works</h2>
+<p>In this section we present some of the inner workings of <code>simp</code>.</p>
+<p>First we give an overview of the way <code>simp</code> works, then we delve into the specifics by introducing:
+* the <code>SimpM</code> monad, which is the metaprogramming monad holding the information relevant to a <code>simp</code> call;
+* <code>Step</code>, the Lean representation of a single simplification step;
+* <code>Simproc</code>, the Lean representation of simprocs.</p>
+<p>All the <code>simp</code>-specific declarations introduced in this section are in the <code>Lean.Meta</code> or <code>Lean.Meta.Simp</code> namespace.</p>
+<h3>Overview</h3>
+<p>When calling <code>simp</code> in a proof, we give it a <em>simp context</em>.
+This is made of a few different things, but for our purposes think of it as <em>the set of lemmas/simprocs <code>simp</code> is allowed to rewrite with</em>, i.e
+$$\text{default lemmas/simprocs} + \text{explicitly added ones} - \text{explicitly removed ones}.$$
+For example, <code>simp [foo, -bar]</code> means "Simplify using the standard simp lemmas/simprocs except <code>bar</code>, with <code>foo</code> added".</p>
+<p>A perhaps surprising fact is that every simp lemma is internally turned into a simproc for <code>simp</code>'s consumption.
+From now on, we will refer to simp lemmas/simprocs as <em>procedures</em>.</p>
+<p>Each procedure in a simp context comes annotated with extra data, such as <em>priority</em>,
+as well as the <em>stage</em> at which the procedure should be called.</p>
+<p>Procedures have two possible stages:
+* <em>Postprocedures</em> are called on an expression <code>e</code> after subexpressions of <code>e</code> are simplified.
+  Procedures are by default postprocedures as oftentimes a procedure can only trigger after the inner expressions have been simplified.
+* <em>Preprocedures</em> are called on an expression <code>e</code> before subexpressions of <code>e</code> are simplified.
+  Preprocedures are mostly used when the simplification order induced by a postprocedure would otherwise be inefficient by visiting irrelevant subexpressions first.
+  Preprocedures are associated with the <code>↓</code> symbol in several syntaxes throughout the simp codebase.</p>
+<p>The general rule of thumb is that postprocedures simplify <em>from the inside-out</em>, while preprocedures simplify <em>from the outside-in</em>.</p>
+<p>Roughly speaking, when traversing an expression <code>e</code>, <code>simp</code> does the following in order:
+1. Run preprocedures on <code>e</code>;
+2. Traverse subexpressions of <code>e</code> (note that the preprocedures might have changed <code>e</code> by this point);
+3. Run postprocedures on <code>e</code>.</p>
+<p>We call this the <em>simplification loop</em>.</p>
+<pre class="code literal-block"><span class="nf">graph</span><span class="w"> </span><span class="n">TD</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">[</span><span class="s">"e"</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">e1</span><span class="p">[</span><span class="s">"e₁"</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">e2</span><span class="p">[</span><span class="s">"e₂"</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">pre</span><span class="o">|</span><span class="w"> </span><span class="n">e1</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">pre</span><span class="o">|</span><span class="w"> </span><span class="n">e2</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">e1</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">post</span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
+<span class="w">    </span><span class="n">e2</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">post</span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
+</pre>
+<p>In the figure above, the simplification loop does the following: 
+1. Preprocedures on <code>e</code>
+2. Preprocedures on <code>e₁</code>
+3. Postprocedures on <code>e₁</code> (as it has no children)
+4. Preprocedures on <code>e₂</code> 
+5. Postprocedures on <code>e₂</code> (as it has no children)
+6. Postprocedures on <code>e</code> (as it has no further children)</p>
+<p>The above loop is merely an approximation of the true simplification loop:
+each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered,
+as we shall see in the coming subsection.</p>
+<h3><code>Step</code></h3>
+<p><a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc"><code>Step</code></a> is the type that represents a single step in the simplification loop. In <code>simp</code>'s algorithm, a step intuitively corresponds to two pieces of information:
+1) The <strong>result</strong> of simplifying an expression <code>e</code>,
+2) The <strong>location</strong> of what should be simplified next, and in which <strong>direction</strong> (pre or post).</p>
+<p>The result of simplifying <code>e</code> is encoded as an expression <code>e'</code> and a proof that <code>e = e'</code>.
+This is encapsulated by the <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc"><code>Result</code></a>
+structure:</p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">Result</span> <span class="n">where</span>
+  <span class="sd">/-- The new expression `e'` -/</span>
+  <span class="n">expr</span>   <span class="o">:</span> <span class="n">Expr</span>
+  <span class="sd">/-- The proof that `e = e'` -/</span>
+  <span class="n">proof</span><span class="bp">?</span> <span class="o">:</span> <span class="n">Option</span> <span class="n">Expr</span> <span class="o">:=</span> <span class="n">none</span>
+  <span class="c1">-- Note, `Result` currently has an extra `cache` field that is both deprecated</span>
+  <span class="c1">-- and irrelevant to our current discussion.</span>
+</pre>
+<blockquote>
+<p>The proof is optional:
+If <code>proof?</code> is set to its default <code>none</code> value, the equality is assumed to be definitional.</p>
+<p>The proof is allowed to be an arbitrary <code>Expr</code>,
+i.e. nothing ensures that it actually is a proof that <code>e = e'</code>.
+It is up to the author of the procedure to make sure that the generated proof terms are valid.</p>
+</blockquote>
+<p>After simplifying the current expression <code>e</code> to a new expression <code>e'</code>,
+there are a few possible options for the next location:
+1. Simplify <code>e'</code> further.
+  Preprocedures are tried on <code>e'</code>.
+2. Simplify subexpressions of <code>e'</code>.
+  Preprocedures are tried on each child expression of <code>e'</code> in turn.
+  If <code>e'</code> has no child, then we run postprocedures on <code>e'</code>.
+3. Don't simplify further.
+  Preprocedures are tried on the next child of the parent expression.
+  If there is no such child, then postprocedures are tried on the parent expression.</p>
+<p>The three possibilities above correspond to the three constructors of <code>Step</code>:</p>
+<pre class="code literal-block"><span class="kd">inductive</span> <span class="n">Step</span> <span class="n">where</span>
+  <span class="sd">/-- Try preprocedures on the simplified expression. -/</span>
+  <span class="bp">|</span> <span class="n">visit</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Result</span><span class="o">)</span>
+  <span class="sd">/--</span>
+<span class="sd">  For `pre` procedures, continue transformation by visiting subexpressions, and then</span>
+<span class="sd">  executing `post` procedures.</span>
+
+<span class="sd">  For `post` procedures, this is equivalent to returning `visit`.</span>
+<span class="sd">  -/</span>
+  <span class="bp">|</span> <span class="n">continue</span> <span class="o">(</span><span class="n">e</span><span class="bp">?</span> <span class="o">:</span> <span class="n">Option</span> <span class="n">Result</span> <span class="o">:=</span> <span class="n">none</span><span class="o">)</span>
+  <span class="sd">/-- Returns the result without visiting any subexpressions. -/</span>
+  <span class="bp">|</span> <span class="n">done</span> <span class="o">(</span><span class="n">r</span> <span class="o">:</span> <span class="n">Result</span><span class="o">)</span>
+<span class="c1">-- Note: the docstrings here are simplified versions of the real docstrings (which can be found in the Lean source code)</span>
+</pre>
+<blockquote>
+<p>If a procedure fails to simplify an expression, it should return <code>continue none</code>.
+  Both <code>visit</code> and <code>done</code> signify success.</p>
+</blockquote>
+<p>Whenever a simproc is called on a given expression, it outputs a <code>Step</code>, which determines what will happen next during the <code>simp</code> call. 
+Since every simproc call is running a metaprogram to produce the output <code>Step</code>, the constructor that ends up being used may vary according to the input, 
+e.g. in some cases a simproc may use <code>visit</code> and in others use <code>continue</code>.</p>
+<p>To make this more concrete, let's take a look at how these are used in the simprocs <code>Nat.reduceDvd</code> and <code>reduceIte</code> that we looked at in the
+previous blog post. </p>
+<blockquote>
+<p>As a reminder
+- <code>Nat.reduceDvd</code> takes expressions of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers, and returns <code>True</code> or <code>False</code>. 
+- <code>reduceIte</code> takes expressions of the form <code>if h then a else b</code> and outputs <code>a</code> (resp. <code>b</code>) if <code>h</code> can be simplified to <code>True</code> (resp. <code>False</code>). </p>
+</blockquote>
+<p>The constructors do the following: 
+- <code>continue</code> indicates that the simproc is done with this expression.
+  As a result, simp will not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping.
+  This is often used as the "default" output if a simproc was unable to find a simplification in a given expression.
+  For example:
+  - <code>Nat.reduceDvd</code> uses this when the expression is <em>not</em> of the form a | b<code>where</code>a<code>,</code>b<code>are explicit natural numbers. 
+  -</code>reduceIte<code>use this when the expression is *not* of the form</code>if h then a else b<code>where</code>h<code>is an expression that can be simplified to</code>True<code>or</code>False<code>(note that the simplification of</code>h<code>is handled by a different</code>simp<code>call).
+  This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
+  For example, when calling</code>simp<code>on</code>if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0<code>, the simproc</code>reduceIte<code>runs twice: once on the outer</code>if ... then ... else<code>, where it uses</code>continue<code>, and once on the inner</code>if ... then ... else<code>, which gets simplified to</code>0<code>.
+-</code>done<code>indicates that</code>simp<code>is done with a given expression.
+  When</code>Nat.reduceDvd<code>is called on an expression of the form</code>a | b<code>where</code>a<code>,</code>b<code>are explicit natural numbers, it simplifies it to</code>True<code>or</code>False<code>. 
+  Either way, the output is in simp normal form and there is no need to simplify it further.
+  Thus</code>Nat.reduceDvd<code>uses</code>done<code>in such a case.
+-</code>visit<code>indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
+  When</code>reduceIte<code>is called on a expressions of the form</code>if p then a else b<code>where</code>p<code>can simplified to</code>True<code>(resp.</code>False<code>), it outputs</code>a<code>(resp.</code>b<code>). 
+  Since</code>a<code>and</code>b<code>could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
+  Thus</code>reduceIte<code>uses</code>visit` in such a case.</p>
+<h3>The <code>SimpM</code> monad</h3>
+<p>In this section, we take a look at another key component of the internals of simp, namely the <code>SimpM</code> monad. </p>
+<h4><code>SimpM</code></h4>
+<p><a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc"><code>SimpM</code></a> is the monad that tracks the current context <code>simp</code> is running in (what <code>simp</code> theorems are available, etc) and what has been done so far (e.g. number of steps taken, theorems used).
+In particular it also captures the <code>MetaM</code> context.</p>
+<p>Let's go through this in more detail. The monad <code>SimpM</code> is defined using monad transformers as follows:</p>
+<pre class="code literal-block"><span class="n">abbrev</span> <span class="n">SimpM</span> <span class="o">:=</span> <span class="n">ReaderT</span> <span class="n">Simp.MethodsRef</span> <span class="bp">&lt;|</span> <span class="n">ReaderT</span> <span class="n">Simp.Context</span> <span class="bp">&lt;|</span> <span class="n">StateRefT</span> <span class="n">Simp.State</span> <span class="n">MetaM</span>
+</pre>
+<p>Let's go through these steps one by one.</p>
+<p>1) The monad <code>MetaM</code>. This is one of the fundamental monads for metaprogramming in Lean. 
+  The state of <code>MetaM</code> allows one to access things like:
+    - Information about the file we're running in (e.g. name, imports, etc)
+    - Information about what definitions/theorems we're allowed to use
+    - What local variables/declarations we have access to</p>
+<p>2) The first monad transformer application: <code>StateRefT Simp.State MetaM</code>. 
+  The idea here is the following: since the goal of the <code>SimpM</code> monad is to track the state of a <code>simp</code> call
+  (i.e. what's happening, as the program runs), we need to capture more information than what <code>MetaM</code> gives us. 
+  Specifically, we want a monad that can track what's happening via the following structure: 
+    <code>lean
+    structure Simp.State where
+      cache        : Cache
+      congrCache   : CongrCache
+      dsimpCache   : ExprStructMap Expr
+      usedTheorems : UsedSimps
+      numSteps     : Nat
+      diag         : Diagnostics</code>
+  This is something we can achieve using the <code>StateRefT</code> monad transformer, which takes as input a state type (<code>Simp.State</code> in our case) and a monad, and creates a new monad that can read <em>and write</em> this state.
+  In other words, <code>StateRefT Simp.State MetaM</code> is a souped up version of <code>MetaM</code> that can now track extra information by storing (and updating) a term of type <code>Simp.State</code>.</p>
+<p>3) The second monad transformer application: <code>ReaderT Simp.Context &lt;| StateRefT Simp.State MetaM</code>. 
+  The <code>SimpM</code> monad should also be able to access the "context" that <code>simp</code> is running in, e.g. which simp theorems it has access to and so on.
+  This is captured by the type <code>Simp.Context</code>.
+  Here, the situation is not quite the same as when we were adding a <code>Simp.State</code> state to <code>MetaM</code>:
+  while we will often want to change the state during the <code>simp</code> call, we will rarely need to change the context.
+  In programmer lingo, the context should be <em>immutable</em>.
+  Thus, we use a different monad transformer called <code>ReaderT</code>, which is almost identical to <code>StateT</code>, but outputs a new monad where one can only read the type passed as parameter. 
+    &gt; For completeness: when working with <code>ReaderT</code>, one can still locally override the
+    &gt; value of the variable that the monad keeps track of by using <code>withReader</code>. Intuitively, 
+    &gt; the difference between <code>State(Ref)T</code> and <code>ReaderT</code> is the following: 
+    &gt; - In <code>State(Ref)T</code>, one has access to a global variable that can be modified at will,
+    &gt; - In <code>ReaderT</code>, given a program <code>x : ReaderT a m</code>, one can only choose to <em>execute</em> <code>x</code> with
+    &gt;   a different context. In particular, the context before and after the execution of <code>x</code> stays the same.</p>
+<p>4) The final monad transformer application: <code>ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM</code>. 
+  This outputs a monad that has access to <code>Simp.Method</code> (passed via a ref). 
+  This captures the "pre" and "post" procedures that a given <code>simp</code> call can use, as well as the discharger that a given <code>simp</code> call can use, etc.</p>
+<h3>
+<code>Simproc</code>s</h3>
+<p>Let's now formally define what a <code>simproc</code> is.
+Recall that, intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current <code>SimpM</code> state (e.g. by adding new goals to be closed by the discharger).
+This behavior is partially encapsulated by the <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc"><code>Simproc</code></a> type:</p>
+<pre class="code literal-block"><span class="n">abbrev</span> <span class="n">Simproc</span> <span class="o">:=</span> <span class="n">Expr</span> <span class="bp">→</span> <span class="n">SimpM</span> <span class="n">Step</span>
+</pre>
+<p>Concretely, it is helpful to think of a simproc as a function (or rather metaprogram) of the form</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">mySimproc</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Expr</span><span class="o">)</span> <span class="o">:</span> <span class="n">SimpM</span> <span class="n">Step</span> <span class="o">:=</span> <span class="k">do</span>
+  <span class="c1">-- Various manipulations involving the expression `e`</span>
+  <span class="bp">...</span>
+  <span class="k">let</span> <span class="n">step</span> <span class="o">:</span> <span class="n">Step</span> <span class="o">:=</span> <span class="bp">...</span>
+  <span class="bp">...</span>
+  <span class="n">return</span> <span class="n">step</span>
+</pre>
+<p>The picture above is however a slight oversimplification, as <code>simp</code> does not consume bare elements of type <code>Simproc</code>. 
+Instead, a simproc is an element of type <code>Simproc</code> annotated with the extra data mentioned in the overview subsection, like whether the simproc is <code>pre</code> or <code>post</code>, and what kind of expression it matches on. 
+As we shall see in the next blog post, when defining a simproc, one always provides a pattern that the simproc will activate on. 
+For example, a simproc involving addition might match on the pattern <code>_ + _</code>.</p>
+<p>On a final note, there is a <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DSimproc#doc"><code>DSimproc</code></a> type to encode simprocs that only simplify along definitional equalities:</p>
+<pre class="code literal-block"><span class="n">abbrev</span> <span class="n">DSimproc</span> <span class="o">:=</span> <span class="n">Expr</span> <span class="bp">→</span> <span class="n">SimpM</span> <span class="n">DStep</span>
+</pre>
+<p>Just like <code>Simproc</code>, <code>DSimproc</code> is built by combining the <code>SimpM</code> monad with a type of steps (<code>DStep</code>).
+<code>DStep</code> is exactly analogous to <code>Step</code>, except that each occurrence of <code>Result</code> has been replaced by <code>Expr</code>.
+Indeed, if an equality <code>e = e'</code> really is definitional, then you don't need to remember its proof as it is <code>rfl</code>.</p>
+<pre class="code literal-block"><span class="kd">inductive</span> <span class="n">DStep</span> <span class="n">where</span>
+  <span class="sd">/-- Return expression without visiting any subexpressions. -/</span>
+  <span class="bp">|</span> <span class="n">done</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Expr</span><span class="o">)</span>
+  <span class="sd">/--</span>
+<span class="sd">  Visit expression (which should be different from current expression) instead.</span>
+<span class="sd">  The new expression `e` is passed to `pre` again.</span>
+<span class="sd">  -/</span>
+  <span class="bp">|</span> <span class="n">visit</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Expr</span><span class="o">)</span>
+  <span class="sd">/--</span>
+<span class="sd">  Continue transformation with the given expression (defaults to current expression).</span>
+<span class="sd">  For `pre`, this means visiting the children of the expression.</span>
+
+<span class="sd">  For `post`, this is equivalent to returning `done`. -/</span>
+  <span class="bp">|</span> <span class="n">continue</span> <span class="o">(</span><span class="n">e</span><span class="bp">?</span> <span class="o">:</span> <span class="n">Option</span> <span class="n">Expr</span> <span class="o">:=</span> <span class="n">none</span><span class="o">)</span>
+  <span class="n">deriving</span> <span class="n">Inhabited</span><span class="o">,</span> <span class="n">Repr</span>
+</pre>
+<p>Note: The above snippet is a simplification and the constructors as shown actually belong to <code>Lean.TransformStep</code>, which <code>Lean.Meta.Simp.DStep</code> is an <code>abbrev</code> of.</p>
+<blockquote>
+<p>The reader should note that <code>DStep</code> can only be used for writing dsimprocs, even though it might be the case that a
+given simplification step in a (non d)simproc happens to produce an expression that is definitionally equal to the original one.</p>
+</blockquote>
+<h3>Exploring the <code>SimpM</code> monad via simprocs</h3>
+<p>In the next blog post, we will cover in detail how to implement simprocs that are useful for proving theorems in Lean. 
+In the meantime, to whet the reader's appetite, let's explore the internals of the <code>SimpM</code> monad using fake simprocs that print info instead of simplifying.</p>
+<blockquote>
+<p>Throughout this section, all code is assumed to be prefaced with <code>open Lean Elab Meta Simp</code>.</p>
+</blockquote>
+<p>More specifically, let's try to use simprocs to output information about the state of <code>SimpM</code> during a given simp call.</p>
+<p>The first thing we may want to print out is the expression that is currently being traversed. As a simproc, this would correspond to</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">printExpressions</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Expr</span><span class="o">)</span> <span class="o">:</span> <span class="n">SimpM</span> <span class="n">Step</span> <span class="o">:=</span> <span class="k">do</span>
+  <span class="n">Lean.logInfo</span> <span class="n">m</span><span class="bp">!</span><span class="s2">"{e}"</span>
+  <span class="n">return</span> <span class="bp">.</span><span class="n">continue</span>
+
+<span class="c1">-- declare the simproc</span>
+<span class="n">simproc_decl</span> <span class="n">printExpr</span> <span class="o">(</span><span class="n">_</span><span class="o">)</span> <span class="o">:=</span> <span class="n">printExpressions</span>
+</pre>
+<p>The last line is needed to "declare" the simproc officially - this is where we can specify priority, whether this is a pre/post procedure and what expression we're matching on (here, we match on the pattern <code>_</code>, i.e. on everything!). 
+More on this in the next post.</p>
+<p>Next, let's print out all the theorems that have been used by <code>simp</code> "so far".</p>
+<pre class="code literal-block"><span class="kd">def</span> <span class="n">printUsedTheorems</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">Expr</span><span class="o">)</span> <span class="o">:</span> <span class="n">SimpM</span> <span class="n">Step</span> <span class="o">:=</span> <span class="k">do</span>
+  <span class="c1">-- Read the current `Simp.State` from `SimpM`</span>
+  <span class="k">let</span> <span class="n">simpState</span> <span class="bp">←</span> <span class="n">getThe</span> <span class="n">Simp.State</span>
+  <span class="c1">-- Read the current results simp has used. These are stored in a datatype</span>
+  <span class="c1">-- called `Simp.Origin`, which includes simp theorems, but also other</span>
+  <span class="c1">-- terms that have been given by the user to `simp`.</span>
+  <span class="k">let</span> <span class="n">simps</span> <span class="o">:=</span> <span class="n">simpState.usedTheorems.map.toList.map</span> <span class="n">Prod.fst</span>
+  <span class="c1">-- Get all the names</span>
+  <span class="k">let</span> <span class="n">names</span> <span class="o">:=</span> <span class="n">simps.map</span> <span class="n">Origin.key</span>
+  <span class="c1">-- Only print if at least one result has been used so far.</span>
+  <span class="n">unless</span> <span class="n">names.isEmpty</span> <span class="k">do</span> <span class="n">Lean.logInfo</span> <span class="n">m</span><span class="bp">!</span><span class="s2">"{names}"</span>
+  <span class="n">return</span> <span class="bp">.</span><span class="n">continue</span>
+
+<span class="n">simproc_decl</span> <span class="n">printThms</span> <span class="o">(</span><span class="n">_</span><span class="o">)</span> <span class="o">:=</span> <span class="n">printUsedTheorems</span>
+</pre>
+<p>We encourage the reader to add these simprocs to their simp calls to see what's happening within.</p>
+<pre class="code literal-block"><span class="n">example</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Even</span><span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="err">∣</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">by</span><span class="w"></span>
+<span class="w">  </span><span class="n">simp</span><span class="w"> </span><span class="o">[</span><span class="n">printThms</span><span class="o">,</span><span class="w"> </span><span class="err">↓</span><span class="n">printThms</span><span class="o">]</span><span class="w"></span>
+
+<span class="n">example</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Even</span><span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="err">∣</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">by</span><span class="w"></span>
+<span class="w">  </span><span class="n">simp</span><span class="w"> </span><span class="o">[</span><span class="n">printExpr</span><span class="o">,</span><span class="w"> </span><span class="err">↓</span><span class="n">printExpr</span><span class="o">]</span><span class="w"></span>
+</pre>
+<blockquote>
+<p>Exercise: try accessing more information about the current <code>SimpM</code> state, e.g.
+1. The number of simp theorems that are currently available to the tactic (and try varying the imports of the file to see what happens!)
+2. The name of the discharger tactic that the current simp call is using.</p>
+</blockquote>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/meta/" rel="tag">meta</a></li>
+            <li><a class="tag p-category" href="../../categories/simp/" rel="tag">simp</a></li>
+            <li><a class="tag p-category" href="../../categories/simproc/" rel="tag">simproc</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../cmi-class-field-theory-workshop/" rel="prev" title="Formalizing Class Field Theory">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2025         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+    
+    
+</body>
+</html>
