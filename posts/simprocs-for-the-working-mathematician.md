@@ -13,6 +13,7 @@ type: text
 
 Lean v4.6.0 (back in February 2024!) added support for custom simplification procedures, aka *simprocs*.
 This blog post is the first in a series of three aimed at explaining what a simproc is, what kind of problems can be solved with simprocs, and what tools we have to write them.
+Here is [the second blog post](https://leanprover-community.github.io/blog/posts/simp-made-simple/).
 
 <!-- TEASER_END -->
 
