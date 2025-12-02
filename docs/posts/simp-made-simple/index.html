@@ -27,7 +27,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <meta property="og:url" content="https://leanprover-community.github.io/blog/posts/simp-made-simple/">
 <meta property="og:description" content="An exploration of the simp tactic">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2025-09-10T19:17:00+01:00">
+<meta property="article:published_time" content="2025-12-02T12:00:00+01:00">
 <meta property="article:tag" content="meta">
 <meta property="article:tag" content="simp">
 <meta property="article:tag" content="simproc">
@@ -60,7 +60,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
             </span></p>
             <p class="dateline">
             <a href="." rel="bookmark">
-            <time class="published dt-published" datetime="2025-09-10T19:17:00+01:00" itemprop="datePublished" title="2025-09-10 19:17">2025-09-10 19:17</time></a>
+            <time class="published dt-published" datetime="2025-12-02T12:00:00+01:00" itemprop="datePublished" title="2025-12-02 12:00">2025-12-02 12:00</time></a>
             </p>
                     <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/simp-made-simple/index.md" class="sourcelink">Source</a></p>
 
@@ -79,31 +79,41 @@ For those that don't, the book <a href="https://leanprover-community.github.io/l
 </blockquote>
 <h2>How <code>simp</code> works</h2>
 <p>In this section we present some of the inner workings of <code>simp</code>.</p>
-<p>First we give an overview of the way <code>simp</code> works, then we delve into the specifics by introducing:
-* the <code>SimpM</code> monad, which is the metaprogramming monad holding the information relevant to a <code>simp</code> call;
-* <code>Step</code>, the Lean representation of a single simplification step;
-* <code>Simproc</code>, the Lean representation of simprocs.</p>
+<p>First we give an overview of the way <code>simp</code> works, then we delve into the specifics by introducing:</p>
+<ul>
+<li>the <code>SimpM</code> monad, which is the metaprogramming monad holding the information relevant to a <code>simp</code> call;</li>
+<li>
+<code>Step</code>, the Lean representation of a single simplification step;</li>
+<li>
+<code>Simproc</code>, the Lean representation of simprocs.</li>
+</ul>
 <p>All the <code>simp</code>-specific declarations introduced in this section are in the <code>Lean.Meta</code> or <code>Lean.Meta.Simp</code> namespace.</p>
 <h3>Overview</h3>
 <p>When calling <code>simp</code> in a proof, we give it a <em>simp context</em>.
-This is made of a few different things, but for our purposes think of it as <em>the set of lemmas/simprocs <code>simp</code> is allowed to rewrite with</em>, i.e
-$$\text{default lemmas/simprocs} + \text{explicitly added ones} - \text{explicitly removed ones}.$$
-For example, <code>simp [foo, -bar]</code> means "Simplify using the standard simp lemmas/simprocs except <code>bar</code>, with <code>foo</code> added".</p>
+This is made of a few different things, but for our purposes think of it as <em>the set of lemmas/simprocs <code>simp</code> is allowed to rewrite with</em>, i.e</p>
+<p>$$\text{default lemmas/simprocs} + \text{explicitly added ones} - \text{explicitly removed ones}.$$</p>
+<p>For example, <code>simp [foo, -bar]</code> means "Simplify using the standard simp lemmas/simprocs except <code>bar</code>, with <code>foo</code> added".</p>
 <p>A perhaps surprising fact is that every simp lemma is internally turned into a simproc for <code>simp</code>'s consumption.
 From now on, we will refer to simp lemmas/simprocs as <em>procedures</em>.</p>
 <p>Each procedure in a simp context comes annotated with extra data, such as <em>priority</em>,
 as well as the <em>stage</em> at which the procedure should be called.</p>
-<p>Procedures have two possible stages:
-* <em>Postprocedures</em> are called on an expression <code>e</code> after subexpressions of <code>e</code> are simplified.
-  Procedures are by default postprocedures as oftentimes a procedure can only trigger after the inner expressions have been simplified.
-* <em>Preprocedures</em> are called on an expression <code>e</code> before subexpressions of <code>e</code> are simplified.
+<p>Procedures have two possible stages:</p>
+<ul>
+<li>
+<em>Postprocedures</em> are called on an expression <code>e</code> after subexpressions of <code>e</code> are simplified.
+  Procedures are by default postprocedures as oftentimes a procedure can only trigger after the inner expressions have been simplified.</li>
+<li>
+<em>Preprocedures</em> are called on an expression <code>e</code> before subexpressions of <code>e</code> are simplified.
   Preprocedures are mostly used when the simplification order induced by a postprocedure would otherwise be inefficient by visiting irrelevant subexpressions first.
-  Preprocedures are associated with the <code>↓</code> symbol in several syntaxes throughout the simp codebase.</p>
+  Preprocedures are associated with the <code>↓</code> symbol in several syntaxes throughout the simp codebase.</li>
+</ul>
 <p>The general rule of thumb is that postprocedures simplify <em>from the inside-out</em>, while preprocedures simplify <em>from the outside-in</em>.</p>
-<p>Roughly speaking, when traversing an expression <code>e</code>, <code>simp</code> does the following in order:
-1. Run preprocedures on <code>e</code>;
-2. Traverse subexpressions of <code>e</code> (note that the preprocedures might have changed <code>e</code> by this point);
-3. Run postprocedures on <code>e</code>.</p>
+<p>Roughly speaking, when traversing an expression <code>e</code>, <code>simp</code> does the following in order:</p>
+<ol>
+<li>Run preprocedures on <code>e</code>;</li>
+<li>Traverse subexpressions of <code>e</code> (note that the preprocedures might have changed <code>e</code> by this point);</li>
+<li>Run postprocedures on <code>e</code>.</li>
+</ol>
 <p>We call this the <em>simplification loop</em>.</p>
 <pre class="code literal-block"><span class="nf">graph</span><span class="w"> </span><span class="n">TD</span><span class="w"></span>
 <span class="w">    </span><span class="n">e</span><span class="p">[</span><span class="s">"e"</span><span class="p">]</span><span class="w"></span>
@@ -116,19 +126,23 @@ as well as the <em>stage</em> at which the procedure should be called.</p>
 <span class="w">    </span><span class="n">e1</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">post</span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
 <span class="w">    </span><span class="n">e2</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">post</span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
 </pre>
-<p>In the figure above, the simplification loop does the following: 
-1. Preprocedures on <code>e</code>
-2. Preprocedures on <code>e₁</code>
-3. Postprocedures on <code>e₁</code> (as it has no children)
-4. Preprocedures on <code>e₂</code> 
-5. Postprocedures on <code>e₂</code> (as it has no children)
-6. Postprocedures on <code>e</code> (as it has no further children)</p>
+<p>In the figure above, the simplification loop does the following: </p>
+<ol>
+<li>Preprocedures on <code>e</code>
+</li>
+<li>Preprocedures on <code>e₁</code>
+</li>
+<li>Postprocedures on <code>e₁</code> (as it has no children)</li>
+<li>Preprocedures on <code>e₂</code> </li>
+<li>Postprocedures on <code>e₂</code> (as it has no children)</li>
+<li>Postprocedures on <code>e</code> (as it has no further children)</li>
+</ol>
 <p>The above loop is merely an approximation of the true simplification loop:
 each procedure actually gets to decide whether to go to step 1 or 3 after it was triggered,
 as we shall see in the coming subsection.</p>
 <h3><code>Step</code></h3>
-<p><a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc"><code>Step</code></a> is the type that represents a single step in the simplification loop. In <code>simp</code>'s algorithm, a step intuitively corresponds to two pieces of information:
-1) The <strong>result</strong> of simplifying an expression <code>e</code>,
+<p><a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc"><code>Step</code></a> is the type that represents a single step in the simplification loop. In <code>simp</code>'s algorithm, a step intuitively corresponds to two pieces of information:</p>
+<p>1) The <strong>result</strong> of simplifying an expression <code>e</code>,
 2) The <strong>location</strong> of what should be simplified next, and in which <strong>direction</strong> (pre or post).</p>
 <p>The result of simplifying <code>e</code> is encoded as an expression <code>e'</code> and a proof that <code>e = e'</code>.
 This is encapsulated by the <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc"><code>Result</code></a>
@@ -149,15 +163,17 @@ i.e. nothing ensures that it actually is a proof that <code>e = e'</code>.
 It is up to the author of the procedure to make sure that the generated proof terms are valid.</p>
 </blockquote>
 <p>After simplifying the current expression <code>e</code> to a new expression <code>e'</code>,
-there are a few possible options for the next location:
-1. Simplify <code>e'</code> further.
-  Preprocedures are tried on <code>e'</code>.
-2. Simplify subexpressions of <code>e'</code>.
+there are a few possible options for the next location:</p>
+<ol>
+<li>Simplify <code>e'</code> further.
+  Preprocedures are tried on <code>e'</code>.</li>
+<li>Simplify subexpressions of <code>e'</code>.
   Preprocedures are tried on each child expression of <code>e'</code> in turn.
-  If <code>e'</code> has no child, then we run postprocedures on <code>e'</code>.
-3. Don't simplify further.
+  If <code>e'</code> has no child, then we run postprocedures on <code>e'</code>.</li>
+<li>Don't simplify further.
   Preprocedures are tried on the next child of the parent expression.
-  If there is no such child, then postprocedures are tried on the parent expression.</p>
+  If there is no such child, then postprocedures are tried on the parent expression.</li>
+</ol>
 <p>The three possibilities above correspond to the three constructors of <code>Step</code>:</p>
 <pre class="code literal-block"><span class="kd">inductive</span> <span class="n">Step</span> <span class="n">where</span>
   <span class="sd">/-- Try preprocedures on the simplified expression. -/</span>
@@ -183,27 +199,48 @@ e.g. in some cases a simproc may use <code>visit</code> and in others use <code>
 <p>To make this more concrete, let's take a look at how these are used in the simprocs <code>Nat.reduceDvd</code> and <code>reduceIte</code> that we looked at in the
 previous blog post. </p>
 <blockquote>
-<p>As a reminder
-- <code>Nat.reduceDvd</code> takes expressions of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers, and returns <code>True</code> or <code>False</code>. 
-- <code>reduceIte</code> takes expressions of the form <code>if h then a else b</code> and outputs <code>a</code> (resp. <code>b</code>) if <code>h</code> can be simplified to <code>True</code> (resp. <code>False</code>). </p>
+<p>As a reminder</p>
+<ul>
+<li>
+<p><code>Nat.reduceDvd</code> takes expressions of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers, and returns <code>True</code> or <code>False</code>. </p>
+</li>
+<li>
+<p><code>reduceIte</code> takes expressions of the form <code>if h then a else b</code> and outputs <code>a</code> (resp. <code>b</code>) if <code>h</code> can be simplified to <code>True</code> (resp. <code>False</code>). </p>
+</li>
+</ul>
 </blockquote>
-<p>The constructors do the following: 
-- <code>continue</code> indicates that the simproc is done with this expression.
+<p>The constructors do the following: </p>
+<ul>
+<li>
+<p><code>continue</code> indicates that the simproc is done with this expression.
   As a result, simp will not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping.
   This is often used as the "default" output if a simproc was unable to find a simplification in a given expression.
-  For example:
-  - <code>Nat.reduceDvd</code> uses this when the expression is <em>not</em> of the form a | b<code>where</code>a<code>,</code>b<code>are explicit natural numbers. 
-  -</code>reduceIte<code>use this when the expression is *not* of the form</code>if h then a else b<code>where</code>h<code>is an expression that can be simplified to</code>True<code>or</code>False<code>(note that the simplification of</code>h<code>is handled by a different</code>simp<code>call).
-  This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
-  For example, when calling</code>simp<code>on</code>if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0<code>, the simproc</code>reduceIte<code>runs twice: once on the outer</code>if ... then ... else<code>, where it uses</code>continue<code>, and once on the inner</code>if ... then ... else<code>, which gets simplified to</code>0<code>.
--</code>done<code>indicates that</code>simp<code>is done with a given expression.
-  When</code>Nat.reduceDvd<code>is called on an expression of the form</code>a | b<code>where</code>a<code>,</code>b<code>are explicit natural numbers, it simplifies it to</code>True<code>or</code>False<code>. 
+  For example:</p>
+</li>
+<li>
+<p><code>Nat.reduceDvd</code> uses this when the expression is <em>not</em> of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers. </p>
+</li>
+<li>
+<p><code>reduceIte</code> use this when the expression is <em>not</em> of the form <code>if h then a else b</code> where <code>h</code> is an expression that can be simplified to <code>True</code> or <code>False</code> 
+    (note that the simplification of <code>h</code> is handled by a different <code>simp</code> call).</p>
+</li>
+</ul>
+<p>This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
+  For example, when calling <code>simp</code> on <code>if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0</code>, the simproc <code>reduceIte</code> runs twice: once on the outer <code>if ... then ... else</code>, where it uses <code>continue</code>, and once on the inner <code>if ... then ... else</code>, which gets simplified to <code>0</code>.</p>
+<ul>
+<li>
+<p><code>done</code> indicates that <code>simp</code> is done with a given expression.
+  When <code>Nat.reduceDvd</code> is called on an expression of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers, it simplifies it to <code>True</code> or <code>False</code>. 
   Either way, the output is in simp normal form and there is no need to simplify it further.
-  Thus</code>Nat.reduceDvd<code>uses</code>done<code>in such a case.
--</code>visit<code>indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
-  When</code>reduceIte<code>is called on a expressions of the form</code>if p then a else b<code>where</code>p<code>can simplified to</code>True<code>(resp.</code>False<code>), it outputs</code>a<code>(resp.</code>b<code>). 
-  Since</code>a<code>and</code>b<code>could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
-  Thus</code>reduceIte<code>uses</code>visit` in such a case.</p>
+  Thus <code>Nat.reduceDvd</code> uses <code>done</code> in such a case.</p>
+</li>
+<li>
+<p><code>visit</code> indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
+  When <code>reduceIte</code> is called on a expressions of the form <code>if p then a else b</code> where <code>p</code> can simplified to <code>True</code> (resp. <code>False</code>), it outputs <code>a</code> (resp. <code>b</code>). 
+  Since <code>a</code> and <code>b</code> could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
+  Thus <code>reduceIte</code> uses <code>visit</code> in such a case.</p>
+</li>
+</ul>
 <h3>The <code>SimpM</code> monad</h3>
 <p>In this section, we take a look at another key component of the internals of simp, namely the <code>SimpM</code> monad. </p>
 <h4><code>SimpM</code></h4>
@@ -214,38 +251,45 @@ In particular it also captures the <code>MetaM</code> context.</p>
 </pre>
 <p>Let's go through these steps one by one.</p>
 <p>1) The monad <code>MetaM</code>. This is one of the fundamental monads for metaprogramming in Lean. 
-  The state of <code>MetaM</code> allows one to access things like:
-    - Information about the file we're running in (e.g. name, imports, etc)
-    - Information about what definitions/theorems we're allowed to use
-    - What local variables/declarations we have access to</p>
+  The state of <code>MetaM</code> allows one to access things like:</p>
+<pre class="code literal-block"><span class="o">-</span><span class="w"> </span><span class="n">Information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">we</span><span class="s1">'re running in (e.g. name, imports, etc)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="n">definitions</span><span class="o">/</span><span class="n">theorems</span><span class="w"> </span><span class="n">we</span><span class="s1">'re allowed to use</span>
+<span class="o">-</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">variables</span><span class="o">/</span><span class="n">declarations</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="n">to</span><span class="w"></span>
+</pre>
 <p>2) The first monad transformer application: <code>StateRefT Simp.State MetaM</code>. 
   The idea here is the following: since the goal of the <code>SimpM</code> monad is to track the state of a <code>simp</code> call
   (i.e. what's happening, as the program runs), we need to capture more information than what <code>MetaM</code> gives us. 
-  Specifically, we want a monad that can track what's happening via the following structure: 
-    <code>lean
-    structure Simp.State where
-      cache        : Cache
-      congrCache   : CongrCache
-      dsimpCache   : ExprStructMap Expr
-      usedTheorems : UsedSimps
-      numSteps     : Nat
-      diag         : Diagnostics</code>
-  This is something we can achieve using the <code>StateRefT</code> monad transformer, which takes as input a state type (<code>Simp.State</code> in our case) and a monad, and creates a new monad that can read <em>and write</em> this state.
-  In other words, <code>StateRefT Simp.State MetaM</code> is a souped up version of <code>MetaM</code> that can now track extra information by storing (and updating) a term of type <code>Simp.State</code>.</p>
+  Specifically, we want a monad that can track what's happening via the following structure: </p>
+<pre class="code literal-block"><span class="n n-Quoted">`</span><span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">lean</span>
+<span class="n n-Quoted">structure Simp.State where</span>
+<span class="n n-Quoted">  cache        : Cache</span>
+<span class="n n-Quoted">  congrCache   : CongrCache</span>
+<span class="n n-Quoted">  dsimpCache   : ExprStructMap Expr</span>
+<span class="n n-Quoted">  usedTheorems : UsedSimps</span>
+<span class="n n-Quoted">  numSteps     : Nat</span>
+<span class="n n-Quoted">  diag         : Diagnostics</span>
+<span class="n n-Quoted n-Quoted-Escape">``</span><span class="n n-Quoted">`</span><span class="w"></span>
+
+<span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">achieve</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`StateRefT`</span><span class="w"> </span><span class="n">monad</span><span class="w"> </span><span class="n">transformer</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`Simp.State`</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">our</span><span class="w"> </span><span class="k">case</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">monad</span><span class="p">,</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">monad</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">_and</span><span class="w"> </span><span class="n">write_</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="w"></span>
+<span class="k">In</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">words</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`StateRefT Simp.State MetaM`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">souped</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`MetaM`</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="n">track</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">storing</span><span class="w"> </span><span class="p">(</span><span class="k">and</span><span class="w"> </span><span class="n">updating</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n n-Quoted">`Simp.State`</span><span class="p">.</span><span class="w"></span>
+</pre>
 <p>3) The second monad transformer application: <code>ReaderT Simp.Context &lt;| StateRefT Simp.State MetaM</code>. 
   The <code>SimpM</code> monad should also be able to access the "context" that <code>simp</code> is running in, e.g. which simp theorems it has access to and so on.
   This is captured by the type <code>Simp.Context</code>.
   Here, the situation is not quite the same as when we were adding a <code>Simp.State</code> state to <code>MetaM</code>:
   while we will often want to change the state during the <code>simp</code> call, we will rarely need to change the context.
   In programmer lingo, the context should be <em>immutable</em>.
-  Thus, we use a different monad transformer called <code>ReaderT</code>, which is almost identical to <code>StateT</code>, but outputs a new monad where one can only read the type passed as parameter. 
-    &gt; For completeness: when working with <code>ReaderT</code>, one can still locally override the
-    &gt; value of the variable that the monad keeps track of by using <code>withReader</code>. Intuitively, 
-    &gt; the difference between <code>State(Ref)T</code> and <code>ReaderT</code> is the following: 
-    &gt; - In <code>State(Ref)T</code>, one has access to a global variable that can be modified at will,
-    &gt; - In <code>ReaderT</code>, given a program <code>x : ReaderT a m</code>, one can only choose to <em>execute</em> <code>x</code> with
-    &gt;   a different context. In particular, the context before and after the execution of <code>x</code> stays the same.</p>
-<p>4) The final monad transformer application: <code>ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM</code>. 
+  Thus, we use a different monad transformer called <code>ReaderT</code>, which is almost identical to <code>StateT</code>, but outputs a new monad where one can only read the type passed as parameter. </p>
+<pre class="code literal-block"><span class="o">&gt;</span><span class="w"> </span><span class="k">For</span><span class="w"> </span><span class="n">completeness</span><span class="o">:</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">working</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n n-Quoted">`ReaderT`</span><span class="p">,</span><span class="w"> </span><span class="k">one</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">still</span><span class="w"> </span><span class="n">locally</span><span class="w"> </span><span class="n">override</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">monad</span><span class="w"> </span><span class="n">keeps</span><span class="w"> </span><span class="n">track</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n n-Quoted">`withReader`</span><span class="p">.</span><span class="w"> </span><span class="n">Intuitively</span><span class="p">,</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">difference</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="n n-Quoted">`State(Ref)T`</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n n-Quoted">`ReaderT`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">following</span><span class="o">:</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">In</span><span class="w"> </span><span class="n n-Quoted">`State(Ref)T`</span><span class="p">,</span><span class="w"> </span><span class="k">one</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">will</span><span class="p">,</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span>
+<span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">In</span><span class="w"> </span><span class="n n-Quoted">`ReaderT`</span><span class="p">,</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="n n-Quoted">`x : ReaderT a m`</span><span class="p">,</span><span class="w"> </span><span class="k">one</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">choose</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">*</span><span class="k">execute</span><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`x`</span><span class="w"> </span><span class="k">with</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="k">context</span><span class="p">.</span><span class="w"> </span><span class="k">In</span><span class="w"> </span><span class="n">particular</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">context</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">execution</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`x`</span><span class="w"> </span><span class="n">stays</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="p">.</span><span class="w"></span>
+</pre>
+<p>4) The final monad transformer application: <code>ReaderT Simp.MethodsRef &lt;| ReaderT Simp.Context &lt;| StateRefT Simp.State MetaM</code>. 
   This outputs a monad that has access to <code>Simp.Method</code> (passed via a ref). 
   This captures the "pre" and "post" procedures that a given <code>simp</code> call can use, as well as the discharger that a given <code>simp</code> call can use, etc.</p>
 <h3>
@@ -328,16 +372,18 @@ More on this in the next post.</p>
 <span class="n">simproc_decl</span> <span class="n">printThms</span> <span class="o">(</span><span class="n">_</span><span class="o">)</span> <span class="o">:=</span> <span class="n">printUsedTheorems</span>
 </pre>
 <p>We encourage the reader to add these simprocs to their simp calls to see what's happening within.</p>
-<pre class="code literal-block"><span class="n">example</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Even</span><span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="err">∣</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">by</span><span class="w"></span>
-<span class="w">  </span><span class="n">simp</span><span class="w"> </span><span class="o">[</span><span class="n">printThms</span><span class="o">,</span><span class="w"> </span><span class="err">↓</span><span class="n">printThms</span><span class="o">]</span><span class="w"></span>
+<pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">Even</span> <span class="o">(</span><span class="k">if</span> <span class="mi">2</span> <span class="bp">^</span> <span class="mi">4</span> <span class="bp">%</span> <span class="mi">9</span> <span class="bp">∣</span> <span class="mi">6</span> <span class="k">then</span> <span class="mi">2</span> <span class="bp">^</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">4</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="o">[</span><span class="n">printThms</span><span class="o">,</span> <span class="bp">↓</span><span class="n">printThms</span><span class="o">]</span>
 
-<span class="n">example</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Even</span><span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="err">∣</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">4</span><span class="o">)</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">by</span><span class="w"></span>
-<span class="w">  </span><span class="n">simp</span><span class="w"> </span><span class="o">[</span><span class="n">printExpr</span><span class="o">,</span><span class="w"> </span><span class="err">↓</span><span class="n">printExpr</span><span class="o">]</span><span class="w"></span>
+<span class="kd">example</span> <span class="o">:</span> <span class="n">Even</span> <span class="o">(</span><span class="k">if</span> <span class="mi">2</span> <span class="bp">^</span> <span class="mi">4</span> <span class="bp">%</span> <span class="mi">9</span> <span class="bp">∣</span> <span class="mi">6</span> <span class="k">then</span> <span class="mi">2</span> <span class="bp">^</span> <span class="mi">3</span> <span class="k">else</span> <span class="mi">4</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="n">simp</span> <span class="o">[</span><span class="n">printExpr</span><span class="o">,</span> <span class="bp">↓</span><span class="n">printExpr</span><span class="o">]</span>
 </pre>
 <blockquote>
-<p>Exercise: try accessing more information about the current <code>SimpM</code> state, e.g.
-1. The number of simp theorems that are currently available to the tactic (and try varying the imports of the file to see what happens!)
-2. The name of the discharger tactic that the current simp call is using.</p>
+<p>Exercise: try accessing more information about the current <code>SimpM</code> state, e.g.</p>
+<ol>
+<li>The number of simp theorems that are currently available to the tactic (and try varying the imports of the file to see what happens!)</li>
+<li>The name of the discharger tactic that the current simp call is using.</li>
+</ol>
 </blockquote>
 </div>
     </div>
