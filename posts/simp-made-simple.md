@@ -166,7 +166,7 @@ The constructors do the following:
 - `done` indicates that `simp` is done with a given expression.
   When `Nat.reduceDvd` is called on an expression of the form `a | b` where `a`, `b` are explicit natural numbers, it simplifies it to `True` or `False`. 
   Either way, the output is in simp normal form and there is no need to simplify it further.
-  Thus `Nat.reducedDvd` uses `done` in such a case.
+  Thus `Nat.reduceDvd` uses `done` in such a case.
 - `visit` indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
   When `reduceIte` is called on a expressions of the form `if p then a else b` where `p` can simplified to `True` (resp. `False`), it outputs `a` (resp. `b`). 
   Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
@@ -217,7 +217,7 @@ Let's go through these steps one by one.
   while we will often want to change the state during the `simp` call, we will rarely need to change the context.
   In programmer lingo, the context should be _immutable_.
   Thus, we use a different monad transformer called `ReaderT`, which is almost identical to `StateT`, but outputs a new monad where one can only read the type passed as parameter. 
-    > For completness: when working with `ReaderT`, one can still locally override the
+    > For completeness: when working with `ReaderT`, one can still locally override the
     > value of the variable that the monad keeps track of by using `withReader`. Intuitively, 
     > the difference between `State(Ref)T` and `ReaderT` is the following: 
     > - In `State(Ref)T`, one has access to a global variable that can be modified at will,
@@ -226,7 +226,7 @@ Let's go through these steps one by one.
 
 4) The final monad transformer application: `ReaderT Simp.MethodsRef $ ReaderT Simp.Context $ StateRefT Simp.State MetaM`. 
   This outputs a monad that has access to `Simp.Method` (passed via a ref). 
-  This capture the "pre" and "post" procedures that a given `simp` call can use, as well as the discharger that a given `simp` call can use, etc.
+  This captures the "pre" and "post" procedures that a given `simp` call can use, as well as the discharger that a given `simp` call can use, etc.
 
 ## `Simproc`s
 
