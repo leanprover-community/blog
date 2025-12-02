@@ -29,9 +29,7 @@ In this section we present some of the inner workings of `simp`.
 First we give an overview of the way `simp` works, then we delve into the specifics by introducing:
 
 * the `SimpM` monad, which is the metaprogramming monad holding the information relevant to a `simp` call;
-
 * `Step`, the Lean representation of a single simplification step;
-
 * `Simproc`, the Lean representation of simprocs.
 
 All the `simp`-specific declarations introduced in this section are in the `Lean.Meta` or `Lean.Meta.Simp` namespace.
@@ -41,9 +39,7 @@ All the `simp`-specific declarations introduced in this section are in the `Lean
 When calling `simp` in a proof, we give it a *simp context*.
 This is made of a few different things, but for our purposes think of it as *the set of lemmas/simprocs `simp` is allowed to rewrite with*, i.e
 
-
 $$\text{default lemmas/simprocs} + \text{explicitly added ones} - \text{explicitly removed ones}.$$
-
 
 For example, `simp [foo, -bar]` means "Simplify using the standard simp lemmas/simprocs except `bar`, with `foo` added".
 
@@ -57,7 +53,6 @@ Procedures have two possible stages:
 
 * *Postprocedures* are called on an expression `e` after subexpressions of `e` are simplified.
   Procedures are by default postprocedures as oftentimes a procedure can only trigger after the inner expressions have been simplified.
-
 * *Preprocedures* are called on an expression `e` before subexpressions of `e` are simplified.
   Preprocedures are mostly used when the simplification order induced by a postprocedure would otherwise be inefficient by visiting irrelevant subexpressions first.
   Preprocedures are associated with the `↓` symbol in several syntaxes throughout the simp codebase.
@@ -66,11 +61,8 @@ The general rule of thumb is that postprocedures simplify *from the inside-out*,
 
 Roughly speaking, when traversing an expression `e`, `simp` does the following in order:
 
-
 1. Run preprocedures on `e`;
-
 2. Traverse subexpressions of `e` (note that the preprocedures might have changed `e` by this point);
-
 3. Run postprocedures on `e`.
 
 We call this the *simplification loop*.
@@ -90,17 +82,11 @@ graph TD
 
 In the figure above, the simplification loop does the following: 
 
-
 1. Preprocedures on `e`
-
 2. Preprocedures on `e₁`
-
 3. Postprocedures on `e₁` (as it has no children)
-
 4. Preprocedures on `e₂` 
-
 5. Postprocedures on `e₂` (as it has no children)
-
 6. Postprocedures on `e` (as it has no further children)
 
 The above loop is merely an approximation of the true simplification loop:
@@ -113,13 +99,11 @@ as we shall see in the coming subsection.
 
 
 1) The **result** of simplifying an expression `e`,
-
 2) The **location** of what should be simplified next, and in which **direction** (pre or post).
 
 The result of simplifying `e` is encoded as an expression `e'` and a proof that `e = e'`.
 This is encapsulated by the [`Result`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc)
 structure:
-
 
 ```lean
 structure Result where
@@ -143,11 +127,9 @@ there are a few possible options for the next location:
 
 1. Simplify `e'` further.
   Preprocedures are tried on `e'`.
-
 2. Simplify subexpressions of `e'`.
   Preprocedures are tried on each child expression of `e'` in turn.
   If `e'` has no child, then we run postprocedures on `e'`.
-
 3. Don't simplify further.
   Preprocedures are tried on the next child of the parent expression.
   If there is no such child, then postprocedures are tried on the parent expression.
@@ -187,7 +169,6 @@ previous blog post.
 > - `reduceIte` takes expressions of the form `if h then a else b` and outputs `a` (resp. `b`) if `h` can be simplified to `True` (resp. `False`). 
 
 The constructors do the following: 
-
 
 - `continue` indicates that the simproc is done with this expression.
   As a result, simp will not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping.
@@ -229,14 +210,11 @@ abbrev SimpM := ReaderT Simp.MethodsRef <| ReaderT Simp.Context <| StateRefT Sim
 
 Let's go through these steps one by one.
 
-
 1) The monad `MetaM`. This is one of the fundamental monads for metaprogramming in Lean. 
   The state of `MetaM` allows one to access things like:
 
     - Information about the file we're running in (e.g. name, imports, etc)
-
     - Information about what definitions/theorems we're allowed to use
-
     - What local variables/declarations we have access to
 
 2) The first monad transformer application: `StateRefT Simp.State MetaM`. 
@@ -283,7 +261,6 @@ Let's go through these steps one by one.
 Let's now formally define what a `simproc` is.
 Recall that, intuitively, a simproc takes in an expression and outputs a simplification step, possibly after modifying the current `SimpM` state (e.g. by adding new goals to be closed by the discharger).
 This behavior is partially encapsulated by the [`Simproc`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Simproc#doc) type:
-
 
 ```lean
 abbrev Simproc := Expr → SimpM Step
@@ -393,5 +370,4 @@ example : Even (if 2 ^ 4 % 9 ∣ 6 then 2 ^ 3 else 4) := by
 > Exercise: try accessing more information about the current `SimpM` state, e.g.
 > 
 > 1. The number of simp theorems that are currently available to the tactic (and try varying the imports of the file to see what happens!)
-> 
 > 2. The name of the discharger tactic that the current simp call is using.
