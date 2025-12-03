@@ -252,12 +252,17 @@ In particular it also captures the <code>MetaM</code> context.</p>
 <p>Let's go through these steps one by one.</p>
 <p>1) The monad <code>MetaM</code>. This is one of the fundamental monads for metaprogramming in Lean. 
   The state of <code>MetaM</code> allows one to access things like:</p>
-<pre class="code literal-block"><span class="o">-</span><span class="w"> </span><span class="n">Information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">we</span><span class="s1">'re running in (e.g. name, imports, etc)</span>
-
-<span class="o">-</span><span class="w"> </span><span class="n">Information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="n">definitions</span><span class="o">/</span><span class="n">theorems</span><span class="w"> </span><span class="n">we</span><span class="s1">'re allowed to use</span>
-
-<span class="o">-</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">variables</span><span class="o">/</span><span class="n">declarations</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="n">to</span><span class="w"></span>
-</pre>
+<ul>
+<li>
+<p>Information about the file we're running in (e.g. name, imports, etc)</p>
+</li>
+<li>
+<p>Information about what definitions/theorems we're allowed to use</p>
+</li>
+<li>
+<p>What local variables/declarations we have access to</p>
+</li>
+</ul>
 <p>2) The first monad transformer application: <code>StateRefT Simp.State MetaM</code>. 
   The idea here is the following: since the goal of the <code>SimpM</code> monad is to track the state of a <code>simp</code> call
   (i.e. what's happening, as the program runs), we need to capture more information than what <code>MetaM</code> gives us. 
