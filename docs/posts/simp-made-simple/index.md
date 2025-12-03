@@ -214,7 +214,9 @@ Let's go through these steps one by one.
   The state of `MetaM` allows one to access things like:
 
     - Information about the file we're running in (e.g. name, imports, etc)
+
     - Information about what definitions/theorems we're allowed to use
+    
     - What local variables/declarations we have access to
 
 2) The first monad transformer application: `StateRefT Simp.State MetaM`. 
@@ -222,18 +224,18 @@ Let's go through these steps one by one.
   (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. 
   Specifically, we want a monad that can track what's happening via the following structure: 
 
-    ```lean
-    structure Simp.State where
-      cache        : Cache
-      congrCache   : CongrCache
-      dsimpCache   : ExprStructMap Expr
-      usedTheorems : UsedSimps
-      numSteps     : Nat
-      diag         : Diagnostics
-    ```
+  ```lean
+  structure Simp.State where
+    cache        : Cache
+    congrCache   : CongrCache
+    dsimpCache   : ExprStructMap Expr
+    usedTheorems : UsedSimps
+    numSteps     : Nat
+    diag         : Diagnostics
+  ```
 
-    This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state.
-    In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) a term of type `Simp.State`.
+  This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state.
+  In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) a term of type `Simp.State`.
 
 3) The second monad transformer application: `ReaderT Simp.Context <| StateRefT Simp.State MetaM`. 
   The `SimpM` monad should also be able to access the "context" that `simp` is running in, e.g. which simp theorems it has access to and so on.
@@ -243,14 +245,14 @@ Let's go through these steps one by one.
   In programmer lingo, the context should be _immutable_.
   Thus, we use a different monad transformer called `ReaderT`, which is almost identical to `StateT`, but outputs a new monad where one can only read the type passed as parameter. 
 
-    > For completeness: when working with `ReaderT`, one can still locally override the
-    > value of the variable that the monad keeps track of by using `withReader`. Intuitively, 
-    > the difference between `State(Ref)T` and `ReaderT` is the following: 
-    > 
-    > - In `State(Ref)T`, one has access to a global variable that can be modified at will,
-    > 
-    > - In `ReaderT`, given a program `x : ReaderT a m`, one can only choose to *execute* `x` with
-    >   a different context. In particular, the context before and after the execution of `x` stays the same.
+  > For completeness: when working with `ReaderT`, one can still locally override the
+  > value of the variable that the monad keeps track of by using `withReader`. Intuitively, 
+  > the difference between `State(Ref)T` and `ReaderT` is the following: 
+  > 
+  > - In `State(Ref)T`, one has access to a global variable that can be modified at will,
+  > 
+  > - In `ReaderT`, given a program `x : ReaderT a m`, one can only choose to *execute* `x` with
+  >   a different context. In particular, the context before and after the execution of `x` stays the same.
 
 4) The final monad transformer application: `ReaderT Simp.MethodsRef <| ReaderT Simp.Context <| StateRefT Simp.State MetaM`. 
   This outputs a monad that has access to `Simp.Method` (passed via a ref). 
