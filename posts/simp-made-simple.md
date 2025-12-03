@@ -213,11 +213,11 @@ Let's go through these steps one by one.
 1) The monad `MetaM`. This is one of the fundamental monads for metaprogramming in Lean. 
   The state of `MetaM` allows one to access things like:
 
-    - Information about the file we're running in (e.g. name, imports, etc)
+  - Information about the file we're running in (e.g. name, imports, etc)
 
-    - Information about what definitions/theorems we're allowed to use
-    
-    - What local variables/declarations we have access to
+  - Information about what definitions/theorems we're allowed to use
+  
+  - What local variables/declarations we have access to
 
 2) The first monad transformer application: `StateRefT Simp.State MetaM`. 
   The idea here is the following: since the goal of the `SimpM` monad is to track the state of a `simp` call
