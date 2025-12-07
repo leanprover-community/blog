@@ -55,13 +55,14 @@ def Circle : Type := circle -- possibly replacing `circle` by its definition
 
 ## Typeclass search
 
-In the Subobject design, all instances about `circle` are actually about `↥circle` where `↥` is
-[`CoeSort.coe`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=CoeSort.coe#doc).
-Eg `Foo circle` is secretly `Foo ↥circle`.
-This makes the head symbol be `CoeSort.coe`, meaning that typeclass search will try unifying
-*every* `Foo ↥someSubobject` instance with `Foo ↥circle`.
-In doing so, it will try unifying *every* subobject `someSubobject`
-with a `Foo` instance with `circle`. This is potentially really expensive.
+In the Subobject design, all instances about `circle` are actually about `{x // x ∈ circle}`.
+Eg `Foo circle` is secretly `Foo {x // x ∈ circle}`.
+This makes the head symbol be
+[`Subtype`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Subtype#doc),
+meaning that typeclass search will try unifying
+*every* `Foo {x // x ∈ someSubobject}` instance with `Foo {x // x ∈ circle}`.
+In doing so, it will try unifying *every* subobject `someSubobject` with a `Foo` instance
+with `circle`. This is potentially really expensive.
 
 The Coerced Subobject and Custom Structure designs do not suffer from this performance penalty.
 
