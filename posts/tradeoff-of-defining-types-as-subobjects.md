@@ -1,7 +1,7 @@
 ---
 author: 'Yaël Dillies'
 category: 'Design patterns'
-date: 2025-12-07 14:00:00 UTC+02:00
+date: 2025-12-10 14:00:00 UTC+02:00
 description: 'Comparison of the different ways to define types from existing supertypes'
 has_math: true
 link: ''
@@ -52,23 +52,6 @@ We call this the "Coerced Subobject" design.
 -- Coerced Subobject design
 def Circle : Type := circle -- possibly replacing `circle` by its definition
 ```
-
-## Typeclass search
-
-In the Subobject design, all instances about `circle` are actually about `{x // x ∈ circle}`.
-Eg `Foo circle` is secretly `Foo {x // x ∈ circle}`.
-This makes the head symbol be
-[`Subtype`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Subtype#doc),
-meaning that typeclass search will try unifying
-*every* `Foo {x // x ∈ someSubobject}` instance with `Foo {x // x ∈ circle}`.
-In doing so, it will try unifying *every* subobject `someSubobject` with a `Foo` instance
-with `circle`. This is potentially really expensive.
-
-The Coerced Subobject and Custom Structure designs do not suffer from this performance penalty.
-
-See [#12386](https://github.com/leanprover-community/mathlib4/pull/12386) for an example
-where switching from the Subobject design (`ringOfIntegers`)
-to the Coerced Subobject design (`RingOfIntegers`) dramatically increased performance.
 
 ## Dot notation
 
@@ -130,7 +113,6 @@ Here is a table compiling the above discussion.
 
 | Aspect | Subobject | Coerced Subobject | Custom Structure |
 |--|--|--|--|
-| Typeclass search | Possibly expensive | Fast | Fast |
 | Dot notation | ✗ | ✓ | ✓ |
 | Custom named projections | ✗ | ✗ | ✓ |
 | Generic instances | automatic | easy to transfer | hard to transfer but could be improved |
