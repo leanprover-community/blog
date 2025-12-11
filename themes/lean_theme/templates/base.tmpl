@@ -50,20 +50,20 @@
 
         // Convert code blocks with language-mermaid to mermaid diagrams
         document.addEventListener('DOMContentLoaded', function() {
-            // Find all code blocks with language-mermaid class (Python-Markdown format)
-            const codeBlocks = document.querySelectorAll('code.language-mermaid');
+            // Find all code blocks with language-mermaid class
+            const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid');
 
-            codeBlocks.forEach((code) => {
-                const content = code.textContent.trim();
-
-                // Create a new div for mermaid
-                const mermaidDiv = document.createElement('div');
-                mermaidDiv.className = 'mermaid';
-                mermaidDiv.textContent = content;
-
-                // Replace the parent pre block with the mermaid div
+            mermaidCodeBlocks.forEach((code) => {
                 const pre = code.parentElement;
-                pre.parentNode.replaceChild(mermaidDiv, pre);
+                if (pre && pre.tagName === 'PRE') {
+                    // Create a div for mermaid to render
+                    const mermaidDiv = document.createElement('div');
+                    mermaidDiv.className = 'mermaid';
+                    mermaidDiv.textContent = code.textContent;
+
+                    // Replace the pre block with the mermaid div
+                    pre.parentNode.replaceChild(mermaidDiv, pre);
+                }
             });
 
             // Render all mermaid diagrams
