@@ -37,6 +37,50 @@
     </div>
     {{ base.late_load_js() }}
     {% block extra_js %}{% endblock %}
+
+    <!-- Mermaid JS for diagram rendering -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        // Initialize mermaid
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default'
+        });
+
+        // Convert code blocks with mermaid syntax to mermaid diagrams
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all pre.code blocks that contain mermaid syntax (starting with "graph")
+            const preBlocks = document.querySelectorAll('pre.code.literal-block');
+
+            preBlocks.forEach((pre, index) => {
+                const content = pre.textContent.trim();
+                // Check if this looks like a mermaid diagram
+                if (content.startsWith('graph ') ||
+                    content.startsWith('sequenceDiagram') ||
+                    content.startsWith('classDiagram') ||
+                    content.startsWith('stateDiagram') ||
+                    content.startsWith('erDiagram') ||
+                    content.startsWith('journey') ||
+                    content.startsWith('gantt') ||
+                    content.startsWith('pie') ||
+                    content.startsWith('flowchart')) {
+
+                    // Create a new div for mermaid
+                    const mermaidDiv = document.createElement('div');
+                    mermaidDiv.className = 'mermaid';
+                    mermaidDiv.textContent = content;
+
+                    // Replace the pre block with the mermaid div
+                    pre.parentNode.replaceChild(mermaidDiv, pre);
+                }
+            });
+
+            // Render all mermaid diagrams
+            mermaid.run();
+        });
+    </script>
+
     {{ body_end }}
     {{ template_hooks['body_end']() }}
 </body>
