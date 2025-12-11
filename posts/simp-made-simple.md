@@ -97,8 +97,8 @@ as we shall see in the coming subsection.
 
 [`Step`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc) is the type that represents a single step in the simplification loop. In `simp`'s algorithm, a step intuitively corresponds to two pieces of information:
 
-
 1) The **result** of simplifying an expression `e`,
+
 2) The **location** of what should be simplified next, and in which **direction** (pre or post).
 
 The result of simplifying `e` is encoded as an expression `e'` and a proof that `e = e'`.
@@ -170,25 +170,24 @@ previous blog post.
 
 The constructors do the following: 
 
-- `continue` indicates that the simproc is done with this expression.
+1) `continue` indicates that the simproc is done with this expression.
   As a result, simp will not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping.
   This is often used as the "default" output if a simproc was unable to find a simplification in a given expression.
   For example:
 
   - `Nat.reduceDvd` uses this when the expression is *not* of the form `a | b` where `a`, `b` are explicit natural numbers. 
-
   - `reduceIte` use this when the expression is *not* of the form `if h then a else b` where `h` is an expression that can be simplified to `True` or `False` 
     (note that the simplification of `h` is handled by a different `simp` call).
 
   This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
   For example, when calling `simp` on `if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0`, the simproc `reduceIte` runs twice: once on the outer `if ... then ... else`, where it uses `continue`, and once on the inner `if ... then ... else`, which gets simplified to `0`.
 
-- `done` indicates that `simp` is done with a given expression.
+2) `done` indicates that `simp` is done with a given expression.
   When `Nat.reduceDvd` is called on an expression of the form `a | b` where `a`, `b` are explicit natural numbers, it simplifies it to `True` or `False`. 
   Either way, the output is in simp normal form and there is no need to simplify it further.
   Thus `Nat.reduceDvd` uses `done` in such a case.
 
-- `visit` indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
+3) `visit` indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
   When `reduceIte` is called on a expressions of the form `if p then a else b` where `p` can simplified to `True` (resp. `False`), it outputs `a` (resp. `b`). 
   Since `a` and `b` could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
   Thus `reduceIte` uses `visit` in such a case.
@@ -196,8 +195,6 @@ The constructors do the following:
 ## The `SimpM` monad
 
 In this section, we take a look at another key component of the internals of simp, namely the `SimpM` monad. 
-
-### `SimpM`
 
 [`SimpM`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc) is the monad that tracks the current context `simp` is running in (what `simp` theorems are available, etc) and what has been done so far (e.g. number of steps taken, theorems used).
 In particular it also captures the `MetaM` context.
@@ -224,15 +221,15 @@ Let's go through these steps one by one.
   (i.e. what's happening, as the program runs), we need to capture more information than what `MetaM` gives us. 
   Specifically, we want a monad that can track what's happening via the following structure: 
 
-  ```lean
-  structure Simp.State where
-    cache        : Cache
-    congrCache   : CongrCache
-    dsimpCache   : ExprStructMap Expr
-    usedTheorems : UsedSimps
-    numSteps     : Nat
-    diag         : Diagnostics
-  ```
+```lean
+structure Simp.State where
+  cache        : Cache
+  congrCache   : CongrCache
+  dsimpCache   : ExprStructMap Expr
+  usedTheorems : UsedSimps
+  numSteps     : Nat
+  diag         : Diagnostics
+```
 
   This is something we can achieve using the `StateRefT` monad transformer, which takes as input a state type (`Simp.State` in our case) and a monad, and creates a new monad that can read _and write_ this state.
   In other words, `StateRefT Simp.State MetaM` is a souped up version of `MetaM` that can now track extra information by storing (and updating) a term of type `Simp.State`.
