@@ -48,32 +48,22 @@
             theme: 'default'
         });
 
-        // Convert code blocks with mermaid syntax to mermaid diagrams
+        // Convert code blocks with language-mermaid to mermaid diagrams
         document.addEventListener('DOMContentLoaded', function() {
-            // Find all pre.code blocks that contain mermaid syntax (starting with "graph")
-            const preBlocks = document.querySelectorAll('pre.code.literal-block');
+            // Find all code blocks with language-mermaid class (Python-Markdown format)
+            const codeBlocks = document.querySelectorAll('code.language-mermaid');
 
-            preBlocks.forEach((pre, index) => {
-                const content = pre.textContent.trim();
-                // Check if this looks like a mermaid diagram
-                if (content.startsWith('graph ') ||
-                    content.startsWith('sequenceDiagram') ||
-                    content.startsWith('classDiagram') ||
-                    content.startsWith('stateDiagram') ||
-                    content.startsWith('erDiagram') ||
-                    content.startsWith('journey') ||
-                    content.startsWith('gantt') ||
-                    content.startsWith('pie') ||
-                    content.startsWith('flowchart')) {
+            codeBlocks.forEach((code) => {
+                const content = code.textContent.trim();
 
-                    // Create a new div for mermaid
-                    const mermaidDiv = document.createElement('div');
-                    mermaidDiv.className = 'mermaid';
-                    mermaidDiv.textContent = content;
+                // Create a new div for mermaid
+                const mermaidDiv = document.createElement('div');
+                mermaidDiv.className = 'mermaid';
+                mermaidDiv.textContent = content;
 
-                    // Replace the pre block with the mermaid div
-                    pre.parentNode.replaceChild(mermaidDiv, pre);
-                }
+                // Replace the parent pre block with the mermaid div
+                const pre = code.parentElement;
+                pre.parentNode.replaceChild(mermaidDiv, pre);
             });
 
             // Render all mermaid diagrams
