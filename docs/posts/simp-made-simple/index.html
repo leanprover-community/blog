@@ -142,8 +142,8 @@ each procedure actually gets to decide whether to go to step 1 or 3 after it was
 as we shall see in the coming subsection.</p>
 <h3><code>Step</code></h3>
 <p><a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Step#doc"><code>Step</code></a> is the type that represents a single step in the simplification loop. In <code>simp</code>'s algorithm, a step intuitively corresponds to two pieces of information:</p>
-<p>1) The <strong>result</strong> of simplifying an expression <code>e</code>,
-2) The <strong>location</strong> of what should be simplified next, and in which <strong>direction</strong> (pre or post).</p>
+<p>1) The <strong>result</strong> of simplifying an expression <code>e</code>,</p>
+<p>2) The <strong>location</strong> of what should be simplified next, and in which <strong>direction</strong> (pre or post).</p>
 <p>The result of simplifying <code>e</code> is encoded as an expression <code>e'</code> and a proof that <code>e = e'</code>.
 This is encapsulated by the <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Result#doc"><code>Result</code></a>
 structure:</p>
@@ -210,40 +210,29 @@ previous blog post. </p>
 </ul>
 </blockquote>
 <p>The constructors do the following: </p>
-<ul>
-<li>
-<p><code>continue</code> indicates that the simproc is done with this expression.
+<p>1) <code>continue</code> indicates that the simproc is done with this expression.
   As a result, simp will not attempt to simplify the expression again using the same simproc to prevent the simplification procedure from looping.
   This is often used as the "default" output if a simproc was unable to find a simplification in a given expression.
   For example:</p>
-</li>
+<ul>
 <li>
-<p><code>Nat.reduceDvd</code> uses this when the expression is <em>not</em> of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers. </p>
-</li>
+<code>Nat.reduceDvd</code> uses this when the expression is <em>not</em> of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers. </li>
 <li>
-<p><code>reduceIte</code> use this when the expression is <em>not</em> of the form <code>if h then a else b</code> where <code>h</code> is an expression that can be simplified to <code>True</code> or <code>False</code> 
-    (note that the simplification of <code>h</code> is handled by a different <code>simp</code> call).</p>
-</li>
+<code>reduceIte</code> use this when the expression is <em>not</em> of the form <code>if h then a else b</code> where <code>h</code> is an expression that can be simplified to <code>True</code> or <code>False</code> 
+    (note that the simplification of <code>h</code> is handled by a different <code>simp</code> call).</li>
 </ul>
 <p>This only applies for the expression at hand: if this is a pre-procedure then the simproc may still end up being called on subexpressions. 
   For example, when calling <code>simp</code> on <code>if RiemannHypothesis then 0 else if 1 + 1 = 2 then 0 else 0</code>, the simproc <code>reduceIte</code> runs twice: once on the outer <code>if ... then ... else</code>, where it uses <code>continue</code>, and once on the inner <code>if ... then ... else</code>, which gets simplified to <code>0</code>.</p>
-<ul>
-<li>
-<p><code>done</code> indicates that <code>simp</code> is done with a given expression.
+<p>2) <code>done</code> indicates that <code>simp</code> is done with a given expression.
   When <code>Nat.reduceDvd</code> is called on an expression of the form <code>a | b</code> where <code>a</code>, <code>b</code> are explicit natural numbers, it simplifies it to <code>True</code> or <code>False</code>. 
   Either way, the output is in simp normal form and there is no need to simplify it further.
   Thus <code>Nat.reduceDvd</code> uses <code>done</code> in such a case.</p>
-</li>
-<li>
-<p><code>visit</code> indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
+<p>3) <code>visit</code> indicates (for a pre-procedure) that a simplification has been done but that pre-procedures should be tried again on the simplified expression.
   When <code>reduceIte</code> is called on a expressions of the form <code>if p then a else b</code> where <code>p</code> can simplified to <code>True</code> (resp. <code>False</code>), it outputs <code>a</code> (resp. <code>b</code>). 
   Since <code>a</code> and <code>b</code> could be arbitrarily complicated expressions, it makes sense to try and simplify them further.
   Thus <code>reduceIte</code> uses <code>visit</code> in such a case.</p>
-</li>
-</ul>
 <h3>The <code>SimpM</code> monad</h3>
 <p>In this section, we take a look at another key component of the internals of simp, namely the <code>SimpM</code> monad. </p>
-<h4><code>SimpM</code></h4>
 <p><a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.SimpM#doc"><code>SimpM</code></a> is the monad that tracks the current context <code>simp</code> is running in (what <code>simp</code> theorems are available, etc) and what has been done so far (e.g. number of steps taken, theorems used).
 In particular it also captures the <code>MetaM</code> context.</p>
 <p>Let's go through this in more detail. The monad <code>SimpM</code> is defined using monad transformers as follows:</p>
@@ -267,14 +256,14 @@ In particular it also captures the <code>MetaM</code> context.</p>
   The idea here is the following: since the goal of the <code>SimpM</code> monad is to track the state of a <code>simp</code> call
   (i.e. what's happening, as the program runs), we need to capture more information than what <code>MetaM</code> gives us. 
   Specifically, we want a monad that can track what's happening via the following structure: </p>
-<p><code>lean
-  structure Simp.State where
-    cache        : Cache
-    congrCache   : CongrCache
-    dsimpCache   : ExprStructMap Expr
-    usedTheorems : UsedSimps
-    numSteps     : Nat
-    diag         : Diagnostics</code></p>
+<pre class="code literal-block"><span class="kd">structure</span> <span class="n">Simp.State</span> <span class="n">where</span>
+  <span class="n">cache</span>        <span class="o">:</span> <span class="n">Cache</span>
+  <span class="n">congrCache</span>   <span class="o">:</span> <span class="n">CongrCache</span>
+  <span class="n">dsimpCache</span>   <span class="o">:</span> <span class="n">ExprStructMap</span> <span class="n">Expr</span>
+  <span class="n">usedTheorems</span> <span class="o">:</span> <span class="n">UsedSimps</span>
+  <span class="n">numSteps</span>     <span class="o">:</span> <span class="n">Nat</span>
+  <span class="n">diag</span>         <span class="o">:</span> <span class="n">Diagnostics</span>
+</pre>
 <p>This is something we can achieve using the <code>StateRefT</code> monad transformer, which takes as input a state type (<code>Simp.State</code> in our case) and a monad, and creates a new monad that can read <em>and write</em> this state.
   In other words, <code>StateRefT Simp.State MetaM</code> is a souped up version of <code>MetaM</code> that can now track extra information by storing (and updating) a term of type <code>Simp.State</code>.</p>
 <p>3) The second monad transformer application: <code>ReaderT Simp.Context &lt;| StateRefT Simp.State MetaM</code>. 
