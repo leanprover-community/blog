@@ -67,7 +67,7 @@ Roughly speaking, when traversing an expression `e`, `simp` does the following i
 
 We call this the *simplification loop*.
 
-<pre><code class="language-mermaid">
+<div class="mermaid">
 graph TD
     e["e"]
     e1["e₁"]
@@ -78,7 +78,7 @@ graph TD
 
     e1 -->|post| e
     e2 -->|post| e
-</code></pre>
+</div>
 In the figure above, the simplification loop does the following: 
 
 1. Preprocedures on `e`

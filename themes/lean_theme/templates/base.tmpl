@@ -41,34 +41,7 @@
     <!-- Mermaid JS for diagram rendering -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-
-        // Initialize mermaid
-        mermaid.initialize({
-            startOnLoad: false,
-            theme: 'default'
-        });
-
-        // Convert code blocks with language-mermaid to mermaid diagrams
-        document.addEventListener('DOMContentLoaded', function() {
-            // Find all code blocks with language-mermaid class
-            const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid');
-
-            mermaidCodeBlocks.forEach((code) => {
-                const pre = code.parentElement;
-                if (pre && pre.tagName === 'PRE') {
-                    // Create a div for mermaid to render
-                    const mermaidDiv = document.createElement('div');
-                    mermaidDiv.className = 'mermaid';
-                    mermaidDiv.textContent = code.textContent;
-
-                    // Replace the pre block with the mermaid div
-                    pre.parentNode.replaceChild(mermaidDiv, pre);
-                }
-            });
-
-            // Render all mermaid diagrams
-            mermaid.run();
-        });
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     {{ body_end }}
