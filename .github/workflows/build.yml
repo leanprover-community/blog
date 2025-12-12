@@ -15,16 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - name: install Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
         with:
-          python-version: 3.9
+          version: "0.7.15"
+          python-version: "3.13.5"
+          activate-environment: true
 
       - name: install Python dependencies
-        run: python -m pip install -r requirements.txt
+        run: uv pip install --preview -r pylock.toml
 
       - name: build site
-        run: ./deploy.sh 
+        run: ./deploy.sh
         env:
           git_hash: ${{ github.sha }}
           DEPLOY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
