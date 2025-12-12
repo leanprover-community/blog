@@ -115,17 +115,18 @@ as well as the <em>stage</em> at which the procedure should be called.</p>
 <li>Run postprocedures on <code>e</code>.</li>
 </ol>
 <p>We call this the <em>simplification loop</em>.</p>
-<pre class="code literal-block"><span class="nf">graph</span><span class="w"> </span><span class="n">TD</span><span class="w"></span>
-<span class="w">    </span><span class="n">e</span><span class="p">[</span><span class="s">"e"</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="n">e1</span><span class="p">[</span><span class="s">"e₁"</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="n">e2</span><span class="p">[</span><span class="s">"e₂"</span><span class="p">]</span><span class="w"></span>
+<div class="mermaid">
+graph TD
+    e["e"]
+    e1["e₁"]
+    e2["e₂"]
 
-<span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">pre</span><span class="o">|</span><span class="w"> </span><span class="n">e1</span><span class="w"></span>
-<span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">pre</span><span class="o">|</span><span class="w"> </span><span class="n">e2</span><span class="w"></span>
+    e --&gt;|pre| e1
+    e --&gt;|pre| e2
 
-<span class="w">    </span><span class="n">e1</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">post</span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
-<span class="w">    </span><span class="n">e2</span><span class="w"> </span><span class="o">--&gt;|</span><span class="n">post</span><span class="o">|</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
-</pre>
+    e1 --&gt;|post| e
+    e2 --&gt;|post| e
+</div>
 <p>In the figure above, the simplification loop does the following: </p>
 <ol>
 <li>Preprocedures on <code>e</code>
@@ -413,7 +414,11 @@ MathJax.Hub.Config({
 </div>
         
 
-    
-    
+
+    <!-- Mermaid JS for diagram rendering -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
 </body>
 </html>
