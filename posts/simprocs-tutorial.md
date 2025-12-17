@@ -10,7 +10,7 @@ tags: 'simp, simproc, meta'
 title: 'Simprocs, the process made simple'
 ---
 
-This is the final post in our simproce series. In our first two posts, we gave an informal introduction to the concept of a *simproc*, and a brief overview of the inner workings of the `simp` tactic. The aim of this final post is to use build on this by demonstrating how Lean users can write their own simprocs.
+This is the final post in our simproc series. In our first two posts, we gave an informal introduction to the concept of a *simproc*, and a brief overview of the inner workings of the `simp` tactic. The aim of this final post is to build on this by demonstrating how Lean users can write their own simprocs.
 
 > As for the previous post, we will assume that the reader has some exposure to metaprogramming in Lean.
 > In addition, some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
@@ -35,7 +35,7 @@ simproc mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
 
-When calling a simproc in `simp` (if it is not in the standard simp set), one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]` (note that this also works when passing lemmas to `simp`!)
+When calling a simproc in `simp` (if it is not in the standard simp set), one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]`. (Note that this also works when passing lemmas to `simp`!)
 
 To add `mySimproc` to the standard simp set as a preprocedure (recall that postprocedure is the default), do
 ```lean
@@ -108,7 +108,7 @@ But we are trying not to rely on the definition of `revRange`.
 * Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).
 * Simplifying `revRange n` for a big input numeral `n` might involve a lot of simplification steps.
   In this specific case, the number of simplification steps is linear in `n`.
-  Simplification steps matter because each of them increases the size of the proof term.
+  Simplification steps matter because each one increases the size of the proof term.
 * `revRange n` could find itself (partially) evaluated even if `n` isn't a numeral.
   Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`.
   This is in general highly undesirable.
@@ -185,7 +185,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 ## How to discharge subgoals
 
 Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be access by the user via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc) (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
+`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be accessed by the tactic via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc) (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
 
 In the following example, we implement a simproc for [`Nat.factorization`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc) that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
 
