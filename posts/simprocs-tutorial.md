@@ -10,7 +10,10 @@ tags: 'simp, simproc, meta'
 title: 'Simprocs, the process made simple'
 ---
 
-This is the final post in our simproc series. In our first two posts, we gave an informal introduction to the concept of a *simproc*, and a brief overview of the inner workings of the `simp` tactic. The aim of this final post is to build on this by demonstrating how Lean users can write their own simprocs.
+This is the final post in our simproc series.
+In our first two posts, we gave an informal introduction to the concept of a *simproc*,
+and a brief overview of the inner workings of the `simp` tactic.
+The aim of this final post is to build on this by demonstrating how Lean users can write their own simprocs.
 
 > As for the previous post, we will assume that the reader has some exposure to metaprogramming in Lean.
 > In addition, some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
@@ -35,7 +38,9 @@ simproc mySimproc (theExprToMatch _ _) := fun e ↦ do
   write_simproc_here
 ```
 
-When calling a simproc in `simp` (if it is not in the standard simp set), one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier: `simp [↓mySimproc]`. (Note that this also works when passing lemmas to `simp`!)
+When calling a simproc in `simp` (if it is not in the standard simp set),
+one can specify that this is a preprocedure by adding `↓` in front of the simproc identifier:
+`simp [↓mySimproc]`. (Note that this also works when passing lemmas to `simp`!)
 
 To add `mySimproc` to the standard simp set as a preprocedure (recall that postprocedure is the default), do
 ```lean
@@ -76,7 +81,8 @@ Note two features of `revRange` that one should *not* expect from all functions 
 
 Let's now present three approaches to evaluating `revRange` on numerals:
 * The baseline **simproc-less approach** which only uses lemmas and no simproc.
-* The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression, but leave the proof to be `rfl` (here the "d" stands for "definitional equality").
+* The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression,
+  but leave the proof to be `rfl` (here the "d" stands for "definitional equality").
 * The **simproc approach**, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.
 
 ## The simproc-less approach
@@ -116,7 +122,9 @@ But we are trying not to rely on the definition of `revRange`.
 ## The definitional approach
 
 In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
-The syntax to declare a dsimproc is rather to simprocs, with a small difference: we now need to return a [`DStep`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DStep#doc) instead of a `Step`; in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
+The syntax to declare a dsimproc is rather to simprocs, with a small difference:
+we now need to return a [`DStep`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DStep#doc) instead of a `Step`;
+in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
 <span style="color:red">**TODO**: We were explaining `DStep` before, but now it comes after.</span>
 
@@ -219,7 +227,9 @@ example : Nat.factorization (2 * 3) = fun₀ | 2 => 1 | 3 => 1 := by
 
 ## How to match on numerals
 
-Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. The easiest case is perhaps that of `Nat` litterals. Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
+Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating.
+The easiest case is perhaps that of `Nat` literals.
+Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
 - [`Lean.Expr.rawNatLit?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc).
 - [`Lean.Expr.natLit!`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc)
 - [`Lean.Expr.nat?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc)
