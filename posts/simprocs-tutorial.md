@@ -18,8 +18,8 @@ The aim of this final post is to build on this by demonstrating how Lean users c
 > As for the previous post, we will assume that the reader has some exposure to metaprogramming in Lean.
 > In addition, some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
 
-Then we explain the syntax and general structure of a simproc.
-Finally, we walk through an explicit example of a simproc for a simple custom function.
+First we explain the syntax and general structure of a simproc.
+Then we walk through an explicit example of a simproc for a simple custom function.
 
 # The simproc syntax
 
