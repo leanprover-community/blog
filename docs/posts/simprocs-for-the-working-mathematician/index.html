@@ -181,11 +181,10 @@ There are a few reasons why simprocs are interesting for computation regardless:
 <li>If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(b % a = 0) = False</code>.</li>
 </ul>
 <h4>The <code>Finset.Icc_ofNat_ofNat</code> simproc</h4>
-<blockquote>
-<p>Note: this <code>simproc</code> is not in Mathlib yet (see <a href="https://github.com/leanprover-community/mathlib4/pull/22039">#22039</a>).</p>
-</blockquote>
 <p>If <code>a</code> and <code>b</code> are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then <code>Finset.Icc a b</code> for <code>a</code> and <code>b</code> is the finite set of elements lying between <code>a</code> and <code>b</code>.</p>
-<p>The <code>Finset.Icc_ofNat_ofNat</code> simproc is designed to take expressions of the form <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc"><code>Finset.Icc a b</code></a> where <code>a</code> and <code>b</code> are numerals, and simplify them to an explicit set.</p>
+<p>The <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc_ofNat_ofNat#doc"><code>Finset.Icc_ofNat_ofNat</code></a>
+simproc is designed to take expressions of the form <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc"><code>Finset.Icc a b</code></a>
+where <code>a</code> and <code>b</code> are numerals, and simplify them to an explicit set.</p>
 <pre class="code literal-block"><span class="kd">example</span> <span class="o">:</span> <span class="n">Finset.Icc</span> <span class="mi">1</span> <span class="mi">0</span> <span class="bp">=</span> <span class="bp">∅</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="n">simp</span> <span class="n">only</span> <span class="o">[</span><span class="n">Icc_ofNat_ofNat</span><span class="o">]</span>
 

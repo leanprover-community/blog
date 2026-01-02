@@ -146,11 +146,11 @@ When presented with a left hand side of the form `a ∣ b` where `a` and `b` are
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
-> Note: this `simproc` is not in Mathlib yet (see [#22039](https://github.com/leanprover-community/mathlib4/pull/22039)).
-
 If `a` and `b` are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then `Finset.Icc a b` for `a` and `b` is the finite set of elements lying between `a` and `b`.
 
-The `Finset.Icc_ofNat_ofNat` simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc) where `a` and `b` are numerals, and simplify them to an explicit set.
+The [`Finset.Icc_ofNat_ofNat`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc_ofNat_ofNat#doc)
+simproc is designed to take expressions of the form [`Finset.Icc a b`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Finset.Icc#doc)
+where `a` and `b` are numerals, and simplify them to an explicit set.
 
 ```lean
 example : Finset.Icc 1 0 = ∅ := by
