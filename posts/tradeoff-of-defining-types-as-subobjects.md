@@ -25,7 +25,7 @@ We will illustrate the various designs using the "circle in the complex plane" e
 
 The first option, most loyal to the description of the unit circle
 as a submonoid of the complex plane, is to simply define the unit circle as a `Submonoid Complex`.
-We will call the "Subobject design".
+We will call this the "Subobject design".
 
 ```lean
 -- Subobject design
