@@ -1,7 +1,7 @@
 ---
 author: 'Yaël Dillies'
 category: 'Design patterns'
-date: 2025-12-10 14:00:00 UTC+02:00
+date: 2026-01-13 14:00:00 UTC+02:00
 description: 'Comparison of the different ways to define types from existing supertypes'
 has_math: true
 link: ''
