@@ -34,6 +34,8 @@ def circle : Submonoid Complex where
   one_mem' := sorry
   mul_mem' := sorry
 ```
+One subobject implemented this way in Mathlib is
+[`unitInterval`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=unitInterval#doc).
 
 The second obvious choice would be to define the unit circle as a custom structure.
 We call this the "Custom Structure" design.
@@ -44,6 +46,8 @@ structure Circle : Type where
   val : Complex
   norm_val : ‖val‖ = 1
 ```
+One subobject implemented this way in Mathlib is
+[`TopologicalSpace.Opens`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=TopologicalSpace.Opens#doc).
 
 Finally, an intermediate option would be to define it as the coercion to `Type` of a subobject.
 We call this the "Coerced Subobject" design.
@@ -52,6 +56,8 @@ We call this the "Coerced Subobject" design.
 -- Coerced Subobject design
 def Circle : Type := circle -- possibly replacing `circle` by its definition
 ```
+One subobject implemented this way in Mathlib is
+[`NumberField.RingOfIntegers`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=NumberField.RingOfIntegers#doc).
 
 ## Dot notation
 
