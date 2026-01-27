@@ -122,7 +122,7 @@ But we are trying not to rely on the definition of `revRange`.
 ## The definitional approach
 
 In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
-The syntax to declare a dsimproc is rather to simprocs, with a small difference:
+The syntax to declare a dsimproc is rather similar to simprocs, with a small difference:
 we now need to return a [`DStep`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DStep#doc) instead of a `Step`;
 in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
 
