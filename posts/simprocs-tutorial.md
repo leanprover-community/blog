@@ -18,8 +18,8 @@ The aim of this final post is to build on this by demonstrating how Lean users c
 > As for the previous post, we will assume that the reader has some exposure to metaprogramming in Lean.
 > In addition, some familiarity with the `Qq` library will be helpful, but not necessary for most of this post.
 
-First we explain the syntax and general structure of a simproc.
-Then we walk through an explicit example of a simproc for a simple custom function.
+First, we will take a look at the syntax and general structure of a simproc.
+Then, we will walk through an explicit example of a simproc for a simple custom function, and explore various possible implementations.
 
 # The simproc syntax
 
@@ -76,7 +76,7 @@ Note two features of `revRange` that one should *not* expect from all functions 
 * `revRange` is definitionally equal to what we want to unfold it to.
   This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
-  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp`.
+  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp` (see the `Simprocs` section of the second blog post).
     Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 Let's now present three approaches to evaluating `revRange` on numerals:
@@ -119,14 +119,14 @@ But we are trying not to rely on the definition of `revRange`.
   Eg `simp [revRange_zero, revRange_succ]` on `⊢ revRange (n + 3) = revRange (3 + n)` will result in `⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)`.
   This is in general highly undesirable.
 
+TODO(Paul-Lez): also show how we can compute the end result using whnf. 
+
 ## The definitional approach
 
 In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
 The syntax to declare a dsimproc is rather similar to simprocs, with a small difference:
 we now need to return a [`DStep`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.DStep#doc) instead of a `Step`;
 in practice this amounts to providing the expression our program has produced without providing the proof (indeed, this is just `rfl`!)
-
-<span style="color:red">**TODO**: We were explaining `DStep` before, but now it comes after.</span>
 
 To compute `revRange` using the dsimproc approach, we can do the following:
 ```lean
@@ -193,7 +193,7 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 ## How to discharge subgoals
 
 Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be accessed by the tactic via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc) (roughly speaking, the part of the state that encodes which methods `simp` can use to simplify an expression). `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current "state" of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
+`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be accessed by the tactic via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc). Roughly speaking, `Methods` is the part of the `SimpM` monad that encodes which methods `simp` can use to simplify an expression. `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current local value of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
 
 In the following example, we implement a simproc for [`Nat.factorization`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc) that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
 
@@ -227,18 +227,42 @@ example : Nat.factorization (2 * 3) = fun₀ | 2 => 1 | 3 => 1 := by
 
 ## How to match on numerals
 
-Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating.
-The easiest case is perhaps that of `Nat` literals.
+Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. 
+The easiest case is perhaps that of `Nat` litterals -- recall that we had to do this several times when implementing the simprocs above! 
 Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
-- [`Lean.Expr.rawNatLit?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc).
-- [`Lean.Expr.natLit!`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc)
-- [`Lean.Expr.nat?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc)
-- [`Nat.fromExpr?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc)
+- [`Lean.Expr.rawNatLit?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc)
+  Returns `n` if the expression `e` is of the form `Expr.lit (Literal.natVal n)`, and `none` otherwise.
+- [`Lean.Expr.natLit!`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc):
+  Similar to the above, but panics if `e` is not of the form `Expr.lit (Literal.natVal n)`.
+- [`Lean.Expr.nat?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc):
+  Extracts `n` if the expression `e` corresponds to `OfNat.ofNat m` where `m` corresponds to `Expr.lit (Literal.natVal n)`.
+- [`Nat.fromExpr?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc):
+  Combination of the above that also strips metadata from `e` beforehand.
 
-<span style="color:red">**TODO(Paul)**: Let's explain the differences, and show some examples of where behaviour differs. </span>
+Some of these are more restrictive than others, and generally speaking, the two last ones are those that show up the most in
+practise. Given an expression `e` representing a natural number, a little pre-processing can occasionally be necessary in order to
+put `e` in a form where the number can be extracted. For example, if `e` represents `OfNat.ofNat a + OfNat.ofNat b` 
+where `a` and `b` are explicit natural numbers then all of the methods above will fail to extract the number `a + b`,
+as `e` is not of the form `OfNat.ofNat _`. 
 
-## How to handle a non-recursive definition
+```lean
+-- no pre-processing
+run_meta do
+  let a : Q(Nat) := q(1 + 1)
+  Lean.logInfo m!"{Expr.nat? a}" -- none
 
-Write a type of partial computations that is recursive.
+-- with some pre-processing
+run_meta do -- 3
+  let a : Q(Nat) := q(2 + 1)
+  -- The expression is of the form `HAdd.hAdd (OfNat.ofNat x) (OfNat.ofNat y)`
+  let_expr HAdd.hAdd _ _ _ _ x y ← a | return
+  let some vx := Expr.nat? x | return
+  let some vy := Expr.nat? y | return 
+  Lean.logInfo m!"{vx + vy}" -- 3
+```
 
-<span style="color:red">**TODO(Paul)**</span>
+> Exercise: write a function `extractNat? (e : Expr) : MetaM (Option Nat)` 
+> that extracts the value of `e` whenever `e` is of the form `OfNat.ofNat x`
+> (or a combination of such values, using the operations `+`, `-`, `*`, `/`).
+
+
