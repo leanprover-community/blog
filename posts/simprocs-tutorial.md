@@ -228,7 +228,7 @@ example : Nat.factorization (2 * 3) = fun₀ | 2 => 1 | 3 => 1 := by
 ## How to match on numerals
 
 Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. 
-The easiest case is perhaps that of `Nat` litterals -- recall that we had to do this several times when implementing the simprocs above! 
+The easiest case is perhaps that of `Nat` literals -- recall that we had to do this several times when implementing the simprocs above! 
 Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
 - [`Lean.Expr.rawNatLit?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc)
   Returns `n` if the expression `e` is of the form `Expr.lit (Literal.natVal n)`, and `none` otherwise.
