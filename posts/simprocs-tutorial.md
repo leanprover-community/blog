@@ -141,13 +141,13 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 
 > Why does this work? One key step here is happening on the line
 > `let l_expr := Lean.toExpr l`. Generally speaking, `Lean.toExpr` can be thought of as a function 
-> that produces `Expr`s for sufficiently simple objects, in this case natural number litterals and
+> that produces `Expr`s for sufficiently simple objects, in this case natural number literals and
 > explicit lists of such terms.
 > Here, this takes an explicit list of natural numbers of the form
 > `a :: b :: ... :: []` and produces *the expression corresponding to this list* recursively,
 > by sending `[]` to ``Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)`` and
 > `a :: l` to ``Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)``; 
-> and the computation of `Lean.toExpr` for a natural number litteral `a` works in a similar recursive manner.
+> and the computation of `Lean.toExpr` for a natural number literal `a` works in a similar recursive manner.
 > Applying this to `revRange`, produces precisely the expression we wanted, i.e. 
 > writing the expression for `revRange n` as a series of applications of `List.cons` starting from `List.nil`.
 > There are other ways of achieving the same result: for example,
@@ -170,7 +170,7 @@ A slightly different version of the `dsimproc` above using `reduce` is the follo
 dsimproc_decl revRangeCompute (revRange _) := fun e => do
   -- Extract the natural number from the expression
   let_expr revRange m ← e | return .continue
-  -- If `m` isn't a natural number litteral then we do nothing
+  -- If `m` isn't a natural number literal then we do nothing
   unless (m.nat?).isSome do return .continue
   -- Use `whnf` to simplify the expression `e`.
   return .visit <| ← reduce e
