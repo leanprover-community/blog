@@ -76,7 +76,7 @@ Note two features of `revRange` that one should *not* expect from all functions 
 * `revRange` is definitionally equal to what we want to unfold it to.
   This has two consequences:
   * The two examples in the code snippet above can be proved by `rfl`, but of course doing so defeats the point of this blogpost.
-  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp` (see the `Simprocs` section of the second blog post).
+  * We could actually write a *dsimproc* for `revRange`, which is to `dsimp` what a simproc is to `simp` (see the `Simprocs` section of the [second blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/)).
     Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 Let's now present three approaches to evaluating `revRange` on numerals:
@@ -148,7 +148,7 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 > by sending `[]` to ``Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)`` and
 > `a :: l` to ``Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)``; 
 > and the computation of `Lean.toExpr` for a natural number literal `a` works in a similar recursive manner.
-> Applying this to `revRange`, produces precisely the expression we wanted, i.e. 
+> Applying this to `revRange` produces precisely the expression we wanted, i.e. 
 > writing the expression for `revRange n` as a series of applications of `List.cons` starting from `List.nil`.
 > There are other ways of achieving the same result: for example,
 > one can use the function `Lean.Meta.whnf`, which takes in an expression `e`
@@ -185,7 +185,7 @@ For a bit more on dsimprocs, see the extras below.
 
 **Cons**:
 * The function needs to be computable to be evaluated automatically in the meta world.
-* The produced `rfl` proof could be heavy.
+* The produced `rfl` proof could be a "heavy `rfl`", requiring a long time to check in the kernel.
 * Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.
 
 ## The propositional approach
