@@ -1,7 +1,7 @@
 ---
 author: 'Yaël Dillies, Paul Lezeau'
 category: 'Metaprogramming'
-date: 2025-04-16 12:00:00 UTC+01:00
+date: 2026-02-26 12:00:00 UTC+01:00
 description: 'How to write a simproc in practice'
 has_math: true
 link: ''
