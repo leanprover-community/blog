@@ -1,7 +1,7 @@
 ---
 author: 'Yaël Dillies, Paul Lezeau'
 category: 'Metaprogramming'
-date: 2026-02-26 12:00:00 UTC+01:00
+date: 2026-02-27 12:00:00 UTC+01:00
 description: 'How to write a simproc in practice'
 has_math: true
 link: ''
@@ -224,6 +224,19 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 * Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
 * Simplifying `revRange n` for a big input numeral `n` might produce a large proof term.
   In this specific case, the size of the produced proof term will be linear in `n`.
+
+## What should be a simproc?
+There is one question that so far has been left untouched: when should a metaprogram be a simproc?
+To an extent, this boundary is perhaps not a strict one, and we do not aim to provide a definitive answer, but rather provide the reader with a few guiding principles.
+As we saw in the first post, simprocs can be thought of as "parametric `simp` lemmas" where the right hand side is allowed to vary as a function of the left hand side. 
+Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a _normal form_ that can be further simplified by `simp`.
+In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.
+For example, evaluating some concrete function `foo : Nat → Nat` at explicit inputs (i.e. litterals) `n` falls well within this niche, while finding contradictions in general linear inequality systems might be better left bespoke tactic (and indeed, this is precisely what `linarith` does!).
+
+## Epilogue
+In the series of blog posts, we gave an overview of the role simprocs are meant to play in Lean's theorem proving framework,
+took a brief look at the internals of the `simp` tactic, implemented a few simprocs to solve a concrete problem, and briefly discussed what problems simprocs are meant to solve. 
+Our hope is that, equipped with the basic tools needed to write their own simprocs when needed, the reader will be able to use them freely in their own formalisation work and contributions to the Lean ecosystem! 
 
 # Extras
 
