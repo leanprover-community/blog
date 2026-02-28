@@ -231,7 +231,7 @@ To an extent, this boundary is perhaps not a strict one, and we do not aim to pr
 As we saw in the first post, simprocs can be thought of as "parametric `simp` lemmas" where the right hand side is allowed to vary as a function of the left hand side. 
 Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a _normal form_ that can be further simplified by `simp`.
 In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.
-For example, evaluating some concrete function `foo : Nat → Nat` at explicit inputs (i.e. litterals) `n` falls well within this niche, while finding contradictions in general linear inequality systems might be better left bespoke tactic (and indeed, this is precisely what `linarith` does!).
+For example, evaluating some concrete function `foo : Nat → Nat` at explicit inputs (i.e. literals) `n` falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what `linarith` does!).
 
 ## Epilogue
 In the series of blog posts, we gave an overview of the role simprocs are meant to play in Lean's theorem proving framework,
