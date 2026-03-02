@@ -221,7 +221,7 @@ official Innovation Engineer at the Institute for Computer-Aided
 Reasoning in Mathematics, who ran several manual checks of the code and
 put it through lean4checker. In parallel, even as we were verifying the
 dimension $8$ code, Gauss astonishingly also came up with a
-[`sorry`]{style="color: red"}-free proof of the $24$-dimensional
+`sorry`-free proof of the $24$-dimensional
 solution. Once we were satisfied that the code was legitimate, we agreed
 to make a joint announcement with Math Inc.
 
@@ -240,7 +240,7 @@ generalise, modularise, and otherwise edit the AI-written code to a form
 more suitable for consolidation and merging into our repository. To
 accomplish this gargantuan goal, we need the community's help! Come to
 packathons - every Tuesday at 10:30 Eastern Time on Zoom (or, if you
-live in Pittsburgh, at the Hoskinson Center at CMU). We want to pack the
+live in Pittsburgh, at the [Hoskinson Center](https://www.cmu.edu/hoskinson/) at CMU). We want to pack the
 code together as surely as it packs all those spheres together in
 dimensions $8$ and $24$!
 
@@ -259,3 +259,5 @@ We would like to take this opportunity to thank all our contributors, human and 
 * Gareth Ma, for developing and robustifying nearly all of the sphere packing infrastructure
 * Pietro Monticone, for helping set up our CI, website and project management infrastucture, important maintenance support, insightful inputs on human-AI collaboration, and several contibutions to the actual formalisation, with and without Aristotle
 * David Renshaw, for valuable proof contributions, maintenance support, and review support for both human- and AI-contributions
+
+We would also like to express our sincere gratitude to all our supporters and well-wishers, including (but by no means limited to) [Jeremy Avigad](https://www.andrew.cmu.edu/user/avigad/), [Matthew Ballard](https://sc.edu/study/colleges_schools/artsandsciences/mathematics/our_people/directory/ballard_matthew.php), [Kevin Buzzard](https://profiles.imperial.ac.uk/k.buzzard), [Leo de Moura](https://leodemoura.github.io/), [Emily Riehl](https://emilyriehl.github.io/), the [Mathlib maintainers](https://leanprover-community.github.io/teams/maintainers.html), and the [Institute for Computer-Aided Reasoning in Mathematics](https://icarm.io/).
