@@ -254,7 +254,7 @@ to work together to achieve our objective of creating a maintainable
 proof artefact that will be useful to the community.
 
 We would like to take this opportunity to thank all our contributors, human and AI, past, present and future, most notably:
-* David Loeffler, for valuable inputs and upstream contributions intended for this project)
+* David Loeffler, for valuable inputs and upstream contributions intended for this project
 * Gareth Ma, for developing and robustifying nearly all of the sphere packing infrastructure
 * Pietro Monticone, for helping set up our CI, website and project management infrastucture, important maintenance support, insightful inputs on human-AI collaboration, and several contibutions to the actual formalisation, with and without Aristotle
 * David Renshaw, for valuable proof contributions, maintenance support, and review support for both human- and AI-contributions
