@@ -7,7 +7,7 @@ has_math: true
 link: ''
 slug: simprocs-tutorial
 tags: 'simp, simproc, meta'
-title: 'Simprocs, the process made simple'
+title: 'Fantastic Simprocs and How to Write Them'
 ---
 
 This is the final post in our simproc series.
