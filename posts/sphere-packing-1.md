@@ -13,19 +13,19 @@ campus of the Swiss Federal Institute of Technology, Lausanne (EPFL). He
 had been invited to give the [Assyr Abdulle
 lecture](https://bernoulli.epfl.ch/assyr-abdulle-lecture/) at the
 invitation of EPFL's Bernoulli Center for Fundamental Studies. At that
-talk were two individuals: Sidharth Hariharan, a 3rd-year undergraduate
+talk were two individuals: [Sidharth Hariharan](https://thefundamentaltheor3m.github.io/), a 3rd-year undergraduate
 at Imperial College London pursuing an exchange programme at EPFL, and
-Maryna Viazovska, 2022 Fields Medallist and Chair of Number Theory at
-EPFL. Sidharth was at the talk to say hello to the person who had
+[Maryna Viazovska](https://people.epfl.ch/maryna.viazovska), 2022 Fields Medallist and Chair of Number Theory at
+EPFL. Sid was at the talk to say hello to the person who had
 introduced him to Lean and Maryna was there because she wanted to know
 what this brilliant man in colourful trousers had to say about teaching
 mathematics to a computer. At the reception after the talk, in an
-introduction facilitated by Kevin, Sidharth met Maryna for the first
+introduction facilitated by Kevin, Sid met Maryna for the first
 time, and an idea began to take shape: what if he could learn the
 mathematics of $8$-dimensional sphere packing, from the very person who
 came up with it, by formalising it in Lean?
 
-Sidharth and Maryna had their first meeting about the sphere packing
+Sid and Maryna had their first meeting about the sphere packing
 project at the start of the spring semester at EPFL, in late February
 2024. Over the next 3 months, they set up a repository, wrote some basic
 Lean code, and set up the first version of the project blueprint with
@@ -65,15 +65,15 @@ profound contributions to the project was robustly formalising the
 fundamentals in a way that would go on to seamlessly support all the
 infrastructure the contributors would subsequently develop.
 
-Over summer 2024, Chris, Sidharth, Seewoo and Gareth formalised several
+Over summer 2024, Chris, Sid, Seewoo and Gareth formalised several
 facts about sphere packing theory, built a framework for formalising the
 important Cohn-Elkies Linear Programming Bounds, and developed theory
 about modular and quasimodular forms. Towards the end of August 2024,
-shortly before Sidharth would leave Lausanne for London, in a chance
+shortly before Sid would leave Lausanne for London, in a chance
 encounter at EPFL, he met [Bhavik
 Mehta](https://www.linkedin.com/in/bhavik-mehta-a60369148/). As the
 summer gave way to the new academic year, the project entered a new
-phase: Sidharth began working on formalising the construction of the
+phase: Sid began working on formalising the construction of the
 magic function for his MSc project, supervised by Bhavik; Gareth moved
 to Oxford for his MSc and became less active in the project; and Chris
 and Seewoo continued making steady progress on (quasi)modular form
@@ -84,12 +84,12 @@ all parts of the project, the technical details of which will be
 discussed in a forthcoming post. On the modular forms side, Chris worked
 with David Loeffler to prove key ingredients for the dimension formula
 of level one, weight $\geq 3$ modular forms. Seewoo continued building
-the ingredients for his original proof of the inequalities. Sidharth and
+the ingredients for his original proof of the inequalities. Sid and
 Bhavik navigated the complex construction (pun intended!) of the magic
-function, making important design choices that Sidharth went on to
+function, making important design choices that Sid went on to
 explain in detail in his [MSc
 thesis](https://thefundamentaltheor3m.github.io/M4R_Thesis/main.pdf).
-The repository remained private during this time so that Sidharth's MSc
+The repository remained private during this time so that Sid's MSc
 work would not be affected. On 13 June, 2025, at the [Big Proof:
 Formalising Mathematics at
 Scale](https://www.newton.ac.uk/event/bprw03/) workshop at the Isaac
@@ -105,8 +105,8 @@ In the months that followed, we received numerous contributions from the
 community, with the first coming from Aaron Hill, Alex Nguyen and Julian
 Berman ([PR
 \#105](https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/pull/105)).
-Soon afterwards, Sidharth joined Carnegie Mellon University for his PhD,
-and brought in David Renshaw and Aaron Lin. In September 2025, Sidharth
+Soon afterwards, Sid joined Carnegie Mellon University for his PhD,
+and brought in [David Renshaw](https://github.com/dwrensha) and [Aaron Lin](https://github.com/coolrmal). In September 2025, Sid
 gave a talk about the project at the Graduate Student and Postdoc
 Colloquium at CMU, and a few weeks later, he gave a similar talk at the
 formalisation seminar in Cambridge. On 20 October, 2025, [the first
@@ -124,14 +124,14 @@ norm, and proving the double zeroes integral for the magic function.
 Frequent participants include David Renshaw, Aaron Lin, Matthew Cushman,
 Stefano Rocca, Tito Sacchi and Cameron Freer.
 
-In late October 2025, we were contacted by Vikram Shanker of Harmonic.
-They soon set up a meeting where they were invited to use Aristotle for
+In late October 2025, we were contacted by Vikram Shanker of [Harmonic](https://harmonic.fun/).
+They soon set up a meeting where they were invited to use [Aristotle](https://aristotle.harmonic.fun/) for
 this project. Many involved in the project became early users of
 Aristotle, and several Aristotle PRs, most of them authored by Pietro,
 were made in the following weeks. Soon afterwards, we were also
-contacted by Jared Lichtman of Math, Inc. In a meeting with Jared and
+contacted by [Jared Lichtman](https://mathematics.stanford.edu/people/jared-duker-lichtman) of [Math, Inc](https://www.math.inc/). In a meeting with Jared and
 his team, the team were amazed to learn that Math Inc had managed to
-fill 30 [`sorry`]{style="color: red"}s using Gauss, including a version
+fill 30 `sorry`s using Gauss, including a version
 of a contour integral they had been struggling with for months. Just as
 we were getting Aristotle PRs, we began receiving Gauss PRs. Not all the
 results Math, Inc had proven were PRed, and at some point, we stopped
@@ -141,7 +141,7 @@ In mid-November 2025, we were contacted by Lorenzo Luccioli and Pietro
 Monticone, who were organising the
 [ItaLean](https://pitmonticone.github.io/ItaLean2025/) event that would
 take place in early December in Bologna, Italy. They had invited
-Sidharth a few months earlier to lead a sphere packing working group at
+Sid a few months earlier to lead a sphere packing working group at
 ItaLean. Together, we designed the [sphere packing autoformalisation
 challenge](https://leanprover.zulipchat.com/#narrow/channel/113486-announce/topic/ItaLean.202025.3A.20Bridging.20Formal.20Mathematics.20and.20AI/near/558840060),
 where we would gather informal statements and proofs of three project
@@ -162,11 +162,11 @@ challenge](https://leanprover.zulipchat.com/#narrow/channel/113486-announce/topi
 to a time when we would have more participants.
 
 Nevertheless, we were not deterred, and we were keen to find more ways
-to experiment with AI. At ItaLean, Sidharth and Maryna gave a joint talk
+to experiment with AI. At ItaLean, Sid and Maryna gave a joint talk
 about this project, in which they highlighted AI contributions to the
 project, discussed ways in which such contributions could be improved,
 and openly invited AI companies to get involved in the effort. Soon
-after ItaLean, Sidharth was contacted by [Cameron
+after ItaLean, Sid was contacted by [Cameron
 Freer](https://cfreer.org), an MIT research scientist who has developed
 impressive [Lean4 Skills for
 Claude](https://github.com/cameronfreer/lean4-skills). In just a few
@@ -175,7 +175,7 @@ PRs](https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/pulls/cameronf
 of which 16 have been merged so far.
 
 Another fruitful collaboration at ItaLean was the working group for
-sphere packing, where Sidharth, Bhavik and Maryna gave ItaLean
+sphere packing, where Sid, Bhavik and Maryna gave ItaLean
 participants a hands-on introduction to both the mathematics and the
 Lean aspects of the project. A particularly valuable outcome was the
 effort, led by [Tito Sacchi](https://tilde.team/~tito/) of the
@@ -186,24 +186,23 @@ Tito will soon begin working on his Bachelor's thesis under Maryna in
 Lausanne.
 
 January 2026 saw the team engaging with AI more closely than ever. Chris
-and Sidharth were both experimenting with "vibe proving", with Chris
+and Sid were both experimenting with "vibe proving", with Chris
 using Cameron's Lean 4 Skills for Claude Code to prove a version of the
-residue theorem from complex analysis and Sidharth using Opus 4.5,
+residue theorem from complex analysis and Sid using Opus 4.5,
 Gemini and GPT 5.2 to prove that for any $n$, the periodic sphere
 packing constant in $\mathbb{R}^n$ is equal to the sphere packing
-constant in $\mathbb{R}^n$. We gave an update on the project at Lean
-Together, and a week later, Sidharth spoke (remotely) about his
-vibe-proving work at the Aarhus Math & AI Workshop. January was going
+constant in $\mathbb{R}^n$. We gave an [update on the project](https://youtu.be/mq0P9BMyGPQ?si=E8FVzlSxjRm6eM8L) at [Lean Together](https://leanprover-community.github.io/lt2026/schedule.html), and a week later, Sid spoke (remotely) about his
+vibe-proving work at the [Aarhus Math & AI Workshop](https://conferences.au.dk/math-ai-workshop-2026). January was going
 swimmingly\... until all of a sudden, we found ourselves in the eye of a
 storm.
 
-On 29 January, 2026, at exactly 10 pm, Sidharth received an email from
-Jesse Han, CEO of Math, Inc. "Hey Sid, I'll be in Pittsburgh tomorrow
-and would love to meet! Want to grab a cup of coffee?" Sidharth set up a
+On 29 January, 2026, at exactly 10 pm, Sid received an email from
+[Jesse Han](https://jesse-michael-han.github.io/), CEO of Math, Inc. "Hey Sid, I'll be in Pittsburgh tomorrow
+and would love to meet! Want to grab a cup of coffee?" Sid set up a
 meeting with Jesse the following morning, also inviting his PhD advisor,
 [Jeremy Avigad](https://www.andrew.cmu.edu/user/avigad/). On that frosty
-morning, Jesse broke the ice by telling Sidharth, "We need your help
-with the $24$-dimensional case." Sidharth replied, "Perhaps we should
+morning, Jesse broke the ice by telling Sid, "We need your help
+with the $24$-dimensional case." Sid replied, "Perhaps we should
 focus on $8$ before moving on to $24$," to which Jesse replied, "Here's
 the thing about dimension $8$: Gauss\... finished it."
 
@@ -246,7 +245,7 @@ dimensions $8$ and $24$!
 
 This human-AI collaboration is the first of its kind in terms of the
 scale and significance of the formalised result. Moreover, the team
-leading it consists largely of early-career researchers, with Sidharth
+leading it consists largely of early-career researchers, with Sid
 and Seewoo both being students. We are conscious it will have a
 significant impact on the world of formal mathematics, particularly in
 the precedent it will set for human-AI collaboration. Our sincere hope
