@@ -11,7 +11,7 @@ about what we did and what Gauss did. Happy reading, and stay tuned!*
 On 29 November, 2023, Kevin Buzzard found himself on the beautiful
 campus of the Swiss Federal Institute of Technology, Lausanne (EPFL). He
 had been invited to give the [Assyr Abdulle
-lecture](https://bernoulli.epfl.ch/assyr-abdulle-lecture/) on the
+lecture](https://bernoulli.epfl.ch/assyr-abdulle-lecture/) at the
 invitation of EPFL's Bernoulli Center for Fundamental Studies. At that
 talk were two individuals: Sidharth Hariharan, a 3rd-year undergraduate
 at Imperial College London pursuing an exchange programme at EPFL, and
