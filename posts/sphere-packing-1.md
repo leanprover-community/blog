@@ -1,5 +1,7 @@
 # The Sphere Packing Story
 
+## Chris Birkbeck, Sidharth Hariharan, Seewoo Lee
+
 *This is the first of two blog posts that will discuss the recent
 formalisation of Viazovska's solution to the sphere packing problem in
 dimensions $8$ and $24$. In this post, we share the story and history of
