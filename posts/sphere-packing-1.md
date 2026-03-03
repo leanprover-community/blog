@@ -1,6 +1,19 @@
-# The Sphere Packing Story
+---
+author: 'Chris Birkbeck, Sidharth Hariharan, Seewoo Lee'
+category: 'Community projects'
+date: 2026-03-02 22:35:00-05:00
+description: ''
+has_math: true
+link: ''
+slug: SpherePacking-1
+tags: ''
+title: The Sphere Packing Project | Post 1 - The Story
+type: text
+---
 
-## Chris Birkbeck, Sidharth Hariharan, Seewoo Lee
+The Sphere Packing Project maintainers tell the story of the project, up to the recent autoformalisation.
+
+<!-- TEASER_END -->
 
 *This is the first of two blog posts that will discuss the recent
 formalisation of Viazovska's solution to the sphere packing problem in
