@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sphere Packing Project | Post 1 - The Story | Lean community blog</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Open+Sans&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://leanprover-community.github.io/blog/posts/SpherePacking-1/">
+<link rel="icon" href="https://leanprover-community.github.io/img/favicon.ico" sizes="48x48">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
+<meta name="twitter:title" content="The Sphere Packing Project | Post 1 - The Story | Lean community blog">
+<meta name="author" content="Chris Birkbeck, Sidharth Hariharan, Seewoo Lee">
+<link rel="prev" href="../simprocs-tutorial/" title="Fantastic Simprocs and How to Write Them" type="text/html">
+<meta property="og:site_name" content="Lean community blog">
+<meta property="og:title" content="The Sphere Packing Project | Post 1 - The Story">
+<meta property="og:url" content="https://leanprover-community.github.io/blog/posts/SpherePacking-1/">
+<meta property="og:description" content="The Sphere Packing Project maintainers tell the story of the project, up to the recent autoformalisation.
+
+
+This is the first of two blog posts that will discuss the recent
+formalisation of Viazovska'">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-03-02T22:35:00-05:00">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="container">
+            <header id="header"><h1 id="brand"><a href="../../" title="Lean community blog" rel="home">
+
+        <span id="blog-title">Lean community blog</span>
+    </a></h1>
+
+        
+            <nav id="menu"><ul>
+<li><a href="https://leanprover-community.github.io/">Main site</a></li>
+                <li><a href="../../archive.html">Archive</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../about/">About</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+
+    
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">The Sphere Packing Project | Post 1 - The Story</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                        <a class="u-url" href="../../authors/chris-birkbeck/">Chris Birkbeck</a>
+                        <a class="u-url" href="../../authors/sidharth-hariharan/">Sidharth Hariharan</a>
+                        <a class="u-url" href="../../authors/seewoo-lee/">Seewoo Lee</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2026-03-02T22:35:00-05:00" itemprop="datePublished" title="2026-03-02 22:35">2026-03-02 22:35</time></a>
+            </p>
+                    <p class="sourceline"><a href="https://github.com/leanprover-community/blog/tree/deploy/docs/posts/SpherePacking-1/index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>The Sphere Packing Project maintainers tell the story of the project, up to the recent autoformalisation.</p>
+<!-- TEASER_END -->
+
+<p><em>This is the first of two blog posts that will discuss the recent
+formalisation of Viazovska's solution to the sphere packing problem in
+dimensions $8$ and $24$. In this post, we share the story and history of
+the project, and in the second, we will share some technical details
+about what we did and what Gauss did. Happy reading, and stay tuned!</em></p>
+<p>On 29 November, 2023, Kevin Buzzard found himself on the beautiful
+campus of the Swiss Federal Institute of Technology, Lausanne (EPFL). He
+had been invited to give the <a href="https://bernoulli.epfl.ch/assyr-abdulle-lecture/">Assyr Abdulle
+lecture</a> at the
+invitation of EPFL's Bernoulli Center for Fundamental Studies. At that
+talk were two individuals: <a href="https://thefundamentaltheor3m.github.io/">Sidharth Hariharan</a>, a 3rd-year undergraduate
+at Imperial College London pursuing an exchange programme at EPFL, and
+<a href="https://people.epfl.ch/maryna.viazovska">Maryna Viazovska</a>, 2022 Fields Medallist and Chair of Number Theory at
+EPFL. Sid was at the talk to say hello to the person who had
+introduced him to Lean and Maryna was there because she wanted to know
+what this brilliant man in colourful trousers had to say about teaching
+mathematics to a computer. At the reception after the talk, in an
+introduction facilitated by Kevin, Sid met Maryna for the first
+time, and an idea began to take shape: what if he could learn the
+mathematics of $8$-dimensional sphere packing, from the very person who
+came up with it, by formalising it in Lean?</p>
+<p>Sid and Maryna had their first meeting about the sphere packing
+project at the start of the spring semester at EPFL, in late February
+2024. Over the next 3 months, they set up a repository, wrote some basic
+Lean code, and set up the first version of the project blueprint with
+the help of Utensil Song. The content of this version of the blueprint
+was written by Maryna herself, though it would go on to be modified
+extensively by project contributors. It was decided to keep the project
+private until sufficient infrastructure was developed to support public
+contributions. On 31 May, 2024, at the <a href="https://icms.ac.uk/archive/workshop/formalisation-of-mathematics-workshop-for-women-and-mathematicians-of-minority-gender/">Formalisation of Mathematics
+Workshop for Women and Mathematicians of Minority
+Gender</a>
+organised by the International Centre for Mathematical Sciences in
+Edinburgh, <a href="https://youtu.be/QB7_hDW4GG0?si=HAn8g8YIAv5zyqY1">Maryna announced to the
+world</a> that an effort
+was underway to formalise her remarkable result in Lean.</p>
+<p>Soon after this announcement, three very important contributions joined
+the project: Chris Birkbeck, Seewoo Lee, and Gareth Ma.
+<a href="https://cdbirkbeck.wixsite.com/website">Chris</a>, a number theorist at
+the University of East Anglia, had been formalising facts about modular
+forms for <a href="https://github.com/leanprover-community/mathlib4"><code>mathlib</code></a>,
+much of which was in collaboration with David Loeffler. The theory of
+modular forms is profoundly important to the solution to the sphere
+packing problem in dimensions $8$ and $24$, and Chris's expertise in the
+area would turn out to be crucial. <a href="https://seewoo5.github.io">Seewoo</a>,
+a PhD student at the University of California, Berkeley, was also
+interested in (quasi)modular forms, and had come up with <a href="https://arxiv.org/abs/2406.14659">an alternate
+proof</a> of the so-called 'modular form
+inequalities' that were the final step in Maryna's proof. Seewoo's proof
+was more algebraic than Maryna's, and appeared more conducive to
+formalisation. It was decided to use Seewoo's approach over the
+original.
+<a href="https://www.linkedin.com/in/garethma/?originalSubdomain=uk">Gareth</a>, a
+third-year undergraduate student at the University of Warwick, was
+actively looking to contribute a formalisation project that related to
+his interests in number theory and analysis. Among Gareth's many
+profound contributions to the project was robustly formalising the
+fundamentals in a way that would go on to seamlessly support all the
+infrastructure the contributors would subsequently develop.</p>
+<p>Over summer 2024, Chris, Sid, Seewoo and Gareth formalised several
+facts about sphere packing theory, built a framework for formalising the
+important Cohn-Elkies Linear Programming Bounds, and developed theory
+about modular and quasimodular forms. Towards the end of August 2024,
+shortly before Sid would leave Lausanne for London, in a chance
+encounter at EPFL, he met <a href="https://www.linkedin.com/in/bhavik-mehta-a60369148/">Bhavik
+Mehta</a>. As the
+summer gave way to the new academic year, the project entered a new
+phase: Sid began working on formalising the construction of the
+magic function for his MSc project, supervised by Bhavik; Gareth moved
+to Oxford for his MSc and became less active in the project; and Chris
+and Seewoo continued making steady progress on (quasi)modular form
+theory.</p>
+<p>Between September 2024 and June 2025, significant work was undertaken in
+all parts of the project, the technical details of which will be
+discussed in a forthcoming post. On the modular forms side, Chris worked
+with David Loeffler to prove key ingredients for the dimension formula
+of level one, weight $\geq 3$ modular forms. Seewoo continued building
+the ingredients for his original proof of the inequalities. Sid and
+Bhavik navigated the complex construction (pun intended!) of the magic
+function, making important design choices that Sid went on to
+explain in detail in his <a href="https://thefundamentaltheor3m.github.io/M4R_Thesis/main.pdf">MSc
+thesis</a>.
+The repository remained private during this time so that Sid's MSc
+work would not be affected. On 13 June, 2025, at the <a href="https://www.newton.ac.uk/event/bprw03/">Big Proof:
+Formalising Mathematics at
+Scale</a> workshop at the Isaac
+Newton Institute in Cambridge, the project repository was made public,
+with Maryna herself making the announcement at her
+<a href="https://www.newton.ac.uk/seminar/46696/">talk</a>. Shortly before the
+announcement, the team set up a <a href="https://leanprover.zulipchat.com/#narrow/channel/509682-Sphere-packing-in-8-dimensions">public Zulip
+channel</a>,
+a website, and a project management dashboard with the help of Pietro
+Monticone.</p>
+<p>In the months that followed, we received numerous contributions from the
+community, with the first coming from Aaron Hill, Alex Nguyen and Julian
+Berman (<a href="https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/pull/105">PR
+#105</a>).
+Soon afterwards, Sid joined Carnegie Mellon University for his PhD,
+and brought in <a href="https://github.com/dwrensha">David Renshaw</a> and <a href="https://github.com/coolrmal">Aaron Lin</a>. In September 2025, Sid
+gave a talk about the project at the Graduate Student and Postdoc
+Colloquium at CMU, and a few weeks later, he gave a similar talk at the
+formalisation seminar in Cambridge. On 20 October, 2025, <a href="https://leanprover.zulipchat.com/#narrow/channel/509682-Sphere-packing-in-8-dimensions/topic/Weekly.20Packathons.20.40.20CMU/near/545852100">the first
+weekly 'packathon' was
+convened</a>,
+in person at the <a href="https://www.cmu.edu/hoskinson/">Hoskinson Center at
+CMU</a> and online on Zoom. The packathons
+have since become an important meeting for synchronous collaboration,
+complementing the asynchronous collaboration modes of Zulip and GitHub.
+The packathons led to very fruitful discussions about a number of
+topics, most notably the higher-dimensional Poisson Summation Formula,
+translating even $\mathbb{R}\to \mathbb{R}$ Schwartz functions to
+$\mathbb{R}^n \to \mathbb{R}$ Schwartz functions by composing with the
+norm, and proving the double zeroes integral for the magic function.
+Frequent participants include David Renshaw, Aaron Lin, Matthew Cushman,
+Stefano Rocca, Tito Sacchi and Cameron Freer.</p>
+<p>In late October 2025, we were contacted by Vikram Shanker of <a href="https://harmonic.fun/">Harmonic</a>.
+They soon set up a meeting where they were invited to use <a href="https://aristotle.harmonic.fun/">Aristotle</a> for
+this project. Many involved in the project became early users of
+Aristotle, and several Aristotle PRs, most of them authored by Pietro,
+were made in the following weeks. Soon afterwards, we were also
+contacted by <a href="https://mathematics.stanford.edu/people/jared-duker-lichtman">Jared Lichtman</a> of <a href="https://www.math.inc/">Math, Inc</a>. In a meeting with Jared and
+his team, the team were amazed to learn that Math Inc had managed to
+fill 30 <code>sorry</code>s using Gauss, including a version
+of a contour integral they had been struggling with for months. Just as
+we were getting Aristotle PRs, we began receiving Gauss PRs. Not all the
+results Math, Inc had proven were PRed, and at some point, we stopped
+hearing from them. It would be over two months before we learnt why.</p>
+<p>In mid-November 2025, we were contacted by Lorenzo Luccioli and Pietro
+Monticone, who were organising the
+<a href="https://pitmonticone.github.io/ItaLean2025/">ItaLean</a> event that would
+take place in early December in Bologna, Italy. They had invited
+Sid a few months earlier to lead a sphere packing working group at
+ItaLean. Together, we designed the <a href="https://leanprover.zulipchat.com/#narrow/channel/113486-announce/topic/ItaLean.202025.3A.20Bridging.20Formal.20Mathematics.20and.20AI/near/558840060">sphere packing autoformalisation
+challenge</a>,
+where we would gather informal statements and proofs of three project
+tasks---one about modular forms, one about the construction of the magic
+function, and one about the inequalities---and feed them to
+autoformalisation agents. For fairness, we proposed a setup where all
+participants would have to give us direct access to their models. Our
+idea was to run them directly on our informal text, giving them nothing
+but the project repository (and
+<a href="https://github.com/leanprover-community/mathlib4"><code>mathlib</code></a>) as
+context, with a preset limit on how long they'd be allowed to run. We
+emphasised that this would not be a competition but a <strong>challenge</strong> - a
+way to showcase how far autoformalisation technology had come.
+Unfortunately, only one company was interested and in a position to
+participate. All other companies we approached said that they were not
+in a position to give us access. We decided to <a href="https://leanprover.zulipchat.com/#narrow/channel/113486-announce/topic/ItaLean.202025.3A.20Bridging.20Formal.20Mathematics.20and.20AI/near/561727342">postpone the
+challenge</a>
+to a time when we would have more participants.</p>
+<p>Nevertheless, we were not deterred, and we were keen to find more ways
+to experiment with AI. At ItaLean, Sid and Maryna gave a joint talk
+about this project, in which they highlighted AI contributions to the
+project, discussed ways in which such contributions could be improved,
+and openly invited AI companies to get involved in the effort. Soon
+after ItaLean, Sid was contacted by <a href="https://cfreer.org">Cameron
+Freer</a>, an MIT research scientist who has developed
+impressive <a href="https://github.com/cameronfreer/lean4-skills">Lean4 Skills for
+Claude</a>. In just a few
+weeks, Cameron made <a href="https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/pulls/cameronfreer">36
+PRs</a>,
+of which 16 have been merged so far.</p>
+<p>Another fruitful collaboration at ItaLean was the working group for
+sphere packing, where Sid, Bhavik and Maryna gave ItaLean
+participants a hands-on introduction to both the mathematics and the
+Lean aspects of the project. A particularly valuable outcome was the
+effort, led by <a href="https://tilde.team/~tito/">Tito Sacchi</a> of the
+University of Pavia, to formalise the double zeroes formula for the
+magic function. This is currently <a href="https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/pull/229">PR
+#229</a>.
+Tito will soon begin working on his Bachelor's thesis under Maryna in
+Lausanne.</p>
+<p>January 2026 saw the team engaging with AI more closely than ever. Chris
+and Sid were both experimenting with "vibe proving", with Chris
+using Cameron's Lean 4 Skills for Claude Code to prove a version of the
+residue theorem from complex analysis and Sid using Opus 4.5,
+Gemini and GPT 5.2 to prove that for any $n$, the periodic sphere
+packing constant in $\mathbb{R}^n$ is equal to the sphere packing
+constant in $\mathbb{R}^n$. We gave an <a href="https://youtu.be/mq0P9BMyGPQ?si=E8FVzlSxjRm6eM8L">update on the project</a> at <a href="https://leanprover-community.github.io/lt2026/schedule.html">Lean Together</a>, and a week later, Sid spoke (remotely) about his
+vibe-proving work at the <a href="https://conferences.au.dk/math-ai-workshop-2026">Aarhus Math &amp; AI Workshop</a>. January was going
+swimmingly... until all of a sudden, we found ourselves in the eye of a
+storm.</p>
+<p>On 29 January, 2026, at exactly 10 pm, Sid received an email from
+<a href="https://jesse-michael-han.github.io/">Jesse Han</a>, CEO of Math, Inc. "Hey Sid, I'll be in Pittsburgh tomorrow
+and would love to meet! Want to grab a cup of coffee?" Sid set up a
+meeting with Jesse the following morning, also inviting his PhD advisor,
+<a href="https://www.andrew.cmu.edu/user/avigad/">Jeremy Avigad</a>. On that frosty
+morning, Jesse broke the ice by telling Sid, "We need your help
+with the $24$-dimensional case." Sid replied, "Perhaps we should
+focus on $8$ before moving on to $24$," to which Jesse replied, "Here's
+the thing about dimension $8$: Gauss... finished it."</p>
+<p>It would be a colossal understatement to say that we were shocked. When
+Math Inc stopped PRing their results to our repository, we got the
+impression that they had lost interest in our project. It turns out they
+had been developing a new version of Gauss---one significantly more
+powerful than the last one. And indeed, the result was nothing short of
+extraordinary. As soon as we had recovered from the shock, we set to
+work reviewing the Gauss code on a private repository. We checked to see
+that none of the definitions had been modified, we checked that it used
+nothing but the standard (classical) axioms of Lean, and we ran cursory
+checks for metaprogramming hacks. We brought in David Renshaw, the first
+official Innovation Engineer at the Institute for Computer-Aided
+Reasoning in Mathematics, who ran several manual checks of the code and
+put it through lean4checker. In parallel, even as we were verifying the
+dimension $8$ code, Gauss astonishingly also came up with a
+<code>sorry</code>-free proof of the $24$-dimensional
+solution. Once we were satisfied that the code was legitimate, we agreed
+to make a joint announcement with Math Inc.</p>
+<p>Something we emphasised in our announcements that we will emphasise
+again in this post is that this is not the end of our collaboration with
+Math Inc (and the community) but the beginning of a new phase of that
+collaboration. Notably, as maintainers of a repository of formal code
+that we hope to be useful to the community, we are fairly strict (if,
+admittedly, not
+<a href="https://github.com/leanprover-community/mathlib4"><code>mathlib</code></a>-strict) in
+our editorial standards, and the Gauss code, while extremely impressive
+for the scale, mathematical sophistication and code quality, is still
+not quite where we'd like it to be. To that end, we are continuing to
+work with Math Inc and the broader community to golf, refactor,
+generalise, modularise, and otherwise edit the AI-written code to a form
+more suitable for consolidation and merging into our repository. To
+accomplish this gargantuan goal, we need the community's help! Come to
+packathons - every Tuesday at 10:30 Eastern Time on Zoom (or, if you
+live in Pittsburgh, at the <a href="https://www.cmu.edu/hoskinson/">Hoskinson Center</a> at CMU). We want to pack the
+code together as surely as it packs all those spheres together in
+dimensions $8$ and $24$!</p>
+<p>This human-AI collaboration is the first of its kind in terms of the
+scale and significance of the formalised result. Moreover, the team
+leading it consists largely of early-career researchers, with Sid
+and Seewoo both being students. We are conscious it will have a
+significant impact on the world of formal mathematics, particularly in
+the precedent it will set for human-AI collaboration. Our sincere hope
+is that we can continue to find common ground with Math Inc and continue
+to work together to achieve our objective of creating a maintainable
+proof artefact that will be useful to the community.</p>
+<p>We would like to take this opportunity to thank all our contributors, human and AI, past, present and future, most notably:
+* David Loeffler, for valuable inputs and upstream contributions intended for this project
+* Gareth Ma, for developing and robustifying nearly all of the sphere packing infrastructure
+* Pietro Monticone, for helping set up our CI, website and project management infrastructure, important maintenance support, insightful inputs on human-AI collaboration, and several contributions to the actual formalisation, with and without Aristotle
+* David Renshaw, for valuable proof contributions, maintenance support, and review support for both human- and AI-contributions</p>
+<p>We would also like to express our sincere gratitude to all our supporters and well-wishers, including (but by no means limited to) <a href="https://www.andrew.cmu.edu/user/avigad/">Jeremy Avigad</a>, <a href="https://sc.edu/study/colleges_schools/artsandsciences/mathematics/our_people/directory/ballard_matthew.php">Matthew Ballard</a>, <a href="https://profiles.imperial.ac.uk/k.buzzard">Kevin Buzzard</a>, <a href="https://leodemoura.github.io/">Leo de Moura</a>, <a href="https://emilyriehl.github.io/">Emily Riehl</a>, the <a href="https://leanprover-community.github.io/teams/maintainers.html">Mathlib maintainers</a>, and the <a href="https://icarm.io/">Institute for Computer-Aided Reasoning in Mathematics</a>.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../simprocs-tutorial/" rel="prev" title="Fantastic Simprocs and How to Write Them">Previous post</a>
+            </li>
+        </ul></nav></aside><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script src="https://giscus.app/client.js" data-repo="leanprover-community/blog" data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU=" data-category="Announcements" data-category-id="DIC_kwDOF3jIYc4CQntU" data-mapping="og:title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async>
+        </script></main><footer id="footer"><p>Contents © 2026         The Lean prover community - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+            
+        </footer>
+</div>
+        
+
+
+    <!-- Mermaid JS for diagram rendering -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
