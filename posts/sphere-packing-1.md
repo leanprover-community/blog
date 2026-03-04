@@ -267,9 +267,10 @@ to work together to achieve our objective of creating a maintainable
 proof artefact that will be useful to the community.
 
 We would like to take this opportunity to thank all our contributors, human and AI, past, present and future, most notably:
-* David Loeffler, for valuable inputs and upstream contributions intended for this project
-* Gareth Ma, for developing and robustifying nearly all of the sphere packing infrastructure
-* Pietro Monticone, for helping set up our CI, website and project management infrastructure, important maintenance support, insightful inputs on human-AI collaboration, and several contributions to the actual formalisation, with and without Aristotle
-* David Renshaw, for valuable proof contributions, maintenance support, and review support for both human- and AI-contributions
+
+- David Loeffler, for valuable inputs and upstream contributions intended for this project
+- Gareth Ma, for developing and robustifying nearly all of the sphere packing infrastructure
+- Pietro Monticone, for helping set up our CI, website and project management infrastructure, important maintenance support, insightful inputs on human-AI collaboration, and several contributions to the actual formalisation, with and without Aristotle
+- David Renshaw, for valuable proof contributions, maintenance support, and review support for both human- and AI-contributions
 
 We would also like to express our sincere gratitude to all our supporters and well-wishers, including (but by no means limited to) [Jeremy Avigad](https://www.andrew.cmu.edu/user/avigad/), [Matthew Ballard](https://sc.edu/study/colleges_schools/artsandsciences/mathematics/our_people/directory/ballard_matthew.php), [Kevin Buzzard](https://profiles.imperial.ac.uk/k.buzzard), [Leo de Moura](https://leodemoura.github.io/), [Emily Riehl](https://emilyriehl.github.io/), the [Mathlib maintainers](https://leanprover-community.github.io/teams/maintainers.html), and the [Institute for Computer-Aided Reasoning in Mathematics](https://icarm.io/).
