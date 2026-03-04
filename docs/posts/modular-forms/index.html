@@ -72,11 +72,8 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <h2>Basic definitions</h2>
 <p>At their most basic, modular forms are functions from the complex upper half plane $\mathbb{H}:=\{ z \in \mathbb{C} \mid 0 \lt  \mathrm{Im}(z)\}$ to $\mathbb{C}$ satisfying certain properties. Before giving the definition, let's first define an action on this space of functions.</p>
 <p>For any </p>
-<p>$$\gamma =
-\left(\begin{array}{cc} 
-a &amp; b\ 
-c &amp; d
-\end{array}\right)
+<p>$$
+\gamma = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}
 $$</p>
 <p>in $\mathrm{GL}_2(\mathbb{R})^+$ ( $2 \times 2$ matrices with real entries and positive determinant) the weight $k \in \mathbb{Z}$ action of $\gamma$ on $f : \mathbb{H} \to \mathbb{C}$ is given by $$(f \mid_k \gamma) (z):=\mathrm{det} (\gamma)^{k-1} (cz+d)^{-k} f\left ( \frac{az+b}{cz+d}\right ).$$ One easily checks that this defines a right action on this space of functions, known as the weight $k$ <em>slash action</em>.</p>
 <p>Let $\Gamma$ denote a subgroup of $\mathrm{SL}_2(\mathbb{Z})$, then a modular form of level $\Gamma$ and weight $k \in \mathbb{Z}$ is a function $f : \mathbb{H} \to \mathbb{C}$ such that:</p>

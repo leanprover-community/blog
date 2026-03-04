@@ -26,11 +26,8 @@ At their most basic, modular forms are functions from the complex upper half pla
 
 For any 
 
-$$\gamma =
-\left(\begin{array}{cc} 
-a & b\\ 
-c & d
-\end{array}\right)
+$$
+\gamma = \begin{pmatrix} a & b \\\\ c & d \end{pmatrix}
 $$
 
 in $\mathrm{GL}_2(\mathbb{R})^+$ ( $2 \times 2$ matrices with real entries and positive determinant) the weight $k \in \mathbb{Z}$ action of $\gamma$ on $f : \mathbb{H} \to \mathbb{C}$ is given by $$(f \mid_k \gamma) (z):=\mathrm{det} (\gamma)^{k-1} (cz+d)^{-k} f\left ( \frac{az+b}{cz+d}\right ).$$ One easily checks that this defines a right action on this space of functions, known as the weight $k$ *slash action*.
