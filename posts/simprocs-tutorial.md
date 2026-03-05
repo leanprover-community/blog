@@ -71,6 +71,7 @@ example : revRange 5 = [4, 3, 2, 1, 0] := by simp [???]
 ```
 
 Note two features of `revRange` that one should *not* expect from all functions that one might want to evaluate on explicit inputs:
+
 * It is **recursive**: One can compute `revRange n` by recursion on `n`.
   Even more precisely, `revRange n` represents its own partial computation.
 * `revRange` is definitionally equal to what we want to unfold it to.
@@ -80,6 +81,7 @@ Note two features of `revRange` that one should *not* expect from all functions 
     Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.
 
 Let's now present three approaches to evaluating `revRange` on numerals:
+
 * The baseline **simproc-less approach** which only uses lemmas and no simproc.
 * The **dsimproc approach**, where we (possibly recursively) construct in the meta world the evaluated expression,
   but leave the proof to be `rfl` (here the "d" stands for "definitional equality").
@@ -107,10 +109,12 @@ Note: Since `revRange` is defined by recursion, `simp [revRange]` would also be 
 But we are trying not to rely on the definition of `revRange`.
 
 **Pros**:
+
 * Doesn't require writing any meta code.
 * Doesn't require the recursion relations to be definitional (although they are in the case of `revRange`).
 
 **Cons**:
+
 * Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).
 * Simplifying `revRange n` for a big input numeral `n` might involve a lot of simplification steps.
   In this specific case, the number of simplification steps is linear in `n`.
@@ -139,23 +143,15 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
   return .visit l_expr
 ```
 
-> Why does this work? One key step here is happening on the line
-> `let l_expr := Lean.toExpr l`. Generally speaking, `Lean.toExpr` can be thought of as a function 
-> that produces `Expr`s for sufficiently simple objects, in this case natural number literals and
-> explicit lists of such terms.
-> Here, this takes an explicit list of natural numbers of the form
-> `a :: b :: ... :: []` and produces *the expression corresponding to this list* recursively,
-> by sending `[]` to ``Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)`` and
-> `a :: l` to ``Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)``; 
-> and the computation of `Lean.toExpr` for a natural number literal `a` works in a similar recursive manner.
-> Applying this to `revRange` produces precisely the expression we wanted, i.e. 
-> writing the expression for `revRange n` as a series of applications of `List.cons` starting from `List.nil`.
-> There are other ways of achieving the same result: for example,
-> one can use the function `Lean.Meta.whnf`, which takes in an expression `e`
-> and produces a new simplified expression `e'` that is definitionally equal to `e`.
-> There are other stronger variants of this function such as `Lean.Meta.reduce` and
-> `Lean.Meta.reduceAll`. In particular, `reduce` and `reduceAll` are both able to
-> produce the desired expression here.
+Why does this work? One key step here is happening on the line `let l_expr := Lean.toExpr l`. Generally speaking, `Lean.toExpr` can be thought of as a function that produces `Expr`s for sufficiently simple objects, in this case natural number literals and explicit lists of such terms.
+
+Here, this takes an explicit list of natural numbers of the form `a :: b :: ... :: []` and produces *the expression corresponding to this list* recursively, by sending `[]` to ``Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)`` and `a :: l` to ``Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)``;  and the computation of `Lean.toExpr` for a natural number literal `a` works in a similar recursive manner.
+
+Applying this to `revRange` produces precisely the expression we wanted, i.e. 
+writing the expression for `revRange n` as a series of applications of `List.cons` starting from `List.nil`.
+There are other ways of achieving the same result: for example, one can use the function `Lean.Meta.whnf`, which takes in an expression `e` and produces a new simplified expression `e'` that is definitionally equal to `e`.
+
+There are other stronger variants of this function such as `Lean.Meta.reduce` and `Lean.Meta.reduceAll`. In particular, `reduce` and `reduceAll` are both able to produce the desired expression here.
 
 ```lean
 open Qq in
@@ -180,10 +176,12 @@ dsimproc_decl revRangeCompute (revRange _) := fun e => do
 For a bit more on dsimprocs, see the extras below.
 
 **Pros**:
+
 * Requires writing a single simproc.
 * Assuming the type of the expression to be evaluated implements `ToExpr`, there is no need to reevaluate the expression manually in the meta world.
 
 **Cons**:
+
 * The function needs to be computable to be evaluated automatically in the meta world.
 * The produced `rfl` proof could be a "heavy `rfl`", requiring a long time to check in the kernel.
 * Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.
@@ -216,11 +214,13 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 ```
 
 **Pros**:
+
 * Works regardless of definitional equalities.
   See [`Nat.reduceDvd`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc) introduced in [the previous blog post](https://leanprover-community.github.io/blog/posts/fantastic-simprocs/) for another compelling example:
   `a ∣ b` is *not* defined as `a % b = 0`, yet the `Nat.reduceDvd` simproc can decide `a ∣ b` by computing `a % b = 0`.
 
 **Cons**:
+
 * Might involve a fair bit of meta code, a lot of which could *feel* like evaluating the function.
 * Simplifying `revRange n` for a big input numeral `n` might produce a large proof term.
   In this specific case, the size of the produced proof term will be linear in `n`.
@@ -229,8 +229,10 @@ simproc_decl revRangeComputeProp (revRange _) := fun e => do
 There is one question that so far has been left untouched: when should a metaprogram be a simproc?
 To an extent, this boundary is perhaps not a strict one, and we do not aim to provide a definitive answer, but rather provide the reader with a few guiding principles.
 As we saw in the first post, simprocs can be thought of as "parametric `simp` lemmas" where the right hand side is allowed to vary as a function of the left hand side. 
+
 Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a _normal form_ that can be further simplified by `simp`.
 In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.
+
 For example, evaluating some concrete function `foo : Nat → Nat` at explicit inputs (i.e. literals) `n` falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what `linarith` does!).
 
 ## Epilogue
@@ -243,7 +245,9 @@ Our hope is that, equipped with the basic tools needed to write their own simpro
 ## How to discharge subgoals
 
 Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be accessed by the tactic via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc). Roughly speaking, `Methods` is the part of the `SimpM` monad that encodes which methods `simp` can use to simplify an expression. `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current local value of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
+`simprocs` is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the `SimpM` monad, and can be accessed by the tactic via [`Methods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc). 
+
+Roughly speaking, `Methods` is the part of the `SimpM` monad that encodes which methods `simp` can use to simplify an expression. `Methods` implements a function `discharge? : Expr → Option Expr` such that `discharge? goal` is equal to `some pf` if the discharger found a proof `pf` of `goal`, and none otherwise. Finally, to access the current local value of `Methods`, one can use [`getMethods`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc).
 
 In the following example, we implement a simproc for [`Nat.factorization`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc) that simplifies expressions of the form `(a * b).factorization ` to `a.factorization + b.factorization` whenever a proof that `a` and `b` are both non-zero can be found by the discharger.
 
@@ -280,6 +284,7 @@ example : Nat.factorization (2 * 3) = fun₀ | 2 => 1 | 3 => 1 := by
 Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. 
 The easiest case is perhaps that of `Nat` literals -- recall that we had to do this several times when implementing the simprocs above! 
 Given a numeral by `e : Expr`, there are various ways of recovering the corresponding term of type `Nat`:
+
 - [`Lean.Expr.rawNatLit?`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc)
   Returns `n` if the expression `e` is of the form `Expr.lit (Literal.natVal n)`, and `none` otherwise.
 - [`Lean.Expr.natLit!`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc):
