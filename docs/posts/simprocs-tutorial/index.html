@@ -115,19 +115,24 @@ We choose a custom function <code>revRange</code>, which to a natural number <co
 <span class="kd">example</span> <span class="o">:</span> <span class="n">revRange</span> <span class="mi">2</span> <span class="bp">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">]</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">simp</span> <span class="o">[</span><span class="bp">???</span><span class="o">]</span>
 <span class="kd">example</span> <span class="o">:</span> <span class="n">revRange</span> <span class="mi">5</span> <span class="bp">=</span> <span class="o">[</span><span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">]</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">simp</span> <span class="o">[</span><span class="bp">???</span><span class="o">]</span>
 </pre>
-<p>Note two features of <code>revRange</code> that one should <em>not</em> expect from all functions that one might want to evaluate on explicit inputs:
-* It is <strong>recursive</strong>: One can compute <code>revRange n</code> by recursion on <code>n</code>.
-  Even more precisely, <code>revRange n</code> represents its own partial computation.
-* <code>revRange</code> is definitionally equal to what we want to unfold it to.
-  This has two consequences:
-  * The two examples in the code snippet above can be proved by <code>rfl</code>, but of course doing so defeats the point of this blogpost.
-  * We could actually write a <em>dsimproc</em> for <code>revRange</code>, which is to <code>dsimp</code> what a simproc is to <code>simp</code> (see the <code>Simprocs</code> section of the <a href="https://leanprover-community.github.io/blog/posts/fantastic-simprocs/">second blog post</a>).
-    Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.</p>
-<p>Let's now present three approaches to evaluating <code>revRange</code> on numerals:
-* The baseline <strong>simproc-less approach</strong> which only uses lemmas and no simproc.
-* The <strong>dsimproc approach</strong>, where we (possibly recursively) construct in the meta world the evaluated expression,
-  but leave the proof to be <code>rfl</code> (here the "d" stands for "definitional equality").
-* The <strong>simproc approach</strong>, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.</p>
+<p>Note two features of <code>revRange</code> that one should <em>not</em> expect from all functions that one might want to evaluate on explicit inputs:</p>
+<ul>
+<li>It is <strong>recursive</strong>: One can compute <code>revRange n</code> by recursion on <code>n</code>.
+  Even more precisely, <code>revRange n</code> represents its own partial computation.</li>
+<li>
+<code>revRange</code> is definitionally equal to what we want to unfold it to.
+  This has two consequences:</li>
+<li>The two examples in the code snippet above can be proved by <code>rfl</code>, but of course doing so defeats the point of this blogpost.</li>
+<li>We could actually write a <em>dsimproc</em> for <code>revRange</code>, which is to <code>dsimp</code> what a simproc is to <code>simp</code> (see the <code>Simprocs</code> section of the <a href="https://leanprover-community.github.io/blog/posts/fantastic-simprocs/">second blog post</a>).
+    Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.</li>
+</ul>
+<p>Let's now present three approaches to evaluating <code>revRange</code> on numerals:</p>
+<ul>
+<li>The baseline <strong>simproc-less approach</strong> which only uses lemmas and no simproc.</li>
+<li>The <strong>dsimproc approach</strong>, where we (possibly recursively) construct in the meta world the evaluated expression,
+  but leave the proof to be <code>rfl</code> (here the "d" stands for "definitional equality").</li>
+<li>The <strong>simproc approach</strong>, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.</li>
+</ul>
 <h3>The simproc-less approach</h3>
 <p>Before writing a simproc, let us first see how one could approach the computation of <code>revRange</code> using only lemmas.</p>
 <p><code>revRange</code> is a recursive function.
@@ -142,17 +147,22 @@ Therefore it can be evaluated on numerals simply by writing out the recurrence r
 </pre>
 <p>Note: Since <code>revRange</code> is defined by recursion, <code>simp [revRange]</code> would also be a valid proof here.
 But we are trying not to rely on the definition of <code>revRange</code>.</p>
-<p><strong>Pros</strong>:
-* Doesn't require writing any meta code.
-* Doesn't require the recursion relations to be definitional (although they are in the case of <code>revRange</code>).</p>
-<p><strong>Cons</strong>:
-* Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).
-* Simplifying <code>revRange n</code> for a big input numeral <code>n</code> might involve a lot of simplification steps.
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Doesn't require writing any meta code.</li>
+<li>Doesn't require the recursion relations to be definitional (although they are in the case of <code>revRange</code>).</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).</li>
+<li>Simplifying <code>revRange n</code> for a big input numeral <code>n</code> might involve a lot of simplification steps.
   In this specific case, the number of simplification steps is linear in <code>n</code>.
-  Simplification steps matter because each one increases the size of the proof term.
-* <code>revRange n</code> could find itself (partially) evaluated even if <code>n</code> isn't a numeral.
+  Simplification steps matter because each one increases the size of the proof term.</li>
+<li>
+<code>revRange n</code> could find itself (partially) evaluated even if <code>n</code> isn't a numeral.
   Eg <code>simp [revRange_zero, revRange_succ]</code> on <code>⊢ revRange (n + 3) = revRange (3 + n)</code> will result in <code>⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)</code>.
-  This is in general highly undesirable.</p>
+  This is in general highly undesirable.</li>
+</ul>
 <h3>The definitional approach</h3>
 <p>In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
 The syntax to declare a dsimproc is rather similar to simprocs, with a small difference:
@@ -169,25 +179,12 @@ in practice this amounts to providing the expression our program has produced wi
   <span class="k">let</span> <span class="n">l_expr</span> <span class="o">:=</span> <span class="n">Lean.toExpr</span> <span class="n">l</span>
   <span class="n">return</span> <span class="bp">.</span><span class="n">visit</span> <span class="n">l_expr</span>
 </pre>
-<blockquote>
-<p>Why does this work? One key step here is happening on the line
-<code>let l_expr := Lean.toExpr l</code>. Generally speaking, <code>Lean.toExpr</code> can be thought of as a function 
-that produces <code>Expr</code>s for sufficiently simple objects, in this case natural number literals and
-explicit lists of such terms.
-Here, this takes an explicit list of natural numbers of the form
-<code>a :: b :: ... :: []</code> and produces <em>the expression corresponding to this list</em> recursively,
-by sending <code>[]</code> to <code>Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)</code> and
-<code>a :: l</code> to <code>Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)</code>; 
-and the computation of <code>Lean.toExpr</code> for a natural number literal <code>a</code> works in a similar recursive manner.
-Applying this to <code>revRange</code> produces precisely the expression we wanted, i.e. 
+<p>Why does this work? One key step here is happening on the line <code>let l_expr := Lean.toExpr l</code>. Generally speaking, <code>Lean.toExpr</code> can be thought of as a function that produces <code>Expr</code>s for sufficiently simple objects, in this case natural number literals and explicit lists of such terms.</p>
+<p>Here, this takes an explicit list of natural numbers of the form <code>a :: b :: ... :: []</code> and produces <em>the expression corresponding to this list</em> recursively, by sending <code>[]</code> to <code>Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)</code> and <code>a :: l</code> to <code>Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)</code>;  and the computation of <code>Lean.toExpr</code> for a natural number literal <code>a</code> works in a similar recursive manner.</p>
+<p>Applying this to <code>revRange</code> produces precisely the expression we wanted, i.e. 
 writing the expression for <code>revRange n</code> as a series of applications of <code>List.cons</code> starting from <code>List.nil</code>.
-There are other ways of achieving the same result: for example,
-one can use the function <code>Lean.Meta.whnf</code>, which takes in an expression <code>e</code>
-and produces a new simplified expression <code>e'</code> that is definitionally equal to <code>e</code>.
-There are other stronger variants of this function such as <code>Lean.Meta.reduce</code> and
-<code>Lean.Meta.reduceAll</code>. In particular, <code>reduce</code> and <code>reduceAll</code> are both able to
-produce the desired expression here.</p>
-</blockquote>
+There are other ways of achieving the same result: for example, one can use the function <code>Lean.Meta.whnf</code>, which takes in an expression <code>e</code> and produces a new simplified expression <code>e'</code> that is definitionally equal to <code>e</code>.</p>
+<p>There are other stronger variants of this function such as <code>Lean.Meta.reduce</code> and <code>Lean.Meta.reduceAll</code>. In particular, <code>reduce</code> and <code>reduceAll</code> are both able to produce the desired expression here.</p>
 <pre class="code literal-block"><span class="kn">open</span> <span class="n">Qq</span> <span class="k">in</span>
 <span class="n">run_meta</span> <span class="k">do</span>
   <span class="k">let</span> <span class="n">listExpr</span> <span class="o">:</span> <span class="n">Q</span><span class="o">(</span><span class="n">List</span> <span class="n">Nat</span><span class="o">)</span> <span class="o">:=</span> <span class="n">q</span><span class="o">(</span><span class="n">revRange</span> <span class="mi">5</span><span class="o">)</span>
@@ -204,13 +201,17 @@ produce the desired expression here.</p>
   <span class="n">return</span> <span class="bp">.</span><span class="n">visit</span> <span class="bp">&lt;|</span> <span class="bp">←</span> <span class="n">reduce</span> <span class="n">e</span>
 </pre>
 <p>For a bit more on dsimprocs, see the extras below.</p>
-<p><strong>Pros</strong>:
-* Requires writing a single simproc.
-* Assuming the type of the expression to be evaluated implements <code>ToExpr</code>, there is no need to reevaluate the expression manually in the meta world.</p>
-<p><strong>Cons</strong>:
-* The function needs to be computable to be evaluated automatically in the meta world.
-* The produced <code>rfl</code> proof could be a "heavy <code>rfl</code>", requiring a long time to check in the kernel.
-* Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.</p>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Requires writing a single simproc.</li>
+<li>Assuming the type of the expression to be evaluated implements <code>ToExpr</code>, there is no need to reevaluate the expression manually in the meta world.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>The function needs to be computable to be evaluated automatically in the meta world.</li>
+<li>The produced <code>rfl</code> proof could be a "heavy <code>rfl</code>", requiring a long time to check in the kernel.</li>
+<li>Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.</li>
+</ul>
 <h3>The propositional approach</h3>
 <p>A more general approach would be to manually construct the proof term we need to provide.
 In our case, we can do this in a recursive manner.</p>
@@ -235,21 +236,25 @@ In our case, we can do this in a recursive manner.</p>
 <span class="w">  </span><span class="n">let</span><span class="w"> </span><span class="err">⟨</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">pf</span><span class="err">⟩</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">visit</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">proof</span><span class="vm">?</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">pf</span><span class="w"> </span><span class="err">}</span><span class="w"></span>
 </pre>
-<p><strong>Pros</strong>:
-* Works regardless of definitional equalities.
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Works regardless of definitional equalities.
   See <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc"><code>Nat.reduceDvd</code></a> introduced in <a href="https://leanprover-community.github.io/blog/posts/fantastic-simprocs/">the previous blog post</a> for another compelling example:
-  <code>a ∣ b</code> is <em>not</em> defined as <code>a % b = 0</code>, yet the <code>Nat.reduceDvd</code> simproc can decide <code>a ∣ b</code> by computing <code>a % b = 0</code>.</p>
-<p><strong>Cons</strong>:
-* Might involve a fair bit of meta code, a lot of which could <em>feel</em> like evaluating the function.
-* Simplifying <code>revRange n</code> for a big input numeral <code>n</code> might produce a large proof term.
-  In this specific case, the size of the produced proof term will be linear in <code>n</code>.</p>
+  <code>a ∣ b</code> is <em>not</em> defined as <code>a % b = 0</code>, yet the <code>Nat.reduceDvd</code> simproc can decide <code>a ∣ b</code> by computing <code>a % b = 0</code>.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>Might involve a fair bit of meta code, a lot of which could <em>feel</em> like evaluating the function.</li>
+<li>Simplifying <code>revRange n</code> for a big input numeral <code>n</code> might produce a large proof term.
+  In this specific case, the size of the produced proof term will be linear in <code>n</code>.</li>
+</ul>
 <h3>What should be a simproc?</h3>
 <p>There is one question that so far has been left untouched: when should a metaprogram be a simproc?
 To an extent, this boundary is perhaps not a strict one, and we do not aim to provide a definitive answer, but rather provide the reader with a few guiding principles.
-As we saw in the first post, simprocs can be thought of as "parametric <code>simp</code> lemmas" where the right hand side is allowed to vary as a function of the left hand side. 
-Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a <em>normal form</em> that can be further simplified by <code>simp</code>.
-In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.
-For example, evaluating some concrete function <code>foo : Nat → Nat</code> at explicit inputs (i.e. literals) <code>n</code> falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what <code>linarith</code> does!).</p>
+As we saw in the first post, simprocs can be thought of as "parametric <code>simp</code> lemmas" where the right hand side is allowed to vary as a function of the left hand side. </p>
+<p>Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a <em>normal form</em> that can be further simplified by <code>simp</code>.
+In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.</p>
+<p>For example, evaluating some concrete function <code>foo : Nat → Nat</code> at explicit inputs (i.e. literals) <code>n</code> falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what <code>linarith</code> does!).</p>
 <h3>Epilogue</h3>
 <p>In the series of blog posts, we gave an overview of the role simprocs are meant to play in Lean's theorem proving framework,
 took a brief look at the internals of the <code>simp</code> tactic, implemented a few simprocs to solve a concrete problem, and briefly discussed what problems simprocs are meant to solve. 
@@ -257,7 +262,8 @@ Our hope is that, equipped with the basic tools needed to write their own simpro
 <h2>Extras</h2>
 <h3>How to discharge subgoals</h3>
 <p>Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-<code>simprocs</code> is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the <code>SimpM</code> monad, and can be accessed by the tactic via <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc"><code>Methods</code></a>. Roughly speaking, <code>Methods</code> is the part of the <code>SimpM</code> monad that encodes which methods <code>simp</code> can use to simplify an expression. <code>Methods</code> implements a function <code>discharge? : Expr → Option Expr</code> such that <code>discharge? goal</code> is equal to <code>some pf</code> if the discharger found a proof <code>pf</code> of <code>goal</code>, and none otherwise. Finally, to access the current local value of <code>Methods</code>, one can use <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc"><code>getMethods</code></a>.</p>
+<code>simprocs</code> is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the <code>SimpM</code> monad, and can be accessed by the tactic via <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc"><code>Methods</code></a>. </p>
+<p>Roughly speaking, <code>Methods</code> is the part of the <code>SimpM</code> monad that encodes which methods <code>simp</code> can use to simplify an expression. <code>Methods</code> implements a function <code>discharge? : Expr → Option Expr</code> such that <code>discharge? goal</code> is equal to <code>some pf</code> if the discharger found a proof <code>pf</code> of <code>goal</code>, and none otherwise. Finally, to access the current local value of <code>Methods</code>, one can use <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc"><code>getMethods</code></a>.</p>
 <p>In the following example, we implement a simproc for <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc"><code>Nat.factorization</code></a> that simplifies expressions of the form <code>(a * b).factorization</code> to <code>a.factorization + b.factorization</code> whenever a proof that <code>a</code> and <code>b</code> are both non-zero can be found by the discharger.</p>
 <pre class="code literal-block"><span class="kn">import</span> <span class="n">Mathlib</span>
 
@@ -288,15 +294,21 @@ Our hope is that, equipped with the basic tools needed to write their own simpro
 <h3>How to match on numerals</h3>
 <p>Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. 
 The easiest case is perhaps that of <code>Nat</code> literals -- recall that we had to do this several times when implementing the simprocs above! 
-Given a numeral by <code>e : Expr</code>, there are various ways of recovering the corresponding term of type <code>Nat</code>:
-- <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc"><code>Lean.Expr.rawNatLit?</code></a>
-  Returns <code>n</code> if the expression <code>e</code> is of the form <code>Expr.lit (Literal.natVal n)</code>, and <code>none</code> otherwise.
-- <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc"><code>Lean.Expr.natLit!</code></a>:
-  Similar to the above, but panics if <code>e</code> is not of the form <code>Expr.lit (Literal.natVal n)</code>.
-- <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc"><code>Lean.Expr.nat?</code></a>:
-  Extracts <code>n</code> if the expression <code>e</code> corresponds to <code>OfNat.ofNat m</code> where <code>m</code> corresponds to <code>Expr.lit (Literal.natVal n)</code>.
-- <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc"><code>Nat.fromExpr?</code></a>:
-  Combination of the above that also strips metadata from <code>e</code> beforehand.</p>
+Given a numeral by <code>e : Expr</code>, there are various ways of recovering the corresponding term of type <code>Nat</code>:</p>
+<ul>
+<li>
+<a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc"><code>Lean.Expr.rawNatLit?</code></a>
+  Returns <code>n</code> if the expression <code>e</code> is of the form <code>Expr.lit (Literal.natVal n)</code>, and <code>none</code> otherwise.</li>
+<li>
+<a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc"><code>Lean.Expr.natLit!</code></a>:
+  Similar to the above, but panics if <code>e</code> is not of the form <code>Expr.lit (Literal.natVal n)</code>.</li>
+<li>
+<a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc"><code>Lean.Expr.nat?</code></a>:
+  Extracts <code>n</code> if the expression <code>e</code> corresponds to <code>OfNat.ofNat m</code> where <code>m</code> corresponds to <code>Expr.lit (Literal.natVal n)</code>.</li>
+<li>
+<a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc"><code>Nat.fromExpr?</code></a>:
+  Combination of the above that also strips metadata from <code>e</code> beforehand.</li>
+</ul>
 <p>Some of these are more restrictive than others, and generally speaking, the two last ones are those that show up the most in
 practise. Given an expression <code>e</code> representing a natural number, a little pre-processing can occasionally be necessary in order to
 put <code>e</code> in a form where the number can be extracted. For example, if <code>e</code> represents <code>OfNat.ofNat a + OfNat.ofNat b</code> 

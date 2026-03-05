@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts about simp)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/categories/simp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2026 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 05 Mar 2026 13:34:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fantastic Simprocs and How to Write Them</title><link>https://leanprover-community.github.io/blog/posts/simprocs-tutorial/</link><dc:creator>Yaël Dillies, Paul Lezeau</dc:creator><description>&lt;div&gt;&lt;p&gt;This is the final post in our simproc series.
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lean community blog (Posts about simp)</title><link>https://leanprover-community.github.io/blog/</link><description></description><atom:link href="https://leanprover-community.github.io/blog/categories/simp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2026 &lt;a href="mailto:"&gt;The Lean prover community&lt;/a&gt; </copyright><lastBuildDate>Thu, 05 Mar 2026 13:50:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Fantastic Simprocs and How to Write Them</title><link>https://leanprover-community.github.io/blog/posts/simprocs-tutorial/</link><dc:creator>Yaël Dillies, Paul Lezeau</dc:creator><description>&lt;div&gt;&lt;p&gt;This is the final post in our simproc series.
 In our first two posts, we gave an informal introduction to the concept of a &lt;em&gt;simproc&lt;/em&gt;,
 and a brief overview of the inner workings of the &lt;code&gt;simp&lt;/code&gt; tactic.
 The aim of this final post is to build on this by demonstrating how Lean users can write their own simprocs.&lt;/p&gt;
@@ -45,19 +45,23 @@ We choose a custom function &lt;code&gt;revRange&lt;/code&gt;, which to a natura
 &lt;span class="kd"&gt;example&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;revRange&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="kd"&gt;by&lt;/span&gt; &lt;span class="n"&gt;simp&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;???&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="kd"&gt;example&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;revRange&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="bp"&gt;=&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="kd"&gt;by&lt;/span&gt; &lt;span class="n"&gt;simp&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;???&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;
-&lt;p&gt;Note two features of &lt;code&gt;revRange&lt;/code&gt; that one should &lt;em&gt;not&lt;/em&gt; expect from all functions that one might want to evaluate on explicit inputs:
-* It is &lt;strong&gt;recursive&lt;/strong&gt;: One can compute &lt;code&gt;revRange n&lt;/code&gt; by recursion on &lt;code&gt;n&lt;/code&gt;.
-  Even more precisely, &lt;code&gt;revRange n&lt;/code&gt; represents its own partial computation.
-* &lt;code&gt;revRange&lt;/code&gt; is definitionally equal to what we want to unfold it to.
-  This has two consequences:
-  * The two examples in the code snippet above can be proved by &lt;code&gt;rfl&lt;/code&gt;, but of course doing so defeats the point of this blogpost.
-  * We could actually write a &lt;em&gt;dsimproc&lt;/em&gt; for &lt;code&gt;revRange&lt;/code&gt;, which is to &lt;code&gt;dsimp&lt;/code&gt; what a simproc is to &lt;code&gt;simp&lt;/code&gt; (see the &lt;code&gt;Simprocs&lt;/code&gt; section of the &lt;a href="https://leanprover-community.github.io/blog/posts/fantastic-simprocs/"&gt;second blog post&lt;/a&gt;).
-    Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.&lt;/p&gt;
-&lt;p&gt;Let's now present three approaches to evaluating &lt;code&gt;revRange&lt;/code&gt; on numerals:
-* The baseline &lt;strong&gt;simproc-less approach&lt;/strong&gt; which only uses lemmas and no simproc.
-* The &lt;strong&gt;dsimproc approach&lt;/strong&gt;, where we (possibly recursively) construct in the meta world the evaluated expression,
-  but leave the proof to be &lt;code&gt;rfl&lt;/code&gt; (here the "d" stands for "definitional equality").
-* The &lt;strong&gt;simproc approach&lt;/strong&gt;, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.&lt;/p&gt;
+&lt;p&gt;Note two features of &lt;code&gt;revRange&lt;/code&gt; that one should &lt;em&gt;not&lt;/em&gt; expect from all functions that one might want to evaluate on explicit inputs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is &lt;strong&gt;recursive&lt;/strong&gt;: One can compute &lt;code&gt;revRange n&lt;/code&gt; by recursion on &lt;code&gt;n&lt;/code&gt;.
+  Even more precisely, &lt;code&gt;revRange n&lt;/code&gt; represents its own partial computation.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;revRange&lt;/code&gt; is definitionally equal to what we want to unfold it to.
+  This has two consequences:&lt;/li&gt;
+&lt;li&gt;The two examples in the code snippet above can be proved by &lt;code&gt;rfl&lt;/code&gt;, but of course doing so defeats the point of this blogpost.&lt;/li&gt;
+&lt;li&gt;We could actually write a &lt;em&gt;dsimproc&lt;/em&gt; for &lt;code&gt;revRange&lt;/code&gt;, which is to &lt;code&gt;dsimp&lt;/code&gt; what a simproc is to &lt;code&gt;simp&lt;/code&gt; (see the &lt;code&gt;Simprocs&lt;/code&gt; section of the &lt;a href="https://leanprover-community.github.io/blog/posts/fantastic-simprocs/"&gt;second blog post&lt;/a&gt;).
+    Implementation-wise, the main difference is that a dsimproc requires the new simplified expression to be definitionally equal to the previous one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let's now present three approaches to evaluating &lt;code&gt;revRange&lt;/code&gt; on numerals:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The baseline &lt;strong&gt;simproc-less approach&lt;/strong&gt; which only uses lemmas and no simproc.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;dsimproc approach&lt;/strong&gt;, where we (possibly recursively) construct in the meta world the evaluated expression,
+  but leave the proof to be &lt;code&gt;rfl&lt;/code&gt; (here the "d" stands for "definitional equality").&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;simproc approach&lt;/strong&gt;, where we (possibly recursively) construct the evaluated expression and the proof simultaneously.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;The simproc-less approach&lt;/h3&gt;
 &lt;p&gt;Before writing a simproc, let us first see how one could approach the computation of &lt;code&gt;revRange&lt;/code&gt; using only lemmas.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;revRange&lt;/code&gt; is a recursive function.
@@ -72,17 +76,21 @@ Therefore it can be evaluated on numerals simply by writing out the recurrence r
 &lt;/pre&gt;
 &lt;p&gt;Note: Since &lt;code&gt;revRange&lt;/code&gt; is defined by recursion, &lt;code&gt;simp [revRange]&lt;/code&gt; would also be a valid proof here.
 But we are trying not to rely on the definition of &lt;code&gt;revRange&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;:
-* Doesn't require writing any meta code.
-* Doesn't require the recursion relations to be definitional (although they are in the case of &lt;code&gt;revRange&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;:
-* Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).
-* Simplifying &lt;code&gt;revRange n&lt;/code&gt; for a big input numeral &lt;code&gt;n&lt;/code&gt; might involve a lot of simplification steps.
+&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Doesn't require writing any meta code.&lt;/li&gt;
+&lt;li&gt;Doesn't require the recursion relations to be definitional (although they are in the case of &lt;code&gt;revRange&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Requires adding two lemmas to your simp call instead of one (assuming we do not want these lemmas in the default simp set).&lt;/li&gt;
+&lt;li&gt;Simplifying &lt;code&gt;revRange n&lt;/code&gt; for a big input numeral &lt;code&gt;n&lt;/code&gt; might involve a lot of simplification steps.
   In this specific case, the number of simplification steps is linear in &lt;code&gt;n&lt;/code&gt;.
-  Simplification steps matter because each one increases the size of the proof term.
-* &lt;code&gt;revRange n&lt;/code&gt; could find itself (partially) evaluated even if &lt;code&gt;n&lt;/code&gt; isn't a numeral.
+  Simplification steps matter because each one increases the size of the proof term.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;revRange n&lt;/code&gt; could find itself (partially) evaluated even if &lt;code&gt;n&lt;/code&gt; isn't a numeral.
   Eg &lt;code&gt;simp [revRange_zero, revRange_succ]&lt;/code&gt; on &lt;code&gt;⊢ revRange (n + 3) = revRange (3 + n)&lt;/code&gt; will result in &lt;code&gt;⊢ n + 2 :: n + 1 :: n :: revRange n = revRange (3 + n)&lt;/code&gt;.
-  This is in general highly undesirable.&lt;/p&gt;
+  This is in general highly undesirable.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;The definitional approach&lt;/h3&gt;
 &lt;p&gt;In cases where the evaluation is definitionally equal to the original expression, one may write a dsimproc instead of a simproc.
 The syntax to declare a dsimproc is rather similar to simprocs, with a small difference:
@@ -99,25 +107,12 @@ in practice this amounts to providing the expression our program has produced wi
   &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="n"&gt;l_expr&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="n"&gt;Lean.toExpr&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;
   &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;visit&lt;/span&gt; &lt;span class="n"&gt;l_expr&lt;/span&gt;
 &lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Why does this work? One key step here is happening on the line
-&lt;code&gt;let l_expr := Lean.toExpr l&lt;/code&gt;. Generally speaking, &lt;code&gt;Lean.toExpr&lt;/code&gt; can be thought of as a function 
-that produces &lt;code&gt;Expr&lt;/code&gt;s for sufficiently simple objects, in this case natural number literals and
-explicit lists of such terms.
-Here, this takes an explicit list of natural numbers of the form
-&lt;code&gt;a :: b :: ... :: []&lt;/code&gt; and produces &lt;em&gt;the expression corresponding to this list&lt;/em&gt; recursively,
-by sending &lt;code&gt;[]&lt;/code&gt; to &lt;code&gt;Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)&lt;/code&gt; and
-&lt;code&gt;a :: l&lt;/code&gt; to &lt;code&gt;Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)&lt;/code&gt;; 
-and the computation of &lt;code&gt;Lean.toExpr&lt;/code&gt; for a natural number literal &lt;code&gt;a&lt;/code&gt; works in a similar recursive manner.
-Applying this to &lt;code&gt;revRange&lt;/code&gt; produces precisely the expression we wanted, i.e. 
+&lt;p&gt;Why does this work? One key step here is happening on the line &lt;code&gt;let l_expr := Lean.toExpr l&lt;/code&gt;. Generally speaking, &lt;code&gt;Lean.toExpr&lt;/code&gt; can be thought of as a function that produces &lt;code&gt;Expr&lt;/code&gt;s for sufficiently simple objects, in this case natural number literals and explicit lists of such terms.&lt;/p&gt;
+&lt;p&gt;Here, this takes an explicit list of natural numbers of the form &lt;code&gt;a :: b :: ... :: []&lt;/code&gt; and produces &lt;em&gt;the expression corresponding to this list&lt;/em&gt; recursively, by sending &lt;code&gt;[]&lt;/code&gt; to &lt;code&gt;Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)&lt;/code&gt; and &lt;code&gt;a :: l&lt;/code&gt; to &lt;code&gt;Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)&lt;/code&gt;;  and the computation of &lt;code&gt;Lean.toExpr&lt;/code&gt; for a natural number literal &lt;code&gt;a&lt;/code&gt; works in a similar recursive manner.&lt;/p&gt;
+&lt;p&gt;Applying this to &lt;code&gt;revRange&lt;/code&gt; produces precisely the expression we wanted, i.e. 
 writing the expression for &lt;code&gt;revRange n&lt;/code&gt; as a series of applications of &lt;code&gt;List.cons&lt;/code&gt; starting from &lt;code&gt;List.nil&lt;/code&gt;.
-There are other ways of achieving the same result: for example,
-one can use the function &lt;code&gt;Lean.Meta.whnf&lt;/code&gt;, which takes in an expression &lt;code&gt;e&lt;/code&gt;
-and produces a new simplified expression &lt;code&gt;e'&lt;/code&gt; that is definitionally equal to &lt;code&gt;e&lt;/code&gt;.
-There are other stronger variants of this function such as &lt;code&gt;Lean.Meta.reduce&lt;/code&gt; and
-&lt;code&gt;Lean.Meta.reduceAll&lt;/code&gt;. In particular, &lt;code&gt;reduce&lt;/code&gt; and &lt;code&gt;reduceAll&lt;/code&gt; are both able to
-produce the desired expression here.&lt;/p&gt;
-&lt;/blockquote&gt;
+There are other ways of achieving the same result: for example, one can use the function &lt;code&gt;Lean.Meta.whnf&lt;/code&gt;, which takes in an expression &lt;code&gt;e&lt;/code&gt; and produces a new simplified expression &lt;code&gt;e'&lt;/code&gt; that is definitionally equal to &lt;code&gt;e&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are other stronger variants of this function such as &lt;code&gt;Lean.Meta.reduce&lt;/code&gt; and &lt;code&gt;Lean.Meta.reduceAll&lt;/code&gt;. In particular, &lt;code&gt;reduce&lt;/code&gt; and &lt;code&gt;reduceAll&lt;/code&gt; are both able to produce the desired expression here.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="kn"&gt;open&lt;/span&gt; &lt;span class="n"&gt;Qq&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
 &lt;span class="n"&gt;run_meta&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="n"&gt;listExpr&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;Nat&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;revRange&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
@@ -134,13 +129,17 @@ produce the desired expression here.&lt;/p&gt;
   &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="n"&gt;visit&lt;/span&gt; &lt;span class="bp"&gt;&amp;lt;|&lt;/span&gt; &lt;span class="bp"&gt;←&lt;/span&gt; &lt;span class="n"&gt;reduce&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;For a bit more on dsimprocs, see the extras below.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;:
-* Requires writing a single simproc.
-* Assuming the type of the expression to be evaluated implements &lt;code&gt;ToExpr&lt;/code&gt;, there is no need to reevaluate the expression manually in the meta world.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;:
-* The function needs to be computable to be evaluated automatically in the meta world.
-* The produced &lt;code&gt;rfl&lt;/code&gt; proof could be a "heavy &lt;code&gt;rfl&lt;/code&gt;", requiring a long time to check in the kernel.
-* Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Requires writing a single simproc.&lt;/li&gt;
+&lt;li&gt;Assuming the type of the expression to be evaluated implements &lt;code&gt;ToExpr&lt;/code&gt;, there is no need to reevaluate the expression manually in the meta world.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The function needs to be computable to be evaluated automatically in the meta world.&lt;/li&gt;
+&lt;li&gt;The produced &lt;code&gt;rfl&lt;/code&gt; proof could be a "heavy &lt;code&gt;rfl&lt;/code&gt;", requiring a long time to check in the kernel.&lt;/li&gt;
+&lt;li&gt;Only works when the evaluation and conversion back to an expression is definitionally equal to the original expression.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;The propositional approach&lt;/h3&gt;
 &lt;p&gt;A more general approach would be to manually construct the proof term we need to provide.
 In our case, we can do this in a recursive manner.&lt;/p&gt;
@@ -165,21 +164,25 @@ In our case, we can do this in a recursive manner.&lt;/p&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;⟨&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pf&lt;/span&gt;&lt;span class="err"&gt;⟩&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;visit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;expr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;proof&lt;/span&gt;&lt;span class="vm"&gt;?&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pf&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;:
-* Works regardless of definitional equalities.
+&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Works regardless of definitional equalities.
   See &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.reduceDvd#doc"&gt;&lt;code&gt;Nat.reduceDvd&lt;/code&gt;&lt;/a&gt; introduced in &lt;a href="https://leanprover-community.github.io/blog/posts/fantastic-simprocs/"&gt;the previous blog post&lt;/a&gt; for another compelling example:
-  &lt;code&gt;a ∣ b&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; defined as &lt;code&gt;a % b = 0&lt;/code&gt;, yet the &lt;code&gt;Nat.reduceDvd&lt;/code&gt; simproc can decide &lt;code&gt;a ∣ b&lt;/code&gt; by computing &lt;code&gt;a % b = 0&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;:
-* Might involve a fair bit of meta code, a lot of which could &lt;em&gt;feel&lt;/em&gt; like evaluating the function.
-* Simplifying &lt;code&gt;revRange n&lt;/code&gt; for a big input numeral &lt;code&gt;n&lt;/code&gt; might produce a large proof term.
-  In this specific case, the size of the produced proof term will be linear in &lt;code&gt;n&lt;/code&gt;.&lt;/p&gt;
+  &lt;code&gt;a ∣ b&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; defined as &lt;code&gt;a % b = 0&lt;/code&gt;, yet the &lt;code&gt;Nat.reduceDvd&lt;/code&gt; simproc can decide &lt;code&gt;a ∣ b&lt;/code&gt; by computing &lt;code&gt;a % b = 0&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Might involve a fair bit of meta code, a lot of which could &lt;em&gt;feel&lt;/em&gt; like evaluating the function.&lt;/li&gt;
+&lt;li&gt;Simplifying &lt;code&gt;revRange n&lt;/code&gt; for a big input numeral &lt;code&gt;n&lt;/code&gt; might produce a large proof term.
+  In this specific case, the size of the produced proof term will be linear in &lt;code&gt;n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;What should be a simproc?&lt;/h3&gt;
 &lt;p&gt;There is one question that so far has been left untouched: when should a metaprogram be a simproc?
 To an extent, this boundary is perhaps not a strict one, and we do not aim to provide a definitive answer, but rather provide the reader with a few guiding principles.
-As we saw in the first post, simprocs can be thought of as "parametric &lt;code&gt;simp&lt;/code&gt; lemmas" where the right hand side is allowed to vary as a function of the left hand side. 
-Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a &lt;em&gt;normal form&lt;/em&gt; that can be further simplified by &lt;code&gt;simp&lt;/code&gt;.
-In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.
-For example, evaluating some concrete function &lt;code&gt;foo : Nat → Nat&lt;/code&gt; at explicit inputs (i.e. literals) &lt;code&gt;n&lt;/code&gt; falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what &lt;code&gt;linarith&lt;/code&gt; does!).&lt;/p&gt;
+As we saw in the first post, simprocs can be thought of as "parametric &lt;code&gt;simp&lt;/code&gt; lemmas" where the right hand side is allowed to vary as a function of the left hand side. &lt;/p&gt;
+&lt;p&gt;Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a &lt;em&gt;normal form&lt;/em&gt; that can be further simplified by &lt;code&gt;simp&lt;/code&gt;.
+In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.&lt;/p&gt;
+&lt;p&gt;For example, evaluating some concrete function &lt;code&gt;foo : Nat → Nat&lt;/code&gt; at explicit inputs (i.e. literals) &lt;code&gt;n&lt;/code&gt; falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what &lt;code&gt;linarith&lt;/code&gt; does!).&lt;/p&gt;
 &lt;h3&gt;Epilogue&lt;/h3&gt;
 &lt;p&gt;In the series of blog posts, we gave an overview of the role simprocs are meant to play in Lean's theorem proving framework,
 took a brief look at the internals of the &lt;code&gt;simp&lt;/code&gt; tactic, implemented a few simprocs to solve a concrete problem, and briefly discussed what problems simprocs are meant to solve. 
@@ -187,7 +190,8 @@ Our hope is that, equipped with the basic tools needed to write their own simpro
 &lt;h2&gt;Extras&lt;/h2&gt;
 &lt;h3&gt;How to discharge subgoals&lt;/h3&gt;
 &lt;p&gt;Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-&lt;code&gt;simprocs&lt;/code&gt; is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the &lt;code&gt;SimpM&lt;/code&gt; monad, and can be accessed by the tactic via &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc"&gt;&lt;code&gt;Methods&lt;/code&gt;&lt;/a&gt;. Roughly speaking, &lt;code&gt;Methods&lt;/code&gt; is the part of the &lt;code&gt;SimpM&lt;/code&gt; monad that encodes which methods &lt;code&gt;simp&lt;/code&gt; can use to simplify an expression. &lt;code&gt;Methods&lt;/code&gt; implements a function &lt;code&gt;discharge? : Expr → Option Expr&lt;/code&gt; such that &lt;code&gt;discharge? goal&lt;/code&gt; is equal to &lt;code&gt;some pf&lt;/code&gt; if the discharger found a proof &lt;code&gt;pf&lt;/code&gt; of &lt;code&gt;goal&lt;/code&gt;, and none otherwise. Finally, to access the current local value of &lt;code&gt;Methods&lt;/code&gt;, one can use &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc"&gt;&lt;code&gt;getMethods&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;code&gt;simprocs&lt;/code&gt; is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the &lt;code&gt;SimpM&lt;/code&gt; monad, and can be accessed by the tactic via &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc"&gt;&lt;code&gt;Methods&lt;/code&gt;&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Roughly speaking, &lt;code&gt;Methods&lt;/code&gt; is the part of the &lt;code&gt;SimpM&lt;/code&gt; monad that encodes which methods &lt;code&gt;simp&lt;/code&gt; can use to simplify an expression. &lt;code&gt;Methods&lt;/code&gt; implements a function &lt;code&gt;discharge? : Expr → Option Expr&lt;/code&gt; such that &lt;code&gt;discharge? goal&lt;/code&gt; is equal to &lt;code&gt;some pf&lt;/code&gt; if the discharger found a proof &lt;code&gt;pf&lt;/code&gt; of &lt;code&gt;goal&lt;/code&gt;, and none otherwise. Finally, to access the current local value of &lt;code&gt;Methods&lt;/code&gt;, one can use &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc"&gt;&lt;code&gt;getMethods&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In the following example, we implement a simproc for &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc"&gt;&lt;code&gt;Nat.factorization&lt;/code&gt;&lt;/a&gt; that simplifies expressions of the form &lt;code&gt;(a * b).factorization&lt;/code&gt; to &lt;code&gt;a.factorization + b.factorization&lt;/code&gt; whenever a proof that &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; are both non-zero can be found by the discharger.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Mathlib&lt;/span&gt;
 
@@ -218,15 +222,17 @@ Our hope is that, equipped with the basic tools needed to write their own simpro
 &lt;h3&gt;How to match on numerals&lt;/h3&gt;
 &lt;p&gt;Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. 
 The easiest case is perhaps that of &lt;code&gt;Nat&lt;/code&gt; literals -- recall that we had to do this several times when implementing the simprocs above! 
-Given a numeral by &lt;code&gt;e : Expr&lt;/code&gt;, there are various ways of recovering the corresponding term of type &lt;code&gt;Nat&lt;/code&gt;:
-- &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc"&gt;&lt;code&gt;Lean.Expr.rawNatLit?&lt;/code&gt;&lt;/a&gt;
-  Returns &lt;code&gt;n&lt;/code&gt; if the expression &lt;code&gt;e&lt;/code&gt; is of the form &lt;code&gt;Expr.lit (Literal.natVal n)&lt;/code&gt;, and &lt;code&gt;none&lt;/code&gt; otherwise.
-- &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc"&gt;&lt;code&gt;Lean.Expr.natLit!&lt;/code&gt;&lt;/a&gt;:
-  Similar to the above, but panics if &lt;code&gt;e&lt;/code&gt; is not of the form &lt;code&gt;Expr.lit (Literal.natVal n)&lt;/code&gt;.
-- &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc"&gt;&lt;code&gt;Lean.Expr.nat?&lt;/code&gt;&lt;/a&gt;:
-  Extracts &lt;code&gt;n&lt;/code&gt; if the expression &lt;code&gt;e&lt;/code&gt; corresponds to &lt;code&gt;OfNat.ofNat m&lt;/code&gt; where &lt;code&gt;m&lt;/code&gt; corresponds to &lt;code&gt;Expr.lit (Literal.natVal n)&lt;/code&gt;.
-- &lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc"&gt;&lt;code&gt;Nat.fromExpr?&lt;/code&gt;&lt;/a&gt;:
-  Combination of the above that also strips metadata from &lt;code&gt;e&lt;/code&gt; beforehand.&lt;/p&gt;
+Given a numeral by &lt;code&gt;e : Expr&lt;/code&gt;, there are various ways of recovering the corresponding term of type &lt;code&gt;Nat&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit?#doc"&gt;&lt;code&gt;Lean.Expr.rawNatLit?&lt;/code&gt;&lt;/a&gt;
+  Returns &lt;code&gt;n&lt;/code&gt; if the expression &lt;code&gt;e&lt;/code&gt; is of the form &lt;code&gt;Expr.lit (Literal.natVal n)&lt;/code&gt;, and &lt;code&gt;none&lt;/code&gt; otherwise.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.rawNatLit!#doc"&gt;&lt;code&gt;Lean.Expr.natLit!&lt;/code&gt;&lt;/a&gt;:
+  Similar to the above, but panics if &lt;code&gt;e&lt;/code&gt; is not of the form &lt;code&gt;Expr.lit (Literal.natVal n)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Expr.nat?#doc"&gt;&lt;code&gt;Lean.Expr.nat?&lt;/code&gt;&lt;/a&gt;:
+  Extracts &lt;code&gt;n&lt;/code&gt; if the expression &lt;code&gt;e&lt;/code&gt; corresponds to &lt;code&gt;OfNat.ofNat m&lt;/code&gt; where &lt;code&gt;m&lt;/code&gt; corresponds to &lt;code&gt;Expr.lit (Literal.natVal n)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.fromExpr?#doc"&gt;&lt;code&gt;Nat.fromExpr?&lt;/code&gt;&lt;/a&gt;:
+  Combination of the above that also strips metadata from &lt;code&gt;e&lt;/code&gt; beforehand.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Some of these are more restrictive than others, and generally speaking, the two last ones are those that show up the most in
 practise. Given an expression &lt;code&gt;e&lt;/code&gt; representing a natural number, a little pre-processing can occasionally be necessary in order to
 put &lt;code&gt;e&lt;/code&gt; in a form where the number can be extracted. For example, if &lt;code&gt;e&lt;/code&gt; represents &lt;code&gt;OfNat.ofNat a + OfNat.ofNat b&lt;/code&gt; 
