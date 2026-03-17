@@ -73,6 +73,8 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 In our first two posts, we gave an informal introduction to the concept of a <em>simproc</em>,
 and a brief overview of the inner workings of the <code>simp</code> tactic.
 The aim of this final post is to build on this by demonstrating how Lean users can write their own simprocs.</p>
+<!-- TEASER_END -->
+
 <blockquote>
 <p>As for the previous post, we will assume that the reader has some exposure to metaprogramming in Lean.
 In addition, some familiarity with the <code>Qq</code> library will be helpful, but not necessary for most of this post.</p>
@@ -181,7 +183,7 @@ in practice this amounts to providing the expression our program has produced wi
 </pre>
 <p>Why does this work? One key step here is happening on the line <code>let l_expr := Lean.toExpr l</code>. Generally speaking, <code>Lean.toExpr</code> can be thought of as a function that produces <code>Expr</code>s for sufficiently simple objects, in this case natural number literals and explicit lists of such terms.</p>
 <p>Here, this takes an explicit list of natural numbers of the form <code>a :: b :: ... :: []</code> and produces <em>the expression corresponding to this list</em> recursively, by sending <code>[]</code> to <code>Expr.app (Expr.const [] `List.nil) (Expr.const [] `Nat)</code> and <code>a :: l</code> to <code>Expr.app (Expr.app (Expr.app (Expr.const [] `List.cons) (Expr.const [] `Nat)) (Lean.toExpr a)) (Lean.toExpr l)</code>;  and the computation of <code>Lean.toExpr</code> for a natural number literal <code>a</code> works in a similar recursive manner.</p>
-<p>Applying this to <code>revRange</code> produces precisely the expression we wanted, i.e. 
+<p>Applying this to <code>revRange</code> produces precisely the expression we wanted, i.e.
 writing the expression for <code>revRange n</code> as a series of applications of <code>List.cons</code> starting from <code>List.nil</code>.
 There are other ways of achieving the same result: for example, one can use the function <code>Lean.Meta.whnf</code>, which takes in an expression <code>e</code> and produces a new simplified expression <code>e'</code> that is definitionally equal to <code>e</code>.</p>
 <p>There are other stronger variants of this function such as <code>Lean.Meta.reduce</code> and <code>Lean.Meta.reduceAll</code>. In particular, <code>reduce</code> and <code>reduceAll</code> are both able to produce the desired expression here.</p>
@@ -251,18 +253,18 @@ In our case, we can do this in a recursive manner.</p>
 <h3>What should be a simproc?</h3>
 <p>There is one question that so far has been left untouched: when should a metaprogram be a simproc?
 To an extent, this boundary is perhaps not a strict one, and we do not aim to provide a definitive answer, but rather provide the reader with a few guiding principles.
-As we saw in the first post, simprocs can be thought of as "parametric <code>simp</code> lemmas" where the right hand side is allowed to vary as a function of the left hand side. </p>
+As we saw in the first post, simprocs can be thought of as "parametric <code>simp</code> lemmas" where the right hand side is allowed to vary as a function of the left hand side.</p>
 <p>Thus, the niche that simprocs are designed to occupy is that of metaprograms that implement a given simplification procedure taking an expression and replacing it by a <em>normal form</em> that can be further simplified by <code>simp</code>.
 In particular, simprocs are meant to perform small steps fitting into a larger simplification algorithm, rather than provide general purpose automation.</p>
 <p>For example, evaluating some concrete function <code>foo : Nat → Nat</code> at explicit inputs (i.e. literals) <code>n</code> falls well within this niche, while finding contradictions in general linear inequality systems might be better left to a bespoke tactic (and indeed, this is precisely what <code>linarith</code> does!).</p>
 <h3>Epilogue</h3>
 <p>In the series of blog posts, we gave an overview of the role simprocs are meant to play in Lean's theorem proving framework,
-took a brief look at the internals of the <code>simp</code> tactic, implemented a few simprocs to solve a concrete problem, and briefly discussed what problems simprocs are meant to solve. 
-Our hope is that, equipped with the basic tools needed to write their own simprocs when needed, the reader will be able to use them freely in their own formalisation work and contributions to the Lean ecosystem! </p>
+took a brief look at the internals of the <code>simp</code> tactic, implemented a few simprocs to solve a concrete problem, and briefly discussed what problems simprocs are meant to solve.
+Our hope is that, equipped with the basic tools needed to write their own simprocs when needed, the reader will be able to use them freely in their own formalisation work and contributions to the Lean ecosystem!</p>
 <h2>Extras</h2>
 <h3>How to discharge subgoals</h3>
 <p>Often, when applying a theorem, we may need to provide additional proof terms for the hypotheses of the result. One useful feature of
-<code>simprocs</code> is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the <code>SimpM</code> monad, and can be accessed by the tactic via <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc"><code>Methods</code></a>. </p>
+<code>simprocs</code> is that we can also call the discharger tactic provided to simp. Which discharger was provided by the user is part of the state stored by the <code>SimpM</code> monad, and can be accessed by the tactic via <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.Methods#doc"><code>Methods</code></a>.</p>
 <p>Roughly speaking, <code>Methods</code> is the part of the <code>SimpM</code> monad that encodes which methods <code>simp</code> can use to simplify an expression. <code>Methods</code> implements a function <code>discharge? : Expr → Option Expr</code> such that <code>discharge? goal</code> is equal to <code>some pf</code> if the discharger found a proof <code>pf</code> of <code>goal</code>, and none otherwise. Finally, to access the current local value of <code>Methods</code>, one can use <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Lean.Meta.Simp.getMethods#doc"><code>getMethods</code></a>.</p>
 <p>In the following example, we implement a simproc for <a href="https://leanprover-community.github.io/mathlib4_docs/find/?pattern=Nat.factorization#doc"><code>Nat.factorization</code></a> that simplifies expressions of the form <code>(a * b).factorization</code> to <code>a.factorization + b.factorization</code> whenever a proof that <code>a</code> and <code>b</code> are both non-zero can be found by the discharger.</p>
 <pre class="code literal-block"><span class="kn">import</span> <span class="n">Mathlib</span>
@@ -292,8 +294,8 @@ Our hope is that, equipped with the basic tools needed to write their own simpro
   <span class="gr">sorry</span>
 </pre>
 <h3>How to match on numerals</h3>
-<p>Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating. 
-The easiest case is perhaps that of <code>Nat</code> literals -- recall that we had to do this several times when implementing the simprocs above! 
+<p>Often when writing a simproc to perform a computation, it can be useful to extract quantities from the expression we are manipulating.
+The easiest case is perhaps that of <code>Nat</code> literals -- recall that we had to do this several times when implementing the simprocs above!
 Given a numeral by <code>e : Expr</code>, there are various ways of recovering the corresponding term of type <code>Nat</code>:</p>
 <ul>
 <li>
@@ -311,9 +313,9 @@ Given a numeral by <code>e : Expr</code>, there are various ways of recovering t
 </ul>
 <p>Some of these are more restrictive than others, and generally speaking, the two last ones are those that show up the most in
 practise. Given an expression <code>e</code> representing a natural number, a little pre-processing can occasionally be necessary in order to
-put <code>e</code> in a form where the number can be extracted. For example, if <code>e</code> represents <code>OfNat.ofNat a + OfNat.ofNat b</code> 
+put <code>e</code> in a form where the number can be extracted. For example, if <code>e</code> represents <code>OfNat.ofNat a + OfNat.ofNat b</code>
 where <code>a</code> and <code>b</code> are explicit natural numbers then all of the methods above will fail to extract the number <code>a + b</code>,
-as <code>e</code> is not of the form <code>OfNat.ofNat _</code>. </p>
+as <code>e</code> is not of the form <code>OfNat.ofNat _</code>.</p>
 <pre class="code literal-block"><span class="c1">-- no pre-processing</span>
 <span class="n">run_meta</span> <span class="k">do</span>
   <span class="k">let</span> <span class="n">a</span> <span class="o">:</span> <span class="n">Q</span><span class="o">(</span><span class="n">Nat</span><span class="o">)</span> <span class="o">:=</span> <span class="n">q</span><span class="o">(</span><span class="mi">1</span> <span class="bp">+</span> <span class="mi">1</span><span class="o">)</span>
@@ -325,11 +327,11 @@ as <code>e</code> is not of the form <code>OfNat.ofNat _</code>. </p>
   <span class="c1">-- The expression is of the form `HAdd.hAdd (OfNat.ofNat x) (OfNat.ofNat y)`</span>
   <span class="n">let_expr</span> <span class="n">HAdd.hAdd</span> <span class="n">_</span> <span class="n">_</span> <span class="n">_</span> <span class="n">_</span> <span class="n">x</span> <span class="n">y</span> <span class="bp">←</span> <span class="n">a</span> <span class="bp">|</span> <span class="n">return</span>
   <span class="k">let</span> <span class="n">some</span> <span class="n">vx</span> <span class="o">:=</span> <span class="n">Expr.nat</span><span class="bp">?</span> <span class="n">x</span> <span class="bp">|</span> <span class="n">return</span>
-  <span class="k">let</span> <span class="n">some</span> <span class="n">vy</span> <span class="o">:=</span> <span class="n">Expr.nat</span><span class="bp">?</span> <span class="n">y</span> <span class="bp">|</span> <span class="n">return</span> 
+  <span class="k">let</span> <span class="n">some</span> <span class="n">vy</span> <span class="o">:=</span> <span class="n">Expr.nat</span><span class="bp">?</span> <span class="n">y</span> <span class="bp">|</span> <span class="n">return</span>
   <span class="n">Lean.logInfo</span> <span class="n">m</span><span class="bp">!</span><span class="s2">"{vx + vy}"</span> <span class="c1">-- 3</span>
 </pre>
 <blockquote>
-<p>Exercise: write a function <code>extractNat? (e : Expr) : MetaM (Option Nat)</code> 
+<p>Exercise: write a function <code>extractNat? (e : Expr) : MetaM (Option Nat)</code>
 that extracts the value of <code>e</code> whenever <code>e</code> is of the form <code>OfNat.ofNat x</code>
 (or a combination of such values, using the operations <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>).</p>
 </blockquote>
