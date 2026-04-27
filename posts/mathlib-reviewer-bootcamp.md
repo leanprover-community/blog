@@ -17,13 +17,17 @@ We are Hannah (she/her) and Rida (they/them), math graduate students at the Univ
 
 # Our Background with Reviewing
 
-I, Hannah, had never reviewed PRs to mathlib before but regular reviewing was part of my goals, both to deepen my Lean skills and to give back to this community. Before this workshop, I wasn't sure if I had the necessary skills to give helpful feedback. The suggestion from Michael to apply for this workshop gave me more confidence in this direction. I hoped that attending the workshop would strengthen this feeling and provide me with the necessary skills I was missing. 
+Hannah: I had never reviewed PRs to mathlib before but regular reviewing was part of my goals, both to deepen my Lean skills and to give back to this community. Before this workshop, I wasn't sure if I had the necessary skills to give helpful feedback. The suggestion from Michael to apply for this workshop gave me more confidence in this direction. I hoped that attending the workshop would strengthen this feeling and provide me with the necessary skills I was missing. 
 
-On the other hand, I, Rida, have been reviewing PRs for two years, but I had no methodology and I struggled to suggest more than minor stylistic changes. My motivation to review is to get PRs merged faster, and lack of reviews feels like the bottleneck. The organizers of the bootcamp themselves have reviewed my PRs in the past and I wanted to learn the secrets of the trade from them directly. 
+Rida : On the other hand, I have been reviewing PRs for two years, but I had no methodology and I struggled to suggest more than minor stylistic changes. My motivation to review is to get PRs merged faster, and lack of reviews feels like the bottleneck. The organizers of the bootcamp themselves have reviewed my PRs in the past and I wanted to learn the secrets of the trade from them directly. 
 
 # Lectures
 
-The days were divided into two parts, one part dedicated to lectures by Yaël, Michael, and Andrew. Yaël gave us practical advice about using Git and VS Code and on how to effectively integrate reviewing into our schedules. Check out their [git cheatsheet](https://yaeldillies.github.io/git-cheatsheet.html) and [vscode cheatsheet](https://yaeldillies.github.io/vscode-cheatsheet.html). Michael focused on the organisational structures and tools such as the [Mathlib review and triage dashboard](https://leanprover-community.github.io/queueboard/) that make managing the mathlib review load easier. Andrew talked about stating theorems and definitions "correctly" for mathlib. Rida's favorite course was the one by Andrew on simp normal form; it resolved some mysteries on how we approach rewriting in mathlib. Hannah particulary enjoyed Yaël's advice on streamlining the technical side of the review process by optimally using GitHub, Git and VS Code.
+The days were divided into two parts, one part dedicated to lectures by Yaël, Michael, and Andrew. Yaël gave us practical advice about using Git and VS Code and on how to effectively integrate reviewing into our schedules. Check out their [git cheatsheet](https://yaeldillies.github.io/git-cheatsheet.html) and [vscode cheatsheet](https://yaeldillies.github.io/vscode-cheatsheet.html). Michael focused on the organisational structures and tools such as the [Mathlib review and triage dashboard](https://leanprover-community.github.io/queueboard/) that make managing the mathlib review load easier. Andrew talked about stating theorems and definitions "correctly" for mathlib. 
+
+Rida: My favorite course was the one by Andrew on simp normal form; it resolved some mysteries on how we approach rewriting in mathlib.
+
+Hannah: I particulary enjoyed Yaël's advice on streamlining the technical side of the review process by optimally using GitHub, Git and VS Code.
 
 # Group review sessions
 
