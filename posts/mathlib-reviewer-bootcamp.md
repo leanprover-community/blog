@@ -27,11 +27,11 @@ The days were divided into two parts; the first was dedicated to lectures by Ya�
 
 Rida: My favorite course was the one by Andrew on simp normal form; it resolved some mysteries on how we approach rewriting in Mathlib.
 
-Hannah: I particulary enjoyed Yaël's advice on streamlining the technical side of the review process by optimally using GitHub, Git and VS Code.
+Hannah: I particularly enjoyed Yaël's advice on streamlining the technical side of the review process by optimally using GitHub, Git and VS Code.
 
 # Group review sessions
 
-The other part was dedicated to group review sessions. We divided ourselves into three groups, each lead by one of the three lecturers. Yaël's group focused on reviewing combinatorics and hard analysis, Andrew's group on category theory and algebraic geometry, and Michael's group on differential geometry and soft analysis. The group leaders provided us with reviews of our reviews. With the advice of the lecturers and their detailed feedback on our reviews, we all slowly gained confidence throughout the sessions.
+The other part was dedicated to group review sessions. We divided ourselves into three groups, each led by one of the three lecturers. Yaël's group focused on reviewing combinatorics and hard analysis, Andrew's group on category theory and algebraic geometry, and Michael's group on differential geometry and soft analysis. The group leaders provided us with reviews of our reviews. With the advice of the lecturers and their detailed feedback on our reviews, we all slowly gained confidence throughout the sessions.
 
 # Our PR reviews
 
@@ -43,7 +43,7 @@ We have both kept up with reviewing these PRs after the workshop and plan to reg
 
 # Socializing
 
-The bootcamp included participants from many different backgrounds, whether mathematical or cultural. It was wonderful getting to know everyone. Additionally, most of the participants were early career researchers (mostly graduate students) which gave the workshop a relaxed atmosphere and made for a unique networking opportunity. We got to know the other particpants both as researchers and as people while walking together around the city, getting lunch and dinner together and doing a movie night. For our conference dinner, we even got to be the last ever customers at a local Chinese place. 
+The bootcamp included participants from many different backgrounds, whether mathematical or cultural. It was wonderful getting to know everyone. Additionally, most of the participants were early career researchers (mostly graduate students) which gave the workshop a relaxed atmosphere and made for a unique networking opportunity. We got to know the other participants both as researchers and as people while walking together around the city, getting lunch and dinner together and doing a movie night. For our conference dinner, we even got to be the last ever customers at a local Chinese place. 
 
 # Conclusion
 
