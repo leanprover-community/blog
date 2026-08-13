@@ -11,6 +11,10 @@ description: A toy model of decomposition resistance between software engineerin
 
 <!-- LB-EN v2026.08.13-03 -->
 
+From a manager's point of view, formalizers are an inconvenient species. They write code, yet some of their hardest work looks suspiciously like mathematics; they collaborate, yet adding headcount does not necessarily make the central difficulty go away. This essay is a newcomer's attempt to draw a map of that territory using three deliberately crude coordinates: structural complexity, conceptual abstraction demand, and decomposition resistance.
+
+<!-- TEASER_END -->
+
 I am new to Lean 4, so this is not an insider's view of formalization.
 
 I came to Lean with somewhat unusual baggage: an old degree in applied mathematics, equally old experience with BASIC and Pascal, and much more recent experience managing people, projects, and organizations.
@@ -115,9 +119,7 @@ This is already a hypothesis, not a definition of $R$.
 
 In the first version of the model,
 
-$$
-R(C,A)=R_C(C)+R_A(A).
-$$
+$$R(C,A)=R_C(C)+R_A(A).\qquad (1)$$
 
 For structural complexity I assume
 
@@ -149,9 +151,7 @@ $$
 
 Thus the surface is
 
-$$
-R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),
-$$
+$$R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\qquad (2)$$
 
 and for the figure I choose
 
@@ -161,9 +161,7 @@ $$
 
 Hence
 
-$$
-R(C,A)=0.15\ln(1+20C)+e^{3A}-1,
-$$
+$$R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\qquad (3)$$
 
 with
 
@@ -173,16 +171,11 @@ $$
 
 ![Decomposition-resistance surface with a 3 x 3 grid and regions 1-9](/images/decomposition-resistance-surface.png)
 
-*Figure 1. A local patch of the relative decomposition-resistance surface $R(C,A)$, with a $3\times3$ grid and regions 1-9.*
+*Figure 1. A local patch of the relative decomposition-resistance surface R(C,A), with a 3×3 grid and regions 1-9.*
 
 At the point $(C,A)=(0,0)$ the two coordinates have the same marginal effect:
 
-$$
-\left.\frac{\partial R}{\partial C}\right|_{(0,0)}
-=
-\left.\frac{\partial R}{\partial A}\right|_{(0,0)}
-=3.
-$$
+$$\left.\frac{\partial R}{\partial C}\right|_{(0,0)}=\left.\frac{\partial R}{\partial A}\right|_{(0,0)}=3.$$
 
 But from there they behave differently:
 
@@ -405,9 +398,7 @@ This does not prove the model. The two episodes are here only as sanity checks: 
 
 If $0<s\le 1$ is the fraction of work that must remain sequential, Amdahl's law gives
 
-$$
-S(n)=\frac{1}{s+\frac{1-s}{n}},
-$$
+$$S(n)=\frac{1}{s+\frac{1-s}{n}},\qquad (4)$$
 
 and
 
