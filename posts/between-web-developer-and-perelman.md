@@ -12,7 +12,7 @@ type: text
 
 *A Toy Model of Decomposition Resistance*
 
-<!-- LB-EN v2026.08.13-04 -->
+<!-- LB-EN v2026.08.13-05 -->
 
 From a manager's point of view, formalizers are an inconvenient species. They write code, yet some of their hardest work looks suspiciously like mathematics; they collaborate, yet adding headcount does not necessarily make the central difficulty go away. This essay is a newcomer's attempt to draw a map of that territory using three deliberately crude coordinates: structural complexity, conceptual abstraction demand, and decomposition resistance.
 
@@ -48,7 +48,7 @@ If the coordinate is complexity, the scale begins to behave strangely.
 
 A modern processor, a large industrial facility, or an operating system can be structurally monstrous. No single person holds the entire system in mind. Yet thousands of people can work on it at the same time.
 
-We have learned to domesticate this kind of complexity with architecture, specialization, interfaces, standards, hierarchy, and division of labor. Simon, Parnas, and several generations of software engineers have left enough tracks here that I will not turn this into a historical excursion. Brooks adds conceptual integrity: successful decomposition does not remove the need to preserve the integrity of the system as a whole.
+We have learned to domesticate this kind of complexity with architecture, specialization, interfaces, standards, hierarchy, and division of labor. Simon (1962) gave a general account of hierarchical and nearly decomposable systems; Parnas (1972) made information hiding a criterion for modular decomposition. Brooks (1995) adds the software-engineering insistence on conceptual integrity: successful decomposition does not remove the need to preserve the integrity of the system as a whole.
 
 Yet there are much smaller problems for which ten additional experts help surprisingly little.
 
@@ -114,72 +114,100 @@ Now we can try to draw what would not fit on one axis.
 
 Suppose first that
 
-$$R=R(C,A).\qquad (1)$$
+$$
+R=R(C,A).
+$$
 
 This is already a hypothesis, not a definition of $R$.
 
 In the first version of the model,
 
-$$R(C,A)=R_C(C)+R_A(A).\qquad (2)$$
+$$
+R(C,A)=R_C(C)+R_A(A).\tag{1}\label{eq:additive}
+$$
+
+Here and below, the subscripts in $R_C$ and $R_A$ label the two additive contributions; they do not denote partial differentiation.
 
 For structural complexity I assume
 
-$$R_C'(C)>0,\qquad R_C''(C)<0.\qquad (3)$$
+$$
+R_C'(C)>0,\qquad R_C''(C)<0.\tag{2}\label{eq:C-curvature}
+$$
 
 Increasing already-structured complexity increases decomposition resistance, but additional complexity can increasingly be absorbed by architecture, specialization, and interfaces.
 
 The simplest candidate is
 
-$$R_C(C)=\alpha\ln(1+\beta C).\qquad (4)$$
+$$
+R_C(C)=\alpha\ln(1+\beta C).\tag{3}\label{eq:C-component}
+$$
 
 For conceptual abstraction demand, let us try the opposite curvature:
 
-$$R_A'(A)>0,\qquad R_A''(A)>0.\qquad (5)$$
+$$
+R_A'(A)>0,\qquad R_A''(A)>0.\tag{4}\label{eq:A-curvature}
+$$
 
 While the representation, definition, or invariant has not yet been found, it may be unclear even what the correct parts of the problem are.
 
 A simple candidate with no finite singularity is
 
-$$R_A(A)=\lambda\left(e^{\gamma A}-1\right).\qquad (6)$$
+$$
+R_A(A)=\lambda\left(e^{\gamma A}-1\right).\tag{5}\label{eq:A-component}
+$$
 
 Here $\alpha,\beta,\lambda,\gamma>0$, and the logarithmic term is considered only for $C>-1/\beta$.
 
 Thus the surface is
 
-$$R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\qquad (7)$$
+$$
+R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\tag{6}\label{eq:surface}
+$$
 
 and for Figure 1 I choose
 
-$$\alpha=0.15,\qquad \beta=20,\qquad \lambda=1,\qquad \gamma=3.\qquad (8)$$
+$$
+\alpha=0.15,\qquad \beta=20,\qquad \lambda=1,\qquad \gamma=3.
+$$
 
 Hence
 
-$$R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\qquad (9)$$
+$$
+R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\tag{7}\label{eq:calibrated-surface}
+$$
 
 with
 
-$$\alpha\beta=\lambda\gamma=3.\qquad (10)$$
+$$
+\alpha\beta=\lambda\gamma=3.\tag{8}\label{eq:calibration}
+$$
 
-![Decomposition-resistance surface with a 3 x 3 grid and regions 1-9](/images/decomposition-resistance-surface.png)
+![Decomposition-resistance surface with a 3×3 grid and regions 1–9](/images/decomposition-resistance-surface.png)
 
-**Figure 1.** Local patch of the relative decomposition-resistance surface $R(C,A)$ used in the toy model. The $3\times3$ grid marks regions 1–9 summarized in Table 1.
+**Figure 1.** Local patch of the relative decomposition-resistance surface $R(C,A)$ defined by \eqref{eq:calibrated-surface}. Height and color encode $R$; the $3\times3$ grid marks regions 1–9 summarized in Table 1.
 
 At the point $(C,A)=(0,0)$ the two coordinates have the same marginal effect:
 
-$$\left.\frac{\partial R}{\partial C}\right|_{(0,0)}=\left.\frac{\partial R}{\partial A}\right|_{(0,0)}=3.\qquad (11)$$
+$$
+\left.\frac{\partial R}{\partial C}\right|_{(0,0)}
+=
+\left.\frac{\partial R}{\partial A}\right|_{(0,0)}
+=
+3.\tag{9}\label{eq:equal-marginal}
+$$
 
 But from there they behave differently:
 
 $$
 \frac{\partial R}{\partial C}=\frac{3}{1+20C},\qquad
-\frac{\partial^2R}{\partial C^2}=\frac{-60}{(1+20C)^2}<0.\qquad (12)
+\frac{\partial^2R}{\partial C^2}=-\frac{60}{(1+20C)^2}<0.
 $$
 
 whereas
 
 $$
 \frac{\partial R}{\partial A}=3e^{3A},\qquad
-\frac{\partial^2R}{\partial A^2}=9e^{3A}>0.\qquad (13)
+\frac{\partial^2R}{\partial A^2}=9e^{3A}>0.
 $$
 
 Along $C$, the surface keeps rising but gradually flattens.
@@ -190,57 +218,44 @@ Along $A$, it bends upward more and more sharply.
 
 The opposite curvature of the two axes has a simple consequence.
 
-Let $r>0$ be the same contribution from either coordinate to decomposition resistance.
+**Lemma.** Under the calibration \eqref{eq:calibration}, let $r>0$ be the same contribution of either coordinate to decomposition resistance. Then
 
-From
+$$
+C(r)>A(r),\qquad r>0.\tag{10}\label{eq:lemma-conclusion}
+$$
 
-$$R_C(C)=r,\qquad (14)$$
+*Proof.* Solving $R_C(C)=r$ and $R_A(A)=r$ gives
 
-we obtain
+$$
+\begin{aligned}
+C(r)&=\frac{e^{r/\alpha}-1}{\beta},\\
+A(r)&=\frac{1}{\gamma}\ln\left(1+\frac{r}{\lambda}\right).
+\end{aligned}\tag{11}\label{eq:inverse-functions}
+$$
 
-$$C(r)=\frac{e^{r/\alpha}-1}{\beta},\qquad (15)$$
+Both functions start at $C(0)=A(0)=0$. For $r>0$,
 
-and from
+$$
+C'(r)=\frac{e^{r/\alpha}}{\alpha\beta}
+>
+\frac{1}{\alpha\beta}
+=
+\frac{1}{\lambda\gamma}
+>
+\frac{1}{\gamma(\lambda+r)}
+=
+A'(r),
+$$
 
-$$R_A(A)=r,\qquad (16)$$
+where the middle equality uses \eqref{eq:calibration}. Integrating the strict derivative inequality from $0$ to $r$ gives \eqref{eq:lemma-conclusion}. $\square$
 
-we obtain
-
-$$A(r)=\frac{1}{\gamma}\ln\left(1+\frac{r}{\lambda}\right).\qquad (17)$$
-
-Under the calibration (10), both functions start at
-
-$$C(0)=A(0)=0,\qquad (18)$$
-
-with the same slope.
-
-But for $r>0$,
-
-$$C'(r)=\frac{e^{r/\alpha}}{\alpha\beta}>\frac{1}{\alpha\beta},\qquad (19)$$
-
-whereas
-
-$$A'(r)=\frac{1}{\gamma(\lambda+r)}<\frac{1}{\lambda\gamma}.\qquad (20)$$
-
-Therefore
-
-$$C'(r)>A'(r),\qquad (21)$$
-
-and hence
-
-$$C(r)>A(r),\qquad r>0.\qquad (22)$$
-
-That is already a proof.
-
-Only a proof *inside the chosen toy model*, not a theorem about human intelligence.
+This is a proof—but only *inside the chosen toy model*, not a theorem about human intelligence.
 
 The distinction matters.
 
 Now let us return to the map.
 
-$C$ - structural complexity  
-$A$ - conceptual abstraction demand  
-$R$ - decomposition resistance
+Recall that $C$, $A$, and $R$ denote structural complexity, conceptual abstraction demand, and decomposition resistance, respectively.
 
 $A$ does not mean how abstract a problem is. It means the difficulty of finding or revising its representation. Height and color encode $R$; the $3\times3$ grid divides the displayed patch into nine notional regions.
 
@@ -266,11 +281,11 @@ The labels below are landmarks, not measured coordinates of human ability.
 
 For brevity, I will call the professional labels in the grid **mathematized professions**. The grid also contains task types and cultural landmarks; all labels should be read as shorthand for characteristic tasks, not as fixed coordinates of people or professions.
 
-**Table 1.** Notional regions of the $(C,A)$ task map.
+**Table 1.** Notional $3\times3$ regions of the $(C,A)$ task map shown in Figure 1.
 
-| $A\backslash C$ | Low $C$ | Medium $C$ | High $C$ |
+|  | Low $C$ | Medium $C$ | High $C$ |
 |---|---|---|---|
-| **High $A$** | **1.** Compact abstract mathematical work | **2.** Mathematical research | **3.** Wiles / Perelman - limit-case cultural markers |
+| **High $A$** | **1.** Compact abstract mathematical work | **2.** Mathematical research | **3.** Wiles / Perelman—limit-case cultural markers |
 | **Medium $A$** | **4.** Applied mathematician / modeler | **5.** Formalizer / proof engineer | **6.** Formal methods engineer / verification architect |
 | **Low $A$** | **7.** Notional web developer | **8.** Production software engineer | **9.** Large concrete engineering and software systems |
 
@@ -318,17 +333,12 @@ This is mostly movement within structure.
 
 In the afternoon a different set of questions may arise:
 
-Which definition should be used?
-
-How much generality should be retained?
-
-Which assumptions are actually necessary?
-
-Which interface will survive the evolution of the library?
-
-How should a large argument be split into reusable lemmas?
-
-Does the formally stated theorem say what the mathematician actually meant?
+- Which definition should be used?
+- How much generality should be retained?
+- Which assumptions are actually necessary?
+- Which interface will survive the evolution of the library?
+- How should a large argument be split into reusable lemmas?
+- Does the formally stated theorem say what the mathematician actually meant?
 
 Lean checks, with great precision, that our proof establishes the theorem we stated.
 
@@ -350,30 +360,34 @@ And after a successful conceptual step, the subsequent work may suddenly become 
 
 This may be the most interesting consequence of the picture. Two real episodes suggest two opposite movements.
 
-The first is the ongoing collaborative [project to formalize in Lean a modern proof of Fermat's Last Theorem (FLT)](https://leanprover-community.github.io/blog/posts/FLT-announcement/). Its blueprint turns an enormous proof into an explicit network of statements and dependencies, allowing participants to work on separate fragments without holding the entire construction in mind.
+The first is the ongoing collaborative [Fermat's Last Theorem project](https://leanprover-community.github.io/blog/posts/FLT-announcement/) described by Buzzard (2024), which aims to formalize in Lean a modern proof of FLT. Its blueprint turns an enormous proof into an explicit network of statements and dependencies, allowing participants to work on separate fragments without holding the entire construction in mind.
 
-For our picture the point is simple: good formal architecture can turn part of one global problem into a collection of local tasks. In that sense, formalization does not merely *use* decomposition - it can **produce decomposability**.
+For our picture the point is simple: good formal architecture can turn part of one global problem into a collection of local tasks. In that sense, formalization does not merely *use* decomposition—it can **produce decomposability**.
 
-The second episode is the [summer school on formalizing class field theory](https://leanprover-community.github.io/blog/posts/cmi-class-field-theory-workshop/) held in Oxford in July 2025. Several projects were organized so that they could proceed largely independently and in parallel.
+The second episode comes from the [summer school on formalizing class field theory](https://leanprover-community.github.io/blog/posts/cmi-class-field-theory-workshop/) held in Oxford in July 2025 and reported by Harbor-Collins and Hulse (2025). Several projects were organized so that they could proceed largely independently and in parallel.
 
 As the work progressed, it became clear that several branches needed the same foundation: a Lean-friendly definition of a nonarchimedean local field and a basic API around it. One group's work on Lubin-Tate theory was paused as attention shifted to this shared foundation.
 
 For our picture this is the reverse movement: behind the visible decomposition, a common conceptual bottleneck emerged.
 
-**FLT:** global problem $\to$ local branches  
-**Oxford:** parallel branches $\to$ shared representation problem
+- **FLT:** global problem $\to$ local branches
+- **Oxford:** parallel branches $\to$ shared representation problem
 
 This does not prove the model. The two episodes are here only as sanity checks: formal architecture can make work more divisible, while an unresolved representation problem can gather several branches back into one bottleneck.
 
 ## Amdahl looks at the same question a little later
 
-If $0<s\le 1$ is the fraction of work that must remain sequential, Amdahl's law gives
+If $0<s\le 1$ is the fraction of work that must remain sequential, Amdahl's law (Amdahl 1967) gives
 
-$$S(n)=\frac{1}{s+\frac{1-s}{n}},\qquad (23)$$
+$$
+S(n)=\frac{1}{s+\frac{1-s}{n}},\tag{12}\label{eq:amdahl}
+$$
 
 and
 
-$$\lim_{n\to\infty}S(n)=\frac{1}{s}.\qquad (24)$$
+$$
+\lim_{n\to\infty}S(n)=\frac{1}{s}.\tag{13}\label{eq:amdahl-limit}
+$$
 
 In Amdahl's model, the sequential residue places a ceiling on the return from additional resources.
 
@@ -393,7 +407,9 @@ For an empirical test, observable indicators for all three quantities would have
 
 If we replace $A$ by a monotone nonlinear coordinate
 
-$$\widetilde A=g(A),\qquad (25)$$
+$$
+\widetilde A=g(A),\tag{14}\label{eq:reparameterization}
+$$
 
 the particular form of the exponential changes.
 
@@ -401,19 +417,23 @@ Under a sufficiently flexible reparameterization, even convexity may change.
 
 Therefore
 
-$$R_A(A)=e^{3A}-1\qquad (26)$$
+$$
+R_A(A)=e^{3A}-1
+$$
 
 is not a claim that we have discovered an “exponential law” of formalization.
 
 Nor is the logarithm in $C$ a measured law of software engineering.
 
-They are a chosen geometric realization of the weaker hypotheses (3) and (5).
+They are a chosen geometric realization of the weaker hypotheses \eqref{eq:C-curvature} and \eqref{eq:A-curvature}.
 
 Even those may be wrong.
 
-Moreover, the present surface is additive, as in (2), so
+Moreover, the present surface is additive, as in \eqref{eq:additive}, so
 
-$$\frac{\partial^2R}{\partial C\,\partial A}=0.\qquad (27)$$
+$$
+\frac{\partial^2R}{\partial C\,\partial A}=0.\tag{15}\label{eq:mixed-derivative}
+$$
 
 That is almost certainly too convenient.
 
@@ -429,19 +449,19 @@ I started with the question:
 
 The question now seems too one-dimensional.
 
-Formalization includes work within an already chosen representation and work on finding the representation itself. It can turn a huge mathematical construction into a network of local, machine-checkable proof obligations - and at the same time expose places where several branches converge again on one definition, specification, or architectural decision.
+Formalization includes work within an already chosen representation and work on finding the representation itself. It can turn a huge mathematical construction into a network of local, machine-checkable proof obligations—and at the same time expose places where several branches converge again on one definition, specification, or architectural decision.
 
 So, for the moment, I will keep Figure 1.
 
 Not as a map of professions or human abilities, but as a map of different modes of intellectual work through which the same project may pass.
 
-If only two distinctions survive the whole construction -
+If only two distinctions survive the whole construction—
 
 the difficulty of working within a chosen representation
 
 and
 
-the difficulty of finding the representation -
+the difficulty of finding the representation—
 
 that is already enough to explain why one coordinate axis was not enough for me.
 
@@ -451,12 +471,21 @@ And if an experienced formalizer looks at the surface and immediately sees where
 
 **The model is yours now. Break it.**
 
+## References
+
+- Amdahl, G. M. (1967). [“Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities.”](https://doi.org/10.1145/1465482.1465560) *AFIPS Conference Proceedings*, **30**, 483–485.
+- Brooks, F. P., Jr. (1995). *The Mythical Man-Month: Essays on Software Engineering*. Anniversary ed. Addison-Wesley.
+- Buzzard, K. (2024). [“The Fermat's Last Theorem Project.”](https://leanprover-community.github.io/blog/posts/FLT-announcement/) *Lean Prover Community Blog*, 30 April 2024.
+- Harbor-Collins, G., & Hulse, M. (2025). [“Formalizing Class Field Theory.”](https://leanprover-community.github.io/blog/posts/cmi-class-field-theory-workshop/) *Lean Prover Community Blog*, 22 August 2025.
+- Parnas, D. L. (1972). [“On the Criteria To Be Used in Decomposing Systems into Modules.”](https://doi.org/10.1145/361598.361623) *Communications of the ACM*, **15**(12), 1053–1058.
+- Simon, H. A. (1962). “The Architecture of Complexity.” *Proceedings of the American Philosophical Society*, **106**(6), 467–482.
+
 ## AI-use disclosure
 
 Natural intelligence formulated the question, invented $C$, $A$, and $R$, proposed the model, and is responsible for the errors. Artificial intelligence checked the algebra, looked for objections, checked sources, and helped with editing.
 
-P.S. Anyone who reads AI-use disclosures while waiting for a paper in which an AI bot admits to having conceived, written, and edited the entire text - thereby settling someone's bet on when AI will first become the sole author of a paper on formal methods - will, I am afraid, be disappointed by this one: natural intelligence has not yet been completely removed from the process. I would not be at all surprised, however, if a contract on that event were already trading on a prediction market.
+P.S. Anyone who reads AI-use disclosures while waiting for a paper in which an AI bot admits to having conceived, written, and edited the entire text—thereby settling someone's bet on when AI will first become the sole author of a paper on formal methods—will, I am afraid, be disappointed by this one: natural intelligence has not yet been completely removed from the process. I would not be at all surprised, however, if a contract on that event were already trading on a prediction market.
 
-If a declaration about the tool used implied anything about the intellectual value of a text, then, *reductio ad absurdum*, would the author's next paper - now in Latin - become more valuable if the manuscript were written on parchment, in ink, with a goose quill, by candlelight?
+If a declaration about the tool used implied anything about the intellectual value of a text, then, *reductio ad absurdum*, would the author's next paper—now in Latin—become more valuable if the manuscript were written on parchment, in ink, with a goose quill, by candlelight?
 
 If so, would the author also be required to certify that the parchment and goose quill had been responsibly sourced in accordance with contemporary animal-welfare standards, and that the carbon emissions from the stearin candles did not exceed the applicable limits?
