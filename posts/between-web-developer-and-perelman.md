@@ -2,9 +2,12 @@
 title: Between a Web Developer and Perelman
 slug: between-a-web-developer-and-perelman
 date: 2026-08-13 12:36:00+03:00
-tags: mathjax
 author: Ilya Krotikov
-description: A toy model of decomposition resistance between software engineering, formalization, and mathematical research.
+description: A toy model of decomposition resistance across software engineering, formalization, and mathematical research.
+has_math: true
+link: ''
+tags: ''
+type: text
 ---
 
 *A Toy Model of Decomposition Resistance*
@@ -149,6 +152,8 @@ $$
 R_A(A)=\lambda\left(e^{\gamma A}-1\right).
 $$
 
+Here $\alpha,\beta,\lambda,\gamma>0$, and the logarithmic term is considered only for $C>-1/\beta$.
+
 Thus the surface is
 
 $$R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\qquad (2)$$
@@ -279,6 +284,8 @@ $A$ does not mean how abstract a problem is. It means the difficulty of finding 
 
 The figure shows a local patch of the surface in the original coordinates of the chosen calibration. This is why negative values appear on the axes. They have no independent substantive meaning: $C$, $A$, and $R$ are latent indices here, with no natural origin or physical units.
 
+Negative axis values therefore indicate position relative to the chosen baseline; they do not mean negative structural complexity or negative conceptual abstraction demand.
+
 **What matters is not the absolute scale, but the shape of the surface.**
 
 Moving from left to right along $C$, we see increasing structural complexity that the surface gradually learns to “digest.”
@@ -293,14 +300,14 @@ First, the most important caveat:
 
 **the axes describe tasks, not people.**
 
-The labels below are cultural landmarks, not measured coordinates of human ability.
+The labels below are landmarks, not measured coordinates of human ability.
 
-For brevity, the cells are labelled with names of what I will call **mathematized professions**. The labels should be read as shorthand for tasks characteristic of those professions, not as fixed coordinates of the professions themselves.
+For brevity, I will call the professional labels in the grid **mathematized professions**. The grid also contains task types and cultural landmarks; all labels should be read as shorthand for characteristic tasks, not as fixed coordinates of people or professions.
 
 | $A\backslash C$ | Low $C$ | Medium $C$ | High $C$ |
 |---|---|---|---|
 | **High $A$** | **1.** Compact abstract mathematical work | **2.** Mathematical research | **3.** Wiles / Perelman - limit-case cultural markers |
-| **Medium $A$** | **4.** Applied mathematician / modeller | **5.** Formalizer / proof engineer | **6.** Formal methods engineer / verification architect |
+| **Medium $A$** | **4.** Applied mathematician / modeler | **5.** Formalizer / proof engineer | **6.** Formal methods engineer / verification architect |
 | **Low $A$** | **7.** Notional web developer | **8.** Production software engineer | **9.** Large concrete engineering and software systems |
 
 Cell 7 is useful as the lower pole of the model. Standard, concrete work is comparatively easy to standardize and distribute.
@@ -359,7 +366,7 @@ How should a large argument be split into reusable lemmas?
 
 Does the formally stated theorem say what the mathematician actually meant?
 
-Lean checks, with great precision, the theorem we stated.
+Lean checks, with great precision, that our proof establishes the theorem we stated.
 
 It does not promise that this was the theorem we intended to state.
 
@@ -406,9 +413,9 @@ $$
 \lim_{n\to\infty}S(n)=\frac{1}{s}.
 $$
 
-The non-decomposable residue places a ceiling on the return from additional resources.
+In Amdahl's model, the sequential residue places a ceiling on the return from additional resources.
 
-But Amdahl's law enters where our decomposition problem has already been solved: the partition is known, and the sequential fraction has been identified and measured.
+But Amdahl's law enters after a decomposition has already been specified: the model assumes a sequential fraction $s$ and a remainder that scales ideally with $n$.
 
 My question comes earlier: where does that apparently irreducible residue come from, and what role does representation play in producing it?
 
