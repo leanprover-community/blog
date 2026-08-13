@@ -12,7 +12,7 @@ type: text
 
 *A Toy Model of Decomposition Resistance*
 
-<!-- LB-EN v2026.08.13-05 -->
+<!-- LB-EN v2026.08.14-07 -->
 
 From a manager's point of view, formalizers are an inconvenient species. They write code, yet some of their hardest work looks suspiciously like mathematics; they collaborate, yet adding headcount does not necessarily make the central difficulty go away. This essay is a newcomer's attempt to draw a map of that territory using three deliberately crude coordinates: structural complexity, conceptual abstraction demand, and decomposition resistance.
 
@@ -123,7 +123,7 @@ This is already a hypothesis, not a definition of $R$.
 In the first version of the model,
 
 $$
-R(C,A)=R_C(C)+R_A(A).\tag{1}\label{eq:additive}
+R(C,A)=R_C(C)+R_A(A).\qquad (1)
 $$
 
 Here and below, the subscripts in $R_C$ and $R_A$ label the two additive contributions; they do not denote partial differentiation.
@@ -131,7 +131,7 @@ Here and below, the subscripts in $R_C$ and $R_A$ label the two additive contrib
 For structural complexity I assume
 
 $$
-R_C'(C)>0,\qquad R_C''(C)<0.\tag{2}\label{eq:C-curvature}
+R_C'(C)>0,\qquad R_C''(C)<0.\qquad (2)
 $$
 
 Increasing already-structured complexity increases decomposition resistance, but additional complexity can increasingly be absorbed by architecture, specialization, and interfaces.
@@ -139,13 +139,13 @@ Increasing already-structured complexity increases decomposition resistance, but
 The simplest candidate is
 
 $$
-R_C(C)=\alpha\ln(1+\beta C).\tag{3}\label{eq:C-component}
+R_C(C)=\alpha\ln(1+\beta C).\qquad (3)
 $$
 
 For conceptual abstraction demand, let us try the opposite curvature:
 
 $$
-R_A'(A)>0,\qquad R_A''(A)>0.\tag{4}\label{eq:A-curvature}
+R_A'(A)>0,\qquad R_A''(A)>0.\qquad (4)
 $$
 
 While the representation, definition, or invariant has not yet been found, it may be unclear even what the correct parts of the problem are.
@@ -153,7 +153,7 @@ While the representation, definition, or invariant has not yet been found, it ma
 A simple candidate with no finite singularity is
 
 $$
-R_A(A)=\lambda\left(e^{\gamma A}-1\right).\tag{5}\label{eq:A-component}
+R_A(A)=\lambda\left(e^{\gamma A}-1\right).\qquad (5)
 $$
 
 Here $\alpha,\beta,\lambda,\gamma>0$, and the logarithmic term is considered only for $C>-1/\beta$.
@@ -161,7 +161,7 @@ Here $\alpha,\beta,\lambda,\gamma>0$, and the logarithmic term is considered onl
 Thus the surface is
 
 $$
-R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\tag{6}\label{eq:surface}
+R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\qquad (6)
 $$
 
 and for Figure 1 I choose
@@ -173,27 +173,23 @@ $$
 Hence
 
 $$
-R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\tag{7}\label{eq:calibrated-surface}
+R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\qquad (7)
 $$
 
 with
 
 $$
-\alpha\beta=\lambda\gamma=3.\tag{8}\label{eq:calibration}
+\alpha\beta=\lambda\gamma=3.\qquad (8)
 $$
 
 ![Decomposition-resistance surface with a 3×3 grid and regions 1–9](/images/decomposition-resistance-surface.png)
 
-**Figure 1.** Local patch of the relative decomposition-resistance surface $R(C,A)$ defined by \eqref{eq:calibrated-surface}. Height and color encode $R$; the $3\times3$ grid marks regions 1–9 summarized in Table 1.
+**Figure 1.** Local patch of the relative decomposition-resistance surface $R(C,A)$ defined by equation (7). Height and color encode $R$; the $3\times3$ grid marks regions 1–9 summarized in Table 1.
 
 At the point $(C,A)=(0,0)$ the two coordinates have the same marginal effect:
 
 $$
-\left.\frac{\partial R}{\partial C}\right|_{(0,0)}
-=
-\left.\frac{\partial R}{\partial A}\right|_{(0,0)}
-=
-3.\tag{9}\label{eq:equal-marginal}
+\left(\frac{\partial R}{\partial C}\right)_{(0,0)}=\left(\frac{\partial R}{\partial A}\right)_{(0,0)}=3.\qquad (9)
 $$
 
 But from there they behave differently:
@@ -218,10 +214,10 @@ Along $A$, it bends upward more and more sharply.
 
 The opposite curvature of the two axes has a simple consequence.
 
-**Lemma.** Under the calibration \eqref{eq:calibration}, let $r>0$ be the same contribution of either coordinate to decomposition resistance. Then
+**Lemma.** Under the calibration (8), let $r>0$ be the same contribution of either coordinate to decomposition resistance. Then
 
 $$
-C(r)>A(r),\qquad r>0.\tag{10}\label{eq:lemma-conclusion}
+C(r)>A(r),\qquad r>0.\qquad (10)
 $$
 
 *Proof.* Solving $R_C(C)=r$ and $R_A(A)=r$ gives
@@ -230,24 +226,19 @@ $$
 \begin{aligned}
 C(r)&=\frac{e^{r/\alpha}-1}{\beta},\\
 A(r)&=\frac{1}{\gamma}\ln\left(1+\frac{r}{\lambda}\right).
-\end{aligned}\tag{11}\label{eq:inverse-functions}
+\end{aligned}\qquad (11)
 $$
 
 Both functions start at $C(0)=A(0)=0$. For $r>0$,
 
 $$
-C'(r)=\frac{e^{r/\alpha}}{\alpha\beta}
->
-\frac{1}{\alpha\beta}
-=
-\frac{1}{\lambda\gamma}
->
-\frac{1}{\gamma(\lambda+r)}
-=
-A'(r),
+\begin{aligned}
+C'(r)&=\frac{e^{r/\alpha}}{\alpha\beta}>\frac{1}{\alpha\beta}=\frac{1}{\lambda\gamma},\\
+&>\frac{1}{\gamma(\lambda+r)}=A'(r).
+\end{aligned}
 $$
 
-where the middle equality uses \eqref{eq:calibration}. Integrating the strict derivative inequality from $0$ to $r$ gives \eqref{eq:lemma-conclusion}. $\square$
+where the middle equality uses calibration (8). Integrating the strict derivative inequality from $0$ to $r$ gives (10). $\square$
 
 This is a proof—but only *inside the chosen toy model*, not a theorem about human intelligence.
 
@@ -380,13 +371,13 @@ This does not prove the model. The two episodes are here only as sanity checks: 
 If $0<s\le 1$ is the fraction of work that must remain sequential, Amdahl's law (Amdahl 1967) gives
 
 $$
-S(n)=\frac{1}{s+\frac{1-s}{n}},\tag{12}\label{eq:amdahl}
+S(n)=\frac{1}{s+\frac{1-s}{n}},\qquad (12)
 $$
 
 and
 
 $$
-\lim_{n\to\infty}S(n)=\frac{1}{s}.\tag{13}\label{eq:amdahl-limit}
+\lim_{n\to\infty}S(n)=\frac{1}{s}.\qquad (13)
 $$
 
 In Amdahl's model, the sequential residue places a ceiling on the return from additional resources.
@@ -408,7 +399,7 @@ For an empirical test, observable indicators for all three quantities would have
 If we replace $A$ by a monotone nonlinear coordinate
 
 $$
-\widetilde A=g(A),\tag{14}\label{eq:reparameterization}
+\widetilde A=g(A),\qquad (14)
 $$
 
 the particular form of the exponential changes.
@@ -425,14 +416,14 @@ is not a claim that we have discovered an “exponential law” of formalization
 
 Nor is the logarithm in $C$ a measured law of software engineering.
 
-They are a chosen geometric realization of the weaker hypotheses \eqref{eq:C-curvature} and \eqref{eq:A-curvature}.
+They are a chosen geometric realization of the weaker hypotheses (2) and (4).
 
 Even those may be wrong.
 
-Moreover, the present surface is additive, as in \eqref{eq:additive}, so
+Moreover, the present surface is additive, as in (1), so
 
 $$
-\frac{\partial^2R}{\partial C\,\partial A}=0.\tag{15}\label{eq:mixed-derivative}
+\frac{\partial^2R}{\partial C\,\partial A}=0.\qquad (15)
 $$
 
 That is almost certainly too convenient.
