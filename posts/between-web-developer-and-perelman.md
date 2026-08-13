@@ -12,7 +12,7 @@ type: text
 
 *A Toy Model of Decomposition Resistance*
 
-<!-- LB-EN v2026.08.13-03 -->
+<!-- LB-EN v2026.08.13-04 -->
 
 From a manager's point of view, formalizers are an inconvenient species. They write code, yet some of their hardest work looks suspiciously like mathematics; they collaborate, yet adding headcount does not necessarily make the central difficulty go away. This essay is a newcomer's attempt to draw a map of that territory using three deliberately crude coordinates: structural complexity, conceptual abstraction demand, and decomposition resistance.
 
@@ -114,86 +114,72 @@ Now we can try to draw what would not fit on one axis.
 
 Suppose first that
 
-$$
-R=R(C,A).
-$$
+$$R=R(C,A).\qquad (1)$$
 
 This is already a hypothesis, not a definition of $R$.
 
 In the first version of the model,
 
-$$R(C,A)=R_C(C)+R_A(A).\qquad (1)$$
+$$R(C,A)=R_C(C)+R_A(A).\qquad (2)$$
 
 For structural complexity I assume
 
-$$
-R_C'(C)>0,\qquad R_C''(C)<0.
-$$
+$$R_C'(C)>0,\qquad R_C''(C)<0.\qquad (3)$$
 
 Increasing already-structured complexity increases decomposition resistance, but additional complexity can increasingly be absorbed by architecture, specialization, and interfaces.
 
 The simplest candidate is
 
-$$
-R_C(C)=\alpha\ln(1+\beta C).
-$$
+$$R_C(C)=\alpha\ln(1+\beta C).\qquad (4)$$
 
 For conceptual abstraction demand, let us try the opposite curvature:
 
-$$
-R_A'(A)>0,\qquad R_A''(A)>0.
-$$
+$$R_A'(A)>0,\qquad R_A''(A)>0.\qquad (5)$$
 
 While the representation, definition, or invariant has not yet been found, it may be unclear even what the correct parts of the problem are.
 
 A simple candidate with no finite singularity is
 
-$$
-R_A(A)=\lambda\left(e^{\gamma A}-1\right).
-$$
+$$R_A(A)=\lambda\left(e^{\gamma A}-1\right).\qquad (6)$$
 
 Here $\alpha,\beta,\lambda,\gamma>0$, and the logarithmic term is considered only for $C>-1/\beta$.
 
 Thus the surface is
 
-$$R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\qquad (2)$$
+$$R(C,A)=\alpha\ln(1+\beta C)+\lambda\left(e^{\gamma A}-1\right),\qquad (7)$$
 
-and for the figure I choose
+and for Figure 1 I choose
 
-$$
-\alpha=0.15,\qquad \beta=20,\qquad \lambda=1,\qquad \gamma=3.
-$$
+$$\alpha=0.15,\qquad \beta=20,\qquad \lambda=1,\qquad \gamma=3.\qquad (8)$$
 
 Hence
 
-$$R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\qquad (3)$$
+$$R(C,A)=0.15\ln(1+20C)+e^{3A}-1,\qquad (9)$$
 
 with
 
-$$
-\alpha\beta=\lambda\gamma=3.
-$$
+$$\alpha\beta=\lambda\gamma=3.\qquad (10)$$
 
 ![Decomposition-resistance surface with a 3 x 3 grid and regions 1-9](/images/decomposition-resistance-surface.png)
 
-*Figure 1. A local patch of the relative decomposition-resistance surface R(C,A), with a 3×3 grid and regions 1-9.*
+**Figure 1.** Local patch of the relative decomposition-resistance surface $R(C,A)$ used in the toy model. The $3\times3$ grid marks regions 1–9 summarized in Table 1.
 
 At the point $(C,A)=(0,0)$ the two coordinates have the same marginal effect:
 
-$$\left.\frac{\partial R}{\partial C}\right|_{(0,0)}=\left.\frac{\partial R}{\partial A}\right|_{(0,0)}=3.$$
+$$\left.\frac{\partial R}{\partial C}\right|_{(0,0)}=\left.\frac{\partial R}{\partial A}\right|_{(0,0)}=3.\qquad (11)$$
 
 But from there they behave differently:
 
 $$
 \frac{\partial R}{\partial C}=\frac{3}{1+20C},\qquad
-\frac{\partial^2R}{\partial C^2}=\frac{-60}{(1+20C)^2}<0,
+\frac{\partial^2R}{\partial C^2}=\frac{-60}{(1+20C)^2}<0.\qquad (12)
 $$
 
 whereas
 
 $$
 \frac{\partial R}{\partial A}=3e^{3A},\qquad
-\frac{\partial^2R}{\partial A^2}=9e^{3A}>0.
+\frac{\partial^2R}{\partial A^2}=9e^{3A}>0.\qquad (13)
 $$
 
 Along $C$, the surface keeps rising but gradually flattens.
@@ -208,65 +194,41 @@ Let $r>0$ be the same contribution from either coordinate to decomposition resis
 
 From
 
-$$
-R_C(C)=r
-$$
+$$R_C(C)=r,\qquad (14)$$
 
 we obtain
 
-$$
-C(r)=\frac{e^{r/\alpha}-1}{\beta},
-$$
+$$C(r)=\frac{e^{r/\alpha}-1}{\beta},\qquad (15)$$
 
 and from
 
-$$
-R_A(A)=r
-$$
+$$R_A(A)=r,\qquad (16)$$
 
 we obtain
 
-$$
-A(r)=\frac{1}{\gamma}\ln\left(1+\frac{r}{\lambda}\right).
-$$
+$$A(r)=\frac{1}{\gamma}\ln\left(1+\frac{r}{\lambda}\right).\qquad (17)$$
 
-Under the calibration
+Under the calibration (10), both functions start at
 
-$$
-\alpha\beta=\lambda\gamma,
-$$
-
-both functions start at
-
-$$
-C(0)=A(0)=0
-$$
+$$C(0)=A(0)=0,\qquad (18)$$
 
 with the same slope.
 
 But for $r>0$,
 
-$$
-C'(r)=\frac{e^{r/\alpha}}{\alpha\beta}>\frac{1}{\alpha\beta},
-$$
+$$C'(r)=\frac{e^{r/\alpha}}{\alpha\beta}>\frac{1}{\alpha\beta},\qquad (19)$$
 
 whereas
 
-$$
-A'(r)=\frac{1}{\gamma(\lambda+r)}<\frac{1}{\lambda\gamma}.
-$$
+$$A'(r)=\frac{1}{\gamma(\lambda+r)}<\frac{1}{\lambda\gamma}.\qquad (20)$$
 
 Therefore
 
-$$
-C'(r)>A'(r),
-$$
+$$C'(r)>A'(r),\qquad (21)$$
 
 and hence
 
-$$
-C(r)>A(r),\qquad r>0.
-$$
+$$C(r)>A(r),\qquad r>0.\qquad (22)$$
 
 That is already a proof.
 
@@ -282,7 +244,7 @@ $R$ - decomposition resistance
 
 $A$ does not mean how abstract a problem is. It means the difficulty of finding or revising its representation. Height and color encode $R$; the $3\times3$ grid divides the displayed patch into nine notional regions.
 
-The figure shows a local patch of the surface in the original coordinates of the chosen calibration. This is why negative values appear on the axes. They have no independent substantive meaning: $C$, $A$, and $R$ are latent indices here, with no natural origin or physical units.
+Figure 1 shows a local patch of the surface in the original coordinates of the chosen calibration. This is why negative values appear on the axes. They have no independent substantive meaning: $C$, $A$, and $R$ are latent indices here, with no natural origin or physical units.
 
 Negative axis values therefore indicate position relative to the chosen baseline; they do not mean negative structural complexity or negative conceptual abstraction demand.
 
@@ -292,7 +254,7 @@ Moving from left to right along $C$, we see increasing structural complexity tha
 
 Moving along $A$, we enter regions where a growing fraction of the problem is no longer the processing of known structure, but the search for the structure within which a good decomposition becomes possible in the first place.
 
-The grid lets us return to the question that started all this.
+The grid in Figure 1 lets us return to the question that started all this.
 
 ## Nine regions
 
@@ -303,6 +265,8 @@ First, the most important caveat:
 The labels below are landmarks, not measured coordinates of human ability.
 
 For brevity, I will call the professional labels in the grid **mathematized professions**. The grid also contains task types and cultural landmarks; all labels should be read as shorthand for characteristic tasks, not as fixed coordinates of people or professions.
+
+**Table 1.** Notional regions of the $(C,A)$ task map.
 
 | $A\backslash C$ | Low $C$ | Medium $C$ | High $C$ |
 |---|---|---|---|
@@ -326,7 +290,7 @@ A formalizer works simultaneously with mathematical reasoning and with the softw
 
 But cell 6 immediately reminds us that formal methods can travel very far to the right: a large system of specifications, invariants, proofs, and dependencies becomes a substantial engineering object in its own right.
 
-Cells 1-3 add a second dimension to the familiar ladder.
+Cells 1–3 add a second dimension to the familiar ladder.
 
 High $A$ alone does not imply enormous $C$. A compact problem can demand a serious conceptual step.
 
@@ -405,13 +369,11 @@ This does not prove the model. The two episodes are here only as sanity checks: 
 
 If $0<s\le 1$ is the fraction of work that must remain sequential, Amdahl's law gives
 
-$$S(n)=\frac{1}{s+\frac{1-s}{n}},\qquad (4)$$
+$$S(n)=\frac{1}{s+\frac{1-s}{n}},\qquad (23)$$
 
 and
 
-$$
-\lim_{n\to\infty}S(n)=\frac{1}{s}.
-$$
+$$\lim_{n\to\infty}S(n)=\frac{1}{s}.\qquad (24)$$
 
 In Amdahl's model, the sequential residue places a ceiling on the return from additional resources.
 
@@ -429,17 +391,9 @@ $C$, $A$, and $R$ have no natural units.
 
 For an empirical test, observable indicators for all three quantities would have to be specified independently in advance. I have not done that here.
 
-If we replace
+If we replace $A$ by a monotone nonlinear coordinate
 
-$$
-A
-$$
-
-by a monotone nonlinear coordinate
-
-$$
-\widetilde A=g(A),
-$$
+$$\widetilde A=g(A),\qquad (25)$$
 
 the particular form of the exponential changes.
 
@@ -447,37 +401,19 @@ Under a sufficiently flexible reparameterization, even convexity may change.
 
 Therefore
 
-$$
-R_A(A)=e^{3A}-1
-$$
+$$R_A(A)=e^{3A}-1\qquad (26)$$
 
 is not a claim that we have discovered an “exponential law” of formalization.
 
 Nor is the logarithm in $C$ a measured law of software engineering.
 
-They are a chosen geometric realization of the weaker hypothesis
+They are a chosen geometric realization of the weaker hypotheses (3) and (5).
 
-$$
-R_C'>0,\qquad R_C''<0,
-$$
+Even those may be wrong.
 
-$$
-R_A'>0,\qquad R_A''>0.
-$$
+Moreover, the present surface is additive, as in (2), so
 
-Even that may be wrong.
-
-Moreover, the present surface is additive:
-
-$$
-R(C,A)=R_C(C)+R_A(A),
-$$
-
-so
-
-$$
-\frac{\partial^2R}{\partial C\,\partial A}=0.
-$$
+$$\frac{\partial^2R}{\partial C\,\partial A}=0.\qquad (27)$$
 
 That is almost certainly too convenient.
 
