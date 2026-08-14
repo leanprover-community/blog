@@ -12,7 +12,7 @@ type: text
 
 *A Toy Model of Decomposition Resistance*
 
-<!-- LB-EN v2026.08.14-07 -->
+<!-- LB-EN v2026.08.14-08 -->
 
 From a manager's point of view, formalizers are an inconvenient species. They write code, yet some of their hardest work looks suspiciously like mathematics; they collaborate, yet adding headcount does not necessarily make the central difficulty go away. This essay is a newcomer's attempt to draw a map of that territory using three deliberately crude coordinates: structural complexity, conceptual abstraction demand, and decomposition resistance.
 
@@ -464,12 +464,12 @@ And if an experienced formalizer looks at the surface and immediately sees where
 
 ## References
 
-- Amdahl, G. M. (1967). [“Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities.”](https://doi.org/10.1145/1465482.1465560) *AFIPS Conference Proceedings*, **30**, 483–485.
+- Amdahl, G. M. (1967). [“Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities.”](https://doi.org/10.1145/1465482.1465560) In *Proceedings of the April 18-20, 1967, spring joint computer conference* (AFIPS '67 (Spring)), 483–485.
 - Brooks, F. P., Jr. (1995). *The Mythical Man-Month: Essays on Software Engineering*. Anniversary ed. Addison-Wesley.
-- Buzzard, K. (2024). [“The Fermat's Last Theorem Project.”](https://leanprover-community.github.io/blog/posts/FLT-announcement/) *Lean Prover Community Blog*, 30 April 2024.
-- Harbor-Collins, G., & Hulse, M. (2025). [“Formalizing Class Field Theory.”](https://leanprover-community.github.io/blog/posts/cmi-class-field-theory-workshop/) *Lean Prover Community Blog*, 22 August 2025.
+- Buzzard, K. (2024). [“The Fermat's Last Theorem Project.”](https://leanprover-community.github.io/blog/posts/FLT-announcement/) *Lean community blog*, 30 April 2024.
+- Harbor-Collins, G., & Hulse, M. (2025). [“Formalizing Class Field Theory.”](https://leanprover-community.github.io/blog/posts/cmi-class-field-theory-workshop/) *Lean community blog*, 22 August 2025.
 - Parnas, D. L. (1972). [“On the Criteria To Be Used in Decomposing Systems into Modules.”](https://doi.org/10.1145/361598.361623) *Communications of the ACM*, **15**(12), 1053–1058.
-- Simon, H. A. (1962). “The Architecture of Complexity.” *Proceedings of the American Philosophical Society*, **106**(6), 467–482.
+- Simon, H. A. (1962). [“The Architecture of Complexity.”](https://www.jstor.org/stable/985254) *Proceedings of the American Philosophical Society*, **106**(6), 467–482.
 
 ## AI-use disclosure
 
