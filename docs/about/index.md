@@ -20,8 +20,7 @@ hesitate to first discuss the topic of your post on
 much time writing it. The kind of posts we expect include:
 
 * posts highlighting some new contributions to mathlib
-* news about ongoing project such as the Liquid tensor experiment or the sphere eversion project
-* news about exciting developments in other proofs assistants
+* news about ongoing community projects
+* news about exciting developments in other proof assistants
 * announcement of conferences and talks 
 * some explanations of specific topics in a less formal context than the documentations
-* speculations about future developments or somewhat philosophical discussions
