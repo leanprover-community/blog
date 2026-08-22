@@ -31,9 +31,9 @@ The kernel has to be checked manually. However, if the kernel is relatively smal
 
 Any formal system, for humans or computers, is based on a formal language and logical rules. In the case of the "official" foundations of mathematics, *First-Order Logic* (FOL) gives the language and rules for deduction, with the axioms of *Set Theory* as the starting point for mathematics.
 
-For proof systems based on FOL a trusted kernel is indeed small - a few hours of work may be all it takes to write one. Simple logical systems also allow for powerful automation. However, writing even moderately complex mathematics in such a system requires an enormous amount of code.
+For proof systems based on FOL a trusted kernel is indeed small &mdash; a few hours of work may be all it takes to write one. Simple logical systems also allow for powerful automation. However, writing even moderately complex mathematics in such a system requires an enormous amount of code.
 
-More complex logical systems are more *expressive* - allowing us to write more complex mathematics (or programs) reasonably concisely. However, verification is no longer so easy (and automation is also harder). There is a range of possible logical systems, including FOL, Higher Order Logic (HOL), and Calculus of Inductive Constructions (CIC).
+More complex logical systems are more *expressive* &mdash; allowing us to write more complex mathematics (or programs) reasonably concisely. However, verification is no longer so easy (and automation is also harder). There is a range of possible logical systems, including FOL, Higher Order Logic (HOL), and Calculus of Inductive Constructions (CIC).
 
 Lean uses the Calculus of Inductive Constructions, which is expressive but complex. To make programming and proving easier (i.e., to increase expressivity), Lean adds features to CIC such as *proof irrelevance*, *quotients*, and *nested inductive types*.
 
@@ -41,9 +41,9 @@ Fortunately, it has been proved that these differently foundational systems are 
 
 ### Multiple kernels
 
-Being aware of the danger of kernel bugs, Lean's creator Leo de Moura has long advocated for a way to strengthen the *de Bruijn principle* by having multiple independent kernels. There were three independent kernels for Lean 3 - one extracted from Lean, one written in Haskell, and one (trepplein) written in scala. With the advent of Lean 4 (the present version, and likely to be the version for many years to come) these no longer worked. So an independent kernel in Rust, *Nanoda*, was (commisioned and) implemented, along with documentation to write more kernels. Writing other kernels was facilitated with the *Lean kernel arena*.
+Being aware of the danger of kernel bugs, Lean's creator Leo de Moura has long advocated for a way to strengthen the *de Bruijn principle* by having multiple independent kernels. There were three independent kernels for Lean 3 - one extracted from Lean, one written in Haskell, and one (Trepplein) written in Scala. With the advent of Lean 4 (the present version, and likely to be the version for many years to come) these no longer worked. So an independent kernel in Rust, *Nanoda*, was (commisioned and) implemented, along with documentation to write more kernels. Writing other kernels was facilitated with the *Lean kernel arena*.
 
-In addition, an important effort was *lean4lean* an implementation of Lean in Lean due to Mario Carneiro. This included an independent kernel. An effort is ongoing to verify correctness of the kernel.
+In addition, an important effort was *lean4lean* an implementation of Lean in Lean due to Mario Carneiro. This included an independent kernel. An effort is ongoing to verify correctness of this kernel.
 
 Thus, Lean code can be checked against multiple kernels. The hope is that this will not pass all of them if incorrect, as that will mean independent implementations have bugs in exactly the same place.
 
@@ -51,19 +51,19 @@ Unfortunately, the chance of coinciding bugs is not as small as one would like. 
 
 ### Trepplein times
 
-Trepplein is an independent type-checker for Lean 3 written by Gabriel Ebner in scala. Since I knew scala well and was also reasonably familiar with Lean-like foundations, I volunteered to try to port this to Lean 4. Unfortunately I did not finish this, but I learnt some things along the way. I should clarify that all this was some years ago, before we had AI chatbots, leave alone coding agents.
+Trepplein is an independent type-checker for Lean 3 written by Gabriel Ebner in Scala. Since I knew Scala well and was also reasonably familiar with Lean-like foundations, I volunteered to try to port this to Lean 4. Unfortunately I did not finish this, but I learnt some things along the way. I should clarify that all this was some years ago, before we had AI chatbots, leave alone coding agents.
 
 Lean has an export format which is easy to parse. The code in Lean is exported in this format and independent type-checkers parse this and check correctness. 
 
-The core work in porting trepplein to Lean 4 involved supporting those features in the foundations of Lean 4 that were not present in Lean 3. After completing some relatively minor tasks, such as supporting *literals* for natural numbers and strings, I ran into a big challenge. Lean 4 had (as part of its foundations) *nested inductive types*, which were complex. Fortunately, over a long [Zulip Conversation](https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/Complicated.20induction.3A.20documentation.3F/with/396819352), Mario Carneiro explained these to me and cleared some of my other misunderstandings. Indeed it turned out that there was no documentation for these, and my best source was reading the code of *lean4lean* (Mario pointed me to the relevant parts of the code).
+The core work in porting Trepplein to Lean 4 involved supporting those features in the foundations of Lean 4 that were not present in Lean 3. After completing some relatively minor tasks, such as supporting *literals* for natural numbers and strings, I ran into a big challenge. Lean 4 had (as part of its foundations) *nested inductive types*, which were complex. Fortunately, over a long [Zulip Conversation](https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/Complicated.20induction.3A.20documentation.3F/with/396819352), Mario Carneiro explained these to me and cleared some of my other misunderstandings. Indeed it turned out that there was no documentation for these, and my best source was reading the code of *lean4lean* (Mario pointed me to the relevant parts of the code).
 
-After managing to handle nested inductive types, at least to the extent of working with some code that used these, trepplein still failed to pass its tests. At the core of checking correctness of Lean programs is *type checking*, which in turn depends on checking for *definitional equality* of terms (the objects of Lean). My port of trepplein failed to check a claimed type, which in turn was because it failed to accept a definitional equality.
+After managing to handle nested inductive types, at least to the extent of working with some code that used these, Trepplein still failed to pass its tests. At the core of checking correctness of Lean programs is *type checking*, which in turn depends on checking for *definitional equality* of terms (the objects of Lean). My port of Trepplein failed to check a claimed type, which in turn was because it failed to accept a definitional equality.
 
 To my surprise, I learnt that definitional equality and type checking were not *algorithmically decidable*. Roughly speaking, two terms `x` and `y` are definitionally equal if we can make finitely many allowed substitutions of given forms (corresponding to "basic" definitional equalities) to transform `x` to `y`. We can naively keep making allowed substitutions starting from `x` and see if we reach `y`. There are only finitely many allowed substitutions at each stage, so if `x` and `y` are definitionally equal we will be able to show this eventually.
 
 However, `x` and `y` may not be definitionally equal, so we have to stop our search at some stage. To get an algorithm we need to know how long we need to go on before giving up, or have a different half-algorithm to show inequality, or have some other conceptual approach. As proved in Mario Carneiro's thesis, there is no such algorithm.
 
-In practice, this means that some additional criterion has to be introduced for giving up, and the behaviour of the type-checker depends on this. In the case of trepplein (as implemented by Gabriel Ebner) there were actually configurable timeout parameters. Perhaps changing these would have allowed me to proceed. But at that time I got overwhelmed by the complexity and did not understand things as clearly as I do now, and so abandoned my efforts.
+In practice, this means that some additional criterion has to be introduced for giving up, and the behaviour of the type-checker depends on this. In the case of Trepplein (as implemented by Gabriel Ebner) there were actually configurable timeout parameters. Perhaps changing these would have allowed me to proceed. But at that time I got overwhelmed by the complexity and did not understand things as clearly as I do now, and so abandoned my efforts.
 
 I should emphasise that the undecidability is not a soundness issue - we only need an algorithm for type checking so that if it is accepted that `x` has type `A`, then indeed it does. If `x` has type `A` but the checker things it does not, then we will fail to prove something, weakening the prover. We will, however, not prove a false statement.
 
@@ -71,13 +71,13 @@ I should emphasise that the undecidability is not a soundness issue - we only ne
 
 The world now has AI systems that are phenomenally good at finding bugs. Using these, in early August 2026, a spurious Lean "proof" of the *Goldbach Conjecture*, a famous problem in mathematics, was posted, finding and exploiting a bug in the Lean kernel. This Lean proof also passed both Nanoda and lean4lean.
 
-The bug involved nested inductive types, the same complex definitions that had made me sweat when trying to port trepplein. Talia Ringer has emphasised that this is not merely an issue with implementation - the type theory of nested inductive types is also not well understood.
+The bug involved nested inductive types, the same complex definitions that had made me sweat when trying to port Trepplein. Talia Ringer has emphasised that this is not merely an issue with implementation - the type theory of nested inductive types is also not well understood.
 
 It turned out that the code passed Nanoda because of an entirely different bug but at the same place. Indeed this had been detected and fixed by the time the bug was announced. This part of the code in lean4lean was copied from Lean, with the bug being copied.
 
 The bug was immediately fixed in Lean. Over the next few days some more bugs were found and fixed.
 
-All of these bugs involve strange meta-programming hacks whose intention is to clearly find and exploit the bugs. So as far as normal Lean code is concerned there are no know kernel bugs. Indeed it is easy to check if strange meta-programming has been done. That said, once a few bugs are found something more has to be done to restore confidence.
+Many of these bugs involve strange meta-programming hacks whose intention is to clearly find and exploit the bugs, and others are not those that one is likely to encounter in normal Lean usage. So as far as normal Lean code is concerned there are no know kernel bugs. To increase confidence in one code, one can check (for instance via an LLM) whether strange meta-programming has been done or there is other non-idiomatic Lean usage. That said, once a few bugs are found something more has to be done to restore confidence.
 
 ### Verified kernels and *lean4lean*
 
