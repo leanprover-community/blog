@@ -17,7 +17,7 @@ Reflections on how much confidence we can have in Lean verification, and what ha
 
 As *vibe coding* and AI generated proofs have proliferated, the Lean Prover has become a common tool to verify correctness. While it is undoubtedly advanced technology, Lean is not magic and cannot perfectly guarantee correctness. What Lean can do is allow a high degree of confidence after a modest amount of verification.
 
-This post is my reflections on how much confidence we can have in something verified by Lean, and what has to be checked to get this level of confidence. Roughly speaking our confidence depends on *trusting the kernel* and *checking definitions and statements*. These reflections are motivated by recent events (in August 2026) and discussions at a conference in early August 2026, which suggest that both these aspects are more complicated than one would ideally like.
+This post is my reflections on how much confidence we can have in something verified by Lean, and what has to be checked to get this level of confidence. Roughly speaking our confidence depends on *trusting the kernel* and *checking definitions and statements*. These reflections are motivated by recent events (in August 2026) and discussions at a conference in early August 2026, which suggest that both these aspects are more complicated than one would ideally like. There are additional (and more complex) issues with executable code, such as the compiler and the runtime, but I won't address them here (as of the time of writing we should not trust these levels).
 
 Thus, individuals will have to be more cautious than one would ideally like, at least at the present juncture, when trusting Lean proofs. There is also work to be done to raise the level of trust. Fortunately, it appears that there is willingness to do the work.
 
@@ -25,7 +25,7 @@ Thus, individuals will have to be more cautious than one would ideally like, at 
 
 If we trust a computer system to test a proof, how do we know the system itself is correct? This fundamental question was addressed by de Bruijn while building his pioneering system **Automath** in the 1960s.The idea that he came up with was to separate a **kernel**, which checks correctness of proofs, from the rest of the system: the parts that help find proofs, provide interfaces etc. An analogue of the kernel is the part of a chess engine that checks whether moves are legal and whether we have a checkmate - much less code than the part that actually makes smart moves.
 
-The kernel has to be checked manually. However, if the kernel is relatively small, well-documented, and (these days) open sourced, one can hope that it has been checked by many people. Having such a kernel is now called the *de Bruijn principle*.
+The kernel has to be checked manually. However, if the kernel is relatively small, well-documented, and (these days) open sourced, one can hope that it has been checked by many people. Having such a kernel is now called the *de Bruijn criterion*.
 
 ### Expressiveness, Verification, Automation
 
@@ -35,7 +35,7 @@ For proof systems based on FOL a trusted kernel is indeed small &mdash; a few ho
 
 More complex logical systems are more *expressive* &mdash; allowing us to write more complex mathematics (or programs) reasonably concisely. However, verification is no longer so easy (and automation is also harder). There is a range of possible logical systems, including FOL, Higher Order Logic (HOL), and Calculus of Inductive Constructions (CIC).
 
-Lean uses the Calculus of Inductive Constructions, which is expressive but complex. To make programming and proving easier (i.e., to increase expressivity), Lean adds features to CIC such as *proof irrelevance*, *quotients*, and *nested inductive types*.
+Lean uses the Calculus of Inductive Constructions, which is expressive but complex. To make programming and proving easier (i.e., to increase expressivity), Lean adds features in the kernel to CIC such as *nested inductive types*, and also introduces some axioms for *quotients* and *proof irrelevance*.
 
 Fortunately, it has been proved that these differently foundational systems are essentially equivalent (essentially because consistency of Lean assumes some large-cardinal axioms). However, Lean's kernel is not that small and is fairly complex - amounting to a few thousand lines of code (to the best of my knowledge). This is of course much smaller than Lean as a whole, and so there is indeed an enormous gain in terms of what needs to be verified. But verification of Lean's kernel is far from trivial.
 
