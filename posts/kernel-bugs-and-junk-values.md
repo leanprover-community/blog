@@ -33,7 +33,7 @@ Any formal system, for humans or computers, is based on a formal language and lo
 
 For proof systems based on FOL a trusted kernel is indeed small - a few hours of work may be all it takes to write one. Simple logical systems also allow for powerful automation. However, writing even moderately complex mathematics in such a system requires an enormous amount of code.
 
-More complex logical systems are more *expressive* - allowing us to write more complex mathematics (or programs) reasonably concisely. However, verification is no longer so easy (and automation is also harder). There is a range of possible logical systems, including FOL, Higher Order Logic (HOL), and Calculus of Inductive Constructions (CIC). 
+More complex logical systems are more *expressive* - allowing us to write more complex mathematics (or programs) reasonably concisely. However, verification is no longer so easy (and automation is also harder). There is a range of possible logical systems, including FOL, Higher Order Logic (HOL), and Calculus of Inductive Constructions (CIC).
 
 Lean uses the Calculus of Inductive Constructions, which is expressive but complex. To make programming and proving easier (i.e., to increase expressivity), Lean adds features to CIC such as *proof irrelevance*, *quotients*, and *nested inductive types*.
 
