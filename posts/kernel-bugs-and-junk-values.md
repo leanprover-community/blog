@@ -23,7 +23,7 @@ Thus, individuals will have to be more cautious than one would ideally like, at 
 
 ## Trusted Kernels
 
-If we trust a computer system to test a proof, how do we know the system itself is correct? This fundamental question was addressed by de Bruijn while building his pioneering system **AutoMath** in the 1960s.The idea that he came up with was to separate a **kernel**, which checks correctness of proofs, from the rest of the system: the parts that help find proofs, provide interfaces etc. An analogue of the kernel is the part of a chess engine that checks whether moves are legal and whether we have a checkmate - much less code than the part that actually makes smart moves.
+If we trust a computer system to test a proof, how do we know the system itself is correct? This fundamental question was addressed by de Bruijn while building his pioneering system **Automath** in the 1960s.The idea that he came up with was to separate a **kernel**, which checks correctness of proofs, from the rest of the system: the parts that help find proofs, provide interfaces etc. An analogue of the kernel is the part of a chess engine that checks whether moves are legal and whether we have a checkmate - much less code than the part that actually makes smart moves.
 
 The kernel has to be checked manually. However, if the kernel is relatively small, well-documented, and (these days) open sourced, one can hope that it has been checked by many people. Having such a kernel is now called the *de Bruijn principle*.
 
