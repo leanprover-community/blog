@@ -77,7 +77,7 @@ It turned out that the code passed Nanoda because of an entirely different bug b
 
 The bug was immediately fixed in Lean. Over the next few days some more bugs were found and fixed.
 
-Many of these bugs involve strange meta-programming hacks whose intention is to clearly find and exploit the bugs, and others are not those that one is likely to encounter in normal Lean usage. So as far as normal Lean code is concerned there are no know kernel bugs. To increase confidence in one code, one can check (for instance via an LLM) whether strange meta-programming has been done or there is other non-idiomatic Lean usage. That said, once a few bugs are found something more has to be done to restore confidence.
+Many of these bugs involve strange meta-programming hacks whose intention is to clearly find and exploit the bugs, and others are not those that one is likely to encounter in normal Lean usage. So as far as normal Lean code is concerned there are no known kernel bugs. To increase confidence in one code, one can check (for instance via an LLM) whether strange meta-programming has been done or there is other non-idiomatic Lean usage. That said, once a few bugs are found something more has to be done to restore confidence.
 
 ### Verified kernels and *lean4lean*
 
