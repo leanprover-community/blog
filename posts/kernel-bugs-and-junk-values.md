@@ -130,6 +130,6 @@ For individuals, I would recommend (as I have done) updating what you should che
 * One always needed to check statements.
 * One needs to check any new definitions, ideally by proving extra theorems.
 * In the case of standard definitions used directly or indirectly in the *statement*, be a bit careful if they use junk values. The more widely a definition is used the less likely it is that the error leaks, but a junk value is an error.
-* Slightly downgrade confidence due to the possibility of kernel bugs. For human written code, or AI written with active human involvement and understanding, I would personally reduce by only a tiny amount. For pure vibe coding: reduce by a little more if there is no strange metaprogramming, but if there is metaprogramming whose purpose is not clear be vary if this is an exploit.
+* Slightly downgrade confidence due to the possibility of kernel bugs. For human written code, or AI written with active human involvement and understanding, I would personally reduce by only a tiny amount. For pure vibe coding: reduce by a little more if there is no strange metaprogramming, but if there is metaprogramming whose purpose is not clear be wary if this is an exploit.
 
 For the Lean community, I hope we can build the understanding and tools to restore trust to the ideal level - as high a level as one can reasonably expect in the absence of magic.
