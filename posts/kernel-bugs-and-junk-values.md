@@ -65,7 +65,7 @@ However, `x` and `y` may not be definitionally equal, so we have to stop our sea
 
 In practice, this means that some additional criterion has to be introduced for giving up, and the behaviour of the type-checker depends on this. In the case of Trepplein (as implemented by Gabriel Ebner) there were actually configurable timeout parameters. Perhaps changing these would have allowed me to proceed. But at that time I got overwhelmed by the complexity and did not understand things as clearly as I do now, and so abandoned my efforts.
 
-I should emphasise that the undecidability is not a soundness issue - we only need an algorithm for type checking so that if it is accepted that `x` has type `A`, then indeed it does. If `x` has type `A` but the checker things it does not, then we will fail to prove something, weakening the prover. We will, however, not prove a false statement.
+I should emphasise that the undecidability is not a soundness issue - we only need an algorithm for type checking so that if it is accepted that `x` has type `A`, then indeed it does. If `x` has type `A` but the checker thinks it does not, then we will fail to prove something, weakening the prover. We will, however, not prove a false statement.
 
 ### Kernel bugs
 
