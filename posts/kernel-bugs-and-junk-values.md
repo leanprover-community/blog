@@ -51,7 +51,7 @@ Unfortunately, the chance of coinciding bugs is not as small as one would like. 
 
 ### Trepplein times
 
-Trepplein is an independent type-checker for Lean 3 written by Gabriel Ebner in Scala. Since I knew Scala well and was also reasonably familiar with Lean-like foundations, I volunteered to try to port this to Lean 4. Unfortunately I did not finish this, but I learnt some things along the way. I should clarify that all this was some years ago, before we had AI chatbots, leave alone coding agents.
+Trepplein is an independent type-checker for Lean 3 written by Gabriel Ebner in Scala. Since I knew Scala well and was also reasonably familiar with Lean-like foundations, I volunteered to try to port this to Lean 4. Unfortunately I did not finish this, but I learnt some things along the way. I should clarify that all this was some years ago, before we had AI chatbots, let alone coding agents.
 
 Lean has an export format which is easy to parse. The code in Lean is exported in this format and independent type-checkers parse this and check correctness. 
 
