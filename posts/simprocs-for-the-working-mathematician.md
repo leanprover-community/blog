@@ -141,8 +141,8 @@ When presented with a left hand side of the form `a ∣ b` where `a` and `b` are
 
 - Check that `a` and `b` are numerals.
 - Compute `b % a`.
-- If `b % a` is zero, then return the right hand side `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl` that `(b % a = 0) = True`.
-- If `b % a` isn't zero, then return the right hand side `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl` that `(b % a = 0) = False`.
+- If `b % a` is zero, then return the right hand side `True` together with the proof `Nat.dvd_eq_true_of_mod_eq_zero a b rfl` that `(a ∣ b) = True`.
+- If `b % a` isn't zero, then return the right hand side `False` together with the proof `Nat.dvd_eq_false_of_mod_ne_zero a b rfl` that `(a ∣ b) = False`.
 
 ### The `Finset.Icc_ofNat_ofNat` simproc
 
