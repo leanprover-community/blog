@@ -177,8 +177,8 @@ There are a few reasons why simprocs are interesting for computation regardless:
 <ul>
 <li>Check that <code>a</code> and <code>b</code> are numerals.</li>
 <li>Compute <code>b % a</code>.</li>
-<li>If <code>b % a</code> is zero, then return the right hand side <code>True</code> together with the proof <code>Nat.dvd_eq_true_of_mod_eq_zero a b rfl</code> that <code>(b % a = 0) = True</code>.</li>
-<li>If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(b % a = 0) = False</code>.</li>
+<li>If <code>b % a</code> is zero, then return the right hand side <code>True</code> together with the proof <code>Nat.dvd_eq_true_of_mod_eq_zero a b rfl</code> that <code>(a ∣ b) = True</code>.</li>
+<li>If <code>b % a</code> isn't zero, then return the right hand side <code>False</code> together with the proof <code>Nat.dvd_eq_false_of_mod_ne_zero a b rfl</code> that <code>(a ∣ b) = False</code>.</li>
 </ul>
 <h4>The <code>Finset.Icc_ofNat_ofNat</code> simproc</h4>
 <p>If <code>a</code> and <code>b</code> are in a (locally finite) partial order (if you don't know what this means, you can safely ignore these terms and think of the natural numbers instead), then <code>Finset.Icc a b</code> for <code>a</code> and <code>b</code> is the finite set of elements lying between <code>a</code> and <code>b</code>.</p>
