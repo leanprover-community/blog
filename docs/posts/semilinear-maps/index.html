@@ -63,8 +63,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
         </div>
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>Since linear maps appear everywhere in mathematics, it comes as no surprise that they have been part of mathlib for quite some time. However, as we were working on adding the basics of functional analysis to mathlib, a drawback quickly became apparent: conjugate-linear maps could not directly be expressed as linear maps. This meant that some constructions could not be formulated in their most natural way: for example, the map that takes an operator to its adjoint on a complex Hilbert space is a conjugate linear map, and so is the Riesz representation that maps a vector to its dual. This was also preventing us from developing the orthogonal group, the unitary group, etc, properly.</p>
+    <p>Since linear maps appear everywhere in mathematics, it comes as no surprise that they have been part of mathlib for quite some time. However, as we were working on adding the basics of functional analysis to mathlib, a drawback quickly became apparent: conjugate-linear maps could not directly be expressed as linear maps. This meant that some constructions could not be formulated in their most natural way: for example, the map that takes an operator to its adjoint on a complex Hilbert space is a conjugate linear map, and so is the Riesz representation that maps a vector to its dual. This was also preventing us from developing the orthogonal group, the unitary group, etc, properly.</p>
 <!-- TEASER_END -->
 
 <p>A few options were considered to introduce conjugate-linear maps. One possible way was to define the <a href="https://en.wikipedia.org/wiki/Complex_conjugate_vector_space">conjugate space</a> of <code>E</code> as a type copy where scalar multiplication is conjugated. Then, a conjugate-linear maps is a standard linear map to the conjugate space. This would have enabled us to reuse the API of linear maps without having too much to refactor, but an early attempt to do this was abandoned when converting between the conjugate space and the original space proved to be unwieldy. A further disadvantage is that the type copy would have also appeared in the real case for constructions involving <code>is_R_or_C</code>. Another potential solution to the problem was to define conjugate-linear maps separately from linear maps. The big drawback here is that the API for linear maps would effectively have to be duplicated for those new maps.</p>
@@ -82,7 +81,6 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <p>The examples given here have been simplified to get to the core of the issue; in reality, these maps would involve <em>continuous</em> linear maps, we would most likely have to specify the type of <code>adjoint</code> for Lean to infer the correct types, etc. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 </ol>
-</div>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">

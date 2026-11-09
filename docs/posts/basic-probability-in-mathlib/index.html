@@ -65,8 +65,7 @@ This post answers these and o">
         </div>
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>How do I define a probability space and two independent random variables in Lean? Should I use <code>IsProbabilityMeasure</code> or <code>ProbabilityMeasure</code>?
+    <p>How do I define a probability space and two independent random variables in Lean? Should I use <code>IsProbabilityMeasure</code> or <code>ProbabilityMeasure</code>?
 How do I condition on an event?</p>
 <p>This post answers these and other simple questions about how to express probability concepts using Mathlib.</p>
 <!-- TEASER_END -->
@@ -229,7 +228,6 @@ Transition kernels are represented in Mathlib by the type <code>Kernel E F</code
 A kernel such that all measures in its image are probability measures is called a Markov kernel. This is denoted by <code>IsMarkovKernel κ</code>.
 There are other typeclasses for kernels that are finite (<code>IsFiniteKernel</code>) or s-finite (countable sum of finite, <code>IsSFiniteKernel</code>).</p>
 <p>Kernels are perhaps more widely used in Mathlib than one would expect. For example independence and conditional independence are both expressed as special cases of a notion of independence with respect to a kernel and a measure.</p>
-</div>
     </div>
     <aside class="postpromonav"><nav><ul class="pager hidden-print">
 <li class="previous">
