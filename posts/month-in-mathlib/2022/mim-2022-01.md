@@ -30,7 +30,7 @@ In this post we highlight some of these contributions.
   
 
 * Algebraic geometry. 
-     - [PR #9802](https://github.com/leanprover-community/mathlib/pull/9802) built the the Gamma-Spec adjunction.
+     - [PR #9802](https://github.com/leanprover-community/mathlib/pull/9802) built the Gamma-Spec adjunction.
      - A construction for gluing schemes was added in [PR #11431](https://github.com/leanprover-community/mathlib/pull/11431), which was used in [PR #10605](https://github.com/leanprover-community/mathlib/pull/10605) to show that the category of schemes has fiber products.
      - The function field of an integral scheme is defined in [PR #11147](https://github.com/leanprover-community/mathlib/pull/11147).
      - In topos theory, [PR #11252](https://github.com/leanprover-community/mathlib/pull/11252) shows that sheafification is left exact, and [PR #11273](https://github.com/leanprover-community/mathlib/pull/11273) provides the pushforward-pullback adjunction.
