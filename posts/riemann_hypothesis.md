@@ -1,5 +1,5 @@
 ---
-author: 'Lean and Mathlib communities'
+author: 'Lean FRO and Mathlib Initiative'
 category: 'overview'
 date: 2026-11-21 13:55:00+00:00
 description: ''
@@ -13,7 +13,7 @@ type: text
 
 # Lean verification of the Riemann Hypothesis
 
-*Joint statement by the Lean and Mathlib communities, endorsed by the Lean FRO and the Mathlib Initiative.*
+*Joint statement by the Lean FRO and the Mathlib Initiative.*
 
 On November 20, 2026, Levent Alpöge [released](https://alpo.ge/remark.pdf) a proof of the Riemann Hypothesis as a Lean library comprising 17 million lines of code. 
 
@@ -21,7 +21,7 @@ We have full confidence that Alpöge's proof of the Riemann Hypothesis is correc
 
 Our rationale is outlined below. 
 
-The codebase depends directly only on Mathlib. Over the past day, the Lean and Mathlib communities have rallied to verify the proof's correctness. We hereby certify that both the statement and the proof of the Riemann Hypothesis are correct. The four criteria in [https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/](https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/) are all satisfied.
+The codebase depends directly only on Mathlib. Over the past day, part of the Lean and Mathlib communities have rallied to verify the proof's correctness. We hereby certify that both the statement and the proof of the Riemann Hypothesis are correct. The four criteria in [https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/](https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/) are all satisfied.
 
 1. **The statement of the Riemann Hypothesis is correct.** This statement is part of Mathlib: [RiemannHypothesis](https://leanprover-community.github.io/mathlib4_docs/Mathlib/NumberTheory/LSeries/RiemannZeta.html#RiemannHypothesis) and has been carefully vetted by experts in Lean and number theory.  
 2. **Alpöge’s library compiles correctly.** By now, dozens of people have reported correct compilation of the codebase, reproducing the same raw proof export file. The library compiles without errors or build failures.  
