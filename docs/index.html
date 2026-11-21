@@ -21,7 +21,7 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://leanprover-community.github.io/blog/meta-twitter.png">
 <meta name="twitter:title" content="Lean community blog">
-<link rel="prefetch" href="posts/mathlib-reviewer-bootcamp/" type="text/html">
+<link rel="prefetch" href="posts/riemann-hypothesis/" type="text/html">
 </head>
 <body>
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -43,7 +43,38 @@ og: http://ogp.me/ns# article: http://ogp.me/ns/article#
     
     
     </ul></nav></header><main id="content"><div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mathlib-reviewer-bootcamp/" class="u-url">Our Experience at the Mathlib Reviewer Bootcamp 2026</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/riemann-hypothesis/" class="u-url">Lean verification of the Riemann Hypothesis</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                            <a href="authors/lean-and-mathlib-communities/">Lean and Mathlib communities</a>
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/riemann-hypothesis/" rel="bookmark">
+            <time class="published dt-published" datetime="2026-11-21T13:55:00Z" itemprop="datePublished" title="2026-11-21 13:55">2026-11-21 13:55</time></a>
+            </p>
+		    <p><span class="text-dark">overview</span></p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <h2>Lean verification of the Riemann Hypothesis</h2>
+<p><em>Joint statement by the Lean and Mathlib communities, endorsed by the Lean FRO and the Mathlib Initiative.</em></p>
+<p>On November 20, 2026, Levent Alpöge <a href="https://alpo.ge/remark.pdf">released</a> a proof of the Riemann Hypothesis as a Lean library comprising 17 million lines of code. </p>
+<p>We have full confidence that Alpöge's proof of the Riemann Hypothesis is correct, and we congratulate him on this achievement.</p>
+<p>Our rationale is outlined below. </p>
+<p>The library depends directly only on Mathlib. Over the past day, the Lean and Mathlib communities have rallied to verify the proof's correctness. We hereby certify that both the statement and the proof of the Riemann Hypothesis are correct. The four criteria in https://xenaproject.wordpress.com/2026/11/12/and-the-proof-is-checked-in-lean/ are all satisfied.</p>
+<ol>
+<li>
+<strong>The statement of the Riemann Hypothes is correct.</strong> This statement is part of Mathlib: https://leanprover-community.github.io/mathlib4_docs/Mathlib/NumberTheory/LSeries/RiemannZeta.html#RiemannHypothesis and has been carefully vetted by experts in Lean and number theory.  </li>
+<li>
+<strong>Alpöge’s library compiles correctly.</strong> By now, dozens of people have reported correct compilation of the codebase, reproducing the same raw proof export file. The library compiles without errors or build failures.  </li>
+<li>
+<strong>The code proves the correct statement.</strong> Crucially, the community has added a file that isolates the statement of the Riemann Hypothesis and imports only Mathlib. That statement was compared against the theorem proved by Alpöge using two independent tools (<code>comparator</code> and <code>con-leche –compare</code>), both confirming that the theorem proved in Alpöge’s library is exactly Mathlib’s statement of the Riemann Hypothesis.   </li>
+<li>
+<strong>The lean proof is valid.</strong> The exported raw proof has been checked by several proof checkers, including Lean’s official kernel, the <code>con-leche</code> and <code>con-ron</code> checkers, and several independent checkers contributed by third parties and implemented in different programming languages. The checkers <code>con-leche</code> and <code>con-ron</code> come with a formal proof, relative to set theory, that they cannot accept a false proof, thus addressing concerns that Lean’s logic itself might have flaws that the proof could exploit. An extensive overview is available at https://math.mit.edu/~drew/grh/. These checks ran on an inert export of the proof, out of reach of hypothetical malicious code in the Lean proof sources. </li>
+</ol>
+<p>Thanks are owed to <a href="https://leanprover.zulipchat.com/#narrow/channel/113488-general/topic/Discussion.3A.20Alp.C3.B6ge.20Proves.20the.20Riemann.20Hypothesis/with/642477265">everyone in the community</a> who provided resources for the verification.</p>
+<p>We look forward to all the activity in the mathematical community that will help explain the new ideas in this proof.</p>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/mathlib-reviewer-bootcamp/" class="u-url">Our Experience at the Mathlib Reviewer Bootcamp 2026</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                             <a href="authors/rida-hamadani-and-hannah-scholz/">Rida Hamadani and Hannah Scholz</a>
@@ -219,29 +250,6 @@ following <em>Toric Varieties</em> by Cox, Little and Schenck.</p>
   i.e. toric geometry and its relation to convex geometry.</li>
 </ul>
 <p class="more"><a href="posts/affine-group-schemes-hopf-algebra/">Read more…</a></p>
-</div>
-                </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/abelian-categories/" class="u-url">Theorems about abelian categories</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                            <a href="authors/markus-himmel-and-joel-riou/">Markus Himmel and Joël Riou</a>
-                    </span></p>
-            <p class="dateline">
-            <a href="posts/abelian-categories/" rel="bookmark">
-            <time class="published dt-published" datetime="2025-06-17T11:15:00+02:00" itemprop="datePublished" title="2025-06-17 11:15">2025-06-17 11:15</time></a>
-            </p>
-		    <p><span class="text-dark">New in mathlib</span></p>
-                </div>
-            </header><div class="p-summary entry-summary">
-                    <div>
-<p>Two significant results about abelian categories have recently been
-added to mathlib. The first is that any Grothendieck
-abelian category has enough injectives, and it follows from a
-general construction known as the small object argument. The second
-is the Freyd-Mitchell theorem which states that any abelian
-category admits a fully faithful exact functor to a category
-of modules.</p>
-<p class="more"><a href="posts/abelian-categories/">Read more…</a></p>
 </div>
                 </div>
             </article>
