@@ -74,7 +74,7 @@ Before that final pull request could be merged, we ran into an unexpected issue 
 the definition of a function field relies on a field of rational functions $\mathbb{F}_q(t)$,
 which we denoted in Lean as `fraction_ring (polynomial Fq)`.
 Both `fraction_ring` and `polynomial`, and more importantly their field resp. ring structure, are quite complicated definitions.
-This is no problem when working with them normally, however when there are missing typeclass instances Lean can end up desparately unfolding all of these definitions into their basic axioms,
+This is no problem when working with them normally, however when there are missing typeclass instances Lean can end up desperately unfolding all of these definitions into their basic axioms,
 causing timeouts during error reporting.
 We want errors to be reported quickly and indeed Mathlib has a linter that ensures missing instances fail in the expected way,
 so we needed to fix this timeout issue before the PR could get merged.
