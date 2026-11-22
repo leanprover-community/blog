@@ -17,7 +17,7 @@ March 2022 saw a record number of new contributions to mathlib: 682 PRs were mer
 
 - Algebra.
 	* After the definition of the Krull topology last month, [PR #11973](https://github.com/leanprover-community/mathlib/pull/11973) and [PR #12398](https://github.com/leanprover-community/mathlib/pull/12398) show the Krull topology is Hausdorff and totally disconnected
-	* Joachim Breitner contributed to group theory by establishing the Ping Pong Lemma in [PR #12210](https://github.com/leanprover-community/mathlib/pull/12210), then [PR #11778](https://github.com/leanprover-community/mathlib/pull/11778) completes the last in a chain of equivalences for finite nilpotent groups (direct product of Sylow subgroups), culiminating in [PR #11835](https://github.com/leanprover-community/mathlib/pull/11835).
+	* Joachim Breitner contributed to group theory by establishing the Ping Pong Lemma in [PR #12210](https://github.com/leanprover-community/mathlib/pull/12210), then [PR #11778](https://github.com/leanprover-community/mathlib/pull/11778) completes the last in a chain of equivalences for finite nilpotent groups (direct product of Sylow subgroups), culminating in [PR #11835](https://github.com/leanprover-community/mathlib/pull/11835).
 	* [PR #12866](https://github.com/leanprover-community/mathlib/pull/12866) A polynomial ring in arbitrarily many variables over a UFD is a UFD.
 	* [PR #12300](https://github.com/leanprover-community/mathlib/pull/12300) Adds non-unital and non-associative rings, thereby opening the door for applications elsewhere.
   	  For instance square matrices over a non-unital ring form a non-unital ring ([PR #12913](https://github.com/leanprover-community/mathlib/pull/12913)),

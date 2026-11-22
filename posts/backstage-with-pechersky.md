@@ -175,7 +175,7 @@ material, like, what is the expansion of `X / X + 1`.
 I have this as a personal mathlib-dependent project: `pechersky/gouvea`. You
 can kind of see why my PRs are the way they are, you can just follow the book
 and see my trajectory of PRs -- proving Taylor expansions of a polynomial
-are what you expect they are, connecting fraction fiels and polynomials.
+are what you expect they are, connecting fraction fields and polynomials.
 This is all based on your (Johan Commelin) work defining Taylor
 via the cool Hasse derivative formalization, and with Damiano Testa's
 powerful polynomial lemmas that hide a lot of the complexity. And Anne Baanen's
@@ -278,7 +278,7 @@ and it's just positive reinforcement;
 I think it really creates a really good culture.
 [short pause]
 I think it's hard to maintain it, I think it's hard to not have fragmentation,
-I think it's hard to build concensus.
+I think it's hard to build consensus.
 But really,
 for all of the negatives of the Soviet Union,
 there's like a Soviet going on,
@@ -380,7 +380,7 @@ to express some really cool results.
 
 Oh, I also want to say, it's also been fun interacting with Yaël,
 who's been driving a lot of the order hierarchy.
-And I really appreciate they refered to me out in the last interview,
+And I really appreciate they referred to me out in the last interview,
 for the refactor that separated certain things out as Prop-mixins.
 I think with those sort of refactors, mathlib makes them really easy.
 You need a reason to do it;
@@ -404,7 +404,7 @@ YP: Right now, I don't really understand how mathport works.
 There's a lot of things going on with porting mathlib,
 binport, synport, all of that.
 Which is really exciting!
-I'm not asking for there to be more transparancy or clarity around it, because it's really moving.
+I'm not asking for there to be more transparency or clarity around it, because it's really moving.
 
 We have a lot of people excited about Lean 4 right now.
 And we have a lot of people excited about contributing math to mathlib right now.

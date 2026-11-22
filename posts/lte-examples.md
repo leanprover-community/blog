@@ -379,7 +379,7 @@ If `S : Profinite.{0}` and `X : Condensed.{0} Ab.{1}`, then the notation `Γ_ S 
 
 Since Lean's type theory does not have cumulative universes, the definition of `CompHausFiltPseuNormGrp.to_Condensed` involves a universe bump using `ulift`, in order to obtain an object of `Ab.{1}` as opposed to `Ab.{0}` (see the discussion above).
 Putting that aside, the sections $\Gamma(S,X)$ of the condensed abelian group associated to a CHFPNG $X$ over a profinite set $S$ is the set of functions $f : S \to M$ which factor as the composition of a continuous map $g : S \to M_c$ and the natural inclusion $\mathtt{coe} : M_c \to M$ for some $c$.
-The group structure on this set of sections is the obivous one, given by pointwise addition.
+The group structure on this set of sections is the obvious one, given by pointwise addition.
 ```lean
 example (X : CompHausFiltPseuNormGrp.{0}) (S : Profinite.{0})
   (f g : Γ_ S (CompHausFiltPseuNormGrp.to_Condensed X)) (s : S) :
@@ -597,7 +597,7 @@ rfl -- true by definition!
 # `Ext` groups
 
 The file [`examples/Ext.lean`](https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/Ext.lean) was arguably the original motivation for the `examples` folder.
-After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined `Ext` to always be zero!
+After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentally" defined `Ext` to always be zero!
 
 ![ext-zulip](/images/lte-ext-zulip-1.png)
 ![ext-zulip](/images/lte-ext-zulip-2.png)
