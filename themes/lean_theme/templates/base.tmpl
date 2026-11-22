@@ -17,6 +17,7 @@
         <main id="content">
             {% block content %}{% endblock %}
 
+        {% if not post or post.meta('comments')|lower != 'false' %}
         <script src="https://giscus.app/client.js"
             data-repo="leanprover-community/blog"
             data-repo-id="MDEwOlJlcG9zaXRvcnkzOTM3OTE1ODU="
@@ -32,6 +33,7 @@
             crossorigin="anonymous"
             async>
         </script>
+        {% endif %}
         </main>
         {{ footer.html_footer() }}
     </div>
