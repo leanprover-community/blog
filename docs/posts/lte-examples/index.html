@@ -366,7 +366,7 @@ The functor itself is called <code>CompHausFiltPseuNormGrp.to_Condensed</code>:<
 <p>If <code>S : Profinite.{0}</code> and <code>X : Condensed.{0} Ab.{1}</code>, then the notation <code>Γ_ S X</code> appearing in the second line should be read as $\Gamma(S,X)$, i.e. the sections of <code>X</code> over <code>S</code>.</p>
 <p>Since Lean's type theory does not have cumulative universes, the definition of <code>CompHausFiltPseuNormGrp.to_Condensed</code> involves a universe bump using <code>ulift</code>, in order to obtain an object of <code>Ab.{1}</code> as opposed to <code>Ab.{0}</code> (see the discussion above).
 Putting that aside, the sections $\Gamma(S,X)$ of the condensed abelian group associated to a CHFPNG $X$ over a profinite set $S$ is the set of functions $f : S \to M$ which factor as the composition of a continuous map $g : S \to M_c$ and the natural inclusion $\mathtt{coe} : M_c \to M$ for some $c$.
-The group structure on this set of sections is the obivous one, given by pointwise addition.</p>
+The group structure on this set of sections is the obvious one, given by pointwise addition.</p>
 <pre class="code literal-block"><span class="kd">example</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="n">CompHausFiltPseuNormGrp.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span> <span class="o">(</span><span class="n">S</span> <span class="o">:</span> <span class="n">Profinite.</span><span class="o">{</span><span class="mi">0</span><span class="o">})</span>
   <span class="o">(</span><span class="n">f</span> <span class="n">g</span> <span class="o">:</span> <span class="bp">Γ</span><span class="n">_</span> <span class="n">S</span> <span class="o">(</span><span class="n">CompHausFiltPseuNormGrp.to_Condensed</span> <span class="n">X</span><span class="o">))</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">S</span><span class="o">)</span> <span class="o">:</span>
   <span class="o">(</span><span class="n">f</span> <span class="bp">+</span> <span class="n">g</span><span class="o">)</span> <span class="n">s</span> <span class="bp">=</span> <span class="n">f</span> <span class="n">s</span> <span class="bp">+</span> <span class="n">g</span> <span class="n">s</span> <span class="o">:=</span> 
@@ -546,7 +546,7 @@ This example is denoted <code>pBanach.lp p</code> in LTE. </p>
 <h2>
 <code>Ext</code> groups</h2>
 <p>The file <a href="https://github.com/leanprover-community/lean-liquid/blob/92f188bd17f34dbfefc92a83069577f708851aec/src/examples/Ext.lean"><code>examples/Ext.lean</code></a> was arguably the original motivation for the <code>examples</code> folder.
-After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentily" defined <code>Ext</code> to always be zero!</p>
+After the liquid tensor experiment was completed, we joked about the fact that we could have "accidentally" defined <code>Ext</code> to always be zero!</p>
 <p><img alt="ext-zulip" src="../../images/lte-ext-zulip-1.png"><img alt="ext-zulip" src="../../images/lte-ext-zulip-2.png"></p>
 <p>Of course, then quickly came the question of how we could be convinced that the definition we had was correct.</p>
 <p>We came up with two computations that were sufficiently convincing for us:</p>

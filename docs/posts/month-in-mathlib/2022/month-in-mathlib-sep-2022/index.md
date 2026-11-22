@@ -34,7 +34,7 @@ In September 2022 there were 361 PRs merged into mathlib. We list some of the hi
      - [PR #14703](https://github.com/leanprover-community/mathlib/pull/14703) and [PR #15009](https://github.com/leanprover-community/mathlib/pull/15009) are working towards hyperbolic geometry in dimension 2 with a eye towards modular forms.
 
 * Combinatorics
-     - [PR #16120](https://github.com/leanprover-community/mathlib/pull/16120) continues developping the theory of Young diagrams.
+     - [PR #16120](https://github.com/leanprover-community/mathlib/pull/16120) continues developing the theory of Young diagrams.
      - [PR #15440](https://github.com/leanprover-community/mathlib/pull/15440) proves the Plünnecke-Ruzsa inequality.
 
 * Model theory

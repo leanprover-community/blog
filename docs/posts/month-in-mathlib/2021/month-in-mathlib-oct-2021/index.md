@@ -25,7 +25,7 @@ This post summarizes some of the activity that happened in mathlib in October.
      - [PR #9416](https://github.com/leanprover-community/mathlib/pull/9416) Global sections of the spectrum of a ring are isomorphic to that ring.
      - [PR #9861](https://github.com/leanprover-community/mathlib/pull/9861) Closed points in the prime spectrum correspond to maximal ideals.
 * In commutative algebra:
-     - algebraic indepence and transcendence are introduced in 
+     - algebraic independence and transcendence are introduced in 
     [PR #9229](https://github.com/leanprover-community/mathlib/pull/9229) and 
     [PR #9377](https://github.com/leanprover-community/mathlib/pull/9377) proved
     the existence of transcendence bases. 

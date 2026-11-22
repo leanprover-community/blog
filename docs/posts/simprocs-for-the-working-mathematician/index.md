@@ -69,7 +69,7 @@ In this section, we exemplify four simprocs that cover the following use cases:
 
 ## Avoiding combinatorial explosion of lemmas: The `existsAndEq` simproc
 
-The [`existsAndEq`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=existsAndEq#doc) simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurences of `x` by `a`.
+The [`existsAndEq`](https://leanprover-community.github.io/mathlib4_docs/find/?pattern=existsAndEq#doc) simproc is designed to simplify expressions of the form `∃ x, ... ∧ x = a ∧ ...` where `a` is some quantity independent of `x` by removing the existential quantifier and replacing all occurrences of `x` by `a`.
 
 ```lean
 example (p : Nat → Prop) : ∃ x : Nat, p x ∧ x = 5 := by
