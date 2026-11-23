@@ -1,5 +1,5 @@
 ---
-author: 'Lean and Mathlib communities'
+author: 'Lean FRO and Mathlib Initiative'
 category: 'overview'
 date: 2026-11-21 13:55:00+00:00
 description: ''
@@ -14,7 +14,7 @@ type: text
 
 # Lean verification of the Riemann Hypothesis
 
-*Joint statement by the Lean and Mathlib communities, endorsed by the Lean FRO and the Mathlib Initiative.*
+*Joint statement by the Lean FRO and the Mathlib Initiative.*
 
 On November 20, 2026, Levent Alpöge [released](https://alpo.ge/remark.pdf) a proof of the Riemann Hypothesis as a Lean library comprising 17 million lines of code. 
 
