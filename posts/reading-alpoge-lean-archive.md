@@ -22,7 +22,7 @@ The project gives the same argument at four lengths:
 * a [story version](https://rh-lean-roadmap.github.io/rh-lean-roadmap/web/), in Chinese and English, for readers with no mathematics;
 * a [7-page roadmap](https://rh-lean-roadmap.github.io/rh-lean-roadmap/paper/roadmap.pdf): the top of the argument in five steps, each tied to declarations in the archive;
 * a [22-page reading guide](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/reading-guide-en.pdf), also [in Chinese](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/reading-guide-zh.pdf) (21 pages): the argument in six steps, with the location of every declaration cited;
-* the [book](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/book.pdf), 1582 pages: a main text of 497 pages, an appendix of 963 pages with the longer proofs, and the index of Lean declarations with the bibliography. It is archived on [Zenodo](https://doi.org/10.5281/zenodo.24562451).
+* the [book](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/book.pdf), 1617 pages: a main text of 500 pages, an appendix of 995 pages with the longer proofs, and the index of Lean declarations with the bibliography. It is archived on [Zenodo](https://doi.org/10.5281/zenodo.24562451).
 
 ## The book in nine parts
 
@@ -40,7 +40,7 @@ The main text follows the argument from the five final statements down to three 
 
 ## The index of Lean declarations
 
-Statements are numbered by chapter, as in 1.1 or 21.38. The index at the end of the book lists, for each statement by its number, the archive declarations that prove it, with their modules and line numbers. Where the archive contains several versions of a result, the one cited is the version on the path of the final proof. Results from the literature are stated in the form the archive uses, with references. The 63 proofs in Part VIII headed "Proof (outline)" each end with the Lean declaration that contains the complete proof. The book cites the original archive; Luke Sernau's shorter rewriting, [grh-lean](https://github.com/lsernau/grh-lean), is a separate formal text.
+Statements are numbered by chapter, as in 1.1 or 21.38. The index at the end of the book lists, for each statement by its number, the archive declarations that prove it, with their modules and line numbers. Where the archive contains several versions of a result, the one cited is the version on the path of the final proof. Results from the literature are stated in the form the archive uses, with references. The 65 proofs headed "Proof (outline)", 64 in Part VIII and one in Part IX, each end with the Lean declaration that contains the complete proof. The book cites the original archive; Luke Sernau's shorter rewriting, [grh-lean](https://github.com/lsernau/grh-lean), is a separate formal text.
 
 ## An example: Theorem 1.1 and Main.lean, line 4
 
