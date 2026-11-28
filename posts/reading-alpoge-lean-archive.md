@@ -22,7 +22,7 @@ The project gives the same argument at four lengths:
 * a [story version](https://rh-lean-roadmap.github.io/rh-lean-roadmap/web/), in Chinese and English, for readers with no mathematics;
 * a [7-page roadmap](https://rh-lean-roadmap.github.io/rh-lean-roadmap/paper/roadmap.pdf): the top of the argument in five steps, each tied to declarations in the archive;
 * a [22-page reading guide](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/reading-guide-en.pdf), also [in Chinese](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/reading-guide-zh.pdf) (21 pages): the argument in six steps, with the location of every declaration cited;
-* the [book](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/book.pdf), 1617 pages: a main text of 500 pages, an appendix of 995 pages with the longer proofs, and the index of Lean declarations with the bibliography. It is archived on [Zenodo](https://doi.org/10.5281/zenodo.24562451).
+* the [book](https://rh-lean-roadmap.github.io/rh-lean-roadmap/docs/book.pdf), 1617 pages: a main text of 500 pages, an appendix of 995 pages with the longer proofs, and the index of Lean declarations with the bibliography. Version v45 is archived on [Zenodo](https://doi.org/10.5281/zenodo.24623004).
 
 ## The book in nine parts
 
